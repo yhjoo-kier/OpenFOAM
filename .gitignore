@@ -1,15 +1,18 @@
 # OpenFOAM results directories
-*/VTK/
-*/0.[0-9]*/
-*/[1-9]*/
-*/[1-9][0-9]*/
-*/[1-9][0-9][0-9]*/
-*/[1-9][0-9][0-9][0-9]*/
-*/constant/polyMesh/
-*/processor*/
+**/VTK/
+**/0.[0-9]*/
+**/[1-9]*/
+**/[1-9][0-9]*/
+**/[1-9][0-9][0-9]*/
+**/[1-9][0-9][0-9][0-9]*/
+**/constant/polyMesh/
+**/processor*/
+
+# OpenFOAM generated files
+**/cellToRegion
 
 # Keep initial conditions and setup
-!*/0/
+!**/0/
 
 # Python virtual environment
 .venv/
