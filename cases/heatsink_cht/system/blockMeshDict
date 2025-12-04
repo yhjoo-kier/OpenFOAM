@@ -14,46 +14,25 @@ FoamFile
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-scale   1;
+scale   0.001;  // mm to m
 
-// Geometry parameters
-// Base: 50mm x 50mm x 5mm
-// Fin:  50mm x 10mm x 20mm (centered)
+// Simple 3D heatsink: 50mm x 50mm x 25mm
 
 vertices
 (
-    // Base vertices (z=0)
-    (0 0 0)                              // 0
-    (0.05 0 0)                  // 1
-    (0.05 0.05 0)       // 2
-    (0 0.05 0)                   // 3
-
-    // Base top / fin bottom (z=base_height)
-    (0 0 0.005)                  // 4
-    (0.05 0 0.005)      // 5
-    (0.05 0.05 0.005)  // 6
-    (0 0.05 0.005)       // 7
-
-    // Fin top vertices (z=total_height)
-    (0 0.02 0.025)                    // 8
-    (0.05 0.02 0.025)        // 9
-    (0.05 0.03 0.025)          // 10
-    (0 0.03 0.025)                      // 11
-
-    // Fin bottom corners at base_height (for hex block)
-    (0 0.02 0.005)                     // 12
-    (0.05 0.02 0.005)         // 13
-    (0.05 0.03 0.005)           // 14
-    (0 0.03 0.005)                       // 15
+    (0  0  0)      // 0
+    (50 0  0)      // 1
+    (50 50 0)      // 2
+    (0  50 0)      // 3
+    (0  0  25)     // 4
+    (50 0  25)     // 5
+    (50 50 25)     // 6
+    (0  50 25)     // 7
 );
 
 blocks
 (
-    // Base block
-    hex (0 1 2 3 4 5 6 7) (30 30 5) simpleGrading (1 1 1)
-
-    // Fin block
-    hex (12 13 14 15 8 9 10 11) (30 5 15) simpleGrading (1 1 1)
+    hex (0 1 2 3 4 5 6 7) (25 25 15) simpleGrading (1 1 1)
 );
 
 edges
@@ -76,27 +55,43 @@ boundary
         type wall;
         faces
         (
-            (8 9 10 11)
+            (4 5 6 7)
         );
     }
 
-    sides
+    front
     {
         type wall;
         faces
         (
-            // Base sides
             (0 1 5 4)
+        );
+    }
+
+    back
+    {
+        type wall;
+        faces
+        (
             (2 3 7 6)
+        );
+    }
+
+    left
+    {
+        type wall;
+        faces
+        (
             (0 4 7 3)
+        );
+    }
+
+    right
+    {
+        type wall;
+        faces
+        (
             (1 2 6 5)
-            // Base top (excluding fin area) - simplified: include all
-            (4 5 6 7)
-            // Fin sides
-            (12 8 11 15)
-            (13 14 10 9)
-            (12 13 9 8)
-            (15 11 10 14)
         );
     }
 );

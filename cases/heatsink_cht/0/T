@@ -1,0 +1,49 @@
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       volScalarField;
+    object      T;
+}
+
+dimensions      [0 0 0 1 0 0 0];
+
+internalField   uniform 300;
+
+boundaryField
+{
+    bottom
+    {
+        // Heat source: q = 500000 W/m², k = 205 W/(m·K)
+        // gradient = q/k = 500000/205 = 2439 K/m
+        type            fixedGradient;
+        gradient        uniform 2439;
+    }
+
+    top
+    {
+        // Cooled surface (convection simplified as fixed T)
+        type            fixedValue;
+        value           uniform 300;
+    }
+
+    front
+    {
+        type            zeroGradient;
+    }
+
+    back
+    {
+        type            zeroGradient;
+    }
+
+    left
+    {
+        type            zeroGradient;
+    }
+
+    right
+    {
+        type            zeroGradient;
+    }
+}
