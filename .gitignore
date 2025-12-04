@@ -1,0 +1,14 @@
+# OpenFOAM results directories
+channelFlow/VTK/
+channelFlow/0.[0-9]*/
+channelFlow/1/
+channelFlow/constant/polyMesh/
+
+# Python virtual environment
+.venv/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Output images are stored separately
