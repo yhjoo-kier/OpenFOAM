@@ -1,0 +1,12 @@
+# OpenFOAM CFD Pipeline Python Dependencies
+
+# Geometry generation
+gmsh>=4.12.0
+
+# Visualization
+pyvista>=0.43.0
+matplotlib>=3.8.0
+vtk>=9.3.0
+
+# Data processing
+numpy>=1.24.0

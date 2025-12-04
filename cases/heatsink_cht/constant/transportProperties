@@ -1,0 +1,11 @@
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      transportProperties;
+}
+
+// Aluminum thermal diffusivity
+// alpha = k / (rho * Cp) = 205 / (2700 * 900) = 8.44e-5 m^2/s
+DT              [0 2 -1 0 0 0 0] 8.44e-5;

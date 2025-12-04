@@ -1,8 +1,15 @@
 # OpenFOAM results directories
-channelFlow/VTK/
-channelFlow/0.[0-9]*/
-channelFlow/1/
-channelFlow/constant/polyMesh/
+*/VTK/
+*/0.[0-9]*/
+*/[1-9]*/
+*/[1-9][0-9]*/
+*/[1-9][0-9][0-9]*/
+*/[1-9][0-9][0-9][0-9]*/
+*/constant/polyMesh/
+*/processor*/
+
+# Keep initial conditions and setup
+!*/0/
 
 # Python virtual environment
 .venv/
@@ -10,5 +17,32 @@ channelFlow/constant/polyMesh/
 # Python cache
 __pycache__/
 *.pyc
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+dist/
+build/
 
-# Output images are stored separately
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+log.*
+
+# Mesh files (can be large)
+*.msh
+*.vtk
+*.vtu
+*.vtp
+
+# Keep example output images in repo root
+!*.png
