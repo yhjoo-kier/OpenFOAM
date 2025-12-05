@@ -1,0 +1,63 @@
+#!/bin/bash
+cd "${0%/*}" || exit
+
+# Set OpenFOAM environment
+export WM_PROJECT_DIR=/usr/share/openfoam
+export FOAM_ETC=/usr/share/openfoam/etc
+export WM_PROJECT=OpenFOAM
+
+echo "=========================================="
+echo "Heatsink Cooling Simulation (simpleFoam)"
+echo "Channel: 120 x 40 x 60 mm"
+echo "Inlet velocity: 0.1 m/s"
+echo "Inlet temperature: 25.0 degC"
+echo "Wall temperature: 80.0 degC"
+echo "=========================================="
+
+echo ""
+echo "Step 1: Creating mesh..."
+blockMesh > log.blockMesh 2>&1
+if [ $? -ne 0 ]; then
+    echo "ERROR: blockMesh failed"
+    cat log.blockMesh
+    exit 1
+fi
+echo "  Mesh created successfully"
+
+echo ""
+echo "Step 2: Checking mesh quality..."
+checkMesh > log.checkMesh 2>&1
+grep -A 5 "Mesh OK" log.checkMesh || echo "  Check log.checkMesh for details"
+
+echo ""
+echo "Step 3: Running simpleFoam with scalarTransport..."
+echo "  This may take a few minutes..."
+simpleFoam > log.simpleFoam 2>&1
+if [ $? -ne 0 ]; then
+    echo "ERROR: simpleFoam failed. Check log.simpleFoam"
+    tail -30 log.simpleFoam
+    exit 1
+fi
+
+echo ""
+echo "Step 4: Converting to VTK format..."
+foamToVTK > log.foamToVTK 2>&1
+
+echo ""
+echo "=========================================="
+echo "Simulation Complete!"
+echo "=========================================="
+
+# Extract final residuals
+echo ""
+echo "Final residuals:"
+tail -20 log.simpleFoam | grep -E "(Ux|Uy|Uz|p|T)"
+
+# Calculate outlet temperature
+echo ""
+echo "Extracting outlet temperature..."
+postProcess -func 'patchAverage(name=outlet, T)' -latestTime > log.postProcess 2>&1
+if [ -f postProcessing/patchAverage\(name=outlet,T\)/0/surfaceFieldValue.dat ]; then
+    echo "Outlet average temperature:"
+    tail -1 postProcessing/patchAverage\(name=outlet,T\)/0/surfaceFieldValue.dat
+fi
