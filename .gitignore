@@ -53,5 +53,6 @@ log.*
 # Temporary results directories
 results_new/
 
-# Generated case directories (keep heatsink_cht as example)
+# Generated case directories (simulation data too large)
 cases/heatsink_new/
+cases/heatsink_cht_full/
