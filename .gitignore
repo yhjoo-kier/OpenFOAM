@@ -49,3 +49,10 @@ log.*
 
 # Keep example output images in repo root
 !*.png
+
+# Temporary results directories
+results_new/
+
+# Generated case directories (simulation data too large)
+cases/heatsink_new/
+cases/heatsink_cht_full/
