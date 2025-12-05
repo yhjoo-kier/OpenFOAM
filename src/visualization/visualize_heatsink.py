@@ -2,6 +2,7 @@
 """
 Heatsink Temperature Visualization (matplotlib-based)
 Includes domain geometry, cross-section contours, and temperature profiles.
+Fixed scale formatting issues.
 """
 
 import matplotlib
@@ -9,7 +10,7 @@ matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 from matplotlib import cm
 from matplotlib.colors import Normalize
-from matplotlib.tri import Triangulation
+from matplotlib.ticker import ScalarFormatter, MaxNLocator
 import numpy as np
 import pyvista as pv
 import os
@@ -25,7 +26,6 @@ def find_latest_vtk(case_dir: str) -> str:
     for d in os.listdir(vtk_base):
         full_path = os.path.join(vtk_base, d)
         if os.path.isdir(full_path):
-            # Extract timestep number from directory name
             parts = d.split('_')
             try:
                 timestep = int(parts[-1])
@@ -36,35 +36,27 @@ def find_latest_vtk(case_dir: str) -> str:
     if not vtk_dirs:
         raise FileNotFoundError("No VTK directories found!")
 
-    # Sort by timestep and return latest
     vtk_dirs.sort(key=lambda x: x[0])
     return os.path.join(vtk_base, vtk_dirs[-1][1], "internal.vtu")
 
 
-def create_triangulation(points_2d, scalar_data):
-    """Create triangulation for contour plotting."""
-    from scipy.spatial import Delaunay
-
-    # Remove duplicate points
-    unique_points, indices = np.unique(points_2d, axis=0, return_inverse=True)
-    unique_scalars = np.zeros(len(unique_points))
-    np.add.at(unique_scalars, indices, scalar_data)
-    counts = np.bincount(indices).astype(float)
-    unique_scalars /= counts
-
-    if len(unique_points) < 4:
-        return None, None, None
-
-    try:
-        tri = Delaunay(unique_points)
-        return unique_points[:, 0], unique_points[:, 1], Triangulation(
-            unique_points[:, 0], unique_points[:, 1], tri.simplices
-        ), unique_scalars
-    except Exception:
-        return None, None, None, None
+def setup_colorbar_formatter(cbar):
+    """Fix colorbar to show plain numbers without offset notation."""
+    formatter = ScalarFormatter(useOffset=False, useMathText=False)
+    formatter.set_scientific(False)
+    cbar.ax.yaxis.set_major_formatter(formatter)
+    cbar.ax.yaxis.set_major_locator(MaxNLocator(nbins=8))
 
 
-def visualize_heatsink_results(case_dir: str, output_dir: str):
+def setup_axis_formatter(ax):
+    """Fix axis to show plain numbers without offset notation."""
+    formatter = ScalarFormatter(useOffset=False, useMathText=False)
+    formatter.set_scientific(False)
+    ax.xaxis.set_major_formatter(formatter)
+    ax.yaxis.set_major_formatter(formatter)
+
+
+def visualize_heatsink_results(case_dir: str, output_dir: str, heat_flux: float = 10000):
     """Visualize heatsink thermal analysis results."""
 
     os.makedirs(output_dir, exist_ok=True)
@@ -98,12 +90,16 @@ def visualize_heatsink_results(case_dir: str, output_dir: str):
     # ==================================================
     print("\nCreating domain geometry visualization...")
 
-    fig = plt.figure(figsize=(14, 5))
+    fig = plt.figure(figsize=(16, 5))
 
     # 3D isometric view of domain
     ax1 = fig.add_subplot(131, projection='3d')
 
-    # Draw box edges
+    # Get mesh outline for visualization
+    outline = mesh.outline()
+    outline_points = outline.points * 1000  # Convert to mm
+
+    # Draw mesh bounding box
     vertices = np.array([
         [xmin_mm, ymin_mm, zmin_mm],
         [xmax_mm, ymin_mm, zmin_mm],
@@ -115,7 +111,6 @@ def visualize_heatsink_results(case_dir: str, output_dir: str):
         [xmin_mm, ymax_mm, zmax_mm],
     ])
 
-    # Define edges
     edges = [
         [0, 1], [1, 2], [2, 3], [3, 0],  # bottom
         [4, 5], [5, 6], [6, 7], [7, 4],  # top
@@ -127,13 +122,15 @@ def visualize_heatsink_results(case_dir: str, output_dir: str):
         ax1.plot3D(pts[:, 0], pts[:, 1], pts[:, 2], 'b-', linewidth=2)
 
     # Add face labels
-    ax1.text(25, 25, zmin_mm - 2, 'Bottom\n(Heat Source)', ha='center', fontsize=8, color='red')
-    ax1.text(25, 25, zmax_mm + 2, 'Top\n(Fixed 300K)', ha='center', fontsize=8, color='blue')
+    ax1.text((xmin_mm+xmax_mm)/2, (ymin_mm+ymax_mm)/2, zmin_mm - 3,
+             'Bottom\n(Heat Source)', ha='center', fontsize=8, color='red')
+    ax1.text((xmin_mm+xmax_mm)/2, (ymin_mm+ymax_mm)/2, zmax_mm + 3,
+             'Top\n(Fixed T)', ha='center', fontsize=8, color='blue')
 
     ax1.set_xlabel('X [mm]')
     ax1.set_ylabel('Y [mm]')
     ax1.set_zlabel('Z [mm]')
-    ax1.set_title('Domain Geometry\n(50 x 50 x 25 mm)')
+    ax1.set_title(f'Domain Geometry\n({xmax_mm-xmin_mm:.0f} x {ymax_mm-ymin_mm:.0f} x {zmax_mm-zmin_mm:.0f} mm)')
 
     # 2D projections
     ax2 = fig.add_subplot(132)
@@ -147,9 +144,10 @@ def visualize_heatsink_results(case_dir: str, output_dir: str):
     ax2.set_title('Side View (XZ)')
     ax2.set_aspect('equal')
     ax2.axhline(y=zmin_mm, color='red', linestyle='--', label='Heat source')
-    ax2.axhline(y=zmax_mm, color='blue', linestyle='--', label='Fixed T=300K')
+    ax2.axhline(y=zmax_mm, color='blue', linestyle='--', label='Fixed T')
     ax2.legend(fontsize=8)
     ax2.grid(True, alpha=0.3)
+    setup_axis_formatter(ax2)
 
     ax3 = fig.add_subplot(133)
     rect = plt.Rectangle((xmin_mm, ymin_mm), xmax_mm - xmin_mm, ymax_mm - ymin_mm,
@@ -162,20 +160,23 @@ def visualize_heatsink_results(case_dir: str, output_dir: str):
     ax3.set_title('Top View (XY)')
     ax3.set_aspect('equal')
     ax3.grid(True, alpha=0.3)
+    setup_axis_formatter(ax3)
 
-    plt.suptitle('Heat Sink Domain Geometry', fontsize=14, fontweight='bold')
+    plt.suptitle('Heatsink Domain Geometry', fontsize=14, fontweight='bold')
     plt.tight_layout()
     plt.savefig(os.path.join(output_dir, 'heatsink_geometry.png'), dpi=150, bbox_inches='tight')
     plt.close()
     print(f"Saved: {os.path.join(output_dir, 'heatsink_geometry.png')}")
 
     # ==================================================
-    # 2. Cross-section Temperature Contours (improved)
+    # 2. Cross-section Temperature Contours
     # ==================================================
     print("\nCreating cross-section contour views...")
 
     fig, axes = plt.subplots(1, 3, figsize=(18, 6))
     norm = Normalize(vmin=T_min, vmax=T_max)
+
+    from scipy.interpolate import griddata
 
     # XZ slice (y = center) - Side view
     center_y = (ymin + ymax) / 2
@@ -186,20 +187,19 @@ def visualize_heatsink_results(case_dir: str, output_dir: str):
         z = points[:, 2] * 1000
         T_slice = slice_xz['T']
 
-        # Create grid for contour
         xi = np.linspace(x.min(), x.max(), 100)
         zi = np.linspace(z.min(), z.max(), 60)
         Xi, Zi = np.meshgrid(xi, zi)
-
-        from scipy.interpolate import griddata
         Ti = griddata((x, z), T_slice, (Xi, Zi), method='linear')
 
         contour = axes[0].contourf(Xi, Zi, Ti, levels=30, cmap='hot', norm=norm)
         axes[0].contour(Xi, Zi, Ti, levels=10, colors='k', linewidths=0.3, alpha=0.5)
-        plt.colorbar(contour, ax=axes[0], label='Temperature [K]')
+        cbar = plt.colorbar(contour, ax=axes[0], label='Temperature [K]')
+        setup_colorbar_formatter(cbar)
         axes[0].set_xlabel('X [mm]')
         axes[0].set_ylabel('Z [mm]')
         axes[0].set_title(f'XZ Cross-section (Y={center_y*1000:.1f}mm)\nSide View')
+        setup_axis_formatter(axes[0])
     axes[0].set_aspect('equal')
 
     # XY slice (z = near bottom) - Base temperature
@@ -214,16 +214,16 @@ def visualize_heatsink_results(case_dir: str, output_dir: str):
         xi = np.linspace(x.min(), x.max(), 100)
         yi = np.linspace(y.min(), y.max(), 100)
         Xi, Yi = np.meshgrid(xi, yi)
-
-        from scipy.interpolate import griddata
         Ti = griddata((x, y), T_slice, (Xi, Yi), method='linear')
 
         contour = axes[1].contourf(Xi, Yi, Ti, levels=30, cmap='hot', norm=norm)
         axes[1].contour(Xi, Yi, Ti, levels=10, colors='k', linewidths=0.3, alpha=0.5)
-        plt.colorbar(contour, ax=axes[1], label='Temperature [K]')
+        cbar = plt.colorbar(contour, ax=axes[1], label='Temperature [K]')
+        setup_colorbar_formatter(cbar)
         axes[1].set_xlabel('X [mm]')
         axes[1].set_ylabel('Y [mm]')
         axes[1].set_title(f'XY Cross-section (Z={z_slice*1000:.1f}mm)\nNear Bottom')
+        setup_axis_formatter(axes[1])
     axes[1].set_aspect('equal')
 
     # YZ slice (x = center) - Front view
@@ -238,20 +238,20 @@ def visualize_heatsink_results(case_dir: str, output_dir: str):
         yi = np.linspace(y.min(), y.max(), 100)
         zi = np.linspace(z.min(), z.max(), 60)
         Yi, Zi = np.meshgrid(yi, zi)
-
-        from scipy.interpolate import griddata
         Ti = griddata((y, z), T_slice, (Yi, Zi), method='linear')
 
         contour = axes[2].contourf(Yi, Zi, Ti, levels=30, cmap='hot', norm=norm)
         axes[2].contour(Yi, Zi, Ti, levels=10, colors='k', linewidths=0.3, alpha=0.5)
-        plt.colorbar(contour, ax=axes[2], label='Temperature [K]')
+        cbar = plt.colorbar(contour, ax=axes[2], label='Temperature [K]')
+        setup_colorbar_formatter(cbar)
         axes[2].set_xlabel('Y [mm]')
         axes[2].set_ylabel('Z [mm]')
         axes[2].set_title(f'YZ Cross-section (X={center_x*1000:.1f}mm)\nFront View')
+        setup_axis_formatter(axes[2])
     axes[2].set_aspect('equal')
 
-    plt.suptitle(f'Heat Sink Temperature Distribution\n'
-                 f'Heat Flux: 500,000 W/m² (bottom), Fixed T: 300 K (top)\n'
+    plt.suptitle(f'Heatsink Temperature Distribution\n'
+                 f'Heat Flux: {heat_flux:,} W/m² (bottom), Fixed T: 300 K (top)\n'
                  f'Temperature Range: {T_min:.1f} K - {T_max:.1f} K',
                  fontsize=12, fontweight='bold')
     plt.tight_layout()
@@ -278,28 +278,26 @@ def visualize_heatsink_results(case_dir: str, output_dir: str):
     z_sorted = z_coords[sort_idx]
     T_sorted = T_line[sort_idx]
 
-    axes[0].plot(z_sorted, T_sorted, 'r-', linewidth=2, marker='o', markersize=3, label='Temperature')
+    axes[0].plot(z_sorted, T_sorted, 'r-', linewidth=2, marker='o', markersize=3, label='Simulation')
     axes[0].axhline(y=300, color='b', linestyle='--', alpha=0.7, label='Top BC (300 K)')
     axes[0].fill_between([zmin_mm, zmax_mm], 300, T_max, alpha=0.1, color='red')
 
     axes[0].set_xlabel('Height Z [mm]')
     axes[0].set_ylabel('Temperature [K]')
     axes[0].set_title('Temperature Profile Along Height (Center)')
-    axes[0].legend()
     axes[0].grid(True, alpha=0.3)
     axes[0].set_xlim([zmin_mm, zmax_mm])
+    setup_axis_formatter(axes[0])
 
     # Analytical comparison for 1D heat conduction
-    # T(z) = T_top + (q/k) * (L - z) where L is height, q is heat flux, k is conductivity
-    L = zmax - zmin  # height in meters
-    q = 500000  # W/m² (high heat flux for visible gradient)
-    k = 205   # W/(m·K) for aluminum
+    L = zmax - zmin
+    k = 205
 
-    z_analytical = np.linspace(zmin, zmax, 100) * 1000  # mm
-    T_analytical = 300 + (q / k) * (L - (z_analytical / 1000 - zmin))
+    z_analytical = np.linspace(zmin, zmax, 100) * 1000
+    T_analytical = 300 + (heat_flux / k) * (L - (z_analytical / 1000 - zmin))
 
     axes[0].plot(z_analytical, T_analytical, 'g--', linewidth=2, alpha=0.7,
-                 label=f'Analytical (1D): ΔT = q·L/k = {q*L/k:.1f} K')
+                 label=f'Analytical (1D): ΔT = q·L/k = {heat_flux*L/k:.2f} K')
     axes[0].legend()
 
     # Temperature distribution histogram
@@ -313,6 +311,7 @@ def visualize_heatsink_results(case_dir: str, output_dir: str):
     axes[1].set_title('Temperature Distribution Histogram')
     axes[1].legend()
     axes[1].grid(True, alpha=0.3)
+    setup_axis_formatter(axes[1])
 
     plt.tight_layout()
     plt.savefig(os.path.join(output_dir, 'heatsink_temperature_profile.png'), dpi=150, bbox_inches='tight')
@@ -320,11 +319,13 @@ def visualize_heatsink_results(case_dir: str, output_dir: str):
     print(f"Saved: {os.path.join(output_dir, 'heatsink_temperature_profile.png')}")
 
     # ==================================================
-    # 4. Bottom Surface Temperature (Heat Source)
+    # 4. Bottom and Top Surface Temperature
     # ==================================================
-    print("Creating bottom surface temperature map...")
+    print("Creating surface temperature maps...")
 
     fig, axes = plt.subplots(1, 2, figsize=(14, 5))
+
+    from scipy.interpolate import griddata
 
     # Bottom slice
     slice_bottom = mesh.slice(normal='z', origin=[0, 0, zmin + 0.0005])
@@ -337,18 +338,18 @@ def visualize_heatsink_results(case_dir: str, output_dir: str):
         xi = np.linspace(x.min(), x.max(), 100)
         yi = np.linspace(y.min(), y.max(), 100)
         Xi, Yi = np.meshgrid(xi, yi)
-
-        from scipy.interpolate import griddata
         Ti = griddata((x, y), T_bottom, (Xi, Yi), method='linear')
 
         contour = axes[0].contourf(Xi, Yi, Ti, levels=30, cmap='hot')
         axes[0].contour(Xi, Yi, Ti, levels=10, colors='k', linewidths=0.3, alpha=0.5)
         cbar = plt.colorbar(contour, ax=axes[0], label='Temperature [K]')
+        setup_colorbar_formatter(cbar)
 
         axes[0].set_xlabel('X [mm]')
         axes[0].set_ylabel('Y [mm]')
-        axes[0].set_title(f'Bottom Surface Temperature (Heat Source)\nMax: {T_bottom.max():.1f} K')
+        axes[0].set_title(f'Bottom Surface (Heat Source)\nMax: {T_bottom.max():.1f} K')
         axes[0].set_aspect('equal')
+        setup_axis_formatter(axes[0])
 
     # Top slice
     slice_top = mesh.slice(normal='z', origin=[0, 0, zmax - 0.0005])
@@ -361,18 +362,18 @@ def visualize_heatsink_results(case_dir: str, output_dir: str):
         xi = np.linspace(x.min(), x.max(), 100)
         yi = np.linspace(y.min(), y.max(), 100)
         Xi, Yi = np.meshgrid(xi, yi)
-
-        from scipy.interpolate import griddata
         Ti = griddata((x, y), T_top, (Xi, Yi), method='linear')
 
         contour = axes[1].contourf(Xi, Yi, Ti, levels=30, cmap='hot')
         axes[1].contour(Xi, Yi, Ti, levels=10, colors='k', linewidths=0.3, alpha=0.5)
         cbar = plt.colorbar(contour, ax=axes[1], label='Temperature [K]')
+        setup_colorbar_formatter(cbar)
 
         axes[1].set_xlabel('X [mm]')
         axes[1].set_ylabel('Y [mm]')
-        axes[1].set_title(f'Top Surface Temperature (Fixed BC)\nValue: {T_top.mean():.1f} K')
+        axes[1].set_title(f'Top Surface (Fixed BC)\nMean: {T_top.mean():.1f} K')
         axes[1].set_aspect('equal')
+        setup_axis_formatter(axes[1])
 
     plt.tight_layout()
     plt.savefig(os.path.join(output_dir, 'heatsink_surface_temperature.png'), dpi=150, bbox_inches='tight')
@@ -382,11 +383,9 @@ def visualize_heatsink_results(case_dir: str, output_dir: str):
     # ==================================================
     # 5. Summary Report
     # ==================================================
-    # Calculate analytical solution for comparison
     L = zmax - zmin
-    q = 500000  # W/m² (high heat flux)
     k = 205
-    T_max_analytical = 300 + q * L / k
+    T_max_analytical = 300 + heat_flux * L / k
 
     print("\n" + "=" * 60)
     print("Heatsink Thermal Analysis Summary")
@@ -395,7 +394,7 @@ def visualize_heatsink_results(case_dir: str, output_dir: str):
     print(f"  Domain: {xmax_mm:.0f} x {ymax_mm:.0f} x {zmax_mm:.0f} mm")
     print(f"  Mesh: {mesh.n_cells} cells, {mesh.n_points} points")
     print(f"\nBoundary Conditions:")
-    print(f"  Bottom: Heat flux q = {q:,} W/m²")
+    print(f"  Bottom: Heat flux q = {heat_flux:,} W/m²")
     print(f"  Top: Fixed temperature T = 300 K")
     print(f"  Sides: Adiabatic (zero gradient)")
     print(f"\nMaterial: Aluminum")
@@ -405,10 +404,10 @@ def visualize_heatsink_results(case_dir: str, output_dir: str):
     print(f"  Maximum temperature: {T_max:.2f} K ({T_max-273.15:.2f} °C)")
     print(f"  Mean temperature: {T.mean():.2f} K ({T.mean()-273.15:.2f} °C)")
     print(f"  Temperature rise: {T_max - T_min:.2f} K")
-    print(f"\nAnalytical 1D Solution:")
-    print(f"  T_max = T_top + q·L/k = 300 + {q}×{L:.4f}/205 = {T_max_analytical:.2f} K")
+    print(f"\nAnalytical 1D Solution (reference):")
+    print(f"  T_max = T_top + q·L/k = 300 + {heat_flux}×{L:.4f}/205 = {T_max_analytical:.2f} K")
     print(f"  Simulation T_max: {T_max:.2f} K")
-    print(f"  Error: {abs(T_max - T_max_analytical):.2f} K ({abs(T_max - T_max_analytical)/T_max_analytical*100:.2f}%)")
+    print(f"  Difference: {abs(T_max - T_max_analytical):.2f} K")
     print(f"\nOutput directory: {output_dir}")
     print("=" * 60)
 
@@ -421,7 +420,8 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Visualize heatsink thermal analysis results')
     parser.add_argument('case_dir', help='OpenFOAM case directory')
     parser.add_argument('--output', '-o', default='./results', help='Output directory for images')
+    parser.add_argument('--heat-flux', type=float, default=10000, help='Heat flux (W/m²) for reference')
 
     args = parser.parse_args()
 
-    visualize_heatsink_results(args.case_dir, args.output)
+    visualize_heatsink_results(args.case_dir, args.output, args.heat_flux)
