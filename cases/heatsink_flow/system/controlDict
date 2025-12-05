@@ -1,0 +1,25 @@
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      controlDict;
+}
+
+application     scalarTransportFoam;
+startFrom       latestTime;
+startTime       204;
+stopAt          endTime;
+endTime         5000;
+deltaT          1;
+writeControl    timeStep;
+writeInterval   500;
+purgeWrite      5;
+writeFormat     ascii;
+writePrecision  8;
+writeCompression off;
+timeFormat      general;
+timePrecision   6;
+runTimeModifiable true;
+
+// Functions disabled - use scalarTransportFoam after simpleFoam convergence
