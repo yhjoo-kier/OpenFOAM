@@ -70,14 +70,29 @@ def read_surface_field_value(case_dir: Path, func_name: str) -> Optional[float]:
 
 
 def hydraulic_diameter(params: Dict[str, float]) -> float:
-    flow_area = params["ST"] * params["P_fin"] - math.pi * params["R_fin"]**2
-    wetted_perimeter = 2 * (params["ST"] + params["P_fin"]) + 2 * math.pi * params["R_fin"]
+    """
+    Calculate hydraulic diameter for the staggered REV.
+
+    REV inlet cross-section (at x=0):
+    - Domain: y in [0, S_T/2], z in [-P_fin/2, P_fin/2]
+    - Quarter tube at corner (0, 0)
+    - Flow area = (S_T/2) * P_fin - (1/4) * pi * R_fin^2
+    """
+    domain_y = params["ST"] / 2.0
+    flow_area = domain_y * params["P_fin"] - 0.25 * math.pi * params["R_fin"]**2
+    # Wetted perimeter at inlet: top + bottom edges + half-circle arc
+    wetted_perimeter = 2 * domain_y + 2 * params["P_fin"] + 0.5 * math.pi * params["R_fin"]
     if wetted_perimeter <= 0 or flow_area <= 0:
         raise ValueError("Invalid geometry for hydraulic diameter calculation.")
     return 4 * flow_area / wetted_perimeter
 
 
 def interface_area(params: Dict[str, float]) -> float:
+    """
+    Calculate total fluid-solid interface area in the REV.
+
+    REV contains: 1/4 + 1/2 + 1/4 = 1 complete tube with 1 fin.
+    """
     tube_area = 2 * math.pi * params["R_tube_out"] * params["P_fin"]
     fin_cyl_area = 2 * math.pi * params["R_fin"] * params["t_fin"]
     fin_annulus_area = 2 * math.pi * (params["R_fin"]**2 - params["R_tube_out"]**2)
@@ -131,7 +146,9 @@ def compute_metrics(case_dir: Path, params: Dict[str, float], props: Dict[str, f
 
     if "delta_p" in results:
         dp = results["delta_p"]
-        results["friction_factor"] = (dp / params["SL"]) * (dh / (2 * props["rho"] * U_mean**2))
+        # REV streamwise length is 2*S_L for staggered arrangement
+        domain_length = 2 * params["SL"]
+        results["friction_factor"] = (dp / domain_length) * (dh / (2 * props["rho"] * U_mean**2))
 
     return results
 
