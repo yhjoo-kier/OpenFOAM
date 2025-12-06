@@ -1,0 +1,54 @@
+{
+    // Dev Container 이름 - VS Code/Cursor에서 표시됨
+    "name": "OpenFOAM Pipeline",
+
+    // 빌드 설정 - dockerFile과 context를 하나의 객체로 묶음
+    "build": {
+        // 기존 Dockerfile 사용 - 프로젝트 루트의 Dockerfile 경로 지정
+        "dockerfile": "../Dockerfile",
+        // 빌드 컨텍스트 - Dockerfile의 COPY 명령어가 참조하는 기준 경로
+        "context": ".."
+    },
+
+    // VS Code/Cursor 확장 및 설정
+    "customizations": {
+        "vscode": {
+            // 자동 설치할 확장
+            "extensions": [
+                // Python 개발 필수
+                "ms-python.python",
+                "ms-python.vscode-pylance",
+                // OpenFOAM 문법 하이라이팅
+                "zhikui.vscode-openfoam",
+                // 코드 포매터
+                "esbenp.prettier-vscode",
+                // 맞춤법 검사
+                "streetsidesoftware.code-spell-checker"
+            ],
+            // 에디터 설정
+            "settings": {
+                // Python 가상환경 경로 지정
+                "python.defaultInterpreterPath": "/app/.venv/bin/python",
+                // 기본 터미널 설정
+                "terminal.integrated.defaultProfile.linux": "bash",
+                // 줄바꿈 문자를 LF로 통일 (Git Modified 문제 방지)
+                "files.eol": "\n"
+            }
+        }
+    },
+
+    // 컨테이너 환경변수
+    "containerEnv": {
+        // Python 출력 버퍼링 비활성화 (실시간 로그 확인용)
+        "PYTHONUNBUFFERED": "1"
+    },
+
+    // 호스트의 results 폴더와 컨테이너 연결 (결과 파일 영구 저장)
+    "mounts": [
+        "source=${localWorkspaceFolder}/results,target=/app/results,type=bind"
+    ],
+
+    // 컨테이너 생성 후 실행할 명령어
+    "postCreateCommand": "git config --global core.autocrlf input && git config --global core.eol lf && echo 'Container ready!'"
+}
+

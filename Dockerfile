@@ -1,7 +1,7 @@
 # OpenFOAM CFD Pipeline Docker Image
 # Based on Ubuntu 24.04 with OpenFOAM, Gmsh, and Python visualization tools
 
-FROM ubuntu:24.04
+FROM ubuntu:22.04
 
 LABEL maintainer="OpenFOAM Pipeline"
 LABEL description="CFD simulation pipeline with Gmsh, OpenFOAM, and visualization tools"
@@ -59,7 +59,8 @@ RUN uv pip install \
     pyvista \
     matplotlib \
     numpy \
-    vtk
+    vtk \
+    scipy
 
 # Copy project files
 COPY src/ /app/src/
