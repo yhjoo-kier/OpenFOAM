@@ -108,7 +108,7 @@ foamToVTK
 source scripts/env.sh
 
 # Run simulation
-cd channelFlow
+cd cases/channelFlow
 blockMesh
 icoFoam
 foamToVTK
