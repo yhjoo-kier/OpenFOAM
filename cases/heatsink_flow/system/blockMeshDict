@@ -17,11 +17,11 @@ scale   1;
 // z0=0, z1=0.01125, z2=0.01625, z3=0.0275, z4=0.0325, z5=0.04375, z6=0.04875, z7=0.06
 
 // Y positions:
-// y0=0, y1=0.015 (fin top), y2=0.04 (channel top)
+// y0=0, y1=0.025 (fin top), y2=0.04 (channel top)
 
 // Block structure (y-z cross section):
-// Level 2 (y=0.015 to 0.04): 7 continuous blocks
-// Level 1 (y=0 to 0.015): 4 blocks in gaps only (fins are solid)
+// Level 2 (y=0.025 to 0.04): 7 continuous blocks
+// Level 1 (y=0 to 0.025): 4 blocks in gaps only (fins are solid)
 
 // OpenFOAM hex vertex ordering: (v0 v1 v2 v3 v4 v5 v6 v7)
 // where (v1-v0)×(v3-v0) must point in same direction as (v4-v0)
@@ -51,23 +51,23 @@ vertices
     (0.12 0 0.06)        // 14
     (0    0 0.06)        // 15
 
-    // ========== Level 1: y=0.015 (fin top) ==========
-    (0    0.015 0)           // 16
-    (0.12 0.015 0)           // 17
-    (0.12 0.015 0.01125)     // 18
-    (0    0.015 0.01125)     // 19
-    (0    0.015 0.01625)     // 20
-    (0.12 0.015 0.01625)     // 21
-    (0.12 0.015 0.0275)      // 22
-    (0    0.015 0.0275)      // 23
-    (0    0.015 0.0325)      // 24
-    (0.12 0.015 0.0325)      // 25
-    (0.12 0.015 0.04375)     // 26
-    (0    0.015 0.04375)     // 27
-    (0    0.015 0.04875)     // 28
-    (0.12 0.015 0.04875)     // 29
-    (0.12 0.015 0.06)        // 30
-    (0    0.015 0.06)        // 31
+    // ========== Level 1: y=0.025 (fin top) ==========
+    (0    0.025 0)           // 16
+    (0.12 0.025 0)           // 17
+    (0.12 0.025 0.01125)     // 18
+    (0    0.025 0.01125)     // 19
+    (0    0.025 0.01625)     // 20
+    (0.12 0.025 0.01625)     // 21
+    (0.12 0.025 0.0275)      // 22
+    (0    0.025 0.0275)      // 23
+    (0    0.025 0.0325)      // 24
+    (0.12 0.025 0.0325)      // 25
+    (0.12 0.025 0.04375)     // 26
+    (0    0.025 0.04375)     // 27
+    (0    0.025 0.04875)     // 28
+    (0.12 0.025 0.04875)     // 29
+    (0.12 0.025 0.06)        // 30
+    (0    0.025 0.06)        // 31
 
     // ========== Level 2: y=0.04 (channel top) ==========
     (0    0.04 0)           // 32
@@ -93,40 +93,40 @@ blocks
     // Vertex ordering: (v0 v1 v2 v3 v4 v5 v6 v7) with i=+z, j=+x, k=+y
     // Cell counts: (nz nx ny)
 
-    // ========== Lower level blocks (y=0 to 0.015) in gaps only ==========
-    // Gap 1: z=0 to 0.01125, x=0 to 0.12, y=0 to 0.015
-    hex (0 3 2 1 16 19 18 17) (6 60 8) simpleGrading (1 1 1)   // block 0
+    // ========== Lower level blocks (y=0 to 0.025) in gaps only ==========
+    // Gap 1: z=0 to 0.01125, x=0 to 0.12, y=0 to 0.025
+    hex (0 3 2 1 16 19 18 17) (6 60 13) simpleGrading (1 1 1)   // block 0
 
     // Gap 2: z=0.01625 to 0.0275
-    hex (4 7 6 5 20 23 22 21) (6 60 8) simpleGrading (1 1 1)   // block 1
+    hex (4 7 6 5 20 23 22 21) (6 60 13) simpleGrading (1 1 1)   // block 1
 
     // Gap 3: z=0.0325 to 0.04375
-    hex (8 11 10 9 24 27 26 25) (6 60 8) simpleGrading (1 1 1) // block 2
+    hex (8 11 10 9 24 27 26 25) (6 60 13) simpleGrading (1 1 1) // block 2
 
     // Gap 4: z=0.04875 to 0.06
-    hex (12 15 14 13 28 31 30 29) (6 60 8) simpleGrading (1 1 1) // block 3
+    hex (12 15 14 13 28 31 30 29) (6 60 13) simpleGrading (1 1 1) // block 3
 
-    // ========== Upper level blocks (y=0.015 to 0.04) - continuous ==========
+    // ========== Upper level blocks (y=0.025 to 0.04) - continuous ==========
     // z=0 to 0.01125
-    hex (16 19 18 17 32 35 34 33) (6 60 13) simpleGrading (1 1 1) // block 4
+    hex (16 19 18 17 32 35 34 33) (6 60 8) simpleGrading (1 1 1) // block 4
 
     // z=0.01125 to 0.01625 (above fin 1)
-    hex (19 20 21 18 35 36 37 34) (3 60 13) simpleGrading (1 1 1) // block 5
+    hex (19 20 21 18 35 36 37 34) (3 60 8) simpleGrading (1 1 1) // block 5
 
     // z=0.01625 to 0.0275
-    hex (20 23 22 21 36 39 38 37) (6 60 13) simpleGrading (1 1 1) // block 6
+    hex (20 23 22 21 36 39 38 37) (6 60 8) simpleGrading (1 1 1) // block 6
 
     // z=0.0275 to 0.0325 (above fin 2)
-    hex (23 24 25 22 39 40 41 38) (3 60 13) simpleGrading (1 1 1) // block 7
+    hex (23 24 25 22 39 40 41 38) (3 60 8) simpleGrading (1 1 1) // block 7
 
     // z=0.0325 to 0.04375
-    hex (24 27 26 25 40 43 42 41) (6 60 13) simpleGrading (1 1 1) // block 8
+    hex (24 27 26 25 40 43 42 41) (6 60 8) simpleGrading (1 1 1) // block 8
 
     // z=0.04375 to 0.04875 (above fin 3)
-    hex (27 28 29 26 43 44 45 42) (3 60 13) simpleGrading (1 1 1) // block 9
+    hex (27 28 29 26 43 44 45 42) (3 60 8) simpleGrading (1 1 1) // block 9
 
     // z=0.04875 to 0.06
-    hex (28 31 30 29 44 47 46 45) (6 60 13) simpleGrading (1 1 1) // block 10
+    hex (28 31 30 29 44 47 46 45) (6 60 8) simpleGrading (1 1 1) // block 10
 );
 
 edges ();
