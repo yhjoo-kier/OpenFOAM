@@ -18,6 +18,18 @@ DEFAULT_PARAMS = {
 
 
 def _add_geometry(params):
+    """
+    Create staggered finned-tube REV geometry.
+
+    Domain: x in [0, 2*S_L], y in [0, S_T/2], z in [-P_fin/2, P_fin/2]
+
+    Tube positions (viewed from z-axis):
+      - (0, 0): quarter tube at bottom-left corner
+      - (S_L, S_T/2): half tube at top-center
+      - (2*S_L, 0): quarter tube at bottom-right corner
+
+    This ensures inlet (x=0) and outlet (x=2*S_L) have identical cross-sections.
+    """
     SL = params["SL"]
     ST = params["ST"]
     P_fin = params["P_fin"]
@@ -27,22 +39,75 @@ def _add_geometry(params):
     t_fin = params["t_fin"]
 
     occ = gmsh.model.occ
-    fluid_box = occ.addBox(-SL / 2.0, -ST / 2.0, -P_fin / 2.0, SL, ST, P_fin)
-    tube_outer = occ.addCylinder(0.0, 0.0, -P_fin / 2.0, 0.0, 0.0, P_fin, R_tube_out)
-    tube_inner = occ.addCylinder(0.0, 0.0, -P_fin / 2.0, 0.0, 0.0, P_fin, R_tube_in)
-    fin = occ.addCylinder(0.0, 0.0, -t_fin / 2.0, 0.0, 0.0, t_fin, R_fin)
 
-    # Merge the tube wall and fin, then subtract the inner bore.
-    union_entities, _ = occ.fuse([(3, tube_outer)], [(3, fin)])
-    solid_tag = union_entities[0][1]
-    cut_entities, _ = occ.cut([(3, solid_tag)], [(3, tube_inner)])
+    # Domain: x in [0, 2*S_L], y in [0, S_T/2], z in [-P_fin/2, P_fin/2]
+    domain_x = 2.0 * SL
+    domain_y = ST / 2.0
+    domain_z = P_fin
+    fluid_box = occ.addBox(0.0, 0.0, -P_fin / 2.0, domain_x, domain_y, domain_z)
+
+    # Tube center positions: (x, y)
+    # Position 1: (0, 0) - quarter circle at bottom-left corner
+    # Position 2: (S_L, S_T/2) - half circle at top-center
+    # Position 3: (2*S_L, 0) - quarter circle at bottom-right corner
+    tube_centers = [
+        (0.0, 0.0),
+        (SL, ST / 2.0),
+        (2.0 * SL, 0.0),
+    ]
+
+    # Create tube outer walls and fins at each position
+    tube_outers = []
+    tube_inners = []
+    fins = []
+
+    for cx, cy in tube_centers:
+        # Full cylinder for tube outer wall
+        tube_out = occ.addCylinder(cx, cy, -P_fin / 2.0, 0.0, 0.0, P_fin, R_tube_out)
+        tube_outers.append((3, tube_out))
+
+        # Full cylinder for tube inner bore
+        tube_in = occ.addCylinder(cx, cy, -P_fin / 2.0, 0.0, 0.0, P_fin, R_tube_in)
+        tube_inners.append((3, tube_in))
+
+        # Fin disk at center line (z=0)
+        fin = occ.addCylinder(cx, cy, -t_fin / 2.0, 0.0, 0.0, t_fin, R_fin)
+        fins.append((3, fin))
+
+    # Fuse all tube outers together
+    if len(tube_outers) > 1:
+        fused_tubes, _ = occ.fuse([tube_outers[0]], tube_outers[1:])
+    else:
+        fused_tubes = tube_outers
+
+    # Fuse all fins together
+    if len(fins) > 1:
+        fused_fins, _ = occ.fuse([fins[0]], fins[1:])
+    else:
+        fused_fins = fins
+
+    # Merge tubes and fins into solid region
+    solid_entities, _ = occ.fuse(fused_tubes, fused_fins)
+    solid_tag = solid_entities[0][1]
+
+    # Fuse all inner bores together
+    if len(tube_inners) > 1:
+        fused_inners, _ = occ.fuse([tube_inners[0]], tube_inners[1:])
+    else:
+        fused_inners = tube_inners
+
+    # Subtract inner bores from solid
+    cut_entities, _ = occ.cut([(3, solid_tag)], fused_inners)
     solid_tag = cut_entities[0][1]
 
-    # Fragment fluid and solid to enforce a conformal interface.
-    frag_entities, _ = occ.fragment([(3, fluid_box)], [(3, solid_tag)])
+    # Intersect solid with domain box to trim parts outside the REV
+    solid_trimmed, _ = occ.intersect([(3, solid_tag)], [(3, fluid_box)], removeObject=True, removeTool=False)
+
+    # Fragment fluid box with trimmed solid for conformal mesh
+    frag_entities, _ = occ.fragment([(3, fluid_box)], solid_trimmed)
     occ.synchronize()
 
-    # Classify volumes by geometric mass: largest is fluid, next largest is solid.
+    # Classify volumes: largest is fluid, solid volumes touch the fluid
     volumes = gmsh.model.getEntities(dim=3)
     if len(volumes) < 2:
         raise RuntimeError("Expected at least two volumes (fluid and solid) after fragment operation.")
@@ -56,26 +121,25 @@ def _add_geometry(params):
     fluid_volume = volumes_with_mass[0][0]
     fluid_surfaces = _surface_sets_for_volume(fluid_volume)
 
-    touching = []
+    # Find all solid volumes that share interface with fluid
+    solid_volumes = []
     for dim, tag in volumes:
         if tag == fluid_volume:
             continue
         surfaces = _surface_sets_for_volume(tag)
         if fluid_surfaces.intersection(surfaces):
-            touching.append((tag, gmsh.model.occ.getMass(dim, tag)))
+            solid_volumes.append(tag)
 
-    if not touching:
-        raise RuntimeError("Failed to identify a solid volume sharing an interface with the fluid region.")
+    if not solid_volumes:
+        raise RuntimeError("Failed to identify solid volumes sharing an interface with the fluid region.")
 
-    solid_volume = max(touching, key=lambda item: item[1])[0]
-
-    # Remove stray fragments (e.g., inner bores) to avoid extra regions.
+    # Remove stray fragments (e.g., inner bores outside domain)
     for dim, tag in volumes:
-        if tag not in (fluid_volume, solid_volume):
+        if tag != fluid_volume and tag not in solid_volumes:
             gmsh.model.occ.remove([(dim, tag)], recursive=True)
     gmsh.model.occ.synchronize()
 
-    return fluid_volume, solid_volume
+    return fluid_volume, solid_volumes
 
 
 def _surface_sets_for_volume(volume_tag):
@@ -129,19 +193,24 @@ def build_model(params):
     gmsh.option.setNumber("General.Terminal", 1)
     gmsh.model.add("staggered_finned_tube")
 
-    fluid_volume, solid_volume = _add_geometry(params)
+    fluid_volume, solid_volumes = _add_geometry(params)
 
     fluid_surfaces = _surface_sets_for_volume(fluid_volume)
-    solid_surfaces = _surface_sets_for_volume(solid_volume)
-    interface_surfaces = fluid_surfaces.intersection(solid_surfaces)
+
+    # Collect all solid surfaces from multiple solid volumes
+    all_solid_surfaces = set()
+    for sv in solid_volumes:
+        all_solid_surfaces.update(_surface_sets_for_volume(sv))
+    interface_surfaces = fluid_surfaces.intersection(all_solid_surfaces)
 
     SL = params["SL"]
     ST = params["ST"]
     P_fin = params["P_fin"]
 
-    inlet = _select_surfaces_by_coord(fluid_surfaces, "x", -SL / 2.0)
-    outlet = _select_surfaces_by_coord(fluid_surfaces, "x", SL / 2.0)
-    bottom = _select_surfaces_by_coord(fluid_surfaces, "y", -ST / 2.0)
+    # Domain: x in [0, 2*S_L], y in [0, S_T/2], z in [-P_fin/2, P_fin/2]
+    inlet = _select_surfaces_by_coord(fluid_surfaces, "x", 0.0)
+    outlet = _select_surfaces_by_coord(fluid_surfaces, "x", 2.0 * SL)
+    bottom = _select_surfaces_by_coord(fluid_surfaces, "y", 0.0)
     top = _select_surfaces_by_coord(fluid_surfaces, "y", ST / 2.0)
     back = _select_surfaces_by_coord(fluid_surfaces, "z", -P_fin / 2.0)
     front = _select_surfaces_by_coord(fluid_surfaces, "z", P_fin / 2.0)
@@ -149,12 +218,13 @@ def build_model(params):
     if not all([inlet, outlet, bottom, top, back, front]):
         raise RuntimeError("Failed to locate all periodic boundary surfaces.")
 
-    _set_periodicity(inlet, outlet, (SL, 0.0, 0.0), axis="x")
-    _set_periodicity(bottom, top, (0.0, ST, 0.0), axis="y")
+    # Periodicity: translation vectors match domain dimensions
+    _set_periodicity(inlet, outlet, (2.0 * SL, 0.0, 0.0), axis="x")
+    _set_periodicity(bottom, top, (0.0, ST / 2.0, 0.0), axis="y")
     _set_periodicity(back, front, (0.0, 0.0, P_fin), axis="z")
 
     gmsh.model.addPhysicalGroup(3, [fluid_volume], name="fluid")
-    gmsh.model.addPhysicalGroup(3, [solid_volume], name="solid")
+    gmsh.model.addPhysicalGroup(3, solid_volumes, name="solid")
 
     gmsh.model.addPhysicalGroup(2, inlet, name="inlet")
     gmsh.model.addPhysicalGroup(2, outlet, name="outlet")

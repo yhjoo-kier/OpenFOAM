@@ -4,9 +4,17 @@ from pathlib import Path
 from textwrap import dedent
 
 CASE_DIR = Path(__file__).resolve().parent
-SL = 0.060
-ST = 0.060
-P_FIN = 0.050
+
+# Geometric parameters (tube pitches)
+SL = 0.060  # longitudinal pitch
+ST = 0.060  # transverse pitch
+P_FIN = 0.050  # fin center-to-center spacing
+
+# REV domain dimensions for staggered arrangement
+# Domain: x in [0, 2*S_L], y in [0, S_T/2], z in [-P_fin/2, P_fin/2]
+DOMAIN_X = 2 * SL      # streamwise length (covers 2 tube rows)
+DOMAIN_Y = ST / 2.0    # transverse height (half pitch due to symmetry)
+DOMAIN_Z = P_FIN       # axial depth (fin spacing)
 
 
 def write_file(path: Path, contents: str) -> None:
@@ -507,28 +515,28 @@ def U_fluid(Ubar: float) -> str:
                 type            cyclicAMI;
                 neighbourPatch  outlet;
                 transform       translational;
-                separationVector ({SL} 0 0);
+                separationVector ({DOMAIN_X} 0 0);
             }}
             outlet
             {{
                 type            cyclicAMI;
                 neighbourPatch  inlet;
                 transform       translational;
-                separationVector (-{SL} 0 0);
+                separationVector (-{DOMAIN_X} 0 0);
             }}
             top
             {{
                 type            cyclicAMI;
                 neighbourPatch  bottom;
                 transform       translational;
-                separationVector (0 -{ST} 0);
+                separationVector (0 -{DOMAIN_Y} 0);
             }}
             bottom
             {{
                 type            cyclicAMI;
                 neighbourPatch  top;
                 transform       translational;
-                separationVector (0 {ST} 0);
+                separationVector (0 {DOMAIN_Y} 0);
             }}
             front
             {{
@@ -575,28 +583,28 @@ def p_rgh_fluid() -> str:
                 type            cyclicAMI;
                 neighbourPatch  outlet;
                 transform       translational;
-                separationVector ({SL} 0 0);
+                separationVector ({DOMAIN_X} 0 0);
             }}
             outlet
             {{
                 type            cyclicAMI;
                 neighbourPatch  inlet;
                 transform       translational;
-                separationVector (-{SL} 0 0);
+                separationVector (-{DOMAIN_X} 0 0);
             }}
             top
             {{
                 type            cyclicAMI;
                 neighbourPatch  bottom;
                 transform       translational;
-                separationVector (0 -{ST} 0);
+                separationVector (0 -{DOMAIN_Y} 0);
             }}
             bottom
             {{
                 type            cyclicAMI;
                 neighbourPatch  top;
                 transform       translational;
-                separationVector (0 {ST} 0);
+                separationVector (0 {DOMAIN_Y} 0);
             }}
             front
             {{
@@ -643,28 +651,28 @@ def p_fluid() -> str:
                 type            cyclicAMI;
                 neighbourPatch  outlet;
                 transform       translational;
-                separationVector ({SL} 0 0);
+                separationVector ({DOMAIN_X} 0 0);
             }}
             outlet
             {{
                 type            cyclicAMI;
                 neighbourPatch  inlet;
                 transform       translational;
-                separationVector (-{SL} 0 0);
+                separationVector (-{DOMAIN_X} 0 0);
             }}
             top
             {{
                 type            cyclicAMI;
                 neighbourPatch  bottom;
                 transform       translational;
-                separationVector (0 -{ST} 0);
+                separationVector (0 -{DOMAIN_Y} 0);
             }}
             bottom
             {{
                 type            cyclicAMI;
                 neighbourPatch  top;
                 transform       translational;
-                separationVector (0 {ST} 0);
+                separationVector (0 {DOMAIN_Y} 0);
             }}
             front
             {{
@@ -711,28 +719,28 @@ def T_fluid(initial_T: float) -> str:
                 type            cyclicAMI;
                 neighbourPatch  outlet;
                 transform       translational;
-                separationVector ({SL} 0 0);
+                separationVector ({DOMAIN_X} 0 0);
             }}
             outlet
             {{
                 type            cyclicAMI;
                 neighbourPatch  inlet;
                 transform       translational;
-                separationVector (-{SL} 0 0);
+                separationVector (-{DOMAIN_X} 0 0);
             }}
             top
             {{
                 type            cyclicAMI;
                 neighbourPatch  bottom;
                 transform       translational;
-                separationVector (0 -{ST} 0);
+                separationVector (0 -{DOMAIN_Y} 0);
             }}
             bottom
             {{
                 type            cyclicAMI;
                 neighbourPatch  top;
                 transform       translational;
-                separationVector (0 {ST} 0);
+                separationVector (0 {DOMAIN_Y} 0);
             }}
             front
             {{
