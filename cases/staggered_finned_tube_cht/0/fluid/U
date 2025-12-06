@@ -1,0 +1,61 @@
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       volVectorField;
+    location    "0/fluid";
+    object      U;
+}
+
+dimensions      [0 1 -1 0 0 0 0];
+internalField   uniform (1.0 0 0);
+
+boundaryField
+{
+    inlet
+    {
+        type            cyclic;
+        neighbourPatch  outlet;
+        transform       translational;
+        separationVector (0.06 0 0);
+    }
+    outlet
+    {
+        type            cyclic;
+        neighbourPatch  inlet;
+        transform       translational;
+        separationVector (0.06 0 0);
+    }
+    top
+    {
+        type            cyclic;
+        neighbourPatch  bottom;
+        transform       translational;
+        separationVector (0 0.06 0);
+    }
+    bottom
+    {
+        type            cyclic;
+        neighbourPatch  top;
+        transform       translational;
+        separationVector (0 0.06 0);
+    }
+    front
+    {
+        type            cyclic;
+        neighbourPatch  back;
+        transform       translational;
+        separationVector (0 0 0.005);
+    }
+    back
+    {
+        type            cyclic;
+        neighbourPatch  front;
+        transform       translational;
+        separationVector (0 0 0.005);
+    }
+    interface_fluid_solid
+    {
+        type            noSlip;
+    }
+}
