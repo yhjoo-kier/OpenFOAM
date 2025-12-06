@@ -62,7 +62,7 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_DIR="$(dirname "$SCRIPT_DIR")"
 check "simple_heatsink.py" "test -f $PROJECT_DIR/src/geometry/simple_heatsink.py"
 check "run_pipeline.py" "test -f $PROJECT_DIR/scripts/run_pipeline.py"
-check "channelFlow case" "test -d $PROJECT_DIR/channelFlow"
+check "channelFlow case" "test -d $PROJECT_DIR/cases/channelFlow"
 
 echo ""
 echo "========================================"

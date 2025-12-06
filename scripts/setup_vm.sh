@@ -16,7 +16,7 @@
 #      cd cases/my_heatsink && blockMesh && laplacianFoam && foamToVTK
 #
 #   2. Run the channel flow example:
-#      cd channelFlow && blockMesh && icoFoam && foamToVTK
+#      cd cases/channelFlow && blockMesh && icoFoam && foamToVTK
 #
 
 set -e  # Exit on error
@@ -194,7 +194,7 @@ echo "     python3 src/geometry/simple_heatsink.py cases/my_heatsink"
 echo "     cd cases/my_heatsink && blockMesh && laplacianFoam && foamToVTK"
 echo ""
 echo "  2. Channel flow example:"
-echo "     cd channelFlow && blockMesh && icoFoam && foamToVTK"
+echo "     cd cases/channelFlow && blockMesh && icoFoam && foamToVTK"
 echo ""
 echo "For new terminal sessions, run: source /etc/profile.d/openfoam.sh"
 echo ""
