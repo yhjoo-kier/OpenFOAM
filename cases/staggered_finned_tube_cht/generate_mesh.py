@@ -11,7 +11,7 @@ DEFAULT_PARAMS = {
     "R_tube_in": 0.010,
     "R_fin": 0.022,
     "t_fin": 0.001,
-    "P_fin": 0.005,
+    "P_fin": 0.050,
     "mesh_size": 0.0035,
     "interface_size": 0.002,
 }
@@ -42,19 +42,38 @@ def _add_geometry(params):
     frag_entities, _ = occ.fragment([(3, fluid_box)], [(3, solid_tag)])
     occ.synchronize()
 
-    # Identify the resulting fluid and solid volumes by bounding box extents.
+    # Classify volumes by geometric mass: largest is fluid, next largest is solid.
     volumes = gmsh.model.getEntities(dim=3)
-    fluid_volume = None
-    solid_volume = None
+    if len(volumes) < 2:
+        raise RuntimeError("Expected at least two volumes (fluid and solid) after fragment operation.")
+
+    volumes_with_mass = []
     for dim, tag in volumes:
-        xmin, ymin, zmin, xmax, ymax, zmax = gmsh.model.getBoundingBox(dim, tag)
-        dx, dy, dz = xmax - xmin, ymax - ymin, zmax - zmin
-        if abs(dx - SL) < 1e-4 and abs(dy - ST) < 1e-4:
-            fluid_volume = tag
-        else:
-            solid_volume = tag
-    if fluid_volume is None or solid_volume is None:
-        raise RuntimeError("Failed to classify fluid and solid volumes after fragment operation.")
+        mass = gmsh.model.occ.getMass(dim, tag)
+        volumes_with_mass.append((tag, mass))
+    volumes_with_mass.sort(key=lambda item: item[1], reverse=True)
+
+    fluid_volume = volumes_with_mass[0][0]
+    fluid_surfaces = _surface_sets_for_volume(fluid_volume)
+
+    touching = []
+    for dim, tag in volumes:
+        if tag == fluid_volume:
+            continue
+        surfaces = _surface_sets_for_volume(tag)
+        if fluid_surfaces.intersection(surfaces):
+            touching.append((tag, gmsh.model.occ.getMass(dim, tag)))
+
+    if not touching:
+        raise RuntimeError("Failed to identify a solid volume sharing an interface with the fluid region.")
+
+    solid_volume = max(touching, key=lambda item: item[1])[0]
+
+    # Remove stray fragments (e.g., inner bores) to avoid extra regions.
+    for dim, tag in volumes:
+        if tag not in (fluid_volume, solid_volume):
+            gmsh.model.occ.remove([(dim, tag)], recursive=True)
+    gmsh.model.occ.synchronize()
 
     return fluid_volume, solid_volume
 

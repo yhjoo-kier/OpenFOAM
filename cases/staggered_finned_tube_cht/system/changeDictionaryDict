@@ -1,0 +1,67 @@
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      changeDictionaryDict;
+}
+
+dictionaryReplacement
+{
+    boundary
+    {
+        inlet
+        {
+            type            cyclicAMI;
+            neighbourPatch  outlet;
+            transform       translational;
+            separationVector (0.06 0 0);
+            matchTolerance  0.1;
+        }
+
+        outlet
+        {
+            type            cyclicAMI;
+            neighbourPatch  inlet;
+            transform       translational;
+            separationVector (-0.06 0 0);
+            matchTolerance  0.1;
+        }
+
+        top
+        {
+            type            cyclicAMI;
+            neighbourPatch  bottom;
+            transform       translational;
+            separationVector (0 -0.06 0);
+            matchTolerance  0.1;
+        }
+
+        bottom
+        {
+            type            cyclicAMI;
+            neighbourPatch  top;
+            transform       translational;
+            separationVector (0 0.06 0);
+            matchTolerance  0.1;
+        }
+
+        front
+        {
+            type            cyclicAMI;
+            neighbourPatch  back;
+            transform       translational;
+            separationVector (0 0 -0.05);
+            matchTolerance  0.1;
+        }
+
+        back
+        {
+            type            cyclicAMI;
+            neighbourPatch  front;
+            transform       translational;
+            separationVector (0 0 0.05);
+            matchTolerance  0.1;
+        }
+    }
+}

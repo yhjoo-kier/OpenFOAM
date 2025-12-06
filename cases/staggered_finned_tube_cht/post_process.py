@@ -6,7 +6,7 @@ from typing import Dict, Optional
 DEFAULT_GEOM = {
     "SL": 0.060,
     "ST": 0.060,
-    "P_fin": 0.005,
+    "P_fin": 0.050,
     "R_tube_out": 0.012,
     "R_fin": 0.022,
     "t_fin": 0.001,
@@ -33,12 +33,27 @@ def latest_time_dir(base: Path) -> Optional[Path]:
 
 
 def read_surface_field_value(case_dir: Path, func_name: str) -> Optional[float]:
-    func_dir = case_dir / "postProcessing" / func_name
-    time_dir = latest_time_dir(func_dir)
-    if time_dir is None:
+    base_dir = case_dir / "postProcessing"
+    if not base_dir.exists():
         return None
-    data_file = time_dir / "surfaceFieldValue.dat"
-    if not data_file.exists():
+
+    candidates = [base_dir / func_name]
+    for region_dir in base_dir.iterdir():
+        if region_dir.is_dir():
+            candidate = region_dir / func_name
+            candidates.append(candidate)
+
+    data_file: Optional[Path] = None
+    for func_dir in candidates:
+        time_dir = latest_time_dir(func_dir)
+        if time_dir is None:
+            continue
+        candidate_file = time_dir / "surfaceFieldValue.dat"
+        if candidate_file.exists():
+            data_file = candidate_file
+            break
+
+    if data_file is None:
         return None
 
     value = None

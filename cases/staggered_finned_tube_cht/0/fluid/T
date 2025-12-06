@@ -14,50 +14,50 @@ boundaryField
 {
     inlet
     {
-        type            cyclic;
+        type            cyclicAMI;
         neighbourPatch  outlet;
         transform       translational;
         separationVector (0.06 0 0);
     }
     outlet
     {
-        type            cyclic;
+        type            cyclicAMI;
         neighbourPatch  inlet;
         transform       translational;
-        separationVector (0.06 0 0);
+        separationVector (-0.06 0 0);
     }
     top
     {
-        type            cyclic;
+        type            cyclicAMI;
         neighbourPatch  bottom;
         transform       translational;
-        separationVector (0 0.06 0);
+        separationVector (0 -0.06 0);
     }
     bottom
     {
-        type            cyclic;
+        type            cyclicAMI;
         neighbourPatch  top;
         transform       translational;
         separationVector (0 0.06 0);
     }
     front
     {
-        type            cyclic;
+        type            cyclicAMI;
         neighbourPatch  back;
         transform       translational;
-        separationVector (0 0 0.005);
+        separationVector (0 0 -0.05);
     }
     back
     {
-        type            cyclic;
+        type            cyclicAMI;
         neighbourPatch  front;
         transform       translational;
-        separationVector (0 0 0.005);
+        separationVector (0 0 0.05);
     }
-    interface_fluid_solid
+    fluid_to_solid
     {
         type            compressible::turbulentTemperatureCoupledBaffleMixed;
-        Tnbr            T_solid;
+        Tnbr            T;
         kappaMethod     fluidThermo;
         value           uniform 300.0;
     }

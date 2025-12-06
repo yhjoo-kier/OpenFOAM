@@ -1,8 +1,17 @@
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "constant/solid";
+    object      thermophysicalProperties;
+}
+
 thermoType
 {
     type            heSolidThermo;
     mixture         pureMixture;
-    transport       const;
+    transport       constIso;
     thermo          hConst;
     equationOfState rhoConst;
     specie          specie;
@@ -24,5 +33,8 @@ mixture
     {
         kappa       400; // W/m/K
     }
-    rho             8960;
+    equationOfState
+    {
+        rho         8960;
+    }
 }

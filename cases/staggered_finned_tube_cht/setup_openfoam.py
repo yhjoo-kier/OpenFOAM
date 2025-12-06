@@ -4,6 +4,9 @@ from pathlib import Path
 from textwrap import dedent
 
 CASE_DIR = Path(__file__).resolve().parent
+SL = 0.060
+ST = 0.060
+P_FIN = 0.050
 
 
 def write_file(path: Path, contents: str) -> None:
@@ -41,6 +44,7 @@ def control_dict() -> str:
         inletPressureAverage
         {
             type            surfaceFieldValue;
+            name            inlet;
             region          fluid;
             libs            ("libfieldFunctionObjects.so");
             operation       areaAverage;
@@ -48,12 +52,12 @@ def control_dict() -> str:
             fields          (p_rgh);
             writeFields     false;
             regionType      patch;
-            patches         (inlet);
         }
 
         outletPressureAverage
         {
             type            surfaceFieldValue;
+            name            outlet;
             region          fluid;
             libs            ("libfieldFunctionObjects.so");
             operation       areaAverage;
@@ -61,12 +65,12 @@ def control_dict() -> str:
             fields          (p_rgh);
             writeFields     false;
             regionType      patch;
-            patches         (outlet);
         }
 
         inletTemperatureAverage
         {
             type            surfaceFieldValue;
+            name            inlet;
             region          fluid;
             libs            ("libfieldFunctionObjects.so");
             operation       areaAverage;
@@ -74,12 +78,12 @@ def control_dict() -> str:
             fields          (T);
             writeFields     false;
             regionType      patch;
-            patches         (inlet);
         }
 
         outletTemperatureAverage
         {
             type            surfaceFieldValue;
+            name            outlet;
             region          fluid;
             libs            ("libfieldFunctionObjects.so");
             operation       areaAverage;
@@ -87,12 +91,12 @@ def control_dict() -> str:
             fields          (T);
             writeFields     false;
             regionType      patch;
-            patches         (outlet);
         }
 
         interfaceTemperatureAverage
         {
             type            surfaceFieldValue;
+            name            solid_to_fluid;
             region          solid;
             libs            ("libfieldFunctionObjects.so");
             operation       areaAverage;
@@ -100,15 +104,15 @@ def control_dict() -> str:
             fields          (T);
             writeFields     false;
             regionType      patch;
-            patches         (interface_fluid_solid);
         }
 
         wallHeatFlux
         {
-            type            compressible::turbulentHeatFluxTemperature;
+            type            wallHeatFlux;
+            name            wallHeatFlux;
             libs            ("libfieldFunctionObjects.so");
             region          fluid;
-            patches         (interface_fluid_solid);
+            patches         (fluid_to_solid);
             executeControl  timeStep;
             executeInterval 1;
             writeControl    timeStep;
@@ -118,6 +122,7 @@ def control_dict() -> str:
         wallHeatFluxIntegral
         {
             type            surfaceFieldValue;
+            name            fluid_to_solid;
             region          fluid;
             libs            ("libfieldFunctionObjects.so");
             operation       areaIntegrate;
@@ -125,7 +130,6 @@ def control_dict() -> str:
             fields          (wallHeatFlux);
             writeFields     false;
             regionType      patch;
-            patches         (interface_fluid_solid);
         }
     }
     """
@@ -161,6 +165,8 @@ def fv_schemes() -> str:
         div(phi,k)            Gauss upwind;
         div(phi,epsilon)      Gauss upwind;
         div(phi,omega)        Gauss upwind;
+        div(phi,K)            Gauss upwind;
+        div(phi,h)            Gauss linearUpwind grad(h);
         div(phi,T)            Gauss linearUpwind grad(T);
         div(((rho*nuEff)*dev2(T(grad(U))))) Gauss linear;
     }
@@ -245,6 +251,14 @@ def fv_solution() -> str:
             tolerance       1e-8;
             relTol          0.1;
         }
+
+        h
+        {
+            solver          smoothSolver;
+            smoother        symGaussSeidel;
+            tolerance       1e-8;
+            relTol          0.1;
+        }
     }
 
     SIMPLE
@@ -258,9 +272,9 @@ def fv_solution() -> str:
     {
         equations
         {
-            "(U|T)"              0.7;
+            "(U|T|h)"            0.3;
             "(k|epsilon|omega)"  0.7;
-            "(p|p_rgh)"          0.3;
+            "(p|p_rgh)"          0.2;
         }
     }
     """
@@ -316,32 +330,64 @@ def fv_options(Ubar: float) -> str:
 
 def region_properties() -> str:
     return """
-    fluid  (fluid);
-    solid  (solid);
+    FoamFile
+    {
+        version     2.0;
+        format      ascii;
+        class       dictionary;
+        location    "constant";
+        object      regionProperties;
+    }
+
+    regions
+    (
+        fluid (fluid)
+        solid (solid)
+    );
     """
 
 
 def turbulence_properties_fluid() -> str:
     return """
-    simulationType  RAS;
-
-    RAS
+    FoamFile
     {
-        RASModel        kOmegaSST;
-        turbulence      on;
-        printCoeffs     on;
+        version     2.0;
+        format      ascii;
+        class       dictionary;
+        location    "constant/fluid";
+        object      turbulenceProperties;
     }
+
+    simulationType  laminar;
     """
 
 
 def turbulence_properties_solid() -> str:
     return """
+    FoamFile
+    {
+        version     2.0;
+        format      ascii;
+        class       dictionary;
+        location    "constant/solid";
+        object      turbulenceProperties;
+    }
+
     simulationType  laminar;
     """
 
 
 def thermophysical_fluid() -> str:
     return """
+    FoamFile
+    {
+        version     2.0;
+        format      ascii;
+        class       dictionary;
+        location    "constant/fluid";
+        object      thermophysicalProperties;
+    }
+
     thermoType
     {
         type            heRhoThermo;
@@ -370,18 +416,30 @@ def thermophysical_fluid() -> str:
             Pr          0.71;
             kappa       0.026;
         }
-        rho             1.18;
+        equationOfState
+        {
+            rho         1.18;
+        }
     }
     """
 
 
 def thermophysical_solid() -> str:
     return """
+    FoamFile
+    {
+        version     2.0;
+        format      ascii;
+        class       dictionary;
+        location    "constant/solid";
+        object      thermophysicalProperties;
+    }
+
     thermoType
     {
         type            heSolidThermo;
         mixture         pureMixture;
-        transport       const;
+        transport       constIso;
         thermo          hConst;
         equationOfState rhoConst;
         specie          specie;
@@ -403,13 +461,25 @@ def thermophysical_solid() -> str:
         {
             kappa       400; // W/m/K
         }
-        rho             8960;
+        equationOfState
+        {
+            rho         8960;
+        }
     }
     """
 
 
 def transport_properties_fluid() -> str:
     return """
+    FoamFile
+    {
+        version     2.0;
+        format      ascii;
+        class       dictionary;
+        location    "constant/fluid";
+        object      transportProperties;
+    }
+
     transportModel  Newtonian;
     nu              1.5e-5;
     """
@@ -434,47 +504,47 @@ def U_fluid(Ubar: float) -> str:
         {{
             inlet
             {{
-                type            cyclic;
+                type            cyclicAMI;
                 neighbourPatch  outlet;
                 transform       translational;
-                separationVector (0.06 0 0);
+                separationVector ({SL} 0 0);
             }}
             outlet
             {{
-                type            cyclic;
+                type            cyclicAMI;
                 neighbourPatch  inlet;
                 transform       translational;
-                separationVector (0.06 0 0);
+                separationVector (-{SL} 0 0);
             }}
             top
             {{
-                type            cyclic;
+                type            cyclicAMI;
                 neighbourPatch  bottom;
                 transform       translational;
-                separationVector (0 0.06 0);
+                separationVector (0 -{ST} 0);
             }}
             bottom
             {{
-                type            cyclic;
+                type            cyclicAMI;
                 neighbourPatch  top;
                 transform       translational;
-                separationVector (0 0.06 0);
+                separationVector (0 {ST} 0);
             }}
             front
             {{
-                type            cyclic;
+                type            cyclicAMI;
                 neighbourPatch  back;
                 transform       translational;
-                separationVector (0 0 0.005);
+                separationVector (0 0 -{P_FIN});
             }}
             back
             {{
-                type            cyclic;
+                type            cyclicAMI;
                 neighbourPatch  front;
                 transform       translational;
-                separationVector (0 0 0.005);
+                separationVector (0 0 {P_FIN});
             }}
-            interface_fluid_solid
+            fluid_to_solid
             {{
                 type            noSlip;
             }}
@@ -484,69 +554,139 @@ def U_fluid(Ubar: float) -> str:
 
 
 def p_rgh_fluid() -> str:
-    return """
-    FoamFile
-    {
-        version     2.0;
-        format      ascii;
-        class       volScalarField;
-        location    "0/fluid";
-        object      p_rgh;
-    }
+    return dedent(
+        f"""
+        FoamFile
+        {{
+            version     2.0;
+            format      ascii;
+            class       volScalarField;
+            location    "0/fluid";
+            object      p_rgh;
+        }}
 
-    dimensions      [1 -1 -2 0 0 0 0];
-    internalField   uniform 0;
+        dimensions      [1 -1 -2 0 0 0 0];
+        internalField   uniform 0;
 
-    boundaryField
-    {
-        inlet
-        {
-            type            cyclic;
-            neighbourPatch  outlet;
-            transform       translational;
-            separationVector (0.06 0 0);
-        }
-        outlet
-        {
-            type            cyclic;
-            neighbourPatch  inlet;
-            transform       translational;
-            separationVector (0.06 0 0);
-        }
-        top
-        {
-            type            cyclic;
-            neighbourPatch  bottom;
-            transform       translational;
-            separationVector (0 0.06 0);
-        }
-        bottom
-        {
-            type            cyclic;
-            neighbourPatch  top;
-            transform       translational;
-            separationVector (0 0.06 0);
-        }
-        front
-        {
-            type            cyclic;
-            neighbourPatch  back;
-            transform       translational;
-            separationVector (0 0 0.005);
-        }
-        back
-        {
-            type            cyclic;
-            neighbourPatch  front;
-            transform       translational;
-            separationVector (0 0 0.005);
-        }
-        interface_fluid_solid
-        {
-            type            fixedFluxPressure;
-        }
-    }
-    """
+        boundaryField
+        {{
+            inlet
+            {{
+                type            cyclicAMI;
+                neighbourPatch  outlet;
+                transform       translational;
+                separationVector ({SL} 0 0);
+            }}
+            outlet
+            {{
+                type            cyclicAMI;
+                neighbourPatch  inlet;
+                transform       translational;
+                separationVector (-{SL} 0 0);
+            }}
+            top
+            {{
+                type            cyclicAMI;
+                neighbourPatch  bottom;
+                transform       translational;
+                separationVector (0 -{ST} 0);
+            }}
+            bottom
+            {{
+                type            cyclicAMI;
+                neighbourPatch  top;
+                transform       translational;
+                separationVector (0 {ST} 0);
+            }}
+            front
+            {{
+                type            cyclicAMI;
+                neighbourPatch  back;
+                transform       translational;
+                separationVector (0 0 -{P_FIN});
+            }}
+            back
+            {{
+                type            cyclicAMI;
+                neighbourPatch  front;
+                transform       translational;
+                separationVector (0 0 {P_FIN});
+            }}
+            fluid_to_solid
+            {{
+                type            fixedFluxPressure;
+            }}
+        }}
+        """
+    )
+
+
+def p_fluid() -> str:
+    return dedent(
+        f"""
+        FoamFile
+        {{
+            version     2.0;
+            format      ascii;
+            class       volScalarField;
+            location    "0/fluid";
+            object      p;
+        }}
+
+        dimensions      [1 -1 -2 0 0 0 0];
+        internalField   uniform 0;
+
+        boundaryField
+        {{
+            inlet
+            {{
+                type            cyclicAMI;
+                neighbourPatch  outlet;
+                transform       translational;
+                separationVector ({SL} 0 0);
+            }}
+            outlet
+            {{
+                type            cyclicAMI;
+                neighbourPatch  inlet;
+                transform       translational;
+                separationVector (-{SL} 0 0);
+            }}
+            top
+            {{
+                type            cyclicAMI;
+                neighbourPatch  bottom;
+                transform       translational;
+                separationVector (0 -{ST} 0);
+            }}
+            bottom
+            {{
+                type            cyclicAMI;
+                neighbourPatch  top;
+                transform       translational;
+                separationVector (0 {ST} 0);
+            }}
+            front
+            {{
+                type            cyclicAMI;
+                neighbourPatch  back;
+                transform       translational;
+                separationVector (0 0 -{P_FIN});
+            }}
+            back
+            {{
+                type            cyclicAMI;
+                neighbourPatch  front;
+                transform       translational;
+                separationVector (0 0 {P_FIN});
+            }}
+            fluid_to_solid
+            {{
+                type            fixedFluxPressure;
+            }}
+        }}
+        """
+    )
 
 
 def T_fluid(initial_T: float) -> str:
@@ -568,50 +708,50 @@ def T_fluid(initial_T: float) -> str:
         {{
             inlet
             {{
-                type            cyclic;
+                type            cyclicAMI;
                 neighbourPatch  outlet;
                 transform       translational;
-                separationVector (0.06 0 0);
+                separationVector ({SL} 0 0);
             }}
             outlet
             {{
-                type            cyclic;
+                type            cyclicAMI;
                 neighbourPatch  inlet;
                 transform       translational;
-                separationVector (0.06 0 0);
+                separationVector (-{SL} 0 0);
             }}
             top
             {{
-                type            cyclic;
+                type            cyclicAMI;
                 neighbourPatch  bottom;
                 transform       translational;
-                separationVector (0 0.06 0);
+                separationVector (0 -{ST} 0);
             }}
             bottom
             {{
-                type            cyclic;
+                type            cyclicAMI;
                 neighbourPatch  top;
                 transform       translational;
-                separationVector (0 0.06 0);
+                separationVector (0 {ST} 0);
             }}
             front
             {{
-                type            cyclic;
+                type            cyclicAMI;
                 neighbourPatch  back;
                 transform       translational;
-                separationVector (0 0 0.005);
+                separationVector (0 0 -{P_FIN});
             }}
             back
             {{
-                type            cyclic;
+                type            cyclicAMI;
                 neighbourPatch  front;
                 transform       translational;
-                separationVector (0 0 0.005);
+                separationVector (0 0 {P_FIN});
             }}
-            interface_fluid_solid
+            fluid_to_solid
             {{
                 type            compressible::turbulentTemperatureCoupledBaffleMixed;
-                Tnbr            T_solid;
+                Tnbr            T;
                 kappaMethod     fluidThermo;
                 value           uniform {initial_T};
             }}
@@ -629,7 +769,7 @@ def T_solid(initial_T: float) -> str:
             format      ascii;
             class       volScalarField;
             location    "0/solid";
-            object      T_solid;
+            object      T;
         }}
 
         dimensions      [0 0 0 1 0 0 0];
@@ -637,58 +777,50 @@ def T_solid(initial_T: float) -> str:
 
         boundaryField
         {{
-            interface_fluid_solid
+            solid_to_fluid
             {{
                 type            compressible::turbulentTemperatureCoupledBaffleMixed;
                 Tnbr            T;
                 kappaMethod     solidThermo;
                 value           uniform {initial_T};
             }}
-            inlet
+            defaultFaces
             {{
-                type            cyclic;
-                neighbourPatch  outlet;
-                transform       translational;
-                separationVector (0.06 0 0);
-            }}
-            outlet
-            {{
-                type            cyclic;
-                neighbourPatch  inlet;
-                transform       translational;
-                separationVector (0.06 0 0);
-            }}
-            top
-            {{
-                type            cyclic;
-                neighbourPatch  bottom;
-                transform       translational;
-                separationVector (0 0.06 0);
-            }}
-            bottom
-            {{
-                type            cyclic;
-                neighbourPatch  top;
-                transform       translational;
-                separationVector (0 0.06 0);
-            }}
-            front
-            {{
-                type            cyclic;
-                neighbourPatch  back;
-                transform       translational;
-                separationVector (0 0 0.005);
-            }}
-            back
-            {{
-                type            cyclic;
-                neighbourPatch  front;
-                transform       translational;
-                separationVector (0 0 0.005);
+                type            zeroGradient;
             }}
         }}
         """
     )
+
+
+def p_solid() -> str:
+    return """
+    FoamFile
+    {
+        version     2.0;
+        format      ascii;
+        class       volScalarField;
+        location    "0/solid";
+        object      p;
+    }
+
+    dimensions      [1 -1 -2 0 0 0 0];
+    internalField   uniform 0;
+
+    boundaryField
+    {
+        solid_to_fluid
+        {
+            type            fixedValue;
+            value           uniform 0;
+        }
+        defaultFaces
+        {
+            type            fixedValue;
+            value           uniform 0;
+        }
+    }
+    """
 
 
 def U_solid() -> str:
@@ -707,52 +839,15 @@ def U_solid() -> str:
 
     boundaryField
     {
-        interface_fluid_solid
+        solid_to_fluid
         {
             type            fixedValue;
             value           uniform (0 0 0);
         }
-        inlet
+        defaultFaces
         {
-            type            cyclic;
-            neighbourPatch  outlet;
-            transform       translational;
-            separationVector (0.06 0 0);
-        }
-        outlet
-        {
-            type            cyclic;
-            neighbourPatch  inlet;
-            transform       translational;
-            separationVector (0.06 0 0);
-        }
-        top
-        {
-            type            cyclic;
-            neighbourPatch  bottom;
-            transform       translational;
-            separationVector (0 0.06 0);
-        }
-        bottom
-        {
-            type            cyclic;
-            neighbourPatch  top;
-            transform       translational;
-            separationVector (0 0.06 0);
-        }
-        front
-        {
-            type            cyclic;
-            neighbourPatch  back;
-            transform       translational;
-            separationVector (0 0 0.005);
-        }
-        back
-        {
-            type            cyclic;
-            neighbourPatch  front;
-            transform       translational;
-            separationVector (0 0 0.005);
+            type            fixedValue;
+            value           uniform (0 0 0);
         }
     }
     """
@@ -760,6 +855,15 @@ def U_solid() -> str:
 
 def g_file() -> str:
     return """
+    FoamFile
+    {
+        version     2.0;
+        format      ascii;
+        class       uniformDimensionedVectorField;
+        location    "constant";
+        object      g;
+    }
+
     dimensions      [0 1 -2 0 0 0 0];
     value           (0 0 0);
     """
@@ -769,6 +873,10 @@ def create_case(case_dir: Path, Ubar: float, Tinlet: float, Tsolid: float) -> No
     write_file(case_dir / "system/controlDict", control_dict())
     write_file(case_dir / "system/fvSchemes", fv_schemes())
     write_file(case_dir / "system/fvSolution", fv_solution())
+    write_file(case_dir / "system/fluid/fvSchemes", fv_schemes())
+    write_file(case_dir / "system/fluid/fvSolution", fv_solution())
+    write_file(case_dir / "system/solid/fvSchemes", fv_schemes())
+    write_file(case_dir / "system/solid/fvSolution", fv_solution())
     write_file(case_dir / "system/fvOptions", fv_options(Ubar))
     write_file(case_dir / "constant/regionProperties", region_properties())
     write_file(case_dir / "constant/g", g_file())
@@ -780,11 +888,13 @@ def create_case(case_dir: Path, Ubar: float, Tinlet: float, Tsolid: float) -> No
     write_file(case_dir / "constant/solid/turbulenceProperties", turbulence_properties_solid())
     write_file(case_dir / "constant/solid/thermophysicalProperties", thermophysical_solid())
 
+    write_file(case_dir / "0/fluid/p", p_fluid())
     write_file(case_dir / "0/fluid/U", U_fluid(Ubar))
     write_file(case_dir / "0/fluid/p_rgh", p_rgh_fluid())
     write_file(case_dir / "0/fluid/T", T_fluid(Tinlet))
 
     write_file(case_dir / "0/solid/U", U_solid())
+    write_file(case_dir / "0/solid/p", p_solid())
     write_file(case_dir / "0/solid/T", T_solid(Tsolid))
 
     write_file(
