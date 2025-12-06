@@ -8,33 +8,125 @@ FoamFile
 
 scale   1;
 
-// Simple rectangular channel
-// Bottom wall is heated (heatsink surface at 80°C)
+// Channel with 3 rectangular fins
+// Channel: 120mm x 40mm x 60mm (x, y, z)
+// Fins: 3 fins along z-direction, each 5mm wide, 15mm tall
+// Flow direction: +x
+
+// Z positions:
+// z0=0, z1=0.01125, z2=0.01625, z3=0.0275, z4=0.0325, z5=0.04375, z6=0.04875, z7=0.06
+
+// Y positions:
+// y0=0, y1=0.015 (fin top), y2=0.04 (channel top)
+
+// Block structure (y-z cross section):
+// Level 2 (y=0.015 to 0.04): 7 continuous blocks
+// Level 1 (y=0 to 0.015): 4 blocks in gaps only (fins are solid)
+
+// OpenFOAM hex vertex ordering: (v0 v1 v2 v3 v4 v5 v6 v7)
+// where (v1-v0)×(v3-v0) must point in same direction as (v4-v0)
+// For +y as k-direction: need i=+z, j=+x so i×j=+y
 
 vertices
 (
-    (0 0 0)                              // 0
-    (0.12 0 0)               // 1
-    (0.12 0.04 0) // 2
-    (0 0.04 0)               // 3
-    (0 0 0.06)                // 4
-    (0.12 0 0.06) // 5
-    (0.12 0.04 0.06) // 6
-    (0 0.04 0.06) // 7
+    // ========== Level 0: y=0 (bottom) ==========
+    // Gap 1: z=0 to 0.01125
+    (0    0 0)           // 0
+    (0.12 0 0)           // 1
+    (0.12 0 0.01125)     // 2
+    (0    0 0.01125)     // 3
+    // Gap 2: z=0.01625 to 0.0275
+    (0    0 0.01625)     // 4
+    (0.12 0 0.01625)     // 5
+    (0.12 0 0.0275)      // 6
+    (0    0 0.0275)      // 7
+    // Gap 3: z=0.0325 to 0.04375
+    (0    0 0.0325)      // 8
+    (0.12 0 0.0325)      // 9
+    (0.12 0 0.04375)     // 10
+    (0    0 0.04375)     // 11
+    // Gap 4: z=0.04875 to 0.06
+    (0    0 0.04875)     // 12
+    (0.12 0 0.04875)     // 13
+    (0.12 0 0.06)        // 14
+    (0    0 0.06)        // 15
+
+    // ========== Level 1: y=0.015 (fin top) ==========
+    (0    0.015 0)           // 16
+    (0.12 0.015 0)           // 17
+    (0.12 0.015 0.01125)     // 18
+    (0    0.015 0.01125)     // 19
+    (0    0.015 0.01625)     // 20
+    (0.12 0.015 0.01625)     // 21
+    (0.12 0.015 0.0275)      // 22
+    (0    0.015 0.0275)      // 23
+    (0    0.015 0.0325)      // 24
+    (0.12 0.015 0.0325)      // 25
+    (0.12 0.015 0.04375)     // 26
+    (0    0.015 0.04375)     // 27
+    (0    0.015 0.04875)     // 28
+    (0.12 0.015 0.04875)     // 29
+    (0.12 0.015 0.06)        // 30
+    (0    0.015 0.06)        // 31
+
+    // ========== Level 2: y=0.04 (channel top) ==========
+    (0    0.04 0)           // 32
+    (0.12 0.04 0)           // 33
+    (0.12 0.04 0.01125)     // 34
+    (0    0.04 0.01125)     // 35
+    (0    0.04 0.01625)     // 36
+    (0.12 0.04 0.01625)     // 37
+    (0.12 0.04 0.0275)      // 38
+    (0    0.04 0.0275)      // 39
+    (0    0.04 0.0325)      // 40
+    (0.12 0.04 0.0325)      // 41
+    (0.12 0.04 0.04375)     // 42
+    (0    0.04 0.04375)     // 43
+    (0    0.04 0.04875)     // 44
+    (0.12 0.04 0.04875)     // 45
+    (0.12 0.04 0.06)        // 46
+    (0    0.04 0.06)        // 47
 );
 
 blocks
 (
-    hex (0 1 2 3 4 5 6 7) (60 20 30)
-    simpleGrading (
-        1  // x: uniform
-        (
-            (0.3 0.3 4)   // near bottom wall - finer
-            (0.4 0.4 1)   // middle
-            (0.3 0.3 0.25) // near top wall - finer
-        )
-        1  // z: uniform
-    )
+    // Vertex ordering: (v0 v1 v2 v3 v4 v5 v6 v7) with i=+z, j=+x, k=+y
+    // Cell counts: (nz nx ny)
+
+    // ========== Lower level blocks (y=0 to 0.015) in gaps only ==========
+    // Gap 1: z=0 to 0.01125, x=0 to 0.12, y=0 to 0.015
+    hex (0 3 2 1 16 19 18 17) (6 60 8) simpleGrading (1 1 1)   // block 0
+
+    // Gap 2: z=0.01625 to 0.0275
+    hex (4 7 6 5 20 23 22 21) (6 60 8) simpleGrading (1 1 1)   // block 1
+
+    // Gap 3: z=0.0325 to 0.04375
+    hex (8 11 10 9 24 27 26 25) (6 60 8) simpleGrading (1 1 1) // block 2
+
+    // Gap 4: z=0.04875 to 0.06
+    hex (12 15 14 13 28 31 30 29) (6 60 8) simpleGrading (1 1 1) // block 3
+
+    // ========== Upper level blocks (y=0.015 to 0.04) - continuous ==========
+    // z=0 to 0.01125
+    hex (16 19 18 17 32 35 34 33) (6 60 13) simpleGrading (1 1 1) // block 4
+
+    // z=0.01125 to 0.01625 (above fin 1)
+    hex (19 20 21 18 35 36 37 34) (3 60 13) simpleGrading (1 1 1) // block 5
+
+    // z=0.01625 to 0.0275
+    hex (20 23 22 21 36 39 38 37) (6 60 13) simpleGrading (1 1 1) // block 6
+
+    // z=0.0275 to 0.0325 (above fin 2)
+    hex (23 24 25 22 39 40 41 38) (3 60 13) simpleGrading (1 1 1) // block 7
+
+    // z=0.0325 to 0.04375
+    hex (24 27 26 25 40 43 42 41) (6 60 13) simpleGrading (1 1 1) // block 8
+
+    // z=0.04375 to 0.04875 (above fin 3)
+    hex (27 28 29 26 43 44 45 42) (3 60 13) simpleGrading (1 1 1) // block 9
+
+    // z=0.04875 to 0.06
+    hex (28 31 30 29 44 47 46 45) (6 60 13) simpleGrading (1 1 1) // block 10
 );
 
 edges ();
@@ -46,7 +138,19 @@ boundary
         type patch;
         faces
         (
-            (0 4 7 3)
+            // Lower level gaps (x=0 face)
+            (0 3 19 16)
+            (4 7 23 20)
+            (8 11 27 24)
+            (12 15 31 28)
+            // Upper level (x=0 face)
+            (16 19 35 32)
+            (19 20 36 35)
+            (20 23 39 36)
+            (23 24 40 39)
+            (24 27 43 40)
+            (27 28 44 43)
+            (28 31 47 44)
         );
     }
 
@@ -55,7 +159,19 @@ boundary
         type patch;
         faces
         (
-            (1 2 6 5)
+            // Lower level gaps (x=0.12 face)
+            (1 17 18 2)
+            (5 21 22 6)
+            (9 25 26 10)
+            (13 29 30 14)
+            // Upper level (x=0.12 face)
+            (17 33 34 18)
+            (18 34 37 21)
+            (21 37 38 22)
+            (22 38 41 25)
+            (25 41 42 26)
+            (26 42 45 29)
+            (29 45 46 30)
         );
     }
 
@@ -64,16 +180,53 @@ boundary
         type wall;
         faces
         (
-            (3 7 6 2)
+            (32 35 34 33)
+            (35 36 37 34)
+            (36 39 38 37)
+            (39 40 41 38)
+            (40 43 42 41)
+            (43 44 45 42)
+            (44 47 46 45)
         );
     }
 
-    heatedWall
+    bottomWall
     {
         type wall;
         faces
         (
-            (0 1 5 4)
+            (0 1 2 3)
+            (4 5 6 7)
+            (8 9 10 11)
+            (12 13 14 15)
+        );
+    }
+
+    finWalls
+    {
+        type wall;
+        faces
+        (
+            // Fin 1 - side at z=0.01125
+            (3 19 18 2)
+            // Fin 1 - top at y=0.015
+            (19 20 21 18)
+            // Fin 1 - side at z=0.01625
+            (4 5 21 20)
+
+            // Fin 2 - side at z=0.0275
+            (7 23 22 6)
+            // Fin 2 - top at y=0.015
+            (23 24 25 22)
+            // Fin 2 - side at z=0.0325
+            (8 9 25 24)
+
+            // Fin 3 - side at z=0.04375
+            (11 27 26 10)
+            // Fin 3 - top at y=0.015
+            (27 28 29 26)
+            // Fin 3 - side at z=0.04875
+            (12 13 29 28)
         );
     }
 
@@ -82,7 +235,8 @@ boundary
         type symmetry;
         faces
         (
-            (0 3 2 1)
+            (0 16 17 1)
+            (16 32 33 17)
         );
     }
 
@@ -91,7 +245,8 @@ boundary
         type symmetry;
         faces
         (
-            (4 5 6 7)
+            (15 14 30 31)
+            (31 30 46 47)
         );
     }
 );
