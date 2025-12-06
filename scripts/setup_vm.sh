@@ -122,10 +122,11 @@ pip3 install --quiet \
     pyvista \
     matplotlib \
     numpy \
-    vtk
+    vtk \
+    scipy
 
 # Verify Python packages
-python3 -c "import gmsh, pyvista, matplotlib, numpy, vtk; print('Python packages verified')" || {
+python3 -c "import gmsh, pyvista, matplotlib, numpy, vtk, scipy; print('Python packages verified')" || {
     print_error "Python package verification failed"
     exit 1
 }
