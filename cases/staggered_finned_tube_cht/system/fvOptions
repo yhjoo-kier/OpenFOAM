@@ -1,0 +1,41 @@
+/*
+Momentum and energy sources are injected via fvOptions to enforce a prescribed
+bulk velocity and stabilize the periodic thermal field without using fanPressure
+or fixedJump boundaries. meanVelocityForce drives the flow to a target mean
+velocity Ubar. The temperatureRelaxation source may be tuned (scaleMultiplier)
+to maintain a spatially uniform reference mean temperature when needed.
+*/
+
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "system";
+    object      fvOptions;
+}
+
+meanFlowDrive
+{
+    type            meanVelocityForce;
+    active          yes;
+    selectionMode   all;
+    fields          (U);
+    Ubar            (1.0 0 0);
+    relaxation      0.2;
+}
+
+temperatureRelaxation
+{
+    type            scalarSemiImplicitSource;
+    active          no; // set to yes to enforce a mean temperature in the fluid
+    selectionMode   all;
+    volumeMode      specific;
+    injectionRateSuSp
+    {
+        T           (0 0);
+    }
+    // Use scaleMultiplier to tune the thermal source strength while keeping
+    // periodic temperature boundary conditions on inlet/outlet.
+    scaleMultiplier 0;
+}

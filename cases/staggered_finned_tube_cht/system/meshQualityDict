@@ -1,0 +1,4 @@
+MeshQualityControls
+{
+    maxNonOrtho 70;
+}

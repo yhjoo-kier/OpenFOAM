@@ -1,0 +1,28 @@
+thermoType
+{
+    type            heSolidThermo;
+    mixture         pureMixture;
+    transport       const;
+    thermo          hConst;
+    equationOfState rhoConst;
+    specie          specie;
+    energy          sensibleEnthalpy;
+}
+
+mixture
+{
+    specie
+    {
+        molWeight   63.55; // copper
+    }
+    thermodynamics
+    {
+        Cp          385;
+        Hf          0;
+    }
+    transport
+    {
+        kappa       400; // W/m/K
+    }
+    rho             8960;
+}

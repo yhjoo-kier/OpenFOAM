@@ -1,0 +1,64 @@
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       volScalarField;
+    location    "0/fluid";
+    object      T;
+}
+
+dimensions      [0 0 0 1 0 0 0];
+internalField   uniform 300.0;
+
+boundaryField
+{
+    inlet
+    {
+        type            cyclic;
+        neighbourPatch  outlet;
+        transform       translational;
+        separationVector (0.06 0 0);
+    }
+    outlet
+    {
+        type            cyclic;
+        neighbourPatch  inlet;
+        transform       translational;
+        separationVector (0.06 0 0);
+    }
+    top
+    {
+        type            cyclic;
+        neighbourPatch  bottom;
+        transform       translational;
+        separationVector (0 0.06 0);
+    }
+    bottom
+    {
+        type            cyclic;
+        neighbourPatch  top;
+        transform       translational;
+        separationVector (0 0.06 0);
+    }
+    front
+    {
+        type            cyclic;
+        neighbourPatch  back;
+        transform       translational;
+        separationVector (0 0 0.005);
+    }
+    back
+    {
+        type            cyclic;
+        neighbourPatch  front;
+        transform       translational;
+        separationVector (0 0 0.005);
+    }
+    interface_fluid_solid
+    {
+        type            compressible::turbulentTemperatureCoupledBaffleMixed;
+        Tnbr            T_solid;
+        kappaMethod     fluidThermo;
+        value           uniform 300.0;
+    }
+}
