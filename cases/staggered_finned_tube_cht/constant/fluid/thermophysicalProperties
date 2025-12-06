@@ -1,3 +1,12 @@
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "constant/fluid";
+    object      thermophysicalProperties;
+}
+
 thermoType
 {
     type            heRhoThermo;
@@ -26,5 +35,8 @@ mixture
         Pr          0.71;
         kappa       0.026;
     }
-    rho             1.18;
+    equationOfState
+    {
+        rho         1.18;
+    }
 }
