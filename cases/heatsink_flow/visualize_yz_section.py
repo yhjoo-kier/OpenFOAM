@@ -11,7 +11,7 @@ import matplotlib.pyplot as plt
 from scipy.interpolate import griddata
 
 # Load the VTK file
-vtm_file = "VTK/heatsink_flow_5000.vtm"
+vtm_file = "VTK/heatsink_flow_3000.vtm"
 print(f"Loading {vtm_file}...")
 
 mesh = pv.read(vtm_file)

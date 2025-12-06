@@ -28,7 +28,13 @@ boundaryField
         type            zeroGradient;
     }
 
-    heatedWall
+    bottomWall
+    {
+        type            fixedValue;
+        value           uniform 353.15;
+    }
+
+    finWalls
     {
         type            fixedValue;
         value           uniform 353.15;

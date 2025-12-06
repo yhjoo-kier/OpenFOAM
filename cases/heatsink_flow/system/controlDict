@@ -6,20 +6,18 @@ FoamFile
     object      controlDict;
 }
 
-application     scalarTransportFoam;
-startFrom       latestTime;
-startTime       204;
+application     simpleFoam;
+startFrom       startTime;
+startTime       0;
 stopAt          endTime;
-endTime         5000;
+endTime         3000;
 deltaT          1;
 writeControl    timeStep;
 writeInterval   500;
-purgeWrite      5;
+purgeWrite      3;
 writeFormat     ascii;
 writePrecision  8;
 writeCompression off;
 timeFormat      general;
 timePrecision   6;
 runTimeModifiable true;
-
-// Functions disabled - use scalarTransportFoam after simpleFoam convergence

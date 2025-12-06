@@ -28,7 +28,12 @@ boundaryField
         type            noSlip;
     }
 
-    heatedWall
+    bottomWall
+    {
+        type            noSlip;
+    }
+
+    finWalls
     {
         type            noSlip;
     }

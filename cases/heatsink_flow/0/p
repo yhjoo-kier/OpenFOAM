@@ -28,7 +28,12 @@ boundaryField
         type            zeroGradient;
     }
 
-    heatedWall
+    bottomWall
+    {
+        type            zeroGradient;
+    }
+
+    finWalls
     {
         type            zeroGradient;
     }
