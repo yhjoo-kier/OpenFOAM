@@ -24,7 +24,7 @@ sudo apt-get install -y openfoam gmsh build-essential libosmesa6-dev libglx-mesa
 ### 2. Install Python Packages
 
 ```bash
-pip3 install gmsh pyvista matplotlib numpy vtk
+pip3 install gmsh pyvista matplotlib numpy vtk scipy
 ```
 
 ### 3. Set OpenFOAM Environment Variables
@@ -138,7 +138,7 @@ source scripts/env.sh
 
 Reinstall Python packages:
 ```bash
-pip3 install --upgrade gmsh pyvista matplotlib numpy vtk
+pip3 install --upgrade gmsh pyvista matplotlib numpy vtk scipy
 ```
 
 ### Permission denied on scripts

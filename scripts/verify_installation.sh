@@ -55,6 +55,7 @@ check "pyvista" "python3 -c 'import pyvista'"
 check "matplotlib" "python3 -c 'import matplotlib'"
 check "numpy" "python3 -c 'import numpy'"
 check "vtk" "python3 -c 'import vtk'"
+check "scipy" "python3 -c 'import scipy'"
 
 echo ""
 echo "Project Files:"
