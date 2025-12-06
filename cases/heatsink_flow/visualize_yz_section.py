@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Visualize y-z cross-section temperature distribution
+Visualize y-z cross-section temperature distribution with contour plots
 """
 
 import pyvista as pv
@@ -8,6 +8,7 @@ import numpy as np
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
+from scipy.interpolate import griddata
 
 # Load the VTK file
 vtm_file = "VTK/heatsink_flow_5000.vtm"
@@ -35,7 +36,7 @@ channel_width = 0.06
 # Create y-z slices at different x positions
 x_positions = [0.03, 0.06, 0.09]  # 30mm, 60mm, 90mm (flow direction)
 
-fig, axes = plt.subplots(1, 3, figsize=(15, 5))
+fig, axes = plt.subplots(1, 3, figsize=(16, 5))
 fig.suptitle('Y-Z Cross-Section Temperature Distribution (Flow direction: x)\n' +
              f'Inlet: 25°C, Wall: 80°C, Velocity: 0.1 m/s', fontsize=12)
 
@@ -54,11 +55,26 @@ for idx, x_pos in enumerate(x_positions):
         points = slice_mesh.points
         T = slice_mesh['T'] - 273.15  # Convert to Celsius
 
+        # Get y and z coordinates (in mm)
+        y = points[:, 1] * 1000
+        z = points[:, 2] * 1000
+
         ax = axes[idx]
 
-        # Scatter plot colored by temperature
-        scatter = ax.scatter(points[:, 2]*1000, points[:, 1]*1000, c=T,
-                            cmap='hot', vmin=25, vmax=80, s=15)
+        # Create regular grid for contour plot
+        yi = np.linspace(y.min(), y.max(), 100)
+        zi = np.linspace(z.min(), z.max(), 100)
+        Yi, Zi = np.meshgrid(yi, zi)
+
+        # Interpolate temperature onto regular grid
+        Ti = griddata((y, z), T, (Yi, Zi), method='cubic')
+
+        # Create filled contour plot
+        levels = np.linspace(25, 80, 23)  # Temperature levels
+        contour = ax.contourf(Zi, Yi, Ti, levels=levels, cmap='hot', extend='both')
+
+        # Add contour lines
+        ax.contour(Zi, Yi, Ti, levels=levels[::2], colors='black', linewidths=0.3, alpha=0.5)
 
         ax.set_xlabel('Z (mm)')
         ax.set_ylabel('Y (mm)')
@@ -66,12 +82,12 @@ for idx, x_pos in enumerate(x_positions):
         ax.set_aspect('equal')
 
         # Add colorbar
-        cbar = plt.colorbar(scatter, ax=ax)
+        cbar = plt.colorbar(contour, ax=ax)
         cbar.set_label('Temperature (°C)')
 
 plt.tight_layout()
-plt.savefig('yz_temperature_sections.png', dpi=150, bbox_inches='tight')
-print("Saved: yz_temperature_sections.png")
+plt.savefig('yz_temperature_contour.png', dpi=150, bbox_inches='tight')
+print("Saved: yz_temperature_contour.png")
 
 # Also create centerline temperature plot
 print("\nCreating centerline temperature plot...")
