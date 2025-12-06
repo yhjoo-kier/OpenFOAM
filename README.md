@@ -90,6 +90,66 @@ export WM_PROJECT=OpenFOAM
 source /opt/openfoam11/etc/bashrc
 ```
 
+### 방법 3: VM/CODEX 환경 자동 설정
+
+클라우드 VM 또는 CODEX 환경에서 빠르게 셋업하려면 제공된 스크립트를 사용합니다.
+
+```bash
+# 셋업 스크립트 실행 (root 권한 필요)
+chmod +x scripts/setup_vm.sh
+sudo ./scripts/setup_vm.sh
+```
+
+#### 설치되는 구성요소
+
+| 구성요소 | 버전 | 용도 |
+|----------|------|------|
+| OpenFOAM | v1912 | CFD 솔버 |
+| Gmsh | v4.12 | 메시 생성 |
+| Python 패키지 | - | gmsh, pyvista, matplotlib, numpy, vtk |
+
+#### 스크립트 동작
+
+1. **시스템 패키지 업데이트**: `apt-get update`
+2. **OpenFOAM/Gmsh 설치**: Ubuntu 패키지 관리자 사용
+3. **환경변수 설정**: `/etc/profile.d/openfoam.sh` 생성
+4. **Python 패키지 설치**: pip3로 시각화 도구 설치
+5. **설치 검증**: blockMesh, laplacianFoam 테스트 실행
+
+#### 설치 후 확인
+
+```bash
+# OpenFOAM 명령어 확인
+which blockMesh simpleFoam laplacianFoam
+
+# Python 패키지 확인
+python3 -c "import pyvista, gmsh, matplotlib; print('OK')"
+
+# 환경변수 로드 (새 터미널에서)
+source /etc/profile.d/openfoam.sh
+```
+
+#### 예제 실행 (히트싱크 열유동 해석)
+
+```bash
+cd cases/heatsink_flow
+
+# 메시 생성
+blockMesh
+
+# 유동 해석 (simpleFoam)
+simpleFoam
+
+# 온도장 해석 (scalarTransportFoam)
+scalarTransportFoam
+
+# VTK 변환 및 시각화
+foamToVTK -latestTime
+python3 visualize_yz_section.py
+```
+
+결과 파일은 `results/heatsink_cooling_with_fins/`에 저장됩니다.
+
 ## 사용법
 
 ### 히트싱크 열전도 해석 예제
