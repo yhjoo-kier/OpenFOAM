@@ -49,6 +49,9 @@ WORKDIR /app
 RUN curl -LsSf https://astral.sh/uv/install.sh | sh
 ENV PATH="/root/.local/bin:${PATH}"
 
+# Install Claude Code CLI (installs to /root/.local/bin, already in PATH)
+RUN curl -fsSL https://claude.ai/install.sh | bash
+
 # Create virtual environment and install Python packages
 RUN uv venv /app/.venv
 ENV PATH="/app/.venv/bin:${PATH}"
