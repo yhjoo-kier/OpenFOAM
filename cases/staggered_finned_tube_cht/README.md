@@ -135,6 +135,19 @@ python3 visualize_results.py
 - `temperature_field.png`: 온도장 (z=0 단면)
 - `geometry_check.png`: 형상 확인용
 
+### ParaView로 결과 보기
+
+```bash
+# ParaView 실행 (fluid 영역)
+paraview VTK/fluid/fluid_1000.vtk
+```
+
+**ParaView 내 조작:**
+1. **Coloring** 드롭다운 → `U` (속도) 또는 `T` (온도) 선택
+2. **단면 보기**: Filters → Slice → Normal (0,1,0) 또는 (0,0,1)
+3. **벡터 표시**: Filters → Glyph → Orientation: U, Scale: U
+4. **Solid 영역 추가**: File → Open → `VTK/solid/*.vtk`, `VTK/domain0/*.vtk` 등
+
 ---
 
 ## 메시 해상도 조절
