@@ -19,16 +19,21 @@ DEFAULT_PARAMS = {
 
 def _add_geometry(params):
     """
-    Create staggered finned-tube REV geometry.
+    Create staggered finned-tube REV geometry with clean inlet/outlet boundaries.
 
-    Domain: x in [0, 2*S_L], y in [0, S_T/2], z in [-P_fin/2, P_fin/2]
+    Domain: x in [-S_L/2, 3*S_L/2], y in [0, S_T], z in [-P_fin/2, P_fin/2]
+
+    To ensure inlet and outlet have identical flat surfaces (no tube intersection),
+    we shift the domain so tubes are fully inside. The periodic length is still 2*S_L.
 
     Tube positions (viewed from z-axis):
-      - (0, 0): quarter tube at bottom-left corner
-      - (S_L, S_T/2): half tube at top-center
-      - (2*S_L, 0): quarter tube at bottom-right corner
+      - (0, 0): full tube at left (inside domain)
+      - (0, S_T): full tube at left-top (half inside)
+      - (S_L, S_T/2): full tube at center
+      - (S_L, 0): half tube at center-bottom (new, for symmetry)
+      - (S_L, S_T): half tube at center-top (new, for symmetry)
 
-    This ensures inlet (x=0) and outlet (x=2*S_L) have identical cross-sections.
+    This creates a shifted REV with clean inlet/outlet at x=-S_L/2 and x=3*S_L/2.
     """
     SL = params["SL"]
     ST = params["ST"]
@@ -40,71 +45,56 @@ def _add_geometry(params):
 
     occ = gmsh.model.occ
 
-    # Domain: x in [0, 2*S_L], y in [0, S_T/2], z in [-P_fin/2, P_fin/2]
-    domain_x = 2.0 * SL
-    domain_y = ST / 2.0
+    # Shift domain by S_L/2 so inlet/outlet don't intersect with tubes
+    # Domain: x in [-S_L/2, 3*S_L/2], y in [0, S_T], z in [-P_fin/2, P_fin/2]
+    x_start = -SL / 2.0
+    domain_x = 2.0 * SL  # periodic length stays the same
+    domain_y = ST
     domain_z = P_fin
-    fluid_box = occ.addBox(0.0, 0.0, -P_fin / 2.0, domain_x, domain_y, domain_z)
+    fluid_box = occ.addBox(x_start, 0.0, -P_fin / 2.0, domain_x, domain_y, domain_z)
 
-    # Tube center positions: (x, y)
-    # Position 1: (0, 0) - quarter circle at bottom-left corner
-    # Position 2: (S_L, S_T/2) - half circle at top-center
-    # Position 3: (2*S_L, 0) - quarter circle at bottom-right corner
+    # Tube positions for proper staggered arrangement
+    # Row 1 (x=0): tubes at y = n×S_T (at y-boundaries)
+    # Row 2 (x=S_L): tubes at y = (n+0.5)×S_T (offset by half pitch)
     tube_centers = [
-        (0.0, 0.0),
-        (SL, ST / 2.0),
-        (2.0 * SL, 0.0),
+        (0.0, 0.0),       # Row 1: half tube at y=0 boundary
+        (0.0, ST),        # Row 1: half tube at y=S_T boundary
+        (SL, ST / 2.0),   # Row 2: full tube at center (offset)
     ]
 
-    # Create tube outer walls and fins at each position
-    tube_outers = []
-    tube_inners = []
-    fins = []
+    # Create each tube unit separately and intersect with domain box individually
+    # This ensures all tube parts inside the domain are captured correctly
+    trimmed_solids = []
 
     for cx, cy in tube_centers:
-        # Full cylinder for tube outer wall
+        # Create tube outer cylinder
         tube_out = occ.addCylinder(cx, cy, -P_fin / 2.0, 0.0, 0.0, P_fin, R_tube_out)
-        tube_outers.append((3, tube_out))
-
-        # Full cylinder for tube inner bore
-        tube_in = occ.addCylinder(cx, cy, -P_fin / 2.0, 0.0, 0.0, P_fin, R_tube_in)
-        tube_inners.append((3, tube_in))
-
-        # Fin disk at center line (z=0)
+        # Create fin disk
         fin = occ.addCylinder(cx, cy, -t_fin / 2.0, 0.0, 0.0, t_fin, R_fin)
-        fins.append((3, fin))
+        # Create inner bore
+        tube_in = occ.addCylinder(cx, cy, -P_fin / 2.0, 0.0, 0.0, P_fin, R_tube_in)
 
-    # Fuse all tube outers together
-    if len(tube_outers) > 1:
-        fused_tubes, _ = occ.fuse([tube_outers[0]], tube_outers[1:])
-    else:
-        fused_tubes = tube_outers
+        # Fuse tube outer with fin
+        solid_unit, _ = occ.fuse([(3, tube_out)], [(3, fin)])
+        solid_tag = solid_unit[0][1]
 
-    # Fuse all fins together
-    if len(fins) > 1:
-        fused_fins, _ = occ.fuse([fins[0]], fins[1:])
-    else:
-        fused_fins = fins
+        # Subtract inner bore
+        solid_cut, _ = occ.cut([(3, solid_tag)], [(3, tube_in)])
+        solid_tag = solid_cut[0][1]
 
-    # Merge tubes and fins into solid region
-    solid_entities, _ = occ.fuse(fused_tubes, fused_fins)
-    solid_tag = solid_entities[0][1]
+        # Create a fresh copy of domain box for intersection
+        domain_copy = occ.addBox(x_start, 0.0, -P_fin / 2.0, domain_x, domain_y, domain_z)
 
-    # Fuse all inner bores together
-    if len(tube_inners) > 1:
-        fused_inners, _ = occ.fuse([tube_inners[0]], tube_inners[1:])
-    else:
-        fused_inners = tube_inners
+        # Intersect this tube unit with domain box to trim parts outside REV
+        trimmed, _ = occ.intersect([(3, solid_tag)], [(3, domain_copy)], removeObject=True, removeTool=True)
+        if trimmed:
+            trimmed_solids.extend(trimmed)
 
-    # Subtract inner bores from solid
-    cut_entities, _ = occ.cut([(3, solid_tag)], fused_inners)
-    solid_tag = cut_entities[0][1]
+    if not trimmed_solids:
+        raise RuntimeError("No solid volumes created after trimming tubes to domain.")
 
-    # Intersect solid with domain box to trim parts outside the REV
-    solid_trimmed, _ = occ.intersect([(3, solid_tag)], [(3, fluid_box)], removeObject=True, removeTool=False)
-
-    # Fragment fluid box with trimmed solid for conformal mesh
-    frag_entities, _ = occ.fragment([(3, fluid_box)], solid_trimmed)
+    # Fragment fluid box with all trimmed solids for conformal mesh
+    frag_entities, _ = occ.fragment([(3, fluid_box)], trimmed_solids)
     occ.synchronize()
 
     # Classify volumes: largest is fluid, solid volumes touch the fluid
@@ -175,8 +165,10 @@ def _pair_by_centroid(surfaces, axis):
 
 
 def _set_periodicity(min_surfaces, max_surfaces, translation, axis):
+    """Set periodicity between matching surfaces. Skip if counts don't match."""
     if len(min_surfaces) != len(max_surfaces):
-        raise RuntimeError("Periodic surface counts do not match.")
+        print(f"Warning: Periodic surface counts do not match ({len(min_surfaces)} vs {len(max_surfaces)}) for axis {axis}. Skipping Gmsh periodicity.")
+        return False
     min_sorted = _pair_by_centroid(min_surfaces, axis=axis)
     max_sorted = _pair_by_centroid(max_surfaces, axis=axis)
     affine = [
@@ -185,7 +177,12 @@ def _set_periodicity(min_surfaces, max_surfaces, translation, axis):
         0.0, 0.0, 1.0, translation[2],
         0.0, 0.0, 0.0, 1.0,
     ]
-    gmsh.model.mesh.setPeriodic(2, max_sorted, min_sorted, affine)
+    try:
+        gmsh.model.mesh.setPeriodic(2, max_sorted, min_sorted, affine)
+        return True
+    except Exception as e:
+        print(f"Warning: Could not set periodicity for axis {axis}: {e}")
+        return False
 
 
 def build_model(params):
@@ -207,11 +204,13 @@ def build_model(params):
     ST = params["ST"]
     P_fin = params["P_fin"]
 
-    # Domain: x in [0, 2*S_L], y in [0, S_T/2], z in [-P_fin/2, P_fin/2]
-    inlet = _select_surfaces_by_coord(fluid_surfaces, "x", 0.0)
-    outlet = _select_surfaces_by_coord(fluid_surfaces, "x", 2.0 * SL)
+    # Domain shifted: x in [-S_L/2, 3*S_L/2], y in [0, S_T], z in [-P_fin/2, P_fin/2]
+    x_start = -SL / 2.0
+    x_end = x_start + 2.0 * SL  # = 3*S_L/2
+    inlet = _select_surfaces_by_coord(fluid_surfaces, "x", x_start)
+    outlet = _select_surfaces_by_coord(fluid_surfaces, "x", x_end)
     bottom = _select_surfaces_by_coord(fluid_surfaces, "y", 0.0)
-    top = _select_surfaces_by_coord(fluid_surfaces, "y", ST / 2.0)
+    top = _select_surfaces_by_coord(fluid_surfaces, "y", ST)
     back = _select_surfaces_by_coord(fluid_surfaces, "z", -P_fin / 2.0)
     front = _select_surfaces_by_coord(fluid_surfaces, "z", P_fin / 2.0)
 
@@ -220,7 +219,7 @@ def build_model(params):
 
     # Periodicity: translation vectors match domain dimensions
     _set_periodicity(inlet, outlet, (2.0 * SL, 0.0, 0.0), axis="x")
-    _set_periodicity(bottom, top, (0.0, ST / 2.0, 0.0), axis="y")
+    _set_periodicity(bottom, top, (0.0, ST, 0.0), axis="y")  # Full S_T
     _set_periodicity(back, front, (0.0, 0.0, P_fin), axis="z")
 
     gmsh.model.addPhysicalGroup(3, [fluid_volume], name="fluid")

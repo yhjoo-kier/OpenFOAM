@@ -17,44 +17,40 @@ boundaryField
         type            cyclicAMI;
         neighbourPatch  outlet;
         transform       translational;
-        separationVector (0.06 0 0);
+        separationVector (0.12 0 0);
     }
     outlet
     {
         type            cyclicAMI;
         neighbourPatch  inlet;
         transform       translational;
-        separationVector (-0.06 0 0);
+        separationVector (-0.12 0 0);
     }
     top
     {
-        type            cyclicAMI;
-        neighbourPatch  bottom;
-        transform       translational;
-        separationVector (0 -0.06 0);
+        type            symmetry;
     }
     bottom
     {
-        type            cyclicAMI;
-        neighbourPatch  top;
-        transform       translational;
-        separationVector (0 0.06 0);
+        type            symmetry;
     }
     front
     {
-        type            cyclicAMI;
-        neighbourPatch  back;
-        transform       translational;
-        separationVector (0 0 -0.05);
+        type            symmetry;
     }
     back
     {
-        type            cyclicAMI;
-        neighbourPatch  front;
-        transform       translational;
-        separationVector (0 0 0.05);
+        type            symmetry;
     }
     fluid_to_solid
+    {
+        type            noSlip;
+    }
+    fluid_to_domain0
+    {
+        type            noSlip;
+    }
+    fluid_to_domain1
     {
         type            noSlip;
     }
