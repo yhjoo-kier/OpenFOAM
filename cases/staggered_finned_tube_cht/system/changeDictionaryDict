@@ -15,7 +15,7 @@ dictionaryReplacement
             type            cyclicAMI;
             neighbourPatch  outlet;
             transform       translational;
-            separationVector (0.12 0 0);  // 2*S_L for staggered REV
+            separationVector (0.12 0 0);  // 2*S_L
             matchTolerance  0.1;
         }
 
@@ -24,44 +24,28 @@ dictionaryReplacement
             type            cyclicAMI;
             neighbourPatch  inlet;
             transform       translational;
-            separationVector (-0.12 0 0);  // -2*S_L for staggered REV
+            separationVector (-0.12 0 0);  // -2*S_L
             matchTolerance  0.1;
         }
 
         top
         {
-            type            cyclicAMI;
-            neighbourPatch  bottom;
-            transform       translational;
-            separationVector (0 -0.03 0);  // -S_T/2 for staggered REV
-            matchTolerance  0.1;
+            type            symmetry;
         }
 
         bottom
         {
-            type            cyclicAMI;
-            neighbourPatch  top;
-            transform       translational;
-            separationVector (0 0.03 0);  // S_T/2 for staggered REV
-            matchTolerance  0.1;
+            type            symmetry;
         }
 
         front
         {
-            type            cyclicAMI;
-            neighbourPatch  back;
-            transform       translational;
-            separationVector (0 0 -0.05);
-            matchTolerance  0.1;
+            type            symmetry;
         }
 
         back
         {
-            type            cyclicAMI;
-            neighbourPatch  front;
-            transform       translational;
-            separationVector (0 0 0.05);
-            matchTolerance  0.1;
+            type            symmetry;
         }
     }
 }
