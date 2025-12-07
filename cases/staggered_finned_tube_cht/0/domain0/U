@@ -2,24 +2,24 @@ FoamFile
 {
     version     2.0;
     format      ascii;
-    class       volScalarField;
+    class       volVectorField;
     location    "0/domain0";
-    object      p;
+    object      U;
 }
 
-dimensions      [1 -1 -2 0 0 0 0];
-internalField   uniform 0;
+dimensions      [0 1 -1 0 0 0 0];
+internalField   uniform (0 0 0);
 
 boundaryField
 {
     domain0_to_fluid
     {
         type            fixedValue;
-        value           uniform 0;
+        value           uniform (0 0 0);
     }
     defaultFaces
     {
         type            fixedValue;
-        value           uniform 0;
+        value           uniform (0 0 0);
     }
 }

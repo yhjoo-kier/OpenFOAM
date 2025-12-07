@@ -42,25 +42,25 @@ boundaryField
     {
         type            symmetry;
     }
-    fluid_to_solid
-    {
-        type            compressible::turbulentTemperatureCoupledBaffleMixed;
-        Tnbr            T;
-        kappaMethod     fluidThermo;
-        value           uniform 300.0;
-    }
-    fluid_to_domain0
-    {
-        type            compressible::turbulentTemperatureCoupledBaffleMixed;
-        Tnbr            T;
-        kappaMethod     fluidThermo;
-        value           uniform 300.0;
-    }
-    fluid_to_domain1
-    {
-        type            compressible::turbulentTemperatureCoupledBaffleMixed;
-        Tnbr            T;
-        kappaMethod     fluidThermo;
-        value           uniform 300.0;
-    }
+fluid_to_domain0
+{
+    type            compressible::turbulentTemperatureCoupledBaffleMixed;
+    Tnbr            T;
+    kappaMethod     fluidThermo;
+    value           uniform 300.0;
+}
+fluid_to_domain1
+{
+    type            compressible::turbulentTemperatureCoupledBaffleMixed;
+    Tnbr            T;
+    kappaMethod     fluidThermo;
+    value           uniform 300.0;
+}
+fluid_to_solid
+{
+    type            compressible::turbulentTemperatureCoupledBaffleMixed;
+    Tnbr            T;
+    kappaMethod     fluidThermo;
+    value           uniform 300.0;
+}
 }

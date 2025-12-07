@@ -10,5 +10,5 @@ FoamFile
 regions
 (
     fluid (fluid)
-    solid (solid domain0 domain1)
+    solid (domain0 domain1 solid)
 );

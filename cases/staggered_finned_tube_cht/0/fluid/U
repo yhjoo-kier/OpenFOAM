@@ -42,16 +42,16 @@ boundaryField
     {
         type            symmetry;
     }
-    fluid_to_solid
-    {
-        type            noSlip;
-    }
-    fluid_to_domain0
-    {
-        type            noSlip;
-    }
-    fluid_to_domain1
-    {
-        type            noSlip;
-    }
+fluid_to_domain0
+{
+    type            noSlip;
+}
+fluid_to_domain1
+{
+    type            noSlip;
+}
+fluid_to_solid
+{
+    type            noSlip;
+}
 }

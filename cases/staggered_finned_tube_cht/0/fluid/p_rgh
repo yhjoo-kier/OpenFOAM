@@ -42,16 +42,16 @@ boundaryField
     {
         type            symmetry;
     }
-    fluid_to_solid
-    {
-        type            fixedFluxPressure;
-    }
-    fluid_to_domain0
-    {
-        type            fixedFluxPressure;
-    }
-    fluid_to_domain1
-    {
-        type            fixedFluxPressure;
-    }
+fluid_to_domain0
+{
+    type            fixedFluxPressure;
+}
+fluid_to_domain1
+{
+    type            fixedFluxPressure;
+}
+fluid_to_solid
+{
+    type            fixedFluxPressure;
+}
 }
