@@ -63,19 +63,18 @@ Staggered 배열 열교환기의 반복 단위(REV)를 정의합니다.
 ### 1) 격자 생성 및 변환
 
 ```bash
-# Gmsh로 메시 생성 (mesh resolution 조절: --lc 옵션)
+# Gmsh로 메시 생성 (mesh resolution 조절: --mesh-size 옵션)
 python3 generate_mesh.py --output mesh.msh
 
 # OpenFOAM 형식으로 변환
 gmshToFoam mesh.msh
 
-# 경계조건 타입 설정 (cyclicAMI, symmetry 등)
-changeDictionary
-
 # 멀티리전 분리 (fluid + solid 영역)
 # 참고: 튜브가 분리되어 있어 solid, domain0, domain1 등 여러 solid 영역 생성됨
 splitMeshRegions -cellZones -overwrite
 ```
+
+**참고:** 경계조건 타입(cyclicAMI, symmetry 등)은 Step 2의 `setup_openfoam.py --post-split`에서 자동으로 설정됩니다.
 
 ### 2) 초기/경계조건 설정
 
@@ -83,9 +82,14 @@ splitMeshRegions -cellZones -overwrite
 초기조건과 물성치 파일을 설정해야 합니다.
 
 ```bash
-# 자동 설정 스크립트 실행 (없는 경우 수동 설정 필요)
-# python3 setup_openfoam.py --Ubar 1.0 --Tinlet 300 --Tsolid 320
+# splitMeshRegions 후 자동 설정 (--post-split 옵션 필수)
+python3 setup_openfoam.py --post-split --Ubar 1.0 --Tinlet 300 --Tsolid 320
 ```
+
+**`--post-split` 옵션이 하는 일:**
+- `splitMeshRegions`가 `patch`로 변환한 경계 타입을 `cyclicAMI`, `symmetry`로 복원
+- 자동으로 생성된 solid 영역들(solid, domain0, domain1 등)을 감지
+- 각 영역에 맞는 초기/경계조건 파일 생성
 
 **수동 설정 시 필요한 파일:**
 - `constant/regionProperties`: fluid/solid 영역 정의
