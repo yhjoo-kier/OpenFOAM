@@ -2,6 +2,75 @@
 
 This case provides a streamwise-periodic conjugate heat transfer setup for a finned-tube heat exchanger representative elementary volume (REV).
 
+## REV 도메인 정의
+
+Staggered 배열 열교환기의 반복 단위(REV)를 정의합니다.
+
+### 기하학적 파라미터
+
+| 파라미터 | 기호 | 기본값 | 설명 |
+|----------|------|--------|------|
+| Longitudinal pitch | S_L | 0.060 m | 유동 방향 튜브 간격 |
+| Transverse pitch | S_T | 0.060 m | 횡방향 튜브 간격 |
+| Fin pitch | P_fin | 0.050 m | 핀 중심간 간격 |
+| Tube outer radius | R_tube_out | 0.012 m | 튜브 외경/2 |
+| Tube inner radius | R_tube_in | 0.010 m | 튜브 내경/2 |
+| Fin radius | R_fin | 0.022 m | 핀 외경/2 |
+| Fin thickness | t_fin | 0.001 m | 핀 두께 |
+
+### 도메인 크기
+
+| 방향 | 크기 | 범위 |
+|------|------|------|
+| x (유동 방향) | 2 × S_L = 0.12 m | [0, 2×S_L] |
+| y (횡방향) | S_T / 2 = 0.03 m | [0, S_T/2] |
+| z (튜브 축방향) | P_fin = 0.05 m | [-P_fin/2, P_fin/2] |
+
+### REV 단면 스키메틱 (z축 방향에서 본 모습)
+
+```
+                         Flow direction (x) -->
+
+y = S_T/2  +--------------+---------------+--------------+
+           |              |               |              |
+           |              |      __       |              |
+           |              |    /    \     |              |
+           |              |   ( half )    |              |
+           |              |    \ __ /     |              |
+           |              |    (S_L,      |              |
+           |              |     S_T/2)    |              |
+           |              |               |              |
+           |   __         |               |         __   |
+y = 0      | /   |        |               |        |   \ |
+           ||1/4 |        |               |        |1/4 ||
+           | \__ |        |               |        |__ / |
+           +--------------+---------------+--------------+
+          x=0           x=S_L          x=2×S_L
+
+           (0,0)                           (2×S_L, 0)
+         quarter                            quarter
+          tube                               tube
+```
+
+**튜브 배치:**
+- **(0, 0)**: 왼쪽 아래 꼭지점에 사분원 (1/4 튜브)
+- **(S_L, S_T/2)**: 중앙 위쪽 경계에 반원 (1/2 튜브)
+- **(2×S_L, 0)**: 오른쪽 아래 꼭지점에 사분원 (1/4 튜브)
+
+이 배치로 inlet(x=0)과 outlet(x=2×S_L)의 단면 형상이 동일하여 streamwise periodic 조건을 만족합니다.
+
+**Fin 배치:** 각 튜브 중심의 z=0 평면(센터라인)에 원형 핀 배치
+
+### 주기 경계조건
+
+| 경계 쌍 | 방향 | Separation Vector |
+|---------|------|-------------------|
+| inlet ↔ outlet | x | (0.12, 0, 0) |
+| bottom ↔ top | y | (0, 0.03, 0) |
+| back ↔ front | z | (0, 0, 0.05) |
+
+---
+
 ## 실행 절차 (2025-12-06 기준)
 아래 명령어들은 `cases/staggered_finned_tube_cht`에서 실행.
 
