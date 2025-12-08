@@ -3,6 +3,14 @@
 Visualize y-z cross-section temperature distribution with contour plots
 """
 
+import os
+import sys
+
+# Get case directory (parent of scripts/)
+script_dir = os.path.dirname(os.path.abspath(__file__))
+case_dir = os.path.dirname(script_dir)
+os.chdir(case_dir)
+
 import pyvista as pv
 import numpy as np
 import matplotlib
@@ -10,22 +18,39 @@ matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 from scipy.interpolate import griddata
 
-# Load the VTK file
-vtm_file = "VTK/heatsink_flow_3000.vtm"
-print(f"Loading {vtm_file}...")
+pv.OFF_SCREEN = True
 
-mesh = pv.read(vtm_file)
+# Create images directory
+images_dir = os.path.join(case_dir, "images")
+os.makedirs(images_dir, exist_ok=True)
 
-# Get internal mesh
-if isinstance(mesh, pv.MultiBlock):
-    internal = None
-    for block in mesh:
-        if block is not None and hasattr(block, 'n_cells') and block.n_cells > 0:
-            internal = block
-            break
-else:
-    internal = mesh
+# Find the latest VTK file
+vtk_dir = os.path.join(case_dir, "VTK")
+vtk_path = None
+max_time = -1
 
+for item in os.listdir(vtk_dir):
+    item_path = os.path.join(vtk_dir, item)
+    if os.path.isdir(item_path):
+        try:
+            time_str = item.split('_')[-1]
+            t = float(time_str)
+            internal_vtu = os.path.join(item_path, "internal.vtu")
+            if os.path.exists(internal_vtu) and t > max_time:
+                max_time = t
+                vtk_path = internal_vtu
+        except (ValueError, IndexError):
+            continue
+
+if vtk_path is None:
+    print("No VTK file found")
+    sys.exit(1)
+
+print(f"Loading {vtk_path}...")
+mesh = pv.read(vtk_path)
+
+# Convert cell data to point data
+internal = mesh.cell_data_to_point_data()
 print(f"Mesh loaded: {internal.n_cells} cells")
 
 # Channel dimensions
@@ -86,8 +111,9 @@ for idx, x_pos in enumerate(x_positions):
         cbar.set_label('Temperature (°C)')
 
 plt.tight_layout()
-plt.savefig('yz_temperature_contour.png', dpi=150, bbox_inches='tight')
-print("Saved: yz_temperature_contour.png")
+output_path = os.path.join(images_dir, 'yz_temperature_contour.png')
+plt.savefig(output_path, dpi=150, bbox_inches='tight')
+print(f"Saved: {output_path}")
 
 # Also create centerline temperature plot
 print("\nCreating centerline temperature plot...")
@@ -118,8 +144,9 @@ ax2.grid(True, alpha=0.3)
 ax2.set_xlim(0, 120)
 ax2.set_ylim(20, 85)
 
-plt.savefig('centerline_temperature.png', dpi=150, bbox_inches='tight')
-print("Saved: centerline_temperature.png")
+output_path = os.path.join(images_dir, 'centerline_temperature.png')
+plt.savefig(output_path, dpi=150, bbox_inches='tight')
+print(f"Saved: {output_path}")
 
 # Wall temperature profile at bottom
 print("\nCreating bottom wall temperature plot...")
@@ -149,7 +176,8 @@ ax3.grid(True, alpha=0.3)
 ax3.set_xlim(0, 120)
 ax3.set_ylim(20, 85)
 
-plt.savefig('wall_temperature_profile.png', dpi=150, bbox_inches='tight')
-print("Saved: wall_temperature_profile.png")
+output_path = os.path.join(images_dir, 'wall_temperature_profile.png')
+plt.savefig(output_path, dpi=150, bbox_inches='tight')
+print(f"Saved: {output_path}")
 
 print("\nVisualization complete!")

@@ -1,25 +1,53 @@
-# OpenFOAM results directories
-**/VTK/
+# ==================================
+# OpenFOAM Simulation Results
+# ==================================
+
+# Time directories (exclude all except 0/)
 **/0.[0-9]*/
 **/[1-9]*/
 **/[1-9][0-9]*/
 **/[1-9][0-9][0-9]*/
 **/[1-9][0-9][0-9][0-9]*/
-**/constant/polyMesh/
-**/constant/*/polyMesh/
-**/processor*/
-**/postProcessing/
 
-# OpenFOAM generated files
-**/cellToRegion
-
-# Keep initial conditions and setup
+# Keep initial conditions
 !**/0/
 
-# Python virtual environment
-.venv/
+# VTK output (ParaView data)
+**/VTK/
 
-# Python cache
+# Post-processing time series
+**/postProcessing/
+
+# Parallel decomposition
+**/processor*/
+
+# Generated mesh data (can be regenerated)
+**/constant/polyMesh/
+**/constant/*/polyMesh/
+
+# Region splitting artifacts
+**/cellToRegion
+
+# ==================================
+# Generated Files
+# ==================================
+
+# Mesh files
+*.msh
+
+# Solver logs
+log.*
+
+# VTK files (raw)
+*.vtk
+*.vtu
+*.vtp
+
+# ==================================
+# Python
+# ==================================
+
+.venv/
 __pycache__/
 *.pyc
 *.pyo
@@ -29,32 +57,38 @@ __pycache__/
 dist/
 build/
 
-# IDE
+# ==================================
+# IDE & Editor
+# ==================================
+
 .vscode/
 .idea/
 *.swp
 *.swo
 
+# ==================================
 # OS
+# ==================================
+
 .DS_Store
 Thumbs.db
 
-# Logs
-*.log
-log.*
+# ==================================
+# Claude Code
+# ==================================
 
-# Mesh files (can be large)
-*.msh
-*.vtk
-*.vtu
-*.vtp
+# Personal local settings (auto-excluded)
+CLAUDE.local.md
 
-# Keep example output images in repo root
-!*.png
+# ==================================
+# Project-specific exclusions
+# ==================================
 
-# Temporary results directories
+# Legacy results folders (to be deleted)
+results/
 results_new/
+results_cht/
 
-# Generated case directories (simulation data too large)
+# Legacy case directories
 cases/heatsink_new/
 cases/heatsink_cht_full/

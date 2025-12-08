@@ -30,7 +30,7 @@ checkMesh > log.checkMesh 2>&1
 grep -A 5 "Mesh OK" log.checkMesh || echo "  Check log.checkMesh for details"
 
 echo ""
-echo "Step 3: Running simpleFoam with scalarTransport..."
+echo "Step 3: Running simpleFoam for velocity/pressure..."
 echo "  This may take a few minutes..."
 simpleFoam > log.simpleFoam 2>&1
 if [ $? -ne 0 ]; then
@@ -40,7 +40,16 @@ if [ $? -ne 0 ]; then
 fi
 
 echo ""
-echo "Step 4: Converting to VTK format..."
+echo "Step 4: Running scalarTransportFoam for temperature..."
+scalarTransportFoam > log.scalarTransportFoam 2>&1
+if [ $? -ne 0 ]; then
+    echo "ERROR: scalarTransportFoam failed. Check log.scalarTransportFoam"
+    tail -30 log.scalarTransportFoam
+    exit 1
+fi
+
+echo ""
+echo "Step 5: Converting to VTK format..."
 foamToVTK > log.foamToVTK 2>&1
 
 echo ""
