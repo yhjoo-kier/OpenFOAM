@@ -2,6 +2,7 @@
 """Visualization script for staggered finned tube CHT results using matplotlib."""
 
 import os
+import sys
 import numpy as np
 import matplotlib
 matplotlib.use('Agg')  # Non-interactive backend
@@ -10,7 +11,15 @@ from matplotlib.tri import Triangulation
 from matplotlib.patches import Circle
 import pyvista as pv
 
-case_dir = "/workspaces/OpenFOAM/cases/staggered_finned_tube_cht"
+# Get case directory (parent of scripts/)
+script_dir = os.path.dirname(os.path.abspath(__file__))
+case_dir = os.path.dirname(script_dir)
+os.chdir(case_dir)
+
+# Create images directory
+images_dir = os.path.join(case_dir, "images")
+os.makedirs(images_dir, exist_ok=True)
+
 vtk_dir = os.path.join(case_dir, "VTK")
 
 # Load fluid mesh
@@ -104,7 +113,7 @@ ax.set_aspect('equal')
 ax.set_xlim([bounds[0], bounds[1]])
 ax.set_ylim([bounds[2], bounds[3]])
 
-vel_path = os.path.join(case_dir, "velocity_field.png")
+vel_path = os.path.join(images_dir, "velocity_field.png")
 plt.savefig(vel_path, dpi=150, bbox_inches='tight')
 print(f"Saved: {vel_path}")
 plt.close()
@@ -133,7 +142,7 @@ ax.set_aspect('equal')
 ax.set_xlim([bounds[0], bounds[1]])
 ax.set_ylim([bounds[2], bounds[3]])
 
-temp_path = os.path.join(case_dir, "temperature_field.png")
+temp_path = os.path.join(images_dir, "temperature_field.png")
 plt.savefig(temp_path, dpi=150, bbox_inches='tight')
 print(f"Saved: {temp_path}")
 plt.close()
@@ -171,7 +180,7 @@ ax.set_xlim([bounds[0], bounds[1]])
 ax.set_ylim([bounds[2], bounds[3]])
 
 plt.tight_layout()
-overview_path = os.path.join(case_dir, "overview.png")
+overview_path = os.path.join(images_dir, "overview.png")
 plt.savefig(overview_path, dpi=150, bbox_inches='tight')
 print(f"Saved: {overview_path}")
 plt.close()
@@ -212,13 +221,13 @@ ax.set_title('Geometry Overview - Staggered Finned Tube REV\n(Red circles: expec
 ax.set_aspect('equal')
 ax.legend(loc='upper right')
 
-geom_path = os.path.join(case_dir, "geometry_check.png")
+geom_path = os.path.join(images_dir, "geometry_check.png")
 plt.savefig(geom_path, dpi=150, bbox_inches='tight')
 print(f"Saved: {geom_path}")
 plt.close()
 
 print("\nVisualization complete!")
-print(f"Generated files in {case_dir}:")
+print(f"Generated files in {images_dir}:")
 print("  - velocity_field.png")
 print("  - temperature_field.png")
 print("  - overview.png")
