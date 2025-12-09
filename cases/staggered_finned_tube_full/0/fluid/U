@@ -1,0 +1,160 @@
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       volVectorField;
+    location    "0/fluid";
+    object      U;
+}
+
+dimensions      [0 1 -1 0 0 0 0];
+internalField   uniform (1.0 0 0);
+
+boundaryField
+{
+    inlet
+    {
+        type            fixedValue;
+        value           uniform (1.0 0 0);
+    }
+    outlet
+    {
+        type            zeroGradient;
+    }
+    top
+    {
+        type            symmetry;
+    }
+    bottom
+    {
+        type            symmetry;
+    }
+    front
+    {
+        type            symmetry;
+    }
+    back
+    {
+        type            symmetry;
+    }
+fluid_to_domain0
+{
+    type            noSlip;
+}
+fluid_to_domain1
+{
+    type            noSlip;
+}
+fluid_to_domain10
+{
+    type            noSlip;
+}
+fluid_to_domain11
+{
+    type            noSlip;
+}
+fluid_to_domain12
+{
+    type            noSlip;
+}
+fluid_to_domain13
+{
+    type            noSlip;
+}
+fluid_to_domain14
+{
+    type            noSlip;
+}
+fluid_to_domain15
+{
+    type            noSlip;
+}
+fluid_to_domain16
+{
+    type            noSlip;
+}
+fluid_to_domain17
+{
+    type            noSlip;
+}
+fluid_to_domain18
+{
+    type            noSlip;
+}
+fluid_to_domain19
+{
+    type            noSlip;
+}
+fluid_to_domain2
+{
+    type            noSlip;
+}
+fluid_to_domain20
+{
+    type            noSlip;
+}
+fluid_to_domain21
+{
+    type            noSlip;
+}
+fluid_to_domain22
+{
+    type            noSlip;
+}
+fluid_to_domain23
+{
+    type            noSlip;
+}
+fluid_to_domain24
+{
+    type            noSlip;
+}
+fluid_to_domain25
+{
+    type            noSlip;
+}
+fluid_to_domain27
+{
+    type            noSlip;
+}
+fluid_to_domain28
+{
+    type            noSlip;
+}
+fluid_to_domain29
+{
+    type            noSlip;
+}
+fluid_to_domain3
+{
+    type            noSlip;
+}
+fluid_to_domain4
+{
+    type            noSlip;
+}
+fluid_to_domain5
+{
+    type            noSlip;
+}
+fluid_to_domain6
+{
+    type            noSlip;
+}
+fluid_to_domain7
+{
+    type            noSlip;
+}
+fluid_to_domain8
+{
+    type            noSlip;
+}
+fluid_to_domain9
+{
+    type            noSlip;
+}
+fluid_to_solid
+{
+    type            noSlip;
+}
+}

@@ -1,0 +1,191 @@
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       volScalarField;
+    location    "0/fluid";
+    object      p;
+}
+
+dimensions      [1 -1 -2 0 0 0 0];
+internalField   uniform 0;
+
+boundaryField
+{
+    inlet
+    {
+        type            calculated;
+        value           uniform 0;
+    }
+    outlet
+    {
+        type            calculated;
+        value           uniform 0;
+    }
+    top
+    {
+        type            symmetry;
+    }
+    bottom
+    {
+        type            symmetry;
+    }
+    front
+    {
+        type            symmetry;
+    }
+    back
+    {
+        type            symmetry;
+    }
+fluid_to_domain0
+{
+    type            calculated;
+    value           uniform 0;
+}
+fluid_to_domain1
+{
+    type            calculated;
+    value           uniform 0;
+}
+fluid_to_domain10
+{
+    type            calculated;
+    value           uniform 0;
+}
+fluid_to_domain11
+{
+    type            calculated;
+    value           uniform 0;
+}
+fluid_to_domain12
+{
+    type            calculated;
+    value           uniform 0;
+}
+fluid_to_domain13
+{
+    type            calculated;
+    value           uniform 0;
+}
+fluid_to_domain14
+{
+    type            calculated;
+    value           uniform 0;
+}
+fluid_to_domain15
+{
+    type            calculated;
+    value           uniform 0;
+}
+fluid_to_domain16
+{
+    type            calculated;
+    value           uniform 0;
+}
+fluid_to_domain17
+{
+    type            calculated;
+    value           uniform 0;
+}
+fluid_to_domain18
+{
+    type            calculated;
+    value           uniform 0;
+}
+fluid_to_domain19
+{
+    type            calculated;
+    value           uniform 0;
+}
+fluid_to_domain2
+{
+    type            calculated;
+    value           uniform 0;
+}
+fluid_to_domain20
+{
+    type            calculated;
+    value           uniform 0;
+}
+fluid_to_domain21
+{
+    type            calculated;
+    value           uniform 0;
+}
+fluid_to_domain22
+{
+    type            calculated;
+    value           uniform 0;
+}
+fluid_to_domain23
+{
+    type            calculated;
+    value           uniform 0;
+}
+fluid_to_domain24
+{
+    type            calculated;
+    value           uniform 0;
+}
+fluid_to_domain25
+{
+    type            calculated;
+    value           uniform 0;
+}
+fluid_to_domain27
+{
+    type            calculated;
+    value           uniform 0;
+}
+fluid_to_domain28
+{
+    type            calculated;
+    value           uniform 0;
+}
+fluid_to_domain29
+{
+    type            calculated;
+    value           uniform 0;
+}
+fluid_to_domain3
+{
+    type            calculated;
+    value           uniform 0;
+}
+fluid_to_domain4
+{
+    type            calculated;
+    value           uniform 0;
+}
+fluid_to_domain5
+{
+    type            calculated;
+    value           uniform 0;
+}
+fluid_to_domain6
+{
+    type            calculated;
+    value           uniform 0;
+}
+fluid_to_domain7
+{
+    type            calculated;
+    value           uniform 0;
+}
+fluid_to_domain8
+{
+    type            calculated;
+    value           uniform 0;
+}
+fluid_to_domain9
+{
+    type            calculated;
+    value           uniform 0;
+}
+fluid_to_solid
+{
+    type            calculated;
+    value           uniform 0;
+}
+}

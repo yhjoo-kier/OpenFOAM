@@ -1,0 +1,160 @@
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       volScalarField;
+    location    "0/fluid";
+    object      p_rgh;
+}
+
+dimensions      [1 -1 -2 0 0 0 0];
+internalField   uniform 0;
+
+boundaryField
+{
+    inlet
+    {
+        type            zeroGradient;
+    }
+    outlet
+    {
+        type            fixedValue;
+        value           uniform 0;
+    }
+    top
+    {
+        type            symmetry;
+    }
+    bottom
+    {
+        type            symmetry;
+    }
+    front
+    {
+        type            symmetry;
+    }
+    back
+    {
+        type            symmetry;
+    }
+fluid_to_domain0
+{
+    type            fixedFluxPressure;
+}
+fluid_to_domain1
+{
+    type            fixedFluxPressure;
+}
+fluid_to_domain10
+{
+    type            fixedFluxPressure;
+}
+fluid_to_domain11
+{
+    type            fixedFluxPressure;
+}
+fluid_to_domain12
+{
+    type            fixedFluxPressure;
+}
+fluid_to_domain13
+{
+    type            fixedFluxPressure;
+}
+fluid_to_domain14
+{
+    type            fixedFluxPressure;
+}
+fluid_to_domain15
+{
+    type            fixedFluxPressure;
+}
+fluid_to_domain16
+{
+    type            fixedFluxPressure;
+}
+fluid_to_domain17
+{
+    type            fixedFluxPressure;
+}
+fluid_to_domain18
+{
+    type            fixedFluxPressure;
+}
+fluid_to_domain19
+{
+    type            fixedFluxPressure;
+}
+fluid_to_domain2
+{
+    type            fixedFluxPressure;
+}
+fluid_to_domain20
+{
+    type            fixedFluxPressure;
+}
+fluid_to_domain21
+{
+    type            fixedFluxPressure;
+}
+fluid_to_domain22
+{
+    type            fixedFluxPressure;
+}
+fluid_to_domain23
+{
+    type            fixedFluxPressure;
+}
+fluid_to_domain24
+{
+    type            fixedFluxPressure;
+}
+fluid_to_domain25
+{
+    type            fixedFluxPressure;
+}
+fluid_to_domain27
+{
+    type            fixedFluxPressure;
+}
+fluid_to_domain28
+{
+    type            fixedFluxPressure;
+}
+fluid_to_domain29
+{
+    type            fixedFluxPressure;
+}
+fluid_to_domain3
+{
+    type            fixedFluxPressure;
+}
+fluid_to_domain4
+{
+    type            fixedFluxPressure;
+}
+fluid_to_domain5
+{
+    type            fixedFluxPressure;
+}
+fluid_to_domain6
+{
+    type            fixedFluxPressure;
+}
+fluid_to_domain7
+{
+    type            fixedFluxPressure;
+}
+fluid_to_domain8
+{
+    type            fixedFluxPressure;
+}
+fluid_to_domain9
+{
+    type            fixedFluxPressure;
+}
+fluid_to_solid
+{
+    type            fixedFluxPressure;
+}
+}
