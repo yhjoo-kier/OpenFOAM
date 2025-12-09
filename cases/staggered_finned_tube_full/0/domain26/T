@@ -3,7 +3,7 @@ FoamFile
     version     2.0;
     format      ascii;
     class       volScalarField;
-    location    "0/domain29";
+    location    "0/domain26";
     object      T;
 }
 
@@ -12,7 +12,7 @@ internalField   uniform 350.0;
 
 boundaryField
 {
-    domain29_to_fluid
+    domain26_to_fluid
     {
         type            compressible::turbulentTemperatureCoupledBaffleMixed;
         Tnbr            T;

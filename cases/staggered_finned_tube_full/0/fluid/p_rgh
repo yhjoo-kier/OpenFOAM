@@ -113,15 +113,15 @@ fluid_to_domain25
 {
     type            fixedFluxPressure;
 }
+fluid_to_domain26
+{
+    type            fixedFluxPressure;
+}
 fluid_to_domain27
 {
     type            fixedFluxPressure;
 }
 fluid_to_domain28
-{
-    type            fixedFluxPressure;
-}
-fluid_to_domain29
 {
     type            fixedFluxPressure;
 }

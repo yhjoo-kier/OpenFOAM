@@ -56,31 +56,54 @@ def load_fluid_mesh(vtk_dir):
 
 
 def load_solid_mesh(vtk_dir):
-    """Load solid VTK mesh."""
-    solid_dir = vtk_dir.parent.parent / "solid"
-    if not solid_dir.exists():
-        return None
+    """Load all solid VTK meshes and combine them.
     
-    # Find matching time directory
+    After splitMeshRegions, solid regions are split into multiple domains:
+    - solid (one tube)
+    - domain0, domain1, ..., domain28 (other tubes)
+    
+    This function loads all of them and merges into a single mesh.
+    """
+    vtk_base = vtk_dir.parent.parent
     time_suffix = vtk_dir.name.split('_')[-1]
-    solid_time_dir = None
-    for d in solid_dir.iterdir():
-        if d.name.endswith(time_suffix):
-            solid_time_dir = d
-            break
     
-    if solid_time_dir is None:
+    meshes = []
+    
+    # Find all solid region directories (not fluid)
+    for region_dir in vtk_base.iterdir():
+        if not region_dir.is_dir() or region_dir.name == "fluid":
+            continue
+        
+        # Find matching time directory
+        for time_dir in region_dir.iterdir():
+            if time_dir.is_dir() and time_dir.name.endswith(time_suffix):
+                internal_file = time_dir / "internal.vtu"
+                if internal_file.exists():
+                    try:
+                        mesh = pv.read(str(internal_file))
+                        meshes.append(mesh)
+                    except Exception as e:
+                        print(f"Warning: Could not load {internal_file}: {e}")
+                break
+    
+    if not meshes:
         return None
     
-    internal_file = solid_time_dir / "internal.vtu"
-    if internal_file.exists():
-        return pv.read(str(internal_file))
-    return None
+    # Merge all solid meshes
+    if len(meshes) == 1:
+        return meshes[0]
+    
+    combined = meshes[0]
+    for mesh in meshes[1:]:
+        combined = combined.merge(mesh)
+    
+    print(f"Loaded {len(meshes)} solid regions, total {combined.n_cells} cells")
+    return combined
 
 
 def create_temperature_plot(fluid_mesh, solid_mesh, output_path):
     """Create temperature field visualization."""
-    plotter = pv.Plotter(off_screen=True, window_size=(1920, 800))
+    plotter = pv.Plotter(off_screen=True, window_size=(2400, 600))
     
     # Slice at z=0 (center plane)
     if fluid_mesh is not None and 'T' in fluid_mesh.array_names:
@@ -93,11 +116,12 @@ def create_temperature_plot(fluid_mesh, solid_mesh, output_path):
             slice_fluid,
             scalars='T',
             cmap='coolwarm',
+            clim=[300, 350],  # Fixed temperature range
             show_scalar_bar=True,
             scalar_bar_args={
                 'title': 'Temperature [K]',
                 'vertical': True,
-                'position_x': 0.85,
+                'position_x': 0.9,
             }
         )
     
@@ -110,15 +134,16 @@ def create_temperature_plot(fluid_mesh, solid_mesh, output_path):
             slice_solid,
             scalars='T',
             cmap='coolwarm',
+            clim=[300, 350],
             show_scalar_bar=False,
         )
     
     plotter.view_xy()
-    plotter.camera.zoom(1.2)
+    plotter.camera.zoom(1.0)
     plotter.add_text(
-        "Temperature Field - Full Domain (MPI Parallel)",
+        "Temperature Field - Full Domain with Inlet/Outlet Extensions (MPI Parallel)",
         position='upper_edge',
-        font_size=14,
+        font_size=12,
         color='black'
     )
     
@@ -133,7 +158,7 @@ def create_velocity_plot(fluid_mesh, output_path):
         print("No velocity data available")
         return
     
-    plotter = pv.Plotter(off_screen=True, window_size=(1920, 800))
+    plotter = pv.Plotter(off_screen=True, window_size=(2400, 600))
     
     # Compute velocity magnitude
     U = fluid_mesh['U']
@@ -148,21 +173,22 @@ def create_velocity_plot(fluid_mesh, output_path):
     plotter.add_mesh(
         slice_mesh,
         scalars='U_mag',
-        cmap='viridis',
+        cmap='plasma',
+        clim=[0, 3],  # Fixed velocity range
         show_scalar_bar=True,
         scalar_bar_args={
             'title': 'Velocity Magnitude [m/s]',
             'vertical': True,
-            'position_x': 0.85,
+            'position_x': 0.9,
         }
     )
     
     plotter.view_xy()
-    plotter.camera.zoom(1.2)
+    plotter.camera.zoom(1.0)
     plotter.add_text(
-        "Velocity Field - Full Domain (MPI Parallel)",
+        "Velocity Field - Full Domain with Inlet/Outlet Extensions (MPI Parallel)",
         position='upper_edge',
-        font_size=14,
+        font_size=12,
         color='black'
     )
     

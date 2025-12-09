@@ -10,5 +10,5 @@ FoamFile
 regions
 (
     fluid (fluid)
-    solid (domain0 domain1 domain10 domain11 domain12 domain13 domain14 domain15 domain16 domain17 domain18 domain19 domain2 domain20 domain21 domain22 domain23 domain24 domain25 domain27 domain28 domain29 domain3 domain4 domain5 domain6 domain7 domain8 domain9 solid)
+    solid (domain0 domain1 domain10 domain11 domain12 domain13 domain14 domain15 domain16 domain17 domain18 domain19 domain2 domain20 domain21 domain22 domain23 domain24 domain25 domain26 domain27 domain28 domain3 domain4 domain5 domain6 domain7 domain8 domain9 solid)
 );

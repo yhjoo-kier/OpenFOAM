@@ -170,6 +170,13 @@ fluid_to_domain25
     kappaMethod     fluidThermo;
     value           uniform 300.0;
 }
+fluid_to_domain26
+{
+    type            compressible::turbulentTemperatureCoupledBaffleMixed;
+    Tnbr            T;
+    kappaMethod     fluidThermo;
+    value           uniform 300.0;
+}
 fluid_to_domain27
 {
     type            compressible::turbulentTemperatureCoupledBaffleMixed;
@@ -178,13 +185,6 @@ fluid_to_domain27
     value           uniform 300.0;
 }
 fluid_to_domain28
-{
-    type            compressible::turbulentTemperatureCoupledBaffleMixed;
-    Tnbr            T;
-    kappaMethod     fluidThermo;
-    value           uniform 300.0;
-}
-fluid_to_domain29
 {
     type            compressible::turbulentTemperatureCoupledBaffleMixed;
     Tnbr            T;

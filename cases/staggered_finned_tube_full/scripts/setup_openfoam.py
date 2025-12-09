@@ -16,10 +16,13 @@ SL = 0.060  # longitudinal pitch
 ST = 0.060  # transverse pitch
 P_FIN = 0.050  # fin spacing
 N_DEFAULT = 10  # default number of REV repetitions
+INLET_EXT_DEFAULT = 1.0   # inlet extension in units of S_L
+OUTLET_EXT_DEFAULT = 5.0  # outlet extension in units of S_L
 
-# Domain dimensions (computed from N)
-def get_domain_x(N):
-    return N * 2 * SL
+# Domain dimensions (computed from N and extensions)
+def get_domain_x(N, inlet_ext=INLET_EXT_DEFAULT, outlet_ext=OUTLET_EXT_DEFAULT):
+    core_length = N * 2 * SL
+    return inlet_ext * SL + core_length + outlet_ext * SL
 
 
 def detect_solid_regions(case_dir: Path) -> list:

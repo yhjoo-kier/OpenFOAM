@@ -1,37 +1,46 @@
-=== Staggered Finned-Tube Heat Exchanger - Full Domain (MPI Parallel) ===
+=== Staggered Finned-Tube Heat Exchanger - Full Domain with Extensions ===
 
 Date: 2025-12-09
 Solver: chtMultiRegionSimpleFoam (MPI parallel, 4 processors)
 
 --- Domain Configuration ---
 N REV repetitions: 10
-Domain size: 1.2 m x 0.06 m x 0.05 m
-Total solid regions: 30 (individual tubes)
+Inlet extension: 1 × S_L = 60 mm (for uniform inflow)
+Outlet extension: 5 × S_L = 300 mm (for wake recovery)
+Core length: 10 × 2×S_L = 1200 mm
+Total domain: 1560 mm × 60 mm × 50 mm
 
 --- Mesh Statistics ---
-Fluid cells: 595,566
-Solid cells: ~6,500 (per tube region)
-Total nodes: 145,727
+Fluid cells: 639,867
+Solid regions: 30 (individual tubes)
+Total nodes: 155,335
 
 --- Boundary Conditions ---
 Inlet velocity: 1.0 m/s (fixedValue)
-Inlet temperature: 300 K
+Inlet temperature: 300 K (fixedValue)
+Outlet: zeroGradient (velocity), fixedValue 0 (pressure)
 Solid temperature: 350 K (initial)
-Outlet: zeroGradient
 
 --- MPI Parallelization ---
-Method: simple (4x1x1 decomposition)
+Method: simple (4×1×1 decomposition along x)
 Processors: 4
-Decomposition: Along streamwise (x) direction
+Total runtime: ~16 minutes (1000 iterations)
 
---- Results (Time = 200) ---
-Outlet temperature: ~308 K
-Temperature rise: ~8 K through heat exchanger
+--- Results (Time = 1000) ---
+Inlet temperature: 300 K
+Outlet temperature: 315.5 K
+Temperature rise: +15.5 K through heat exchanger
 Mass flow conservation: Verified (inlet ≈ outlet)
 
---- Notes ---
-- Simulation demonstrated successful MPI parallelization
-- Flow development visible through N=10 REV units
-- Heat transfer from solid (350K) to fluid (300K inlet)
-- Numerical instability occurred at T=226 (needs relaxation tuning)
+--- Improvements over Previous Version ---
+1. Added inlet extension (1×S_L): Uniform inflow before first tube row
+2. Added outlet extension (5×S_L): Wake recovery region prevents backflow
+3. Numerical stability: Completed 1000 iterations without divergence
+   (previous version diverged at T=226)
+
+--- Generated Images ---
+- temperature_field.png: Temperature contours at z=0 plane
+- velocity_field.png: Velocity magnitude at z=0 plane  
+- temperature_profile.png: Centerline temperature development
+- geometry_3d.png: 3D domain visualization
 

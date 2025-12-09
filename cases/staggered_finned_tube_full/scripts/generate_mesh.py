@@ -4,6 +4,10 @@ Generate mesh for full staggered finned-tube heat exchanger with N REV repeats.
 This script creates a mesh with N repetitions of the basic REV unit in the
 streamwise (x) direction. Unlike the cyclic case, this enables MPI parallelization
 and captures actual flow development.
+
+Includes inlet and outlet extension regions for:
+- Inlet: uniform flow development before first tube row
+- Outlet: wake recovery after last tube row (prevents backflow issues)
 """
 import argparse
 import os
@@ -22,19 +26,26 @@ DEFAULT_PARAMS = {
     "mesh_size": 0.004,  # Slightly coarser for larger domain
     "interface_size": 0.0025,
     "N_repeat": 10,  # Number of REV repetitions in x direction
+    "inlet_extension": 1.0,   # Inlet extension in units of S_L
+    "outlet_extension": 5.0,  # Outlet extension in units of S_L (for wake recovery)
 }
 
 
 def _add_geometry(params):
     """
-    Create staggered finned-tube geometry with N REV repetitions.
+    Create staggered finned-tube geometry with N REV repetitions and extension regions.
+    
+    Domain layout:
+    
+    |<- inlet ext ->|<------ N REV heat exchanger core ------>|<-- outlet ext -->|
+    |    (empty)    |  tubes with fins in staggered pattern   |     (empty)      |
     
     Each REV unit spans 2*S_L in x direction.
-    Total domain: x in [0, N*2*S_L], y in [0, S_T], z in [-P_fin/2, P_fin/2]
+    Total domain: x in [0, total_x], y in [0, S_T], z in [-P_fin/2, P_fin/2]
     
-    Tube positions in each REV (offset by i*2*S_L):
-      - Row 1 (x = S_L/2): tubes at y = 0, S_T (half tubes at boundaries)
-      - Row 2 (x = 3*S_L/2): tube at y = S_T/2 (full tube, offset)
+    Tube positions in each REV (offset by inlet_ext + i*2*S_L):
+      - Row 1: tubes at y = 0, S_T (half tubes at boundaries)
+      - Row 2: tube at y = S_T/2 (full tube, offset)
     """
     SL = params["SL"]
     ST = params["ST"]
@@ -45,22 +56,35 @@ def _add_geometry(params):
     t_fin = params["t_fin"]
     N = params["N_repeat"]
     
+    # Extension regions
+    inlet_ext = params["inlet_extension"] * SL   # e.g., 1*SL = 0.06m
+    outlet_ext = params["outlet_extension"] * SL  # e.g., 5*SL = 0.30m
+    
     occ = gmsh.model.occ
     
-    # Total domain size
+    # Domain sizes
     REV_length = 2.0 * SL
-    domain_x = N * REV_length
+    core_length = N * REV_length  # Heat exchanger core
+    domain_x = inlet_ext + core_length + outlet_ext  # Total domain length
     domain_y = ST
     domain_z = P_fin
     
-    # Create main fluid box
+    print(f"Domain layout:")
+    print(f"  Inlet extension:  {inlet_ext*1000:.1f} mm")
+    print(f"  HX core (N={N}):  {core_length*1000:.1f} mm")
+    print(f"  Outlet extension: {outlet_ext*1000:.1f} mm")
+    print(f"  Total length:     {domain_x*1000:.1f} mm")
+    
+    # Create main fluid box (entire domain including extensions)
     fluid_box = occ.addBox(0.0, 0.0, -P_fin / 2.0, domain_x, domain_y, domain_z)
     
     # Create tube units for each REV repetition
+    # Tubes start after inlet extension
     trimmed_solids = []
     
     for i in range(N):
-        x_offset = i * REV_length
+        # Offset tubes by inlet extension
+        x_offset = inlet_ext + i * REV_length
         
         # Tube positions within each REV (shifted by S_L/2 from REV start)
         # Row 1: x = x_offset + S_L/2
@@ -87,7 +111,7 @@ def _add_geometry(params):
             solid_cut, _ = occ.cut([(3, solid_tag)], [(3, tube_in)])
             solid_tag = solid_cut[0][1]
             
-            # Create domain box copy for intersection
+            # Create domain box copy for intersection (to trim tubes at boundaries)
             domain_copy = occ.addBox(0.0, 0.0, -P_fin / 2.0, domain_x, domain_y, domain_z)
             
             # Intersect tube with domain to trim parts outside
@@ -239,6 +263,10 @@ def parse_args():
                         help="Interface refinement size (m)")
     parser.add_argument("-N", "--n-repeat", type=int, default=DEFAULT_PARAMS["N_repeat"],
                         help="Number of REV repetitions in x direction")
+    parser.add_argument("--inlet-ext", type=float, default=DEFAULT_PARAMS["inlet_extension"],
+                        help="Inlet extension length in units of S_L (default: 1.0)")
+    parser.add_argument("--outlet-ext", type=float, default=DEFAULT_PARAMS["outlet_extension"],
+                        help="Outlet extension length in units of S_L (default: 5.0)")
     return parser.parse_args()
 
 
@@ -248,6 +276,8 @@ def main():
     params["mesh_size"] = args.mesh_size
     params["interface_size"] = args.interface_size
     params["N_repeat"] = args.n_repeat
+    params["inlet_extension"] = args.inlet_ext
+    params["outlet_extension"] = args.outlet_ext
     
     try:
         build_model(params)

@@ -113,15 +113,15 @@ fluid_to_domain25
 {
     type            noSlip;
 }
+fluid_to_domain26
+{
+    type            noSlip;
+}
 fluid_to_domain27
 {
     type            noSlip;
 }
 fluid_to_domain28
-{
-    type            noSlip;
-}
-fluid_to_domain29
 {
     type            noSlip;
 }
