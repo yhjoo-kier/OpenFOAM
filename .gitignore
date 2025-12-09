@@ -84,8 +84,11 @@ CLAUDE.local.md
 # Project-specific exclusions
 # ==================================
 
+# Results folder - ignore contents but keep the folder for devcontainer mount
+results/*
+!results/.gitkeep
+
 # Legacy results folders (to be deleted)
-results/
 results_new/
 results_cht/
 
