@@ -1,0 +1,116 @@
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      controlDict;
+}
+
+application     chtMultiRegionSimpleFoam;
+startFrom       latestTime;
+startTime       0;
+stopAt          endTime;
+endTime         550;
+deltaT          1;
+writeControl    timeStep;
+writeInterval   100;
+purgeWrite      3;
+writeFormat     ascii;
+writePrecision  7;
+timeFormat      general;
+timePrecision   6;
+runTimeModifiable true;
+
+functions
+{
+    inletMassFlow
+    {
+        type            surfaceFieldValue;
+        name            inlet;
+        region          fluid;
+        libs            ("libfieldFunctionObjects.so");
+        operation       sum;
+        surfaceFormat   raw;
+        fields          (phi);
+        writeFields     false;
+        regionType      patch;
+    }
+
+    outletMassFlow
+    {
+        type            surfaceFieldValue;
+        name            outlet;
+        region          fluid;
+        libs            ("libfieldFunctionObjects.so");
+        operation       sum;
+        surfaceFormat   raw;
+        fields          (phi);
+        writeFields     false;
+        regionType      patch;
+    }
+
+    inletPressure
+    {
+        type            surfaceFieldValue;
+        name            inlet;
+        region          fluid;
+        libs            ("libfieldFunctionObjects.so");
+        operation       areaAverage;
+        surfaceFormat   raw;
+        fields          (p);
+        writeFields     false;
+        regionType      patch;
+    }
+
+    outletPressure
+    {
+        type            surfaceFieldValue;
+        name            outlet;
+        region          fluid;
+        libs            ("libfieldFunctionObjects.so");
+        operation       areaAverage;
+        surfaceFormat   raw;
+        fields          (p);
+        writeFields     false;
+        regionType      patch;
+    }
+
+    inletTemperature
+    {
+        type            surfaceFieldValue;
+        name            inlet;
+        region          fluid;
+        libs            ("libfieldFunctionObjects.so");
+        operation       areaAverage;
+        surfaceFormat   raw;
+        fields          (T);
+        writeFields     false;
+        regionType      patch;
+    }
+
+    outletTemperature
+    {
+        type            surfaceFieldValue;
+        name            outlet;
+        region          fluid;
+        libs            ("libfieldFunctionObjects.so");
+        operation       areaAverage;
+        surfaceFormat   raw;
+        fields          (T);
+        writeFields     false;
+        regionType      patch;
+    }
+
+    wallHeatFlux
+    {
+        type            wallHeatFlux;
+        region          fluid;
+        libs            ("libfieldFunctionObjects.so");
+        patches         ("fluid_to_.*");
+        writeFields     true;
+        executeControl  timeStep;
+        executeInterval 10;
+        writeControl    timeStep;
+        writeInterval   100;
+    }
+}

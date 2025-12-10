@@ -1,0 +1,52 @@
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       volVectorField;
+    location    "0/fluid";
+    object      U;
+}
+
+dimensions      [0 1 -1 0 0 0 0];
+internalField   uniform (1.0891626545832152 0 0);
+
+boundaryField
+{
+    inlet
+    {
+        type            fixedValue;
+        value           uniform (1.0891626545832152 0 0);
+    }
+    outlet
+    {
+        type            zeroGradient;
+    }
+    top
+    {
+        type            symmetry;
+    }
+    bottom
+    {
+        type            symmetry;
+    }
+    front
+    {
+        type            symmetry;
+    }
+    back
+    {
+        type            symmetry;
+    }
+fluid_to_domain0
+{
+    type            noSlip;
+}
+fluid_to_domain1
+{
+    type            noSlip;
+}
+fluid_to_solid
+{
+    type            noSlip;
+}
+}

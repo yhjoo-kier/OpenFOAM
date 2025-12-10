@@ -1,0 +1,8 @@
+FoamFile { version 2.0; format ascii; class volScalarField; object p; }
+dimensions [1 -1 -2 0 0 0 0];
+internalField uniform 0;
+boundaryField {
+    front { type symmetry; }
+    back { type symmetry; }
+    domain7_to_domain5 { type calculated; value uniform 0; }
+}

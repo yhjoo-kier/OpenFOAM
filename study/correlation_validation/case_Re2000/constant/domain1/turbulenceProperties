@@ -1,0 +1,10 @@
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "constant/domain1";
+    object      turbulenceProperties;
+}
+
+simulationType  laminar;

@@ -1,0 +1,103 @@
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       volScalarField;
+    location    "0/fluid";
+    object      T;
+}
+
+dimensions      [0 0 0 1 0 0 0];
+internalField   uniform 300.0;
+
+boundaryField
+{
+    inlet
+    {
+        type            fixedValue;
+        value           uniform 300.0;
+    }
+    outlet
+    {
+        type            zeroGradient;
+    }
+    top
+    {
+        type            symmetry;
+    }
+    bottom
+    {
+        type            symmetry;
+    }
+    front
+    {
+        type            symmetry;
+    }
+    back
+    {
+        type            symmetry;
+    }
+fluid_to_domain0
+{
+    type            compressible::turbulentTemperatureCoupledBaffleMixed;
+    Tnbr            T;
+    kappaMethod     fluidThermo;
+    value           uniform 300.0;
+}
+fluid_to_domain1
+{
+    type            compressible::turbulentTemperatureCoupledBaffleMixed;
+    Tnbr            T;
+    kappaMethod     fluidThermo;
+    value           uniform 300.0;
+}
+fluid_to_domain2
+{
+    type            compressible::turbulentTemperatureCoupledBaffleMixed;
+    Tnbr            T;
+    kappaMethod     fluidThermo;
+    value           uniform 300.0;
+}
+fluid_to_domain3
+{
+    type            compressible::turbulentTemperatureCoupledBaffleMixed;
+    Tnbr            T;
+    kappaMethod     fluidThermo;
+    value           uniform 300.0;
+}
+fluid_to_domain4
+{
+    type            compressible::turbulentTemperatureCoupledBaffleMixed;
+    Tnbr            T;
+    kappaMethod     fluidThermo;
+    value           uniform 300.0;
+}
+fluid_to_domain6
+{
+    type            compressible::turbulentTemperatureCoupledBaffleMixed;
+    Tnbr            T;
+    kappaMethod     fluidThermo;
+    value           uniform 300.0;
+}
+fluid_to_domain7
+{
+    type            compressible::turbulentTemperatureCoupledBaffleMixed;
+    Tnbr            T;
+    kappaMethod     fluidThermo;
+    value           uniform 300.0;
+}
+fluid_to_domain8
+{
+    type            compressible::turbulentTemperatureCoupledBaffleMixed;
+    Tnbr            T;
+    kappaMethod     fluidThermo;
+    value           uniform 300.0;
+}
+fluid_to_solid
+{
+    type            compressible::turbulentTemperatureCoupledBaffleMixed;
+    Tnbr            T;
+    kappaMethod     fluidThermo;
+    value           uniform 300.0;
+}
+}

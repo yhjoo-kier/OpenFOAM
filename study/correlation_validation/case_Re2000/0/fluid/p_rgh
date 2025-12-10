@@ -1,0 +1,76 @@
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       volScalarField;
+    location    "0/fluid";
+    object      p_rgh;
+}
+
+dimensions      [1 -1 -2 0 0 0 0];
+internalField   uniform 0;
+
+boundaryField
+{
+    inlet
+    {
+        type            zeroGradient;
+    }
+    outlet
+    {
+        type            fixedValue;
+        value           uniform 0;
+    }
+    top
+    {
+        type            symmetry;
+    }
+    bottom
+    {
+        type            symmetry;
+    }
+    front
+    {
+        type            symmetry;
+    }
+    back
+    {
+        type            symmetry;
+    }
+fluid_to_domain0
+{
+    type            fixedFluxPressure;
+}
+fluid_to_domain1
+{
+    type            fixedFluxPressure;
+}
+fluid_to_domain2
+{
+    type            fixedFluxPressure;
+}
+fluid_to_domain3
+{
+    type            fixedFluxPressure;
+}
+fluid_to_domain4
+{
+    type            fixedFluxPressure;
+}
+fluid_to_domain6
+{
+    type            fixedFluxPressure;
+}
+fluid_to_domain7
+{
+    type            fixedFluxPressure;
+}
+fluid_to_domain8
+{
+    type            fixedFluxPressure;
+}
+fluid_to_solid
+{
+    type            fixedFluxPressure;
+}
+}

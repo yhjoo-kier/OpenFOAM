@@ -1,0 +1,9 @@
+FoamFile { version 2.0; format ascii; class volScalarField; object T; }
+dimensions [0 0 0 1 0 0 0];
+internalField uniform 320;
+boundaryField {
+    bottom { type symmetry; }
+    front { type symmetry; }
+    back { type symmetry; }
+    domain4_to_domain3 { type compressible::turbulentTemperatureCoupledBaffleMixed; Tnbr T; kappaMethod solidThermo; value uniform 320; }
+}

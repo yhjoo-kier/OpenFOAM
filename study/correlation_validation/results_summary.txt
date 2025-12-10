@@ -1,0 +1,93 @@
+=== Staggered Finned-Tube Correlation Validation Study ===
+
+Date: 2025-12-10
+Status: In Progress
+
+--- Correlations Under Validation ---
+
+1. Briggs & Young (1963) - Heat Transfer
+   Nu = 0.134 × Re_d^0.681 × Pr^(1/3) × (s/h_f)^0.2 × (s/t)^0.1134
+   Valid Re_d range: 1,100 ~ 18,000
+
+2. ESDU 86022 (1986) - Pressure Drop
+   K_f = 4.567 × Re_d^(-0.242) × A_increase^0.504 × (S_T/d_o)^(-0.376) × (S_L/d_o)^(-0.546)
+   Valid Re_d range: 100 ~ 100,000
+
+--- Validation Geometry ---
+
+d_o     = 16 mm     (tube outer diameter)
+S_T     = 36 mm     (transverse pitch, S_T/d_o = 2.25)
+S_L     = 34 mm     (longitudinal pitch, S_L/d_o = 2.125)
+h_fin   = 10 mm     (fin radial height)
+t_fin   = 0.5 mm    (fin thickness)
+S_fin   = 4 mm      (clear fin spacing, s/d_o = 0.25)
+σ       = 0.5556    (minimum flow area ratio)
+
+--- Fluid Properties (Air at 300K) ---
+
+ρ   = 1.177 kg/m³
+μ   = 1.846e-5 Pa·s
+k   = 0.0263 W/m-K
+Pr  = 0.707
+
+--- Correlation Predictions ---
+
+Re_d      V_fr      V_max         Nu        K_f          j          h
+          [m/s]     [m/s]        [-]        [-]        [-]    [W/m²K]
+----------------------------------------------------------------------
+  2000     1.09      1.96      22.27      1.041    0.01250      36.6
+  5000     2.72      4.90      41.57      0.834    0.00933      68.3
+ 10000     5.45      9.80      66.64      0.705    0.00748     109.5
+ 15000     8.17     14.70      87.83      0.639    0.00657     144.4
+
+--- CFD Results ---
+
+Status: Pending (mesh quality issues)
+Solver: chtMultiRegionSimpleFoam (OpenFOAM v1912)
+Turbulence: Laminar
+
+Issue: Complex fin geometry tetrahedral mesh causes numerical instability 
+       in enthalpy equation (negative temperature divergence).
+       
+Solutions attempted:
+  - Reduced relaxation factors (h: 0.5 → 0.01)
+  - Conservative numerical schemes (upwind, limited)
+  - Reduced solid-fluid temperature difference (50K → 20K)
+
+Next steps:
+  - Use structured mesh (snappyHexMesh)
+  - Simplify fin geometry
+  - 2D preliminary validation
+
+--- Validation Cases ---
+
+case_Re2000:       Mesh generated, diverged at T=31
+case_Re2000_small: Mesh generated, diverged at T=31
+case_Re5000:       Pending mesh generation
+case_Re10000:      Pending mesh generation
+case_Re15000:      Pending mesh generation
+
+--- Generated Files ---
+
+Scripts:
+  - scripts/generate_validation_mesh.py
+  - scripts/setup_validation_case.py
+  - scripts/calculate_correlation.py
+  - scripts/extract_cfd_results.py
+  - scripts/plot_comparison.py
+
+Reports:
+  - report/validation_report.md
+  - report/images/nu_comparison.png
+  - report/images/kf_comparison.png
+  - report/images/combined_comparison.png
+
+Data:
+  - correlation_predictions.json
+
+--- Notes ---
+
+1. CFD simulations require careful mesh generation due to complex fin geometry
+2. Numerical stability may require relaxation factor adjustment
+3. Multiple solid regions (tubes+fins) handled by chtMultiRegionSimpleFoam
+
