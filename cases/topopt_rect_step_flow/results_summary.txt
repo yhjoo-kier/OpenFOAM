@@ -1,0 +1,8 @@
+TopOpt STEP -> OpenFOAM results summary
+
+Geometry (SI): H=4.100000e-04 m, T=1.000000e-02 m, A=H*T=4.100000e-06 m^2
+Reference: Umean=0.3 m/s, nu=0.001 m^2/s, Re=Umean*H/nu=0.123
+
+Pressure: (missing) - check functionObjects output (inletPressure/outletPressure)
+
+Flow rate: (missing) - check functionObjects output (inletFlowRate/outletFlowRate)

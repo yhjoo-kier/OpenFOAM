@@ -1,0 +1,87 @@
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      controlDict;
+}
+
+application     simpleFoam;
+
+startFrom       startTime;
+startTime       0;
+
+stopAt          endTime;
+endTime         2000;
+
+deltaT          1;
+
+writeControl    timeStep;
+writeInterval   100;
+purgeWrite      3;
+
+writeFormat     ascii;
+writePrecision  7;
+writeCompression off;
+
+timeFormat      general;
+timePrecision   6;
+
+runTimeModifiable true;
+
+functions
+{
+    inletPressure
+    {
+        type            surfaceFieldValue;
+        libs            ("libfieldFunctionObjects.so");
+        regionType      patch;
+        name            inlet;
+        operation       areaAverage;
+        fields          (p);
+        writeFields     false;
+        writeControl    timeStep;
+        writeInterval   100;
+    }
+
+    outletPressure
+    {
+        type            surfaceFieldValue;
+        libs            ("libfieldFunctionObjects.so");
+        regionType      patch;
+        name            outlet;
+        operation       areaAverage;
+        fields          (p);
+        writeFields     false;
+        writeControl    timeStep;
+        writeInterval   100;
+    }
+
+    inletFlowRate
+    {
+        type            surfaceFieldValue;
+        libs            ("libfieldFunctionObjects.so");
+        regionType      patch;
+        name            inlet;
+        operation       sum;
+        fields          (phi);
+        writeFields     false;
+        writeControl    timeStep;
+        writeInterval   100;
+    }
+
+    outletFlowRate
+    {
+        type            surfaceFieldValue;
+        libs            ("libfieldFunctionObjects.so");
+        regionType      patch;
+        name            outlet;
+        operation       sum;
+        fields          (phi);
+        writeFields     false;
+        writeControl    timeStep;
+        writeInterval   100;
+    }
+}
+
+

@@ -1,0 +1,17 @@
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      transportProperties;
+}
+
+// NOTE:
+// - This case is based on the topology-optimization (Brinkman/Stokes) setup.
+// - Use kinematic viscosity nu consistent with your intended Reynolds number.
+
+transportModel  Newtonian;
+
+nu              [0 2 -1 0 0 0 0] 1e-3;
+
+
