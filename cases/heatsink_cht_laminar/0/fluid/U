@@ -14,12 +14,13 @@ boundaryField
 {
     inlet
     {
-        type            pressureInletOutletVelocity;
-        value           uniform (0 0 0);
+        type            fixedValue;
+        value           uniform (0 0.1 0);
     }
     outlet
     {
-        type            pressureInletOutletVelocity;
+        type            inletOutlet;
+        inletValue      uniform (0 0 0);
         value           uniform (0 0 0);
     }
     fluid_top

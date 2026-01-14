@@ -9,7 +9,7 @@ FoamFile
 
 application     chtMultiRegionSimpleFoam;
 
-startFrom       latestTime;
+startFrom       startTime;
 
 startTime       0;
 

@@ -22,21 +22,20 @@ mixture
 {
     specie
     {
-        molWeight   18.015;  // Water
+        molWeight   28.96;   // Air
     }
     thermodynamics
     {
-        Cp          4182;    // J/kg/K
-        Hf          0;
+        Cp          1005;    // J/kg/K (air at 20°C)
+        Hf          300000;  // Reference enthalpy offset to keep h positive
     }
     transport
     {
-        mu          0.001;   // Pa.s (water at 20°C)
-        Pr          7.0;
-        kappa       0.6;     // W/m/K
+        mu          1.8e-5;  // Pa.s (air at 20°C)
+        Pr          0.71;
     }
     equationOfState
     {
-        rho         998;     // kg/m³
+        rho         1.18;    // kg/m³
     }
 }

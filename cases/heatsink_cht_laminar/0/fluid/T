@@ -19,7 +19,9 @@ boundaryField
     }
     outlet
     {
-        type            zeroGradient;
+        type            inletOutlet;
+        inletValue      uniform 293.15;
+        value           uniform 293.15;
     }
     fluid_top
     {
@@ -35,9 +37,7 @@ boundaryField
     }
     fluid_to_solid
     {
-        type            compressible::turbulentTemperatureCoupledBaffleMixed;
-        Tnbr            T;
-        kappaMethod     fluidThermo;
+        type            fixedValue;
         value           uniform 293.15;
     }
 }

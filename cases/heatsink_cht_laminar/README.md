@@ -48,14 +48,14 @@
 
 ## Material Properties
 
-### Fluid (Water at 20°C)
+### Fluid (Air at 20°C)
 | Property | Value |
 |----------|-------|
-| Density | 998 kg/m³ |
-| Specific heat | 4182 J/kg·K |
-| Thermal conductivity | 0.6 W/m·K |
-| Dynamic viscosity | 0.001 Pa·s |
-| Prandtl number | 7.0 |
+| Density | 1.18 kg/m³ |
+| Specific heat | 1005 J/kg·K |
+| Dynamic viscosity | 1.8e-5 Pa·s |
+| Prandtl number | 0.71 |
+| Hf (reference enthalpy) | 300000 J/kg |
 
 ### Solid (Aluminum)
 | Property | Value |
@@ -155,8 +155,36 @@ grep "Time =" log.chtMultiRegionSimpleFoam | tail -10
 
 - This is a **laminar** flow case. For turbulent flow, modify `turbulenceProperties` and add appropriate turbulence fields.
 - The solver uses `chtMultiRegionSimpleFoam` for steady-state CHT analysis.
-- Pressure-driven flow: ΔP = 10 Pa between inlet and outlet.
-- Heat flux applied at base plate bottom surface (60 kW/m²).
+- Currently configured with velocity inlet (0.1 m/s) instead of pressure-driven flow.
+- Heat flux applied at base plate bottom surface (currently reduced to 1000 W/m² for stability testing).
+
+## Known Issues and Status
+
+**Status**: Case setup complete, but numerical stability issues remain unresolved.
+
+### Current Issues
+
+1. **Temperature divergence**: The enthalpy equation (h) produces extreme values after a few iterations, causing the Newton-Raphson T(h) calculation to fail with "Maximum iterations exceeded" error.
+
+2. **Root cause hypothesis**:
+   - The tetrahedral mesh combined with small inlet/outlet tubes creates high velocity gradients
+   - The convection term in the energy equation produces unrealistic enthalpy values at certain cells
+   - Large continuity errors indicate pressure-velocity coupling issues
+
+### Attempted Fixes
+
+1. Reduced relaxation factors (h: 0.0001 → still fails)
+2. Changed from water to air (lower Cp, less sensitive)
+3. Added Hf offset (300000 J/kg) to keep h positive
+4. Used bounded upwind scheme for h equation
+5. Tried transient solver (chtMultiRegionFoam) - same issue
+
+### Recommended Next Steps
+
+1. **Improve mesh quality**: Use hexahedral mesh (blockMesh) or snappyHexMesh
+2. **Simplify geometry**: Remove inlet/outlet tubes, use flat patches
+3. **Alternative solver**: Try buoyantSimpleFoam with coupled thermal BC (if single-region approximation acceptable)
+4. **Validate on tutorial**: Test settings on multiRegionHeater tutorial first
 
 ## Cleanup
 ```bash

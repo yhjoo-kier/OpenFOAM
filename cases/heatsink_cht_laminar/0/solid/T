@@ -16,7 +16,7 @@ boundaryField
     {
         type            externalWallHeatFluxTemperature;
         mode            flux;
-        q               uniform 60000;
+        q               uniform 1000;
         kappaMethod     solidThermo;
         value           uniform 293.15;
     }
@@ -30,9 +30,7 @@ boundaryField
     }
     solid_to_fluid
     {
-        type            compressible::turbulentTemperatureCoupledBaffleMixed;
-        Tnbr            T;
-        kappaMethod     solidThermo;
+        type            fixedValue;
         value           uniform 293.15;
     }
 }
