@@ -164,27 +164,55 @@ grep "Time =" log.chtMultiRegionSimpleFoam | tail -10
 
 ### Current Issues
 
-1. **Temperature divergence**: The enthalpy equation (h) produces extreme values after a few iterations, causing the Newton-Raphson T(h) calculation to fail with "Maximum iterations exceeded" error.
+1. **Temperature divergence**: The enthalpy equation (h) produces extreme values after a few iterations, causing the Newton-Raphson T(h) calculation to fail with "Maximum iterations exceeded" or "Negative initial temperature T0" errors.
 
-2. **Root cause hypothesis**:
-   - The tetrahedral mesh combined with small inlet/outlet tubes creates high velocity gradients
-   - The convection term in the energy equation produces unrealistic enthalpy values at certain cells
-   - Large continuity errors indicate pressure-velocity coupling issues
+2. **Root cause analysis (updated Jan 2026)**:
+   - **NOT a mesh quality issue**: Testing with simple blockMesh hexahedral meshes shows identical instability
+   - **Fundamental solver limitation**: chtMultiRegionSimpleFoam and buoyantSimpleFoam with heRhoThermo have numerical instability in pressure-velocity-energy coupling for low-speed, low-temperature-difference flows
+   - The continuity errors are extremely large (40000+) from the first iteration
+   - The h equation "converges" (residual ~1e-07) but produces extreme enthalpy values
+   - This causes T to become negative, which crashes the density calculation (rho → 0 or ∞)
 
 ### Attempted Fixes
 
-1. Reduced relaxation factors (h: 0.0001 → still fails)
+1. Reduced relaxation factors (h: 0.01, 0.001, 0.0001 → all fail)
 2. Changed from water to air (lower Cp, less sensitive)
 3. Added Hf offset (300000 J/kg) to keep h positive
 4. Used bounded upwind scheme for h equation
-5. Tried transient solver (chtMultiRegionFoam) - same issue
+5. Tried transient solver (chtMultiRegionFoam) - marginally more stable but still crashes
+6. Tested with perfectGas equation of state - same issue
+7. Tested with rhoConst equation of state - same issue
+8. Tested with simple hexahedral mesh - same issue (confirms NOT mesh related)
+9. Tested with zero initial velocity - still diverges due to induced velocities
+10. Tested with zero gravity - no improvement
 
-### Recommended Next Steps
+### Working Alternative: buoyantBoussinesqSimpleFoam
 
-1. **Improve mesh quality**: Use hexahedral mesh (blockMesh) or snappyHexMesh
-2. **Simplify geometry**: Remove inlet/outlet tubes, use flat patches
-3. **Alternative solver**: Try buoyantSimpleFoam with coupled thermal BC (if single-region approximation acceptable)
-4. **Validate on tutorial**: Test settings on multiRegionHeater tutorial first
+**buoyantBoussinesqSimpleFoam** (incompressible Boussinesq approximation) works correctly:
+- Uses temperature T directly instead of enthalpy h
+- Incompressible formulation avoids density-temperature coupling instability
+- Converges reliably for the same geometry and boundary conditions
+- **Limitation**: Single-region solver, cannot directly do CHT
+
+### Recommended Approaches
+
+1. **Boussinesq + Manual Coupling**:
+   - Use buoyantBoussinesqSimpleFoam for fluid region
+   - Use laplacianFoam for solid region
+   - Iteratively exchange temperature at interface
+
+2. **Use Established CHT Cases**:
+   - Start from OpenFOAM tutorial cases (e.g., multiRegionHeater)
+   - Modify geometry incrementally while maintaining working configuration
+
+3. **Alternative CFD Packages**:
+   - Commercial solvers (ANSYS Fluent, STAR-CCM+) may handle low-Ma CHT more gracefully
+   - Or use specialized conjugate heat transfer codes
+
+4. **Higher Fidelity Approach**:
+   - Use finer time stepping with chtMultiRegionFoam (transient)
+   - Very small time steps (1e-6 s) with maxCo < 0.1
+   - Much longer computation time required
 
 ## Cleanup
 ```bash
