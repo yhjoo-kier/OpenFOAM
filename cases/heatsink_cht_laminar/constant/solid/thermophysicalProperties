@@ -1,0 +1,40 @@
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "constant/solid";
+    object      thermophysicalProperties;
+}
+
+thermoType
+{
+    type            heSolidThermo;
+    mixture         pureMixture;
+    transport       constIso;
+    thermo          hConst;
+    equationOfState rhoConst;
+    specie          specie;
+    energy          sensibleEnthalpy;
+}
+
+mixture
+{
+    specie
+    {
+        molWeight   26.98;   // Aluminum
+    }
+    thermodynamics
+    {
+        Cp          900;     // J/kg/K
+        Hf          0;
+    }
+    transport
+    {
+        kappa       200;     // W/m/K (aluminum)
+    }
+    equationOfState
+    {
+        rho         2700;    // kg/m³
+    }
+}

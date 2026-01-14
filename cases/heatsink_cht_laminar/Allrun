@@ -1,0 +1,64 @@
+#!/bin/bash
+#------------------------------------------------------------------------------
+# Allrun script for heatsink CHT laminar case
+#
+# This script runs the complete simulation workflow:
+# 1. Generate mesh with Gmsh
+# 2. Convert to OpenFOAM format
+# 3. Split mesh into fluid/solid regions
+# 4. Setup boundary conditions
+# 5. Run the solver
+#------------------------------------------------------------------------------
+
+cd "${0%/*}" || exit 1    # Run from this directory
+
+# Source OpenFOAM run functions
+. "${WM_PROJECT_DIR:?}"/bin/tools/RunFunctions
+
+#------------------------------------------------------------------------------
+
+echo "=== Heatsink CHT Laminar Case ==="
+echo ""
+
+# Step 1: Generate mesh with Gmsh
+echo "Step 1: Generating mesh with Gmsh..."
+if command -v python3 &> /dev/null; then
+    python3 scripts/generate_mesh.py --output mesh.msh
+    if [ $? -ne 0 ]; then
+        echo "Error: Mesh generation failed"
+        exit 1
+    fi
+else
+    echo "Error: python3 not found"
+    exit 1
+fi
+
+# Step 2: Convert mesh to OpenFOAM format
+echo ""
+echo "Step 2: Converting mesh to OpenFOAM format..."
+runApplication gmshToFoam mesh.msh
+
+# Step 3: Split mesh into regions
+echo ""
+echo "Step 3: Splitting mesh into fluid/solid regions..."
+runApplication splitMeshRegions -cellZones -overwrite
+
+# Step 4: Setup OpenFOAM case (boundary conditions, etc.)
+echo ""
+echo "Step 4: Setting up boundary conditions..."
+python3 scripts/setup_openfoam.py --post-split
+
+# Step 5: Run the solver
+echo ""
+echo "Step 5: Running chtMultiRegionSimpleFoam..."
+runApplication chtMultiRegionSimpleFoam
+
+echo ""
+echo "=== Simulation Complete ==="
+echo ""
+echo "Post-processing:"
+echo "  foamToVTK -latestTime -region fluid"
+echo "  foamToVTK -latestTime -region solid"
+echo "  paraview VTK/fluid/*.vtk"
+
+#------------------------------------------------------------------------------

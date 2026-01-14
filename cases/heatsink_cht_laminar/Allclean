@@ -1,0 +1,46 @@
+#!/bin/bash
+#------------------------------------------------------------------------------
+# Allclean script for heatsink CHT laminar case
+#
+# Removes all generated files to restore the case to its initial state.
+#------------------------------------------------------------------------------
+
+cd "${0%/*}" || exit 1    # Run from this directory
+
+# Source OpenFOAM run functions
+. "${WM_PROJECT_DIR:?}"/bin/tools/CleanFunctions
+
+#------------------------------------------------------------------------------
+
+echo "Cleaning heatsink CHT laminar case..."
+
+# Clean standard OpenFOAM files
+cleanCase
+
+# Remove mesh file
+rm -f mesh.msh
+
+# Remove region directories created by splitMeshRegions
+# (keeping the template 0/fluid and 0/solid)
+rm -rf constant/fluid/polyMesh
+rm -rf constant/solid/polyMesh
+rm -rf constant/polyMesh
+
+# Remove time directories
+rm -rf [1-9]* 0.[0-9]*
+
+# Remove VTK output
+rm -rf VTK
+
+# Remove postProcessing
+rm -rf postProcessing
+
+# Remove processor directories
+rm -rf processor*
+
+# Remove log files
+rm -f log.*
+
+echo "Done."
+
+#------------------------------------------------------------------------------
