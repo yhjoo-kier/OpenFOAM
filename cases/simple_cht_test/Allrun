@@ -1,0 +1,25 @@
+#!/bin/bash
+cd "${0%/*}" || exit
+
+# Source OpenFOAM
+source /usr/share/openfoam/etc/bashrc 2>/dev/null
+
+echo "Running blockMesh..."
+blockMesh
+
+echo "Splitting mesh regions..."
+splitMeshRegions -cellZones -overwrite
+
+echo "Setting up fluid region..."
+# Copy fluid files
+mkdir -p constant/fluid
+mkdir -p system/fluid
+mkdir -p 0/fluid
+
+echo "Setting up solid region..."
+# Copy solid files
+mkdir -p constant/solid
+mkdir -p system/solid
+mkdir -p 0/solid
+
+echo "Done! Now run setup script to create boundary conditions."
