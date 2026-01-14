@@ -24,6 +24,10 @@ boundaryField
     {
         type            zeroGradient;
     }
+    defaultFaces
+    {
+        type            zeroGradient;
+    }
     solid_to_fluid
     {
         type            compressible::turbulentTemperatureCoupledBaffleMixed;

@@ -36,29 +36,3 @@ timeFormat      general;
 timePrecision   6;
 
 runTimeModifiable true;
-
-functions
-{
-    fieldAverage
-    {
-        type            fieldAverage;
-        libs            (fieldFunctionObjects);
-        writeControl    writeTime;
-        region          fluid;
-        fields
-        (
-            U
-            {
-                mean        on;
-                prime2Mean  off;
-                base        time;
-            }
-            T
-            {
-                mean        on;
-                prime2Mean  off;
-                base        time;
-            }
-        );
-    }
-}

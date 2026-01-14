@@ -14,28 +14,32 @@ boundaryField
 {
     inlet
     {
-        type            fixedValue;
+        type            calculated;
         value           uniform 10;
     }
     outlet
     {
-        type            fixedValue;
+        type            calculated;
         value           uniform 0;
     }
     fluid_top
     {
-        type            fixedFluxPressure;
+        type            calculated;
+        value           uniform 0;
     }
     walls_fluid
     {
-        type            fixedFluxPressure;
+        type            calculated;
+        value           uniform 0;
     }
     tube_walls
     {
-        type            fixedFluxPressure;
+        type            calculated;
+        value           uniform 0;
     }
     fluid_to_solid
     {
-        type            fixedFluxPressure;
+        type            calculated;
+        value           uniform 0;
     }
 }
