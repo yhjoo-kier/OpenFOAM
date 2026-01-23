@@ -52,6 +52,6 @@
     ],
 
     // 컨테이너 생성 후 실행할 명령어
-    "postCreateCommand": "git config --global core.autocrlf input && git config --global core.eol lf && echo 'Container ready!'"
+    "postCreateCommand": "sudo chown -R ubuntu:ubuntu .git/ && git config --global core.autocrlf input && git config --global core.eol lf && echo 'Container ready!'"
 }
 
