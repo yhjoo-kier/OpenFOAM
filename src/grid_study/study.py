@@ -92,14 +92,23 @@ class GridStudy:
         """
         Run the complete grid independence study.
 
+        In standard mode, runs all predefined mesh levels.
+        In adaptive mode, continues refining until convergence or limits reached.
+
         Returns:
             StudyAnalysis with all results
         """
+        mode_str = "ADAPTIVE" if self.config.adaptive_mode else "STANDARD"
         print("=" * 60)
-        print("GRID INDEPENDENCE STUDY")
+        print(f"GRID INDEPENDENCE STUDY ({mode_str} MODE)")
         print(f"Study: {self.config.study_name}")
         print(f"Base case: {self.config.base_case_path}")
-        print(f"Levels: {len(self.config.mesh_levels)}")
+        if self.config.adaptive_mode:
+            print(f"Convergence threshold: {self.config.convergence_threshold}%")
+            print(f"Max cells: {self.config.max_cells:,}")
+            print(f"Max levels: {self.config.max_levels}")
+        else:
+            print(f"Levels: {len(self.config.mesh_levels)}")
         print("=" * 60)
         print()
 
@@ -109,6 +118,18 @@ class GridStudy:
         # Save configuration
         self.config.save(self.config.output_dir / "config.json")
 
+        if self.config.adaptive_mode:
+            analysis = self._run_adaptive()
+        else:
+            analysis = self._run_standard()
+
+        # Print summary
+        self._print_summary(analysis)
+
+        return analysis
+
+    def _run_standard(self) -> StudyAnalysis:
+        """Run standard mode with predefined mesh levels."""
         total_levels = len(self.config.mesh_levels)
 
         for i, mesh_level in enumerate(self.config.mesh_levels, 1):
@@ -132,10 +153,99 @@ class GridStudy:
         print("ANALYZING RESULTS")
         print(f"{'='*60}")
 
-        analysis = self.analyzer.analyze(self.level_results)
+        return self.analyzer.analyze(self.level_results)
 
-        # Print summary
-        self._print_summary(analysis)
+    def _run_adaptive(self) -> StudyAnalysis:
+        """Run adaptive mode, refining until convergence or limits reached."""
+        # Start with predefined levels if available, otherwise use defaults
+        mesh_levels = list(self.config.mesh_levels) if self.config.mesh_levels else []
+
+        if not mesh_levels:
+            # Create initial coarse level
+            mesh_levels = [
+                MeshLevel(
+                    name="L1_initial",
+                    mesh_factor=2.0,
+                    bl_first_height=0.0005,
+                    bl_growth_ratio=1.2,
+                    bl_num_layers=0,
+                )
+            ]
+
+        stop_reason = None
+        level_idx = 0
+
+        while True:
+            level_idx += 1
+
+            # Check max levels limit
+            if level_idx > self.config.max_levels:
+                stop_reason = f"max_levels_reached ({self.config.max_levels})"
+                print(f"\n⚠ Stopping: Maximum levels reached ({self.config.max_levels})")
+                break
+
+            # Get or generate current mesh level
+            if level_idx <= len(mesh_levels):
+                mesh_level = mesh_levels[level_idx - 1]
+            else:
+                # Generate next level based on previous
+                prev_level = mesh_levels[-1]
+                mesh_level = self.config.generate_next_level(prev_level, level_idx)
+                mesh_levels.append(mesh_level)
+
+            print(f"\n{'='*60}")
+            print(f"LEVEL {level_idx}: {mesh_level.name} (mesh_factor={mesh_level.mesh_factor:.3f})")
+            print(f"{'='*60}")
+
+            try:
+                level_result = self._run_level(level_idx, "?", mesh_level)
+                self.level_results.append(level_result)
+
+                print(f"  Result: {level_result.metric_value:.4f}")
+                print(f"  Cells: {level_result.num_cells:,}")
+
+                # Check max cells limit for next level
+                if level_result.num_cells > self.config.max_cells:
+                    stop_reason = f"max_cells_exceeded ({level_result.num_cells:,} > {self.config.max_cells:,})"
+                    print(f"\n⚠ Stopping: Maximum cells exceeded ({level_result.num_cells:,})")
+                    break
+
+                # Check convergence (need at least 2 levels)
+                if len(self.level_results) >= 2:
+                    prev_result = self.level_results[-2]
+                    curr_result = self.level_results[-1]
+                    pct_change, converged = self.analyzer.check_convergence(prev_result, curr_result)
+
+                    status = "✓ CONVERGED" if converged else f"Δ={pct_change:.2f}%"
+                    print(f"  Convergence: {status}")
+
+                    if converged:
+                        stop_reason = f"converged (Δ={pct_change:.2f}% < {self.config.convergence_threshold}%)"
+                        print(f"\n✓ Convergence achieved at {mesh_level.name}!")
+                        break
+
+                # Check max runtime per level
+                if self.config.max_runtime_per_level:
+                    if level_result.run_time and level_result.run_time > self.config.max_runtime_per_level:
+                        stop_reason = f"max_runtime_exceeded ({level_result.run_time:.0f}s > {self.config.max_runtime_per_level}s)"
+                        print(f"\n⚠ Stopping: Level runtime exceeded limit ({level_result.run_time:.0f}s)")
+                        break
+
+            except Exception as e:
+                print(f"  ERROR: {e}")
+                stop_reason = f"error: {str(e)}"
+                break
+
+        # Analyze results
+        print(f"\n{'='*60}")
+        print("ANALYZING RESULTS")
+        print(f"{'='*60}")
+
+        if len(self.level_results) < 2:
+            raise RuntimeError("Adaptive mode requires at least 2 levels to complete")
+
+        analysis = self.analyzer.analyze(self.level_results)
+        analysis.stop_reason = stop_reason
 
         return analysis
 
@@ -223,6 +333,9 @@ class GridStudy:
         if analysis.extrapolated_value:
             print(f"Richardson extrapolated: {analysis.extrapolated_value:.4f} K")
 
+        if analysis.stop_reason:
+            print(f"Stop reason: {analysis.stop_reason}")
+
     def generate_reports(self, analysis: StudyAnalysis) -> dict:
         """
         Generate all report formats.
@@ -281,6 +394,9 @@ def run_grid_study(
     metric_field: str = "T",
     metric_region: str = "solid",
     threshold: float = 1.0,
+    adaptive: bool = False,
+    max_cells: int = 2_000_000,
+    max_levels: int = 10,
 ) -> StudyAnalysis:
     """
     Convenience function to run a grid study.
@@ -293,6 +409,9 @@ def run_grid_study(
         metric_field: Field to extract (e.g., "T", "p")
         metric_region: Region for multi-region cases
         threshold: Convergence threshold in percent
+        adaptive: Enable adaptive refinement mode
+        max_cells: Maximum cells limit (adaptive mode)
+        max_levels: Maximum levels limit (adaptive mode)
 
     Returns:
         StudyAnalysis with results
@@ -305,6 +424,9 @@ def run_grid_study(
         metric_field=metric_field,
         metric_region=metric_region,
         convergence_threshold=threshold,
+        adaptive_mode=adaptive,
+        max_cells=max_cells,
+        max_levels=max_levels,
     )
 
     study = GridStudy(config)

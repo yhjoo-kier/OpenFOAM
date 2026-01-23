@@ -38,6 +38,7 @@ class StudyAnalysis:
     recommended_level: Optional[str] = None
     gci_fine: Optional[float] = None  # Grid Convergence Index
     extrapolated_value: Optional[float] = None  # Richardson extrapolation
+    stop_reason: Optional[str] = None  # Reason for stopping (adaptive mode)
 
 
 class GridAnalyzer:
@@ -49,6 +50,29 @@ class GridAnalyzer:
             threshold: Convergence threshold in percent
         """
         self.threshold = threshold
+
+    def check_convergence(
+        self, coarse: LevelResult, fine: LevelResult
+    ) -> tuple[float, bool]:
+        """
+        Quick check if two consecutive levels have converged.
+
+        Args:
+            coarse: Coarser mesh level result
+            fine: Finer mesh level result
+
+        Returns:
+            (percent_change, converged)
+        """
+        if fine.metric_value == 0:
+            percent_change = float("inf") if coarse.metric_value != 0 else 0.0
+        else:
+            percent_change = (
+                abs(coarse.metric_value - fine.metric_value)
+                / abs(fine.metric_value)
+                * 100
+            )
+        return percent_change, percent_change < self.threshold
 
     def analyze(self, level_results: List[LevelResult]) -> StudyAnalysis:
         """

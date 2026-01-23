@@ -44,6 +44,16 @@ class GridStudyConfig:
     # Geometry script
     geometry_script: Optional[Path] = None
 
+    # Adaptive refinement mode
+    adaptive_mode: bool = False  # Continue refining until convergence
+    refinement_ratio: float = 0.7  # mesh_factor multiplier for each new level
+    bl_refinement_ratio: float = 0.7  # boundary layer refinement ratio
+
+    # Stopping criteria for adaptive mode
+    max_cells: int = 2_000_000  # Maximum total cells
+    max_levels: int = 10  # Maximum number of refinement levels
+    max_runtime_per_level: Optional[int] = None  # Max seconds per level (None=unlimited)
+
     def __post_init__(self):
         """Initialize default mesh levels if not provided."""
         if not self.mesh_levels:
@@ -115,6 +125,12 @@ class GridStudyConfig:
             "solver_app": self.solver_app,
             "num_iterations": self.num_iterations,
             "geometry_script": str(self.geometry_script) if self.geometry_script else None,
+            "adaptive_mode": self.adaptive_mode,
+            "refinement_ratio": self.refinement_ratio,
+            "bl_refinement_ratio": self.bl_refinement_ratio,
+            "max_cells": self.max_cells,
+            "max_levels": self.max_levels,
+            "max_runtime_per_level": self.max_runtime_per_level,
         }
 
     @classmethod
@@ -136,6 +152,12 @@ class GridStudyConfig:
             solver_app=data.get("solver_app", "chtMultiRegionSimpleFoam"),
             num_iterations=data.get("num_iterations", 2000),
             geometry_script=Path(data["geometry_script"]) if data.get("geometry_script") else None,
+            adaptive_mode=data.get("adaptive_mode", False),
+            refinement_ratio=data.get("refinement_ratio", 0.7),
+            bl_refinement_ratio=data.get("bl_refinement_ratio", 0.7),
+            max_cells=data.get("max_cells", 2_000_000),
+            max_levels=data.get("max_levels", 10),
+            max_runtime_per_level=data.get("max_runtime_per_level"),
         )
 
     def save(self, filepath: Path) -> None:
@@ -149,3 +171,23 @@ class GridStudyConfig:
         with open(filepath, "r") as f:
             data = json.load(f)
         return cls.from_dict(data)
+
+    def generate_next_level(self, previous_level: MeshLevel, level_number: int) -> MeshLevel:
+        """
+        Generate the next finer mesh level based on the previous level.
+        Used in adaptive refinement mode.
+
+        Args:
+            previous_level: The previous mesh level configuration
+            level_number: The level number (for naming)
+
+        Returns:
+            New MeshLevel with refined parameters
+        """
+        return MeshLevel(
+            name=f"L{level_number}_adaptive",
+            mesh_factor=previous_level.mesh_factor * self.refinement_ratio,
+            bl_first_height=previous_level.bl_first_height * self.bl_refinement_ratio,
+            bl_growth_ratio=previous_level.bl_growth_ratio,
+            bl_num_layers=previous_level.bl_num_layers,
+        )
