@@ -1,0 +1,47 @@
+
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      fvSolution;
+}
+solvers
+{
+    "(p|p_rgh|rho).*"
+    {
+        solver          GAMG;
+        tolerance       1e-7;
+        relTol          0.01;
+        smoother        GaussSeidel;
+    }
+    "(U|h|e|k|epsilon).*"
+    {
+        solver          PBiCGStab;
+        preconditioner  DILU;
+        tolerance       1e-7;
+        relTol          0.1;
+    }
+}
+SIMPLE
+{
+    nNonOrthogonalCorrectors 0;
+    pRefCell        0;
+    pRefValue       0;
+}
+relaxationFactors
+{
+    fields
+    {
+        p_rgh           0.3;
+        rho             1.0;
+    }
+    equations
+    {
+        U               0.7;
+        h               0.7;
+        k               0.7;
+        epsilon         0.7;
+    }
+}
+

@@ -9,9 +9,9 @@ export FOAM_ETC=/usr/share/openfoam/etc
 CASE_DIR="cases/heatsink_cht_full"
 
 echo "=== Setting up CHT case ==="
-cd /home/user/OpenFOAM
+cd /workspaces/OpenFOAM
 rm -rf $CASE_DIR
-python src/geometry/heatsink_cht_mesh.py $CASE_DIR --velocity 0.5 --heat-flux 5000
+python3 src/geometry/heatsink_cht_mesh.py $CASE_DIR --velocity 0.5 --heat-flux 5000
 
 cd $CASE_DIR
 

@@ -95,3 +95,6 @@ results_cht/
 # Legacy case directories
 cases/heatsink_new/
 cases/heatsink_cht_full/
+
+# Transient intermediate cases (used to generate steady cases)
+cases/heatsink_water_cht/

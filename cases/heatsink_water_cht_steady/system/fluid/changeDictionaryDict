@@ -1,0 +1,9 @@
+
+FoamFile { version 2.0; format ascii; class dictionary; object changeDictionaryDict; }
+boundary
+{
+    "inlet.*" { name inlet; }
+    "outlet.*" { name outlet; }
+    "fluid_to_.*" { type mappedWall; sampleMode nearestPatchFace; sampleRegion solid; samplePatch solid_to_fluid; }
+}
+

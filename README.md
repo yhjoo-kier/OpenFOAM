@@ -16,16 +16,19 @@ OpenFOAM을 사용한 히트싱크 열유동 해석 파이프라인입니다.
 ```
 OpenFOAM/
 ├── cases/
-│   ├── heatsink_flow/     # 히트싱크 열유동 해석 (3핀)
-│   └── channelFlow/       # 관내유동 예제 (icoFoam)
+│   ├── heatsink_flow/              # 히트싱크 열유동 해석 (3핀, 공냉)
+│   ├── heatsink_water_cht_steady/  # 수냉식 히트싱크 CHT 해석
+│   └── channelFlow/                # 관내유동 예제 (icoFoam)
 ├── results/
-│   └── heatsink_cooling_with_fins/  # 해석 결과 이미지
+│   └── heatsink_cooling_with_fins/ # 해석 결과 이미지
 ├── scripts/
-│   ├── setup_vm.sh        # VM 환경 셋업 스크립트
-│   └── env.sh             # 환경변수 설정
+│   ├── setup_vm.sh                 # VM 환경 셋업 스크립트
+│   └── env.sh                      # 환경변수 설정
 ├── src/
-│   ├── geometry/          # 형상 생성 스크립트
-│   └── visualization/     # 시각화 스크립트
+│   ├── geometry/                   # 형상 생성 스크립트
+│   └── visualization/              # 시각화 스크립트
+├── run_water_case.sh               # 수냉 CHT 실행 (Transient)
+├── run_water_case_steady.sh        # 수냉 CHT 실행 (Steady)
 └── README.md
 ```
 
@@ -140,6 +143,54 @@ python3 visualize_yz_section.py
 - `yz_temperature_contour.png`: y-z 단면 온도 컨투어
 - `centerline_temperature.png`: 중심선 온도 프로파일
 - `wall_temperature_profile.png`: 벽면 온도 프로파일
+
+### 수냉식 히트싱크 CHT 해석 (heatsink_water_cht_steady)
+
+8×8 원형 핀 배열의 수냉식 히트싱크 Conjugate Heat Transfer(CHT) 해석입니다.
+
+#### 형상
+
+| 항목 | 치수 |
+|------|------|
+| 베이스 플레이트 | 80 × 83 × 2 mm |
+| 핀 배열 | 8 × 8 (64개) |
+| 핀 직경/높이 | 6 mm / 15 mm |
+| 냉각수 튜브 직경 | 5 mm |
+
+#### 물성치
+
+| 영역 | 물질 | 밀도 | 비열 | 열전도도 |
+|------|------|------|------|----------|
+| Fluid | 물 | 998 kg/m³ | 4182 J/kg·K | 0.6 W/m·K |
+| Solid | 알루미늄 | 2700 kg/m³ | 900 J/kg·K | 200 W/m·K |
+
+#### 경계조건
+
+| 경계 | 조건 |
+|------|------|
+| 입구 (inlet) | 압력 10 Pa, 온도 20°C |
+| 출구 (outlet) | 압력 0 Pa |
+| 열원 (heat_source) | 열유속 60 kW/m² |
+| 유체-고체 인터페이스 | 열 결합 (turbulentTemperatureCoupledBaffleMixed) |
+
+#### 실행 방법
+
+```bash
+# Steady-state 해석 (권장)
+./run_water_case_steady.sh
+
+# 결과 확인 (ParaView)
+paraview cases/heatsink_water_cht_steady/VTK/fluid/heatsink_water_cht_steady_2000.vtm
+```
+
+#### 해석 결과 (60 kW/m²)
+
+| 항목 | 값 |
+|------|-----|
+| 입구 온도 | 293 K (20°C) |
+| 출구 최대 온도 | 335 K (62°C) |
+| 온도 상승 | ~42 K |
+| 고체 온도 범위 | 327~335 K |
 
 ### 관내유동 해석 (channelFlow)
 

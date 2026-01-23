@@ -1,0 +1,8 @@
+
+FoamFile { version 2.0; format ascii; class dictionary; object changeDictionaryDict; }
+boundary
+{
+    "heat_source.*" { name heat_source; }
+    "solid_to_.*" { type mappedWall; sampleMode nearestPatchFace; sampleRegion fluid; samplePatch fluid_to_solid; }
+}
+
