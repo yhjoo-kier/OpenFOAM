@@ -10,6 +10,9 @@
         "context": ".."
     },
 
+    // 컨테이너에서 사용할 기본 사용자 (Claude Code 자동실행에 필요)
+    "remoteUser": "ubuntu",
+
     // VS Code/Cursor 확장 및 설정
     "customizations": {
         "vscode": {
