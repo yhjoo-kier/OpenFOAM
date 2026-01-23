@@ -9,9 +9,14 @@ OpenFOAM 기반 CFD 시뮬레이션 프로젝트. 열유체 해석 케이스들�
 ├── cases/                      # 모든 시뮬레이션 케이스
 │   ├── channelFlow/            # 기본 채널 유동
 │   ├── heatsink_flow/          # 히트싱크 냉각 유동
+│   ├── heatsink_water_cht_steady/  # 수냉 히트싱크 CHT (정상상태)
 │   └── staggered_finned_tube_cht/  # 핀튜브 CHT 해석
-├── scripts/                    # 공용 스크립트 (있는 경우)
+├── scripts/                    # 공용 스크립트
 ├── src/                        # 소스 코드
+│   ├── geometry/               # 형상 생성 스크립트
+│   ├── visualization/          # 시각화 스크립트
+│   └── grid_study/             # 격자 독립성 검증 프레임워크
+├── .claude/commands/           # Claude Code skills
 └── CLAUDE.md                   # 이 파일
 ```
 
@@ -88,6 +93,32 @@ foamToVTK -region solid
 ## Code Style
 - Python: PEP 8 준수
 - OpenFOAM 딕셔너리: 표준 OpenFOAM 포맷
+
+## Grid Study Framework
+
+격자 독립성 검증을 위한 자동화 프레임워크 (`src/grid_study/`).
+
+### 사용법 (Python API)
+```python
+from grid_study import GridStudy, GridStudyConfig
+from pathlib import Path
+
+config = GridStudyConfig(
+    base_case_path=Path("cases/heatsink_water_cht_steady"),
+    metric_patch="heat_source",
+    convergence_threshold=1.0,
+)
+study = GridStudy(config)
+analysis = study.run()
+```
+
+### 사용법 (CLI)
+```bash
+python -m grid_study run cases/heatsink_water_cht_steady -t 1.0
+```
+
+### Skills
+- `/grid-study` - 격자 독립성 검증 실행
 
 ## Adding New Cases
 새 케이스 생성 시 `cases/CLAUDE.md`의 템플릿을 참고할 것.
