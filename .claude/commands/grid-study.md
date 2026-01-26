@@ -2,103 +2,79 @@
 
 OpenFOAM CHT 케이스의 격자 독립성 검증을 자동으로 수행합니다.
 
-## 사용법
+## 중요: 실행 방법
 
+**반드시 아래 Python 코드를 실행하여 grid study를 수행하세요. 직접 구현하지 마세요.**
+
+$ARGUMENTS 값을 파싱하여 아래 코드의 파라미터로 전달하세요:
+
+```python
+import sys
+sys.path.insert(0, 'src')
+
+from grid_study import run_grid_study
+
+# $ARGUMENTS에서 파싱한 값 사용
+# 예: /grid-study cases/my_case --adaptive --threshold 2.0 --max-cells 500000
+analysis = run_grid_study(
+    base_case="$CASE_PATH",      # 기본값: "cases/heatsink_water_cht_steady"
+    adaptive=$ADAPTIVE,          # --adaptive 플래그 있으면 True, 없으면 False
+    threshold=$THRESHOLD,        # --threshold 값 (기본값: 1.0)
+    max_cells=$MAX_CELLS,        # --max-cells 값 (기본값: 2_000_000)
+    max_levels=$MAX_LEVELS,      # --max-levels 값 (기본값: 10)
+    metric_patch="$PATCH",       # --patch 값 (기본값: "heat_source")
+    metric_field="$FIELD",       # --field 값 (기본값: "T")
+    metric_region="$REGION",     # --region 값 (기본값: "solid")
+)
+
+# 결과 출력
+print(f"\n수렴 여부: {analysis.is_converged}")
+print(f"추천 레벨: {analysis.recommended_level}")
+if analysis.stop_reason:
+    print(f"종료 이유: {analysis.stop_reason}")
+if analysis.extrapolated_value:
+    print(f"Richardson 외삽값: {analysis.extrapolated_value:.4f}")
 ```
-/grid-study [case_path] [options]
-```
 
-### 인자
-- `case_path`: OpenFOAM 케이스 경로 (기본값: cases/heatsink_water_cht_steady)
+## 인자 파싱 규칙
 
-### 옵션
-- `--levels N`: 메시 레벨 수 (기본값: 4)
-- `--threshold N`: 수렴 기준 % (기본값: 1.0)
-- `--patch NAME`: 모니터링 패치 (기본값: heat_source)
-- `--field NAME`: 모니터링 필드 (기본값: T)
-- `--region NAME`: 영역 (기본값: solid)
-- `--adaptive`: 적응형 모드 활성화 (수렴까지 자동 격자 조밀화)
-- `--max-cells N`: 최대 셀 수 제한 (기본값: 2,000,000)
-- `--max-levels N`: 최대 레벨 수 제한 (기본값: 10)
-
-## 실행 단계
-
-1. 설정된 메시 레벨별로 Gmsh 메시 생성
-2. gmshToFoam으로 OpenFOAM 포맷 변환
-3. splitMeshRegions로 fluid/solid 영역 분리
-4. chtMultiRegionSimpleFoam 시뮬레이션 실행
-5. 지정된 패치에서 평균값 추출
-6. 수렴성 분석 및 GCI 계산
-7. 결과 보고서 생성 (TXT, JSON, CSV, PNG)
-
-## 적응형 모드 (Adaptive Mode)
-
-`--adaptive` 옵션 사용 시, 수렴 조건을 만족할 때까지 자동으로 격자를 조밀화합니다.
-
-### 동작 방식
-1. 초기 메시 레벨들로 시뮬레이션 실행
-2. 연속된 두 레벨 간 변화율(Δ) 계산
-3. Δ < threshold이면 수렴 → 종료
-4. 수렴하지 않으면 다음 레벨 자동 생성 (mesh_factor × 0.7)
-5. 제한 조건 도달 시 종료
-
-### 종료 조건
-- ✓ 수렴 달성 (Δ < threshold)
-- ⚠ 최대 셀 수 초과 (max_cells)
-- ⚠ 최대 레벨 수 도달 (max_levels)
-- ⚠ 레벨당 최대 실행 시간 초과 (max_runtime_per_level)
+| 인자 | 변수 | 기본값 | 예시 |
+|------|------|--------|------|
+| 첫 번째 위치 인자 | `$CASE_PATH` | `cases/heatsink_water_cht_steady` | `cases/my_case` |
+| `--adaptive` | `$ADAPTIVE` | `False` | `True` |
+| `--threshold N` | `$THRESHOLD` | `1.0` | `2.0` |
+| `--max-cells N` | `$MAX_CELLS` | `2_000_000` | `500000` |
+| `--max-levels N` | `$MAX_LEVELS` | `10` | `8` |
+| `--patch NAME` | `$PATCH` | `heat_source` | `inlet` |
+| `--field NAME` | `$FIELD` | `T` | `p` |
+| `--region NAME` | `$REGION` | `solid` | `fluid` |
 
 ## 출력 예시
 
 ```
-┌─────────────────┬────────────┬────────────┬──────────┬────────┐
-│ Level           │      Cells │ T_avg [K]  │    Δ [%] │ Status │
-├─────────────────┼────────────┼────────────┼──────────┼────────┤
-│ L1_coarse       │     50,000 │   330.1234 │        - │   -    │
-│ L2_medium       │    150,000 │   332.5678 │   0.74   │  PASS  │
-│ L3_fine         │    400,000 │   332.8901 │   0.10   │  PASS  │
-└─────────────────┴────────────┴────────────┴──────────┴────────┘
+┌─────────────────┬────────────┬────────────────┬──────────┬────────┐
+│ Level           │      Cells │ T_base_avg [K] │    Δ [%] │ Status │
+├─────────────────┼────────────┼────────────────┼──────────┼────────┤
+│ L1_coarse       │     28,145 │       379.4407 │        - │   -    │
+│ L2_medium       │     72,921 │       355.8805 │     6.62 │  FAIL  │
+│ L3_adaptive     │    158,576 │       326.7191 │     8.93 │  FAIL  │
+│ L4_adaptive     │    352,157 │       311.7680 │     4.80 │  FAIL  │
+│ L5_adaptive     │    742,826 │       308.7909 │     0.96 │  PASS  │
+└─────────────────┴────────────┴────────────────┴──────────┴────────┘
 
 Result: ✓ CONVERGED (threshold: 1.0%)
-Recommended: L2_medium
+Recommended: L4_adaptive
+Richardson extrapolated: 307.9465 K
+Stop reason: max_cells_exceeded (742,826 > 500,000)
 ```
 
-## 프레임워크 위치
+## 종료 조건 (Adaptive Mode)
 
-`src/grid_study/`
-
-## Python API
-
-```python
-from grid_study import GridStudy, GridStudyConfig
-from pathlib import Path
-
-# Standard mode (predefined levels)
-config = GridStudyConfig(
-    base_case_path=Path("cases/heatsink_water_cht_steady"),
-    study_name="my_study",
-    metric_patch="heat_source",
-    convergence_threshold=1.0,
-)
-
-# Adaptive mode (auto-refine until converged)
-config = GridStudyConfig(
-    base_case_path=Path("cases/heatsink_water_cht_steady"),
-    study_name="adaptive_study",
-    adaptive_mode=True,
-    convergence_threshold=1.0,
-    max_cells=2_000_000,
-    max_levels=10,
-    refinement_ratio=0.7,
-)
-
-study = GridStudy(config)
-analysis = study.run()
-study.generate_reports(analysis)
-
-# Check stop reason in adaptive mode
-if analysis.stop_reason:
-    print(f"Stopped: {analysis.stop_reason}")
-```
+| 조건 | 의미 |
+|------|------|
+| `converged` | ✓ 수렴 달성 (Δ < threshold) |
+| `max_cells_exceeded` | ⚠ 셀 수 초과 |
+| `max_levels_reached` | ⚠ 레벨 수 도달 |
+| `max_runtime_exceeded` | ⚠ 시간 초과 |
 
 $ARGUMENTS
