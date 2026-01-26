@@ -98,26 +98,63 @@ foamToVTK -region solid
 
 격자 독립성 검증을 위한 자동화 프레임워크 (`src/grid_study/`).
 
-### 사용법 (Python API)
+### Adaptive Mode (권장)
+
+수렴할 때까지 자동으로 격자를 조밀화:
+
 ```python
-from grid_study import GridStudy, GridStudyConfig
-from pathlib import Path
+import sys
+sys.path.insert(0, 'src')
+
+from grid_study import run_grid_study
+
+# 한 줄로 실행 (Adaptive 모드)
+analysis = run_grid_study(
+    base_case="cases/heatsink_water_cht_steady",
+    adaptive=True,           # 수렴까지 자동 조밀화
+    threshold=1.0,           # 1% 수렴 기준
+    max_cells=1_000_000,     # 최대 셀 수 제한
+)
+
+# 결과 확인
+print(f"수렴: {analysis.is_converged}")
+print(f"추천 레벨: {analysis.recommended_level}")
+print(f"종료 이유: {analysis.stop_reason}")
+```
+
+### 종료 조건
+
+| 조건 | 설명 |
+|------|------|
+| `converged` | Δ < threshold (성공) |
+| `max_cells_exceeded` | 셀 수 초과 |
+| `max_levels_reached` | 레벨 수 도달 |
+| `max_runtime_exceeded` | 시간 초과 |
+
+### Standard Mode
+
+미리 정의된 레벨로 실행:
+
+```python
+from grid_study import GridStudyConfig, GridStudy, MeshLevel
 
 config = GridStudyConfig(
     base_case_path=Path("cases/heatsink_water_cht_steady"),
-    metric_patch="heat_source",
-    convergence_threshold=1.0,
+    mesh_levels=[
+        MeshLevel("L1", mesh_factor=2.0, bl_first_height=0.001, bl_growth_ratio=1.2, bl_num_layers=0),
+        MeshLevel("L2", mesh_factor=1.0, bl_first_height=0.0005, bl_growth_ratio=1.2, bl_num_layers=0),
+    ],
 )
 study = GridStudy(config)
 analysis = study.run()
 ```
 
-### 사용법 (CLI)
+### CLI
 ```bash
-python -m grid_study run cases/heatsink_water_cht_steady -t 1.0
+python -m grid_study run cases/heatsink_water_cht_steady --adaptive -t 1.0
 ```
 
-### Skills
+### Skill
 - `/grid-study` - 격자 독립성 검증 실행
 
 ## Adding New Cases
