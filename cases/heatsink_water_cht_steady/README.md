@@ -148,8 +148,53 @@ heatsink_water_cht_steady/
 └── README.md
 ```
 
+## Grid Study Configuration
+
+이 케이스는 Grid Independence Study 프레임워크와 호환됩니다.
+
+### 설정 값
+
+| 항목 | 값 | 설명 |
+|------|-----|------|
+| metric_patch | `heat_source` | 베이스 플레이트 바닥면 |
+| metric_field | `T` | 평균 온도 |
+| metric_region | `solid` | 고체 영역 |
+| convergence_threshold | 1.0% | 권장 수렴 기준 |
+
+### 실행 예시
+
+```python
+import sys
+sys.path.insert(0, 'src')
+from grid_study import run_grid_study
+
+analysis = run_grid_study(
+    base_case="cases/heatsink_water_cht_steady",
+    adaptive=True,
+    threshold=1.0,
+    max_cells=1_000_000,
+    metric_patch="heat_source",
+    metric_field="T",
+    metric_region="solid",
+)
+```
+
+### 검증 결과 (2026-01-26)
+
+| Level | Cells | T_base_avg [K] | Δ [%] | Status |
+|-------|-------|----------------|-------|--------|
+| L1_coarse | 28,145 | 379.44 | - | - |
+| L2_medium | 72,921 | 355.88 | 6.62 | FAIL |
+| L3_adaptive | 158,576 | 326.72 | 8.93 | FAIL |
+| L4_adaptive | 352,157 | 311.77 | 4.80 | FAIL |
+| L5_adaptive | 742,826 | 308.79 | 0.96 | **PASS** |
+
+- Richardson extrapolated: **307.95 K**
+- Recommended level: **L4_adaptive** (352k cells)
+
 ## 주의사항
 
-1. **메시 생성**: 이 케이스는 `run_water_case.sh`로 생성된 메시를 사용합니다.
+1. **메시 생성**: 이 케이스는 `scripts/generate_mesh.py`로 파라메트릭 메시를 생성합니다.
 2. **열 결합**: `turbulentTemperatureCoupledBaffleMixed` BC로 유체-고체 인터페이스 열전달을 처리합니다.
 3. **Heat Flux 조절**: `0/solid/T`의 `heat_source` 패치에서 `q uniform` 값을 변경하여 열유속을 조절할 수 있습니다.
+4. **Grid Study**: `mesh_factor` 파라미터로 격자 조밀도 조절 (1.0=레퍼런스, 0.7=조밀, 2.0=성김)
