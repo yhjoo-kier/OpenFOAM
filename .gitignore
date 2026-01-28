@@ -98,3 +98,15 @@ cases/heatsink_cht_full/
 
 # Transient intermediate cases (used to generate steady cases)
 cases/heatsink_water_cht/
+
+# ==================================
+# Grid Study Framework
+# ==================================
+
+# Grid study output directories
+grid_study_*/
+*_grid_study/
+
+# Temporary test scripts (examples are in docs)
+run_*_grid_study.py
+run_grid_study*.py
