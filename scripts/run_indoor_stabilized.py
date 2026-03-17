@@ -240,6 +240,18 @@ def run(cmd: list[str], cwd: Path | None = None, check: bool = True) -> subproce
     return result
 
 
+def extract_generation_summary(stdout_text: str) -> dict | None:
+    marker = "---"
+    if marker not in stdout_text:
+        return None
+    candidate = stdout_text.split(marker)[-1].strip()
+    try:
+        payload = json.loads(candidate)
+    except json.JSONDecodeError:
+        return None
+    return payload if isinstance(payload, dict) else None
+
+
 def docker_exec(case_dir: Path, command: str, check: bool = True, timeout: float | None = None) -> subprocess.CompletedProcess:
     cmd = [
         "docker", "run", "--rm",
@@ -525,10 +537,13 @@ def main() -> int:
     parser = argparse.ArgumentParser(description="Run indoor CFD pipeline with stabilization retries")
     parser.add_argument("--scenario", required=True)
     parser.add_argument("--name", default="indoor_stabilized_run")
+    parser.add_argument("--backend", choices=["cli", "api"], default="api")
     parser.add_argument("--model", default="gemini-3.1-pro-preview")
+    parser.add_argument("--image", dest="images", action="append", default=[], help="Optional image/photo/rendering path; repeatable")
     parser.add_argument("--mesh-size", type=float, default=0.35)
     parser.add_argument("--skip-mesh-ladder", action="store_true")
     parser.add_argument("--end-time", type=int, default=1000)
+    parser.add_argument("--solver-timeout", type=int, default=900, help="Timeout in seconds for each simpleFoam attempt")
     parser.add_argument("--no-fallback", action="store_true")
     parser.add_argument("--disable-repair", action="store_true", help="Disable repaired-scene retry")
     args = parser.parse_args()
@@ -545,19 +560,33 @@ def main() -> int:
     msh_path = generated_dir / f"{args.name}.msh"
 
     scenario_path = Path(args.scenario)
-    if scenario_path.exists() and scenario_path.suffix.lower() == ".json":
+    try:
+        scenario_is_json_file = scenario_path.exists() and scenario_path.suffix.lower() == ".json"
+    except OSError:
+        scenario_is_json_file = False
+    input_source_type = "scene_json" if scenario_is_json_file else ("image" if args.images else "text")
+    generation_invocation = None
+    if scenario_is_json_file:
         shutil.copyfile(scenario_path, scene_json)
         print(f"Using existing scene JSON without Gemini regeneration: {scenario_path} -> {scene_json}")
     else:
         gen_cmd = [
             "python3", str(SCRIPTS / "generate_indoor_scene_with_gemini.py"),
+            "--backend", args.backend,
             "--scenario", args.scenario,
             "--model", args.model,
             "-o", str(scene_json),
         ]
+        for image_path in args.images:
+            gen_cmd.extend(["--image", image_path])
         if args.no_fallback:
             gen_cmd.append("--no-fallback")
-        run(gen_cmd, cwd=PROJECT_ROOT)
+        generation_result = run(gen_cmd, cwd=PROJECT_ROOT)
+        generation_invocation = {
+            "command": gen_cmd,
+            "stdout": generation_result.stdout,
+            "stderr": generation_result.stderr,
+        }
 
     gmsh_python = TOOLS_PYTHON if Path(TOOLS_PYTHON).exists() else shutil.which("python3") or "python3"
     mesh_sizes = [args.mesh_size] if args.skip_mesh_ladder else [args.mesh_size] + [m for m in MESH_SIZE_LADDER if m != args.mesh_size]
@@ -638,7 +667,7 @@ def main() -> int:
             for preset in preset_sequence:
                 apply_preset(case_dir, preset)
                 docker_exec(case_dir, "rm -rf [1-9]* 0.* core* 2>/dev/null || true", check=False)
-                result = docker_exec(case_dir, "simpleFoam > log.simpleFoam 2>&1", check=False, timeout=300)
+                result = docker_exec(case_dir, "simpleFoam > log.simpleFoam 2>&1", check=False, timeout=args.solver_timeout)
                 log_path = case_dir / "log.simpleFoam"
                 log_text = log_path.read_text(encoding="utf-8", errors="ignore") if log_path.exists() else result.stdout + result.stderr
                 archived_log = results_dir / f"log.simpleFoam_{scene_variant}_mesh{str(mesh_size).replace('.', 'p')}_{preset['name']}.txt"
@@ -674,13 +703,19 @@ def main() -> int:
         if success_preset is not None:
             break
 
+    generation_summary = None if generation_invocation is None else extract_generation_summary(generation_invocation["stdout"])
     summary = {
         "name": args.name,
+        "input_source_type": input_source_type,
+        "requested_backend": args.backend,
+        "requested_model": args.model,
+        "input_images": args.images,
         "scene_json": str(scene_json),
         "repaired_scene_json": None if args.disable_repair else str(repaired_scene_json),
         "used_scene_json": str(used_scene_json),
         "msh": str(msh_path),
         "case_dir": str(case_dir),
+        "generation_summary": generation_summary,
         "attempts": attempts,
         "success": success_preset is not None,
         "successful_preset": None if success_preset is None else success_preset["name"],
