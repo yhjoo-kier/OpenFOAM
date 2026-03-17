@@ -164,7 +164,7 @@ python -m grid_study run cases/heatsink_water_cht_steady --adaptive -t 1.0
 - **계획 문서**: `docs/26-03-17_image_to_cfd_paper_plan.md`
 - **프레임워크 엔트리포인트**: `scripts/run_indoor_stabilized.py`
 - **핵심 접근**: rule-based 벤치마크 데이터셋 (형상 난이도 × 뷰 타입) + reference CFD 정답 확보 → 프레임워크 정량 평가
-- **데이터셋 위치**: `benchmark/` (예정)
+- **데이터셋 위치**: `benchmark/` — rule-based 형상 생성, reference CFD, 2D 렌더링, 평가 결과 일체
 
 ## Adding New Cases
 새 케이스 생성 시 `cases/CLAUDE.md`의 템플릿을 참고할 것.

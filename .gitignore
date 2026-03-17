@@ -110,3 +110,46 @@ grid_study_*/
 # Temporary test scripts (examples are in docs)
 run_*_grid_study.py
 run_grid_study*.py
+
+# ==================================
+# OMC (oh-my-claudecode) local state
+# ==================================
+
+.omc/
+
+# ==================================
+# Pipeline generated outputs
+# ==================================
+
+# Generated intermediate files (meshes, geo, json)
+generated/
+
+# Execution logs
+logs/
+
+# Sample data
+samples/
+
+# Temporary files
+tmp_*.json
+
+# ==================================
+# Indoor CFD pipeline run cases
+# ==================================
+
+# Photo/pipeline auto-generated cases (reproducible via scripts)
+cases/full_pipeline_photo_run/
+cases/one_command_photo_run/
+cases/one_command_photo_run2/
+cases/photo_sample_*/
+cases/photo_sample_compass_retry/
+
+# Indoor pipeline iteration runs
+cases/indoor_pipeline_g*/
+cases/indoor_scene_poc/
+
+# Stabilization demo runs
+cases/indoor_stabilized_demo*/
+
+# Mesh probe tests
+cases/meshprobe_*/
