@@ -14,6 +14,10 @@
 
 ### Required final artifacts
 - `comparison_1x2.png`
+- `indoor_pipeline_3d_comparison.png`
+- `indoor_pipeline_3d_comparison.pdf`
+- `panel_geometry_3d.png`
+- `panel_flow_3d.png`
 - VTK export directory
 - concise machine-readable summary
 - artifact paths for all deliverables

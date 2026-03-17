@@ -32,7 +32,8 @@ into one or more of these outputs:
   - mesh-risk-aware preset selection
   - `simpleFoam` solve attempts
   - VTK export
-  - comparison figure generation
+  - 2D comparison figure generation
+  - 3D comparison figure generation
   - stabilization summary generation
 
 ### Prototype / lower-level entrypoint

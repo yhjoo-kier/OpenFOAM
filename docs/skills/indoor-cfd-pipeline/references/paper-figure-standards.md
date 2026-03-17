@@ -9,9 +9,14 @@ It should produce outputs that are close to paper-ready and easy to refine.
 
 For a successful run, generate at least:
 - a 1x2 comparison figure showing scene/layout and flow result
+- a 3D comparison figure showing geometry and flow field together
 
-Current default artifact:
+Current default artifacts:
 - `results/<run_name>/comparison_1x2.png`
+- `results/<run_name>/indoor_pipeline_3d_comparison.png`
+- `results/<run_name>/indoor_pipeline_3d_comparison.pdf`
+- `results/<run_name>/panel_geometry_3d.png`
+- `results/<run_name>/panel_flow_3d.png`
 
 ## Preferred paper-facing outputs
 

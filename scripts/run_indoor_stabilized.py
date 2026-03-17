@@ -736,6 +736,13 @@ def main() -> int:
             str(case_dir),
             "-o", str(results_dir / "comparison_1x2.png"),
         ], cwd=PROJECT_ROOT)
+        run([
+            gmsh_python,
+            str(SCRIPTS / "render_indoor_pipeline_3d.py"),
+            "--scene-json", str(scene_json),
+            "--case-dir", str(case_dir),
+            "--output", str(results_dir / "indoor_pipeline_3d_comparison.png"),
+        ], cwd=PROJECT_ROOT)
 
     print(json.dumps(summary, indent=2))
     return 0 if success_preset is not None else 1

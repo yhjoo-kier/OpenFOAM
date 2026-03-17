@@ -27,6 +27,7 @@ This is the current **one-command pipeline entrypoint** for:
 5. mesh-risk-aware solver preset selection
 6. stabilization / retry loop
 7. VTK export and comparison figure generation
+8. 3D comparison figure and per-panel 3D figure generation
 
 ## Quick routing rule
 
@@ -78,3 +79,4 @@ At minimum, the run should leave behind:
 
 This is not a generic OpenFOAM skill.
 It is the operating guide for **this repository’s indoor image/text → CFD → figure framework**.
+he operating guide for **this repository’s indoor image/text → CFD → figure framework**.
