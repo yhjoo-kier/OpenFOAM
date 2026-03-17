@@ -157,5 +157,14 @@ python -m grid_study run cases/heatsink_water_cht_steady --adaptive -t 1.0
 ### Skill
 - `/grid-study` - 격자 독립성 검증 실행
 
+## Image-to-CFD Paper (진행 중)
+
+2D 이미지로부터 VLM(Gemini)을 이용해 3D 실내 형상을 추상화하고 CFD까지 자동화하는 프레임워크의 논문화 작업.
+
+- **계획 문서**: `docs/26-03-17_image_to_cfd_paper_plan.md`
+- **프레임워크 엔트리포인트**: `scripts/run_indoor_stabilized.py`
+- **핵심 접근**: rule-based 벤치마크 데이터셋 (형상 난이도 × 뷰 타입) + reference CFD 정답 확보 → 프레임워크 정량 평가
+- **데이터셋 위치**: `benchmark/` (예정)
+
 ## Adding New Cases
 새 케이스 생성 시 `cases/CLAUDE.md`의 템플릿을 참고할 것.
