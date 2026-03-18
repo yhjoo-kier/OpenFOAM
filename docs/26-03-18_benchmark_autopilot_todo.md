@@ -131,6 +131,7 @@ OpenFOAM Image-to-CFD 논문을 위한 benchmark dataset 파이프라인을 구�
 - [x] frozen-20 reference bundle robustness / failure-signals note 작성
 - [x] frozen-20 CLI evaluation 100/100 completion note 작성
 - [x] frozen-20 CLI evaluation aggregate summary 생성 (`benchmark/manifests/evaluation_aggregate_summary.json`, `docs/26-03-19_cli_eval_aggregate_results.md`)
+- [x] aggregate manifest에 해석용 태그 계층 추가 (opening/topology preserved with hallucination, blockage/layout failure, dense composite structure-vs-physics gap, non-blocking repair-sidecar warning 등)
 - [x] 안정적인 체크포인트에서 프로젝트 저장소에 의미 있는 커밋 수행 (push는 사용자 요청 시만)
 
 ## 현재 benchmark 스냅샷
@@ -184,7 +185,8 @@ OpenFOAM Image-to-CFD 논문을 위한 benchmark dataset 파이프라인을 구�
 ## 다음 기본 액션
 
 1. 100/100 completion 기준 aggregate summary와 comparison note를 유지하고, 필요하면 논문 Results/Discussion 본문 초안으로 바로 옮길 수 있게 케이스별 해석 문장을 더 압축한다.
-2. composite case에서는 opening/topology-sensitive metric, rectangular multi-obstacle case에서는 occupancy/blockage-sensitive metric, empty composite case에서는 hallucinated-obstacle burden 태그, 그리고 dense composite tail에서는 non-blocking repair-sidecar warning 태그를 실제 manifest/summary에 어떻게 남길지 설계한다.
-3. API backend env(`GEMINI_API_KEY`/`GOOGLE_API_KEY`)는 별도 유지 과제로 남기되, benchmark core 결과는 CLI backend 기준으로 이미 완결되었으므로 이후 작업은 분석/문서화 중심으로 전환한다.
-4. 현재 100/100 completion 상태의 로컬 commit checkpoint를 깔끔하게 유지한다.
-5. 이후 meshing/solver 변경이 생기면 stress subset (`bench_a2_01`, `bench_a4_02`, `bench_a2_03`, `bench_a4_03`, `bench_a1_04`)에 더해 easy positive-controls (`bench_a1_02`, `bench_a1_03`, `bench_a1_05`), empty composite controls (`bench_a3_01`, `bench_a3_02`, `bench_a3_05`), dense-composite control (`bench_a4_01`, `bench_a4_04`), dense-composite tail stress/control (`bench_a4_05`), repaired-salvage control (`bench_a2_04`), rectangular opening-control (`bench_a2_02`)도 참고 신호로 본다.
+2. [완료] composite case opening/topology-sensitive signal, rectangular multi-obstacle blockage/layout failure, empty composite hallucinated-obstacle burden, dense composite structure-vs-physics gap, non-blocking repair-sidecar warning을 aggregate manifest/summary 태그로 반영했다.
+3. 다음 자동 액션은 이 태그/집계 결과를 논문용 Results/Discussion 초안 문장 또는 dataset card/README 인용 문장으로 더 압축하는 것이다.
+4. API backend env(`GEMINI_API_KEY`/`GOOGLE_API_KEY`)는 별도 유지 과제로 남기되, benchmark core 결과는 CLI backend 기준으로 이미 완결되었으므로 이후 작업은 분석/문서화 중심으로 전환한다.
+5. 현재 100/100 completion 상태의 로컬 commit checkpoint를 깔끔하게 유지한다.
+6. 이후 meshing/solver 변경이 생기면 stress subset (`bench_a2_01`, `bench_a4_02`, `bench_a2_03`, `bench_a4_03`, `bench_a1_04`)에 더해 easy positive-controls (`bench_a1_02`, `bench_a1_03`, `bench_a1_05`), empty composite controls (`bench_a3_01`, `bench_a3_02`, `bench_a3_05`), dense-composite control (`bench_a4_01`, `bench_a4_04`), dense-composite tail stress/control (`bench_a4_05`), repaired-salvage control (`bench_a2_04`), rectangular opening-control (`bench_a2_02`)도 참고 신호로 본다.
