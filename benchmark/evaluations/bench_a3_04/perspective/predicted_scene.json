@@ -1,0 +1,114 @@
+{
+  "schema_version": "indoor_cfd_scene_v1",
+  "units": "m",
+  "coordinate_system": {
+    "origin": "room_min_corner",
+    "x": "west_to_east",
+    "y": "south_to_north",
+    "z": "floor_to_ceiling"
+  },
+  "room": {
+    "blocks": [
+      {
+        "origin": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "size": {
+          "dx": 6.0,
+          "dy": 2.5,
+          "dz": 2.5
+        }
+      },
+      {
+        "origin": {
+          "x": 6.0,
+          "y": 0,
+          "z": 0
+        },
+        "size": {
+          "dx": 2.5,
+          "dy": 1.8,
+          "dz": 1.8
+        }
+      }
+    ]
+  },
+  "obstacles": [
+    {
+      "id": "obs_001",
+      "type": "box",
+      "min": {
+        "x": 6.8,
+        "y": 0.4,
+        "z": 0
+      },
+      "size": {
+        "dx": 1.0,
+        "dy": 1.0,
+        "dz": 0.8
+      }
+    },
+    {
+      "id": "obs_002",
+      "type": "box",
+      "min": {
+        "x": 0.8,
+        "y": 0.1,
+        "z": 0
+      },
+      "size": {
+        "dx": 1.4,
+        "dy": 0.6,
+        "dz": 0.4
+      }
+    },
+    {
+      "id": "obs_003",
+      "type": "box",
+      "min": {
+        "x": 5.2,
+        "y": 2.0,
+        "z": 0
+      },
+      "size": {
+        "dx": 0.5,
+        "dy": 0.5,
+        "dz": 2.5
+      }
+    }
+  ],
+  "openings": [
+    {
+      "id": "inlet_001",
+      "type": "inlet",
+      "wall": "north",
+      "center": {
+        "u": 3.0,
+        "v": 1.6
+      },
+      "size": {
+        "du": 1.0,
+        "dv": 0.5
+      }
+    },
+    {
+      "id": "outlet_001",
+      "type": "outlet",
+      "wall": "east",
+      "center": {
+        "u": 0.9,
+        "v": 0.7
+      },
+      "size": {
+        "du": 0.6,
+        "dv": 0.4
+      }
+    }
+  ],
+  "meta": {
+    "scene_type": "l_shaped_ventilation_room",
+    "description": "Two-block connected space with a main corridor and a narrower, lower alcove containing a central box obstacle."
+  }
+}

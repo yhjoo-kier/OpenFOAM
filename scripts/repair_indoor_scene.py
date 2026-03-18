@@ -56,6 +56,30 @@ def get_room_blocks(scene: dict) -> list[dict]:
     }]
 
 
+def normalize_room_origin(scene: dict) -> dict[str, float]:
+    blocks = get_room_blocks(scene)
+    min_x = min(block['origin']['x'] for block in blocks)
+    min_y = min(block['origin']['y'] for block in blocks)
+    min_z = min(block['origin']['z'] for block in blocks)
+    shift = {
+        'x': -min_x if min_x < 0 else 0.0,
+        'y': -min_y if min_y < 0 else 0.0,
+        'z': -min_z if min_z < 0 else 0.0,
+    }
+    if shift['x'] == 0.0 and shift['y'] == 0.0 and shift['z'] == 0.0:
+        return shift
+
+    for block in blocks:
+        block['origin']['x'] += shift['x']
+        block['origin']['y'] += shift['y']
+        block['origin']['z'] += shift['z']
+    for obs in scene.get('obstacles', []):
+        obs['min']['x'] += shift['x']
+        obs['min']['y'] += shift['y']
+        obs['min']['z'] += shift['z']
+    return shift
+
+
 def overall_room_size(scene: dict) -> dict:
     blocks = get_room_blocks(scene)
     return {
@@ -295,6 +319,7 @@ def normalize_openings(scene: dict, wall: str | None = None, size_du: float | No
 
 def repair_scene(scene: dict) -> tuple[dict, dict]:
     repaired = deepcopy(scene)
+    origin_shift = normalize_room_origin(repaired)
     room = overall_room_size(repaired)
 
     wall_margin = max(0.4, 0.05 * min(room['Lx'], room['Ly']))
@@ -311,10 +336,11 @@ def repair_scene(scene: dict) -> tuple[dict, dict]:
     repaired.setdefault('meta', {})
     repaired['meta']['repair_applied'] = True
     repaired['meta']['repair_notes'] = (
-        'Applied solver-friendly repair with composite-room aware opening normalization, '
+        'Applied solver-friendly repair with room-origin normalization, composite-room aware opening normalization, '
         'obstacle count cap, clearance enforcement, and wall-margin bounds.'
     )
     repaired['meta']['repair_opening_axis'] = chosen_opening_axis
+    repaired['meta']['repair_origin_shift'] = origin_shift
 
     report = validate_scene(repaired)
     info = {
@@ -322,6 +348,7 @@ def repair_scene(scene: dict) -> tuple[dict, dict]:
         'obstacle_clearance': obstacle_clearance,
         'opening_clearance': opening_clearance,
         'repair_opening_axis': chosen_opening_axis,
+        'origin_shift': origin_shift,
         'valid': report.ok,
         'errors': report.errors,
         'warnings': report.warnings,

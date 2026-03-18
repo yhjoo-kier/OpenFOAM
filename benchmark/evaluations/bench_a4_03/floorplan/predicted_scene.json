@@ -1,0 +1,114 @@
+{
+  "schema_version": "indoor_cfd_scene_v1",
+  "units": "m",
+  "coordinate_system": {
+    "origin": "room_min_corner",
+    "x": "west_to_east",
+    "y": "south_to_north",
+    "z": "floor_to_ceiling"
+  },
+  "room": {
+    "blocks": [
+      {
+        "origin": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "size": {
+          "dx": 6.0,
+          "dy": 5.0,
+          "dz": 2.5
+        }
+      },
+      {
+        "origin": {
+          "x": 6.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "size": {
+          "dx": 4.0,
+          "dy": 3.0,
+          "dz": 2.5
+        }
+      }
+    ]
+  },
+  "obstacles": [
+    {
+      "id": "obs_001",
+      "type": "box",
+      "min": {
+        "x": 1.5,
+        "y": 3.5,
+        "z": 0.0
+      },
+      "size": {
+        "dx": 1.8,
+        "dy": 1.0,
+        "dz": 1.2
+      }
+    },
+    {
+      "id": "obs_002",
+      "type": "box",
+      "min": {
+        "x": 3.5,
+        "y": 0.5,
+        "z": 0.0
+      },
+      "size": {
+        "dx": 1.5,
+        "dy": 1.5,
+        "dz": 1.2
+      }
+    },
+    {
+      "id": "obs_003",
+      "type": "box",
+      "min": {
+        "x": 7.0,
+        "y": 0.75,
+        "z": 0.0
+      },
+      "size": {
+        "dx": 1.2,
+        "dy": 1.5,
+        "dz": 1.2
+      }
+    }
+  ],
+  "openings": [
+    {
+      "id": "inlet_001",
+      "type": "inlet",
+      "wall": "west",
+      "center": {
+        "u": 1.5,
+        "v": 1.25
+      },
+      "size": {
+        "du": 0.4,
+        "dv": 0.6
+      }
+    },
+    {
+      "id": "outlet_001",
+      "type": "outlet",
+      "wall": "east",
+      "center": {
+        "u": 1.5,
+        "v": 1.25
+      },
+      "size": {
+        "du": 0.4,
+        "dv": 0.6
+      }
+    }
+  ],
+  "meta": {
+    "scene_type": "L-shaped office layout",
+    "description": "Composite room with a primary rectangular space joined to a smaller alcove, featuring three large box obstacles and cross-ventilation."
+  }
+}

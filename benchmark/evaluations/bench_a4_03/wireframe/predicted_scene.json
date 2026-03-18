@@ -1,0 +1,128 @@
+{
+  "schema_version": "indoor_cfd_scene_v1",
+  "units": "m",
+  "coordinate_system": {
+    "origin": "room_min_corner",
+    "x": "west_to_east",
+    "y": "south_to_north",
+    "z": "floor_to_ceiling"
+  },
+  "room": {
+    "blocks": [
+      {
+        "origin": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "size": {
+          "dx": 5.0,
+          "dy": 4.0,
+          "dz": 2.8
+        }
+      },
+      {
+        "origin": {
+          "x": 5.0,
+          "y": 0.5,
+          "z": 0.0
+        },
+        "size": {
+          "dx": 4.5,
+          "dy": 3.0,
+          "dz": 2.2
+        }
+      }
+    ]
+  },
+  "obstacles": [
+    {
+      "id": "obs_001",
+      "type": "box",
+      "min": {
+        "x": 1.8,
+        "y": 1.2,
+        "z": 0.0
+      },
+      "size": {
+        "dx": 1.2,
+        "dy": 1.5,
+        "dz": 1.4
+      }
+    },
+    {
+      "id": "obs_002",
+      "type": "box",
+      "min": {
+        "x": 3.2,
+        "y": 0.5,
+        "z": 0.0
+      },
+      "size": {
+        "dx": 1.0,
+        "dy": 1.2,
+        "dz": 0.8
+      }
+    },
+    {
+      "id": "obs_003",
+      "type": "box",
+      "min": {
+        "x": 5.2,
+        "y": 1.0,
+        "z": 0.0
+      },
+      "size": {
+        "dx": 1.0,
+        "dy": 1.2,
+        "dz": 1.0
+      }
+    },
+    {
+      "id": "obs_004",
+      "type": "box",
+      "min": {
+        "x": 7.0,
+        "y": 1.2,
+        "z": 0.0
+      },
+      "size": {
+        "dx": 1.2,
+        "dy": 1.5,
+        "dz": 1.2
+      }
+    }
+  ],
+  "openings": [
+    {
+      "id": "inlet_001",
+      "type": "inlet",
+      "wall": "west",
+      "center": {
+        "u": 2.0,
+        "v": 2.2
+      },
+      "size": {
+        "du": 0.4,
+        "dv": 0.4
+      }
+    },
+    {
+      "id": "outlet_001",
+      "type": "outlet",
+      "wall": "east",
+      "center": {
+        "u": 2.0,
+        "v": 1.1
+      },
+      "size": {
+        "du": 0.4,
+        "dv": 0.4
+      }
+    }
+  ],
+  "meta": {
+    "scene_type": "composite_ventilation_chamber",
+    "description": "A two-block rectangular room connected in series. The first block is taller and wider, containing the inlet on its west wall. The second block is shorter and narrower, containing the outlet on its east wall. Four box obstacles are distributed across both blocks to influence the internal flow path."
+  }
+}

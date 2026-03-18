@@ -583,12 +583,21 @@ def main() -> int:
             gen_cmd.extend(["--image", image_path])
         if args.no_fallback:
             gen_cmd.append("--no-fallback")
-        generation_result = run(gen_cmd, cwd=PROJECT_ROOT)
+        generation_result = run(gen_cmd, cwd=PROJECT_ROOT, check=False)
         generation_invocation = {
             "command": gen_cmd,
             "stdout": generation_result.stdout,
             "stderr": generation_result.stderr,
+            "returncode": generation_result.returncode,
         }
+        if generation_result.returncode != 0:
+            if scene_json.exists():
+                print(
+                    "Generation step returned nonzero, but scene JSON was still written; "
+                    "continuing into repair/salvage path.",
+                )
+            else:
+                raise RuntimeError(f"Generation failed before writing scene JSON: {' '.join(map(str, gen_cmd))}")
 
     gmsh_python = TOOLS_PYTHON if Path(TOOLS_PYTHON).exists() else shutil.which("python3") or "python3"
     mesh_sizes = [args.mesh_size] if args.skip_mesh_ladder else [args.mesh_size] + [m for m in MESH_SIZE_LADDER if m != args.mesh_size]
