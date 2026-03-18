@@ -1,0 +1,79 @@
+{
+  "schema_version": "indoor_cfd_scene_v1",
+  "units": "m",
+  "coordinate_system": {
+    "origin": "room_min_corner",
+    "x": "west_to_east",
+    "y": "south_to_north",
+    "z": "floor_to_ceiling"
+  },
+  "room": {
+    "size": {
+      "Lx": 10.0,
+      "Ly": 8.0,
+      "Lz": 3.0
+    }
+  },
+  "obstacles": [
+    {
+      "id": "obs_001",
+      "type": "box",
+      "min": {
+        "x": 4.5,
+        "y": 4.5,
+        "z": 0.0
+      },
+      "size": {
+        "dx": 1.5,
+        "dy": 2.0,
+        "dz": 3.0
+      }
+    },
+    {
+      "id": "obs_002",
+      "type": "box",
+      "min": {
+        "x": 7.2,
+        "y": 2.5,
+        "z": 0.0
+      },
+      "size": {
+        "dx": 1.1,
+        "dy": 1.8,
+        "dz": 3.0
+      }
+    }
+  ],
+  "openings": [
+    {
+      "id": "inlet_001",
+      "type": "inlet",
+      "wall": "north",
+      "center": {
+        "u": 2.5,
+        "v": 1.5
+      },
+      "size": {
+        "du": 1.0,
+        "dv": 0.6
+      }
+    },
+    {
+      "id": "outlet_001",
+      "type": "outlet",
+      "wall": "south",
+      "center": {
+        "u": 6.8,
+        "v": 1.5
+      },
+      "size": {
+        "du": 1.0,
+        "dv": 0.6
+      }
+    }
+  ],
+  "meta": {
+    "scene_type": "rectangular_ventilation_room",
+    "description": "A single rectangular room with two internal box obstacles positioned in the central and eastern portions. A northern inlet and southern outlet create a cross-flow pattern."
+  }
+}

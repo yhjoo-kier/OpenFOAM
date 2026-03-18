@@ -1,0 +1,106 @@
+{
+  "ok": true,
+  "grid": {
+    "nx": 18,
+    "ny": 18,
+    "nz": 10,
+    "point_count": 3240,
+    "epsilon": {
+      "x": 0.05,
+      "y": 0.05,
+      "z": 0.08
+    }
+  },
+  "reference": {
+    "scene": "/home/yhjoo/projects/OpenFOAM/benchmark/scenes/a1_05.json",
+    "case": "/home/yhjoo/projects/OpenFOAM/cases/bench_a1_05",
+    "vtk": "/home/yhjoo/projects/OpenFOAM/cases/bench_a1_05/VTK/bench_a1_05_200/internal.vtu",
+    "room_bounds": {
+      "Lx": 5.811,
+      "Ly": 5.752,
+      "Lz": 2.968
+    },
+    "valid_count": 3177,
+    "valid_ratio": 0.980556
+  },
+  "predicted": {
+    "scene": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_05/floorplan/predicted_scene.json",
+    "case": "/home/yhjoo/projects/OpenFOAM/cases/eval_bench_a1_05_floorplan",
+    "vtk": "/home/yhjoo/projects/OpenFOAM/cases/eval_bench_a1_05_floorplan/VTK/eval_bench_a1_05_floorplan_200/internal.vtu",
+    "room_bounds": {
+      "Lx": 5.0,
+      "Ly": 5.0,
+      "Lz": 3.0
+    },
+    "valid_count": 3152,
+    "valid_ratio": 0.97284
+  },
+  "overlap": {
+    "count": 3125,
+    "ratio_vs_total": 0.964506,
+    "ratio_vs_union": 0.975343,
+    "union_count": 3204
+  },
+  "field_metrics": {
+    "velocity_vector": {
+      "mae_l2": 0.001607,
+      "rmse_l2": 0.002345,
+      "reference_rms": 0.002753,
+      "relative_rmse": 0.851732,
+      "mean_direction_cosine": 0.711896,
+      "direction_comparable_count": 3123
+    },
+    "velocity_magnitude": {
+      "mae": 0.001061,
+      "rmse": 0.001936,
+      "reference_rms": 0.002753,
+      "relative_rmse": 0.703267,
+      "reference_mean": 0.002038,
+      "predicted_mean": 0.00189
+    },
+    "pressure": {
+      "mae": 0.000164,
+      "rmse": 0.000164,
+      "reference_rms": 0.00099,
+      "relative_rmse": 0.166166,
+      "reference_mean": 0.00099,
+      "predicted_mean": 0.001154
+    }
+  },
+  "aggregate_score": {
+    "cfd_score": 0.740465,
+    "components": {
+      "overlap_ratio_vs_union": 0.975343,
+      "velocity_magnitude_similarity": 0.296733,
+      "velocity_direction_similarity": 0.855948,
+      "pressure_similarity": 0.833834
+    }
+  },
+  "runner": {
+    "command": [
+      "docker",
+      "run",
+      "--rm",
+      "-v",
+      "/home/yhjoo/projects/OpenFOAM:/home/yhjoo/projects/OpenFOAM",
+      "-w",
+      "/home/yhjoo/projects/OpenFOAM",
+      "openfoam-pipeline-local:latest",
+      "python3",
+      "/home/yhjoo/projects/OpenFOAM/scripts/compute_benchmark_cfd_metrics.py",
+      "--reference-scene",
+      "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_05/floorplan/reference_scene.json",
+      "--reference-case",
+      "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_05/floorplan/reference_case",
+      "--predicted-scene",
+      "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_05/floorplan/predicted_scene.json",
+      "--predicted-case",
+      "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_05/floorplan/predicted_case",
+      "--output",
+      "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_05/floorplan/cfd_metrics.json"
+    ],
+    "returncode": 0,
+    "stdout_tail": "      \"mean_direction_cosine\": 0.711896,\n      \"direction_comparable_count\": 3123\n    },\n    \"velocity_magnitude\": {\n      \"mae\": 0.001061,\n      \"rmse\": 0.001936,\n      \"reference_rms\": 0.002753,\n      \"relative_rmse\": 0.703267,\n      \"reference_mean\": 0.002038,\n      \"predicted_mean\": 0.00189\n    },\n    \"pressure\": {\n      \"mae\": 0.000164,\n      \"rmse\": 0.000164,\n      \"reference_rms\": 0.00099,\n      \"relative_rmse\": 0.166166,\n      \"reference_mean\": 0.00099,\n      \"predicted_mean\": 0.001154\n    }\n  },\n  \"aggregate_score\": {\n    \"cfd_score\": 0.740465,\n    \"components\": {\n      \"overlap_ratio_vs_union\": 0.975343,\n      \"velocity_magnitude_similarity\": 0.296733,\n      \"velocity_direction_similarity\": 0.855948,\n      \"pressure_similarity\": 0.833834\n    }\n  }\n}",
+    "stderr_tail": ""
+  }
+}

@@ -1,0 +1,114 @@
+{
+  "schema_version": "indoor_cfd_scene_v1",
+  "units": "m",
+  "coordinate_system": {
+    "origin": "room_min_corner",
+    "x": "west_to_east",
+    "y": "south_to_north",
+    "z": "floor_to_ceiling"
+  },
+  "room": {
+    "blocks": [
+      {
+        "origin": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "size": {
+          "dx": 6.0,
+          "dy": 2.0,
+          "dz": 2.0
+        }
+      },
+      {
+        "origin": {
+          "x": 6.0,
+          "y": 0.25,
+          "z": 0.0
+        },
+        "size": {
+          "dx": 4.0,
+          "dy": 1.5,
+          "dz": 1.5
+        }
+      }
+    ]
+  },
+  "obstacles": [
+    {
+      "id": "obs_001",
+      "type": "box",
+      "min": {
+        "x": 1.2,
+        "y": 0.4,
+        "z": 0.0
+      },
+      "size": {
+        "dx": 1.6,
+        "dy": 1.2,
+        "dz": 0.8
+      }
+    },
+    {
+      "id": "obs_002",
+      "type": "box",
+      "min": {
+        "x": 3.8,
+        "y": 0.5,
+        "z": 0.0
+      },
+      "size": {
+        "dx": 1.2,
+        "dy": 1.0,
+        "dz": 0.7
+      }
+    },
+    {
+      "id": "obs_003",
+      "type": "box",
+      "min": {
+        "x": 7.2,
+        "y": 0.5,
+        "z": 0.0
+      },
+      "size": {
+        "dx": 1.5,
+        "dy": 1.0,
+        "dz": 0.9
+      }
+    }
+  ],
+  "openings": [
+    {
+      "id": "inlet_001",
+      "type": "inlet",
+      "wall": "west",
+      "center": {
+        "u": 1.0,
+        "v": 1.5
+      },
+      "size": {
+        "du": 0.3,
+        "dv": 0.3
+      }
+    },
+    {
+      "id": "outlet_001",
+      "type": "outlet",
+      "wall": "north",
+      "center": {
+        "u": 4.5,
+        "v": 1.6
+      },
+      "size": {
+        "du": 0.6,
+        "dv": 0.2
+      }
+    }
+  ],
+  "meta": {
+    "scene_type": "corridor_with_alcove",
+    "description": "A stepped indoor plan consisting of a main rectangular block joined to a narrower extension, featuring three box obstacles and a transverse flow path from the west end to the north wall."
+  }
+}

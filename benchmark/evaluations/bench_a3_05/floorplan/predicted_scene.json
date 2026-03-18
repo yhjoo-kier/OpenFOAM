@@ -1,0 +1,114 @@
+{
+  "schema_version": "indoor_cfd_scene_v1",
+  "units": "m",
+  "coordinate_system": {
+    "origin": "room_min_corner",
+    "x": "west_to_east",
+    "y": "south_to_north",
+    "z": "floor_to_ceiling"
+  },
+  "room": {
+    "blocks": [
+      {
+        "origin": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "size": {
+          "dx": 6.0,
+          "dy": 6.0,
+          "dz": 3.0
+        }
+      },
+      {
+        "origin": {
+          "x": 6.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "size": {
+          "dx": 3.0,
+          "dy": 3.0,
+          "dz": 3.0
+        }
+      }
+    ]
+  },
+  "obstacles": [
+    {
+      "id": "obs_001",
+      "type": "box",
+      "min": {
+        "x": 7.0,
+        "y": 0.75,
+        "z": 0.0
+      },
+      "size": {
+        "dx": 1.0,
+        "dy": 1.5,
+        "dz": 1.0
+      }
+    },
+    {
+      "id": "obs_002",
+      "type": "box",
+      "min": {
+        "x": 0.5,
+        "y": 4.5,
+        "z": 0.0
+      },
+      "size": {
+        "dx": 0.8,
+        "dy": 0.8,
+        "dz": 0.8
+      }
+    },
+    {
+      "id": "obs_003",
+      "type": "box",
+      "min": {
+        "x": 4.5,
+        "y": 0.5,
+        "z": 0.0
+      },
+      "size": {
+        "dx": 0.6,
+        "dy": 0.6,
+        "dz": 1.2
+      }
+    }
+  ],
+  "openings": [
+    {
+      "id": "inlet_001",
+      "type": "inlet",
+      "wall": "west",
+      "center": {
+        "u": 1.5,
+        "v": 1.5
+      },
+      "size": {
+        "du": 0.6,
+        "dv": 0.6
+      }
+    },
+    {
+      "id": "outlet_001",
+      "type": "outlet",
+      "wall": "east",
+      "center": {
+        "u": 1.5,
+        "v": 1.5
+      },
+      "size": {
+        "du": 0.6,
+        "dv": 0.6
+      }
+    }
+  ],
+  "meta": {
+    "scene_type": "composite_l_shaped_room",
+    "description": "A two-block indoor layout with a large main hall connected to a smaller alcove containing a central box obstacle, with an inlet on the west and outlet on the east."
+  }
+}

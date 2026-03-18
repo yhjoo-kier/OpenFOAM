@@ -1,0 +1,86 @@
+{
+  "schema_version": "indoor_cfd_scene_v1",
+  "units": "m",
+  "coordinate_system": {
+    "origin": "room_min_corner",
+    "x": "west_to_east",
+    "y": "south_to_north",
+    "z": "floor_to_ceiling"
+  },
+  "room": {
+    "blocks": [
+      {
+        "origin": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "size": {
+          "dx": 5.0,
+          "dy": 4.0,
+          "dz": 3.0
+        }
+      },
+      {
+        "origin": {
+          "x": 5.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "size": {
+          "dx": 3.0,
+          "dy": 4.0,
+          "dz": 3.0
+        }
+      }
+    ]
+  },
+  "obstacles": [
+    {
+      "id": "obs_001",
+      "type": "box",
+      "min": {
+        "x": 6.2,
+        "y": 1.2,
+        "z": 0.0
+      },
+      "size": {
+        "dx": 1.0,
+        "dy": 1.6,
+        "dz": 1.4
+      }
+    }
+  ],
+  "openings": [
+    {
+      "id": "inlet_001",
+      "type": "inlet",
+      "wall": "west",
+      "center": {
+        "u": 2.0,
+        "v": 1.1
+      },
+      "size": {
+        "du": 0.6,
+        "dv": 0.6
+      }
+    },
+    {
+      "id": "outlet_001",
+      "type": "outlet",
+      "wall": "east",
+      "center": {
+        "u": 2.0,
+        "v": 2.1
+      },
+      "size": {
+        "du": 0.6,
+        "dv": 0.6
+      }
+    }
+  ],
+  "meta": {
+    "scene_type": "two_block_ventilation",
+    "description": "Two-compartment rectangular room with a shared opening, featuring a west wall inlet, an east wall outlet, and a primary floor-mounted obstacle in the eastern section."
+  }
+}

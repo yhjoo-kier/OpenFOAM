@@ -83,8 +83,16 @@ OpenFOAM Image-to-CFD 논문을 위한 benchmark dataset 파이프라인을 구�
 - [x] 직사각형 중간 난도 case `bench_a2_01`에 대해 5-view CLI complete sweep 실행 및 hard-case 편향 완화용 control 확보
 - [x] composite 초기 pilot 계열 case `bench_a3_01`에 대해 5-view CLI complete sweep 실행 및 empty composite hallucination 신호 확보
 - [x] rectangular multi-obstacle control case `bench_a2_02`에 대해 5-view CLI complete sweep 실행 및 opening-wall 민감도 신호 확보
+- [x] rectangular easy-tail case `bench_a1_05`에 대해 5-view CLI complete sweep 실행 및 late rectangular coverage 확보
+- [x] rectangular multi-obstacle tail case `bench_a2_04`에 대해 5-view CLI complete sweep 실행 및 repair-salvage 신호 확보
+- [x] rectangular dense-tail control case `bench_a2_05`에 대해 5-view CLI complete sweep 실행 및 late rectangular coverage 균형 확보
+- [x] `bench_a2_04/perspective` face-touching obstacle pair로 인한 repaired-scene meshing failure를 `repair_indoor_scene.py` clearance hardening으로 복구
 - [x] empty composite companion case `bench_a3_02`에 대해 5-view CLI complete sweep 실행 및 empty-composite control 신호 확장
 - [x] dense composite control case `bench_a4_01`에 대해 5-view CLI complete sweep 실행 및 A4 layout-fragile 신호 확보
+- [x] late composite tail `bench_a3_05`에 대해 5-view CLI complete sweep 실행 및 tail positive-control / hallucination-vs-CFD 신호 확보
+- [x] dense composite tail control `bench_a4_04`에 대해 5-view CLI complete sweep 실행 및 high-structure / mid-CFD 분리 신호 확보
+- [x] dense composite tail stress-control `bench_a4_05`에 대해 5-view CLI complete sweep 실행 및 section composite-collapse / repair-sidecar 경고 신호 확보
+- [x] frozen-20 image-conditioned CLI evaluation 100 tasks 전체를 100/100 success로 완료
 - [x] 생성 직후 invalid composite scene도 salvage 가능하도록 `run_indoor_stabilized.py` / `repair_indoor_scene.py` hardening
 - [x] 소규모 반복 실행용 `scripts/run_benchmark_evaluation_batch.py` 추가
 - [~] API backend 자체는 현재 cron shell에서 여전히 env 미설정(`GEMINI_API_KEY`, `GOOGLE_API_KEY` 모두 없음)이지만, benchmark 진행은 CLI backend로 더 이상 막히지 않음
@@ -121,6 +129,7 @@ OpenFOAM Image-to-CFD 논문을 위한 benchmark dataset 파이프라인을 구�
 - [x] frozen-20 subset 및 scaffold refresh 후속 note 작성
 - [x] normalized-grid CFD benchmark metric 관련 note 작성
 - [x] frozen-20 reference bundle robustness / failure-signals note 작성
+- [x] frozen-20 CLI evaluation 100/100 completion note 작성
 - [x] 안정적인 체크포인트에서 프로젝트 저장소에 의미 있는 커밋 수행 (push는 사용자 요청 시만)
 
 ## 현재 benchmark 스냅샷
@@ -134,9 +143,9 @@ OpenFOAM Image-to-CFD 논문을 위한 benchmark dataset 파이프라인을 구�
 - Reference CFD 상태: **20/20 성공**
 - Benchmark input-view export: `perspective`, `birdseye`, `floorplan`, `wireframe`, `section` 기준 **20/20 성공**
 - Evaluation scaffold: **100 tasks** (`20 scenes × 5 views`)
-- Image-conditioned evaluation 상태: **70 success**, **30 pending**
-  - complete case sweep 완료: `bench_a1_01` (rectangular baseline), `bench_a1_02` (easy rectangular positive-control), `bench_a1_03` (easy rectangular metric-gap case), `bench_a1_04` (reference solver-stress rectangular case), `bench_a2_01` (rectangular mid-difficulty control), `bench_a2_02` (rectangular multi-obstacle opening-sensitive control), `bench_a2_03` (dense-obstacle rectangular stress case), `bench_a3_01` (empty composite hallucination case), `bench_a3_02` (empty composite companion control), `bench_a3_03` (mid-difficulty composite case), `bench_a3_04` (composite representative), `bench_a4_01` (dense composite layout-fragile control), `bench_a4_02` (laminar-fallback composite stress case), `bench_a4_03` (obstacle-dense composite stress case) 모두 5-view 전부 성공 (CLI backend)
-  - API backend env는 현재 shell에서 여전히 비어 있으나, Gemini CLI cached auth 경로로 평가 진행 가능
+- Image-conditioned evaluation 상태: **100 success**, **0 pending**
+  - complete case sweep 완료: `bench_a1_01`, `bench_a1_02`, `bench_a1_03`, `bench_a1_04`, `bench_a1_05`, `bench_a2_01`, `bench_a2_02`, `bench_a2_03`, `bench_a2_04`, `bench_a2_05`, `bench_a3_01`, `bench_a3_02`, `bench_a3_03`, `bench_a3_04`, `bench_a3_05`, `bench_a4_01`, `bench_a4_02`, `bench_a4_03`, `bench_a4_04`, `bench_a4_05` 모두 5-view 전부 성공 (CLI backend)
+  - API backend env는 현재 shell에서 여전히 비어 있으나, Gemini CLI cached auth 경로만으로 frozen-20 evaluation 전체를 완료함
 - 실제 evaluation task는 geometry metric과 normalized-grid CFD metric (`cfd_metrics.json`)을 함께 기록함
 
 ## 주의해서 볼 케이스 / 신호
@@ -159,7 +168,11 @@ OpenFOAM Image-to-CFD 논문을 위한 benchmark dataset 파이프라인을 구�
   - 반면 `wireframe`/`section`은 hallucinated obstacle 3개에도 CFD score가 각각 `0.6606`, `0.6248`로 유지되어 empty composite 축에서 hallucination burden과 실제 CFD penalty를 계속 분리해서 읽어야 함을 강화한다.
 - `bench_a2_02`는 rectangular multi-obstacle control로, 5-view 모두 `original + robust`에서 직접 성공했지만 floorplan 외 4개 view가 opening wall을 하나 이상 틀렸다.
   - 그 결과 구조 점수는 `0.50~0.75` 범위이고 CFD 평균도 `0.3568`로 낮아, rectangular multi-obstacle case에서는 opening-wall fidelity가 실제 CFD 성능을 꽤 강하게 좌우한다.
-- 반면 새 `*_05` scene들은 전부 `mesh_size=0.35 + robust`에서 직접 성공했다.
+- 새 `bench_a1_05`, `bench_a2_05`는 전 view가 `mesh_size=0.35`에서 direct success였고, `bench_a2_04`도 5-view 전부 성공으로 정리됐지만 `perspective`는 repaired-scene salvage가 필요했다.
+- `bench_a2_04/perspective`는 original scene의 face-touching obstacle pair 때문에 Gmsh overlapping-facets 오류가 났고, repair clearance hardening 뒤 `repaired + robust`로 회수됐다.
+- `bench_a3_05`는 late composite tail positive-control로, 전 view가 composite room kind와 opening wall을 유지했음에도 `birdseye`/`floorplan`/`wireframe`은 obstacle 1 → 3 hallucination을 보였다. 그럼에도 `floorplan` CFD가 `0.6930`까지 올라가 A3 계열에서 opening/topology fidelity가 obstacle exactness보다 더 중요하다는 신호를 강화한다.
+- `bench_a4_04`는 dense composite tail control로, 5-view 모두 `original + robust + 0.35`에서 direct success였고 obstacle count `3`도 전부 맞췄다. 다만 `floorplan`의 구조 점수는 `1.0`인데 avg CFD는 `0.4664`에 머물러 dense composite에서는 고득점 structural recovery와 CFD fidelity가 분리될 수 있음을 보여준다.
+- `bench_a4_05`는 dense composite tail stress/control로, 5-view 모두 task-level success였지만 `perspective`/`birdseye`에 non-blocking repair sidecar error가 남았고 `section`은 composite room 붕괴(`room_kind_match = false`), opening-wall mismatch, obstacle 4 → 3 축소와 함께 이번 tail 최저 점수(`structural_score = 0.4167`, `cfd_score = 0.3311`)를 기록했다.
 
 ## 해석 메모
 
@@ -169,9 +182,8 @@ OpenFOAM Image-to-CFD 논문을 위한 benchmark dataset 파이프라인을 구�
 
 ## 다음 기본 액션
 
-1. 현재 complete sweep이 끝난 14개 case(`bench_a1_01`, `bench_a1_02`, `bench_a1_03`, `bench_a1_04`, `bench_a2_01`, `bench_a2_02`, `bench_a2_03`, `bench_a3_01`, `bench_a3_02`, `bench_a3_03`, `bench_a3_04`, `bench_a4_01`, `bench_a4_02`, `bench_a4_03`) 기준 aggregate summary를 유지하고, 남은 6개 pending case로 coverage를 넓힌다.
-2. composite case에서는 opening/topology-sensitive metric, rectangular multi-obstacle case에서는 occupancy/blockage-sensitive metric, empty composite case에서는 hallucinated-obstacle burden 분리 태그가 추가로 필요한지 판단한다.
-3. 다음 CLI batch는 남은 rectangular coverage(`bench_a1_05`, `bench_a2_04`, `bench_a2_05`)를 우선 채워 category balance를 정리한 뒤, late composite tail(`bench_a3_05`, `bench_a4_04`, `bench_a4_05`)로 넘어간다.
-4. API backend env(`GEMINI_API_KEY`/`GOOGLE_API_KEY`)는 별도 유지 과제로 남기되, benchmark 진행 자체는 CLI backend 기준으로 계속 전진한다.
-5. frozen-20 benchmark + CLI-eval 70/100 milestone에서 깔끔한 로컬 commit checkpoint를 유지한다.
-6. 이후 meshing/solver 변경이 생기면 stress subset (`bench_a2_01`, `bench_a4_02`, `bench_a2_03`, `bench_a4_03`, `bench_a1_04`)에 더해 easy positive-controls (`bench_a1_02`, `bench_a1_03`), empty composite controls (`bench_a3_01`, `bench_a3_02`), dense-composite control (`bench_a4_01`), rectangular opening-control (`bench_a2_02`)도 참고 신호로 본다.
+1. 100/100 completion 기준 aggregate summary와 comparison note를 유지하고, 논문용 Results/Discussion 문장으로 바로 옮길 수 있는 형태의 해석 메모를 정리한다.
+2. composite case에서는 opening/topology-sensitive metric, rectangular multi-obstacle case에서는 occupancy/blockage-sensitive metric, empty composite case에서는 hallucinated-obstacle burden 태그, 그리고 dense composite tail에서는 non-blocking repair-sidecar warning 태그가 추가로 필요한지 판단한다.
+3. API backend env(`GEMINI_API_KEY`/`GOOGLE_API_KEY`)는 별도 유지 과제로 남기되, benchmark core 결과는 CLI backend 기준으로 이미 완결되었으므로 이후 작업은 분석/문서화 중심으로 전환한다.
+4. 현재 100/100 completion 상태의 로컬 commit checkpoint를 깔끔하게 유지한다.
+5. 이후 meshing/solver 변경이 생기면 stress subset (`bench_a2_01`, `bench_a4_02`, `bench_a2_03`, `bench_a4_03`, `bench_a1_04`)에 더해 easy positive-controls (`bench_a1_02`, `bench_a1_03`, `bench_a1_05`), empty composite controls (`bench_a3_01`, `bench_a3_02`, `bench_a3_05`), dense-composite control (`bench_a4_01`, `bench_a4_04`), dense-composite tail stress/control (`bench_a4_05`), repaired-salvage control (`bench_a2_04`), rectangular opening-control (`bench_a2_02`)도 참고 신호로 본다.

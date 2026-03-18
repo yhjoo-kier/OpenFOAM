@@ -12,6 +12,8 @@ from __future__ import annotations
 import argparse
 import json
 import math
+import os
+import sys
 from pathlib import Path
 from typing import Any
 
@@ -323,7 +325,9 @@ def main() -> int:
     )
     write_json(args.output.expanduser().resolve(), payload)
     print(json.dumps(payload, indent=2))
-    return 0
+    sys.stdout.flush()
+    sys.stderr.flush()
+    os._exit(0)
 
 
 if __name__ == "__main__":

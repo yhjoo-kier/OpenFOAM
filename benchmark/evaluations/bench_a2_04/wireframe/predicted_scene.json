@@ -1,0 +1,93 @@
+{
+  "schema_version": "indoor_cfd_scene_v1",
+  "units": "m",
+  "coordinate_system": {
+    "origin": "room_min_corner",
+    "x": "west_to_east",
+    "y": "south_to_north",
+    "z": "floor_to_ceiling"
+  },
+  "room": {
+    "size": {
+      "Lx": 7.0,
+      "Ly": 4.5,
+      "Lz": 3.0
+    }
+  },
+  "obstacles": [
+    {
+      "id": "obs_001",
+      "type": "box",
+      "min": {
+        "x": 4.2,
+        "y": 2.5,
+        "z": 0.0
+      },
+      "size": {
+        "dx": 1.5,
+        "dy": 1.5,
+        "dz": 0.8
+      }
+    },
+    {
+      "id": "obs_002",
+      "type": "box",
+      "min": {
+        "x": 5.2,
+        "y": 0.8,
+        "z": 0.0
+      },
+      "size": {
+        "dx": 1.2,
+        "dy": 1.2,
+        "dz": 2.0
+      }
+    },
+    {
+      "id": "obs_003",
+      "type": "box",
+      "min": {
+        "x": 0.2,
+        "y": 3.8,
+        "z": 0.0
+      },
+      "size": {
+        "dx": 0.5,
+        "dy": 0.5,
+        "dz": 1.0
+      }
+    }
+  ],
+  "openings": [
+    {
+      "id": "inlet_001",
+      "type": "inlet",
+      "wall": "north",
+      "center": {
+        "u": 3.0,
+        "v": 2.2
+      },
+      "size": {
+        "du": 0.8,
+        "dv": 0.4
+      }
+    },
+    {
+      "id": "outlet_001",
+      "type": "outlet",
+      "wall": "south",
+      "center": {
+        "u": 3.5,
+        "v": 0.8
+      },
+      "size": {
+        "du": 0.8,
+        "dv": 0.4
+      }
+    }
+  ],
+  "meta": {
+    "scene_type": "standard_room_ventilation",
+    "description": "A rectangular room with an upper-wall inlet and lower-wall outlet, featuring two primary obstacles on the east side and a minor corner obstacle."
+  }
+}

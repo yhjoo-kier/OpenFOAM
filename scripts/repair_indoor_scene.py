@@ -45,6 +45,34 @@ def overlaps(a: dict, b: dict, margin: float = 0.0) -> bool:
     )
 
 
+def interval_gap(a0: float, a1: float, b0: float, b1: float) -> float:
+    if a1 < b0:
+        return b0 - a1
+    if b1 < a0:
+        return a0 - b1
+    return 0.0
+
+
+def interval_overlap(a0: float, a1: float, b0: float, b1: float) -> float:
+    return max(0.0, min(a1, b1) - max(a0, b0))
+
+
+def needs_obstacle_separation(a: dict, b: dict, clearance: float) -> bool:
+    amax = box_max(a)
+    bmax = box_max(b)
+    x_gap = interval_gap(a['min']['x'], amax['x'], b['min']['x'], bmax['x'])
+    y_gap = interval_gap(a['min']['y'], amax['y'], b['min']['y'], bmax['y'])
+    z_gap = interval_gap(a['min']['z'], amax['z'], b['min']['z'], bmax['z'])
+    x_overlap = interval_overlap(a['min']['x'], amax['x'], b['min']['x'], bmax['x'])
+    y_overlap = interval_overlap(a['min']['y'], amax['y'], b['min']['y'], bmax['y'])
+    z_overlap = interval_overlap(a['min']['z'], amax['z'], b['min']['z'], bmax['z'])
+    return (
+        (x_gap < clearance - EPS and y_overlap > EPS and z_overlap > EPS)
+        or (y_gap < clearance - EPS and x_overlap > EPS and z_overlap > EPS)
+        or (z_gap < clearance - EPS and x_overlap > EPS and y_overlap > EPS)
+    )
+
+
 def get_room_blocks(scene: dict) -> list[dict]:
     room = scene['room']
     if 'blocks' in room:
@@ -222,24 +250,52 @@ def push_apart_obstacles(scene: dict, clearance: float, max_iters: int = 20) -> 
         for i in range(len(obs)):
             for j in range(i + 1, len(obs)):
                 a, b = obs[i], obs[j]
-                if overlaps(a, b, margin=clearance):
-                    ta, tb = a['size']['dx'] * a['size']['dy'], b['size']['dx'] * b['size']['dy']
-                    target = a if ta < tb else b
-                    other = b if target is a else a
-                    support = obstacle_supporting_block(target, blocks) or max(blocks, key=lambda blk: blk['size']['dx'] * blk['size']['dy'])
-                    other_max = box_max(other)
-                    sx = support['origin']['x']
-                    sy = support['origin']['y']
-                    ex = sx + support['size']['dx']
-                    ey = sy + support['size']['dy']
-                    new_x = other_max['x'] + clearance
-                    if new_x + target['size']['dx'] <= ex - clearance:
+                if not needs_obstacle_separation(a, b, clearance):
+                    continue
+                ta, tb = a['size']['dx'] * a['size']['dy'], b['size']['dx'] * b['size']['dy']
+                target = a if ta < tb else b
+                other = b if target is a else a
+                support = obstacle_supporting_block(target, blocks) or max(blocks, key=lambda blk: blk['size']['dx'] * blk['size']['dy'])
+                other_max = box_max(other)
+                sx = support['origin']['x']
+                sy = support['origin']['y']
+                ex = sx + support['size']['dx']
+                ey = sy + support['size']['dy']
+                candidate_positions: list[tuple[float, float]] = []
+                candidate_positions.append((other['min']['x'] - clearance - target['size']['dx'], target['min']['y']))
+                candidate_positions.append((other_max['x'] + clearance, target['min']['y']))
+                candidate_positions.append((target['min']['x'], other['min']['y'] - clearance - target['size']['dy']))
+                candidate_positions.append((target['min']['x'], other_max['y'] + clearance))
+
+                valid_candidates: list[tuple[float, float, float]] = []
+                for cand_x, cand_y in candidate_positions:
+                    if cand_x < sx + clearance - EPS or cand_x + target['size']['dx'] > ex - clearance + EPS:
+                        continue
+                    if cand_y < sy + clearance - EPS or cand_y + target['size']['dy'] > ey - clearance + EPS:
+                        continue
+                    dx_move = cand_x - target['min']['x']
+                    dy_move = cand_y - target['min']['y']
+                    trial = deepcopy(target)
+                    trial['min']['x'] = cand_x
+                    trial['min']['y'] = cand_y
+                    if needs_obstacle_separation(trial, other, clearance):
+                        continue
+                    valid_candidates.append((dx_move * dx_move + dy_move * dy_move, cand_x, cand_y))
+
+                if valid_candidates:
+                    _, cand_x, cand_y = min(valid_candidates, key=lambda item: item[0])
+                    target['min']['x'] = cand_x
+                    target['min']['y'] = cand_y
+                else:
+                    new_x = other['min']['x'] - clearance - target['size']['dx']
+                    if new_x >= sx + clearance - EPS:
                         target['min']['x'] = new_x
                     else:
-                        new_y = other_max['y'] + clearance
-                        target['min']['y'] = min(max(new_y, sy + clearance), ey - clearance - target['size']['dy'])
-                    target['min']['z'] = clamp(target['min']['z'], 0.0, room['Lz'] - clearance - target['size']['dz'])
-                    moved = True
+                        new_y = other['min']['y'] - clearance - target['size']['dy']
+                        if new_y >= sy + clearance - EPS:
+                            target['min']['y'] = new_y
+                target['min']['z'] = clamp(target['min']['z'], 0.0, room['Lz'] - clearance - target['size']['dz'])
+                moved = True
         if not moved:
             break
 

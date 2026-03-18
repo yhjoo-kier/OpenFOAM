@@ -12,8 +12,7 @@
   "case_count": 20,
   "task_count": 100,
   "status_counts": {
-    "success": 70,
-    "pending": 30
+    "success": 100
   },
   "cases": [
     {
@@ -117,7 +116,7 @@
       "reference_results": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_05/birdseye/reference_results",
       "task_count": 5,
       "status_counts": {
-        "pending": 5
+        "success": 5
       },
       "case_root": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_05"
     },
@@ -201,7 +200,7 @@
       "reference_results": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_04/birdseye/reference_results",
       "task_count": 5,
       "status_counts": {
-        "pending": 5
+        "success": 5
       },
       "case_root": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_04"
     },
@@ -222,7 +221,7 @@
       "reference_results": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_05/birdseye/reference_results",
       "task_count": 5,
       "status_counts": {
-        "pending": 5
+        "success": 5
       },
       "case_root": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_05"
     },
@@ -327,7 +326,7 @@
       "reference_results": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_05/birdseye/reference_results",
       "task_count": 5,
       "status_counts": {
-        "pending": 5
+        "success": 5
       },
       "case_root": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_05"
     },
@@ -411,7 +410,7 @@
       "reference_results": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_04/birdseye/reference_results",
       "task_count": 5,
       "status_counts": {
-        "pending": 5
+        "success": 5
       },
       "case_root": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_04"
     },
@@ -432,7 +431,7 @@
       "reference_results": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_05/birdseye/reference_results",
       "task_count": 5,
       "status_counts": {
-        "pending": 5
+        "success": 5
       },
       "case_root": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_05"
     }
