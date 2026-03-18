@@ -55,7 +55,13 @@ Build and validate the benchmark dataset pipeline for the OpenFOAM Image-to-CFD 
 - [x] Prevent repair-stage crash from blocking composite runs in `run_indoor_stabilized.py`
 - [x] Update `visualize_indoor_case.py` for composite rooms
 - [x] Update `render_indoor_pipeline_3d.py` for composite rooms
+- [x] Ensure successful repaired-scene runs render against the actual scene JSON used by the solver
 - [-] Add proper composite-room support to `repair_indoor_scene.py` instead of fallback/skip behavior
+
+### D2. Evaluation scaffolding
+- [x] Create canonical `benchmark/evaluations/` scaffold for the frozen-12 × 5-view bundle
+- [x] Materialize per-task manifests/symlinks for 60 image-conditioned evaluation tasks
+- [x] Add a runner that executes one scaffolded evaluation task end-to-end and writes `evaluation_summary.json`
 
 ### D. Failure analysis / stabilization
 - [x] Batch-run the initial 8-scene pilot set
@@ -72,8 +78,10 @@ Build and validate the benchmark dataset pipeline for the OpenFOAM Image-to-CFD 
 - [x] Define canonical rendering output structure for dataset cases
 - [x] Add automated 2D rendering export path for benchmark scenes
 - [x] Separate render modes needed for paper benchmark (perspective / bird's-eye / floor-plan / wireframe)
+- [x] Add canonical `section` view export so the benchmark view set matches the paper-plan 5-view matrix
 - [x] Confirm one case can produce both reference CFD and benchmark input image assets cleanly
 - [x] Verify the integrated batch flow on the newly added `*_03` subset
+- [x] Refresh the frozen-12 rendering manifests to include `section` assets for all scenes
 
 ### F. Documentation / records
 - [x] Write generator progress note: `docs/26-03-18_benchmark_scene_generator.md`
@@ -103,5 +111,5 @@ Notes:
 
 1. Take a local commit checkpoint for the recovered 12-scene frozen subset.
 2. Expand the frozen benchmark generator toward the next tranche (16 or 20 scenes).
-3. Start `benchmark/evaluations/` scaffolding for image-conditioned pipeline comparisons against the new reference set.
+3. Start `benchmark/evaluations/` scaffolding for image-conditioned pipeline comparisons against the now 5-view frozen-12 reference set.
 4. Replace the remaining composite fallback/skip behavior in `repair_indoor_scene.py` with native composite repair logic.

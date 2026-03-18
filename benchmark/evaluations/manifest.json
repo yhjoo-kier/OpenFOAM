@@ -1,0 +1,2339 @@
+{
+  "ok": true,
+  "cases": [
+    {
+      "case_name": "bench_a1_01",
+      "category": "A1",
+      "room_kind": "rectangular",
+      "obstacle_count": 1,
+      "views": [
+        "birdseye",
+        "floorplan",
+        "perspective",
+        "section",
+        "wireframe"
+      ],
+      "reference_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_01/birdseye/reference_scene.json",
+      "reference_case": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_01/birdseye/reference_case",
+      "reference_results": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_01/birdseye/reference_results",
+      "task_count": 5,
+      "status_counts": {
+        "pending": 4,
+        "failed": 1
+      },
+      "case_root": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_01"
+    },
+    {
+      "case_name": "bench_a1_02",
+      "category": "A1",
+      "room_kind": "rectangular",
+      "obstacle_count": 0,
+      "views": [
+        "birdseye",
+        "floorplan",
+        "perspective",
+        "section",
+        "wireframe"
+      ],
+      "reference_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_02/birdseye/reference_scene.json",
+      "reference_case": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_02/birdseye/reference_case",
+      "reference_results": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_02/birdseye/reference_results",
+      "task_count": 5,
+      "status_counts": {
+        "pending": 5
+      },
+      "case_root": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_02"
+    },
+    {
+      "case_name": "bench_a1_03",
+      "category": "A1",
+      "room_kind": "rectangular",
+      "obstacle_count": 1,
+      "views": [
+        "birdseye",
+        "floorplan",
+        "perspective",
+        "section",
+        "wireframe"
+      ],
+      "reference_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_03/birdseye/reference_scene.json",
+      "reference_case": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_03/birdseye/reference_case",
+      "reference_results": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_03/birdseye/reference_results",
+      "task_count": 5,
+      "status_counts": {
+        "pending": 5
+      },
+      "case_root": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_03"
+    },
+    {
+      "case_name": "bench_a2_01",
+      "category": "A2",
+      "room_kind": "rectangular",
+      "obstacle_count": 2,
+      "views": [
+        "birdseye",
+        "floorplan",
+        "perspective",
+        "section",
+        "wireframe"
+      ],
+      "reference_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_01/birdseye/reference_scene.json",
+      "reference_case": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_01/birdseye/reference_case",
+      "reference_results": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_01/birdseye/reference_results",
+      "task_count": 5,
+      "status_counts": {
+        "pending": 5
+      },
+      "case_root": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_01"
+    },
+    {
+      "case_name": "bench_a2_02",
+      "category": "A2",
+      "room_kind": "rectangular",
+      "obstacle_count": 2,
+      "views": [
+        "birdseye",
+        "floorplan",
+        "perspective",
+        "section",
+        "wireframe"
+      ],
+      "reference_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_02/birdseye/reference_scene.json",
+      "reference_case": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_02/birdseye/reference_case",
+      "reference_results": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_02/birdseye/reference_results",
+      "task_count": 5,
+      "status_counts": {
+        "pending": 5
+      },
+      "case_root": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_02"
+    },
+    {
+      "case_name": "bench_a2_03",
+      "category": "A2",
+      "room_kind": "rectangular",
+      "obstacle_count": 3,
+      "views": [
+        "birdseye",
+        "floorplan",
+        "perspective",
+        "section",
+        "wireframe"
+      ],
+      "reference_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_03/birdseye/reference_scene.json",
+      "reference_case": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_03/birdseye/reference_case",
+      "reference_results": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_03/birdseye/reference_results",
+      "task_count": 5,
+      "status_counts": {
+        "pending": 5
+      },
+      "case_root": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_03"
+    },
+    {
+      "case_name": "bench_a3_01",
+      "category": "A3",
+      "room_kind": "composite",
+      "obstacle_count": 0,
+      "views": [
+        "birdseye",
+        "floorplan",
+        "perspective",
+        "section",
+        "wireframe"
+      ],
+      "reference_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_01/birdseye/reference_scene.json",
+      "reference_case": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_01/birdseye/reference_case",
+      "reference_results": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_01/birdseye/reference_results",
+      "task_count": 5,
+      "status_counts": {
+        "pending": 5
+      },
+      "case_root": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_01"
+    },
+    {
+      "case_name": "bench_a3_02",
+      "category": "A3",
+      "room_kind": "composite",
+      "obstacle_count": 0,
+      "views": [
+        "birdseye",
+        "floorplan",
+        "perspective",
+        "section",
+        "wireframe"
+      ],
+      "reference_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_02/birdseye/reference_scene.json",
+      "reference_case": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_02/birdseye/reference_case",
+      "reference_results": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_02/birdseye/reference_results",
+      "task_count": 5,
+      "status_counts": {
+        "pending": 5
+      },
+      "case_root": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_02"
+    },
+    {
+      "case_name": "bench_a3_03",
+      "category": "A3",
+      "room_kind": "composite",
+      "obstacle_count": 1,
+      "views": [
+        "birdseye",
+        "floorplan",
+        "perspective",
+        "section",
+        "wireframe"
+      ],
+      "reference_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_03/birdseye/reference_scene.json",
+      "reference_case": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_03/birdseye/reference_case",
+      "reference_results": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_03/birdseye/reference_results",
+      "task_count": 5,
+      "status_counts": {
+        "pending": 5
+      },
+      "case_root": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_03"
+    },
+    {
+      "case_name": "bench_a4_01",
+      "category": "A4",
+      "room_kind": "composite",
+      "obstacle_count": 3,
+      "views": [
+        "birdseye",
+        "floorplan",
+        "perspective",
+        "section",
+        "wireframe"
+      ],
+      "reference_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_01/birdseye/reference_scene.json",
+      "reference_case": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_01/birdseye/reference_case",
+      "reference_results": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_01/birdseye/reference_results",
+      "task_count": 5,
+      "status_counts": {
+        "pending": 5
+      },
+      "case_root": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_01"
+    },
+    {
+      "case_name": "bench_a4_02",
+      "category": "A4",
+      "room_kind": "composite",
+      "obstacle_count": 4,
+      "views": [
+        "birdseye",
+        "floorplan",
+        "perspective",
+        "section",
+        "wireframe"
+      ],
+      "reference_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_02/birdseye/reference_scene.json",
+      "reference_case": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_02/birdseye/reference_case",
+      "reference_results": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_02/birdseye/reference_results",
+      "task_count": 5,
+      "status_counts": {
+        "pending": 5
+      },
+      "case_root": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_02"
+    },
+    {
+      "case_name": "bench_a4_03",
+      "category": "A4",
+      "room_kind": "composite",
+      "obstacle_count": 3,
+      "views": [
+        "birdseye",
+        "floorplan",
+        "perspective",
+        "section",
+        "wireframe"
+      ],
+      "reference_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_03/birdseye/reference_scene.json",
+      "reference_case": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_03/birdseye/reference_case",
+      "reference_results": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_03/birdseye/reference_results",
+      "task_count": 5,
+      "status_counts": {
+        "pending": 5
+      },
+      "case_root": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_03"
+    }
+  ],
+  "tasks": [
+    {
+      "case_name": "bench_a1_01",
+      "category": "A1",
+      "variant_index": 1,
+      "room_kind": "rectangular",
+      "obstacle_count": 1,
+      "view": "birdseye",
+      "status": "pending",
+      "input_image": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_01/birdseye/input.png",
+      "reference_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_01/birdseye/reference_scene.json",
+      "reference_case": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_01/birdseye/reference_case",
+      "reference_results": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_01/birdseye/reference_results",
+      "expected_outputs": {
+        "predicted_scene_json": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_01/birdseye/predicted_scene.json",
+        "predicted_case_dir": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_01/birdseye/predicted_case",
+        "predicted_results_dir": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_01/birdseye/predicted_results",
+        "evaluation_summary_json": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_01/birdseye/evaluation_summary.json"
+      },
+      "reference_summary": {
+        "success": true,
+        "successful_preset": "robust",
+        "successful_mode": "RAS",
+        "successful_mesh_size": 0.35,
+        "attempt_count": 1,
+        "risk": "high",
+        "risk_score": 8,
+        "risk_reasons": [
+          "defaultFaces=3270",
+          "maxNonOrtho=87.67>85",
+          "severeNonOrthoFaces=20",
+          "aspectRatio=52.89>20"
+        ]
+      }
+    },
+    {
+      "case_name": "bench_a1_01",
+      "category": "A1",
+      "variant_index": 1,
+      "room_kind": "rectangular",
+      "obstacle_count": 1,
+      "view": "floorplan",
+      "status": "pending",
+      "input_image": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_01/floorplan/input.png",
+      "reference_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_01/floorplan/reference_scene.json",
+      "reference_case": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_01/floorplan/reference_case",
+      "reference_results": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_01/floorplan/reference_results",
+      "expected_outputs": {
+        "predicted_scene_json": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_01/floorplan/predicted_scene.json",
+        "predicted_case_dir": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_01/floorplan/predicted_case",
+        "predicted_results_dir": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_01/floorplan/predicted_results",
+        "evaluation_summary_json": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_01/floorplan/evaluation_summary.json"
+      },
+      "reference_summary": {
+        "success": true,
+        "successful_preset": "robust",
+        "successful_mode": "RAS",
+        "successful_mesh_size": 0.35,
+        "attempt_count": 1,
+        "risk": "high",
+        "risk_score": 8,
+        "risk_reasons": [
+          "defaultFaces=3270",
+          "maxNonOrtho=87.67>85",
+          "severeNonOrthoFaces=20",
+          "aspectRatio=52.89>20"
+        ]
+      }
+    },
+    {
+      "case_name": "bench_a1_01",
+      "category": "A1",
+      "variant_index": 1,
+      "room_kind": "rectangular",
+      "obstacle_count": 1,
+      "view": "perspective",
+      "status": "failed",
+      "input_image": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_01/perspective/input.png",
+      "reference_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_01/perspective/reference_scene.json",
+      "reference_case": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_01/perspective/reference_case",
+      "reference_results": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_01/perspective/reference_results",
+      "expected_outputs": {
+        "predicted_scene_json": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_01/perspective/predicted_scene.json",
+        "predicted_case_dir": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_01/perspective/predicted_case",
+        "predicted_results_dir": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_01/perspective/predicted_results",
+        "evaluation_summary_json": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_01/perspective/evaluation_summary.json"
+      },
+      "reference_summary": {
+        "success": true,
+        "successful_preset": "robust",
+        "successful_mode": "RAS",
+        "successful_mesh_size": 0.35,
+        "attempt_count": 1,
+        "risk": "high",
+        "risk_score": 8,
+        "risk_reasons": [
+          "defaultFaces=3270",
+          "maxNonOrtho=87.67>85",
+          "severeNonOrthoFaces=20",
+          "aspectRatio=52.89>20"
+        ]
+      },
+      "runner": {
+        "script": "/home/yhjoo/projects/OpenFOAM/scripts/run_benchmark_evaluation_task.py",
+        "started_at_epoch": 1773822617.1526668,
+        "backend": "api",
+        "model": "gemini-3.1-pro-preview",
+        "scenario": "Infer a solver-friendly indoor CFD scene from the provided image. Use the image as the primary evidence and keep the abstraction generic. Return the simplest stable room layout, a conservative obstacle set only if clearly visible, and exactly one inlet plus one outlet that are physically plausible for the inferred room.",
+        "end_time": 200,
+        "mesh_size": 0.35,
+        "finished_at_epoch": 1773822617.435536,
+        "run_name": "eval_bench_a1_01_perspective",
+        "returncode": 1,
+        "evaluation_summary_json": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_01/perspective/evaluation_summary.json"
+      },
+      "error": {
+        "returncode": 1,
+        "stderr_tail": "Traceback (most recent call last):\n  File \"/home/yhjoo/projects/OpenFOAM/scripts/run_indoor_stabilized.py\", line 776, in <module>\n    raise SystemExit(main())\n                     ^^^^^^\n  File \"/home/yhjoo/projects/OpenFOAM/scripts/run_indoor_stabilized.py\", line 586, in main\n    generation_result = run(gen_cmd, cwd=PROJECT_ROOT)\n                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/yhjoo/projects/OpenFOAM/scripts/run_indoor_stabilized.py\", line 239, in run\n    raise RuntimeError(f\"Command failed ({result.returncode}): {' '.join(map(str, cmd))}\")\nRuntimeError: Command failed (1): python3 /home/yhjoo/projects/OpenFOAM/scripts/generate_indoor_scene_with_gemini.py --backend api --scenario Infer a solver-friendly indoor CFD scene from the provided image. Use the image as the primary evidence and keep the abstraction generic. Return the simplest stable room layout, a conservative obstacle set only if clearly visible, and exactly one inlet plus one outlet that are physically plausible for the inferred room. --model gemini-3.1-pro-preview -o /home/yhjoo/projects/OpenFOAM/generated/eval_bench_a1_01_perspective.json --image /home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_01/perspective/input.png\n",
+        "stdout_tail": "+ python3 /home/yhjoo/projects/OpenFOAM/scripts/generate_indoor_scene_with_gemini.py --backend api --scenario Infer a solver-friendly indoor CFD scene from the provided image. Use the image as the primary evidence and keep the abstraction generic. Return the simplest stable room layout, a conservative obstacle set only if clearly visible, and exactly one inlet plus one outlet that are physically plausible for the inferred room. --model gemini-3.1-pro-preview -o /home/yhjoo/projects/OpenFOAM/generated/eval_bench_a1_01_perspective.json --image /home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_01/perspective/input.png\nTraceback (most recent call last):\n  File \"/home/yhjoo/projects/OpenFOAM/scripts/generate_indoor_scene_with_gemini.py\", line 485, in <module>\n    raise SystemExit(main())\n                     ^^^^^^\n  File \"/home/yhjoo/projects/OpenFOAM/scripts/generate_indoor_scene_with_gemini.py\", line 422, in main\n    ensure_gemini_available(args.backend)\n  File \"/home/yhjoo/projects/OpenFOAM/scripts/generate_indoor_scene_with_gemini.py\", line 150, in ensure_gemini_available\n    raise RuntimeError(\"GEMINI_API_KEY is not set for Gemini API backend\")\nRuntimeError: GEMINI_API_KEY is not set for Gemini API backend\n"
+      },
+      "last_started_at": "2026-03-18T08:30:54Z",
+      "run_request": {
+        "backend": "api",
+        "model": "gemini-3.1-pro-preview",
+        "mesh_size": 0.35,
+        "end_time": 250,
+        "solver_timeout": 600
+      },
+      "last_finished_at": "2026-03-18T08:30:54Z",
+      "last_run_name": "eval_bench_a1_01_perspective",
+      "evaluation_summary": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_01/perspective/evaluation_summary.json",
+      "actual_outputs": {
+        "predicted_scene_json": null,
+        "predicted_case_dir": null,
+        "predicted_results_dir": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_01/perspective/predicted_results"
+      }
+    },
+    {
+      "case_name": "bench_a1_01",
+      "category": "A1",
+      "variant_index": 1,
+      "room_kind": "rectangular",
+      "obstacle_count": 1,
+      "view": "section",
+      "status": "pending",
+      "input_image": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_01/section/input.png",
+      "reference_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_01/section/reference_scene.json",
+      "reference_case": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_01/section/reference_case",
+      "reference_results": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_01/section/reference_results",
+      "expected_outputs": {
+        "predicted_scene_json": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_01/section/predicted_scene.json",
+        "predicted_case_dir": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_01/section/predicted_case",
+        "predicted_results_dir": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_01/section/predicted_results",
+        "evaluation_summary_json": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_01/section/evaluation_summary.json"
+      },
+      "reference_summary": {
+        "success": true,
+        "successful_preset": "robust",
+        "successful_mode": "RAS",
+        "successful_mesh_size": 0.35,
+        "attempt_count": 1,
+        "risk": "high",
+        "risk_score": 8,
+        "risk_reasons": [
+          "defaultFaces=3270",
+          "maxNonOrtho=87.67>85",
+          "severeNonOrthoFaces=20",
+          "aspectRatio=52.89>20"
+        ]
+      }
+    },
+    {
+      "case_name": "bench_a1_01",
+      "category": "A1",
+      "variant_index": 1,
+      "room_kind": "rectangular",
+      "obstacle_count": 1,
+      "view": "wireframe",
+      "status": "pending",
+      "input_image": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_01/wireframe/input.png",
+      "reference_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_01/wireframe/reference_scene.json",
+      "reference_case": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_01/wireframe/reference_case",
+      "reference_results": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_01/wireframe/reference_results",
+      "expected_outputs": {
+        "predicted_scene_json": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_01/wireframe/predicted_scene.json",
+        "predicted_case_dir": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_01/wireframe/predicted_case",
+        "predicted_results_dir": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_01/wireframe/predicted_results",
+        "evaluation_summary_json": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_01/wireframe/evaluation_summary.json"
+      },
+      "reference_summary": {
+        "success": true,
+        "successful_preset": "robust",
+        "successful_mode": "RAS",
+        "successful_mesh_size": 0.35,
+        "attempt_count": 1,
+        "risk": "high",
+        "risk_score": 8,
+        "risk_reasons": [
+          "defaultFaces=3270",
+          "maxNonOrtho=87.67>85",
+          "severeNonOrthoFaces=20",
+          "aspectRatio=52.89>20"
+        ]
+      }
+    },
+    {
+      "case_name": "bench_a1_02",
+      "category": "A1",
+      "variant_index": 2,
+      "room_kind": "rectangular",
+      "obstacle_count": 0,
+      "view": "birdseye",
+      "status": "pending",
+      "input_image": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_02/birdseye/input.png",
+      "reference_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_02/birdseye/reference_scene.json",
+      "reference_case": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_02/birdseye/reference_case",
+      "reference_results": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_02/birdseye/reference_results",
+      "expected_outputs": {
+        "predicted_scene_json": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_02/birdseye/predicted_scene.json",
+        "predicted_case_dir": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_02/birdseye/predicted_case",
+        "predicted_results_dir": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_02/birdseye/predicted_results",
+        "evaluation_summary_json": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_02/birdseye/evaluation_summary.json"
+      },
+      "reference_summary": {
+        "success": true,
+        "successful_preset": "robust",
+        "successful_mode": "RAS",
+        "successful_mesh_size": 0.35,
+        "attempt_count": 1,
+        "risk": "high",
+        "risk_score": 8,
+        "risk_reasons": [
+          "defaultFaces=2742",
+          "maxNonOrtho=87.41>85",
+          "severeNonOrthoFaces=16",
+          "aspectRatio=45.96>20"
+        ]
+      }
+    },
+    {
+      "case_name": "bench_a1_02",
+      "category": "A1",
+      "variant_index": 2,
+      "room_kind": "rectangular",
+      "obstacle_count": 0,
+      "view": "floorplan",
+      "status": "pending",
+      "input_image": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_02/floorplan/input.png",
+      "reference_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_02/floorplan/reference_scene.json",
+      "reference_case": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_02/floorplan/reference_case",
+      "reference_results": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_02/floorplan/reference_results",
+      "expected_outputs": {
+        "predicted_scene_json": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_02/floorplan/predicted_scene.json",
+        "predicted_case_dir": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_02/floorplan/predicted_case",
+        "predicted_results_dir": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_02/floorplan/predicted_results",
+        "evaluation_summary_json": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_02/floorplan/evaluation_summary.json"
+      },
+      "reference_summary": {
+        "success": true,
+        "successful_preset": "robust",
+        "successful_mode": "RAS",
+        "successful_mesh_size": 0.35,
+        "attempt_count": 1,
+        "risk": "high",
+        "risk_score": 8,
+        "risk_reasons": [
+          "defaultFaces=2742",
+          "maxNonOrtho=87.41>85",
+          "severeNonOrthoFaces=16",
+          "aspectRatio=45.96>20"
+        ]
+      }
+    },
+    {
+      "case_name": "bench_a1_02",
+      "category": "A1",
+      "variant_index": 2,
+      "room_kind": "rectangular",
+      "obstacle_count": 0,
+      "view": "perspective",
+      "status": "pending",
+      "input_image": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_02/perspective/input.png",
+      "reference_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_02/perspective/reference_scene.json",
+      "reference_case": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_02/perspective/reference_case",
+      "reference_results": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_02/perspective/reference_results",
+      "expected_outputs": {
+        "predicted_scene_json": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_02/perspective/predicted_scene.json",
+        "predicted_case_dir": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_02/perspective/predicted_case",
+        "predicted_results_dir": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_02/perspective/predicted_results",
+        "evaluation_summary_json": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_02/perspective/evaluation_summary.json"
+      },
+      "reference_summary": {
+        "success": true,
+        "successful_preset": "robust",
+        "successful_mode": "RAS",
+        "successful_mesh_size": 0.35,
+        "attempt_count": 1,
+        "risk": "high",
+        "risk_score": 8,
+        "risk_reasons": [
+          "defaultFaces=2742",
+          "maxNonOrtho=87.41>85",
+          "severeNonOrthoFaces=16",
+          "aspectRatio=45.96>20"
+        ]
+      }
+    },
+    {
+      "case_name": "bench_a1_02",
+      "category": "A1",
+      "variant_index": 2,
+      "room_kind": "rectangular",
+      "obstacle_count": 0,
+      "view": "section",
+      "status": "pending",
+      "input_image": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_02/section/input.png",
+      "reference_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_02/section/reference_scene.json",
+      "reference_case": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_02/section/reference_case",
+      "reference_results": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_02/section/reference_results",
+      "expected_outputs": {
+        "predicted_scene_json": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_02/section/predicted_scene.json",
+        "predicted_case_dir": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_02/section/predicted_case",
+        "predicted_results_dir": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_02/section/predicted_results",
+        "evaluation_summary_json": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_02/section/evaluation_summary.json"
+      },
+      "reference_summary": {
+        "success": true,
+        "successful_preset": "robust",
+        "successful_mode": "RAS",
+        "successful_mesh_size": 0.35,
+        "attempt_count": 1,
+        "risk": "high",
+        "risk_score": 8,
+        "risk_reasons": [
+          "defaultFaces=2742",
+          "maxNonOrtho=87.41>85",
+          "severeNonOrthoFaces=16",
+          "aspectRatio=45.96>20"
+        ]
+      }
+    },
+    {
+      "case_name": "bench_a1_02",
+      "category": "A1",
+      "variant_index": 2,
+      "room_kind": "rectangular",
+      "obstacle_count": 0,
+      "view": "wireframe",
+      "status": "pending",
+      "input_image": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_02/wireframe/input.png",
+      "reference_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_02/wireframe/reference_scene.json",
+      "reference_case": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_02/wireframe/reference_case",
+      "reference_results": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_02/wireframe/reference_results",
+      "expected_outputs": {
+        "predicted_scene_json": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_02/wireframe/predicted_scene.json",
+        "predicted_case_dir": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_02/wireframe/predicted_case",
+        "predicted_results_dir": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_02/wireframe/predicted_results",
+        "evaluation_summary_json": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_02/wireframe/evaluation_summary.json"
+      },
+      "reference_summary": {
+        "success": true,
+        "successful_preset": "robust",
+        "successful_mode": "RAS",
+        "successful_mesh_size": 0.35,
+        "attempt_count": 1,
+        "risk": "high",
+        "risk_score": 8,
+        "risk_reasons": [
+          "defaultFaces=2742",
+          "maxNonOrtho=87.41>85",
+          "severeNonOrthoFaces=16",
+          "aspectRatio=45.96>20"
+        ]
+      }
+    },
+    {
+      "case_name": "bench_a1_03",
+      "category": "A1",
+      "variant_index": 3,
+      "room_kind": "rectangular",
+      "obstacle_count": 1,
+      "view": "birdseye",
+      "status": "pending",
+      "input_image": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_03/birdseye/input.png",
+      "reference_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_03/birdseye/reference_scene.json",
+      "reference_case": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_03/birdseye/reference_case",
+      "reference_results": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_03/birdseye/reference_results",
+      "expected_outputs": {
+        "predicted_scene_json": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_03/birdseye/predicted_scene.json",
+        "predicted_case_dir": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_03/birdseye/predicted_case",
+        "predicted_results_dir": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_03/birdseye/predicted_results",
+        "evaluation_summary_json": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_03/birdseye/evaluation_summary.json"
+      },
+      "reference_summary": {
+        "success": true,
+        "successful_preset": "robust",
+        "successful_mode": "RAS",
+        "successful_mesh_size": 0.35,
+        "attempt_count": 1,
+        "risk": "high",
+        "risk_score": 8,
+        "risk_reasons": [
+          "defaultFaces=2956",
+          "maxNonOrtho=87.88>85",
+          "severeNonOrthoFaces=18",
+          "aspectRatio=53.97>20"
+        ]
+      }
+    },
+    {
+      "case_name": "bench_a1_03",
+      "category": "A1",
+      "variant_index": 3,
+      "room_kind": "rectangular",
+      "obstacle_count": 1,
+      "view": "floorplan",
+      "status": "pending",
+      "input_image": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_03/floorplan/input.png",
+      "reference_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_03/floorplan/reference_scene.json",
+      "reference_case": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_03/floorplan/reference_case",
+      "reference_results": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_03/floorplan/reference_results",
+      "expected_outputs": {
+        "predicted_scene_json": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_03/floorplan/predicted_scene.json",
+        "predicted_case_dir": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_03/floorplan/predicted_case",
+        "predicted_results_dir": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_03/floorplan/predicted_results",
+        "evaluation_summary_json": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_03/floorplan/evaluation_summary.json"
+      },
+      "reference_summary": {
+        "success": true,
+        "successful_preset": "robust",
+        "successful_mode": "RAS",
+        "successful_mesh_size": 0.35,
+        "attempt_count": 1,
+        "risk": "high",
+        "risk_score": 8,
+        "risk_reasons": [
+          "defaultFaces=2956",
+          "maxNonOrtho=87.88>85",
+          "severeNonOrthoFaces=18",
+          "aspectRatio=53.97>20"
+        ]
+      }
+    },
+    {
+      "case_name": "bench_a1_03",
+      "category": "A1",
+      "variant_index": 3,
+      "room_kind": "rectangular",
+      "obstacle_count": 1,
+      "view": "perspective",
+      "status": "pending",
+      "input_image": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_03/perspective/input.png",
+      "reference_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_03/perspective/reference_scene.json",
+      "reference_case": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_03/perspective/reference_case",
+      "reference_results": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_03/perspective/reference_results",
+      "expected_outputs": {
+        "predicted_scene_json": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_03/perspective/predicted_scene.json",
+        "predicted_case_dir": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_03/perspective/predicted_case",
+        "predicted_results_dir": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_03/perspective/predicted_results",
+        "evaluation_summary_json": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_03/perspective/evaluation_summary.json"
+      },
+      "reference_summary": {
+        "success": true,
+        "successful_preset": "robust",
+        "successful_mode": "RAS",
+        "successful_mesh_size": 0.35,
+        "attempt_count": 1,
+        "risk": "high",
+        "risk_score": 8,
+        "risk_reasons": [
+          "defaultFaces=2956",
+          "maxNonOrtho=87.88>85",
+          "severeNonOrthoFaces=18",
+          "aspectRatio=53.97>20"
+        ]
+      }
+    },
+    {
+      "case_name": "bench_a1_03",
+      "category": "A1",
+      "variant_index": 3,
+      "room_kind": "rectangular",
+      "obstacle_count": 1,
+      "view": "section",
+      "status": "pending",
+      "input_image": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_03/section/input.png",
+      "reference_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_03/section/reference_scene.json",
+      "reference_case": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_03/section/reference_case",
+      "reference_results": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_03/section/reference_results",
+      "expected_outputs": {
+        "predicted_scene_json": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_03/section/predicted_scene.json",
+        "predicted_case_dir": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_03/section/predicted_case",
+        "predicted_results_dir": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_03/section/predicted_results",
+        "evaluation_summary_json": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_03/section/evaluation_summary.json"
+      },
+      "reference_summary": {
+        "success": true,
+        "successful_preset": "robust",
+        "successful_mode": "RAS",
+        "successful_mesh_size": 0.35,
+        "attempt_count": 1,
+        "risk": "high",
+        "risk_score": 8,
+        "risk_reasons": [
+          "defaultFaces=2956",
+          "maxNonOrtho=87.88>85",
+          "severeNonOrthoFaces=18",
+          "aspectRatio=53.97>20"
+        ]
+      }
+    },
+    {
+      "case_name": "bench_a1_03",
+      "category": "A1",
+      "variant_index": 3,
+      "room_kind": "rectangular",
+      "obstacle_count": 1,
+      "view": "wireframe",
+      "status": "pending",
+      "input_image": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_03/wireframe/input.png",
+      "reference_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_03/wireframe/reference_scene.json",
+      "reference_case": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_03/wireframe/reference_case",
+      "reference_results": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_03/wireframe/reference_results",
+      "expected_outputs": {
+        "predicted_scene_json": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_03/wireframe/predicted_scene.json",
+        "predicted_case_dir": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_03/wireframe/predicted_case",
+        "predicted_results_dir": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_03/wireframe/predicted_results",
+        "evaluation_summary_json": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_03/wireframe/evaluation_summary.json"
+      },
+      "reference_summary": {
+        "success": true,
+        "successful_preset": "robust",
+        "successful_mode": "RAS",
+        "successful_mesh_size": 0.35,
+        "attempt_count": 1,
+        "risk": "high",
+        "risk_score": 8,
+        "risk_reasons": [
+          "defaultFaces=2956",
+          "maxNonOrtho=87.88>85",
+          "severeNonOrthoFaces=18",
+          "aspectRatio=53.97>20"
+        ]
+      }
+    },
+    {
+      "case_name": "bench_a2_01",
+      "category": "A2",
+      "variant_index": 1,
+      "room_kind": "rectangular",
+      "obstacle_count": 2,
+      "view": "birdseye",
+      "status": "pending",
+      "input_image": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_01/birdseye/input.png",
+      "reference_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_01/birdseye/reference_scene.json",
+      "reference_case": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_01/birdseye/reference_case",
+      "reference_results": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_01/birdseye/reference_results",
+      "expected_outputs": {
+        "predicted_scene_json": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_01/birdseye/predicted_scene.json",
+        "predicted_case_dir": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_01/birdseye/predicted_case",
+        "predicted_results_dir": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_01/birdseye/predicted_results",
+        "evaluation_summary_json": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_01/birdseye/evaluation_summary.json"
+      },
+      "reference_summary": {
+        "success": true,
+        "successful_preset": "conservative",
+        "successful_mode": "RAS",
+        "successful_mesh_size": 0.35,
+        "attempt_count": 4,
+        "risk": "high",
+        "risk_score": 8,
+        "risk_reasons": [
+          "defaultFaces=3556",
+          "maxNonOrtho=86.71>85",
+          "severeNonOrthoFaces=16",
+          "aspectRatio=39.34>20"
+        ]
+      }
+    },
+    {
+      "case_name": "bench_a2_01",
+      "category": "A2",
+      "variant_index": 1,
+      "room_kind": "rectangular",
+      "obstacle_count": 2,
+      "view": "floorplan",
+      "status": "pending",
+      "input_image": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_01/floorplan/input.png",
+      "reference_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_01/floorplan/reference_scene.json",
+      "reference_case": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_01/floorplan/reference_case",
+      "reference_results": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_01/floorplan/reference_results",
+      "expected_outputs": {
+        "predicted_scene_json": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_01/floorplan/predicted_scene.json",
+        "predicted_case_dir": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_01/floorplan/predicted_case",
+        "predicted_results_dir": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_01/floorplan/predicted_results",
+        "evaluation_summary_json": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_01/floorplan/evaluation_summary.json"
+      },
+      "reference_summary": {
+        "success": true,
+        "successful_preset": "conservative",
+        "successful_mode": "RAS",
+        "successful_mesh_size": 0.35,
+        "attempt_count": 4,
+        "risk": "high",
+        "risk_score": 8,
+        "risk_reasons": [
+          "defaultFaces=3556",
+          "maxNonOrtho=86.71>85",
+          "severeNonOrthoFaces=16",
+          "aspectRatio=39.34>20"
+        ]
+      }
+    },
+    {
+      "case_name": "bench_a2_01",
+      "category": "A2",
+      "variant_index": 1,
+      "room_kind": "rectangular",
+      "obstacle_count": 2,
+      "view": "perspective",
+      "status": "pending",
+      "input_image": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_01/perspective/input.png",
+      "reference_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_01/perspective/reference_scene.json",
+      "reference_case": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_01/perspective/reference_case",
+      "reference_results": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_01/perspective/reference_results",
+      "expected_outputs": {
+        "predicted_scene_json": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_01/perspective/predicted_scene.json",
+        "predicted_case_dir": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_01/perspective/predicted_case",
+        "predicted_results_dir": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_01/perspective/predicted_results",
+        "evaluation_summary_json": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_01/perspective/evaluation_summary.json"
+      },
+      "reference_summary": {
+        "success": true,
+        "successful_preset": "conservative",
+        "successful_mode": "RAS",
+        "successful_mesh_size": 0.35,
+        "attempt_count": 4,
+        "risk": "high",
+        "risk_score": 8,
+        "risk_reasons": [
+          "defaultFaces=3556",
+          "maxNonOrtho=86.71>85",
+          "severeNonOrthoFaces=16",
+          "aspectRatio=39.34>20"
+        ]
+      }
+    },
+    {
+      "case_name": "bench_a2_01",
+      "category": "A2",
+      "variant_index": 1,
+      "room_kind": "rectangular",
+      "obstacle_count": 2,
+      "view": "section",
+      "status": "pending",
+      "input_image": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_01/section/input.png",
+      "reference_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_01/section/reference_scene.json",
+      "reference_case": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_01/section/reference_case",
+      "reference_results": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_01/section/reference_results",
+      "expected_outputs": {
+        "predicted_scene_json": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_01/section/predicted_scene.json",
+        "predicted_case_dir": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_01/section/predicted_case",
+        "predicted_results_dir": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_01/section/predicted_results",
+        "evaluation_summary_json": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_01/section/evaluation_summary.json"
+      },
+      "reference_summary": {
+        "success": true,
+        "successful_preset": "conservative",
+        "successful_mode": "RAS",
+        "successful_mesh_size": 0.35,
+        "attempt_count": 4,
+        "risk": "high",
+        "risk_score": 8,
+        "risk_reasons": [
+          "defaultFaces=3556",
+          "maxNonOrtho=86.71>85",
+          "severeNonOrthoFaces=16",
+          "aspectRatio=39.34>20"
+        ]
+      }
+    },
+    {
+      "case_name": "bench_a2_01",
+      "category": "A2",
+      "variant_index": 1,
+      "room_kind": "rectangular",
+      "obstacle_count": 2,
+      "view": "wireframe",
+      "status": "pending",
+      "input_image": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_01/wireframe/input.png",
+      "reference_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_01/wireframe/reference_scene.json",
+      "reference_case": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_01/wireframe/reference_case",
+      "reference_results": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_01/wireframe/reference_results",
+      "expected_outputs": {
+        "predicted_scene_json": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_01/wireframe/predicted_scene.json",
+        "predicted_case_dir": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_01/wireframe/predicted_case",
+        "predicted_results_dir": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_01/wireframe/predicted_results",
+        "evaluation_summary_json": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_01/wireframe/evaluation_summary.json"
+      },
+      "reference_summary": {
+        "success": true,
+        "successful_preset": "conservative",
+        "successful_mode": "RAS",
+        "successful_mesh_size": 0.35,
+        "attempt_count": 4,
+        "risk": "high",
+        "risk_score": 8,
+        "risk_reasons": [
+          "defaultFaces=3556",
+          "maxNonOrtho=86.71>85",
+          "severeNonOrthoFaces=16",
+          "aspectRatio=39.34>20"
+        ]
+      }
+    },
+    {
+      "case_name": "bench_a2_02",
+      "category": "A2",
+      "variant_index": 2,
+      "room_kind": "rectangular",
+      "obstacle_count": 2,
+      "view": "birdseye",
+      "status": "pending",
+      "input_image": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_02/birdseye/input.png",
+      "reference_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_02/birdseye/reference_scene.json",
+      "reference_case": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_02/birdseye/reference_case",
+      "reference_results": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_02/birdseye/reference_results",
+      "expected_outputs": {
+        "predicted_scene_json": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_02/birdseye/predicted_scene.json",
+        "predicted_case_dir": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_02/birdseye/predicted_case",
+        "predicted_results_dir": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_02/birdseye/predicted_results",
+        "evaluation_summary_json": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_02/birdseye/evaluation_summary.json"
+      },
+      "reference_summary": {
+        "success": true,
+        "successful_preset": "robust",
+        "successful_mode": "RAS",
+        "successful_mesh_size": 0.35,
+        "attempt_count": 1,
+        "risk": "high",
+        "risk_score": 8,
+        "risk_reasons": [
+          "defaultFaces=3506",
+          "maxNonOrtho=88.08>85",
+          "severeNonOrthoFaces=16",
+          "aspectRatio=59.58>20"
+        ]
+      }
+    },
+    {
+      "case_name": "bench_a2_02",
+      "category": "A2",
+      "variant_index": 2,
+      "room_kind": "rectangular",
+      "obstacle_count": 2,
+      "view": "floorplan",
+      "status": "pending",
+      "input_image": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_02/floorplan/input.png",
+      "reference_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_02/floorplan/reference_scene.json",
+      "reference_case": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_02/floorplan/reference_case",
+      "reference_results": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_02/floorplan/reference_results",
+      "expected_outputs": {
+        "predicted_scene_json": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_02/floorplan/predicted_scene.json",
+        "predicted_case_dir": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_02/floorplan/predicted_case",
+        "predicted_results_dir": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_02/floorplan/predicted_results",
+        "evaluation_summary_json": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_02/floorplan/evaluation_summary.json"
+      },
+      "reference_summary": {
+        "success": true,
+        "successful_preset": "robust",
+        "successful_mode": "RAS",
+        "successful_mesh_size": 0.35,
+        "attempt_count": 1,
+        "risk": "high",
+        "risk_score": 8,
+        "risk_reasons": [
+          "defaultFaces=3506",
+          "maxNonOrtho=88.08>85",
+          "severeNonOrthoFaces=16",
+          "aspectRatio=59.58>20"
+        ]
+      }
+    },
+    {
+      "case_name": "bench_a2_02",
+      "category": "A2",
+      "variant_index": 2,
+      "room_kind": "rectangular",
+      "obstacle_count": 2,
+      "view": "perspective",
+      "status": "pending",
+      "input_image": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_02/perspective/input.png",
+      "reference_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_02/perspective/reference_scene.json",
+      "reference_case": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_02/perspective/reference_case",
+      "reference_results": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_02/perspective/reference_results",
+      "expected_outputs": {
+        "predicted_scene_json": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_02/perspective/predicted_scene.json",
+        "predicted_case_dir": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_02/perspective/predicted_case",
+        "predicted_results_dir": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_02/perspective/predicted_results",
+        "evaluation_summary_json": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_02/perspective/evaluation_summary.json"
+      },
+      "reference_summary": {
+        "success": true,
+        "successful_preset": "robust",
+        "successful_mode": "RAS",
+        "successful_mesh_size": 0.35,
+        "attempt_count": 1,
+        "risk": "high",
+        "risk_score": 8,
+        "risk_reasons": [
+          "defaultFaces=3506",
+          "maxNonOrtho=88.08>85",
+          "severeNonOrthoFaces=16",
+          "aspectRatio=59.58>20"
+        ]
+      }
+    },
+    {
+      "case_name": "bench_a2_02",
+      "category": "A2",
+      "variant_index": 2,
+      "room_kind": "rectangular",
+      "obstacle_count": 2,
+      "view": "section",
+      "status": "pending",
+      "input_image": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_02/section/input.png",
+      "reference_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_02/section/reference_scene.json",
+      "reference_case": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_02/section/reference_case",
+      "reference_results": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_02/section/reference_results",
+      "expected_outputs": {
+        "predicted_scene_json": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_02/section/predicted_scene.json",
+        "predicted_case_dir": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_02/section/predicted_case",
+        "predicted_results_dir": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_02/section/predicted_results",
+        "evaluation_summary_json": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_02/section/evaluation_summary.json"
+      },
+      "reference_summary": {
+        "success": true,
+        "successful_preset": "robust",
+        "successful_mode": "RAS",
+        "successful_mesh_size": 0.35,
+        "attempt_count": 1,
+        "risk": "high",
+        "risk_score": 8,
+        "risk_reasons": [
+          "defaultFaces=3506",
+          "maxNonOrtho=88.08>85",
+          "severeNonOrthoFaces=16",
+          "aspectRatio=59.58>20"
+        ]
+      }
+    },
+    {
+      "case_name": "bench_a2_02",
+      "category": "A2",
+      "variant_index": 2,
+      "room_kind": "rectangular",
+      "obstacle_count": 2,
+      "view": "wireframe",
+      "status": "pending",
+      "input_image": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_02/wireframe/input.png",
+      "reference_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_02/wireframe/reference_scene.json",
+      "reference_case": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_02/wireframe/reference_case",
+      "reference_results": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_02/wireframe/reference_results",
+      "expected_outputs": {
+        "predicted_scene_json": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_02/wireframe/predicted_scene.json",
+        "predicted_case_dir": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_02/wireframe/predicted_case",
+        "predicted_results_dir": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_02/wireframe/predicted_results",
+        "evaluation_summary_json": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_02/wireframe/evaluation_summary.json"
+      },
+      "reference_summary": {
+        "success": true,
+        "successful_preset": "robust",
+        "successful_mode": "RAS",
+        "successful_mesh_size": 0.35,
+        "attempt_count": 1,
+        "risk": "high",
+        "risk_score": 8,
+        "risk_reasons": [
+          "defaultFaces=3506",
+          "maxNonOrtho=88.08>85",
+          "severeNonOrthoFaces=16",
+          "aspectRatio=59.58>20"
+        ]
+      }
+    },
+    {
+      "case_name": "bench_a2_03",
+      "category": "A2",
+      "variant_index": 3,
+      "room_kind": "rectangular",
+      "obstacle_count": 3,
+      "view": "birdseye",
+      "status": "pending",
+      "input_image": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_03/birdseye/input.png",
+      "reference_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_03/birdseye/reference_scene.json",
+      "reference_case": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_03/birdseye/reference_case",
+      "reference_results": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_03/birdseye/reference_results",
+      "expected_outputs": {
+        "predicted_scene_json": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_03/birdseye/predicted_scene.json",
+        "predicted_case_dir": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_03/birdseye/predicted_case",
+        "predicted_results_dir": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_03/birdseye/predicted_results",
+        "evaluation_summary_json": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_03/birdseye/evaluation_summary.json"
+      },
+      "reference_summary": {
+        "success": true,
+        "successful_preset": "robust",
+        "successful_mode": "RAS",
+        "successful_mesh_size": 0.25,
+        "attempt_count": 2,
+        "risk": "high",
+        "risk_score": 8,
+        "risk_reasons": [
+          "defaultFaces=6112",
+          "maxNonOrtho=86.78>85",
+          "severeNonOrthoFaces=20",
+          "aspectRatio=36.23>20"
+        ]
+      }
+    },
+    {
+      "case_name": "bench_a2_03",
+      "category": "A2",
+      "variant_index": 3,
+      "room_kind": "rectangular",
+      "obstacle_count": 3,
+      "view": "floorplan",
+      "status": "pending",
+      "input_image": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_03/floorplan/input.png",
+      "reference_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_03/floorplan/reference_scene.json",
+      "reference_case": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_03/floorplan/reference_case",
+      "reference_results": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_03/floorplan/reference_results",
+      "expected_outputs": {
+        "predicted_scene_json": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_03/floorplan/predicted_scene.json",
+        "predicted_case_dir": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_03/floorplan/predicted_case",
+        "predicted_results_dir": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_03/floorplan/predicted_results",
+        "evaluation_summary_json": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_03/floorplan/evaluation_summary.json"
+      },
+      "reference_summary": {
+        "success": true,
+        "successful_preset": "robust",
+        "successful_mode": "RAS",
+        "successful_mesh_size": 0.25,
+        "attempt_count": 2,
+        "risk": "high",
+        "risk_score": 8,
+        "risk_reasons": [
+          "defaultFaces=6112",
+          "maxNonOrtho=86.78>85",
+          "severeNonOrthoFaces=20",
+          "aspectRatio=36.23>20"
+        ]
+      }
+    },
+    {
+      "case_name": "bench_a2_03",
+      "category": "A2",
+      "variant_index": 3,
+      "room_kind": "rectangular",
+      "obstacle_count": 3,
+      "view": "perspective",
+      "status": "pending",
+      "input_image": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_03/perspective/input.png",
+      "reference_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_03/perspective/reference_scene.json",
+      "reference_case": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_03/perspective/reference_case",
+      "reference_results": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_03/perspective/reference_results",
+      "expected_outputs": {
+        "predicted_scene_json": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_03/perspective/predicted_scene.json",
+        "predicted_case_dir": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_03/perspective/predicted_case",
+        "predicted_results_dir": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_03/perspective/predicted_results",
+        "evaluation_summary_json": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_03/perspective/evaluation_summary.json"
+      },
+      "reference_summary": {
+        "success": true,
+        "successful_preset": "robust",
+        "successful_mode": "RAS",
+        "successful_mesh_size": 0.25,
+        "attempt_count": 2,
+        "risk": "high",
+        "risk_score": 8,
+        "risk_reasons": [
+          "defaultFaces=6112",
+          "maxNonOrtho=86.78>85",
+          "severeNonOrthoFaces=20",
+          "aspectRatio=36.23>20"
+        ]
+      }
+    },
+    {
+      "case_name": "bench_a2_03",
+      "category": "A2",
+      "variant_index": 3,
+      "room_kind": "rectangular",
+      "obstacle_count": 3,
+      "view": "section",
+      "status": "pending",
+      "input_image": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_03/section/input.png",
+      "reference_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_03/section/reference_scene.json",
+      "reference_case": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_03/section/reference_case",
+      "reference_results": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_03/section/reference_results",
+      "expected_outputs": {
+        "predicted_scene_json": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_03/section/predicted_scene.json",
+        "predicted_case_dir": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_03/section/predicted_case",
+        "predicted_results_dir": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_03/section/predicted_results",
+        "evaluation_summary_json": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_03/section/evaluation_summary.json"
+      },
+      "reference_summary": {
+        "success": true,
+        "successful_preset": "robust",
+        "successful_mode": "RAS",
+        "successful_mesh_size": 0.25,
+        "attempt_count": 2,
+        "risk": "high",
+        "risk_score": 8,
+        "risk_reasons": [
+          "defaultFaces=6112",
+          "maxNonOrtho=86.78>85",
+          "severeNonOrthoFaces=20",
+          "aspectRatio=36.23>20"
+        ]
+      }
+    },
+    {
+      "case_name": "bench_a2_03",
+      "category": "A2",
+      "variant_index": 3,
+      "room_kind": "rectangular",
+      "obstacle_count": 3,
+      "view": "wireframe",
+      "status": "pending",
+      "input_image": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_03/wireframe/input.png",
+      "reference_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_03/wireframe/reference_scene.json",
+      "reference_case": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_03/wireframe/reference_case",
+      "reference_results": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_03/wireframe/reference_results",
+      "expected_outputs": {
+        "predicted_scene_json": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_03/wireframe/predicted_scene.json",
+        "predicted_case_dir": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_03/wireframe/predicted_case",
+        "predicted_results_dir": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_03/wireframe/predicted_results",
+        "evaluation_summary_json": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_03/wireframe/evaluation_summary.json"
+      },
+      "reference_summary": {
+        "success": true,
+        "successful_preset": "robust",
+        "successful_mode": "RAS",
+        "successful_mesh_size": 0.25,
+        "attempt_count": 2,
+        "risk": "high",
+        "risk_score": 8,
+        "risk_reasons": [
+          "defaultFaces=6112",
+          "maxNonOrtho=86.78>85",
+          "severeNonOrthoFaces=20",
+          "aspectRatio=36.23>20"
+        ]
+      }
+    },
+    {
+      "case_name": "bench_a3_01",
+      "category": "A3",
+      "variant_index": 1,
+      "room_kind": "composite",
+      "obstacle_count": 0,
+      "view": "birdseye",
+      "status": "pending",
+      "input_image": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_01/birdseye/input.png",
+      "reference_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_01/birdseye/reference_scene.json",
+      "reference_case": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_01/birdseye/reference_case",
+      "reference_results": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_01/birdseye/reference_results",
+      "expected_outputs": {
+        "predicted_scene_json": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_01/birdseye/predicted_scene.json",
+        "predicted_case_dir": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_01/birdseye/predicted_case",
+        "predicted_results_dir": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_01/birdseye/predicted_results",
+        "evaluation_summary_json": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_01/birdseye/evaluation_summary.json"
+      },
+      "reference_summary": {
+        "success": true,
+        "successful_preset": "robust",
+        "successful_mode": "RAS",
+        "successful_mesh_size": 0.35,
+        "attempt_count": 1,
+        "risk": "high",
+        "risk_score": 8,
+        "risk_reasons": [
+          "defaultFaces=3174",
+          "maxNonOrtho=86.63>85",
+          "severeNonOrthoFaces=21",
+          "aspectRatio=34.04>20"
+        ]
+      }
+    },
+    {
+      "case_name": "bench_a3_01",
+      "category": "A3",
+      "variant_index": 1,
+      "room_kind": "composite",
+      "obstacle_count": 0,
+      "view": "floorplan",
+      "status": "pending",
+      "input_image": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_01/floorplan/input.png",
+      "reference_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_01/floorplan/reference_scene.json",
+      "reference_case": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_01/floorplan/reference_case",
+      "reference_results": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_01/floorplan/reference_results",
+      "expected_outputs": {
+        "predicted_scene_json": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_01/floorplan/predicted_scene.json",
+        "predicted_case_dir": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_01/floorplan/predicted_case",
+        "predicted_results_dir": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_01/floorplan/predicted_results",
+        "evaluation_summary_json": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_01/floorplan/evaluation_summary.json"
+      },
+      "reference_summary": {
+        "success": true,
+        "successful_preset": "robust",
+        "successful_mode": "RAS",
+        "successful_mesh_size": 0.35,
+        "attempt_count": 1,
+        "risk": "high",
+        "risk_score": 8,
+        "risk_reasons": [
+          "defaultFaces=3174",
+          "maxNonOrtho=86.63>85",
+          "severeNonOrthoFaces=21",
+          "aspectRatio=34.04>20"
+        ]
+      }
+    },
+    {
+      "case_name": "bench_a3_01",
+      "category": "A3",
+      "variant_index": 1,
+      "room_kind": "composite",
+      "obstacle_count": 0,
+      "view": "perspective",
+      "status": "pending",
+      "input_image": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_01/perspective/input.png",
+      "reference_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_01/perspective/reference_scene.json",
+      "reference_case": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_01/perspective/reference_case",
+      "reference_results": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_01/perspective/reference_results",
+      "expected_outputs": {
+        "predicted_scene_json": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_01/perspective/predicted_scene.json",
+        "predicted_case_dir": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_01/perspective/predicted_case",
+        "predicted_results_dir": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_01/perspective/predicted_results",
+        "evaluation_summary_json": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_01/perspective/evaluation_summary.json"
+      },
+      "reference_summary": {
+        "success": true,
+        "successful_preset": "robust",
+        "successful_mode": "RAS",
+        "successful_mesh_size": 0.35,
+        "attempt_count": 1,
+        "risk": "high",
+        "risk_score": 8,
+        "risk_reasons": [
+          "defaultFaces=3174",
+          "maxNonOrtho=86.63>85",
+          "severeNonOrthoFaces=21",
+          "aspectRatio=34.04>20"
+        ]
+      }
+    },
+    {
+      "case_name": "bench_a3_01",
+      "category": "A3",
+      "variant_index": 1,
+      "room_kind": "composite",
+      "obstacle_count": 0,
+      "view": "section",
+      "status": "pending",
+      "input_image": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_01/section/input.png",
+      "reference_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_01/section/reference_scene.json",
+      "reference_case": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_01/section/reference_case",
+      "reference_results": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_01/section/reference_results",
+      "expected_outputs": {
+        "predicted_scene_json": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_01/section/predicted_scene.json",
+        "predicted_case_dir": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_01/section/predicted_case",
+        "predicted_results_dir": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_01/section/predicted_results",
+        "evaluation_summary_json": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_01/section/evaluation_summary.json"
+      },
+      "reference_summary": {
+        "success": true,
+        "successful_preset": "robust",
+        "successful_mode": "RAS",
+        "successful_mesh_size": 0.35,
+        "attempt_count": 1,
+        "risk": "high",
+        "risk_score": 8,
+        "risk_reasons": [
+          "defaultFaces=3174",
+          "maxNonOrtho=86.63>85",
+          "severeNonOrthoFaces=21",
+          "aspectRatio=34.04>20"
+        ]
+      }
+    },
+    {
+      "case_name": "bench_a3_01",
+      "category": "A3",
+      "variant_index": 1,
+      "room_kind": "composite",
+      "obstacle_count": 0,
+      "view": "wireframe",
+      "status": "pending",
+      "input_image": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_01/wireframe/input.png",
+      "reference_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_01/wireframe/reference_scene.json",
+      "reference_case": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_01/wireframe/reference_case",
+      "reference_results": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_01/wireframe/reference_results",
+      "expected_outputs": {
+        "predicted_scene_json": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_01/wireframe/predicted_scene.json",
+        "predicted_case_dir": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_01/wireframe/predicted_case",
+        "predicted_results_dir": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_01/wireframe/predicted_results",
+        "evaluation_summary_json": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_01/wireframe/evaluation_summary.json"
+      },
+      "reference_summary": {
+        "success": true,
+        "successful_preset": "robust",
+        "successful_mode": "RAS",
+        "successful_mesh_size": 0.35,
+        "attempt_count": 1,
+        "risk": "high",
+        "risk_score": 8,
+        "risk_reasons": [
+          "defaultFaces=3174",
+          "maxNonOrtho=86.63>85",
+          "severeNonOrthoFaces=21",
+          "aspectRatio=34.04>20"
+        ]
+      }
+    },
+    {
+      "case_name": "bench_a3_02",
+      "category": "A3",
+      "variant_index": 2,
+      "room_kind": "composite",
+      "obstacle_count": 0,
+      "view": "birdseye",
+      "status": "pending",
+      "input_image": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_02/birdseye/input.png",
+      "reference_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_02/birdseye/reference_scene.json",
+      "reference_case": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_02/birdseye/reference_case",
+      "reference_results": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_02/birdseye/reference_results",
+      "expected_outputs": {
+        "predicted_scene_json": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_02/birdseye/predicted_scene.json",
+        "predicted_case_dir": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_02/birdseye/predicted_case",
+        "predicted_results_dir": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_02/birdseye/predicted_results",
+        "evaluation_summary_json": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_02/birdseye/evaluation_summary.json"
+      },
+      "reference_summary": {
+        "success": true,
+        "successful_preset": "robust",
+        "successful_mode": "RAS",
+        "successful_mesh_size": 0.35,
+        "attempt_count": 1,
+        "risk": "high",
+        "risk_score": 8,
+        "risk_reasons": [
+          "defaultFaces=2816",
+          "maxNonOrtho=87.48>85",
+          "severeNonOrthoFaces=19",
+          "aspectRatio=45.48>20"
+        ]
+      }
+    },
+    {
+      "case_name": "bench_a3_02",
+      "category": "A3",
+      "variant_index": 2,
+      "room_kind": "composite",
+      "obstacle_count": 0,
+      "view": "floorplan",
+      "status": "pending",
+      "input_image": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_02/floorplan/input.png",
+      "reference_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_02/floorplan/reference_scene.json",
+      "reference_case": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_02/floorplan/reference_case",
+      "reference_results": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_02/floorplan/reference_results",
+      "expected_outputs": {
+        "predicted_scene_json": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_02/floorplan/predicted_scene.json",
+        "predicted_case_dir": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_02/floorplan/predicted_case",
+        "predicted_results_dir": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_02/floorplan/predicted_results",
+        "evaluation_summary_json": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_02/floorplan/evaluation_summary.json"
+      },
+      "reference_summary": {
+        "success": true,
+        "successful_preset": "robust",
+        "successful_mode": "RAS",
+        "successful_mesh_size": 0.35,
+        "attempt_count": 1,
+        "risk": "high",
+        "risk_score": 8,
+        "risk_reasons": [
+          "defaultFaces=2816",
+          "maxNonOrtho=87.48>85",
+          "severeNonOrthoFaces=19",
+          "aspectRatio=45.48>20"
+        ]
+      }
+    },
+    {
+      "case_name": "bench_a3_02",
+      "category": "A3",
+      "variant_index": 2,
+      "room_kind": "composite",
+      "obstacle_count": 0,
+      "view": "perspective",
+      "status": "pending",
+      "input_image": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_02/perspective/input.png",
+      "reference_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_02/perspective/reference_scene.json",
+      "reference_case": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_02/perspective/reference_case",
+      "reference_results": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_02/perspective/reference_results",
+      "expected_outputs": {
+        "predicted_scene_json": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_02/perspective/predicted_scene.json",
+        "predicted_case_dir": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_02/perspective/predicted_case",
+        "predicted_results_dir": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_02/perspective/predicted_results",
+        "evaluation_summary_json": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_02/perspective/evaluation_summary.json"
+      },
+      "reference_summary": {
+        "success": true,
+        "successful_preset": "robust",
+        "successful_mode": "RAS",
+        "successful_mesh_size": 0.35,
+        "attempt_count": 1,
+        "risk": "high",
+        "risk_score": 8,
+        "risk_reasons": [
+          "defaultFaces=2816",
+          "maxNonOrtho=87.48>85",
+          "severeNonOrthoFaces=19",
+          "aspectRatio=45.48>20"
+        ]
+      }
+    },
+    {
+      "case_name": "bench_a3_02",
+      "category": "A3",
+      "variant_index": 2,
+      "room_kind": "composite",
+      "obstacle_count": 0,
+      "view": "section",
+      "status": "pending",
+      "input_image": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_02/section/input.png",
+      "reference_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_02/section/reference_scene.json",
+      "reference_case": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_02/section/reference_case",
+      "reference_results": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_02/section/reference_results",
+      "expected_outputs": {
+        "predicted_scene_json": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_02/section/predicted_scene.json",
+        "predicted_case_dir": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_02/section/predicted_case",
+        "predicted_results_dir": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_02/section/predicted_results",
+        "evaluation_summary_json": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_02/section/evaluation_summary.json"
+      },
+      "reference_summary": {
+        "success": true,
+        "successful_preset": "robust",
+        "successful_mode": "RAS",
+        "successful_mesh_size": 0.35,
+        "attempt_count": 1,
+        "risk": "high",
+        "risk_score": 8,
+        "risk_reasons": [
+          "defaultFaces=2816",
+          "maxNonOrtho=87.48>85",
+          "severeNonOrthoFaces=19",
+          "aspectRatio=45.48>20"
+        ]
+      }
+    },
+    {
+      "case_name": "bench_a3_02",
+      "category": "A3",
+      "variant_index": 2,
+      "room_kind": "composite",
+      "obstacle_count": 0,
+      "view": "wireframe",
+      "status": "pending",
+      "input_image": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_02/wireframe/input.png",
+      "reference_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_02/wireframe/reference_scene.json",
+      "reference_case": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_02/wireframe/reference_case",
+      "reference_results": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_02/wireframe/reference_results",
+      "expected_outputs": {
+        "predicted_scene_json": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_02/wireframe/predicted_scene.json",
+        "predicted_case_dir": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_02/wireframe/predicted_case",
+        "predicted_results_dir": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_02/wireframe/predicted_results",
+        "evaluation_summary_json": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_02/wireframe/evaluation_summary.json"
+      },
+      "reference_summary": {
+        "success": true,
+        "successful_preset": "robust",
+        "successful_mode": "RAS",
+        "successful_mesh_size": 0.35,
+        "attempt_count": 1,
+        "risk": "high",
+        "risk_score": 8,
+        "risk_reasons": [
+          "defaultFaces=2816",
+          "maxNonOrtho=87.48>85",
+          "severeNonOrthoFaces=19",
+          "aspectRatio=45.48>20"
+        ]
+      }
+    },
+    {
+      "case_name": "bench_a3_03",
+      "category": "A3",
+      "variant_index": 3,
+      "room_kind": "composite",
+      "obstacle_count": 1,
+      "view": "birdseye",
+      "status": "pending",
+      "input_image": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_03/birdseye/input.png",
+      "reference_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_03/birdseye/reference_scene.json",
+      "reference_case": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_03/birdseye/reference_case",
+      "reference_results": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_03/birdseye/reference_results",
+      "expected_outputs": {
+        "predicted_scene_json": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_03/birdseye/predicted_scene.json",
+        "predicted_case_dir": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_03/birdseye/predicted_case",
+        "predicted_results_dir": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_03/birdseye/predicted_results",
+        "evaluation_summary_json": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_03/birdseye/evaluation_summary.json"
+      },
+      "reference_summary": {
+        "success": true,
+        "successful_preset": "robust",
+        "successful_mode": "RAS",
+        "successful_mesh_size": 0.35,
+        "attempt_count": 1,
+        "risk": "high",
+        "risk_score": 8,
+        "risk_reasons": [
+          "defaultFaces=3808",
+          "maxNonOrtho=87.02>85",
+          "severeNonOrthoFaces=16",
+          "aspectRatio=38.38>20"
+        ]
+      }
+    },
+    {
+      "case_name": "bench_a3_03",
+      "category": "A3",
+      "variant_index": 3,
+      "room_kind": "composite",
+      "obstacle_count": 1,
+      "view": "floorplan",
+      "status": "pending",
+      "input_image": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_03/floorplan/input.png",
+      "reference_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_03/floorplan/reference_scene.json",
+      "reference_case": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_03/floorplan/reference_case",
+      "reference_results": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_03/floorplan/reference_results",
+      "expected_outputs": {
+        "predicted_scene_json": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_03/floorplan/predicted_scene.json",
+        "predicted_case_dir": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_03/floorplan/predicted_case",
+        "predicted_results_dir": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_03/floorplan/predicted_results",
+        "evaluation_summary_json": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_03/floorplan/evaluation_summary.json"
+      },
+      "reference_summary": {
+        "success": true,
+        "successful_preset": "robust",
+        "successful_mode": "RAS",
+        "successful_mesh_size": 0.35,
+        "attempt_count": 1,
+        "risk": "high",
+        "risk_score": 8,
+        "risk_reasons": [
+          "defaultFaces=3808",
+          "maxNonOrtho=87.02>85",
+          "severeNonOrthoFaces=16",
+          "aspectRatio=38.38>20"
+        ]
+      }
+    },
+    {
+      "case_name": "bench_a3_03",
+      "category": "A3",
+      "variant_index": 3,
+      "room_kind": "composite",
+      "obstacle_count": 1,
+      "view": "perspective",
+      "status": "pending",
+      "input_image": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_03/perspective/input.png",
+      "reference_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_03/perspective/reference_scene.json",
+      "reference_case": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_03/perspective/reference_case",
+      "reference_results": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_03/perspective/reference_results",
+      "expected_outputs": {
+        "predicted_scene_json": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_03/perspective/predicted_scene.json",
+        "predicted_case_dir": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_03/perspective/predicted_case",
+        "predicted_results_dir": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_03/perspective/predicted_results",
+        "evaluation_summary_json": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_03/perspective/evaluation_summary.json"
+      },
+      "reference_summary": {
+        "success": true,
+        "successful_preset": "robust",
+        "successful_mode": "RAS",
+        "successful_mesh_size": 0.35,
+        "attempt_count": 1,
+        "risk": "high",
+        "risk_score": 8,
+        "risk_reasons": [
+          "defaultFaces=3808",
+          "maxNonOrtho=87.02>85",
+          "severeNonOrthoFaces=16",
+          "aspectRatio=38.38>20"
+        ]
+      }
+    },
+    {
+      "case_name": "bench_a3_03",
+      "category": "A3",
+      "variant_index": 3,
+      "room_kind": "composite",
+      "obstacle_count": 1,
+      "view": "section",
+      "status": "pending",
+      "input_image": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_03/section/input.png",
+      "reference_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_03/section/reference_scene.json",
+      "reference_case": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_03/section/reference_case",
+      "reference_results": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_03/section/reference_results",
+      "expected_outputs": {
+        "predicted_scene_json": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_03/section/predicted_scene.json",
+        "predicted_case_dir": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_03/section/predicted_case",
+        "predicted_results_dir": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_03/section/predicted_results",
+        "evaluation_summary_json": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_03/section/evaluation_summary.json"
+      },
+      "reference_summary": {
+        "success": true,
+        "successful_preset": "robust",
+        "successful_mode": "RAS",
+        "successful_mesh_size": 0.35,
+        "attempt_count": 1,
+        "risk": "high",
+        "risk_score": 8,
+        "risk_reasons": [
+          "defaultFaces=3808",
+          "maxNonOrtho=87.02>85",
+          "severeNonOrthoFaces=16",
+          "aspectRatio=38.38>20"
+        ]
+      }
+    },
+    {
+      "case_name": "bench_a3_03",
+      "category": "A3",
+      "variant_index": 3,
+      "room_kind": "composite",
+      "obstacle_count": 1,
+      "view": "wireframe",
+      "status": "pending",
+      "input_image": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_03/wireframe/input.png",
+      "reference_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_03/wireframe/reference_scene.json",
+      "reference_case": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_03/wireframe/reference_case",
+      "reference_results": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_03/wireframe/reference_results",
+      "expected_outputs": {
+        "predicted_scene_json": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_03/wireframe/predicted_scene.json",
+        "predicted_case_dir": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_03/wireframe/predicted_case",
+        "predicted_results_dir": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_03/wireframe/predicted_results",
+        "evaluation_summary_json": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_03/wireframe/evaluation_summary.json"
+      },
+      "reference_summary": {
+        "success": true,
+        "successful_preset": "robust",
+        "successful_mode": "RAS",
+        "successful_mesh_size": 0.35,
+        "attempt_count": 1,
+        "risk": "high",
+        "risk_score": 8,
+        "risk_reasons": [
+          "defaultFaces=3808",
+          "maxNonOrtho=87.02>85",
+          "severeNonOrthoFaces=16",
+          "aspectRatio=38.38>20"
+        ]
+      }
+    },
+    {
+      "case_name": "bench_a4_01",
+      "category": "A4",
+      "variant_index": 1,
+      "room_kind": "composite",
+      "obstacle_count": 3,
+      "view": "birdseye",
+      "status": "pending",
+      "input_image": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_01/birdseye/input.png",
+      "reference_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_01/birdseye/reference_scene.json",
+      "reference_case": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_01/birdseye/reference_case",
+      "reference_results": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_01/birdseye/reference_results",
+      "expected_outputs": {
+        "predicted_scene_json": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_01/birdseye/predicted_scene.json",
+        "predicted_case_dir": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_01/birdseye/predicted_case",
+        "predicted_results_dir": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_01/birdseye/predicted_results",
+        "evaluation_summary_json": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_01/birdseye/evaluation_summary.json"
+      },
+      "reference_summary": {
+        "success": true,
+        "successful_preset": "robust",
+        "successful_mode": "RAS",
+        "successful_mesh_size": 0.35,
+        "attempt_count": 1,
+        "risk": "high",
+        "risk_score": 8,
+        "risk_reasons": [
+          "defaultFaces=3544",
+          "maxNonOrtho=87.44>85",
+          "severeNonOrthoFaces=18",
+          "aspectRatio=44.77>20"
+        ]
+      }
+    },
+    {
+      "case_name": "bench_a4_01",
+      "category": "A4",
+      "variant_index": 1,
+      "room_kind": "composite",
+      "obstacle_count": 3,
+      "view": "floorplan",
+      "status": "pending",
+      "input_image": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_01/floorplan/input.png",
+      "reference_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_01/floorplan/reference_scene.json",
+      "reference_case": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_01/floorplan/reference_case",
+      "reference_results": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_01/floorplan/reference_results",
+      "expected_outputs": {
+        "predicted_scene_json": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_01/floorplan/predicted_scene.json",
+        "predicted_case_dir": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_01/floorplan/predicted_case",
+        "predicted_results_dir": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_01/floorplan/predicted_results",
+        "evaluation_summary_json": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_01/floorplan/evaluation_summary.json"
+      },
+      "reference_summary": {
+        "success": true,
+        "successful_preset": "robust",
+        "successful_mode": "RAS",
+        "successful_mesh_size": 0.35,
+        "attempt_count": 1,
+        "risk": "high",
+        "risk_score": 8,
+        "risk_reasons": [
+          "defaultFaces=3544",
+          "maxNonOrtho=87.44>85",
+          "severeNonOrthoFaces=18",
+          "aspectRatio=44.77>20"
+        ]
+      }
+    },
+    {
+      "case_name": "bench_a4_01",
+      "category": "A4",
+      "variant_index": 1,
+      "room_kind": "composite",
+      "obstacle_count": 3,
+      "view": "perspective",
+      "status": "pending",
+      "input_image": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_01/perspective/input.png",
+      "reference_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_01/perspective/reference_scene.json",
+      "reference_case": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_01/perspective/reference_case",
+      "reference_results": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_01/perspective/reference_results",
+      "expected_outputs": {
+        "predicted_scene_json": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_01/perspective/predicted_scene.json",
+        "predicted_case_dir": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_01/perspective/predicted_case",
+        "predicted_results_dir": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_01/perspective/predicted_results",
+        "evaluation_summary_json": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_01/perspective/evaluation_summary.json"
+      },
+      "reference_summary": {
+        "success": true,
+        "successful_preset": "robust",
+        "successful_mode": "RAS",
+        "successful_mesh_size": 0.35,
+        "attempt_count": 1,
+        "risk": "high",
+        "risk_score": 8,
+        "risk_reasons": [
+          "defaultFaces=3544",
+          "maxNonOrtho=87.44>85",
+          "severeNonOrthoFaces=18",
+          "aspectRatio=44.77>20"
+        ]
+      }
+    },
+    {
+      "case_name": "bench_a4_01",
+      "category": "A4",
+      "variant_index": 1,
+      "room_kind": "composite",
+      "obstacle_count": 3,
+      "view": "section",
+      "status": "pending",
+      "input_image": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_01/section/input.png",
+      "reference_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_01/section/reference_scene.json",
+      "reference_case": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_01/section/reference_case",
+      "reference_results": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_01/section/reference_results",
+      "expected_outputs": {
+        "predicted_scene_json": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_01/section/predicted_scene.json",
+        "predicted_case_dir": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_01/section/predicted_case",
+        "predicted_results_dir": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_01/section/predicted_results",
+        "evaluation_summary_json": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_01/section/evaluation_summary.json"
+      },
+      "reference_summary": {
+        "success": true,
+        "successful_preset": "robust",
+        "successful_mode": "RAS",
+        "successful_mesh_size": 0.35,
+        "attempt_count": 1,
+        "risk": "high",
+        "risk_score": 8,
+        "risk_reasons": [
+          "defaultFaces=3544",
+          "maxNonOrtho=87.44>85",
+          "severeNonOrthoFaces=18",
+          "aspectRatio=44.77>20"
+        ]
+      }
+    },
+    {
+      "case_name": "bench_a4_01",
+      "category": "A4",
+      "variant_index": 1,
+      "room_kind": "composite",
+      "obstacle_count": 3,
+      "view": "wireframe",
+      "status": "pending",
+      "input_image": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_01/wireframe/input.png",
+      "reference_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_01/wireframe/reference_scene.json",
+      "reference_case": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_01/wireframe/reference_case",
+      "reference_results": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_01/wireframe/reference_results",
+      "expected_outputs": {
+        "predicted_scene_json": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_01/wireframe/predicted_scene.json",
+        "predicted_case_dir": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_01/wireframe/predicted_case",
+        "predicted_results_dir": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_01/wireframe/predicted_results",
+        "evaluation_summary_json": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_01/wireframe/evaluation_summary.json"
+      },
+      "reference_summary": {
+        "success": true,
+        "successful_preset": "robust",
+        "successful_mode": "RAS",
+        "successful_mesh_size": 0.35,
+        "attempt_count": 1,
+        "risk": "high",
+        "risk_score": 8,
+        "risk_reasons": [
+          "defaultFaces=3544",
+          "maxNonOrtho=87.44>85",
+          "severeNonOrthoFaces=18",
+          "aspectRatio=44.77>20"
+        ]
+      }
+    },
+    {
+      "case_name": "bench_a4_02",
+      "category": "A4",
+      "variant_index": 2,
+      "room_kind": "composite",
+      "obstacle_count": 4,
+      "view": "birdseye",
+      "status": "pending",
+      "input_image": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_02/birdseye/input.png",
+      "reference_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_02/birdseye/reference_scene.json",
+      "reference_case": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_02/birdseye/reference_case",
+      "reference_results": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_02/birdseye/reference_results",
+      "expected_outputs": {
+        "predicted_scene_json": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_02/birdseye/predicted_scene.json",
+        "predicted_case_dir": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_02/birdseye/predicted_case",
+        "predicted_results_dir": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_02/birdseye/predicted_results",
+        "evaluation_summary_json": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_02/birdseye/evaluation_summary.json"
+      },
+      "reference_summary": {
+        "success": true,
+        "successful_preset": "laminar_fallback",
+        "successful_mode": "laminar",
+        "successful_mesh_size": 0.35,
+        "attempt_count": 3,
+        "risk": "high",
+        "risk_score": 8,
+        "risk_reasons": [
+          "defaultFaces=3950",
+          "maxNonOrtho=87.45>85",
+          "severeNonOrthoFaces=16",
+          "aspectRatio=44.98>20"
+        ]
+      }
+    },
+    {
+      "case_name": "bench_a4_02",
+      "category": "A4",
+      "variant_index": 2,
+      "room_kind": "composite",
+      "obstacle_count": 4,
+      "view": "floorplan",
+      "status": "pending",
+      "input_image": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_02/floorplan/input.png",
+      "reference_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_02/floorplan/reference_scene.json",
+      "reference_case": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_02/floorplan/reference_case",
+      "reference_results": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_02/floorplan/reference_results",
+      "expected_outputs": {
+        "predicted_scene_json": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_02/floorplan/predicted_scene.json",
+        "predicted_case_dir": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_02/floorplan/predicted_case",
+        "predicted_results_dir": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_02/floorplan/predicted_results",
+        "evaluation_summary_json": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_02/floorplan/evaluation_summary.json"
+      },
+      "reference_summary": {
+        "success": true,
+        "successful_preset": "laminar_fallback",
+        "successful_mode": "laminar",
+        "successful_mesh_size": 0.35,
+        "attempt_count": 3,
+        "risk": "high",
+        "risk_score": 8,
+        "risk_reasons": [
+          "defaultFaces=3950",
+          "maxNonOrtho=87.45>85",
+          "severeNonOrthoFaces=16",
+          "aspectRatio=44.98>20"
+        ]
+      }
+    },
+    {
+      "case_name": "bench_a4_02",
+      "category": "A4",
+      "variant_index": 2,
+      "room_kind": "composite",
+      "obstacle_count": 4,
+      "view": "perspective",
+      "status": "pending",
+      "input_image": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_02/perspective/input.png",
+      "reference_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_02/perspective/reference_scene.json",
+      "reference_case": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_02/perspective/reference_case",
+      "reference_results": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_02/perspective/reference_results",
+      "expected_outputs": {
+        "predicted_scene_json": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_02/perspective/predicted_scene.json",
+        "predicted_case_dir": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_02/perspective/predicted_case",
+        "predicted_results_dir": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_02/perspective/predicted_results",
+        "evaluation_summary_json": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_02/perspective/evaluation_summary.json"
+      },
+      "reference_summary": {
+        "success": true,
+        "successful_preset": "laminar_fallback",
+        "successful_mode": "laminar",
+        "successful_mesh_size": 0.35,
+        "attempt_count": 3,
+        "risk": "high",
+        "risk_score": 8,
+        "risk_reasons": [
+          "defaultFaces=3950",
+          "maxNonOrtho=87.45>85",
+          "severeNonOrthoFaces=16",
+          "aspectRatio=44.98>20"
+        ]
+      }
+    },
+    {
+      "case_name": "bench_a4_02",
+      "category": "A4",
+      "variant_index": 2,
+      "room_kind": "composite",
+      "obstacle_count": 4,
+      "view": "section",
+      "status": "pending",
+      "input_image": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_02/section/input.png",
+      "reference_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_02/section/reference_scene.json",
+      "reference_case": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_02/section/reference_case",
+      "reference_results": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_02/section/reference_results",
+      "expected_outputs": {
+        "predicted_scene_json": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_02/section/predicted_scene.json",
+        "predicted_case_dir": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_02/section/predicted_case",
+        "predicted_results_dir": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_02/section/predicted_results",
+        "evaluation_summary_json": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_02/section/evaluation_summary.json"
+      },
+      "reference_summary": {
+        "success": true,
+        "successful_preset": "laminar_fallback",
+        "successful_mode": "laminar",
+        "successful_mesh_size": 0.35,
+        "attempt_count": 3,
+        "risk": "high",
+        "risk_score": 8,
+        "risk_reasons": [
+          "defaultFaces=3950",
+          "maxNonOrtho=87.45>85",
+          "severeNonOrthoFaces=16",
+          "aspectRatio=44.98>20"
+        ]
+      }
+    },
+    {
+      "case_name": "bench_a4_02",
+      "category": "A4",
+      "variant_index": 2,
+      "room_kind": "composite",
+      "obstacle_count": 4,
+      "view": "wireframe",
+      "status": "pending",
+      "input_image": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_02/wireframe/input.png",
+      "reference_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_02/wireframe/reference_scene.json",
+      "reference_case": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_02/wireframe/reference_case",
+      "reference_results": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_02/wireframe/reference_results",
+      "expected_outputs": {
+        "predicted_scene_json": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_02/wireframe/predicted_scene.json",
+        "predicted_case_dir": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_02/wireframe/predicted_case",
+        "predicted_results_dir": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_02/wireframe/predicted_results",
+        "evaluation_summary_json": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_02/wireframe/evaluation_summary.json"
+      },
+      "reference_summary": {
+        "success": true,
+        "successful_preset": "laminar_fallback",
+        "successful_mode": "laminar",
+        "successful_mesh_size": 0.35,
+        "attempt_count": 3,
+        "risk": "high",
+        "risk_score": 8,
+        "risk_reasons": [
+          "defaultFaces=3950",
+          "maxNonOrtho=87.45>85",
+          "severeNonOrthoFaces=16",
+          "aspectRatio=44.98>20"
+        ]
+      }
+    },
+    {
+      "case_name": "bench_a4_03",
+      "category": "A4",
+      "variant_index": 3,
+      "room_kind": "composite",
+      "obstacle_count": 3,
+      "view": "birdseye",
+      "status": "pending",
+      "input_image": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_03/birdseye/input.png",
+      "reference_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_03/birdseye/reference_scene.json",
+      "reference_case": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_03/birdseye/reference_case",
+      "reference_results": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_03/birdseye/reference_results",
+      "expected_outputs": {
+        "predicted_scene_json": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_03/birdseye/predicted_scene.json",
+        "predicted_case_dir": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_03/birdseye/predicted_case",
+        "predicted_results_dir": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_03/birdseye/predicted_results",
+        "evaluation_summary_json": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_03/birdseye/evaluation_summary.json"
+      },
+      "reference_summary": {
+        "success": true,
+        "successful_preset": "robust",
+        "successful_mode": "RAS",
+        "successful_mesh_size": 0.25,
+        "attempt_count": 2,
+        "risk": "high",
+        "risk_score": 9,
+        "risk_reasons": [
+          "defaultFaces=7056",
+          "maxNonOrtho=86.51>85",
+          "severeNonOrthoFaces=16",
+          "aspectRatio=34.75>20",
+          "skewness=0.910>0.85"
+        ]
+      }
+    },
+    {
+      "case_name": "bench_a4_03",
+      "category": "A4",
+      "variant_index": 3,
+      "room_kind": "composite",
+      "obstacle_count": 3,
+      "view": "floorplan",
+      "status": "pending",
+      "input_image": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_03/floorplan/input.png",
+      "reference_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_03/floorplan/reference_scene.json",
+      "reference_case": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_03/floorplan/reference_case",
+      "reference_results": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_03/floorplan/reference_results",
+      "expected_outputs": {
+        "predicted_scene_json": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_03/floorplan/predicted_scene.json",
+        "predicted_case_dir": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_03/floorplan/predicted_case",
+        "predicted_results_dir": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_03/floorplan/predicted_results",
+        "evaluation_summary_json": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_03/floorplan/evaluation_summary.json"
+      },
+      "reference_summary": {
+        "success": true,
+        "successful_preset": "robust",
+        "successful_mode": "RAS",
+        "successful_mesh_size": 0.25,
+        "attempt_count": 2,
+        "risk": "high",
+        "risk_score": 9,
+        "risk_reasons": [
+          "defaultFaces=7056",
+          "maxNonOrtho=86.51>85",
+          "severeNonOrthoFaces=16",
+          "aspectRatio=34.75>20",
+          "skewness=0.910>0.85"
+        ]
+      }
+    },
+    {
+      "case_name": "bench_a4_03",
+      "category": "A4",
+      "variant_index": 3,
+      "room_kind": "composite",
+      "obstacle_count": 3,
+      "view": "perspective",
+      "status": "pending",
+      "input_image": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_03/perspective/input.png",
+      "reference_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_03/perspective/reference_scene.json",
+      "reference_case": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_03/perspective/reference_case",
+      "reference_results": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_03/perspective/reference_results",
+      "expected_outputs": {
+        "predicted_scene_json": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_03/perspective/predicted_scene.json",
+        "predicted_case_dir": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_03/perspective/predicted_case",
+        "predicted_results_dir": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_03/perspective/predicted_results",
+        "evaluation_summary_json": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_03/perspective/evaluation_summary.json"
+      },
+      "reference_summary": {
+        "success": true,
+        "successful_preset": "robust",
+        "successful_mode": "RAS",
+        "successful_mesh_size": 0.25,
+        "attempt_count": 2,
+        "risk": "high",
+        "risk_score": 9,
+        "risk_reasons": [
+          "defaultFaces=7056",
+          "maxNonOrtho=86.51>85",
+          "severeNonOrthoFaces=16",
+          "aspectRatio=34.75>20",
+          "skewness=0.910>0.85"
+        ]
+      }
+    },
+    {
+      "case_name": "bench_a4_03",
+      "category": "A4",
+      "variant_index": 3,
+      "room_kind": "composite",
+      "obstacle_count": 3,
+      "view": "section",
+      "status": "pending",
+      "input_image": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_03/section/input.png",
+      "reference_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_03/section/reference_scene.json",
+      "reference_case": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_03/section/reference_case",
+      "reference_results": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_03/section/reference_results",
+      "expected_outputs": {
+        "predicted_scene_json": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_03/section/predicted_scene.json",
+        "predicted_case_dir": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_03/section/predicted_case",
+        "predicted_results_dir": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_03/section/predicted_results",
+        "evaluation_summary_json": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_03/section/evaluation_summary.json"
+      },
+      "reference_summary": {
+        "success": true,
+        "successful_preset": "robust",
+        "successful_mode": "RAS",
+        "successful_mesh_size": 0.25,
+        "attempt_count": 2,
+        "risk": "high",
+        "risk_score": 9,
+        "risk_reasons": [
+          "defaultFaces=7056",
+          "maxNonOrtho=86.51>85",
+          "severeNonOrthoFaces=16",
+          "aspectRatio=34.75>20",
+          "skewness=0.910>0.85"
+        ]
+      }
+    },
+    {
+      "case_name": "bench_a4_03",
+      "category": "A4",
+      "variant_index": 3,
+      "room_kind": "composite",
+      "obstacle_count": 3,
+      "view": "wireframe",
+      "status": "pending",
+      "input_image": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_03/wireframe/input.png",
+      "reference_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_03/wireframe/reference_scene.json",
+      "reference_case": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_03/wireframe/reference_case",
+      "reference_results": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_03/wireframe/reference_results",
+      "expected_outputs": {
+        "predicted_scene_json": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_03/wireframe/predicted_scene.json",
+        "predicted_case_dir": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_03/wireframe/predicted_case",
+        "predicted_results_dir": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_03/wireframe/predicted_results",
+        "evaluation_summary_json": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_03/wireframe/evaluation_summary.json"
+      },
+      "reference_summary": {
+        "success": true,
+        "successful_preset": "robust",
+        "successful_mode": "RAS",
+        "successful_mesh_size": 0.25,
+        "attempt_count": 2,
+        "risk": "high",
+        "risk_score": 9,
+        "risk_reasons": [
+          "defaultFaces=7056",
+          "maxNonOrtho=86.51>85",
+          "severeNonOrthoFaces=16",
+          "aspectRatio=34.75>20",
+          "skewness=0.910>0.85"
+        ]
+      }
+    }
+  ]
+}

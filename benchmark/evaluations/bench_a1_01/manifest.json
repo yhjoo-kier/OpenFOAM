@@ -1,0 +1,22 @@
+{
+  "case_name": "bench_a1_01",
+  "category": "A1",
+  "room_kind": "rectangular",
+  "obstacle_count": 1,
+  "views": [
+    "birdseye",
+    "floorplan",
+    "perspective",
+    "section",
+    "wireframe"
+  ],
+  "reference_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_01/birdseye/reference_scene.json",
+  "reference_case": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_01/birdseye/reference_case",
+  "reference_results": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_01/birdseye/reference_results",
+  "task_count": 5,
+  "status_counts": {
+    "pending": 4,
+    "failed": 1
+  },
+  "case_root": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_01"
+}
