@@ -1,0 +1,106 @@
+{
+  "ok": true,
+  "grid": {
+    "nx": 18,
+    "ny": 18,
+    "nz": 10,
+    "point_count": 3240,
+    "epsilon": {
+      "x": 0.05,
+      "y": 0.05,
+      "z": 0.08
+    }
+  },
+  "reference": {
+    "scene": "/home/yhjoo/projects/OpenFOAM/benchmark/scenes/a2_02.json",
+    "case": "/home/yhjoo/projects/OpenFOAM/cases/bench_a2_02",
+    "vtk": "/home/yhjoo/projects/OpenFOAM/cases/bench_a2_02/VTK/bench_a2_02_200/internal.vtu",
+    "room_bounds": {
+      "Lx": 5.66,
+      "Ly": 5.799,
+      "Lz": 2.818
+    },
+    "valid_count": 3118,
+    "valid_ratio": 0.962346
+  },
+  "predicted": {
+    "scene": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_02/birdseye/predicted_scene.json",
+    "case": "/home/yhjoo/projects/OpenFOAM/cases/eval_bench_a2_02_birdseye",
+    "vtk": "/home/yhjoo/projects/OpenFOAM/cases/eval_bench_a2_02_birdseye/VTK/eval_bench_a2_02_birdseye_200/internal.vtu",
+    "room_bounds": {
+      "Lx": 6.0,
+      "Ly": 6.0,
+      "Lz": 3.0
+    },
+    "valid_count": 3175,
+    "valid_ratio": 0.979938
+  },
+  "overlap": {
+    "count": 3069,
+    "ratio_vs_total": 0.947222,
+    "ratio_vs_union": 0.951923,
+    "union_count": 3224
+  },
+  "field_metrics": {
+    "velocity_vector": {
+      "mae_l2": 0.000947,
+      "rmse_l2": 0.001323,
+      "reference_rms": 0.000268,
+      "relative_rmse": 4.933219,
+      "mean_direction_cosine": -0.217279,
+      "direction_comparable_count": 3060
+    },
+    "velocity_magnitude": {
+      "mae": 0.000792,
+      "rmse": 0.001206,
+      "reference_rms": 0.000268,
+      "relative_rmse": 4.495799,
+      "reference_mean": 0.000141,
+      "predicted_mean": 0.000901
+    },
+    "pressure": {
+      "mae": 0.000323,
+      "rmse": 0.000323,
+      "reference_rms": 0.0,
+      "relative_rmse": 2621.765992,
+      "reference_mean": -0.0,
+      "predicted_mean": 0.000323
+    }
+  },
+  "aggregate_score": {
+    "cfd_score": 0.335821,
+    "components": {
+      "overlap_ratio_vs_union": 0.951923,
+      "velocity_magnitude_similarity": 0.0,
+      "velocity_direction_similarity": 0.391361,
+      "pressure_similarity": 0.0
+    }
+  },
+  "runner": {
+    "command": [
+      "docker",
+      "run",
+      "--rm",
+      "-v",
+      "/home/yhjoo/projects/OpenFOAM:/home/yhjoo/projects/OpenFOAM",
+      "-w",
+      "/home/yhjoo/projects/OpenFOAM",
+      "openfoam-pipeline-local:latest",
+      "python3",
+      "/home/yhjoo/projects/OpenFOAM/scripts/compute_benchmark_cfd_metrics.py",
+      "--reference-scene",
+      "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_02/birdseye/reference_scene.json",
+      "--reference-case",
+      "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_02/birdseye/reference_case",
+      "--predicted-scene",
+      "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_02/birdseye/predicted_scene.json",
+      "--predicted-case",
+      "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_02/birdseye/predicted_case",
+      "--output",
+      "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_02/birdseye/cfd_metrics.json"
+    ],
+    "returncode": 0,
+    "stdout_tail": "      \"mean_direction_cosine\": -0.217279,\n      \"direction_comparable_count\": 3060\n    },\n    \"velocity_magnitude\": {\n      \"mae\": 0.000792,\n      \"rmse\": 0.001206,\n      \"reference_rms\": 0.000268,\n      \"relative_rmse\": 4.495799,\n      \"reference_mean\": 0.000141,\n      \"predicted_mean\": 0.000901\n    },\n    \"pressure\": {\n      \"mae\": 0.000323,\n      \"rmse\": 0.000323,\n      \"reference_rms\": 0.0,\n      \"relative_rmse\": 2621.765992,\n      \"reference_mean\": -0.0,\n      \"predicted_mean\": 0.000323\n    }\n  },\n  \"aggregate_score\": {\n    \"cfd_score\": 0.335821,\n    \"components\": {\n      \"overlap_ratio_vs_union\": 0.951923,\n      \"velocity_magnitude_similarity\": 0.0,\n      \"velocity_direction_similarity\": 0.391361,\n      \"pressure_similarity\": 0.0\n    }\n  }\n}",
+    "stderr_tail": ""
+  }
+}
