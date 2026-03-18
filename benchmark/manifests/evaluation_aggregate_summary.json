@@ -1,0 +1,928 @@
+{
+  "ok": true,
+  "project_root": "/home/yhjoo/projects/OpenFOAM",
+  "evaluation_root": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations",
+  "overall": {
+    "n": 100,
+    "mean_structural_score": 0.7067,
+    "mean_cfd_score": 0.4934,
+    "room_kind_match_rate": 0.98,
+    "opening_wall_match_rate": 0.72,
+    "used_repair_count": 2,
+    "ultra_robust_count": 5,
+    "conservative_count": 1,
+    "mesh025_count": 2
+  },
+  "by_view": {
+    "perspective": {
+      "n": 20,
+      "mean_structural_score": 0.6958,
+      "mean_cfd_score": 0.4554,
+      "room_kind_match_rate": 1.0,
+      "opening_wall_match_rate": 0.7,
+      "used_repair_count": 1,
+      "ultra_robust_count": 1,
+      "conservative_count": 0,
+      "mesh025_count": 2
+    },
+    "birdseye": {
+      "n": 20,
+      "mean_structural_score": 0.711,
+      "mean_cfd_score": 0.5225,
+      "room_kind_match_rate": 1.0,
+      "opening_wall_match_rate": 0.85,
+      "used_repair_count": 0,
+      "ultra_robust_count": 1,
+      "conservative_count": 1,
+      "mesh025_count": 0
+    },
+    "floorplan": {
+      "n": 20,
+      "mean_structural_score": 0.7623,
+      "mean_cfd_score": 0.5765,
+      "room_kind_match_rate": 1.0,
+      "opening_wall_match_rate": 1.0,
+      "used_repair_count": 0,
+      "ultra_robust_count": 1,
+      "conservative_count": 0,
+      "mesh025_count": 0
+    },
+    "wireframe": {
+      "n": 20,
+      "mean_structural_score": 0.7009,
+      "mean_cfd_score": 0.4854,
+      "room_kind_match_rate": 1.0,
+      "opening_wall_match_rate": 0.8,
+      "used_repair_count": 1,
+      "ultra_robust_count": 1,
+      "conservative_count": 0,
+      "mesh025_count": 0
+    },
+    "section": {
+      "n": 20,
+      "mean_structural_score": 0.6633,
+      "mean_cfd_score": 0.4273,
+      "room_kind_match_rate": 0.9,
+      "opening_wall_match_rate": 0.25,
+      "used_repair_count": 0,
+      "ultra_robust_count": 1,
+      "conservative_count": 0,
+      "mesh025_count": 0
+    }
+  },
+  "by_category": {
+    "A1": {
+      "n": 25,
+      "mean_structural_score": 0.785,
+      "mean_cfd_score": 0.5567,
+      "room_kind_match_rate": 1.0,
+      "opening_wall_match_rate": 0.88,
+      "used_repair_count": 0,
+      "ultra_robust_count": 1,
+      "conservative_count": 1,
+      "mesh025_count": 0
+    },
+    "A2": {
+      "n": 25,
+      "mean_structural_score": 0.6727,
+      "mean_cfd_score": 0.4438,
+      "room_kind_match_rate": 1.0,
+      "opening_wall_match_rate": 0.48,
+      "used_repair_count": 1,
+      "ultra_robust_count": 0,
+      "conservative_count": 0,
+      "mesh025_count": 1
+    },
+    "A3": {
+      "n": 25,
+      "mean_structural_score": 0.6567,
+      "mean_cfd_score": 0.5466,
+      "room_kind_match_rate": 0.96,
+      "opening_wall_match_rate": 0.72,
+      "used_repair_count": 0,
+      "ultra_robust_count": 3,
+      "conservative_count": 0,
+      "mesh025_count": 1
+    },
+    "A4": {
+      "n": 25,
+      "mean_structural_score": 0.7124,
+      "mean_cfd_score": 0.4266,
+      "room_kind_match_rate": 0.96,
+      "opening_wall_match_rate": 0.8,
+      "used_repair_count": 1,
+      "ultra_robust_count": 1,
+      "conservative_count": 0,
+      "mesh025_count": 0
+    }
+  },
+  "by_room_kind": {
+    "rectangular": {
+      "n": 50,
+      "mean_structural_score": 0.7288,
+      "mean_cfd_score": 0.5003,
+      "room_kind_match_rate": 1.0,
+      "opening_wall_match_rate": 0.68,
+      "used_repair_count": 1,
+      "ultra_robust_count": 1,
+      "conservative_count": 1,
+      "mesh025_count": 1
+    },
+    "composite": {
+      "n": 50,
+      "mean_structural_score": 0.6845,
+      "mean_cfd_score": 0.4866,
+      "room_kind_match_rate": 0.96,
+      "opening_wall_match_rate": 0.76,
+      "used_repair_count": 1,
+      "ultra_robust_count": 4,
+      "conservative_count": 0,
+      "mesh025_count": 1
+    }
+  },
+  "case_rankings": {
+    "lowest_mean_cfd": [
+      {
+        "case": "bench_a4_02",
+        "category": "A4",
+        "room_kind": "composite",
+        "mean_structural_score": 0.7375,
+        "mean_cfd_score": 0.334,
+        "room_kind_match_count": 5,
+        "opening_wall_match_count": 5,
+        "used_repair_views": [
+          "wireframe"
+        ],
+        "ultra_robust_views": [
+          "wireframe"
+        ],
+        "mesh025_views": [],
+        "hallucination_views": []
+      },
+      {
+        "case": "bench_a2_02",
+        "category": "A2",
+        "room_kind": "rectangular",
+        "mean_structural_score": 0.65,
+        "mean_cfd_score": 0.3568,
+        "room_kind_match_count": 5,
+        "opening_wall_match_count": 1,
+        "used_repair_views": [],
+        "ultra_robust_views": [],
+        "mesh025_views": [],
+        "hallucination_views": [
+          "birdseye",
+          "section",
+          "wireframe"
+        ]
+      },
+      {
+        "case": "bench_a4_05",
+        "category": "A4",
+        "room_kind": "composite",
+        "mean_structural_score": 0.6208,
+        "mean_cfd_score": 0.3947,
+        "room_kind_match_count": 4,
+        "opening_wall_match_count": 3,
+        "used_repair_views": [],
+        "ultra_robust_views": [],
+        "mesh025_views": [],
+        "hallucination_views": []
+      },
+      {
+        "case": "bench_a4_01",
+        "category": "A4",
+        "room_kind": "composite",
+        "mean_structural_score": 0.5917,
+        "mean_cfd_score": 0.4124,
+        "room_kind_match_count": 5,
+        "opening_wall_match_count": 3,
+        "used_repair_views": [],
+        "ultra_robust_views": [],
+        "mesh025_views": [],
+        "hallucination_views": []
+      },
+      {
+        "case": "bench_a2_03",
+        "category": "A2",
+        "room_kind": "rectangular",
+        "mean_structural_score": 0.65,
+        "mean_cfd_score": 0.4199,
+        "room_kind_match_count": 5,
+        "opening_wall_match_count": 1,
+        "used_repair_views": [],
+        "ultra_robust_views": [],
+        "mesh025_views": [],
+        "hallucination_views": []
+      },
+      {
+        "case": "bench_a1_04",
+        "category": "A1",
+        "room_kind": "rectangular",
+        "mean_structural_score": 0.775,
+        "mean_cfd_score": 0.4284,
+        "room_kind_match_count": 5,
+        "opening_wall_match_count": 4,
+        "used_repair_views": [],
+        "ultra_robust_views": [],
+        "mesh025_views": [],
+        "hallucination_views": [
+          "floorplan",
+          "perspective",
+          "section"
+        ]
+      },
+      {
+        "case": "bench_a3_04",
+        "category": "A3",
+        "room_kind": "composite",
+        "mean_structural_score": 0.3833,
+        "mean_cfd_score": 0.4528,
+        "room_kind_match_count": 4,
+        "opening_wall_match_count": 1,
+        "used_repair_views": [],
+        "ultra_robust_views": [
+          "section"
+        ],
+        "mesh025_views": [],
+        "hallucination_views": [
+          "perspective",
+          "section",
+          "wireframe"
+        ]
+      },
+      {
+        "case": "bench_a2_04",
+        "category": "A2",
+        "room_kind": "rectangular",
+        "mean_structural_score": 0.5,
+        "mean_cfd_score": 0.4616,
+        "room_kind_match_count": 5,
+        "opening_wall_match_count": 4,
+        "used_repair_views": [
+          "perspective"
+        ],
+        "ultra_robust_views": [],
+        "mesh025_views": [],
+        "hallucination_views": [
+          "birdseye",
+          "section",
+          "wireframe"
+        ]
+      },
+      {
+        "case": "bench_a4_04",
+        "category": "A4",
+        "room_kind": "composite",
+        "mean_structural_score": 0.8167,
+        "mean_cfd_score": 0.4664,
+        "room_kind_match_count": 5,
+        "opening_wall_match_count": 4,
+        "used_repair_views": [],
+        "ultra_robust_views": [],
+        "mesh025_views": [],
+        "hallucination_views": []
+      },
+      {
+        "case": "bench_a2_01",
+        "category": "A2",
+        "room_kind": "rectangular",
+        "mean_structural_score": 0.805,
+        "mean_cfd_score": 0.4737,
+        "room_kind_match_count": 5,
+        "opening_wall_match_count": 4,
+        "used_repair_views": [],
+        "ultra_robust_views": [],
+        "mesh025_views": [
+          "perspective"
+        ],
+        "hallucination_views": [
+          "birdseye",
+          "floorplan",
+          "perspective",
+          "section",
+          "wireframe"
+        ]
+      }
+    ],
+    "highest_mean_cfd": [
+      {
+        "case": "bench_a1_03",
+        "category": "A1",
+        "room_kind": "rectangular",
+        "mean_structural_score": 0.75,
+        "mean_cfd_score": 0.6961,
+        "room_kind_match_count": 5,
+        "opening_wall_match_count": 5,
+        "used_repair_views": [],
+        "ultra_robust_views": [],
+        "mesh025_views": [],
+        "hallucination_views": [
+          "birdseye",
+          "perspective",
+          "section",
+          "wireframe"
+        ]
+      },
+      {
+        "case": "bench_a1_02",
+        "category": "A1",
+        "room_kind": "rectangular",
+        "mean_structural_score": 0.825,
+        "mean_cfd_score": 0.5936,
+        "room_kind_match_count": 5,
+        "opening_wall_match_count": 4,
+        "used_repair_views": [],
+        "ultra_robust_views": [],
+        "mesh025_views": [],
+        "hallucination_views": [
+          "perspective",
+          "section",
+          "wireframe"
+        ]
+      },
+      {
+        "case": "bench_a3_03",
+        "category": "A3",
+        "room_kind": "composite",
+        "mean_structural_score": 0.775,
+        "mean_cfd_score": 0.5893,
+        "room_kind_match_count": 5,
+        "opening_wall_match_count": 4,
+        "used_repair_views": [],
+        "ultra_robust_views": [],
+        "mesh025_views": [],
+        "hallucination_views": [
+          "birdseye",
+          "section",
+          "wireframe"
+        ]
+      },
+      {
+        "case": "bench_a3_01",
+        "category": "A3",
+        "room_kind": "composite",
+        "mean_structural_score": 0.675,
+        "mean_cfd_score": 0.5882,
+        "room_kind_match_count": 5,
+        "opening_wall_match_count": 4,
+        "used_repair_views": [],
+        "ultra_robust_views": [
+          "perspective"
+        ],
+        "mesh025_views": [],
+        "hallucination_views": [
+          "birdseye",
+          "floorplan",
+          "perspective",
+          "section",
+          "wireframe"
+        ]
+      },
+      {
+        "case": "bench_a3_02",
+        "category": "A3",
+        "room_kind": "composite",
+        "mean_structural_score": 0.775,
+        "mean_cfd_score": 0.5601,
+        "room_kind_match_count": 5,
+        "opening_wall_match_count": 4,
+        "used_repair_views": [],
+        "ultra_robust_views": [
+          "floorplan"
+        ],
+        "mesh025_views": [],
+        "hallucination_views": [
+          "birdseye",
+          "floorplan",
+          "section",
+          "wireframe"
+        ]
+      },
+      {
+        "case": "bench_a3_05",
+        "category": "A3",
+        "room_kind": "composite",
+        "mean_structural_score": 0.675,
+        "mean_cfd_score": 0.5425,
+        "room_kind_match_count": 5,
+        "opening_wall_match_count": 5,
+        "used_repair_views": [],
+        "ultra_robust_views": [],
+        "mesh025_views": [
+          "perspective"
+        ],
+        "hallucination_views": [
+          "birdseye",
+          "floorplan",
+          "wireframe"
+        ]
+      },
+      {
+        "case": "bench_a1_01",
+        "category": "A1",
+        "room_kind": "rectangular",
+        "mean_structural_score": 0.825,
+        "mean_cfd_score": 0.5377,
+        "room_kind_match_count": 5,
+        "opening_wall_match_count": 5,
+        "used_repair_views": [],
+        "ultra_robust_views": [],
+        "mesh025_views": [],
+        "hallucination_views": [
+          "floorplan"
+        ]
+      },
+      {
+        "case": "bench_a1_05",
+        "category": "A1",
+        "room_kind": "rectangular",
+        "mean_structural_score": 0.75,
+        "mean_cfd_score": 0.5279,
+        "room_kind_match_count": 5,
+        "opening_wall_match_count": 4,
+        "used_repair_views": [],
+        "ultra_robust_views": [
+          "birdseye"
+        ],
+        "mesh025_views": [],
+        "hallucination_views": [
+          "floorplan",
+          "perspective",
+          "section"
+        ]
+      },
+      {
+        "case": "bench_a4_03",
+        "category": "A4",
+        "room_kind": "composite",
+        "mean_structural_score": 0.7952,
+        "mean_cfd_score": 0.5255,
+        "room_kind_match_count": 5,
+        "opening_wall_match_count": 5,
+        "used_repair_views": [],
+        "ultra_robust_views": [],
+        "mesh025_views": [],
+        "hallucination_views": [
+          "wireframe"
+        ]
+      },
+      {
+        "case": "bench_a2_05",
+        "category": "A2",
+        "room_kind": "rectangular",
+        "mean_structural_score": 0.7583,
+        "mean_cfd_score": 0.5069,
+        "room_kind_match_count": 5,
+        "opening_wall_match_count": 2,
+        "used_repair_views": [],
+        "ultra_robust_views": [],
+        "mesh025_views": [],
+        "hallucination_views": []
+      }
+    ]
+  },
+  "notables": {
+    "room_kind_mismatch_tasks": [
+      {
+        "case": "bench_a3_04",
+        "view": "section",
+        "ref_room_kind": "composite",
+        "pred_room_kind": "rectangular",
+        "structural_score": 0.4167,
+        "cfd_score": 0.3352
+      },
+      {
+        "case": "bench_a4_05",
+        "view": "section",
+        "ref_room_kind": "composite",
+        "pred_room_kind": "rectangular",
+        "structural_score": 0.4167,
+        "cfd_score": 0.3311
+      }
+    ],
+    "repair_used_tasks": [
+      {
+        "case": "bench_a2_04",
+        "view": "perspective",
+        "preset": "robust",
+        "mesh_size": 0.35,
+        "structural_score": 0.5,
+        "cfd_score": 0.5222
+      },
+      {
+        "case": "bench_a4_02",
+        "view": "wireframe",
+        "preset": "ultra_robust",
+        "mesh_size": 0.35,
+        "structural_score": 0.75,
+        "cfd_score": 0.2963
+      }
+    ],
+    "ultra_robust_tasks": [
+      {
+        "case": "bench_a1_05",
+        "view": "birdseye",
+        "used_repair": false,
+        "structural_score": 0.75,
+        "cfd_score": 0.4819
+      },
+      {
+        "case": "bench_a3_01",
+        "view": "perspective",
+        "used_repair": false,
+        "structural_score": 0.625,
+        "cfd_score": 0.3795
+      },
+      {
+        "case": "bench_a3_02",
+        "view": "floorplan",
+        "used_repair": false,
+        "structural_score": 0.75,
+        "cfd_score": 0.4703
+      },
+      {
+        "case": "bench_a3_04",
+        "view": "section",
+        "used_repair": false,
+        "structural_score": 0.4167,
+        "cfd_score": 0.3352
+      },
+      {
+        "case": "bench_a4_02",
+        "view": "wireframe",
+        "used_repair": true,
+        "structural_score": 0.75,
+        "cfd_score": 0.2963
+      }
+    ],
+    "mesh025_tasks": [
+      {
+        "case": "bench_a2_01",
+        "view": "perspective",
+        "preset": "robust",
+        "used_repair": false,
+        "structural_score": 0.75,
+        "cfd_score": 0.4543
+      },
+      {
+        "case": "bench_a3_05",
+        "view": "perspective",
+        "preset": "robust",
+        "used_repair": false,
+        "structural_score": 0.625,
+        "cfd_score": 0.5042
+      }
+    ],
+    "highest_cfd_tasks": [
+      {
+        "case": "bench_a2_05",
+        "view": "floorplan",
+        "category": "A2",
+        "room_kind": "rectangular",
+        "structural_score": 0.8333,
+        "cfd_score": 0.7839
+      },
+      {
+        "case": "bench_a1_05",
+        "view": "floorplan",
+        "category": "A1",
+        "room_kind": "rectangular",
+        "structural_score": 0.875,
+        "cfd_score": 0.7405
+      },
+      {
+        "case": "bench_a1_03",
+        "view": "birdseye",
+        "category": "A1",
+        "room_kind": "rectangular",
+        "structural_score": 0.75,
+        "cfd_score": 0.7356
+      },
+      {
+        "case": "bench_a3_01",
+        "view": "birdseye",
+        "category": "A3",
+        "room_kind": "composite",
+        "structural_score": 0.625,
+        "cfd_score": 0.7315
+      },
+      {
+        "case": "bench_a3_03",
+        "view": "floorplan",
+        "category": "A3",
+        "room_kind": "composite",
+        "structural_score": 1.0,
+        "cfd_score": 0.7276
+      },
+      {
+        "case": "bench_a1_03",
+        "view": "section",
+        "category": "A1",
+        "room_kind": "rectangular",
+        "structural_score": 0.75,
+        "cfd_score": 0.7092
+      },
+      {
+        "case": "bench_a1_03",
+        "view": "wireframe",
+        "category": "A1",
+        "room_kind": "rectangular",
+        "structural_score": 0.75,
+        "cfd_score": 0.7064
+      },
+      {
+        "case": "bench_a3_01",
+        "view": "floorplan",
+        "category": "A3",
+        "room_kind": "composite",
+        "structural_score": 0.75,
+        "cfd_score": 0.6965
+      },
+      {
+        "case": "bench_a3_03",
+        "view": "birdseye",
+        "category": "A3",
+        "room_kind": "composite",
+        "structural_score": 0.625,
+        "cfd_score": 0.6955
+      },
+      {
+        "case": "bench_a3_05",
+        "view": "floorplan",
+        "category": "A3",
+        "room_kind": "composite",
+        "structural_score": 0.75,
+        "cfd_score": 0.693
+      }
+    ],
+    "lowest_cfd_tasks": [
+      {
+        "case": "bench_a4_02",
+        "view": "perspective",
+        "category": "A4",
+        "room_kind": "composite",
+        "structural_score": 0.625,
+        "cfd_score": 0.2875
+      },
+      {
+        "case": "bench_a4_01",
+        "view": "perspective",
+        "category": "A4",
+        "room_kind": "composite",
+        "structural_score": 0.375,
+        "cfd_score": 0.2904
+      },
+      {
+        "case": "bench_a4_01",
+        "view": "floorplan",
+        "category": "A4",
+        "room_kind": "composite",
+        "structural_score": 0.375,
+        "cfd_score": 0.2935
+      },
+      {
+        "case": "bench_a4_02",
+        "view": "wireframe",
+        "category": "A4",
+        "room_kind": "composite",
+        "structural_score": 0.75,
+        "cfd_score": 0.2963
+      },
+      {
+        "case": "bench_a2_02",
+        "view": "perspective",
+        "category": "A2",
+        "room_kind": "rectangular",
+        "structural_score": 0.75,
+        "cfd_score": 0.3002
+      },
+      {
+        "case": "bench_a2_02",
+        "view": "section",
+        "category": "A2",
+        "room_kind": "rectangular",
+        "structural_score": 0.5,
+        "cfd_score": 0.3158
+      },
+      {
+        "case": "bench_a2_02",
+        "view": "wireframe",
+        "category": "A2",
+        "room_kind": "rectangular",
+        "structural_score": 0.625,
+        "cfd_score": 0.317
+      },
+      {
+        "case": "bench_a4_01",
+        "view": "section",
+        "category": "A4",
+        "room_kind": "composite",
+        "structural_score": 0.7083,
+        "cfd_score": 0.3176
+      },
+      {
+        "case": "bench_a3_03",
+        "view": "section",
+        "category": "A3",
+        "room_kind": "composite",
+        "structural_score": 0.625,
+        "cfd_score": 0.3237
+      },
+      {
+        "case": "bench_a4_05",
+        "view": "section",
+        "category": "A4",
+        "room_kind": "composite",
+        "structural_score": 0.4167,
+        "cfd_score": 0.3311
+      }
+    ],
+    "largest_positive_obstacle_delta": [
+      {
+        "case": "bench_a1_02",
+        "view": "perspective",
+        "reference_obstacle_count": 0,
+        "predicted_obstacle_count": 3,
+        "obstacle_count_delta": 3,
+        "structural_score": 0.75,
+        "cfd_score": 0.6266
+      },
+      {
+        "case": "bench_a1_02",
+        "view": "section",
+        "reference_obstacle_count": 0,
+        "predicted_obstacle_count": 3,
+        "obstacle_count_delta": 3,
+        "structural_score": 0.625,
+        "cfd_score": 0.3593
+      },
+      {
+        "case": "bench_a1_02",
+        "view": "wireframe",
+        "reference_obstacle_count": 0,
+        "predicted_obstacle_count": 3,
+        "obstacle_count_delta": 3,
+        "structural_score": 0.75,
+        "cfd_score": 0.6089
+      },
+      {
+        "case": "bench_a3_01",
+        "view": "birdseye",
+        "reference_obstacle_count": 0,
+        "predicted_obstacle_count": 3,
+        "obstacle_count_delta": 3,
+        "structural_score": 0.625,
+        "cfd_score": 0.7315
+      },
+      {
+        "case": "bench_a3_01",
+        "view": "floorplan",
+        "reference_obstacle_count": 0,
+        "predicted_obstacle_count": 3,
+        "obstacle_count_delta": 3,
+        "structural_score": 0.75,
+        "cfd_score": 0.6965
+      },
+      {
+        "case": "bench_a3_01",
+        "view": "perspective",
+        "reference_obstacle_count": 0,
+        "predicted_obstacle_count": 3,
+        "obstacle_count_delta": 3,
+        "structural_score": 0.625,
+        "cfd_score": 0.3795
+      },
+      {
+        "case": "bench_a3_01",
+        "view": "section",
+        "reference_obstacle_count": 0,
+        "predicted_obstacle_count": 3,
+        "obstacle_count_delta": 3,
+        "structural_score": 0.625,
+        "cfd_score": 0.5855
+      },
+      {
+        "case": "bench_a3_01",
+        "view": "wireframe",
+        "reference_obstacle_count": 0,
+        "predicted_obstacle_count": 3,
+        "obstacle_count_delta": 3,
+        "structural_score": 0.75,
+        "cfd_score": 0.5482
+      },
+      {
+        "case": "bench_a3_02",
+        "view": "birdseye",
+        "reference_obstacle_count": 0,
+        "predicted_obstacle_count": 3,
+        "obstacle_count_delta": 3,
+        "structural_score": 0.75,
+        "cfd_score": 0.5538
+      },
+      {
+        "case": "bench_a3_02",
+        "view": "floorplan",
+        "reference_obstacle_count": 0,
+        "predicted_obstacle_count": 3,
+        "obstacle_count_delta": 3,
+        "structural_score": 0.75,
+        "cfd_score": 0.4703
+      },
+      {
+        "case": "bench_a3_02",
+        "view": "section",
+        "reference_obstacle_count": 0,
+        "predicted_obstacle_count": 3,
+        "obstacle_count_delta": 3,
+        "structural_score": 0.625,
+        "cfd_score": 0.6248
+      },
+      {
+        "case": "bench_a3_02",
+        "view": "wireframe",
+        "reference_obstacle_count": 0,
+        "predicted_obstacle_count": 3,
+        "obstacle_count_delta": 3,
+        "structural_score": 0.75,
+        "cfd_score": 0.6606
+      },
+      {
+        "case": "bench_a1_01",
+        "view": "floorplan",
+        "reference_obstacle_count": 1,
+        "predicted_obstacle_count": 3,
+        "obstacle_count_delta": 2,
+        "structural_score": 0.875,
+        "cfd_score": 0.393
+      },
+      {
+        "case": "bench_a1_03",
+        "view": "birdseye",
+        "reference_obstacle_count": 1,
+        "predicted_obstacle_count": 3,
+        "obstacle_count_delta": 2,
+        "structural_score": 0.75,
+        "cfd_score": 0.7356
+      },
+      {
+        "case": "bench_a1_03",
+        "view": "perspective",
+        "reference_obstacle_count": 1,
+        "predicted_obstacle_count": 3,
+        "obstacle_count_delta": 2,
+        "structural_score": 0.75,
+        "cfd_score": 0.6686
+      },
+      {
+        "case": "bench_a1_03",
+        "view": "section",
+        "reference_obstacle_count": 1,
+        "predicted_obstacle_count": 3,
+        "obstacle_count_delta": 2,
+        "structural_score": 0.75,
+        "cfd_score": 0.7092
+      },
+      {
+        "case": "bench_a1_03",
+        "view": "wireframe",
+        "reference_obstacle_count": 1,
+        "predicted_obstacle_count": 3,
+        "obstacle_count_delta": 2,
+        "structural_score": 0.75,
+        "cfd_score": 0.7064
+      },
+      {
+        "case": "bench_a1_04",
+        "view": "floorplan",
+        "reference_obstacle_count": 1,
+        "predicted_obstacle_count": 3,
+        "obstacle_count_delta": 2,
+        "structural_score": 0.75,
+        "cfd_score": 0.4349
+      },
+      {
+        "case": "bench_a1_04",
+        "view": "perspective",
+        "reference_obstacle_count": 1,
+        "predicted_obstacle_count": 3,
+        "obstacle_count_delta": 2,
+        "structural_score": 0.875,
+        "cfd_score": 0.4095
+      },
+      {
+        "case": "bench_a1_04",
+        "view": "section",
+        "reference_obstacle_count": 1,
+        "predicted_obstacle_count": 3,
+        "obstacle_count_delta": 2,
+        "structural_score": 0.75,
+        "cfd_score": 0.4067
+      }
+    ]
+  },
+  "generated_from": {
+    "task_count": 100,
+    "evaluation_summary_pattern": "benchmark/evaluations/*/*/evaluation_summary.json"
+  }
+}
