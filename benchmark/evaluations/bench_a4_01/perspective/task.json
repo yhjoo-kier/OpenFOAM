@@ -5,7 +5,7 @@
   "room_kind": "composite",
   "obstacle_count": 3,
   "view": "perspective",
-  "status": "pending",
+  "status": "success",
   "input_image": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_01/perspective/input.png",
   "reference_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_01/perspective/reference_scene.json",
   "reference_case": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_01/perspective/reference_case",
@@ -25,5 +25,22 @@
     "risk": null,
     "risk_score": null,
     "risk_reasons": null
+  },
+  "last_started_at": "2026-03-18T19:31:54Z",
+  "run_request": {
+    "backend": "cli",
+    "model": "gemini-3-flash-preview",
+    "mesh_size": 0.35,
+    "end_time": 250,
+    "solver_timeout": 600
+  },
+  "last_finished_at": "2026-03-18T19:32:33Z",
+  "last_run_name": "eval_bench_a4_01_perspective",
+  "evaluation_summary": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_01/perspective/evaluation_summary.json",
+  "actual_outputs": {
+    "predicted_scene_json": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_01/perspective/predicted_scene.json",
+    "predicted_case_dir": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_01/perspective/predicted_case",
+    "predicted_results_dir": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_01/perspective/predicted_results",
+    "cfd_metrics_json": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_01/perspective/cfd_metrics.json"
   }
 }

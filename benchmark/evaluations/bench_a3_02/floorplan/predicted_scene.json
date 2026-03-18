@@ -1,0 +1,114 @@
+{
+  "schema_version": "indoor_cfd_scene_v1",
+  "units": "m",
+  "coordinate_system": {
+    "origin": "room_min_corner",
+    "x": "west_to_east",
+    "y": "south_to_north",
+    "z": "floor_to_ceiling"
+  },
+  "room": {
+    "blocks": [
+      {
+        "origin": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "size": {
+          "dx": 6.0,
+          "dy": 5.0,
+          "dz": 2.5
+        }
+      },
+      {
+        "origin": {
+          "x": 6.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "size": {
+          "dx": 2.0,
+          "dy": 3.5,
+          "dz": 2.5
+        }
+      }
+    ]
+  },
+  "obstacles": [
+    {
+      "id": "obs_001",
+      "type": "box",
+      "min": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 0.0
+      },
+      "size": {
+        "dx": 1.2,
+        "dy": 1.0,
+        "dz": 0.75
+      }
+    },
+    {
+      "id": "obs_002",
+      "type": "box",
+      "min": {
+        "x": 4.5,
+        "y": 0.5,
+        "z": 0.0
+      },
+      "size": {
+        "dx": 1.0,
+        "dy": 2.0,
+        "dz": 1.8
+      }
+    },
+    {
+      "id": "obs_003",
+      "type": "box",
+      "min": {
+        "x": 1.5,
+        "y": 3.8,
+        "z": 0.0
+      },
+      "size": {
+        "dx": 1.5,
+        "dy": 0.6,
+        "dz": 0.4
+      }
+    }
+  ],
+  "openings": [
+    {
+      "id": "inlet_001",
+      "type": "inlet",
+      "wall": "west",
+      "center": {
+        "u": 2.8,
+        "v": 1.25
+      },
+      "size": {
+        "du": 0.6,
+        "dv": 0.8
+      }
+    },
+    {
+      "id": "outlet_001",
+      "type": "outlet",
+      "wall": "north",
+      "center": {
+        "u": 2.5,
+        "v": 2.2
+      },
+      "size": {
+        "du": 0.8,
+        "dv": 0.4
+      }
+    }
+  ],
+  "meta": {
+    "scene_type": "l_shaped_room",
+    "description": "An L-shaped room with a recessed northeast corner, featuring a central-west inlet and a north-wall outlet."
+  }
+}

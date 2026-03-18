@@ -1,0 +1,352 @@
+{
+  "ok": true,
+  "task": {
+    "case_name": "bench_a3_02",
+    "view": "birdseye",
+    "task_json": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_02/birdseye/task.json",
+    "input_image": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_02/birdseye/input.png",
+    "reference_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_02/birdseye/reference_scene.json"
+  },
+  "run": {
+    "name": "eval_bench_a3_02_birdseye",
+    "command": [
+      "python3",
+      "/home/yhjoo/projects/OpenFOAM/scripts/run_indoor_stabilized.py",
+      "--backend",
+      "cli",
+      "--model",
+      "gemini-3-flash-preview",
+      "--image",
+      "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_02/birdseye/input.png",
+      "--scenario",
+      "Generate a simulation-ready indoor ventilation scene from the provided image. Use the image as the primary cue and infer a solver-friendly abstraction of room shape, openings, and only the largest flow-relevant obstacles. Do not assume hidden geometry beyond what is reasonably supported by the image. Favor simple box obstacles and use two joined room blocks only if the visible layout is clearly non-rectangular. The image is a bird's-eye benchmark rendering emphasizing overall layout.",
+      "--name",
+      "eval_bench_a3_02_birdseye",
+      "--mesh-size",
+      "0.35",
+      "--end-time",
+      "250",
+      "--solver-timeout",
+      "600"
+    ],
+    "returncode": 0,
+    "started_at": "2026-03-18T19:24:46Z",
+    "finished_at": "2026-03-18T19:25:49Z"
+  },
+  "outputs": {
+    "predicted_scene_json": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_02/birdseye/predicted_scene.json",
+    "predicted_case_dir": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_02/birdseye/predicted_case",
+    "predicted_results_dir": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_02/birdseye/predicted_results",
+    "stabilization_summary": "/home/yhjoo/projects/OpenFOAM/results/eval_bench_a3_02_birdseye/stabilization_summary.json",
+    "cfd_metrics_json": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_02/birdseye/cfd_metrics.json"
+  },
+  "reference_summary": {
+    "success": true,
+    "successful_preset": null,
+    "successful_mode": null,
+    "successful_mesh_size": null,
+    "attempt_count": 1,
+    "risk": null,
+    "risk_score": null,
+    "risk_reasons": null
+  },
+  "prediction_summary": {
+    "reference_room_kind": "composite",
+    "predicted_room_kind": "composite",
+    "room_kind_match": true,
+    "reference_room_block_count": 2,
+    "predicted_room_block_count": 2,
+    "reference_room_bbox": {
+      "Lx": 7.102,
+      "Ly": 4.299,
+      "Lz": 2.716
+    },
+    "predicted_room_bbox": {
+      "Lx": 9.5,
+      "Ly": 4.0,
+      "Lz": 2.8
+    },
+    "room_bbox_absolute_error": {
+      "Lx": 2.398,
+      "Ly": 0.299,
+      "Lz": 0.084
+    },
+    "room_bbox_relative_error": {
+      "Lx": 0.3377,
+      "Ly": 0.0696,
+      "Lz": 0.0309
+    },
+    "reference_room_volume": 77.2798,
+    "predicted_room_volume": 91.7,
+    "room_volume_relative_error": 0.1866,
+    "room_block_match": {
+      "label": "room_blocks",
+      "iou_match_threshold": 0.2,
+      "matched_pairs": [
+        {
+          "reference_index": 0,
+          "predicted_index": 0,
+          "iou": 0.796,
+          "center_error_l2": 0.4128,
+          "size_error_l2": 0.8256,
+          "matched_above_threshold": true
+        },
+        {
+          "reference_index": 1,
+          "predicted_index": 1,
+          "iou": 0.2256,
+          "center_error_l2": 1.6188,
+          "size_error_l2": 1.7732,
+          "matched_above_threshold": true
+        }
+      ],
+      "mean_iou": 0.5108,
+      "mean_center_error_l2": 1.0158,
+      "mean_size_error_l2": 1.2994,
+      "matched_above_threshold_count": 2,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "unmatched_reference_count": 0,
+      "unmatched_predicted_count": 0
+    },
+    "reference_obstacle_count": 0,
+    "predicted_obstacle_count": 3,
+    "obstacle_count_delta": 3,
+    "obstacle_match": {
+      "label": "obstacles",
+      "iou_match_threshold": 0.1,
+      "matched_pairs": [],
+      "mean_iou": 0.0,
+      "mean_center_error_l2": null,
+      "mean_size_error_l2": null,
+      "matched_above_threshold_count": 0,
+      "precision": 0.0,
+      "recall": 1.0,
+      "f1": 0.0,
+      "unmatched_reference_count": 0,
+      "unmatched_predicted_count": 3
+    },
+    "reference_opening_walls": [
+      "north",
+      "west"
+    ],
+    "predicted_opening_walls": [
+      "north",
+      "west"
+    ],
+    "opening_wall_match": true,
+    "opening_metrics": {
+      "reference_count": 2,
+      "predicted_count": 2,
+      "matched_type_count": 2,
+      "type_precision": 1.0,
+      "type_recall": 1.0,
+      "type_f1": 1.0,
+      "wall_match_ratio": 1.0,
+      "mean_center_error_l2": 0.9881,
+      "mean_size_error_l2": 0.4493,
+      "per_opening": {
+        "inlet": {
+          "present_in_reference": true,
+          "present_in_prediction": true,
+          "wall_match": true,
+          "center_error_l2": 0.876,
+          "size_error_l2": 0.2738
+        },
+        "outlet": {
+          "present_in_reference": true,
+          "present_in_prediction": true,
+          "wall_match": true,
+          "center_error_l2": 1.1002,
+          "size_error_l2": 0.6248
+        }
+      }
+    },
+    "structural_score": 0.75
+  },
+  "cfd_summary": {
+    "ok": true,
+    "grid": {
+      "nx": 18,
+      "ny": 18,
+      "nz": 10,
+      "point_count": 3240,
+      "epsilon": {
+        "x": 0.05,
+        "y": 0.05,
+        "z": 0.08
+      }
+    },
+    "reference": {
+      "scene": "/home/yhjoo/projects/OpenFOAM/benchmark/scenes/a3_02.json",
+      "case": "/home/yhjoo/projects/OpenFOAM/cases/bench_a3_02",
+      "vtk": "/home/yhjoo/projects/OpenFOAM/cases/bench_a3_02/VTK/bench_a3_02_200/internal.vtu",
+      "room_bounds": {
+        "Lx": 7.102,
+        "Ly": 4.299,
+        "Lz": 2.716
+      },
+      "valid_count": 3040,
+      "valid_ratio": 0.938272
+    },
+    "predicted": {
+      "scene": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_02/birdseye/predicted_scene.json",
+      "case": "/home/yhjoo/projects/OpenFOAM/cases/eval_bench_a3_02_birdseye",
+      "vtk": "/home/yhjoo/projects/OpenFOAM/cases/eval_bench_a3_02_birdseye/VTK/eval_bench_a3_02_birdseye_200/internal.vtu",
+      "room_bounds": {
+        "Lx": 9.5,
+        "Ly": 4.0,
+        "Lz": 2.8
+      },
+      "valid_count": 2656,
+      "valid_ratio": 0.819753
+    },
+    "overlap": {
+      "count": 2656,
+      "ratio_vs_total": 0.819753,
+      "ratio_vs_union": 0.873684,
+      "union_count": 3040
+    },
+    "field_metrics": {
+      "velocity_vector": {
+        "mae_l2": 0.00215,
+        "rmse_l2": 0.002986,
+        "reference_rms": 0.002944,
+        "relative_rmse": 1.01435,
+        "mean_direction_cosine": 0.540439,
+        "direction_comparable_count": 2620
+      },
+      "velocity_magnitude": {
+        "mae": 0.001591,
+        "rmse": 0.002414,
+        "reference_rms": 0.002944,
+        "relative_rmse": 0.820194,
+        "reference_mean": 0.002196,
+        "predicted_mean": 0.001082
+      },
+      "pressure": {
+        "mae": 0.000232,
+        "rmse": 0.000232,
+        "reference_rms": 0.000381,
+        "relative_rmse": 0.608627,
+        "reference_mean": 0.000381,
+        "predicted_mean": 0.000149
+      }
+    },
+    "aggregate_score": {
+      "cfd_score": 0.553771,
+      "components": {
+        "overlap_ratio_vs_union": 0.873684,
+        "velocity_magnitude_similarity": 0.179806,
+        "velocity_direction_similarity": 0.77022,
+        "pressure_similarity": 0.391373
+      }
+    },
+    "runner": {
+      "command": [
+        "docker",
+        "run",
+        "--rm",
+        "-v",
+        "/home/yhjoo/projects/OpenFOAM:/home/yhjoo/projects/OpenFOAM",
+        "-w",
+        "/home/yhjoo/projects/OpenFOAM",
+        "openfoam-pipeline-local:latest",
+        "python3",
+        "/home/yhjoo/projects/OpenFOAM/scripts/compute_benchmark_cfd_metrics.py",
+        "--reference-scene",
+        "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_02/birdseye/reference_scene.json",
+        "--reference-case",
+        "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_02/birdseye/reference_case",
+        "--predicted-scene",
+        "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_02/birdseye/predicted_scene.json",
+        "--predicted-case",
+        "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_02/birdseye/predicted_case",
+        "--output",
+        "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_02/birdseye/cfd_metrics.json"
+      ],
+      "returncode": 0,
+      "stdout_tail": "      \"mean_direction_cosine\": 0.540439,\n      \"direction_comparable_count\": 2620\n    },\n    \"velocity_magnitude\": {\n      \"mae\": 0.001591,\n      \"rmse\": 0.002414,\n      \"reference_rms\": 0.002944,\n      \"relative_rmse\": 0.820194,\n      \"reference_mean\": 0.002196,\n      \"predicted_mean\": 0.001082\n    },\n    \"pressure\": {\n      \"mae\": 0.000232,\n      \"rmse\": 0.000232,\n      \"reference_rms\": 0.000381,\n      \"relative_rmse\": 0.608627,\n      \"reference_mean\": 0.000381,\n      \"predicted_mean\": 0.000149\n    }\n  },\n  \"aggregate_score\": {\n    \"cfd_score\": 0.553771,\n    \"components\": {\n      \"overlap_ratio_vs_union\": 0.873684,\n      \"velocity_magnitude_similarity\": 0.179806,\n      \"velocity_direction_similarity\": 0.77022,\n      \"pressure_similarity\": 0.391373\n    }\n  }\n}",
+      "stderr_tail": ""
+    }
+  },
+  "pipeline_summary": {
+    "name": "eval_bench_a3_02_birdseye",
+    "input_source_type": "image",
+    "requested_backend": "cli",
+    "requested_model": "gemini-3-flash-preview",
+    "input_images": [
+      "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_02/birdseye/input.png"
+    ],
+    "scene_json": "/home/yhjoo/projects/OpenFOAM/generated/eval_bench_a3_02_birdseye.json",
+    "repaired_scene_json": "/home/yhjoo/projects/OpenFOAM/generated/eval_bench_a3_02_birdseye_repaired.json",
+    "used_scene_json": "/home/yhjoo/projects/OpenFOAM/generated/eval_bench_a3_02_birdseye.json",
+    "msh": "/home/yhjoo/projects/OpenFOAM/generated/eval_bench_a3_02_birdseye.msh",
+    "case_dir": "/home/yhjoo/projects/OpenFOAM/cases/eval_bench_a3_02_birdseye",
+    "generation_summary": {
+      "ok": true,
+      "errors": [],
+      "warnings": [],
+      "output": "/home/yhjoo/projects/OpenFOAM/generated/eval_bench_a3_02_birdseye.json",
+      "backend": "cli",
+      "model": "gemini-3-flash-preview",
+      "requested_model": "gemini-3-flash-preview",
+      "fallback_used": false,
+      "fallback_notice": null,
+      "primary_model_retry_limit": 5,
+      "generation_history": [
+        {
+          "model": "gemini-3-flash-preview",
+          "attempt": 1,
+          "ok": true
+        }
+      ],
+      "scenario": "Generate a simulation-ready indoor ventilation scene from the provided image. Use the image as the primary cue and infer a solver-friendly abstraction of room shape, openings, and only the largest flow-relevant obstacles. Do not assume hidden geometry beyond what is reasonably supported by the image. Favor simple box obstacles and use two joined room blocks only if the visible layout is clearly non-rectangular. The image is a bird's-eye benchmark rendering emphasizing overall layout.",
+      "images": [
+        "/home/yhjoo/projects/OpenFOAM/benchmark/renderings/bench_a3_02/birdseye/bench_a3_02_birdseye.png"
+      ]
+    },
+    "repair_info": null,
+    "attempts": [
+      {
+        "scene_variant": "original",
+        "scene_json": "/home/yhjoo/projects/OpenFOAM/generated/eval_bench_a3_02_birdseye.json",
+        "mesh_size": 0.35,
+        "preset": "robust",
+        "mode": "RAS",
+        "returncode": 0,
+        "reason": "completed",
+        "failure_family": null,
+        "failure_hints": [],
+        "mesh_risk_level": "high",
+        "mesh_risk_score": 9,
+        "mesh_risk_reasons": [
+          "defaultFaces=3784",
+          "maxNonOrtho=86.37>85",
+          "severeNonOrthoFaces=16",
+          "aspectRatio=31.58>20",
+          "skewness=1.214>0.85"
+        ],
+        "default_faces": 3784,
+        "checkmesh": {
+          "max_non_ortho": 86.374505,
+          "avg_non_ortho": 21.84903,
+          "severe_non_ortho_faces": 16,
+          "max_aspect_ratio": 31.578947,
+          "max_skewness": 1.2137031,
+          "mesh_ok": true
+        },
+        "log": "/home/yhjoo/projects/OpenFOAM/results/eval_bench_a3_02_birdseye/log.simpleFoam_original_mesh0p35_robust.txt"
+      }
+    ],
+    "success": true,
+    "successful_preset": "robust",
+    "successful_mode": "RAS",
+    "successful_mesh_size": 0.35,
+    "successful_scene_variant": "original",
+    "compass_version": "2026-03-15_openfoam_solver_stabilization_compass"
+  },
+  "stdout_tail": "  \"repair_info\": null,\n  \"attempts\": [\n    {\n      \"scene_variant\": \"original\",\n      \"scene_json\": \"/home/yhjoo/projects/OpenFOAM/generated/eval_bench_a3_02_birdseye.json\",\n      \"mesh_size\": 0.35,\n      \"preset\": \"robust\",\n      \"mode\": \"RAS\",\n      \"returncode\": 0,\n      \"reason\": \"completed\",\n      \"failure_family\": null,\n      \"failure_hints\": [],\n      \"mesh_risk_level\": \"high\",\n      \"mesh_risk_score\": 9,\n      \"mesh_risk_reasons\": [\n        \"defaultFaces=3784\",\n        \"maxNonOrtho=86.37>85\",\n        \"severeNonOrthoFaces=16\",\n        \"aspectRatio=31.58>20\",\n        \"skewness=1.214>0.85\"\n      ],\n      \"default_faces\": 3784,\n      \"checkmesh\": {\n        \"max_non_ortho\": 86.374505,\n        \"avg_non_ortho\": 21.84903,\n        \"severe_non_ortho_faces\": 16,\n        \"max_aspect_ratio\": 31.578947,\n        \"max_skewness\": 1.2137031,\n        \"mesh_ok\": true\n      },\n      \"log\": \"/home/yhjoo/projects/OpenFOAM/results/eval_bench_a3_02_birdseye/log.simpleFoam_original_mesh0p35_robust.txt\"\n    }\n  ],\n  \"success\": true,\n  \"successful_preset\": \"robust\",\n  \"successful_mode\": \"RAS\",\n  \"successful_mesh_size\": 0.35,\n  \"successful_scene_variant\": \"original\",\n  \"compass_version\": \"2026-03-15_openfoam_solver_stabilization_compass\"\n}",
+  "stderr_tail": ""
+}

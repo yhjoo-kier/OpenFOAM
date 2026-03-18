@@ -12,8 +12,8 @@
   "case_count": 20,
   "task_count": 100,
   "status_counts": {
-    "success": 60,
-    "pending": 40
+    "success": 70,
+    "pending": 30
   },
   "cases": [
     {
@@ -264,7 +264,7 @@
       "reference_results": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_02/birdseye/reference_results",
       "task_count": 5,
       "status_counts": {
-        "pending": 5
+        "success": 5
       },
       "case_root": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_02"
     },
@@ -348,7 +348,7 @@
       "reference_results": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_01/birdseye/reference_results",
       "task_count": 5,
       "status_counts": {
-        "pending": 5
+        "success": 5
       },
       "case_root": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_01"
     },
