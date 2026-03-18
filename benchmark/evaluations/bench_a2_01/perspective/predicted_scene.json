@@ -1,0 +1,93 @@
+{
+  "schema_version": "indoor_cfd_scene_v1",
+  "units": "m",
+  "coordinate_system": {
+    "origin": "room_min_corner",
+    "x": "west_to_east",
+    "y": "south_to_north",
+    "z": "floor_to_ceiling"
+  },
+  "room": {
+    "size": {
+      "Lx": 10.0,
+      "Ly": 5.0,
+      "Lz": 3.0
+    }
+  },
+  "obstacles": [
+    {
+      "id": "obs_001",
+      "type": "box",
+      "min": {
+        "x": 4.5,
+        "y": 1.5,
+        "z": 0.0
+      },
+      "size": {
+        "dx": 1.8,
+        "dy": 1.0,
+        "dz": 0.75
+      }
+    },
+    {
+      "id": "obs_002",
+      "type": "box",
+      "min": {
+        "x": 7.2,
+        "y": 0.5,
+        "z": 0.0
+      },
+      "size": {
+        "dx": 1.4,
+        "dy": 1.4,
+        "dz": 0.75
+      }
+    },
+    {
+      "id": "obs_003",
+      "type": "box",
+      "min": {
+        "x": 1.0,
+        "y": 0.5,
+        "z": 0.0
+      },
+      "size": {
+        "dx": 0.8,
+        "dy": 0.4,
+        "dz": 0.4
+      }
+    }
+  ],
+  "openings": [
+    {
+      "id": "inlet_001",
+      "type": "inlet",
+      "wall": "west",
+      "center": {
+        "u": 4.0,
+        "v": 2.5
+      },
+      "size": {
+        "du": 0.4,
+        "dv": 0.3
+      }
+    },
+    {
+      "id": "outlet_001",
+      "type": "outlet",
+      "wall": "north",
+      "center": {
+        "u": 7.0,
+        "v": 2.5
+      },
+      "size": {
+        "du": 0.6,
+        "dv": 0.3
+      }
+    }
+  ],
+  "meta": {
+    "scene_type": "rectangular_office",
+    "description": "A single rectangular room with two primary floor obstacles and offset wall-mounted ventilation openings."
+  }
+}

@@ -80,6 +80,7 @@ OpenFOAM Image-to-CFD 논문을 위한 benchmark dataset 파이프라인을 구�
 - [x] laminar-fallback 계열 composite stress case `bench_a4_02`에 대해 5-view CLI complete sweep 실행 및 repair/solver escalation 신호 확보
 - [x] 직사각형 dense-obstacle hard case `bench_a2_03`에 대해 5-view CLI complete sweep 실행 및 rectangular-vs-composite stress 비교축 확보
 - [x] reference solver-stress 대표 case `bench_a1_04`에 대해 5-view CLI complete sweep 실행 및 prediction-side stress 완화 신호 확보
+- [x] 직사각형 중간 난도 case `bench_a2_01`에 대해 5-view CLI complete sweep 실행 및 hard-case 편향 완화용 control 확보
 - [x] 생성 직후 invalid composite scene도 salvage 가능하도록 `run_indoor_stabilized.py` / `repair_indoor_scene.py` hardening
 - [x] 소규모 반복 실행용 `scripts/run_benchmark_evaluation_batch.py` 추가
 - [~] API backend 자체는 현재 cron shell에서 여전히 env 미설정(`GEMINI_API_KEY`, `GOOGLE_API_KEY` 모두 없음)이지만, benchmark 진행은 CLI backend로 더 이상 막히지 않음
@@ -129,8 +130,8 @@ OpenFOAM Image-to-CFD 논문을 위한 benchmark dataset 파이프라인을 구�
 - Reference CFD 상태: **20/20 성공**
 - Benchmark input-view export: `perspective`, `birdseye`, `floorplan`, `wireframe`, `section` 기준 **20/20 성공**
 - Evaluation scaffold: **100 tasks** (`20 scenes × 5 views`)
-- Image-conditioned evaluation 상태: **35 success**, **65 pending**
-  - complete case sweep 완료: `bench_a1_01` (rectangular baseline), `bench_a1_04` (reference solver-stress rectangular case), `bench_a2_03` (dense-obstacle rectangular stress case), `bench_a3_03` (mid-difficulty composite case), `bench_a3_04` (composite representative), `bench_a4_02` (laminar-fallback composite stress case), `bench_a4_03` (obstacle-dense composite stress case) 모두 5-view 전부 성공 (CLI backend)
+- Image-conditioned evaluation 상태: **40 success**, **60 pending**
+  - complete case sweep 완료: `bench_a1_01` (rectangular baseline), `bench_a1_04` (reference solver-stress rectangular case), `bench_a2_01` (rectangular mid-difficulty control), `bench_a2_03` (dense-obstacle rectangular stress case), `bench_a3_03` (mid-difficulty composite case), `bench_a3_04` (composite representative), `bench_a4_02` (laminar-fallback composite stress case), `bench_a4_03` (obstacle-dense composite stress case) 모두 5-view 전부 성공 (CLI backend)
   - API backend env는 현재 shell에서 여전히 비어 있으나, Gemini CLI cached auth 경로로 평가 진행 가능
 - 실제 evaluation task는 geometry metric과 normalized-grid CFD metric (`cfd_metrics.json`)을 함께 기록함
 
@@ -139,6 +140,7 @@ OpenFOAM Image-to-CFD 논문을 위한 benchmark dataset 파이프라인을 구�
 - `bench_a2_03`, `bench_a4_03`는 mesh 민감도가 상대적으로 큰 대표 케이스였다.
   - frozen-12 recovery 시점에는 `mesh_size=0.35`에서 실패 후 `0.25` fallback이 필요했다.
 - `bench_a1_04`는 `0.35`에서 풀렸지만 `ultra_robust` preset이 필요했다.
+- `bench_a2_01`은 새 rectangular mid-control로 추가되었고, 5-view 전부 성공했지만 `perspective`만 `mesh_size=0.35` import/checkMesh timeout 후 `0.25` fallback이 필요했다.
 - `bench_a4_02`는 reference bundle에서는 `laminar_fallback` 대표 케이스였고, image-conditioned CLI sweep에서는 5-view 전부 성공했지만 `wireframe`이 repaired scene + `ultra_robust`까지 올라가는 강한 stress signal을 보였다.
 - `bench_a3_03`는 composite 중간 난도 positive-control로 새롭게 확보되었다.
   - 5-view 전부 `original + robust`에서 직접 성공했고, `floorplan`/`perspective`는 구조적으로 거의 정답에 가깝게 복원됐다.
@@ -153,9 +155,9 @@ OpenFOAM Image-to-CFD 논문을 위한 benchmark dataset 파이프라인을 구�
 
 ## 다음 기본 액션
 
-1. 현재 complete sweep이 끝난 7개 case(`bench_a1_01`, `bench_a1_04`, `bench_a2_03`, `bench_a3_03`, `bench_a3_04`, `bench_a4_02`, `bench_a4_03`)를 묶어 case/view별 aggregate summary를 갱신한다.
-2. composite case에서는 opening/topology-sensitive metric, rectangular dense-obstacle case에서는 occupancy/blockage-sensitive metric이 추가로 필요한지 판단한다.
-3. hard-case 편향을 더 줄이기 위해 다음 CLI batch는 아직 미평가인 직사각형 중간 난도 case(`bench_a2_01` 또는 `bench_a1_02`)에 우선 배정한다.
+1. 현재 complete sweep이 끝난 8개 case(`bench_a1_01`, `bench_a1_04`, `bench_a2_01`, `bench_a2_03`, `bench_a3_03`, `bench_a3_04`, `bench_a4_02`, `bench_a4_03`) 기준 aggregate summary를 유지하고, 이후 쉬운 rectangular case를 추가해 비교축을 넓힌다.
+2. composite case에서는 opening/topology-sensitive metric, rectangular multi-obstacle case에서는 occupancy/blockage-sensitive metric이 추가로 필요한지 판단한다.
+3. 다음 CLI batch는 아직 미평가인 더 쉬운 직사각형 case(`bench_a1_02` 또는 `bench_a1_03`)에 우선 배정한다.
 4. API backend env(`GEMINI_API_KEY`/`GOOGLE_API_KEY`)는 별도 유지 과제로 남기되, benchmark 진행 자체는 CLI backend 기준으로 계속 전진한다.
-5. frozen-20 benchmark + CLI-eval 35/100 milestone에서 깔끔한 로컬 commit checkpoint를 유지한다.
-6. 이후 meshing/solver 변경이 생기면 stress subset (`bench_a2_01`, `bench_a4_02`, `bench_a2_03`, `bench_a4_03`, `bench_a1_04`)로 빠른 regression check를 수행한다.
+5. frozen-20 benchmark + CLI-eval 40/100 milestone에서 깔끔한 로컬 commit checkpoint를 유지한다.
+6. 이후 meshing/solver 변경이 생기면 stress subset (`bench_a2_01`, `bench_a4_02`, `bench_a2_03`, `bench_a4_03`, `bench_a1_04`)로 빠른 regression check를 수행하되, `bench_a2_01/perspective`의 fallback-success도 참고 신호로 본다.
