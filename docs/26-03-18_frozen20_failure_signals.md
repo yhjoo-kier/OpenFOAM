@@ -45,7 +45,7 @@ Quick breakdown:
 | Case | Category | Attempts | Final preset | Final mode | Final mesh | Signal |
 |---|---|---:|---|---|---:|---|
 | `bench_a2_01` | A2 | 4 | `conservative` | `RAS` | 0.35 | hardest preset-ladder case in the current frozen set |
-| `bench_a4_02` | A4 | 3 | `laminar_fallback` | `laminar` | 0.35 | only case needing laminar fallback |
+| `bench_a4_02` | A4 | 3 | `laminar_fallback` | `laminar` | 0.35 | only case needing laminar fallback; re-run after composite repair-path fix confirmed the old repair error was stale metadata, not an active compatibility blocker |
 | `bench_a1_04` | A1 | 2 | `ultra_robust` | `RAS` | 0.35 | simple geometry but still sensitive to stabilization settings |
 | `bench_a2_03` | A2 | 2 | `robust` | `RAS` | 0.25 | mesh-sensitivity case; required finer mesh fallback |
 | `bench_a4_03` | A4 | 2 | `robust` | `RAS` | 0.25 | composite + obstacle-dense mesh-sensitivity case |
@@ -63,6 +63,7 @@ Quick breakdown:
 3. **Composite rooms are no longer the main failure story by themselves.**
    - Both rectangular and composite families appear in the high-signal list.
    - The current bottleneck has shifted from room-schema compatibility toward solver robustness / mesh quality for a handful of layouts.
+   - A targeted March 18 rerun of `bench_a4_02` verified that `repair_indoor_scene.py` now repairs/validates that composite scene cleanly; the previously recorded repair failure was just stale pre-fix metadata in an older stabilization summary.
 
 4. **For paper reporting, success-rate alone will hide useful nuance.**
    - A small “stabilization cost” table (attempt count, final preset, mesh fallback use) would better communicate benchmark difficulty than a binary success flag.

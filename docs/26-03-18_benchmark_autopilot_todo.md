@@ -81,6 +81,7 @@ Build and validate the benchmark dataset pipeline for the OpenFOAM Image-to-CFD 
 - [x] Re-run failed pilot scenes after fixes
 - [x] Update pilot success-rate summary after re-runs
 - [x] Check whether the 20-scene tranche still converges without new stabilization regressions
+- [x] Re-run stale composite stress case metadata (`bench_a4_02`) after the composite repair-path fix so old repair failure traces do not pollute the frozen benchmark record
 
 ### E. Rendering / dataset feasibility
 - [x] Confirm 3D comparison rendering is produced for successful benchmark runs
