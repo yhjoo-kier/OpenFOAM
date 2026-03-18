@@ -1,4 +1,4 @@
-# Benchmark Evaluation Scaffold (Frozen-16 × 5 views)
+# Benchmark Evaluation Scaffold (Frozen-20 × 5 views)
 
 > Date: 2026-03-18
 
@@ -7,9 +7,10 @@
 The benchmark bundle now has a canonical `benchmark/evaluations/` scaffold so image-conditioned pipeline runs can be organized against the frozen reference set without ad-hoc folder creation.
 
 Current scaffold size:
-- Cases: 16
+- Cases: 20
 - Views per case: 5 (`perspective`, `birdseye`, `floorplan`, `wireframe`, `section`)
-- Evaluation tasks: 80 total
+- Evaluation tasks: 100 total
+- Current task status snapshot: 1 `blocked`, 99 `pending`
 
 ## What was added
 
@@ -53,8 +54,8 @@ Expected future outputs are pre-declared in `task.json`:
 This removes ambiguity about where future benchmark-evaluation runs should write artifacts.
 
 It also makes it easier to:
-1. sweep all 60 benchmark tasks systematically,
-2. attach run status later (`pending` / `running` / `success` / `failed`),
+1. sweep all 100 benchmark tasks systematically,
+2. attach run status later (`pending` / `running` / `success` / `failed` / `blocked`),
 3. compare predicted geometry/CFD outputs against the frozen reference bundle.
 
 ## Small pipeline fix bundled with this checkpoint

@@ -102,7 +102,8 @@ Build and validate the benchmark dataset pipeline for the OpenFOAM Image-to-CFD 
 - [x] Write a follow-up note for the 16-scene frozen subset and manifest-refresh fixes
 - [x] Write a follow-up note for the 20-scene frozen subset and scaffold refresh
 - [x] Write a follow-up note for normalized-grid CFD benchmark metrics
-- [-] Commit meaningful project changes in project repo when a stable checkpoint is reached (do not push unless explicitly requested)
+- [x] Write a robustness / failure-signals note for the frozen-20 reference bundle
+- [x] Commit meaningful project changes in project repo when a stable checkpoint is reached (do not push unless explicitly requested)
 
 ## Current benchmark snapshot
 
@@ -133,4 +134,5 @@ Notes:
 1. Re-run scaffolded evaluation tasks once the Gemini API backend environment is available in the runtime shell.
 2. Inspect the first real image-conditioned `cfd_metrics.json` outputs and decide whether slice-specific metrics are needed for the paper.
 3. Take a clean local commit checkpoint for the frozen-20 benchmark state plus CFD-metric upgrade.
-4. If expansion continues beyond 20 scenes, monitor whether first-attempt `0.35 + robust` success starts to degrade.
+4. Keep the frozen-20 stress subset (`bench_a2_01`, `bench_a4_02`, `bench_a2_03`, `bench_a4_03`, `bench_a1_04`) handy for quick regression checks after future meshing / solver changes.
+5. If expansion continues beyond 20 scenes, monitor whether first-attempt `0.35 + robust` success starts to degrade.

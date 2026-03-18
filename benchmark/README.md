@@ -52,4 +52,5 @@ benchmark/
 - 논문 계획: `docs/26-03-17_image_to_cfd_paper_plan.md`
 - frozen-20 상태 메모: `docs/26-03-18_frozen20_benchmark_status.md`
 - evaluation scaffold 메모: `docs/26-03-18_benchmark_evaluation_scaffold.md`
+- frozen-20 robustness / failure signals: `docs/26-03-18_frozen20_failure_signals.md`
 - 프레임워크 스킬: `docs/skills/indoor-cfd-pipeline/SKILL.md`
