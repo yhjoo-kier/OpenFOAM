@@ -1,0 +1,113 @@
+{
+  "ok": true,
+  "selected_case_count": 5,
+  "selected_cases": [
+    {
+      "case_name": "bench_a1_04",
+      "category": "A1",
+      "attempt_count": 2,
+      "successful_preset": "ultra_robust",
+      "successful_mode": "RAS",
+      "successful_mesh_size": 0.35,
+      "signals": [
+        "stress_case_multi_attempt",
+        "stress_case_preset_fallback"
+      ]
+    },
+    {
+      "case_name": "bench_a2_01",
+      "category": "A2",
+      "attempt_count": 4,
+      "successful_preset": "conservative",
+      "successful_mode": "RAS",
+      "successful_mesh_size": 0.35,
+      "signals": [
+        "stress_case_multi_attempt",
+        "stress_case_preset_fallback"
+      ]
+    },
+    {
+      "case_name": "bench_a2_03",
+      "category": "A2",
+      "attempt_count": 2,
+      "successful_preset": "robust",
+      "successful_mode": "RAS",
+      "successful_mesh_size": 0.25,
+      "signals": [
+        "stress_case_multi_attempt",
+        "stress_case_mesh_fallback"
+      ]
+    },
+    {
+      "case_name": "bench_a4_02",
+      "category": "A4",
+      "attempt_count": 3,
+      "successful_preset": "laminar_fallback",
+      "successful_mode": "laminar",
+      "successful_mesh_size": 0.35,
+      "signals": [
+        "stress_case_multi_attempt",
+        "stress_case_mode_fallback",
+        "stress_case_preset_fallback"
+      ]
+    },
+    {
+      "case_name": "bench_a4_03",
+      "category": "A4",
+      "attempt_count": 2,
+      "successful_preset": "robust",
+      "successful_mode": "RAS",
+      "successful_mesh_size": 0.25,
+      "signals": [
+        "stress_case_multi_attempt",
+        "stress_case_mesh_fallback"
+      ]
+    }
+  ],
+  "selected_scene_paths": [
+    "benchmark/scenes/a1_04.json",
+    "benchmark/scenes/a2_01.json",
+    "benchmark/scenes/a2_03.json",
+    "benchmark/scenes/a4_02.json",
+    "benchmark/scenes/a4_03.json"
+  ],
+  "subset_command": [
+    "python3",
+    "/home/yhjoo/projects/OpenFOAM/scripts/run_benchmark_reference_batch.py",
+    "--scenes",
+    "benchmark/scenes/a1_04.json",
+    "benchmark/scenes/a2_01.json",
+    "benchmark/scenes/a2_03.json",
+    "benchmark/scenes/a4_02.json",
+    "benchmark/scenes/a4_03.json",
+    "--mesh-size",
+    "0.35",
+    "--end-time",
+    "250",
+    "--solver-timeout",
+    "600",
+    "--name-prefix",
+    "bench",
+    "--views",
+    "perspective",
+    "birdseye",
+    "floorplan",
+    "wireframe",
+    "section",
+    "--collect-only"
+  ],
+  "subset_returncode": 0,
+  "subset_stdout_tail": "    },\n    {\n      \"case_name\": \"bench_a4_03\",\n      \"success\": true,\n      \"scene_json\": \"/home/yhjoo/projects/OpenFOAM/generated/bench_a4_03.json\",\n      \"used_scene_json\": \"/home/yhjoo/projects/OpenFOAM/generated/bench_a4_03.json\",\n      \"successful_preset\": \"robust\",\n      \"successful_mode\": \"RAS\",\n      \"successful_mesh_size\": 0.25,\n      \"successful_scene_variant\": \"original\",\n      \"case_dir\": \"/home/yhjoo/projects/OpenFOAM/cases/bench_a4_03\",\n      \"results_dir\": \"/home/yhjoo/projects/OpenFOAM/results/bench_a4_03\",\n      \"reference_link\": \"/home/yhjoo/projects/OpenFOAM/benchmark/reference_cfd/bench_a4_03\",\n      \"visualization_link\": \"/home/yhjoo/projects/OpenFOAM/benchmark/visualizations/bench_a4_03\",\n      \"comparison_1x2\": \"/home/yhjoo/projects/OpenFOAM/results/bench_a4_03/comparison_1x2.png\",\n      \"render3d\": \"/home/yhjoo/projects/OpenFOAM/results/bench_a4_03/indoor_pipeline_3d_comparison.png\",\n      \"panel_geometry_3d\": \"/home/yhjoo/projects/OpenFOAM/results/bench_a4_03/panel_geometry_3d.png\",\n      \"panel_flow_3d\": \"/home/yhjoo/projects/OpenFOAM/results/bench_a4_03/panel_flow_3d.png\",\n      \"benchmark_render_manifest\": \"/home/yhjoo/projects/OpenFOAM/benchmark/renderings/bench_a4_03/manifest.json\",\n      \"attempt_count\": 2,\n      \"command\": null,\n      \"returncode\": 0,\n      \"stdout_tail\": \"\",\n      \"stderr_tail\": \"\",\n      \"source_scene\": \"benchmark/scenes/a4_03.json\",\n      \"render_views\": [\n        \"perspective\",\n        \"birdseye\",\n        \"floorplan\",\n        \"wireframe\",\n        \"section\"\n      ],\n      \"render_returncode\": 0,\n      \"render_stdout_tail\": \"\",\n      \"render_stderr_tail\": \"\",\n      \"collect_only\": true,\n      \"skipped_existing_success\": false\n    }\n  ]\n}",
+  "subset_stderr_tail": "",
+  "refreshed_full_manifests": true,
+  "refresh_returncode": 0,
+  "refresh_stdout_tail": "    },\n    {\n      \"case_name\": \"bench_a4_05\",\n      \"success\": true,\n      \"scene_json\": \"/home/yhjoo/projects/OpenFOAM/generated/bench_a4_05.json\",\n      \"used_scene_json\": \"/home/yhjoo/projects/OpenFOAM/generated/bench_a4_05.json\",\n      \"successful_preset\": \"robust\",\n      \"successful_mode\": \"RAS\",\n      \"successful_mesh_size\": 0.35,\n      \"successful_scene_variant\": \"original\",\n      \"case_dir\": \"/home/yhjoo/projects/OpenFOAM/cases/bench_a4_05\",\n      \"results_dir\": \"/home/yhjoo/projects/OpenFOAM/results/bench_a4_05\",\n      \"reference_link\": \"/home/yhjoo/projects/OpenFOAM/benchmark/reference_cfd/bench_a4_05\",\n      \"visualization_link\": \"/home/yhjoo/projects/OpenFOAM/benchmark/visualizations/bench_a4_05\",\n      \"comparison_1x2\": \"/home/yhjoo/projects/OpenFOAM/results/bench_a4_05/comparison_1x2.png\",\n      \"render3d\": \"/home/yhjoo/projects/OpenFOAM/results/bench_a4_05/indoor_pipeline_3d_comparison.png\",\n      \"panel_geometry_3d\": \"/home/yhjoo/projects/OpenFOAM/results/bench_a4_05/panel_geometry_3d.png\",\n      \"panel_flow_3d\": \"/home/yhjoo/projects/OpenFOAM/results/bench_a4_05/panel_flow_3d.png\",\n      \"benchmark_render_manifest\": \"/home/yhjoo/projects/OpenFOAM/benchmark/renderings/bench_a4_05/manifest.json\",\n      \"attempt_count\": 1,\n      \"command\": null,\n      \"returncode\": 0,\n      \"stdout_tail\": \"\",\n      \"stderr_tail\": \"\",\n      \"source_scene\": \"/home/yhjoo/projects/OpenFOAM/benchmark/scenes/a4_05.json\",\n      \"render_views\": [\n        \"perspective\",\n        \"birdseye\",\n        \"floorplan\",\n        \"wireframe\",\n        \"section\"\n      ],\n      \"render_returncode\": 0,\n      \"render_stdout_tail\": \"\",\n      \"render_stderr_tail\": \"\",\n      \"collect_only\": true,\n      \"skipped_existing_success\": false\n    }\n  ]\n}",
+  "refresh_stderr_tail": "",
+  "scaffold_returncode": 0,
+  "scaffold_stdout_tail": "      \"case_root\": \"/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_03\"\n    },\n    {\n      \"case_name\": \"bench_a4_04\",\n      \"category\": \"A4\",\n      \"room_kind\": \"composite\",\n      \"obstacle_count\": 3,\n      \"views\": [\n        \"perspective\",\n        \"birdseye\",\n        \"floorplan\",\n        \"wireframe\",\n        \"section\"\n      ],\n      \"reference_scene\": \"/home/yhjoo/projects/OpenFOAM/benchmark/scenes/a4_04.json\",\n      \"reference_case\": \"/home/yhjoo/projects/OpenFOAM/cases/bench_a4_04\",\n      \"reference_results\": \"/home/yhjoo/projects/OpenFOAM/results/bench_a4_04\",\n      \"task_count\": 5,\n      \"case_root\": \"/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_04\"\n    },\n    {\n      \"case_name\": \"bench_a4_05\",\n      \"category\": \"A4\",\n      \"room_kind\": \"composite\",\n      \"obstacle_count\": 4,\n      \"views\": [\n        \"perspective\",\n        \"birdseye\",\n        \"floorplan\",\n        \"wireframe\",\n        \"section\"\n      ],\n      \"reference_scene\": \"/home/yhjoo/projects/OpenFOAM/benchmark/scenes/a4_05.json\",\n      \"reference_case\": \"/home/yhjoo/projects/OpenFOAM/cases/bench_a4_05\",\n      \"reference_results\": \"/home/yhjoo/projects/OpenFOAM/results/bench_a4_05\",\n      \"task_count\": 5,\n      \"case_root\": \"/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_05\"\n    }\n  ]\n}",
+  "scaffold_stderr_tail": "",
+  "verified_after": true,
+  "verify_returncode": 0,
+  "verify_stdout_tail": "        \"section\",\n        \"wireframe\"\n      ],\n      \"section_axis\": \"y\",\n      \"section_plane_coordinate\": 2.338,\n      \"ok\": true,\n      \"issues\": []\n    },\n    {\n      \"case_name\": \"bench_a4_05\",\n      \"category\": \"A4\",\n      \"room_kind\": \"composite\",\n      \"obstacle_count\": 4,\n      \"scene_file\": \"/home/yhjoo/projects/OpenFOAM/benchmark/scenes/a4_05.json\",\n      \"reference_success\": true,\n      \"attempt_count\": 1,\n      \"successful_preset\": \"robust\",\n      \"successful_mode\": \"RAS\",\n      \"successful_mesh_size\": 0.35,\n      \"render_views_present\": [\n        \"birdseye\",\n        \"floorplan\",\n        \"perspective\",\n        \"section\",\n        \"wireframe\"\n      ],\n      \"evaluation_views_present\": [\n        \"birdseye\",\n        \"floorplan\",\n        \"perspective\",\n        \"section\",\n        \"wireframe\"\n      ],\n      \"section_axis\": \"x\",\n      \"section_plane_coordinate\": 6.169,\n      \"ok\": true,\n      \"issues\": []\n    }\n  ]\n}",
+  "verify_stderr_tail": ""
+}

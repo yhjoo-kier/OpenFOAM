@@ -42,6 +42,7 @@ benchmark/
 - `scripts/run_benchmark_evaluation_task.py`로 개별 scaffold task를 실제 image-conditioned pipeline에 연결할 수 있으며, task 상태와 aggregate summary/manifest를 함께 갱신함.
 - 성공한 evaluation task는 geometry 비교뿐 아니라 `scripts/compute_benchmark_cfd_metrics.py`를 통해 normalized-grid 기준의 CFD result-side 비교(`cfd_metrics.json`)도 추가로 기록함.
 - `scripts/verify_benchmark_bundle.py`는 frozen bundle의 scene/reference/render/evaluation 연결 상태를 한 번에 검증하고 `benchmark/manifests/dataset_integrity_summary.json`을 기록함.
+- `scripts/run_benchmark_stress_subset.py`는 integrity summary의 stress subset(현재 5 cases)만 골라 기존 reference batch flow로 빠르게 회귀 점검할 수 있게 해 줌.
 - 현재 evaluation smoke test 결과는 **1 blocked / 99 pending**이며, blocked 상태는 benchmark failure가 아니라 Gemini backend credential 부재를 의미함.
 
 운영상 주의:
