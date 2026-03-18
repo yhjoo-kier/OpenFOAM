@@ -1,0 +1,18 @@
+{
+  "case_name": "bench_a1_05",
+  "category": "A1",
+  "room_kind": "rectangular",
+  "obstacle_count": 1,
+  "views": [
+    "perspective",
+    "birdseye",
+    "floorplan",
+    "wireframe",
+    "section"
+  ],
+  "reference_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/scenes/a1_05.json",
+  "reference_case": "/home/yhjoo/projects/OpenFOAM/cases/bench_a1_05",
+  "reference_results": "/home/yhjoo/projects/OpenFOAM/results/bench_a1_05",
+  "task_count": 5,
+  "case_root": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_05"
+}

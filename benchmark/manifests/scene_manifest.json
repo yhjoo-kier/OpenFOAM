@@ -72,6 +72,24 @@
     }
   },
   {
+    "scene_file": "benchmark/scenes/a1_05.json",
+    "case_name": "bench_a1_05",
+    "category": "A1",
+    "variant_index": 5,
+    "seed": 1004,
+    "room_kind": "rectangular",
+    "obstacle_count": 1,
+    "opening_walls": [
+      "west",
+      "north"
+    ],
+    "room": {
+      "Lx": 5.811,
+      "Ly": 5.752,
+      "Lz": 2.968
+    }
+  },
+  {
     "scene_file": "benchmark/scenes/a2_01.json",
     "case_name": "bench_a2_01",
     "category": "A2",
@@ -141,6 +159,24 @@
       "Lx": 5.763,
       "Ly": 4.749,
       "Lz": 2.881
+    }
+  },
+  {
+    "scene_file": "benchmark/scenes/a2_05.json",
+    "case_name": "bench_a2_05",
+    "category": "A2",
+    "variant_index": 5,
+    "seed": 1104,
+    "room_kind": "rectangular",
+    "obstacle_count": 3,
+    "opening_walls": [
+      "south",
+      "east"
+    ],
+    "room": {
+      "Lx": 5.409,
+      "Ly": 5.69,
+      "Lz": 2.663
     }
   },
   {
@@ -256,6 +292,34 @@
     }
   },
   {
+    "scene_file": "benchmark/scenes/a3_05.json",
+    "case_name": "bench_a3_05",
+    "category": "A3",
+    "variant_index": 5,
+    "seed": 1204,
+    "room_kind": "composite",
+    "obstacle_count": 1,
+    "opening_walls": [
+      "west",
+      "east"
+    ],
+    "room": {
+      "blocks": 2,
+      "block_sizes": [
+        {
+          "dx": 5.28,
+          "dy": 4.136,
+          "dz": 2.828
+        },
+        {
+          "dx": 2.179,
+          "dy": 1.771,
+          "dz": 2.828
+        }
+      ]
+    }
+  },
+  {
     "scene_file": "benchmark/scenes/a4_01.json",
     "case_name": "bench_a4_01",
     "category": "A4",
@@ -363,6 +427,34 @@
           "dx": 3.014,
           "dy": 3.487,
           "dz": 2.82
+        }
+      ]
+    }
+  },
+  {
+    "scene_file": "benchmark/scenes/a4_05.json",
+    "case_name": "bench_a4_05",
+    "category": "A4",
+    "variant_index": 5,
+    "seed": 1304,
+    "room_kind": "composite",
+    "obstacle_count": 4,
+    "opening_walls": [
+      "south",
+      "north"
+    ],
+    "room": {
+      "blocks": 2,
+      "block_sizes": [
+        {
+          "dx": 6.198,
+          "dy": 4.714,
+          "dz": 2.838
+        },
+        {
+          "dx": 3.342,
+          "dy": 2.582,
+          "dz": 2.838
         }
       ]
     }

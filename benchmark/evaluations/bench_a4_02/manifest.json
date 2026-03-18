@@ -4,18 +4,15 @@
   "room_kind": "composite",
   "obstacle_count": 4,
   "views": [
+    "perspective",
     "birdseye",
     "floorplan",
-    "perspective",
-    "section",
-    "wireframe"
+    "wireframe",
+    "section"
   ],
-  "reference_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_02/birdseye/reference_scene.json",
-  "reference_case": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_02/birdseye/reference_case",
-  "reference_results": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_02/birdseye/reference_results",
+  "reference_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/scenes/a4_02.json",
+  "reference_case": "/home/yhjoo/projects/OpenFOAM/cases/bench_a4_02",
+  "reference_results": "/home/yhjoo/projects/OpenFOAM/results/bench_a4_02",
   "task_count": 5,
-  "status_counts": {
-    "pending": 5
-  },
   "case_root": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_02"
 }

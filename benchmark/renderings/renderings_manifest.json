@@ -1,6 +1,6 @@
 {
   "ok": true,
-  "count": 16,
+  "count": 20,
   "views": [
     "perspective",
     "birdseye",
@@ -99,6 +99,28 @@
       }
     },
     {
+      "case_name": "bench_a1_05",
+      "source_scene": "benchmark/scenes/a1_05.json",
+      "views": {
+        "perspective": "/home/yhjoo/projects/OpenFOAM/benchmark/renderings/bench_a1_05/perspective/bench_a1_05_perspective.png",
+        "birdseye": "/home/yhjoo/projects/OpenFOAM/benchmark/renderings/bench_a1_05/birdseye/bench_a1_05_birdseye.png",
+        "floorplan": "/home/yhjoo/projects/OpenFOAM/benchmark/renderings/bench_a1_05/floorplan/bench_a1_05_floorplan.png",
+        "wireframe": "/home/yhjoo/projects/OpenFOAM/benchmark/renderings/bench_a1_05/wireframe/bench_a1_05_wireframe.png",
+        "section": "/home/yhjoo/projects/OpenFOAM/benchmark/renderings/bench_a1_05/section/bench_a1_05_section.png"
+      },
+      "room_kind": "rectangular",
+      "obstacle_count": 1,
+      "category": "A1",
+      "section_view": {
+        "axis": "x",
+        "plane_coordinate": 2.905
+      },
+      "render_contract": {
+        "layout": "benchmark/renderings/<case_name>/<view>/<case_name>_<view>.png",
+        "note": "geometry-only benchmark input assets; distinct from reference CFD result visualizations"
+      }
+    },
+    {
       "case_name": "bench_a2_01",
       "source_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/scenes/a2_01.json",
       "views": {
@@ -180,6 +202,28 @@
       "section_view": {
         "axis": "x",
         "plane_coordinate": 2.665
+      },
+      "render_contract": {
+        "layout": "benchmark/renderings/<case_name>/<view>/<case_name>_<view>.png",
+        "note": "geometry-only benchmark input assets; distinct from reference CFD result visualizations"
+      }
+    },
+    {
+      "case_name": "bench_a2_05",
+      "source_scene": "benchmark/scenes/a2_05.json",
+      "views": {
+        "perspective": "/home/yhjoo/projects/OpenFOAM/benchmark/renderings/bench_a2_05/perspective/bench_a2_05_perspective.png",
+        "birdseye": "/home/yhjoo/projects/OpenFOAM/benchmark/renderings/bench_a2_05/birdseye/bench_a2_05_birdseye.png",
+        "floorplan": "/home/yhjoo/projects/OpenFOAM/benchmark/renderings/bench_a2_05/floorplan/bench_a2_05_floorplan.png",
+        "wireframe": "/home/yhjoo/projects/OpenFOAM/benchmark/renderings/bench_a2_05/wireframe/bench_a2_05_wireframe.png",
+        "section": "/home/yhjoo/projects/OpenFOAM/benchmark/renderings/bench_a2_05/section/bench_a2_05_section.png"
+      },
+      "room_kind": "rectangular",
+      "obstacle_count": 3,
+      "category": "A2",
+      "section_view": {
+        "axis": "x",
+        "plane_coordinate": 2.704
       },
       "render_contract": {
         "layout": "benchmark/renderings/<case_name>/<view>/<case_name>_<view>.png",
@@ -275,6 +319,28 @@
       }
     },
     {
+      "case_name": "bench_a3_05",
+      "source_scene": "benchmark/scenes/a3_05.json",
+      "views": {
+        "perspective": "/home/yhjoo/projects/OpenFOAM/benchmark/renderings/bench_a3_05/perspective/bench_a3_05_perspective.png",
+        "birdseye": "/home/yhjoo/projects/OpenFOAM/benchmark/renderings/bench_a3_05/birdseye/bench_a3_05_birdseye.png",
+        "floorplan": "/home/yhjoo/projects/OpenFOAM/benchmark/renderings/bench_a3_05/floorplan/bench_a3_05_floorplan.png",
+        "wireframe": "/home/yhjoo/projects/OpenFOAM/benchmark/renderings/bench_a3_05/wireframe/bench_a3_05_wireframe.png",
+        "section": "/home/yhjoo/projects/OpenFOAM/benchmark/renderings/bench_a3_05/section/bench_a3_05_section.png"
+      },
+      "room_kind": "composite",
+      "obstacle_count": 1,
+      "category": "A3",
+      "section_view": {
+        "axis": "y",
+        "plane_coordinate": 0.868
+      },
+      "render_contract": {
+        "layout": "benchmark/renderings/<case_name>/<view>/<case_name>_<view>.png",
+        "note": "geometry-only benchmark input assets; distinct from reference CFD result visualizations"
+      }
+    },
+    {
       "case_name": "bench_a4_01",
       "source_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/scenes/a4_01.json",
       "views": {
@@ -356,6 +422,28 @@
       "section_view": {
         "axis": "y",
         "plane_coordinate": 2.338
+      },
+      "render_contract": {
+        "layout": "benchmark/renderings/<case_name>/<view>/<case_name>_<view>.png",
+        "note": "geometry-only benchmark input assets; distinct from reference CFD result visualizations"
+      }
+    },
+    {
+      "case_name": "bench_a4_05",
+      "source_scene": "benchmark/scenes/a4_05.json",
+      "views": {
+        "perspective": "/home/yhjoo/projects/OpenFOAM/benchmark/renderings/bench_a4_05/perspective/bench_a4_05_perspective.png",
+        "birdseye": "/home/yhjoo/projects/OpenFOAM/benchmark/renderings/bench_a4_05/birdseye/bench_a4_05_birdseye.png",
+        "floorplan": "/home/yhjoo/projects/OpenFOAM/benchmark/renderings/bench_a4_05/floorplan/bench_a4_05_floorplan.png",
+        "wireframe": "/home/yhjoo/projects/OpenFOAM/benchmark/renderings/bench_a4_05/wireframe/bench_a4_05_wireframe.png",
+        "section": "/home/yhjoo/projects/OpenFOAM/benchmark/renderings/bench_a4_05/section/bench_a4_05_section.png"
+      },
+      "room_kind": "composite",
+      "obstacle_count": 4,
+      "category": "A4",
+      "section_view": {
+        "axis": "x",
+        "plane_coordinate": 6.169
       },
       "render_contract": {
         "layout": "benchmark/renderings/<case_name>/<view>/<case_name>_<view>.png",

@@ -41,6 +41,5 @@
     "mesh_size": 0.35,
     "end_time": 250,
     "solver_timeout": 600
-  },
-  "blocked_reason": "missing_gemini_api_key"
+  }
 }
