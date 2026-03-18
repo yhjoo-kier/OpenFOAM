@@ -1,0 +1,92 @@
+{
+  "ok": true,
+  "backend": "cli",
+  "model": "gemini-3-flash-preview",
+  "filters": {
+    "cases": [
+      "bench_a3_03"
+    ],
+    "categories": null,
+    "views": null,
+    "statuses": [
+      "pending"
+    ],
+    "limit": null
+  },
+  "count": 5,
+  "status_counts": {
+    "success": 5
+  },
+  "results": [
+    {
+      "task": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_03/birdseye/task.json",
+      "case_name": "bench_a3_03",
+      "category": "A3",
+      "view": "birdseye",
+      "returncode": 0,
+      "status": "success",
+      "last_run_name": "eval_bench_a3_03_birdseye",
+      "evaluation_summary": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_03/birdseye/evaluation_summary.json",
+      "structural_score": 0.625,
+      "cfd_score": 0.695466,
+      "stdout_tail": "        \"mesh_risk_level\": \"high\",\n        \"mesh_risk_score\": 7,\n        \"mesh_risk_reasons\": [\n          \"defaultFaces=5798\",\n          \"maxNonOrtho=84.85>80\",\n          \"severeNonOrthoFaces=18\",\n          \"aspectRatio=24.61>20\"\n        ],\n        \"default_faces\": 5798,\n        \"checkmesh\": {\n          \"max_non_ortho\": 84.85379,\n          \"avg_non_ortho\": 21.52064,\n          \"severe_non_ortho_faces\": 18,\n          \"max_aspect_ratio\": 24.613673,\n          \"max_skewness\": 0.76845917,\n          \"mesh_ok\": true\n        },\n        \"log\": \"/home/yhjoo/projects/OpenFOAM/results/eval_bench_a3_03_birdseye/log.simpleFoam_original_mesh0p35_robust.txt\"\n      }\n    ],\n    \"success\": true,\n    \"successful_preset\": \"robust\",\n    \"successful_mode\": \"RAS\",\n    \"successful_mesh_size\": 0.35,\n    \"successful_scene_variant\": \"original\",\n    \"compass_version\": \"2026-03-15_openfoam_solver_stabilization_compass\"\n  },\n  \"stdout_tail\": \"  },\\n  \\\"repair_info\\\": null,\\n  \\\"attempts\\\": [\\n    {\\n      \\\"scene_variant\\\": \\\"original\\\",\\n      \\\"scene_json\\\": \\\"/home/yhjoo/projects/OpenFOAM/generated/eval_bench_a3_03_birdseye.json\\\",\\n      \\\"mesh_size\\\": 0.35,\\n      \\\"preset\\\": \\\"robust\\\",\\n      \\\"mode\\\": \\\"RAS\\\",\\n      \\\"returncode\\\": 0,\\n      \\\"reason\\\": \\\"completed\\\",\\n      \\\"failure_family\\\": null,\\n      \\\"failure_hints\\\": [],\\n      \\\"mesh_risk_level\\\": \\\"high\\\",\\n      \\\"mesh_risk_score\\\": 7,\\n      \\\"mesh_risk_reasons\\\": [\\n        \\\"defaultFaces=5798\\\",\\n        \\\"maxNonOrtho=84.85>80\\\",\\n        \\\"severeNonOrthoFaces=18\\\",\\n        \\\"aspectRatio=24.61>20\\\"\\n      ],\\n      \\\"default_faces\\\": 5798,\\n      \\\"checkmesh\\\": {\\n        \\\"max_non_ortho\\\": 84.85379,\\n        \\\"avg_non_ortho\\\": 21.52064,\\n        \\\"severe_non_ortho_faces\\\": 18,\\n        \\\"max_aspect_ratio\\\": 24.613673,\\n        \\\"max_skewness\\\": 0.76845917,\\n        \\\"mesh_ok\\\": true\\n      },\\n      \\\"log\\\": \\\"/home/yhjoo/projects/OpenFOAM/results/eval_bench_a3_03_birdseye/log.simpleFoam_original_mesh0p35_robust.txt\\\"\\n    }\\n  ],\\n  \\\"success\\\": true,\\n  \\\"successful_preset\\\": \\\"robust\\\",\\n  \\\"successful_mode\\\": \\\"RAS\\\",\\n  \\\"successful_mesh_size\\\": 0.35,\\n  \\\"successful_scene_variant\\\": \\\"original\\\",\\n  \\\"compass_version\\\": \\\"2026-03-15_openfoam_solver_stabilization_compass\\\"\\n}\",\n  \"stderr_tail\": \"\"\n}",
+      "stderr_tail": ""
+    },
+    {
+      "task": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_03/floorplan/task.json",
+      "case_name": "bench_a3_03",
+      "category": "A3",
+      "view": "floorplan",
+      "returncode": 0,
+      "status": "success",
+      "last_run_name": "eval_bench_a3_03_floorplan",
+      "evaluation_summary": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_03/floorplan/evaluation_summary.json",
+      "structural_score": 1.0,
+      "cfd_score": 0.727649,
+      "stdout_tail": "        \"mesh_risk_level\": \"high\",\n        \"mesh_risk_score\": 8,\n        \"mesh_risk_reasons\": [\n          \"defaultFaces=3596\",\n          \"maxNonOrtho=86.95>85\",\n          \"severeNonOrthoFaces=20\",\n          \"aspectRatio=40.59>20\"\n        ],\n        \"default_faces\": 3596,\n        \"checkmesh\": {\n          \"max_non_ortho\": 86.945414,\n          \"avg_non_ortho\": 21.791225,\n          \"severe_non_ortho_faces\": 20,\n          \"max_aspect_ratio\": 40.585026,\n          \"max_skewness\": 0.83312973,\n          \"mesh_ok\": true\n        },\n        \"log\": \"/home/yhjoo/projects/OpenFOAM/results/eval_bench_a3_03_floorplan/log.simpleFoam_original_mesh0p35_robust.txt\"\n      }\n    ],\n    \"success\": true,\n    \"successful_preset\": \"robust\",\n    \"successful_mode\": \"RAS\",\n    \"successful_mesh_size\": 0.35,\n    \"successful_scene_variant\": \"original\",\n    \"compass_version\": \"2026-03-15_openfoam_solver_stabilization_compass\"\n  },\n  \"stdout_tail\": \"  },\\n  \\\"repair_info\\\": null,\\n  \\\"attempts\\\": [\\n    {\\n      \\\"scene_variant\\\": \\\"original\\\",\\n      \\\"scene_json\\\": \\\"/home/yhjoo/projects/OpenFOAM/generated/eval_bench_a3_03_floorplan.json\\\",\\n      \\\"mesh_size\\\": 0.35,\\n      \\\"preset\\\": \\\"robust\\\",\\n      \\\"mode\\\": \\\"RAS\\\",\\n      \\\"returncode\\\": 0,\\n      \\\"reason\\\": \\\"completed\\\",\\n      \\\"failure_family\\\": null,\\n      \\\"failure_hints\\\": [],\\n      \\\"mesh_risk_level\\\": \\\"high\\\",\\n      \\\"mesh_risk_score\\\": 8,\\n      \\\"mesh_risk_reasons\\\": [\\n        \\\"defaultFaces=3596\\\",\\n        \\\"maxNonOrtho=86.95>85\\\",\\n        \\\"severeNonOrthoFaces=20\\\",\\n        \\\"aspectRatio=40.59>20\\\"\\n      ],\\n      \\\"default_faces\\\": 3596,\\n      \\\"checkmesh\\\": {\\n        \\\"max_non_ortho\\\": 86.945414,\\n        \\\"avg_non_ortho\\\": 21.791225,\\n        \\\"severe_non_ortho_faces\\\": 20,\\n        \\\"max_aspect_ratio\\\": 40.585026,\\n        \\\"max_skewness\\\": 0.83312973,\\n        \\\"mesh_ok\\\": true\\n      },\\n      \\\"log\\\": \\\"/home/yhjoo/projects/OpenFOAM/results/eval_bench_a3_03_floorplan/log.simpleFoam_original_mesh0p35_robust.txt\\\"\\n    }\\n  ],\\n  \\\"success\\\": true,\\n  \\\"successful_preset\\\": \\\"robust\\\",\\n  \\\"successful_mode\\\": \\\"RAS\\\",\\n  \\\"successful_mesh_size\\\": 0.35,\\n  \\\"successful_scene_variant\\\": \\\"original\\\",\\n  \\\"compass_version\\\": \\\"2026-03-15_openfoam_solver_stabilization_compass\\\"\\n}\",\n  \"stderr_tail\": \"\"\n}",
+      "stderr_tail": ""
+    },
+    {
+      "task": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_03/perspective/task.json",
+      "case_name": "bench_a3_03",
+      "category": "A3",
+      "view": "perspective",
+      "returncode": 0,
+      "status": "success",
+      "last_run_name": "eval_bench_a3_03_perspective",
+      "evaluation_summary": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_03/perspective/evaluation_summary.json",
+      "structural_score": 1.0,
+      "cfd_score": 0.631742,
+      "stdout_tail": "        \"mesh_risk_level\": \"high\",\n        \"mesh_risk_score\": 8,\n        \"mesh_risk_reasons\": [\n          \"defaultFaces=2526\",\n          \"maxNonOrtho=86.56>85\",\n          \"severeNonOrthoFaces=14\",\n          \"aspectRatio=42.19>20\"\n        ],\n        \"default_faces\": 2526,\n        \"checkmesh\": {\n          \"max_non_ortho\": 86.563776,\n          \"avg_non_ortho\": 22.133821,\n          \"severe_non_ortho_faces\": 14,\n          \"max_aspect_ratio\": 42.189093,\n          \"max_skewness\": 0.82002894,\n          \"mesh_ok\": true\n        },\n        \"log\": \"/home/yhjoo/projects/OpenFOAM/results/eval_bench_a3_03_perspective/log.simpleFoam_original_mesh0p35_robust.txt\"\n      }\n    ],\n    \"success\": true,\n    \"successful_preset\": \"robust\",\n    \"successful_mode\": \"RAS\",\n    \"successful_mesh_size\": 0.35,\n    \"successful_scene_variant\": \"original\",\n    \"compass_version\": \"2026-03-15_openfoam_solver_stabilization_compass\"\n  },\n  \"stdout_tail\": \"  },\\n  \\\"repair_info\\\": null,\\n  \\\"attempts\\\": [\\n    {\\n      \\\"scene_variant\\\": \\\"original\\\",\\n      \\\"scene_json\\\": \\\"/home/yhjoo/projects/OpenFOAM/generated/eval_bench_a3_03_perspective.json\\\",\\n      \\\"mesh_size\\\": 0.35,\\n      \\\"preset\\\": \\\"robust\\\",\\n      \\\"mode\\\": \\\"RAS\\\",\\n      \\\"returncode\\\": 0,\\n      \\\"reason\\\": \\\"completed\\\",\\n      \\\"failure_family\\\": null,\\n      \\\"failure_hints\\\": [],\\n      \\\"mesh_risk_level\\\": \\\"high\\\",\\n      \\\"mesh_risk_score\\\": 8,\\n      \\\"mesh_risk_reasons\\\": [\\n        \\\"defaultFaces=2526\\\",\\n        \\\"maxNonOrtho=86.56>85\\\",\\n        \\\"severeNonOrthoFaces=14\\\",\\n        \\\"aspectRatio=42.19>20\\\"\\n      ],\\n      \\\"default_faces\\\": 2526,\\n      \\\"checkmesh\\\": {\\n        \\\"max_non_ortho\\\": 86.563776,\\n        \\\"avg_non_ortho\\\": 22.133821,\\n        \\\"severe_non_ortho_faces\\\": 14,\\n        \\\"max_aspect_ratio\\\": 42.189093,\\n        \\\"max_skewness\\\": 0.82002894,\\n        \\\"mesh_ok\\\": true\\n      },\\n      \\\"log\\\": \\\"/home/yhjoo/projects/OpenFOAM/results/eval_bench_a3_03_perspective/log.simpleFoam_original_mesh0p35_robust.txt\\\"\\n    }\\n  ],\\n  \\\"success\\\": true,\\n  \\\"successful_preset\\\": \\\"robust\\\",\\n  \\\"successful_mode\\\": \\\"RAS\\\",\\n  \\\"successful_mesh_size\\\": 0.35,\\n  \\\"successful_scene_variant\\\": \\\"original\\\",\\n  \\\"compass_version\\\": \\\"2026-03-15_openfoam_solver_stabilization_compass\\\"\\n}\",\n  \"stderr_tail\": \"\"\n}",
+      "stderr_tail": ""
+    },
+    {
+      "task": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_03/section/task.json",
+      "case_name": "bench_a3_03",
+      "category": "A3",
+      "view": "section",
+      "returncode": 0,
+      "status": "success",
+      "last_run_name": "eval_bench_a3_03_section",
+      "evaluation_summary": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_03/section/evaluation_summary.json",
+      "structural_score": 0.625,
+      "cfd_score": 0.323674,
+      "stdout_tail": "        \"mesh_risk_level\": \"high\",\n        \"mesh_risk_score\": 8,\n        \"mesh_risk_reasons\": [\n          \"defaultFaces=3414\",\n          \"maxNonOrtho=86.95>85\",\n          \"severeNonOrthoFaces=16\",\n          \"aspectRatio=43.58>20\"\n        ],\n        \"default_faces\": 3414,\n        \"checkmesh\": {\n          \"max_non_ortho\": 86.945517,\n          \"avg_non_ortho\": 21.805714,\n          \"severe_non_ortho_faces\": 16,\n          \"max_aspect_ratio\": 43.577005,\n          \"max_skewness\": 0.77393758,\n          \"mesh_ok\": true\n        },\n        \"log\": \"/home/yhjoo/projects/OpenFOAM/results/eval_bench_a3_03_section/log.simpleFoam_original_mesh0p35_robust.txt\"\n      }\n    ],\n    \"success\": true,\n    \"successful_preset\": \"robust\",\n    \"successful_mode\": \"RAS\",\n    \"successful_mesh_size\": 0.35,\n    \"successful_scene_variant\": \"original\",\n    \"compass_version\": \"2026-03-15_openfoam_solver_stabilization_compass\"\n  },\n  \"stdout_tail\": \"  },\\n  \\\"repair_info\\\": null,\\n  \\\"attempts\\\": [\\n    {\\n      \\\"scene_variant\\\": \\\"original\\\",\\n      \\\"scene_json\\\": \\\"/home/yhjoo/projects/OpenFOAM/generated/eval_bench_a3_03_section.json\\\",\\n      \\\"mesh_size\\\": 0.35,\\n      \\\"preset\\\": \\\"robust\\\",\\n      \\\"mode\\\": \\\"RAS\\\",\\n      \\\"returncode\\\": 0,\\n      \\\"reason\\\": \\\"completed\\\",\\n      \\\"failure_family\\\": null,\\n      \\\"failure_hints\\\": [],\\n      \\\"mesh_risk_level\\\": \\\"high\\\",\\n      \\\"mesh_risk_score\\\": 8,\\n      \\\"mesh_risk_reasons\\\": [\\n        \\\"defaultFaces=3414\\\",\\n        \\\"maxNonOrtho=86.95>85\\\",\\n        \\\"severeNonOrthoFaces=16\\\",\\n        \\\"aspectRatio=43.58>20\\\"\\n      ],\\n      \\\"default_faces\\\": 3414,\\n      \\\"checkmesh\\\": {\\n        \\\"max_non_ortho\\\": 86.945517,\\n        \\\"avg_non_ortho\\\": 21.805714,\\n        \\\"severe_non_ortho_faces\\\": 16,\\n        \\\"max_aspect_ratio\\\": 43.577005,\\n        \\\"max_skewness\\\": 0.77393758,\\n        \\\"mesh_ok\\\": true\\n      },\\n      \\\"log\\\": \\\"/home/yhjoo/projects/OpenFOAM/results/eval_bench_a3_03_section/log.simpleFoam_original_mesh0p35_robust.txt\\\"\\n    }\\n  ],\\n  \\\"success\\\": true,\\n  \\\"successful_preset\\\": \\\"robust\\\",\\n  \\\"successful_mode\\\": \\\"RAS\\\",\\n  \\\"successful_mesh_size\\\": 0.35,\\n  \\\"successful_scene_variant\\\": \\\"original\\\",\\n  \\\"compass_version\\\": \\\"2026-03-15_openfoam_solver_stabilization_compass\\\"\\n}\",\n  \"stderr_tail\": \"\"\n}",
+      "stderr_tail": ""
+    },
+    {
+      "task": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_03/wireframe/task.json",
+      "case_name": "bench_a3_03",
+      "category": "A3",
+      "view": "wireframe",
+      "returncode": 0,
+      "status": "success",
+      "last_run_name": "eval_bench_a3_03_wireframe",
+      "evaluation_summary": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_03/wireframe/evaluation_summary.json",
+      "structural_score": 0.625,
+      "cfd_score": 0.568034,
+      "stdout_tail": "        \"mesh_risk_level\": \"high\",\n        \"mesh_risk_score\": 7,\n        \"mesh_risk_reasons\": [\n          \"defaultFaces=4446\",\n          \"maxNonOrtho=84.85>80\",\n          \"severeNonOrthoFaces=18\",\n          \"aspectRatio=28.57>20\"\n        ],\n        \"default_faces\": 4446,\n        \"checkmesh\": {\n          \"max_non_ortho\": 84.849885,\n          \"avg_non_ortho\": 21.920442,\n          \"severe_non_ortho_faces\": 18,\n          \"max_aspect_ratio\": 28.571429,\n          \"max_skewness\": 0.81406725,\n          \"mesh_ok\": true\n        },\n        \"log\": \"/home/yhjoo/projects/OpenFOAM/results/eval_bench_a3_03_wireframe/log.simpleFoam_original_mesh0p35_robust.txt\"\n      }\n    ],\n    \"success\": true,\n    \"successful_preset\": \"robust\",\n    \"successful_mode\": \"RAS\",\n    \"successful_mesh_size\": 0.35,\n    \"successful_scene_variant\": \"original\",\n    \"compass_version\": \"2026-03-15_openfoam_solver_stabilization_compass\"\n  },\n  \"stdout_tail\": \"    \\\"repair_error\\\": \\\"Command failed (1): python3 /home/yhjoo/projects/OpenFOAM/scripts/repair_indoor_scene.py /home/yhjoo/projects/OpenFOAM/generated/eval_bench_a3_03_wireframe.json -o /home/yhjoo/projects/OpenFOAM/generated/eval_bench_a3_03_wireframe_repaired.json\\\"\\n  },\\n  \\\"attempts\\\": [\\n    {\\n      \\\"scene_variant\\\": \\\"original\\\",\\n      \\\"scene_json\\\": \\\"/home/yhjoo/projects/OpenFOAM/generated/eval_bench_a3_03_wireframe.json\\\",\\n      \\\"mesh_size\\\": 0.35,\\n      \\\"preset\\\": \\\"robust\\\",\\n      \\\"mode\\\": \\\"RAS\\\",\\n      \\\"returncode\\\": 0,\\n      \\\"reason\\\": \\\"completed\\\",\\n      \\\"failure_family\\\": null,\\n      \\\"failure_hints\\\": [],\\n      \\\"mesh_risk_level\\\": \\\"high\\\",\\n      \\\"mesh_risk_score\\\": 7,\\n      \\\"mesh_risk_reasons\\\": [\\n        \\\"defaultFaces=4446\\\",\\n        \\\"maxNonOrtho=84.85>80\\\",\\n        \\\"severeNonOrthoFaces=18\\\",\\n        \\\"aspectRatio=28.57>20\\\"\\n      ],\\n      \\\"default_faces\\\": 4446,\\n      \\\"checkmesh\\\": {\\n        \\\"max_non_ortho\\\": 84.849885,\\n        \\\"avg_non_ortho\\\": 21.920442,\\n        \\\"severe_non_ortho_faces\\\": 18,\\n        \\\"max_aspect_ratio\\\": 28.571429,\\n        \\\"max_skewness\\\": 0.81406725,\\n        \\\"mesh_ok\\\": true\\n      },\\n      \\\"log\\\": \\\"/home/yhjoo/projects/OpenFOAM/results/eval_bench_a3_03_wireframe/log.simpleFoam_original_mesh0p35_robust.txt\\\"\\n    }\\n  ],\\n  \\\"success\\\": true,\\n  \\\"successful_preset\\\": \\\"robust\\\",\\n  \\\"successful_mode\\\": \\\"RAS\\\",\\n  \\\"successful_mesh_size\\\": 0.35,\\n  \\\"successful_scene_variant\\\": \\\"original\\\",\\n  \\\"compass_version\\\": \\\"2026-03-15_openfoam_solver_stabilization_compass\\\"\\n}\",\n  \"stderr_tail\": \"\"\n}",
+      "stderr_tail": ""
+    }
+  ]
+}
