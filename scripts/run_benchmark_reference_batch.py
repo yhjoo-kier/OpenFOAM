@@ -120,8 +120,8 @@ def main() -> int:
     parser.add_argument(
         "--views",
         nargs="+",
-        default=["perspective", "birdseye", "floorplan", "wireframe"],
-        choices=["perspective", "birdseye", "floorplan", "wireframe"],
+        default=["perspective", "birdseye", "floorplan", "wireframe", "section"],
+        choices=["perspective", "birdseye", "floorplan", "wireframe", "section"],
         help="Benchmark input-view families to export alongside the CFD reference run",
     )
     args = parser.parse_args()

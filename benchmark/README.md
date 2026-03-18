@@ -35,10 +35,10 @@ benchmark/
 
 현재 상태:
 - 8-scene pilot set(A1/A2/A3/A4 × 2)은 reference CFD 8/8 성공까지 회복됨.
-- frozen scene subset은 12 scenes(A1/A2/A3/A4 × 3)로 확장됨.
+- frozen scene subset은 16 scenes(A1/A2/A3/A4 × 4)까지 확장되었고 reference CFD도 16/16 성공 상태임.
 - benchmark input view export는 `perspective`, `birdseye`, `floorplan`, `wireframe`, `section` 5종을 사용함.
-- `run_benchmark_reference_batch.py`는 이제 reference CFD 실행과 benchmark input view export를 한 흐름으로 함께 처리함.
-- `benchmark/evaluations/`에는 frozen-12 × 5-view 기준의 60개 evaluation task scaffold가 준비되어 있음.
+- `run_benchmark_reference_batch.py`는 reference CFD 실행과 benchmark input view export를 한 흐름으로 함께 처리하며, `--collect-only`로 전체 aggregate manifest를 새로 고칠 수 있음.
+- `benchmark/evaluations/`에는 frozen-16 × 5-view 기준의 80개 evaluation task scaffold가 준비되어 있음.
 - `scripts/run_benchmark_evaluation_task.py`로 개별 scaffold task를 실제 image-conditioned pipeline에 연결할 수 있으며, task 상태와 aggregate summary/manifest를 함께 갱신함.
 
 ## 관련 문서

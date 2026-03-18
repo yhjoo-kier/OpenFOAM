@@ -1,0 +1,29 @@
+{
+  "case_name": "bench_a1_02",
+  "category": "A1",
+  "variant_index": 2,
+  "room_kind": "rectangular",
+  "obstacle_count": 0,
+  "view": "perspective",
+  "status": "pending",
+  "input_image": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_02/perspective/input.png",
+  "reference_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_02/perspective/reference_scene.json",
+  "reference_case": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_02/perspective/reference_case",
+  "reference_results": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_02/perspective/reference_results",
+  "expected_outputs": {
+    "predicted_scene_json": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_02/perspective/predicted_scene.json",
+    "predicted_case_dir": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_02/perspective/predicted_case",
+    "predicted_results_dir": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_02/perspective/predicted_results",
+    "evaluation_summary_json": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_02/perspective/evaluation_summary.json"
+  },
+  "reference_summary": {
+    "success": true,
+    "successful_preset": null,
+    "successful_mode": null,
+    "successful_mesh_size": null,
+    "attempt_count": 1,
+    "risk": null,
+    "risk_score": null,
+    "risk_reasons": null
+  }
+}

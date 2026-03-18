@@ -9,11 +9,11 @@
     "wireframe",
     "section"
   ],
-  "case_count": 12,
-  "task_count": 60,
+  "case_count": 16,
+  "task_count": 80,
   "status_counts": {
-    "pending": 59,
-    "failed": 1
+    "pending": 79,
+    "blocked": 1
   },
   "cases": [
     {
@@ -34,7 +34,7 @@
       "task_count": 5,
       "status_counts": {
         "pending": 4,
-        "failed": 1
+        "blocked": 1
       },
       "case_root": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_01"
     },
@@ -79,6 +79,27 @@
         "pending": 5
       },
       "case_root": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_03"
+    },
+    {
+      "case_name": "bench_a1_04",
+      "category": "A1",
+      "room_kind": "rectangular",
+      "obstacle_count": 1,
+      "views": [
+        "birdseye",
+        "floorplan",
+        "perspective",
+        "section",
+        "wireframe"
+      ],
+      "reference_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_04/birdseye/reference_scene.json",
+      "reference_case": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_04/birdseye/reference_case",
+      "reference_results": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_04/birdseye/reference_results",
+      "task_count": 5,
+      "status_counts": {
+        "pending": 5
+      },
+      "case_root": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_04"
     },
     {
       "case_name": "bench_a2_01",
@@ -144,6 +165,27 @@
       "case_root": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_03"
     },
     {
+      "case_name": "bench_a2_04",
+      "category": "A2",
+      "room_kind": "rectangular",
+      "obstacle_count": 2,
+      "views": [
+        "birdseye",
+        "floorplan",
+        "perspective",
+        "section",
+        "wireframe"
+      ],
+      "reference_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_04/birdseye/reference_scene.json",
+      "reference_case": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_04/birdseye/reference_case",
+      "reference_results": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_04/birdseye/reference_results",
+      "task_count": 5,
+      "status_counts": {
+        "pending": 5
+      },
+      "case_root": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_04"
+    },
+    {
       "case_name": "bench_a3_01",
       "category": "A3",
       "room_kind": "composite",
@@ -207,6 +249,27 @@
       "case_root": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_03"
     },
     {
+      "case_name": "bench_a3_04",
+      "category": "A3",
+      "room_kind": "composite",
+      "obstacle_count": 1,
+      "views": [
+        "birdseye",
+        "floorplan",
+        "perspective",
+        "section",
+        "wireframe"
+      ],
+      "reference_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_04/birdseye/reference_scene.json",
+      "reference_case": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_04/birdseye/reference_case",
+      "reference_results": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_04/birdseye/reference_results",
+      "task_count": 5,
+      "status_counts": {
+        "pending": 5
+      },
+      "case_root": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_04"
+    },
+    {
       "case_name": "bench_a4_01",
       "category": "A4",
       "room_kind": "composite",
@@ -268,6 +331,27 @@
         "pending": 5
       },
       "case_root": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_03"
+    },
+    {
+      "case_name": "bench_a4_04",
+      "category": "A4",
+      "room_kind": "composite",
+      "obstacle_count": 3,
+      "views": [
+        "birdseye",
+        "floorplan",
+        "perspective",
+        "section",
+        "wireframe"
+      ],
+      "reference_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_04/birdseye/reference_scene.json",
+      "reference_case": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_04/birdseye/reference_case",
+      "reference_results": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_04/birdseye/reference_results",
+      "task_count": 5,
+      "status_counts": {
+        "pending": 5
+      },
+      "case_root": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_04"
     }
   ]
 }

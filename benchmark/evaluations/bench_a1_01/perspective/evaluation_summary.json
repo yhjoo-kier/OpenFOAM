@@ -1,5 +1,10 @@
 {
   "ok": false,
+  "blocked": true,
+  "blocker": {
+    "reason": "missing_gemini_api_key",
+    "message": "GEMINI_API_KEY is not set for Gemini API backend"
+  },
   "task": {
     "case_name": "bench_a1_01",
     "view": "perspective",
@@ -8,30 +13,11 @@
     "reference_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_01/perspective/reference_scene.json"
   },
   "run": {
-    "name": "eval_bench_a1_01_perspective",
-    "command": [
-      "python3",
-      "/home/yhjoo/projects/OpenFOAM/scripts/run_indoor_stabilized.py",
-      "--backend",
-      "api",
-      "--model",
-      "gemini-3.1-pro-preview",
-      "--image",
-      "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_01/perspective/input.png",
-      "--scenario",
-      "Generate a simulation-ready indoor ventilation scene from the provided image. Use the image as the primary cue and infer a solver-friendly abstraction of room shape, openings, and only the largest flow-relevant obstacles. Do not assume hidden geometry beyond what is reasonably supported by the image. Favor simple box obstacles and use two joined room blocks only if the visible layout is clearly non-rectangular. The image is a perspective benchmark rendering with visible depth cues.",
-      "--name",
-      "eval_bench_a1_01_perspective",
-      "--mesh-size",
-      "0.35",
-      "--end-time",
-      "250",
-      "--solver-timeout",
-      "600"
-    ],
-    "returncode": 1,
-    "started_at": "2026-03-18T08:30:54Z",
-    "finished_at": "2026-03-18T08:30:54Z"
+    "name": null,
+    "command": null,
+    "returncode": null,
+    "started_at": null,
+    "finished_at": "2026-03-18T10:00:21Z"
   },
   "outputs": {
     "predicted_scene_json": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_01/perspective/predicted_scene.json",
@@ -41,21 +27,16 @@
   },
   "reference_summary": {
     "success": true,
-    "successful_preset": "robust",
-    "successful_mode": "RAS",
-    "successful_mesh_size": 0.35,
+    "successful_preset": null,
+    "successful_mode": null,
+    "successful_mesh_size": null,
     "attempt_count": 1,
-    "risk": "high",
-    "risk_score": 8,
-    "risk_reasons": [
-      "defaultFaces=3270",
-      "maxNonOrtho=87.67>85",
-      "severeNonOrthoFaces=20",
-      "aspectRatio=52.89>20"
-    ]
+    "risk": null,
+    "risk_score": null,
+    "risk_reasons": null
   },
   "prediction_summary": null,
   "pipeline_summary": null,
-  "stdout_tail": "+ python3 /home/yhjoo/projects/OpenFOAM/scripts/generate_indoor_scene_with_gemini.py --backend api --scenario Generate a simulation-ready indoor ventilation scene from the provided image. Use the image as the primary cue and infer a solver-friendly abstraction of room shape, openings, and only the largest flow-relevant obstacles. Do not assume hidden geometry beyond what is reasonably supported by the image. Favor simple box obstacles and use two joined room blocks only if the visible layout is clearly non-rectangular. The image is a perspective benchmark rendering with visible depth cues. --model gemini-3.1-pro-preview -o /home/yhjoo/projects/OpenFOAM/generated/eval_bench_a1_01_perspective.json --image /home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_01/perspective/input.png\nTraceback (most recent call last):\n  File \"/home/yhjoo/projects/OpenFOAM/scripts/generate_indoor_scene_with_gemini.py\", line 485, in <module>\n    raise SystemExit(main())\n                     ^^^^^^\n  File \"/home/yhjoo/projects/OpenFOAM/scripts/generate_indoor_scene_with_gemini.py\", line 422, in main\n    ensure_gemini_available(args.backend)\n  File \"/home/yhjoo/projects/OpenFOAM/scripts/generate_indoor_scene_with_gemini.py\", line 150, in ensure_gemini_available\n    raise RuntimeError(\"GEMINI_API_KEY is not set for Gemini API backend\")\nRuntimeError: GEMINI_API_KEY is not set for Gemini API backend",
-  "stderr_tail": "Traceback (most recent call last):\n  File \"/home/yhjoo/projects/OpenFOAM/scripts/run_indoor_stabilized.py\", line 776, in <module>\n    raise SystemExit(main())\n                     ^^^^^^\n  File \"/home/yhjoo/projects/OpenFOAM/scripts/run_indoor_stabilized.py\", line 586, in main\n    generation_result = run(gen_cmd, cwd=PROJECT_ROOT)\n                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/yhjoo/projects/OpenFOAM/scripts/run_indoor_stabilized.py\", line 239, in run\n    raise RuntimeError(f\"Command failed ({result.returncode}): {' '.join(map(str, cmd))}\")\nRuntimeError: Command failed (1): python3 /home/yhjoo/projects/OpenFOAM/scripts/generate_indoor_scene_with_gemini.py --backend api --scenario Generate a simulation-ready indoor ventilation scene from the provided image. Use the image as the primary cue and infer a solver-friendly abstraction of room shape, openings, and only the largest flow-relevant obstacles. Do not assume hidden geometry beyond what is reasonably supported by the image. Favor simple box obstacles and use two joined room blocks only if the visible layout is clearly non-rectangular. The image is a perspective benchmark rendering with visible depth cues. --model gemini-3.1-pro-preview -o /home/yhjoo/projects/OpenFOAM/generated/eval_bench_a1_01_perspective.json --image /home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_01/perspective/input.png"
+  "stdout_tail": "",
+  "stderr_tail": "GEMINI_API_KEY is not set for Gemini API backend"
 }

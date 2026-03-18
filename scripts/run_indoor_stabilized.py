@@ -756,14 +756,14 @@ def main() -> int:
         run([
             gmsh_python,
             str(SCRIPTS / "visualize_indoor_case.py"),
-            str(scene_json),
+            str(used_scene_json),
             str(case_dir),
             "-o", str(results_dir / "comparison_1x2.png"),
         ], cwd=PROJECT_ROOT)
         run([
             gmsh_python,
             str(SCRIPTS / "render_indoor_pipeline_3d.py"),
-            "--scene-json", str(scene_json),
+            "--scene-json", str(used_scene_json),
             "--case-dir", str(case_dir),
             "--output", str(results_dir / "indoor_pipeline_3d_comparison.png"),
         ], cwd=PROJECT_ROOT)

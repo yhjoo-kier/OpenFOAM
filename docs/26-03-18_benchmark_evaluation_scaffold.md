@@ -1,4 +1,4 @@
-# Benchmark Evaluation Scaffold (Frozen-12 × 5 views)
+# Benchmark Evaluation Scaffold (Frozen-16 × 5 views)
 
 > Date: 2026-03-18
 
@@ -7,9 +7,9 @@
 The benchmark bundle now has a canonical `benchmark/evaluations/` scaffold so image-conditioned pipeline runs can be organized against the frozen reference set without ad-hoc folder creation.
 
 Current scaffold size:
-- Cases: 12
+- Cases: 16
 - Views per case: 5 (`perspective`, `birdseye`, `floorplan`, `wireframe`, `section`)
-- Evaluation tasks: 60 total
+- Evaluation tasks: 80 total
 
 ## What was added
 
@@ -20,7 +20,7 @@ New helper:
 
 It reads:
 - `benchmark/manifests/scene_manifest.json`
-- `benchmark/manifests/frozen12_reference_status.json`
+- `benchmark/manifests/reference_batch_summary.json` (or another compatible aggregate reference-status manifest)
 - `benchmark/renderings/renderings_manifest.json`
 
 and materializes:
@@ -94,4 +94,20 @@ Command:
 
 Outcome:
 - runner wiring worked and task/aggregate manifests updated correctly,
-- but the actual image-conditioned generation failed immediately because `GEMINI_API_KEY` was not set in the current shell, so the task was recorded as `failed` with the captured backend error in `evaluation_summary.json`.
+- the actual image-conditioned generation is still blocked in this cron shell because `GEMINI_API_KEY` is not set,
+- `scripts/run_benchmark_evaluation_task.py` now preflights backend availability and records this as `status=blocked` (not a false benchmark failure) with the captured backend reason in `evaluation_summary.json`.
+
+## Follow-up improvement in this pass
+
+Two useful follow-up upgrades landed around the scaffold:
+
+1. A native composite-room repair upgrade was completed in `scripts/repair_indoor_scene.py`.
+   - instead of always forcing repaired scenes onto a west↔east opening pair, the repair stage now infers the better repair axis (`x` or `y`) from the original opening layout plus exposed outer-wall availability,
+   - preserves the inlet wall when it already lies on the chosen axis,
+   - records the selected axis in `meta.repair_opening_axis` and the repair info payload.
+
+2. `scripts/run_benchmark_evaluation_task.py` now emits richer geometry-comparison metrics even before CFD-result comparison is added.
+   - this means future image-conditioned runs can be judged immediately on scene-structure quality, not just pass/fail bookkeeping,
+   - and blocked runs remain cleanly distinguishable from true benchmark failures.
+
+The composite-room repair upgrade reduces geometry drift for composite benchmark cases whose stable repair is better aligned with a south↔north corridor.

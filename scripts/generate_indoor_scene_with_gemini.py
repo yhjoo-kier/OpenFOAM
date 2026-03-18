@@ -49,6 +49,14 @@ Interpret any provided image(s), photos, or renderings as references for a **sim
 not as a requirement for literal photoreal reconstruction.
 Preserve the important flow-relevant layout qualitatively while simplifying geometry into solver-friendly boxes/openings.
 
+Your first task is to decide the room topology from the image:
+1. Is the visible room well represented by one rectangle?
+2. Or does the image show a recessed alcove, interior corner, bent/L-shaped plan, or a clearly joined second room block?
+
+If the image clearly shows a recessed or bent plan, DO NOT collapse it into a single rectangle.
+In that case, use `room.blocks` with exactly 2 joined rectangular blocks.
+Only use a single rectangular `room.size` when the visible layout is genuinely well-approximated by one rectangle.
+
 Use exactly this schema:
 {{
   \"schema_version\": \"indoor_cfd_scene_v1\",
@@ -60,11 +68,17 @@ Use exactly this schema:
     \"z\": \"floor_to_ceiling\"
   }},
   \"room\": {{
-    \"size\": {{
+    EITHER \"size\": {{
       \"Lx\": number,
       \"Ly\": number,
       \"Lz\": number
     }}
+    OR \"blocks\": [
+      {{
+        \"origin\": {{\"x\": number, \"y\": number, \"z\": number}},
+        \"size\": {{\"dx\": number, \"dy\": number, \"dz\": number}}
+      }}
+    ]
   }},
   \"obstacles\": [
     {{
@@ -89,17 +103,36 @@ Use exactly this schema:
   }}
 }}
 
-Constraints:
-- Create one rectangular room.
-- Create 3 to 5 non-overlapping box obstacles.
+Room rules:
+- If the space is well-approximated by a single rectangular room, use `room.size`.
+- If the layout clearly has an L-shaped or bent plan, use `room.blocks` with exactly 2 joined rectangular blocks.
+- Strong cue examples for `room.blocks`: visible interior corner, recessed side alcove, one leg extending beyond another, or a clear non-rectangular floor perimeter.
+- Do not use more than 2 room blocks.
+- Do not create T-shaped, cross-shaped, or fragmented rooms.
+- If the evidence is ambiguous, prefer a single rectangular room.
+- For composite rooms, the 2 blocks must overlap or share a connected face segment so the room is one connected fluid domain.
+
+Opening rules:
 - Create exactly 1 inlet and 1 outlet.
-- All obstacles must lie fully inside the room.
+- Each opening must lie fully on an exposed OUTER wall.
+- For wall=`west` or `east`, `center.u` must be within the room extent along y and `center.v` within the room extent along z; do not place `center.u = 0` unless the room y-extent is actually centered there.
+- For wall=`south` or `north`, `center.u` must be within the room extent along x and `center.v` within the room extent along z.
+- Keep openings comfortably inside wall bounds; avoid edge-touching placements.
+- Use moderate opening sizes (roughly du,dv around 0.3 to 0.8 m unless the image strongly suggests otherwise).
+
+Obstacle rules:
+- Create 3 to 5 non-overlapping box obstacles only when needed for the visible flow-relevant geometry.
+- If the image is mostly empty architectural space, use the minimum stable obstacle set and do not hallucinate furniture.
+- All obstacles must lie fully inside the room; for composite rooms, each obstacle must lie inside one of the room blocks.
 - Obstacles must not overlap each other.
-- Openings must lie fully on their specified wall and remain within room bounds.
+
+General constraints:
+- Openings must lie fully on an exposed outer wall and remain within room bounds.
 - Use units of meters.
 - All lengths must be positive.
 - Use concise IDs like obs_001, inlet_001, outlet_001.
 - Favor solver-friendly abstraction over visual detail.
+- Favor the simplest stable geometry that preserves the main flow-relevant layout.
 - If image cues are ambiguous, choose a conservative, simulation-stable layout.
 
 Scenario:

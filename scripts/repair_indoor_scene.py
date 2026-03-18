@@ -106,6 +106,44 @@ def longest_segment(segments: list[tuple[float, float]]) -> tuple[float, float]:
     return max(segments, key=lambda seg: seg[1] - seg[0])
 
 
+def total_segment_length(segments: list[tuple[float, float]]) -> float:
+    return sum(max(0.0, seg[1] - seg[0]) for seg in segments)
+
+
+def infer_repair_opening_axis(scene: dict) -> str:
+    blocks = get_room_blocks(scene)
+    openings = scene.get('openings', [])
+    inlet = next((o for o in openings if o.get('type') == 'inlet'), openings[0] if openings else None)
+    west_segments = exposed_wall_segments(blocks, 'west')
+    east_segments = exposed_wall_segments(blocks, 'east')
+    south_segments = exposed_wall_segments(blocks, 'south')
+    north_segments = exposed_wall_segments(blocks, 'north')
+    x_available = bool(west_segments) and bool(east_segments)
+    y_available = bool(south_segments) and bool(north_segments)
+    axis_counts = {
+        'x': sum(1 for op in openings if op.get('wall') in {'west', 'east'}),
+        'y': sum(1 for op in openings if op.get('wall') in {'south', 'north'}),
+    }
+
+    if axis_counts['x'] > axis_counts['y'] and x_available:
+        return 'x'
+    if axis_counts['y'] > axis_counts['x'] and y_available:
+        return 'y'
+    if inlet and inlet.get('wall') in {'west', 'east'} and x_available:
+        return 'x'
+    if inlet and inlet.get('wall') in {'south', 'north'} and y_available:
+        return 'y'
+
+    candidates: list[tuple[str, float]] = []
+    if x_available:
+        candidates.append(('x', total_segment_length(west_segments) + total_segment_length(east_segments)))
+    if y_available:
+        candidates.append(('y', total_segment_length(south_segments) + total_segment_length(north_segments)))
+    if candidates:
+        return max(candidates, key=lambda item: item[1])[0]
+    return 'x'
+
+
 def fit_opening_to_segment(length_target: float, seg: tuple[float, float], margin: float = OPENING_MARGIN) -> tuple[float, float]:
     seg_len = seg[1] - seg[0]
     usable = max(0.35, seg_len - 2 * margin)
@@ -210,20 +248,23 @@ def enforce_clear_zones(scene: dict, opening_clearance: float) -> None:
                     obs['min']['y'] = y_limit - obs['size']['dy']
 
 
-def normalize_openings(scene: dict, wall: str | None = None, size_du: float | None = None, size_dv: float | None = None) -> None:
+def normalize_openings(scene: dict, wall: str | None = None, size_du: float | None = None, size_dv: float | None = None) -> str | None:
     room = overall_room_size(scene)
     blocks = get_room_blocks(scene)
     openings = scene.get('openings', [])
     if len(openings) != 2:
-        return
+        return None
     inlet = next((o for o in openings if o['type'] == 'inlet'), openings[0])
     outlet = next((o for o in openings if o['type'] == 'outlet'), openings[-1])
+    wall = wall or infer_repair_opening_axis(scene)
 
     if wall == 'x':
-        inlet['wall'] = 'west'
-        outlet['wall'] = 'east'
-        in_seg = longest_segment(exposed_wall_segments(blocks, 'west'))
-        out_seg = longest_segment(exposed_wall_segments(blocks, 'east'))
+        inlet_wall = inlet.get('wall') if inlet.get('wall') in {'west', 'east'} else 'west'
+        outlet_wall = 'east' if inlet_wall == 'west' else 'west'
+        inlet['wall'] = inlet_wall
+        outlet['wall'] = outlet_wall
+        in_seg = longest_segment(exposed_wall_segments(blocks, inlet_wall))
+        out_seg = longest_segment(exposed_wall_segments(blocks, outlet_wall))
         inlet_center_u, inlet_du = fit_opening_to_segment(size_du or 1.0, in_seg)
         outlet_center_u, outlet_du = fit_opening_to_segment(size_du or 1.0, out_seg)
         center_v = round(min(1.4, room['Lz'] * 0.5), 3)
@@ -232,11 +273,14 @@ def normalize_openings(scene: dict, wall: str | None = None, size_du: float | No
         outlet['center'] = {'u': outlet_center_u, 'v': center_v}
         inlet['size'] = {'du': inlet_du, 'dv': dv}
         outlet['size'] = {'du': outlet_du, 'dv': dv}
-    elif wall == 'y':
-        inlet['wall'] = 'south'
-        outlet['wall'] = 'north'
-        in_seg = longest_segment(exposed_wall_segments(blocks, 'south'))
-        out_seg = longest_segment(exposed_wall_segments(blocks, 'north'))
+        return wall
+    if wall == 'y':
+        inlet_wall = inlet.get('wall') if inlet.get('wall') in {'south', 'north'} else 'south'
+        outlet_wall = 'north' if inlet_wall == 'south' else 'south'
+        inlet['wall'] = inlet_wall
+        outlet['wall'] = outlet_wall
+        in_seg = longest_segment(exposed_wall_segments(blocks, inlet_wall))
+        out_seg = longest_segment(exposed_wall_segments(blocks, outlet_wall))
         inlet_center_u, inlet_du = fit_opening_to_segment(size_du or 1.0, in_seg)
         outlet_center_u, outlet_du = fit_opening_to_segment(size_du or 1.0, out_seg)
         center_v = round(min(1.4, room['Lz'] * 0.5), 3)
@@ -245,6 +289,8 @@ def normalize_openings(scene: dict, wall: str | None = None, size_du: float | No
         outlet['center'] = {'u': outlet_center_u, 'v': center_v}
         inlet['size'] = {'du': inlet_du, 'dv': dv}
         outlet['size'] = {'du': outlet_du, 'dv': dv}
+        return wall
+    return None
 
 
 def repair_scene(scene: dict) -> tuple[dict, dict]:
@@ -256,7 +302,7 @@ def repair_scene(scene: dict) -> tuple[dict, dict]:
     opening_clearance = max(1.2, 0.12 * room['Lx'])
 
     simplify_obstacles(repaired, wall_margin=wall_margin, max_count=3, max_row_length_ratio=0.62)
-    normalize_openings(repaired, wall='x', size_du=1.0, size_dv=0.8)
+    chosen_opening_axis = normalize_openings(repaired, wall=None, size_du=1.0, size_dv=0.8)
     enforce_room_bounds(repaired, wall_margin=wall_margin)
     enforce_clear_zones(repaired, opening_clearance=opening_clearance)
     push_apart_obstacles(repaired, clearance=obstacle_clearance)
@@ -268,12 +314,14 @@ def repair_scene(scene: dict) -> tuple[dict, dict]:
         'Applied solver-friendly repair with composite-room aware opening normalization, '
         'obstacle count cap, clearance enforcement, and wall-margin bounds.'
     )
+    repaired['meta']['repair_opening_axis'] = chosen_opening_axis
 
     report = validate_scene(repaired)
     info = {
         'wall_margin': wall_margin,
         'obstacle_clearance': obstacle_clearance,
         'opening_clearance': opening_clearance,
+        'repair_opening_axis': chosen_opening_axis,
         'valid': report.ok,
         'errors': report.errors,
         'warnings': report.warnings,

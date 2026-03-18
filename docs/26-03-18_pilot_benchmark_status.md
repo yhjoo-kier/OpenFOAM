@@ -35,7 +35,7 @@
 - All 8 pilot scenes now have reusable per-case 3D rendering artifacts in `results/<case>/` and via `benchmark/visualizations/<case>/`.
 - Current reusable bundle: `comparison_1x2.png`, `indoor_pipeline_3d_comparison.png/.pdf`, `panel_geometry_3d.png`, `panel_flow_3d.png`.
 - Explicit benchmark input views are now also exported under `benchmark/renderings/<case>/<view>/<case>_<view>.png`.
-- Canonical input-view set currently used: `perspective`, `birdseye`, `floorplan`, `wireframe`.
+- Canonical input-view set currently used: `perspective`, `birdseye`, `floorplan`, `wireframe`, `section`.
 - `run_benchmark_reference_batch.py` now performs reference CFD execution and benchmark input-view export in one batch flow.
 
 ## Next recommended actions

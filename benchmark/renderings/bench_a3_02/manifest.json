@@ -1,0 +1,22 @@
+{
+  "case_name": "bench_a3_02",
+  "source_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/scenes/a3_02.json",
+  "views": {
+    "perspective": "/home/yhjoo/projects/OpenFOAM/benchmark/renderings/bench_a3_02/perspective/bench_a3_02_perspective.png",
+    "birdseye": "/home/yhjoo/projects/OpenFOAM/benchmark/renderings/bench_a3_02/birdseye/bench_a3_02_birdseye.png",
+    "floorplan": "/home/yhjoo/projects/OpenFOAM/benchmark/renderings/bench_a3_02/floorplan/bench_a3_02_floorplan.png",
+    "wireframe": "/home/yhjoo/projects/OpenFOAM/benchmark/renderings/bench_a3_02/wireframe/bench_a3_02_wireframe.png",
+    "section": "/home/yhjoo/projects/OpenFOAM/benchmark/renderings/bench_a3_02/section/bench_a3_02_section.png"
+  },
+  "room_kind": "composite",
+  "obstacle_count": 0,
+  "category": "A3",
+  "section_view": {
+    "axis": "y",
+    "plane_coordinate": 2.15
+  },
+  "render_contract": {
+    "layout": "benchmark/renderings/<case_name>/<view>/<case_name>_<view>.png",
+    "note": "geometry-only benchmark input assets; distinct from reference CFD result visualizations"
+  }
+}
