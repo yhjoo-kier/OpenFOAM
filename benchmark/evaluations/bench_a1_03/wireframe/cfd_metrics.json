@@ -1,0 +1,106 @@
+{
+  "ok": true,
+  "grid": {
+    "nx": 18,
+    "ny": 18,
+    "nz": 10,
+    "point_count": 3240,
+    "epsilon": {
+      "x": 0.05,
+      "y": 0.05,
+      "z": 0.08
+    }
+  },
+  "reference": {
+    "scene": "/home/yhjoo/projects/OpenFOAM/benchmark/scenes/a1_03.json",
+    "case": "/home/yhjoo/projects/OpenFOAM/cases/bench_a1_03",
+    "vtk": "/home/yhjoo/projects/OpenFOAM/cases/bench_a1_03/VTK/bench_a1_03_200/internal.vtu",
+    "room_bounds": {
+      "Lx": 6.05,
+      "Ly": 4.643,
+      "Lz": 2.733
+    },
+    "valid_count": 3132,
+    "valid_ratio": 0.966667
+  },
+  "predicted": {
+    "scene": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_03/wireframe/predicted_scene.json",
+    "case": "/home/yhjoo/projects/OpenFOAM/cases/eval_bench_a1_03_wireframe",
+    "vtk": "/home/yhjoo/projects/OpenFOAM/cases/eval_bench_a1_03_wireframe/VTK/eval_bench_a1_03_wireframe_200/internal.vtu",
+    "room_bounds": {
+      "Lx": 10.0,
+      "Ly": 6.0,
+      "Lz": 3.0
+    },
+    "valid_count": 3120,
+    "valid_ratio": 0.962963
+  },
+  "overlap": {
+    "count": 3037,
+    "ratio_vs_total": 0.937346,
+    "ratio_vs_union": 0.944635,
+    "union_count": 3215
+  },
+  "field_metrics": {
+    "velocity_vector": {
+      "mae_l2": 0.001521,
+      "rmse_l2": 0.002144,
+      "reference_rms": 0.002717,
+      "relative_rmse": 0.788925,
+      "mean_direction_cosine": 0.563897,
+      "direction_comparable_count": 3034
+    },
+    "velocity_magnitude": {
+      "mae": 0.001101,
+      "rmse": 0.001838,
+      "reference_rms": 0.002717,
+      "relative_rmse": 0.676276,
+      "reference_mean": 0.001854,
+      "predicted_mean": 0.001164
+    },
+    "pressure": {
+      "mae": 0.000108,
+      "rmse": 0.000109,
+      "reference_rms": 0.000483,
+      "relative_rmse": 0.224703,
+      "reference_mean": 0.000483,
+      "predicted_mean": 0.000375
+    }
+  },
+  "aggregate_score": {
+    "cfd_score": 0.706401,
+    "components": {
+      "overlap_ratio_vs_union": 0.944635,
+      "velocity_magnitude_similarity": 0.323724,
+      "velocity_direction_similarity": 0.781948,
+      "pressure_similarity": 0.775297
+    }
+  },
+  "runner": {
+    "command": [
+      "docker",
+      "run",
+      "--rm",
+      "-v",
+      "/home/yhjoo/projects/OpenFOAM:/home/yhjoo/projects/OpenFOAM",
+      "-w",
+      "/home/yhjoo/projects/OpenFOAM",
+      "openfoam-pipeline-local:latest",
+      "python3",
+      "/home/yhjoo/projects/OpenFOAM/scripts/compute_benchmark_cfd_metrics.py",
+      "--reference-scene",
+      "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_03/wireframe/reference_scene.json",
+      "--reference-case",
+      "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_03/wireframe/reference_case",
+      "--predicted-scene",
+      "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_03/wireframe/predicted_scene.json",
+      "--predicted-case",
+      "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_03/wireframe/predicted_case",
+      "--output",
+      "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_03/wireframe/cfd_metrics.json"
+    ],
+    "returncode": 0,
+    "stdout_tail": "      \"mean_direction_cosine\": 0.563897,\n      \"direction_comparable_count\": 3034\n    },\n    \"velocity_magnitude\": {\n      \"mae\": 0.001101,\n      \"rmse\": 0.001838,\n      \"reference_rms\": 0.002717,\n      \"relative_rmse\": 0.676276,\n      \"reference_mean\": 0.001854,\n      \"predicted_mean\": 0.001164\n    },\n    \"pressure\": {\n      \"mae\": 0.000108,\n      \"rmse\": 0.000109,\n      \"reference_rms\": 0.000483,\n      \"relative_rmse\": 0.224703,\n      \"reference_mean\": 0.000483,\n      \"predicted_mean\": 0.000375\n    }\n  },\n  \"aggregate_score\": {\n    \"cfd_score\": 0.706401,\n    \"components\": {\n      \"overlap_ratio_vs_union\": 0.944635,\n      \"velocity_magnitude_similarity\": 0.323724,\n      \"velocity_direction_similarity\": 0.781948,\n      \"pressure_similarity\": 0.775297\n    }\n  }\n}",
+    "stderr_tail": ""
+  }
+}

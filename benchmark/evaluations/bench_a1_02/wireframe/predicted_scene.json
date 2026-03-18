@@ -1,0 +1,93 @@
+{
+  "schema_version": "indoor_cfd_scene_v1",
+  "units": "m",
+  "coordinate_system": {
+    "origin": "room_min_corner",
+    "x": "west_to_east",
+    "y": "south_to_north",
+    "z": "floor_to_ceiling"
+  },
+  "room": {
+    "size": {
+      "Lx": 10.0,
+      "Ly": 4.0,
+      "Lz": 3.0
+    }
+  },
+  "obstacles": [
+    {
+      "id": "obs_main_block",
+      "type": "box",
+      "min": {
+        "x": 2.0,
+        "y": 1.0,
+        "z": 0.0
+      },
+      "size": {
+        "dx": 6.0,
+        "dy": 2.0,
+        "dz": 1.2
+      }
+    },
+    {
+      "id": "obs_corner_001",
+      "type": "box",
+      "min": {
+        "x": 0.5,
+        "y": 0.5,
+        "z": 0.0
+      },
+      "size": {
+        "dx": 0.6,
+        "dy": 0.6,
+        "dz": 0.8
+      }
+    },
+    {
+      "id": "obs_corner_002",
+      "type": "box",
+      "min": {
+        "x": 8.9,
+        "y": 2.9,
+        "z": 0.0
+      },
+      "size": {
+        "dx": 0.6,
+        "dy": 0.6,
+        "dz": 0.8
+      }
+    }
+  ],
+  "openings": [
+    {
+      "id": "inlet_001",
+      "type": "inlet",
+      "wall": "south",
+      "center": {
+        "u": 5.0,
+        "v": 0.6
+      },
+      "size": {
+        "du": 1.0,
+        "dv": 0.4
+      }
+    },
+    {
+      "id": "outlet_001",
+      "type": "outlet",
+      "wall": "east",
+      "center": {
+        "u": 2.0,
+        "v": 1.8
+      },
+      "size": {
+        "du": 0.4,
+        "dv": 0.6
+      }
+    }
+  ],
+  "meta": {
+    "scene_type": "benchmark_a1_02",
+    "description": "Elongated rectangular room with a large central block obstacle, featuring a low-level inlet on the south wall and an elevated outlet on the east wall."
+  }
+}

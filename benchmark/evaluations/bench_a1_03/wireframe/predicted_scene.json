@@ -1,0 +1,93 @@
+{
+  "schema_version": "indoor_cfd_scene_v1",
+  "units": "m",
+  "coordinate_system": {
+    "origin": "room_min_corner",
+    "x": "west_to_east",
+    "y": "south_to_north",
+    "z": "floor_to_ceiling"
+  },
+  "room": {
+    "size": {
+      "Lx": 10.0,
+      "Ly": 6.0,
+      "Lz": 3.0
+    }
+  },
+  "obstacles": [
+    {
+      "id": "obs_001",
+      "type": "box",
+      "min": {
+        "x": 4.0,
+        "y": 2.0,
+        "z": 0.0
+      },
+      "size": {
+        "dx": 2.0,
+        "dy": 2.0,
+        "dz": 1.5
+      }
+    },
+    {
+      "id": "obs_002",
+      "type": "box",
+      "min": {
+        "x": 0.1,
+        "y": 0.1,
+        "z": 0.0
+      },
+      "size": {
+        "dx": 0.3,
+        "dy": 0.3,
+        "dz": 3.0
+      }
+    },
+    {
+      "id": "obs_003",
+      "type": "box",
+      "min": {
+        "x": 9.6,
+        "y": 5.6,
+        "z": 0.0
+      },
+      "size": {
+        "dx": 0.3,
+        "dy": 0.3,
+        "dz": 3.0
+      }
+    }
+  ],
+  "openings": [
+    {
+      "id": "inlet_001",
+      "type": "inlet",
+      "wall": "west",
+      "center": {
+        "u": 3.0,
+        "v": 2.2
+      },
+      "size": {
+        "du": 0.5,
+        "dv": 0.5
+      }
+    },
+    {
+      "id": "outlet_001",
+      "type": "outlet",
+      "wall": "east",
+      "center": {
+        "u": 3.0,
+        "v": 0.8
+      },
+      "size": {
+        "du": 0.6,
+        "dv": 0.4
+      }
+    }
+  ],
+  "meta": {
+    "scene_type": "standard_ventilation",
+    "description": "Rectangular room with a central box obstacle and structural corner pillars. Features a high-level west inlet and a low-level east outlet for cross-ventilation."
+  }
+}

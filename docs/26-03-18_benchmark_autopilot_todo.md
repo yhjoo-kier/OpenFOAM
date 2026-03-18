@@ -130,8 +130,8 @@ OpenFOAM Image-to-CFD 논문을 위한 benchmark dataset 파이프라인을 구�
 - Reference CFD 상태: **20/20 성공**
 - Benchmark input-view export: `perspective`, `birdseye`, `floorplan`, `wireframe`, `section` 기준 **20/20 성공**
 - Evaluation scaffold: **100 tasks** (`20 scenes × 5 views`)
-- Image-conditioned evaluation 상태: **40 success**, **60 pending**
-  - complete case sweep 완료: `bench_a1_01` (rectangular baseline), `bench_a1_04` (reference solver-stress rectangular case), `bench_a2_01` (rectangular mid-difficulty control), `bench_a2_03` (dense-obstacle rectangular stress case), `bench_a3_03` (mid-difficulty composite case), `bench_a3_04` (composite representative), `bench_a4_02` (laminar-fallback composite stress case), `bench_a4_03` (obstacle-dense composite stress case) 모두 5-view 전부 성공 (CLI backend)
+- Image-conditioned evaluation 상태: **50 success**, **50 pending**
+  - complete case sweep 완료: `bench_a1_01` (rectangular baseline), `bench_a1_02` (easy rectangular positive-control), `bench_a1_03` (easy rectangular metric-gap case), `bench_a1_04` (reference solver-stress rectangular case), `bench_a2_01` (rectangular mid-difficulty control), `bench_a2_03` (dense-obstacle rectangular stress case), `bench_a3_03` (mid-difficulty composite case), `bench_a3_04` (composite representative), `bench_a4_02` (laminar-fallback composite stress case), `bench_a4_03` (obstacle-dense composite stress case) 모두 5-view 전부 성공 (CLI backend)
   - API backend env는 현재 shell에서 여전히 비어 있으나, Gemini CLI cached auth 경로로 평가 진행 가능
 - 실제 evaluation task는 geometry metric과 normalized-grid CFD metric (`cfd_metrics.json`)을 함께 기록함
 
@@ -155,9 +155,9 @@ OpenFOAM Image-to-CFD 논문을 위한 benchmark dataset 파이프라인을 구�
 
 ## 다음 기본 액션
 
-1. 현재 complete sweep이 끝난 8개 case(`bench_a1_01`, `bench_a1_04`, `bench_a2_01`, `bench_a2_03`, `bench_a3_03`, `bench_a3_04`, `bench_a4_02`, `bench_a4_03`) 기준 aggregate summary를 유지하고, 이후 쉬운 rectangular case를 추가해 비교축을 넓힌다.
-2. composite case에서는 opening/topology-sensitive metric, rectangular multi-obstacle case에서는 occupancy/blockage-sensitive metric이 추가로 필요한지 판단한다.
-3. 다음 CLI batch는 아직 미평가인 더 쉬운 직사각형 case(`bench_a1_02` 또는 `bench_a1_03`)에 우선 배정한다.
+1. 현재 complete sweep이 끝난 10개 case(`bench_a1_01`, `bench_a1_02`, `bench_a1_03`, `bench_a1_04`, `bench_a2_01`, `bench_a2_03`, `bench_a3_03`, `bench_a3_04`, `bench_a4_02`, `bench_a4_03`) 기준 aggregate summary를 유지하고, 다음 미평가 case로 coverage를 넓힌다.
+2. composite case에서는 opening/topology-sensitive metric, rectangular multi-obstacle case에서는 occupancy/blockage-sensitive metric, easy empty-room case에서는 hallucinated-obstacle tagging + topology-preserving score가 추가로 필요한지 판단한다.
+3. 다음 CLI batch는 아직 미평가인 `bench_a2_02` 또는 `bench_a3_01` 중 coverage 확장 가치가 높은 쪽에 우선 배정한다.
 4. API backend env(`GEMINI_API_KEY`/`GOOGLE_API_KEY`)는 별도 유지 과제로 남기되, benchmark 진행 자체는 CLI backend 기준으로 계속 전진한다.
-5. frozen-20 benchmark + CLI-eval 40/100 milestone에서 깔끔한 로컬 commit checkpoint를 유지한다.
-6. 이후 meshing/solver 변경이 생기면 stress subset (`bench_a2_01`, `bench_a4_02`, `bench_a2_03`, `bench_a4_03`, `bench_a1_04`)로 빠른 regression check를 수행하되, `bench_a2_01/perspective`의 fallback-success도 참고 신호로 본다.
+5. frozen-20 benchmark + CLI-eval 50/100 milestone에서 깔끔한 로컬 commit checkpoint를 유지한다.
+6. 이후 meshing/solver 변경이 생기면 stress subset (`bench_a2_01`, `bench_a4_02`, `bench_a2_03`, `bench_a4_03`, `bench_a1_04`)에 더해 easy positive-controls (`bench_a1_02`, `bench_a1_03`)도 참고 신호로 본다.
