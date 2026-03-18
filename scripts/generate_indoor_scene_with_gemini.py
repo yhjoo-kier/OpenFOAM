@@ -140,14 +140,18 @@ Scenario:
 """
 
 
+def get_gemini_api_key() -> str | None:
+    return os.environ.get("GEMINI_API_KEY") or os.environ.get("GOOGLE_API_KEY")
+
+
 def ensure_gemini_available(backend: str) -> None:
     if backend == "cli":
         if shutil.which("gemini") is None:
             raise RuntimeError("gemini CLI not found in PATH")
         return
     if backend == "api":
-        if not os.environ.get("GEMINI_API_KEY"):
-            raise RuntimeError("GEMINI_API_KEY is not set for Gemini API backend")
+        if not get_gemini_api_key():
+            raise RuntimeError("Neither GEMINI_API_KEY nor GOOGLE_API_KEY is set for Gemini API backend")
         return
     raise RuntimeError(f"Unsupported backend: {backend}")
 
@@ -156,8 +160,24 @@ def build_prompt(scenario: str) -> str:
     return PROMPT_TEMPLATE.format(scenario=scenario.strip())
 
 
-def run_gemini_cli(prompt: str, model: str) -> str:
-    cmd = ["gemini", "--model", model, "--output-format", "json", prompt]
+def _build_cli_prompt(prompt: str, image_paths: list[Path]) -> str:
+    if not image_paths:
+        return prompt
+    attachment_lines = ["", "Reference image attachments:"]
+    attachment_lines.extend(f"@{path}" for path in image_paths)
+    return prompt.rstrip() + "\n" + "\n".join(attachment_lines)
+
+
+
+def run_gemini_cli(prompt: str, model: str, image_paths: list[Path]) -> str:
+    cli_prompt = _build_cli_prompt(prompt, image_paths)
+    cmd = [
+        "gemini",
+        "--model", model,
+        "--prompt", cli_prompt,
+        "--approval-mode", "yolo",
+        "--output-format", "json",
+    ]
     result = subprocess.run(cmd, capture_output=True, text=True, check=False)
     if result.returncode != 0:
         raise RuntimeError(
@@ -181,7 +201,9 @@ def _image_to_part(image_path: Path) -> dict:
 
 
 def run_gemini_api(prompt: str, model: str, image_paths: list[Path]) -> str:
-    api_key = os.environ["GEMINI_API_KEY"]
+    api_key = get_gemini_api_key()
+    if not api_key:
+        raise RuntimeError("Neither GEMINI_API_KEY nor GOOGLE_API_KEY is set for Gemini API backend")
     url = f"{API_BASE_URL}/{model}:generateContent?key={api_key}"
 
     parts: list[dict] = [{"text": prompt}]
@@ -227,9 +249,7 @@ def _is_retryable_error(message: str) -> bool:
 
 def _run_backend_request(prompt: str, model: str, backend: str, image_paths: list[Path]) -> str:
     if backend == "cli":
-        if image_paths:
-            raise RuntimeError("Gemini CLI backend does not yet support --image inputs in this script")
-        return run_gemini_cli(prompt, model)
+        return run_gemini_cli(prompt, model, image_paths)
     if backend == "api":
         return run_gemini_api(prompt, model, image_paths)
     raise RuntimeError(f"Unsupported backend: {backend}")

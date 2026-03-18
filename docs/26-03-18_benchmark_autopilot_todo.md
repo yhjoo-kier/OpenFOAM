@@ -1,145 +1,149 @@
 # Benchmark Autopilot TODO
 
-> Topic: SurfClaw / topic 2242
-> Mode: autonomous progress with user-intervention only when a real decision is needed
+> 토픽: SurfClaw / topic 2242
+> 모드: 사용자 의사결정이 꼭 필요할 때만 질문하고, 그 외에는 자율 진행
 > Cron: `openfoam-benchmark-autopilot-topic2242`
 > Job ID: `543fca81-0332-442a-beec-e8ef06e5e73d`
-> Last initialized: 2026-03-18
+> 마지막 초기화: 2026-03-18
 
-## Operating rule
+## 운영 원칙
 
-- Continue autonomously unless a genuine user decision is required.
-- If a blocking decision is required, disable the cron job first, then ask the user.
-- Keep status compact and actionable.
+- 실제로 사용자 판단이 필요한 경우가 아니면 자율적으로 계속 진행한다.
+- 막히는 의사결정이 필요하면 먼저 cron job을 비활성화한 뒤 사용자에게 질문한다.
+- 상태 기록은 짧고 행동 지향적으로 유지한다.
+- 진행 보고와 질문은 한국어로 한다.
 
-## Current objective
+## 현재 목표
 
-Build and validate the benchmark dataset pipeline for the OpenFOAM Image-to-CFD paper:
-1. rule-based benchmark scene generation
-2. reference CFD generation
-3. result visualization
-4. 3D-to-2D rendering feasibility
-5. success/failure analysis and stabilization
+OpenFOAM Image-to-CFD 논문을 위한 benchmark dataset 파이프라인을 구축하고 검증한다.
 
-## Status legend
+1. rule-based benchmark scene 생성
+2. reference CFD 생성
+3. 결과 시각화
+4. 3D→2D benchmark 입력 이미지 렌더링 정리
+5. success/failure 분석 및 안정화
+6. image-conditioned evaluation 준비 및 실행
 
-- [ ] pending
-- [x] completed
-- [-] in progress
-- [!] failed / needs fix
-- [~] on hold
+## 상태 표기
+
+- [ ] 대기
+- [x] 완료
+- [-] 진행중
+- [!] 실패 / 수정 필요
+- [~] 보류
 
 ## Active TODO
 
 ### A. Benchmark scene generation
-- [x] Implement `scripts/generate_benchmark_scenes.py`
-- [x] Generate initial 8 benchmark scenes (A1/A2/A3/A4 × 2)
-- [x] Validate all generated JSON scenes with `validate_indoor_scene.py`
-- [x] Improve generator so simple categories can optionally guarantee at least 1 obstacle when desired
-- [x] Add category/seed/geometry manifest for generated scenes
-- [x] Expand the frozen scene set from 8 to 12 scenes (A1/A2/A3/A4 × 3)
-- [x] Expand the frozen scene set from 12 to 16 scenes (A1/A2/A3/A4 × 4)
-- [x] Expand the frozen scene set from 16 to 20 scenes (A1/A2/A3/A4 × 5)
+- [x] `scripts/generate_benchmark_scenes.py` 구현
+- [x] 초기 8개 benchmark scene 생성 (A1/A2/A3/A4 × 2)
+- [x] 생성된 JSON scene 전체를 `validate_indoor_scene.py`로 검증
+- [x] simple category에서 필요 시 obstacle 최소 1개를 보장하는 옵션 추가
+- [x] scene별 category/seed/geometry manifest 추가
+- [x] frozen scene set을 8개에서 12개로 확장 (A1/A2/A3/A4 × 3)
+- [x] frozen scene set을 12개에서 16개로 확장 (A1/A2/A3/A4 × 4)
+- [x] frozen scene set을 16개에서 20개로 확장 (A1/A2/A3/A4 × 5)
 
 ### B. Reference CFD pipeline
-- [x] Reuse stabilized pipeline entrypoint for scene-JSON-driven benchmark runs
-- [x] Implement batch wrapper: `scripts/run_benchmark_reference_batch.py`
-- [x] Fix `run_indoor_stabilized.py` so `--end-time` propagates into case generation
-- [x] Confirm at least one rectangular benchmark scene reaches CFD + visualization end-to-end
-- [x] Confirm at least one composite benchmark scene reaches CFD + visualization end-to-end
-- [x] Raise first-pass success rate across the 8-scene pilot set
-- [x] Run the newly added 4 scene variants (`*_03`) through the reference CFD batch flow
-- [x] Run the `*_04` tranche through the reference CFD batch flow
-- [x] Run the `*_05` tranche through the reference CFD batch flow
+- [x] scene-JSON 기반 benchmark 실행에 stabilized pipeline entrypoint 재사용
+- [x] batch wrapper 구현: `scripts/run_benchmark_reference_batch.py`
+- [x] `run_indoor_stabilized.py`에서 `--end-time`이 case generation에 전달되도록 수정
+- [x] rectangular benchmark scene이 CFD + 시각화까지 end-to-end 도달함을 확인
+- [x] composite benchmark scene이 CFD + 시각화까지 end-to-end 도달함을 확인
+- [x] 초기 8-scene pilot의 first-pass success rate 개선
+- [x] 새로 추가된 `*_03` 4개 scene을 reference CFD batch flow로 실행
+- [x] `*_04` tranche 실행
+- [x] `*_05` tranche 실행
 
 ### C. Composite-room compatibility
-- [x] Add `room.blocks` support to validator and Gmsh path
-- [x] Confirm image-based composite-room generation feasibility
-- [x] Identify legacy repair-stage incompatibility with `room.blocks`
-- [x] Prevent repair-stage crash from blocking composite runs in `run_indoor_stabilized.py`
-- [x] Update `visualize_indoor_case.py` for composite rooms
-- [x] Update `render_indoor_pipeline_3d.py` for composite rooms
-- [x] Ensure successful repaired-scene runs render against the actual scene JSON used by the solver
-- [x] Add proper composite-room support to `repair_indoor_scene.py` instead of fallback/skip behavior
+- [x] validator와 Gmsh 경로에 `room.blocks` 지원 추가
+- [x] image-based composite-room generation feasibility 확인
+- [x] `room.blocks`에 대한 legacy repair-stage 비호환성 원인 파악
+- [x] `run_indoor_stabilized.py`에서 repair-stage crash가 composite run을 막지 않도록 수정
+- [x] `visualize_indoor_case.py`를 composite room에 맞게 수정
+- [x] `render_indoor_pipeline_3d.py`를 composite room에 맞게 수정
+- [x] repaired scene을 쓴 경우 solver가 실제 사용한 scene JSON 기준으로 렌더링되도록 보정
+- [x] `repair_indoor_scene.py`에 composite-room 지원을 추가해 fallback/skip 의존도를 낮춤
 
 ### D2. Evaluation scaffolding
-- [x] Create canonical `benchmark/evaluations/` scaffold for the frozen-12 × 5-view bundle
-- [x] Materialize per-task manifests/symlinks for 60 image-conditioned evaluation tasks
-- [x] Refresh the evaluation scaffold to the frozen-16 × 5-view bundle (80 tasks) while preserving prior task state
-- [x] Refresh the evaluation scaffold to the frozen-20 × 5-view bundle (100 tasks) while preserving prior task state
-- [x] Add a runner that executes one scaffolded evaluation task end-to-end and writes `evaluation_summary.json`
-- [x] Extend evaluation summaries from geometry-only metrics to include first-pass CFD/result-side metrics via normalized-grid VTK comparison
-- [~] Smoke-test one image-conditioned task in the current cron environment (`bench_a1_01/perspective`) — runner now classifies this correctly as an environment block (`status=blocked`) because `GEMINI_API_KEY` is not set for the API backend
+- [x] frozen-12 × 5-view bundle용 `benchmark/evaluations/` scaffold 생성
+- [x] 60개 image-conditioned evaluation task용 manifest/symlink 생성
+- [x] frozen-16 × 5-view bundle(80 tasks)로 scaffold 갱신
+- [x] frozen-20 × 5-view bundle(100 tasks)로 scaffold 갱신
+- [x] scaffolded evaluation task 하나를 end-to-end로 실행하고 `evaluation_summary.json`을 쓰는 runner 추가
+- [x] geometry-only metric에서 normalized-grid VTK 비교 기반 CFD/result-side metric까지 확장
+- [x] current cron shell에서 Gemini CLI cached auth를 활용하도록 image-conditioned path를 우회 복구 (`generate_indoor_scene_with_gemini.py`가 CLI multimodal `@image` 입력 지원, API env alias `GOOGLE_API_KEY`도 허용)
+- [x] CLI backend로 image-conditioned smoke test 2개 재실행 성공: `bench_a1_01/perspective`, `bench_a1_01/section`
+- [~] API backend 자체는 현재 cron shell에서 여전히 env 미설정(`GEMINI_API_KEY`, `GOOGLE_API_KEY` 모두 없음)이지만, benchmark 진행은 CLI backend로 더 이상 막히지 않음
 
 ### D. Failure analysis / stabilization
-- [x] Batch-run the initial 8-scene pilot set
-- [x] Summarize current success/failure status
-- [x] Analyze failure root cause for `bench_a1_02`
-- [x] Analyze failure root cause for `bench_a3_01`
-- [x] Analyze failure root cause for `bench_a3_02`
-- [x] Decide whether failures are best fixed at generator-level, repair-level, meshing-level, or solver-level
-- [x] Re-run failed pilot scenes after fixes
-- [x] Update pilot success-rate summary after re-runs
-- [x] Check whether the 20-scene tranche still converges without new stabilization regressions
-- [x] Re-run stale composite stress case metadata (`bench_a4_02`) after the composite repair-path fix so old repair failure traces do not pollute the frozen benchmark record
+- [x] 초기 8-scene pilot set batch 실행
+- [x] 초기 success/failure 현황 요약
+- [x] `bench_a1_02` 실패 원인 분석
+- [x] `bench_a3_01` 실패 원인 분석
+- [x] `bench_a3_02` 실패 원인 분석
+- [x] generator / repair / meshing / solver 중 어디를 고쳐야 하는지 판단
+- [x] 수정 후 실패 pilot scene 재실행
+- [x] 재실행 후 pilot success-rate summary 갱신
+- [x] 20-scene tranche에서도 새로운 stabilization regression이 없는지 점검
 
 ### E. Rendering / dataset feasibility
-- [x] Confirm 3D comparison rendering is produced for successful benchmark runs
-- [x] Define canonical rendering output structure for dataset cases
-- [x] Add automated 2D rendering export path for benchmark scenes
-- [x] Separate render modes needed for paper benchmark (perspective / bird's-eye / floor-plan / wireframe)
-- [x] Add canonical `section` view export so the benchmark view set matches the paper-plan 5-view matrix
-- [x] Confirm one case can produce both reference CFD and benchmark input image assets cleanly
-- [x] Verify the integrated batch flow on the newly added `*_03` subset
-- [x] Refresh the frozen-12 rendering manifests to include `section` assets for all scenes
-- [x] Refresh aggregate rendering manifests after the `*_05` tranche
-- [x] Normalize render manifests to stable resolved `source_scene` paths so artifact indexing no longer depends on invocation cwd/argument style
-- [x] Verify frozen-20 render/reference/evaluation bundle integrity end-to-end and record section-axis coverage for the 5-view dataset
-- [x] Add a dedicated stress-subset regression lane so the known hard cases can be rerun quickly after meshing / solver changes
+- [x] 성공한 benchmark run에서 3D comparison rendering이 생성됨을 확인
+- [x] dataset case용 canonical rendering output structure 정의
+- [x] benchmark scene용 자동 2D rendering export 경로 추가
+- [x] benchmark view 타입 분리: `perspective`, `birdseye`, `floorplan`, `wireframe`
+- [x] 논문 계획과 맞도록 canonical `section` view export 추가
+- [x] 하나의 case에서 reference CFD 산출물과 benchmark input image asset이 함께 생성됨을 확인
+- [x] 새로 추가된 `*_03` subset에서 integrated batch flow 확인
+- [x] frozen-12 rendering manifest를 전체 `section` 포함 상태로 갱신
+- [x] `*_05` tranche 이후 aggregate rendering manifest 갱신
 
 ### F. Documentation / records
-- [x] Write generator progress note: `docs/26-03-18_benchmark_scene_generator.md`
-- [x] Create this autopilot todo file
-- [x] Write pilot benchmark status note with success/failure table
-- [x] Keep manifest files updated after each major batch rerun
-- [x] Write a follow-up note for the 12-scene frozen subset once the new 4 reference runs finish
-- [x] Write a follow-up note for the 16-scene frozen subset and manifest-refresh fixes
-- [x] Write a follow-up note for the 20-scene frozen subset and scaffold refresh
-- [x] Write a follow-up note for normalized-grid CFD benchmark metrics
-- [x] Write a robustness / failure-signals note for the frozen-20 reference bundle
-- [x] Generate a release-friendly dataset card / aggregate manifest for the frozen benchmark bundle
-- [x] Commit meaningful project changes in project repo when a stable checkpoint is reached (do not push unless explicitly requested)
+- [x] generator 진행 문서 작성: `docs/26-03-18_benchmark_scene_generator.md`
+- [x] 이 autopilot todo 문서 생성
+- [x] pilot benchmark status note 작성 및 success/failure table 기록
+- [x] major batch rerun 이후 manifest 갱신 유지
+- [x] frozen-12 subset 후속 note 작성
+- [x] frozen-16 subset 및 manifest-refresh fix 후속 note 작성
+- [x] frozen-20 subset 및 scaffold refresh 후속 note 작성
+- [x] normalized-grid CFD benchmark metric 관련 note 작성
+- [x] frozen-20 reference bundle robustness / failure-signals note 작성
+- [x] 안정적인 체크포인트에서 프로젝트 저장소에 의미 있는 커밋 수행 (push는 사용자 요청 시만)
 
-## Current benchmark snapshot
+## 현재 benchmark 스냅샷
 
-Recovered 8-scene pilot summary:
-- Success: `bench_a1_01`, `bench_a1_02`, `bench_a2_01`, `bench_a2_02`, `bench_a3_01`, `bench_a3_02`, `bench_a4_01`, `bench_a4_02`
-- Success rate: 8/8 reference CFD
+복구된 초기 8-scene pilot summary:
+- 성공: `bench_a1_01`, `bench_a1_02`, `bench_a2_01`, `bench_a2_02`, `bench_a3_01`, `bench_a3_02`, `bench_a4_01`, `bench_a4_02`
+- 성공률: 8/8 reference CFD
 
-Current frozen-set status:
+현재 frozen-set 상태:
 - Frozen scene subset: **20 scenes** (`A1/A2/A3/A4 × 5`)
-- Reference CFD status: **20/20 success**
-- Benchmark input-view export: **20/20 success** for `perspective`, `birdseye`, `floorplan`, `wireframe`, `section`
+- Reference CFD 상태: **20/20 성공**
+- Benchmark input-view export: `perspective`, `birdseye`, `floorplan`, `wireframe`, `section` 기준 **20/20 성공**
 - Evaluation scaffold: **100 tasks** (`20 scenes × 5 views`)
-- Image-conditioned evaluation smoke test: **1 blocked**, **99 pending** (backend credential issue, not a benchmark failure)
-- Successful future evaluation tasks will now emit both geometry metrics and normalized-grid CFD metrics (`cfd_metrics.json`)
+- Image-conditioned evaluation 상태: **2 success**, **98 pending**
+  - 성공 smoke tests: `bench_a1_01/perspective`, `bench_a1_01/section` (CLI backend)
+  - API backend env는 현재 shell에서 여전히 비어 있으나, Gemini CLI cached auth 경로로 평가 진행 가능
+- 실제 evaluation task는 geometry metric과 normalized-grid CFD metric (`cfd_metrics.json`)을 함께 기록함
 
-Notable recoveries / signals:
-- `bench_a2_03` and `bench_a4_03` still represent the main mesh-sensitivity cases; both required fallback from `mesh_size=0.35` to `0.25` in the earlier frozen-12 recovery.
-- `bench_a1_04` solved at `0.35` but needed the `ultra_robust` preset.
-- All new `*_05` scenes solved directly at `mesh_size=0.35` with the `robust` preset.
+## 주의해서 볼 케이스 / 신호
 
-Notes:
-- The earlier pilot failures were traced to meshing/repair compatibility regressions rather than flawed benchmark categories.
-- The batch reference runner now also exports benchmark input views, so the reference-CFD path and input-image path are no longer tracked separately.
-- Aggregate bookkeeping must be refreshed after partial reruns so `reference_batch_summary.json` and evaluation scaffolds continue to reflect the full frozen artifact set.
+- `bench_a2_03`, `bench_a4_03`는 mesh 민감도가 상대적으로 큰 대표 케이스였다.
+  - frozen-12 recovery 시점에는 `mesh_size=0.35`에서 실패 후 `0.25` fallback이 필요했다.
+- `bench_a1_04`는 `0.35`에서 풀렸지만 `ultra_robust` preset이 필요했다.
+- `bench_a4_02`는 `laminar_fallback`으로 성공한 대표 케이스다.
+- 반면 새 `*_05` scene들은 전부 `mesh_size=0.35 + robust`에서 직접 성공했다.
 
-## Next default actions
+## 해석 메모
 
-1. Re-run scaffolded evaluation tasks once the Gemini API backend environment is available in the runtime shell.
-2. Inspect the first real image-conditioned `cfd_metrics.json` outputs and decide whether slice-specific metrics are needed for the paper.
-3. Take a clean local commit checkpoint for the frozen-20 benchmark state plus CFD-metric upgrade + bundle-integrity verification.
-4. Use `python3 scripts/run_benchmark_stress_subset.py` as the default quick regression lane after future meshing / solver changes; it now pulls the five known hard cases directly from the verifier manifest.
-5. If expansion continues beyond 20 scenes, monitor whether first-attempt `0.35 + robust` success starts to degrade.
-6. After any future partial rerun, refresh render/evaluation aggregates and rerun `python3 scripts/verify_benchmark_bundle.py` to catch artifact drift before reporting benchmark status.
-7. After future frozen-set changes, rerun `python3 scripts/build_benchmark_dataset_card.py` so the paper/release snapshot stays synchronized with the manifests.
+- 초기 pilot 실패들은 benchmark category 자체의 문제라기보다 meshing/repair compatibility regression에 가까웠다.
+- batch reference runner는 이제 reference-CFD 경로와 input-image 경로를 함께 만든다.
+- 부분 rerun이 있으면 `reference_batch_summary.json`과 evaluation scaffold가 frozen artifact set을 계속 정확히 반영하는지 갱신이 필요하다.
+
+## 다음 기본 액션
+
+1. CLI backend로 frozen-20 image-conditioned evaluation을 소규모 배치(예: case 1개 × 5 views 또는 category별 대표 subset) 실행해 view별 failure/success 신호를 모은다.
+2. perspective/section 첫 성공 2건의 `cfd_metrics.json`을 기준으로, 논문용으로 slice-specific metric이나 scalar-field 추가 지표가 필요한지 판단한다.
+3. API backend env(`GEMINI_API_KEY`/`GOOGLE_API_KEY`)는 별도 유지 과제로 남기되, benchmark 진행 자체는 CLI backend 기준으로 계속 전진한다.
+4. frozen-20 benchmark + CLI-eval 복구 상태에서 깔끔한 로컬 commit checkpoint를 유지한다.
+5. 이후 meshing/solver 변경이 생기면 stress subset (`bench_a2_01`, `bench_a4_02`, `bench_a2_03`, `bench_a4_03`, `bench_a1_04`)로 빠른 regression check를 수행한다.

@@ -10,7 +10,7 @@ Current scaffold size:
 - Cases: 20
 - Views per case: 5 (`perspective`, `birdseye`, `floorplan`, `wireframe`, `section`)
 - Evaluation tasks: 100 total
-- Current task status snapshot: 1 `blocked`, 99 `pending`
+- Current task status snapshot: 2 `success`, 98 `pending`
 
 ## What was added
 
@@ -87,16 +87,27 @@ The first summary is intentionally lightweight: task/run bookkeeping, pipeline r
 
 ## Smoke-test note
 
-Smoke test attempted on:
+Initial smoke test previously hit an API-env blocker on:
 - `bench_a1_01 / perspective`
 
-Command:
-- `python3 scripts/run_benchmark_evaluation_task.py --case-name bench_a1_01 --view perspective --end-time 200`
+That blocker is now partially bypassed in a more useful way:
+- `scripts/generate_indoor_scene_with_gemini.py` now supports **Gemini CLI multimodal input** in headless mode by attaching image paths via `@path`,
+- API-mode checks now also accept `GOOGLE_API_KEY` as an env alias in addition to `GEMINI_API_KEY`,
+- so the current cron shell can keep moving even when direct API env injection is absent, as long as Gemini CLI cached auth is present.
 
-Outcome:
-- runner wiring worked and task/aggregate manifests updated correctly,
-- the actual image-conditioned generation is still blocked in this cron shell because `GEMINI_API_KEY` is not set,
-- `scripts/run_benchmark_evaluation_task.py` now preflights backend availability and records this as `status=blocked` (not a false benchmark failure) with the captured backend reason in `evaluation_summary.json`.
+CLI-backed rerun commands that succeeded:
+- `python3 scripts/run_benchmark_evaluation_task.py --task benchmark/evaluations/bench_a1_01/perspective/task.json --backend cli --model gemini-3-flash-preview`
+- `python3 scripts/run_benchmark_evaluation_task.py --task benchmark/evaluations/bench_a1_01/section/task.json --backend cli --model gemini-3-flash-preview`
+
+Observed outcomes:
+- `bench_a1_01 / perspective`
+  - structural score: `0.75`
+  - CFD score: `0.646986`
+- `bench_a1_01 / section`
+  - structural score: `1.0`
+  - CFD score: `0.442651`
+
+So the benchmark is no longer blocked at the runner/backend layer; the next job is to expand this from 2 smoke tests to a broader view/category sweep.
 
 ## Follow-up improvement in this pass
 

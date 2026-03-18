@@ -290,10 +290,10 @@ def opening_metrics(reference_scene: dict, predicted_scene: dict) -> dict[str, A
 
 
 def detect_backend_blocker(backend: str) -> dict[str, str] | None:
-    if backend == "api" and not os.environ.get("GEMINI_API_KEY"):
+    if backend == "api" and not (os.environ.get("GEMINI_API_KEY") or os.environ.get("GOOGLE_API_KEY")):
         return {
             "reason": "missing_gemini_api_key",
-            "message": "GEMINI_API_KEY is not set for Gemini API backend",
+            "message": "Neither GEMINI_API_KEY nor GOOGLE_API_KEY is set for Gemini API backend",
         }
     if backend == "cli" and shutil.which("gemini") is None:
         return {

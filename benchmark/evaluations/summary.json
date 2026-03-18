@@ -12,8 +12,8 @@
   "case_count": 20,
   "task_count": 100,
   "status_counts": {
-    "blocked": 1,
-    "pending": 99
+    "pending": 98,
+    "success": 2
   },
   "cases": [
     {
@@ -22,16 +22,20 @@
       "room_kind": "rectangular",
       "obstacle_count": 1,
       "views": [
-        "perspective",
         "birdseye",
         "floorplan",
-        "wireframe",
-        "section"
+        "perspective",
+        "section",
+        "wireframe"
       ],
-      "reference_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/scenes/a1_01.json",
-      "reference_case": "/home/yhjoo/projects/OpenFOAM/cases/bench_a1_01",
-      "reference_results": "/home/yhjoo/projects/OpenFOAM/results/bench_a1_01",
+      "reference_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_01/birdseye/reference_scene.json",
+      "reference_case": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_01/birdseye/reference_case",
+      "reference_results": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_01/birdseye/reference_results",
       "task_count": 5,
+      "status_counts": {
+        "pending": 3,
+        "success": 2
+      },
       "case_root": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_01"
     },
     {
@@ -40,16 +44,19 @@
       "room_kind": "rectangular",
       "obstacle_count": 0,
       "views": [
-        "perspective",
         "birdseye",
         "floorplan",
-        "wireframe",
-        "section"
+        "perspective",
+        "section",
+        "wireframe"
       ],
-      "reference_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/scenes/a1_02.json",
-      "reference_case": "/home/yhjoo/projects/OpenFOAM/cases/bench_a1_02",
-      "reference_results": "/home/yhjoo/projects/OpenFOAM/results/bench_a1_02",
+      "reference_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_02/birdseye/reference_scene.json",
+      "reference_case": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_02/birdseye/reference_case",
+      "reference_results": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_02/birdseye/reference_results",
       "task_count": 5,
+      "status_counts": {
+        "pending": 5
+      },
       "case_root": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_02"
     },
     {
@@ -58,16 +65,19 @@
       "room_kind": "rectangular",
       "obstacle_count": 1,
       "views": [
-        "perspective",
         "birdseye",
         "floorplan",
-        "wireframe",
-        "section"
+        "perspective",
+        "section",
+        "wireframe"
       ],
-      "reference_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/scenes/a1_03.json",
-      "reference_case": "/home/yhjoo/projects/OpenFOAM/cases/bench_a1_03",
-      "reference_results": "/home/yhjoo/projects/OpenFOAM/results/bench_a1_03",
+      "reference_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_03/birdseye/reference_scene.json",
+      "reference_case": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_03/birdseye/reference_case",
+      "reference_results": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_03/birdseye/reference_results",
       "task_count": 5,
+      "status_counts": {
+        "pending": 5
+      },
       "case_root": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_03"
     },
     {
@@ -76,16 +86,19 @@
       "room_kind": "rectangular",
       "obstacle_count": 1,
       "views": [
-        "perspective",
         "birdseye",
         "floorplan",
-        "wireframe",
-        "section"
+        "perspective",
+        "section",
+        "wireframe"
       ],
-      "reference_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/scenes/a1_04.json",
-      "reference_case": "/home/yhjoo/projects/OpenFOAM/cases/bench_a1_04",
-      "reference_results": "/home/yhjoo/projects/OpenFOAM/results/bench_a1_04",
+      "reference_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_04/birdseye/reference_scene.json",
+      "reference_case": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_04/birdseye/reference_case",
+      "reference_results": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_04/birdseye/reference_results",
       "task_count": 5,
+      "status_counts": {
+        "pending": 5
+      },
       "case_root": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_04"
     },
     {
@@ -94,16 +107,19 @@
       "room_kind": "rectangular",
       "obstacle_count": 1,
       "views": [
-        "perspective",
         "birdseye",
         "floorplan",
-        "wireframe",
-        "section"
+        "perspective",
+        "section",
+        "wireframe"
       ],
-      "reference_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/scenes/a1_05.json",
-      "reference_case": "/home/yhjoo/projects/OpenFOAM/cases/bench_a1_05",
-      "reference_results": "/home/yhjoo/projects/OpenFOAM/results/bench_a1_05",
+      "reference_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_05/birdseye/reference_scene.json",
+      "reference_case": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_05/birdseye/reference_case",
+      "reference_results": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_05/birdseye/reference_results",
       "task_count": 5,
+      "status_counts": {
+        "pending": 5
+      },
       "case_root": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_05"
     },
     {
@@ -112,16 +128,19 @@
       "room_kind": "rectangular",
       "obstacle_count": 2,
       "views": [
-        "perspective",
         "birdseye",
         "floorplan",
-        "wireframe",
-        "section"
+        "perspective",
+        "section",
+        "wireframe"
       ],
-      "reference_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/scenes/a2_01.json",
-      "reference_case": "/home/yhjoo/projects/OpenFOAM/cases/bench_a2_01",
-      "reference_results": "/home/yhjoo/projects/OpenFOAM/results/bench_a2_01",
+      "reference_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_01/birdseye/reference_scene.json",
+      "reference_case": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_01/birdseye/reference_case",
+      "reference_results": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_01/birdseye/reference_results",
       "task_count": 5,
+      "status_counts": {
+        "pending": 5
+      },
       "case_root": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_01"
     },
     {
@@ -130,16 +149,19 @@
       "room_kind": "rectangular",
       "obstacle_count": 2,
       "views": [
-        "perspective",
         "birdseye",
         "floorplan",
-        "wireframe",
-        "section"
+        "perspective",
+        "section",
+        "wireframe"
       ],
-      "reference_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/scenes/a2_02.json",
-      "reference_case": "/home/yhjoo/projects/OpenFOAM/cases/bench_a2_02",
-      "reference_results": "/home/yhjoo/projects/OpenFOAM/results/bench_a2_02",
+      "reference_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_02/birdseye/reference_scene.json",
+      "reference_case": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_02/birdseye/reference_case",
+      "reference_results": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_02/birdseye/reference_results",
       "task_count": 5,
+      "status_counts": {
+        "pending": 5
+      },
       "case_root": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_02"
     },
     {
@@ -148,16 +170,19 @@
       "room_kind": "rectangular",
       "obstacle_count": 3,
       "views": [
-        "perspective",
         "birdseye",
         "floorplan",
-        "wireframe",
-        "section"
+        "perspective",
+        "section",
+        "wireframe"
       ],
-      "reference_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/scenes/a2_03.json",
-      "reference_case": "/home/yhjoo/projects/OpenFOAM/cases/bench_a2_03",
-      "reference_results": "/home/yhjoo/projects/OpenFOAM/results/bench_a2_03",
+      "reference_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_03/birdseye/reference_scene.json",
+      "reference_case": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_03/birdseye/reference_case",
+      "reference_results": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_03/birdseye/reference_results",
       "task_count": 5,
+      "status_counts": {
+        "pending": 5
+      },
       "case_root": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_03"
     },
     {
@@ -166,16 +191,19 @@
       "room_kind": "rectangular",
       "obstacle_count": 2,
       "views": [
-        "perspective",
         "birdseye",
         "floorplan",
-        "wireframe",
-        "section"
+        "perspective",
+        "section",
+        "wireframe"
       ],
-      "reference_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/scenes/a2_04.json",
-      "reference_case": "/home/yhjoo/projects/OpenFOAM/cases/bench_a2_04",
-      "reference_results": "/home/yhjoo/projects/OpenFOAM/results/bench_a2_04",
+      "reference_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_04/birdseye/reference_scene.json",
+      "reference_case": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_04/birdseye/reference_case",
+      "reference_results": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_04/birdseye/reference_results",
       "task_count": 5,
+      "status_counts": {
+        "pending": 5
+      },
       "case_root": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_04"
     },
     {
@@ -184,16 +212,19 @@
       "room_kind": "rectangular",
       "obstacle_count": 3,
       "views": [
-        "perspective",
         "birdseye",
         "floorplan",
-        "wireframe",
-        "section"
+        "perspective",
+        "section",
+        "wireframe"
       ],
-      "reference_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/scenes/a2_05.json",
-      "reference_case": "/home/yhjoo/projects/OpenFOAM/cases/bench_a2_05",
-      "reference_results": "/home/yhjoo/projects/OpenFOAM/results/bench_a2_05",
+      "reference_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_05/birdseye/reference_scene.json",
+      "reference_case": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_05/birdseye/reference_case",
+      "reference_results": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_05/birdseye/reference_results",
       "task_count": 5,
+      "status_counts": {
+        "pending": 5
+      },
       "case_root": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a2_05"
     },
     {
@@ -202,16 +233,19 @@
       "room_kind": "composite",
       "obstacle_count": 0,
       "views": [
-        "perspective",
         "birdseye",
         "floorplan",
-        "wireframe",
-        "section"
+        "perspective",
+        "section",
+        "wireframe"
       ],
-      "reference_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/scenes/a3_01.json",
-      "reference_case": "/home/yhjoo/projects/OpenFOAM/cases/bench_a3_01",
-      "reference_results": "/home/yhjoo/projects/OpenFOAM/results/bench_a3_01",
+      "reference_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_01/birdseye/reference_scene.json",
+      "reference_case": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_01/birdseye/reference_case",
+      "reference_results": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_01/birdseye/reference_results",
       "task_count": 5,
+      "status_counts": {
+        "pending": 5
+      },
       "case_root": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_01"
     },
     {
@@ -220,16 +254,19 @@
       "room_kind": "composite",
       "obstacle_count": 0,
       "views": [
-        "perspective",
         "birdseye",
         "floorplan",
-        "wireframe",
-        "section"
+        "perspective",
+        "section",
+        "wireframe"
       ],
-      "reference_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/scenes/a3_02.json",
-      "reference_case": "/home/yhjoo/projects/OpenFOAM/cases/bench_a3_02",
-      "reference_results": "/home/yhjoo/projects/OpenFOAM/results/bench_a3_02",
+      "reference_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_02/birdseye/reference_scene.json",
+      "reference_case": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_02/birdseye/reference_case",
+      "reference_results": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_02/birdseye/reference_results",
       "task_count": 5,
+      "status_counts": {
+        "pending": 5
+      },
       "case_root": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_02"
     },
     {
@@ -238,16 +275,19 @@
       "room_kind": "composite",
       "obstacle_count": 1,
       "views": [
-        "perspective",
         "birdseye",
         "floorplan",
-        "wireframe",
-        "section"
+        "perspective",
+        "section",
+        "wireframe"
       ],
-      "reference_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/scenes/a3_03.json",
-      "reference_case": "/home/yhjoo/projects/OpenFOAM/cases/bench_a3_03",
-      "reference_results": "/home/yhjoo/projects/OpenFOAM/results/bench_a3_03",
+      "reference_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_03/birdseye/reference_scene.json",
+      "reference_case": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_03/birdseye/reference_case",
+      "reference_results": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_03/birdseye/reference_results",
       "task_count": 5,
+      "status_counts": {
+        "pending": 5
+      },
       "case_root": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_03"
     },
     {
@@ -256,16 +296,19 @@
       "room_kind": "composite",
       "obstacle_count": 1,
       "views": [
-        "perspective",
         "birdseye",
         "floorplan",
-        "wireframe",
-        "section"
+        "perspective",
+        "section",
+        "wireframe"
       ],
-      "reference_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/scenes/a3_04.json",
-      "reference_case": "/home/yhjoo/projects/OpenFOAM/cases/bench_a3_04",
-      "reference_results": "/home/yhjoo/projects/OpenFOAM/results/bench_a3_04",
+      "reference_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_04/birdseye/reference_scene.json",
+      "reference_case": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_04/birdseye/reference_case",
+      "reference_results": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_04/birdseye/reference_results",
       "task_count": 5,
+      "status_counts": {
+        "pending": 5
+      },
       "case_root": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_04"
     },
     {
@@ -274,16 +317,19 @@
       "room_kind": "composite",
       "obstacle_count": 1,
       "views": [
-        "perspective",
         "birdseye",
         "floorplan",
-        "wireframe",
-        "section"
+        "perspective",
+        "section",
+        "wireframe"
       ],
-      "reference_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/scenes/a3_05.json",
-      "reference_case": "/home/yhjoo/projects/OpenFOAM/cases/bench_a3_05",
-      "reference_results": "/home/yhjoo/projects/OpenFOAM/results/bench_a3_05",
+      "reference_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_05/birdseye/reference_scene.json",
+      "reference_case": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_05/birdseye/reference_case",
+      "reference_results": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_05/birdseye/reference_results",
       "task_count": 5,
+      "status_counts": {
+        "pending": 5
+      },
       "case_root": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_05"
     },
     {
@@ -292,16 +338,19 @@
       "room_kind": "composite",
       "obstacle_count": 3,
       "views": [
-        "perspective",
         "birdseye",
         "floorplan",
-        "wireframe",
-        "section"
+        "perspective",
+        "section",
+        "wireframe"
       ],
-      "reference_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/scenes/a4_01.json",
-      "reference_case": "/home/yhjoo/projects/OpenFOAM/cases/bench_a4_01",
-      "reference_results": "/home/yhjoo/projects/OpenFOAM/results/bench_a4_01",
+      "reference_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_01/birdseye/reference_scene.json",
+      "reference_case": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_01/birdseye/reference_case",
+      "reference_results": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_01/birdseye/reference_results",
       "task_count": 5,
+      "status_counts": {
+        "pending": 5
+      },
       "case_root": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_01"
     },
     {
@@ -310,16 +359,19 @@
       "room_kind": "composite",
       "obstacle_count": 4,
       "views": [
-        "perspective",
         "birdseye",
         "floorplan",
-        "wireframe",
-        "section"
+        "perspective",
+        "section",
+        "wireframe"
       ],
-      "reference_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/scenes/a4_02.json",
-      "reference_case": "/home/yhjoo/projects/OpenFOAM/cases/bench_a4_02",
-      "reference_results": "/home/yhjoo/projects/OpenFOAM/results/bench_a4_02",
+      "reference_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_02/birdseye/reference_scene.json",
+      "reference_case": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_02/birdseye/reference_case",
+      "reference_results": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_02/birdseye/reference_results",
       "task_count": 5,
+      "status_counts": {
+        "pending": 5
+      },
       "case_root": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_02"
     },
     {
@@ -328,16 +380,19 @@
       "room_kind": "composite",
       "obstacle_count": 3,
       "views": [
-        "perspective",
         "birdseye",
         "floorplan",
-        "wireframe",
-        "section"
+        "perspective",
+        "section",
+        "wireframe"
       ],
-      "reference_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/scenes/a4_03.json",
-      "reference_case": "/home/yhjoo/projects/OpenFOAM/cases/bench_a4_03",
-      "reference_results": "/home/yhjoo/projects/OpenFOAM/results/bench_a4_03",
+      "reference_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_03/birdseye/reference_scene.json",
+      "reference_case": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_03/birdseye/reference_case",
+      "reference_results": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_03/birdseye/reference_results",
       "task_count": 5,
+      "status_counts": {
+        "pending": 5
+      },
       "case_root": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_03"
     },
     {
@@ -346,16 +401,19 @@
       "room_kind": "composite",
       "obstacle_count": 3,
       "views": [
-        "perspective",
         "birdseye",
         "floorplan",
-        "wireframe",
-        "section"
+        "perspective",
+        "section",
+        "wireframe"
       ],
-      "reference_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/scenes/a4_04.json",
-      "reference_case": "/home/yhjoo/projects/OpenFOAM/cases/bench_a4_04",
-      "reference_results": "/home/yhjoo/projects/OpenFOAM/results/bench_a4_04",
+      "reference_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_04/birdseye/reference_scene.json",
+      "reference_case": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_04/birdseye/reference_case",
+      "reference_results": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_04/birdseye/reference_results",
       "task_count": 5,
+      "status_counts": {
+        "pending": 5
+      },
       "case_root": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_04"
     },
     {
@@ -364,16 +422,19 @@
       "room_kind": "composite",
       "obstacle_count": 4,
       "views": [
-        "perspective",
         "birdseye",
         "floorplan",
-        "wireframe",
-        "section"
+        "perspective",
+        "section",
+        "wireframe"
       ],
-      "reference_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/scenes/a4_05.json",
-      "reference_case": "/home/yhjoo/projects/OpenFOAM/cases/bench_a4_05",
-      "reference_results": "/home/yhjoo/projects/OpenFOAM/results/bench_a4_05",
+      "reference_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_05/birdseye/reference_scene.json",
+      "reference_case": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_05/birdseye/reference_case",
+      "reference_results": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_05/birdseye/reference_results",
       "task_count": 5,
+      "status_counts": {
+        "pending": 5
+      },
       "case_root": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_05"
     }
   ]
