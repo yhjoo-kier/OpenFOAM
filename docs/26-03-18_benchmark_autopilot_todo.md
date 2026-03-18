@@ -68,6 +68,7 @@ Build and validate the benchmark dataset pipeline for the OpenFOAM Image-to-CFD 
 - [x] Refresh the evaluation scaffold to the frozen-16 × 5-view bundle (80 tasks) while preserving prior task state
 - [x] Refresh the evaluation scaffold to the frozen-20 × 5-view bundle (100 tasks) while preserving prior task state
 - [x] Add a runner that executes one scaffolded evaluation task end-to-end and writes `evaluation_summary.json`
+- [x] Extend evaluation summaries from geometry-only metrics to include first-pass CFD/result-side metrics via normalized-grid VTK comparison
 - [~] Smoke-test one image-conditioned task in the current cron environment (`bench_a1_01/perspective`) — runner now classifies this correctly as an environment block (`status=blocked`) because `GEMINI_API_KEY` is not set for the API backend
 
 ### D. Failure analysis / stabilization
@@ -100,6 +101,7 @@ Build and validate the benchmark dataset pipeline for the OpenFOAM Image-to-CFD 
 - [x] Write a follow-up note for the 12-scene frozen subset once the new 4 reference runs finish
 - [x] Write a follow-up note for the 16-scene frozen subset and manifest-refresh fixes
 - [x] Write a follow-up note for the 20-scene frozen subset and scaffold refresh
+- [x] Write a follow-up note for normalized-grid CFD benchmark metrics
 - [-] Commit meaningful project changes in project repo when a stable checkpoint is reached (do not push unless explicitly requested)
 
 ## Current benchmark snapshot
@@ -114,6 +116,7 @@ Current frozen-set status:
 - Benchmark input-view export: **20/20 success** for `perspective`, `birdseye`, `floorplan`, `wireframe`, `section`
 - Evaluation scaffold: **100 tasks** (`20 scenes × 5 views`)
 - Image-conditioned evaluation smoke test: **1 blocked**, **99 pending** (backend credential issue, not a benchmark failure)
+- Successful future evaluation tasks will now emit both geometry metrics and normalized-grid CFD metrics (`cfd_metrics.json`)
 
 Notable recoveries / signals:
 - `bench_a2_03` and `bench_a4_03` still represent the main mesh-sensitivity cases; both required fallback from `mesh_size=0.35` to `0.25` in the earlier frozen-12 recovery.
@@ -127,7 +130,7 @@ Notes:
 
 ## Next default actions
 
-1. Extend geometry-aware evaluation summaries toward CFD/result-side metrics.
-2. Re-run scaffolded evaluation tasks once the Gemini API backend environment is available in the runtime shell.
-3. Take a clean local commit checkpoint for the frozen-20 benchmark state.
+1. Re-run scaffolded evaluation tasks once the Gemini API backend environment is available in the runtime shell.
+2. Inspect the first real image-conditioned `cfd_metrics.json` outputs and decide whether slice-specific metrics are needed for the paper.
+3. Take a clean local commit checkpoint for the frozen-20 benchmark state plus CFD-metric upgrade.
 4. If expansion continues beyond 20 scenes, monitor whether first-attempt `0.35 + robust` success starts to degrade.

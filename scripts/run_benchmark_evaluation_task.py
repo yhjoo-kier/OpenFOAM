@@ -446,6 +446,48 @@ def cleanup_outputs(output_paths: dict[str, Path]) -> None:
                 path.unlink()
 
 
+def compute_cfd_metrics(
+    reference_scene_path: Path,
+    reference_case_path: Path,
+    predicted_scene_path: Path,
+    predicted_case_path: Path,
+    cfd_summary_path: Path,
+) -> dict[str, Any] | None:
+    cmd = [
+        "docker", "run", "--rm",
+        "-v", f"{PROJECT_ROOT}:{PROJECT_ROOT}",
+        "-w", str(PROJECT_ROOT),
+        "openfoam-pipeline-local:latest",
+        "python3", str(SCRIPTS / "compute_benchmark_cfd_metrics.py"),
+        "--reference-scene", str(reference_scene_path),
+        "--reference-case", str(reference_case_path),
+        "--predicted-scene", str(predicted_scene_path),
+        "--predicted-case", str(predicted_case_path),
+        "--output", str(cfd_summary_path),
+    ]
+    proc = subprocess.run(cmd, cwd=PROJECT_ROOT, text=True, capture_output=True)
+    if proc.returncode != 0 or not cfd_summary_path.exists():
+        return {
+            "ok": False,
+            "command": cmd,
+            "returncode": proc.returncode,
+            "stdout_tail": "\n".join((proc.stdout or "").splitlines()[-30:]),
+            "stderr_tail": "\n".join((proc.stderr or "").splitlines()[-30:]),
+        }
+    payload = load_json(cfd_summary_path)
+    payload.setdefault("runner", {})
+    payload["runner"].update(
+        {
+            "command": cmd,
+            "returncode": proc.returncode,
+            "stdout_tail": "\n".join((proc.stdout or "").splitlines()[-30:]),
+            "stderr_tail": "\n".join((proc.stderr or "").splitlines()[-30:]),
+        }
+    )
+    write_json(cfd_summary_path, payload)
+    return payload
+
+
 
 def main() -> int:
     parser = argparse.ArgumentParser(description="Run one benchmark evaluation task end-to-end")
@@ -526,6 +568,9 @@ def main() -> int:
         return 2
 
     cleanup_outputs(output_paths)
+    cfd_summary_path = task_path.parent / "cfd_metrics.json"
+    if cfd_summary_path.exists():
+        cfd_summary_path.unlink()
 
     task["status"] = "running"
     task["last_started_at"] = utc_now()
@@ -569,6 +614,7 @@ def main() -> int:
     predicted_scene_out = output_paths["predicted_scene_json"]
     predicted_case_out = output_paths["predicted_case_dir"]
     predicted_results_out = output_paths["predicted_results_dir"]
+    cfd_summary_path = task_path.parent / "cfd_metrics.json"
 
     success = bool(stabilization_summary and stabilization_summary.get("success"))
     if success and predicted_scene_src and predicted_scene_src.exists():
@@ -579,6 +625,15 @@ def main() -> int:
             ensure_link(results_dir, predicted_results_out)
 
     comparison = summarize_prediction(reference_scene_path, predicted_scene_out) if success and predicted_scene_out.exists() else None
+    cfd_summary = None
+    if success and predicted_scene_out.exists() and (predicted_case_out.exists() or predicted_case_out.is_symlink()):
+        cfd_summary = compute_cfd_metrics(
+            reference_scene_path,
+            Path(task["reference_case"]),
+            predicted_scene_out,
+            predicted_case_out,
+            cfd_summary_path,
+        )
     evaluation_summary = {
         "ok": success,
         "task": {
@@ -600,9 +655,11 @@ def main() -> int:
             "predicted_case_dir": str(predicted_case_out),
             "predicted_results_dir": str(predicted_results_out),
             "stabilization_summary": str(stabilization_summary_path) if stabilization_summary_path.exists() else None,
+            "cfd_metrics_json": str(cfd_summary_path) if cfd_summary_path.exists() else None,
         },
         "reference_summary": task.get("reference_summary"),
         "prediction_summary": comparison,
+        "cfd_summary": cfd_summary,
         "pipeline_summary": stabilization_summary,
         "stdout_tail": "\n".join((proc.stdout or "").splitlines()[-40:]),
         "stderr_tail": "\n".join((proc.stderr or "").splitlines()[-40:]),
@@ -618,6 +675,7 @@ def main() -> int:
         "predicted_scene_json": str(predicted_scene_out) if predicted_scene_out.exists() else None,
         "predicted_case_dir": str(predicted_case_out) if predicted_case_out.exists() or predicted_case_out.is_symlink() else None,
         "predicted_results_dir": str(predicted_results_out) if predicted_results_out.exists() or predicted_results_out.is_symlink() else None,
+        "cfd_metrics_json": str(cfd_summary_path) if cfd_summary_path.exists() else None,
     }
     write_json(task_path, task)
     refresh_evaluation_index()

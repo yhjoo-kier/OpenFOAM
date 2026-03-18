@@ -40,6 +40,7 @@ benchmark/
 - `run_benchmark_reference_batch.py`는 reference CFD 실행과 benchmark input view export를 한 흐름으로 함께 처리하며, `--collect-only`로 전체 aggregate manifest를 새로 고칠 수 있음.
 - `benchmark/evaluations/`에는 frozen-20 × 5-view 기준의 **100개 evaluation task scaffold**가 준비되어 있음.
 - `scripts/run_benchmark_evaluation_task.py`로 개별 scaffold task를 실제 image-conditioned pipeline에 연결할 수 있으며, task 상태와 aggregate summary/manifest를 함께 갱신함.
+- 성공한 evaluation task는 geometry 비교뿐 아니라 `scripts/compute_benchmark_cfd_metrics.py`를 통해 normalized-grid 기준의 CFD result-side 비교(`cfd_metrics.json`)도 추가로 기록함.
 - 현재 evaluation smoke test 결과는 **1 blocked / 99 pending**이며, blocked 상태는 benchmark failure가 아니라 Gemini backend credential 부재를 의미함.
 
 운영상 주의:

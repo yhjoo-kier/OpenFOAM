@@ -110,4 +110,9 @@ Two useful follow-up upgrades landed around the scaffold:
    - this means future image-conditioned runs can be judged immediately on scene-structure quality, not just pass/fail bookkeeping,
    - and blocked runs remain cleanly distinguishable from true benchmark failures.
 
+3. A first CFD/result-side comparison helper has now been added as well:
+   - `scripts/compute_benchmark_cfd_metrics.py`
+   - it samples reference/predicted VTK volumes on a shared normalized room-coordinate lattice,
+   - and `run_benchmark_evaluation_task.py` writes the result to `benchmark/evaluations/<case>/<view>/cfd_metrics.json` after successful runs.
+
 The composite-room repair upgrade reduces geometry drift for composite benchmark cases whose stable repair is better aligned with a south↔north corridor.
