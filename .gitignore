@@ -151,5 +151,10 @@ cases/indoor_scene_poc/
 # Stabilization demo runs
 cases/indoor_stabilized_demo*/
 
+# Benchmark evaluation pipeline runs
+cases/eval_bench_*/
+benchmark/evaluations/*/*/predicted_case
+benchmark/evaluations/*/*/predicted_results
+
 # Mesh probe tests
 cases/meshprobe_*/

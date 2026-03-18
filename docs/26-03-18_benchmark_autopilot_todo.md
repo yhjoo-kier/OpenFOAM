@@ -74,6 +74,8 @@ OpenFOAM Image-to-CFD 논문을 위한 benchmark dataset 파이프라인을 구�
 - [x] geometry-only metric에서 normalized-grid VTK 비교 기반 CFD/result-side metric까지 확장
 - [x] current cron shell에서 Gemini CLI cached auth를 활용하도록 image-conditioned path를 우회 복구 (`generate_indoor_scene_with_gemini.py`가 CLI multimodal `@image` 입력 지원, API env alias `GOOGLE_API_KEY`도 허용)
 - [x] CLI backend로 image-conditioned smoke test 2개 재실행 성공: `bench_a1_01/perspective`, `bench_a1_01/section`
+- [x] 대표 rectangular case `bench_a1_01`에 대해 5-view(`perspective`, `birdseye`, `floorplan`, `wireframe`, `section`) complete sweep 실행 및 per-view metric 확보
+- [x] 소규모 반복 실행용 `scripts/run_benchmark_evaluation_batch.py` 추가
 - [~] API backend 자체는 현재 cron shell에서 여전히 env 미설정(`GEMINI_API_KEY`, `GOOGLE_API_KEY` 모두 없음)이지만, benchmark 진행은 CLI backend로 더 이상 막히지 않음
 
 ### D. Failure analysis / stabilization
@@ -121,8 +123,8 @@ OpenFOAM Image-to-CFD 논문을 위한 benchmark dataset 파이프라인을 구�
 - Reference CFD 상태: **20/20 성공**
 - Benchmark input-view export: `perspective`, `birdseye`, `floorplan`, `wireframe`, `section` 기준 **20/20 성공**
 - Evaluation scaffold: **100 tasks** (`20 scenes × 5 views`)
-- Image-conditioned evaluation 상태: **2 success**, **98 pending**
-  - 성공 smoke tests: `bench_a1_01/perspective`, `bench_a1_01/section` (CLI backend)
+- Image-conditioned evaluation 상태: **5 success**, **95 pending**
+  - 첫 complete case sweep: `bench_a1_01`의 5-view 전부 성공 (CLI backend)
   - API backend env는 현재 shell에서 여전히 비어 있으나, Gemini CLI cached auth 경로로 평가 진행 가능
 - 실제 evaluation task는 geometry metric과 normalized-grid CFD metric (`cfd_metrics.json`)을 함께 기록함
 
@@ -142,8 +144,8 @@ OpenFOAM Image-to-CFD 논문을 위한 benchmark dataset 파이프라인을 구�
 
 ## 다음 기본 액션
 
-1. CLI backend로 frozen-20 image-conditioned evaluation을 소규모 배치(예: case 1개 × 5 views 또는 category별 대표 subset) 실행해 view별 failure/success 신호를 모은다.
-2. perspective/section 첫 성공 2건의 `cfd_metrics.json`을 기준으로, 논문용으로 slice-specific metric이나 scalar-field 추가 지표가 필요한지 판단한다.
+1. composite 대표 case 하나(`A3` 또는 `A4`)에 대해 5-view CLI sweep을 실행해 rectangular case에서 보인 view별 신호가 room.blocks 케이스에서도 유지되는지 확인한다.
+2. `bench_a1_01` 5-view 결과를 기준으로, view-type별 structure-vs-CFD 괴리를 설명할 추가 scalar-field / opening-sensitive 지표가 필요한지 판단한다.
 3. API backend env(`GEMINI_API_KEY`/`GOOGLE_API_KEY`)는 별도 유지 과제로 남기되, benchmark 진행 자체는 CLI backend 기준으로 계속 전진한다.
-4. frozen-20 benchmark + CLI-eval 복구 상태에서 깔끔한 로컬 commit checkpoint를 유지한다.
+4. frozen-20 benchmark + CLI-eval 상태에서 깔끔한 로컬 commit checkpoint를 유지한다.
 5. 이후 meshing/solver 변경이 생기면 stress subset (`bench_a2_01`, `bench_a4_02`, `bench_a2_03`, `bench_a4_03`, `bench_a1_04`)로 빠른 regression check를 수행한다.

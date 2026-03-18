@@ -15,8 +15,7 @@
   "reference_results": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_01/birdseye/reference_results",
   "task_count": 5,
   "status_counts": {
-    "pending": 3,
-    "success": 2
+    "success": 5
   },
   "case_root": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a1_01"
 }
