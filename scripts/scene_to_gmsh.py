@@ -1,22 +1,21 @@
 #!/usr/bin/env python3
 """Generate a Gmsh model from indoor_cfd_scene_v1 JSON.
 
+Supported room geometries:
+- legacy rectangular room via room.size
+- composite room via room.blocks (1-2 joined rectangular blocks)
+
 Current scope:
-- rectangular room
 - box obstacles
 - wall-aligned rectangular inlet/outlet openings
-- fluid volume = room - obstacles
+- fluid volume = room union - openings - obstacles
 - physical groups for fluid, inlet, outlet, roomWalls, obstacleWalls
-
-This is an early PoC generator intended to bridge:
-    Gemini scene JSON -> validated geometry -> Gmsh mesh
 """
 
 from __future__ import annotations
 
 import argparse
 import json
-import math
 import sys
 from pathlib import Path
 
@@ -36,77 +35,130 @@ class SceneToGmshError(RuntimeError):
     pass
 
 
-def opening_axes(wall: str) -> tuple[str, str]:
-    if wall in {"west", "east"}:
-        return "y", "z"
-    if wall in {"south", "north"}:
-        return "x", "z"
-    return "x", "y"
+def get_room_blocks(scene: dict) -> list[dict]:
+    room = scene["room"]
+    if "blocks" in room:
+        return room["blocks"]
+    size = room["size"]
+    return [{
+        "origin": {"x": 0.0, "y": 0.0, "z": 0.0},
+        "size": {"dx": size["Lx"], "dy": size["Ly"], "dz": size["Lz"]},
+    }]
 
 
-def opening_global_bounds(room: dict, opening: dict) -> dict[str, float]:
-    """Convert wall-local opening definition to global bounding box."""
-    Lx, Ly, Lz = room["Lx"], room["Ly"], room["Lz"]
+def overall_room_bounds(room_blocks: list[dict]) -> dict[str, float]:
+    xmax = max(block["origin"]["x"] + block["size"]["dx"] for block in room_blocks)
+    ymax = max(block["origin"]["y"] + block["size"]["dy"] for block in room_blocks)
+    zmax = max(block["origin"]["z"] + block["size"]["dz"] for block in room_blocks)
+    return {"Lx": xmax, "Ly": ymax, "Lz": zmax}
+
+
+def wall_supporting_blocks(room_blocks: list[dict], wall: str, opening: dict) -> list[dict]:
+    u = opening["center"]["u"]
+    v = opening["center"]["v"]
+    du = opening["size"]["du"]
+    dv = opening["size"]["dv"]
+    supported: list[dict] = []
+    for block in room_blocks:
+        ox, oy, oz = block["origin"]["x"], block["origin"]["y"], block["origin"]["z"]
+        dx, dy, dz = block["size"]["dx"], block["size"]["dy"], block["size"]["dz"]
+        if wall in {"west", "east"}:
+            ok = (
+                u - du / 2 >= oy - EPS and u + du / 2 <= oy + dy + EPS
+                and v - dv / 2 >= oz - EPS and v + dv / 2 <= oz + dz + EPS
+            )
+        elif wall in {"south", "north"}:
+            ok = (
+                u - du / 2 >= ox - EPS and u + du / 2 <= ox + dx + EPS
+                and v - dv / 2 >= oz - EPS and v + dv / 2 <= oz + dz + EPS
+            )
+        else:
+            ok = (
+                u - du / 2 >= ox - EPS and u + du / 2 <= ox + dx + EPS
+                and v - dv / 2 >= oy - EPS and v + dv / 2 <= oy + dy + EPS
+            )
+        if ok:
+            supported.append(block)
+    return supported
+
+
+def opening_global_bounds(room_blocks: list[dict], opening: dict) -> dict[str, float]:
+    """Convert wall-local opening definition to global bounding box.
+
+    For composite rooms, an opening is attached to the exposed face of the block(s)
+    whose local wall coordinates contain the opening rectangle.
+    """
+    room_bounds = overall_room_bounds(room_blocks)
     wall = opening["wall"]
     u = opening["center"]["u"]
     v = opening["center"]["v"]
     du = opening["size"]["du"]
     dv = opening["size"]["dv"]
-    depth = max(Lx, Ly, Lz) * OPENING_DEPTH_FACTOR
+    depth = max(room_bounds["Lx"], room_bounds["Ly"], room_bounds["Lz"]) * OPENING_DEPTH_FACTOR
+
+    supporting = wall_supporting_blocks(room_blocks, wall, opening)
+    if not supporting:
+        raise SceneToGmshError(f"Opening {opening.get('id', '<unknown>')} is not supported by any room block on wall {wall}")
 
     if wall == "west":
+        x_plane = min(block["origin"]["x"] for block in supporting)
         return {
-            "xmin": 0.0,
-            "xmax": depth,
+            "xmin": x_plane,
+            "xmax": x_plane + depth,
             "ymin": u - du / 2,
             "ymax": u + du / 2,
             "zmin": v - dv / 2,
             "zmax": v + dv / 2,
         }
     if wall == "east":
+        x_plane = max(block["origin"]["x"] + block["size"]["dx"] for block in supporting)
         return {
-            "xmin": Lx - depth,
-            "xmax": Lx,
+            "xmin": x_plane - depth,
+            "xmax": x_plane,
             "ymin": u - du / 2,
             "ymax": u + du / 2,
             "zmin": v - dv / 2,
             "zmax": v + dv / 2,
         }
     if wall == "south":
+        y_plane = min(block["origin"]["y"] for block in supporting)
         return {
             "xmin": u - du / 2,
             "xmax": u + du / 2,
-            "ymin": 0.0,
-            "ymax": depth,
+            "ymin": y_plane,
+            "ymax": y_plane + depth,
             "zmin": v - dv / 2,
             "zmax": v + dv / 2,
         }
     if wall == "north":
+        y_plane = max(block["origin"]["y"] + block["size"]["dy"] for block in supporting)
         return {
             "xmin": u - du / 2,
             "xmax": u + du / 2,
-            "ymin": Ly - depth,
-            "ymax": Ly,
+            "ymin": y_plane - depth,
+            "ymax": y_plane,
             "zmin": v - dv / 2,
             "zmax": v + dv / 2,
         }
     if wall == "floor":
+        z_plane = min(block["origin"]["z"] for block in supporting)
         return {
             "xmin": u - du / 2,
             "xmax": u + du / 2,
             "ymin": v - dv / 2,
             "ymax": v + dv / 2,
-            "zmin": 0.0,
-            "zmax": depth,
+            "zmin": z_plane,
+            "zmax": z_plane + depth,
         }
     if wall == "ceiling":
+        z_plane = max(block["origin"]["z"] + block["size"]["dz"] for block in supporting)
         return {
             "xmin": u - du / 2,
             "xmax": u + du / 2,
             "ymin": v - dv / 2,
             "ymax": v + dv / 2,
-            "zmin": Lz - depth,
-            "zmax": Lz,
+            "zmin": z_plane - depth,
+            "zmax": z_plane,
         }
     raise SceneToGmshError(f"Unsupported wall: {wall}")
 
@@ -133,7 +185,7 @@ def load_scene(path: Path) -> dict:
     return scene
 
 
-def classify_surface(room: dict[str, float], opening_boxes: list[dict], bbox: tuple[float, ...]) -> tuple[str | None, str | None]:
+def classify_surface(room_bounds: dict[str, float], opening_boxes: list[dict], obstacle_boxes: list[dict], bbox: tuple[float, ...]) -> tuple[str | None, str | None]:
     xmin, ymin, zmin, xmax, ymax, zmax = bbox
     xmid = 0.5 * (xmin + xmax)
     ymid = 0.5 * (ymin + ymax)
@@ -142,10 +194,6 @@ def classify_surface(room: dict[str, float], opening_boxes: list[dict], bbox: tu
     dy = ymax - ymin
     dz = zmax - zmin
 
-    # First, detect inlet/outlet patches using the opening-box bounds directly.
-    # After boolean operations, the actual boundary face often lives on the inner
-    # cap of the small opening prism (e.g. x=depth for west), not exactly on the
-    # original outer wall plane.
     for op in opening_boxes:
         b = op["bounds"]
         wall = op["wall"]
@@ -185,35 +233,74 @@ def classify_surface(room: dict[str, float], opening_boxes: list[dict], bbox: tu
         if matches:
             return op["type"], op["id"]
 
-    # Then detect outer room walls.
+    for obs in obstacle_boxes:
+        b = obs["bounds"]
+        on_x_face = (
+            abs(xmin - b["xmin"]) < 1e-4 and abs(xmax - b["xmin"]) < 1e-4
+        ) or (
+            abs(xmin - b["xmax"]) < 1e-4 and abs(xmax - b["xmax"]) < 1e-4
+        )
+        on_y_face = (
+            abs(ymin - b["ymin"]) < 1e-4 and abs(ymax - b["ymin"]) < 1e-4
+        ) or (
+            abs(ymin - b["ymax"]) < 1e-4 and abs(ymax - b["ymax"]) < 1e-4
+        )
+        on_z_face = (
+            abs(zmin - b["zmin"]) < 1e-4 and abs(zmax - b["zmin"]) < 1e-4
+        ) or (
+            abs(zmin - b["zmax"]) < 1e-4 and abs(zmax - b["zmax"]) < 1e-4
+        )
+        within_x = xmin >= b["xmin"] - EPS and xmax <= b["xmax"] + EPS
+        within_y = ymin >= b["ymin"] - EPS and ymax <= b["ymax"] + EPS
+        within_z = zmin >= b["zmin"] - EPS and zmax <= b["zmax"] + EPS
+        if (on_x_face and within_y and within_z) or (on_y_face and within_x and within_z) or (on_z_face and within_x and within_y):
+            return "obstacleWalls", obs["id"]
+
     if abs(xmin) < EPS and abs(xmax) < EPS:
         return "roomWalls", "west"
-    if abs(xmin - room["Lx"]) < EPS and abs(xmax - room["Lx"]) < EPS:
+    if abs(xmin - room_bounds["Lx"]) < EPS and abs(xmax - room_bounds["Lx"]) < EPS:
         return "roomWalls", "east"
     if abs(ymin) < EPS and abs(ymax) < EPS:
         return "roomWalls", "south"
-    if abs(ymin - room["Ly"]) < EPS and abs(ymax - room["Ly"]) < EPS:
+    if abs(ymin - room_bounds["Ly"]) < EPS and abs(ymax - room_bounds["Ly"]) < EPS:
         return "roomWalls", "north"
     if abs(zmin) < EPS and abs(zmax) < EPS:
         return "roomWalls", "floor"
-    if abs(zmin - room["Lz"]) < EPS and abs(zmax - room["Lz"]) < EPS:
+    if abs(zmin - room_bounds["Lz"]) < EPS and abs(zmax - room_bounds["Lz"]) < EPS:
         return "roomWalls", "ceiling"
 
-    return "obstacleWalls", None
+    return "roomWalls", None
 
 
 def build_model(scene: dict, mesh_size: float, model_name: str) -> dict[str, list[int] | int]:
-    room_size = scene["room"]["size"]
-    room = {"Lx": room_size["Lx"], "Ly": room_size["Ly"], "Lz": room_size["Lz"]}
+    room_blocks = get_room_blocks(scene)
+    room_bounds = overall_room_bounds(room_blocks)
     factory = gmsh.model.occ
     gmsh.model.add(model_name)
 
-    room_tag = factory.addBox(0.0, 0.0, 0.0, room["Lx"], room["Ly"], room["Lz"])
+    block_entities = []
+    for block in room_blocks:
+        tag = factory.addBox(
+            block["origin"]["x"],
+            block["origin"]["y"],
+            block["origin"]["z"],
+            block["size"]["dx"],
+            block["size"]["dy"],
+            block["size"]["dz"],
+        )
+        block_entities.append((3, tag))
+
+    room_entities = block_entities
+    if len(block_entities) > 1:
+        fused, _ = factory.fuse([block_entities[0]], block_entities[1:], removeObject=True, removeTool=True)
+        room_entities = [(dim, tag) for dim, tag in fused if dim == 3]
+    if not room_entities:
+        raise SceneToGmshError("Failed to build room volume from room.blocks")
 
     opening_tools = []
     opening_boxes = []
     for opening in scene["openings"]:
-        bounds = opening_global_bounds(room, opening)
+        bounds = opening_global_bounds(room_blocks, opening)
         tag = add_box_from_bounds(factory, bounds)
         opening_tools.append((3, tag))
         opening_boxes.append({
@@ -224,14 +311,13 @@ def build_model(scene: dict, mesh_size: float, model_name: str) -> dict[str, lis
         })
 
     if opening_tools:
-        cut_room, _ = factory.cut([(3, room_tag)], opening_tools, removeObject=True, removeTool=False)
+        cut_room, _ = factory.cut(room_entities, opening_tools, removeObject=True, removeTool=False)
         room_entities = [(dim, tag) for dim, tag in cut_room if dim == 3]
         if not room_entities:
             raise SceneToGmshError("Failed to cut room with opening tools")
-    else:
-        room_entities = [(3, room_tag)]
 
     obstacle_tools = []
+    obstacle_boxes = []
     for obstacle in scene["obstacles"]:
         min_corner = obstacle["min"]
         size = obstacle["size"]
@@ -244,12 +330,25 @@ def build_model(scene: dict, mesh_size: float, model_name: str) -> dict[str, lis
             size["dz"],
         )
         obstacle_tools.append((3, tag))
+        obstacle_boxes.append({
+            "id": obstacle["id"],
+            "bounds": {
+                "xmin": min_corner["x"],
+                "xmax": min_corner["x"] + size["dx"],
+                "ymin": min_corner["y"],
+                "ymax": min_corner["y"] + size["dy"],
+                "zmin": min_corner["z"],
+                "zmax": min_corner["z"] + size["dz"],
+            },
+        })
 
-    cut_out, _ = factory.cut(room_entities, obstacle_tools, removeObject=True, removeTool=False)
-    if not cut_out:
-        raise SceneToGmshError("Boolean cut failed; no fluid volume produced")
-
-    fluid_entities = [(dim, tag) for dim, tag in cut_out if dim == 3]
+    if obstacle_tools:
+        cut_out, _ = factory.cut(room_entities, obstacle_tools, removeObject=True, removeTool=False)
+        if not cut_out:
+            raise SceneToGmshError("Boolean cut failed; no fluid volume produced")
+        fluid_entities = [(dim, tag) for dim, tag in cut_out if dim == 3]
+    else:
+        fluid_entities = list(room_entities)
     if len(fluid_entities) > 1:
         fused, _ = factory.fuse([fluid_entities[0]], fluid_entities[1:], removeObject=True, removeTool=True)
         fluid_entities = [(dim, tag) for dim, tag in fused if dim == 3]
@@ -270,15 +369,15 @@ def build_model(scene: dict, mesh_size: float, model_name: str) -> dict[str, lis
 
     for tag in surface_tags:
         bbox = gmsh.model.getBoundingBox(2, tag)
-        group, _ = classify_surface(room, opening_boxes, bbox)
+        group, _ = classify_surface(room_bounds, opening_boxes, obstacle_boxes, bbox)
         if group == "inlet":
             inlet_surfs.append(tag)
         elif group == "outlet":
             outlet_surfs.append(tag)
-        elif group == "roomWalls":
-            room_wall_surfs.append(tag)
-        else:
+        elif group == "obstacleWalls":
             obstacle_wall_surfs.append(tag)
+        else:
+            room_wall_surfs.append(tag)
 
     gmsh.model.addPhysicalGroup(3, fluid_volumes, name="fluid")
     if inlet_surfs:

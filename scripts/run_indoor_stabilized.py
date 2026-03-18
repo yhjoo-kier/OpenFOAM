@@ -544,6 +544,8 @@ def main() -> int:
     parser.add_argument("--skip-mesh-ladder", action="store_true")
     parser.add_argument("--end-time", type=int, default=1000)
     parser.add_argument("--solver-timeout", type=int, default=900, help="Timeout in seconds for each simpleFoam attempt")
+    parser.add_argument("--import-timeout", type=int, default=180, help="Timeout in seconds for mesh import (gmshToFoam)")
+    parser.add_argument("--checkmesh-timeout", type=int, default=180, help="Timeout in seconds for checkMesh")
     parser.add_argument("--no-fallback", action="store_true")
     parser.add_argument("--disable-repair", action="store_true", help="Disable repaired-scene retry")
     args = parser.parse_args()
@@ -599,11 +601,24 @@ def main() -> int:
 
     scene_candidates = [("original", scene_json)]
     if not args.disable_repair:
-        run([
-            "python3", str(SCRIPTS / "repair_indoor_scene.py"),
-            str(scene_json), "-o", str(repaired_scene_json)
-        ], cwd=PROJECT_ROOT)
-        scene_candidates.append(("repaired", repaired_scene_json))
+        try:
+            run([
+                "python3", str(SCRIPTS / "repair_indoor_scene.py"),
+                str(scene_json), "-o", str(repaired_scene_json)
+            ], cwd=PROJECT_ROOT)
+            scene_candidates.append(("repaired", repaired_scene_json))
+        except Exception as exc:
+            repair_info = {
+                "repair_attempted": True,
+                "repair_available": False,
+                "repair_error": str(exc),
+            }
+    else:
+        repair_info = {
+            "repair_attempted": False,
+            "repair_available": False,
+            "repair_error": None,
+        }
 
     for scene_variant, active_scene_json in scene_candidates:
         for mesh_size in mesh_sizes:
@@ -625,9 +640,12 @@ def main() -> int:
                 continue
 
             try:
+                if case_dir.exists():
+                    shutil.rmtree(case_dir)
                 run([
                     "python3", str(SCRIPTS / "create_indoor_openfoam_case.py"),
-                    str(msh_path), str(case_dir)
+                    str(msh_path), str(case_dir),
+                    "--end-time", str(args.end_time)
                 ], cwd=PROJECT_ROOT)
             except Exception as exc:
                 attempts.append({
@@ -642,8 +660,13 @@ def main() -> int:
                 continue
 
             try:
-                import_result = docker_exec(case_dir, f"cp /app/generated/{args.name}.msh . && gmshToFoam {args.name}.msh", check=True)
-                checkmesh_result = docker_exec(case_dir, "checkMesh", check=True)
+                import_result = docker_exec(
+                    case_dir,
+                    f"rm -rf constant/polyMesh && cp /app/generated/{args.name}.msh . && gmshToFoam {args.name}.msh",
+                    check=True,
+                    timeout=args.import_timeout,
+                )
+                checkmesh_result = docker_exec(case_dir, "checkMesh", check=True, timeout=args.checkmesh_timeout)
             except Exception as exc:
                 attempts.append({
                     "scene_variant": scene_variant,
@@ -716,6 +739,7 @@ def main() -> int:
         "msh": str(msh_path),
         "case_dir": str(case_dir),
         "generation_summary": generation_summary,
+        "repair_info": repair_info,
         "attempts": attempts,
         "success": success_preset is not None,
         "successful_preset": None if success_preset is None else success_preset["name"],

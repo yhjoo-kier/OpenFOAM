@@ -90,26 +90,40 @@ def cuboid_faces(x0, y0, z0, dx, dy, dz):
     ]
 
 
-def draw_cutaway_room(ax, room, face_alpha=0.08, edge_color="0.62", lw=1.25):
-    Lx, Ly, Lz = room["Lx"], room["Ly"], room["Lz"]
-    # keep floor + back + left + right walls; omit front wall and ceiling for cutaway
-    faces = [
-        [[0, 0, 0], [Lx, 0, 0], [Lx, Ly, 0], [0, Ly, 0]],  # floor
-        [[0, Ly, 0], [Lx, Ly, 0], [Lx, Ly, Lz], [0, Ly, Lz]],  # back wall
-        [[0, 0, 0], [0, Ly, 0], [0, Ly, Lz], [0, 0, Lz]],  # west wall
-        [[Lx, 0, 0], [Lx, Ly, 0], [Lx, Ly, Lz], [Lx, 0, Lz]],  # east wall
-    ]
-    coll = Poly3DCollection(faces, facecolor=(0.84, 0.90, 0.97, face_alpha), edgecolor="none")
-    ax.add_collection3d(coll)
+def room_blocks(scene: dict) -> list[dict]:
+    room = scene["room"]
+    if "blocks" in room:
+        return room["blocks"]
+    size = room["size"]
+    return [{"origin": {"x": 0.0, "y": 0.0, "z": 0.0}, "size": {"dx": size["Lx"], "dy": size["Ly"], "dz": size["Lz"]}}]
 
-    # wire edges for cutaway frame
-    pts = np.array([
-        [0,0,0],[Lx,0,0],[Lx,Ly,0],[0,Ly,0],
-        [0,0,Lz],[Lx,0,Lz],[Lx,Ly,Lz],[0,Ly,Lz]
-    ])
-    edges = [(0,1),(1,2),(2,3),(3,0),(3,7),(7,6),(6,2),(1,5),(5,6),(0,4),(4,7)]
-    for i, j in edges:
-        ax.plot(*zip(pts[i], pts[j]), color=edge_color, lw=lw, alpha=0.95)
+
+def room_bounds(scene: dict) -> dict[str, float]:
+    blocks = room_blocks(scene)
+    return {
+        "Lx": max(b["origin"]["x"] + b["size"]["dx"] for b in blocks),
+        "Ly": max(b["origin"]["y"] + b["size"]["dy"] for b in blocks),
+        "Lz": max(b["origin"]["z"] + b["size"]["dz"] for b in blocks),
+    }
+
+
+def draw_cutaway_room(ax, scene, face_alpha=0.08, edge_color="0.62", lw=1.25):
+    blocks = room_blocks(scene)
+    for block in blocks:
+        x0, y0, z0 = block["origin"]["x"], block["origin"]["y"], block["origin"]["z"]
+        dx, dy, dz = block["size"]["dx"], block["size"]["dy"], block["size"]["dz"]
+        x1, y1, z1 = x0 + dx, y0 + dy, z0 + dz
+        faces = [
+            [[x0, y0, z0], [x1, y0, z0], [x1, y1, z0], [x0, y1, z0]],
+            [[x0, y1, z0], [x1, y1, z0], [x1, y1, z1], [x0, y1, z1]],
+            [[x0, y0, z0], [x0, y1, z0], [x0, y1, z1], [x0, y0, z1]],
+            [[x1, y0, z0], [x1, y1, z0], [x1, y1, z1], [x1, y0, z1]],
+        ]
+        coll = Poly3DCollection(faces, facecolor=(0.84, 0.90, 0.97, face_alpha), edgecolor="none")
+        ax.add_collection3d(coll)
+        for face in cuboid_faces(x0, y0, z0, dx, dy, dz):
+            closed = face + [face[0]]
+            ax.plot(*zip(*closed), color=edge_color, lw=lw, alpha=0.55)
 
 
 def draw_obstacles(ax, obstacles, alpha=1.0, color="#7a7a7a"):
@@ -172,7 +186,7 @@ def make_inlet_seed(openings, nz=5, ny=5):
 
 
 def render(scene: dict, mesh: pv.DataSet, output: Path, panel_a: Path | None = None, panel_b: Path | None = None):
-    room = scene["room"]["size"]
+    room = room_bounds(scene)
     bounds = (0, room["Lx"], 0, room["Ly"], 0, room["Lz"])
 
     fig = plt.figure(figsize=(14.2, 5.7), dpi=220)
@@ -180,13 +194,13 @@ def render(scene: dict, mesh: pv.DataSet, output: Path, panel_a: Path | None = N
     ax2 = fig.add_subplot(1, 2, 2, projection="3d")
 
     # panel a
-    draw_cutaway_room(ax1, room, face_alpha=0.12, edge_color="0.58", lw=1.35)
+    draw_cutaway_room(ax1, scene, face_alpha=0.12, edge_color="0.58", lw=1.35)
     draw_obstacles(ax1, scene["obstacles"], alpha=1.0, color="#767676")
     draw_openings(ax1, scene["openings"], room)
     ax1.set_title("(a) Gemini-generated 3D scene", pad=10)
 
     # panel b
-    draw_cutaway_room(ax2, room, face_alpha=0.06, edge_color="0.60", lw=1.25)
+    draw_cutaway_room(ax2, scene, face_alpha=0.06, edge_color="0.60", lw=1.25)
     draw_obstacles(ax2, scene["obstacles"], alpha=0.34, color="#7b7b7b")
 
     cmap = colormaps["turbo"]
@@ -296,12 +310,12 @@ def render(scene: dict, mesh: pv.DataSet, output: Path, panel_a: Path | None = N
             f = plt.figure(figsize=(6.4, 5.6), dpi=220)
             ax = f.add_subplot(111, projection="3d")
             if which == "a":
-                draw_cutaway_room(ax, room, face_alpha=0.12, edge_color="0.58", lw=1.35)
+                draw_cutaway_room(ax, scene, face_alpha=0.12, edge_color="0.58", lw=1.35)
                 draw_obstacles(ax, scene["obstacles"], alpha=1.0, color="#767676")
                 draw_openings(ax, scene["openings"], room)
                 ax.set_title("(a) Gemini-generated 3D scene", pad=10)
             else:
-                draw_cutaway_room(ax, room, face_alpha=0.06, edge_color="0.60", lw=1.25)
+                draw_cutaway_room(ax, scene, face_alpha=0.06, edge_color="0.60", lw=1.25)
                 draw_obstacles(ax, scene["obstacles"], alpha=0.34, color="#7b7b7b")
                 if all_plane_vals:
                     for tris_i, vals_i, alpha_i in plane_payloads:

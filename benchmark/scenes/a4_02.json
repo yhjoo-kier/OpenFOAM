@@ -1,0 +1,134 @@
+{
+  "schema_version": "indoor_cfd_scene_v1",
+  "units": "m",
+  "coordinate_system": {
+    "origin": "room_min_corner",
+    "x": "west_to_east",
+    "y": "south_to_north",
+    "z": "floor_to_ceiling"
+  },
+  "room": {
+    "blocks": [
+      {
+        "origin": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "size": {
+          "dx": 5.496,
+          "dy": 4.178,
+          "dz": 3.102
+        }
+      },
+      {
+        "origin": {
+          "x": 5.496,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "size": {
+          "dx": 1.996,
+          "dy": 2.844,
+          "dz": 3.102
+        }
+      }
+    ]
+  },
+  "obstacles": [
+    {
+      "id": "obs_01",
+      "type": "box",
+      "min": {
+        "x": 5.928,
+        "y": 0.916,
+        "z": 0.0
+      },
+      "size": {
+        "dx": 0.671,
+        "dy": 1.132,
+        "dz": 2.128
+      }
+    },
+    {
+      "id": "obs_02",
+      "type": "box",
+      "min": {
+        "x": 2.144,
+        "y": 0.528,
+        "z": 0.0
+      },
+      "size": {
+        "dx": 0.787,
+        "dy": 1.63,
+        "dz": 2.052
+      }
+    },
+    {
+      "id": "obs_03",
+      "type": "box",
+      "min": {
+        "x": 4.084,
+        "y": 2.163,
+        "z": 0.0
+      },
+      "size": {
+        "dx": 0.672,
+        "dy": 1.573,
+        "dz": 2.027
+      }
+    },
+    {
+      "id": "obs_04",
+      "type": "box",
+      "min": {
+        "x": 3.78,
+        "y": 0.462,
+        "z": 0.0
+      },
+      "size": {
+        "dx": 0.76,
+        "dy": 0.875,
+        "dz": 1.704
+      }
+    }
+  ],
+  "openings": [
+    {
+      "id": "inlet",
+      "type": "inlet",
+      "wall": "west",
+      "center": {
+        "u": 2.423,
+        "v": 0.92
+      },
+      "size": {
+        "du": 0.556,
+        "dv": 0.428
+      }
+    },
+    {
+      "id": "outlet",
+      "type": "outlet",
+      "wall": "east",
+      "center": {
+        "u": 1.479,
+        "v": 1.703
+      },
+      "size": {
+        "du": 0.381,
+        "dv": 0.674
+      }
+    }
+  ],
+  "meta": {
+    "scene_type": "benchmark_a4",
+    "description": "Rule-based benchmark scene A4-02 (composite, seed=1301, obstacles=4)",
+    "benchmark": {
+      "category": "A4",
+      "room_kind": "composite",
+      "variant_index": 2,
+      "seed": 1301
+    }
+  }
+}

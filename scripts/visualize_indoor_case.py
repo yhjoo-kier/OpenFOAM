@@ -63,11 +63,33 @@ def compute_velocity_point_data(mesh: pv.DataSet) -> pv.DataSet:
     return mesh
 
 
+def room_blocks(scene: dict) -> list[dict]:
+    room = scene["room"]
+    if "blocks" in room:
+        return room["blocks"]
+    size = room["size"]
+    return [{"origin": {"x": 0.0, "y": 0.0, "z": 0.0}, "size": {"dx": size["Lx"], "dy": size["Ly"], "dz": size["Lz"]}}]
+
+
+def room_bounds(scene: dict) -> dict[str, float]:
+    blocks = room_blocks(scene)
+    return {
+        "Lx": max(b["origin"]["x"] + b["size"]["dx"] for b in blocks),
+        "Ly": max(b["origin"]["y"] + b["size"]["dy"] for b in blocks),
+        "Lz": max(b["origin"]["z"] + b["size"]["dz"] for b in blocks),
+    }
+
+
 def draw_geometry_panel(ax, scene: dict) -> None:
-    room = scene["room"]["size"]
+    room = room_bounds(scene)
     Lx, Ly = room["Lx"], room["Ly"]
 
-    ax.add_patch(Rectangle((0, 0), Lx, Ly, fill=False, edgecolor="black", linewidth=2))
+    for block in room_blocks(scene):
+        ox = block["origin"]["x"]
+        oy = block["origin"]["y"]
+        dx = block["size"]["dx"]
+        dy = block["size"]["dy"]
+        ax.add_patch(Rectangle((ox, oy), dx, dy, fill=False, edgecolor="black", linewidth=2))
 
     for obs in scene["obstacles"]:
         x = obs["min"]["x"]
@@ -105,7 +127,7 @@ def draw_flow_panel(ax, vtk_path: Path, scene: dict) -> None:
     mesh = pv.read(vtk_path)
     mesh = compute_velocity_point_data(mesh)
 
-    room = scene["room"]["size"]
+    room = room_bounds(scene)
     center_z = 0.5 * room["Lz"]
     sl = mesh.slice(normal="z", origin=(0, 0, center_z))
     if sl.n_points == 0:

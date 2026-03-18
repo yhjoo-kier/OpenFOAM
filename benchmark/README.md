@@ -14,17 +14,30 @@ VLM 기반 2D→3D CFD 자동화 프레임워크의 정량 평가를 위한 벤�
 | **단순 장애물** (0~1개) | A1 | A3 |
 | **복잡 장애물** (2~3개+) | A2 | A4 |
 
-## 디렉토리 구조 (예정)
+## 디렉토리 구조 (현재)
 
 ```
 benchmark/
-├── scenes/              # rule-based 생성된 scene JSON
-├── reference_cfd/       # ground truth CFD 결과
-├── renderings/          # 뷰 타입별 2D 입력 이미지
-├── evaluations/         # 프레임워크 적용 결과 및 평가
-├── generate_scenes.py   # rule-based 형상 생성기
-└── README.md            # 이 파일
+├── scenes/                          # rule-based 생성된 frozen scene JSON
+├── manifests/
+│   ├── scene_manifest.json          # category/seed/geometry manifest (현재 12 scenes)
+│   ├── pilot_reference_status.json  # 8-scene pilot CFD status aggregate
+│   ├── pilot_reference_status.csv
+│   └── reference_batch_summary.json # 최근 batch rerun 요약
+├── reference_cfd/<case>             # cases/<case> 로 연결되는 symlink
+├── visualizations/<case>            # results/<case> 로 연결되는 symlink
+├── renderings/
+│   ├── renderings_manifest.json     # benchmark input image export summary
+│   └── <case>/<view>/<case>_<view>.png
+├── evaluations/                     # 프레임워크 적용 결과 및 평가
+└── README.md                        # 이 파일
 ```
+
+현재 상태:
+- 8-scene pilot set(A1/A2/A3/A4 × 2)은 reference CFD 8/8 성공까지 회복됨.
+- frozen scene subset은 12 scenes(A1/A2/A3/A4 × 3)로 확장됨.
+- benchmark input view export는 `perspective`, `birdseye`, `floorplan`, `wireframe` 4종을 사용함.
+- `run_benchmark_reference_batch.py`는 이제 reference CFD 실행과 benchmark input view export를 한 흐름으로 함께 처리함.
 
 ## 관련 문서
 

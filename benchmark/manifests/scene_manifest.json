@@ -1,0 +1,278 @@
+[
+  {
+    "scene_file": "benchmark/scenes/a1_01.json",
+    "case_name": "bench_a1_01",
+    "category": "A1",
+    "variant_index": 1,
+    "seed": 1000,
+    "room_kind": "rectangular",
+    "obstacle_count": 1,
+    "opening_walls": [
+      "west",
+      "north"
+    ],
+    "room": {
+      "Lx": 6.666,
+      "Ly": 5.14,
+      "Lz": 2.659
+    }
+  },
+  {
+    "scene_file": "benchmark/scenes/a1_02.json",
+    "case_name": "bench_a1_02",
+    "category": "A1",
+    "variant_index": 2,
+    "seed": 1001,
+    "room_kind": "rectangular",
+    "obstacle_count": 0,
+    "opening_walls": [
+      "south",
+      "east"
+    ],
+    "room": {
+      "Lx": 6.712,
+      "Ly": 3.917,
+      "Lz": 3.056
+    }
+  },
+  {
+    "scene_file": "benchmark/scenes/a1_03.json",
+    "case_name": "bench_a1_03",
+    "category": "A1",
+    "variant_index": 3,
+    "seed": 1002,
+    "room_kind": "rectangular",
+    "obstacle_count": 1,
+    "opening_walls": [
+      "west",
+      "east"
+    ],
+    "room": {
+      "Lx": 6.05,
+      "Ly": 4.643,
+      "Lz": 2.733
+    }
+  },
+  {
+    "scene_file": "benchmark/scenes/a2_01.json",
+    "case_name": "bench_a2_01",
+    "category": "A2",
+    "variant_index": 1,
+    "seed": 1100,
+    "room_kind": "rectangular",
+    "obstacle_count": 2,
+    "opening_walls": [
+      "west",
+      "north"
+    ],
+    "room": {
+      "Lx": 7.148,
+      "Ly": 5.216,
+      "Lz": 2.733
+    }
+  },
+  {
+    "scene_file": "benchmark/scenes/a2_02.json",
+    "case_name": "bench_a2_02",
+    "category": "A2",
+    "variant_index": 2,
+    "seed": 1101,
+    "room_kind": "rectangular",
+    "obstacle_count": 2,
+    "opening_walls": [
+      "south",
+      "north"
+    ],
+    "room": {
+      "Lx": 5.66,
+      "Ly": 5.799,
+      "Lz": 2.818
+    }
+  },
+  {
+    "scene_file": "benchmark/scenes/a2_03.json",
+    "case_name": "bench_a2_03",
+    "category": "A2",
+    "variant_index": 3,
+    "seed": 1102,
+    "room_kind": "rectangular",
+    "obstacle_count": 3,
+    "opening_walls": [
+      "south",
+      "east"
+    ],
+    "room": {
+      "Lx": 6.553,
+      "Ly": 4.064,
+      "Lz": 3.014
+    }
+  },
+  {
+    "scene_file": "benchmark/scenes/a3_01.json",
+    "case_name": "bench_a3_01",
+    "category": "A3",
+    "variant_index": 1,
+    "seed": 1200,
+    "room_kind": "composite",
+    "obstacle_count": 0,
+    "opening_walls": [
+      "west",
+      "north"
+    ],
+    "room": {
+      "blocks": 2,
+      "block_sizes": [
+        {
+          "dx": 5.735,
+          "dy": 3.777,
+          "dz": 3.173
+        },
+        {
+          "dx": 3.006,
+          "dy": 2.362,
+          "dz": 3.173
+        }
+      ]
+    }
+  },
+  {
+    "scene_file": "benchmark/scenes/a3_02.json",
+    "case_name": "bench_a3_02",
+    "category": "A3",
+    "variant_index": 2,
+    "seed": 1201,
+    "room_kind": "composite",
+    "obstacle_count": 0,
+    "opening_walls": [
+      "west",
+      "north"
+    ],
+    "room": {
+      "blocks": 2,
+      "block_sizes": [
+        {
+          "dx": 5.235,
+          "dy": 4.299,
+          "dz": 2.716
+        },
+        {
+          "dx": 1.867,
+          "dy": 3.186,
+          "dz": 2.716
+        }
+      ]
+    }
+  },
+  {
+    "scene_file": "benchmark/scenes/a3_03.json",
+    "case_name": "bench_a3_03",
+    "category": "A3",
+    "variant_index": 3,
+    "seed": 1202,
+    "room_kind": "composite",
+    "obstacle_count": 1,
+    "opening_walls": [
+      "south",
+      "east"
+    ],
+    "room": {
+      "blocks": 2,
+      "block_sizes": [
+        {
+          "dx": 5.442,
+          "dy": 5.183,
+          "dz": 2.786
+        },
+        {
+          "dx": 3.182,
+          "dy": 3.965,
+          "dz": 2.786
+        }
+      ]
+    }
+  },
+  {
+    "scene_file": "benchmark/scenes/a4_01.json",
+    "case_name": "bench_a4_01",
+    "category": "A4",
+    "variant_index": 1,
+    "seed": 1300,
+    "room_kind": "composite",
+    "obstacle_count": 3,
+    "opening_walls": [
+      "south",
+      "east"
+    ],
+    "room": {
+      "blocks": 2,
+      "block_sizes": [
+        {
+          "dx": 5.285,
+          "dy": 4.803,
+          "dz": 2.816
+        },
+        {
+          "dx": 1.807,
+          "dy": 2.411,
+          "dz": 2.816
+        }
+      ]
+    }
+  },
+  {
+    "scene_file": "benchmark/scenes/a4_02.json",
+    "case_name": "bench_a4_02",
+    "category": "A4",
+    "variant_index": 2,
+    "seed": 1301,
+    "room_kind": "composite",
+    "obstacle_count": 4,
+    "opening_walls": [
+      "west",
+      "east"
+    ],
+    "room": {
+      "blocks": 2,
+      "block_sizes": [
+        {
+          "dx": 5.496,
+          "dy": 4.178,
+          "dz": 3.102
+        },
+        {
+          "dx": 1.996,
+          "dy": 2.844,
+          "dz": 3.102
+        }
+      ]
+    }
+  },
+  {
+    "scene_file": "benchmark/scenes/a4_03.json",
+    "case_name": "bench_a4_03",
+    "category": "A4",
+    "variant_index": 3,
+    "seed": 1302,
+    "room_kind": "composite",
+    "obstacle_count": 3,
+    "opening_walls": [
+      "west",
+      "east"
+    ],
+    "room": {
+      "blocks": 2,
+      "block_sizes": [
+        {
+          "dx": 4.749,
+          "dy": 4.514,
+          "dz": 3.103
+        },
+        {
+          "dx": 2.55,
+          "dy": 3.312,
+          "dz": 3.103
+        }
+      ]
+    }
+  }
+]
