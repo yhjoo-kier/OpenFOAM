@@ -1,6 +1,6 @@
 {
   "case_name": "bench_a4_05",
-  "source_scene": "benchmark/scenes/a4_05.json",
+  "source_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/scenes/a4_05.json",
   "views": {
     "perspective": "/home/yhjoo/projects/OpenFOAM/benchmark/renderings/bench_a4_05/perspective/bench_a4_05_perspective.png",
     "birdseye": "/home/yhjoo/projects/OpenFOAM/benchmark/renderings/bench_a4_05/birdseye/bench_a4_05_birdseye.png",

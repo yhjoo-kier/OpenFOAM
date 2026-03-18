@@ -92,6 +92,8 @@ Build and validate the benchmark dataset pipeline for the OpenFOAM Image-to-CFD 
 - [x] Verify the integrated batch flow on the newly added `*_03` subset
 - [x] Refresh the frozen-12 rendering manifests to include `section` assets for all scenes
 - [x] Refresh aggregate rendering manifests after the `*_05` tranche
+- [x] Normalize render manifests to stable resolved `source_scene` paths so artifact indexing no longer depends on invocation cwd/argument style
+- [x] Verify frozen-20 render/reference/evaluation bundle integrity end-to-end and record section-axis coverage for the 5-view dataset
 
 ### F. Documentation / records
 - [x] Write generator progress note: `docs/26-03-18_benchmark_scene_generator.md`
@@ -133,6 +135,7 @@ Notes:
 
 1. Re-run scaffolded evaluation tasks once the Gemini API backend environment is available in the runtime shell.
 2. Inspect the first real image-conditioned `cfd_metrics.json` outputs and decide whether slice-specific metrics are needed for the paper.
-3. Take a clean local commit checkpoint for the frozen-20 benchmark state plus CFD-metric upgrade.
-4. Keep the frozen-20 stress subset (`bench_a2_01`, `bench_a4_02`, `bench_a2_03`, `bench_a4_03`, `bench_a1_04`) handy for quick regression checks after future meshing / solver changes.
+3. Take a clean local commit checkpoint for the frozen-20 benchmark state plus CFD-metric upgrade + bundle-integrity verification.
+4. Keep the frozen-20 stress subset (`bench_a2_01`, `bench_a4_02`, `bench_a2_03`, `bench_a4_03`, `bench_a1_04`) handy for quick regression checks after future meshing / solver changes; the verifier manifest now records these automatically.
 5. If expansion continues beyond 20 scenes, monitor whether first-attempt `0.35 + robust` success starts to degrade.
+6. After any future partial rerun, refresh render/evaluation aggregates and rerun `python3 scripts/verify_benchmark_bundle.py` to catch artifact drift before reporting benchmark status.

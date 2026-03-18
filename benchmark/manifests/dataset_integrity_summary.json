@@ -1,0 +1,733 @@
+{
+  "ok": true,
+  "project_root": "/home/yhjoo/projects/OpenFOAM",
+  "benchmark_root": "/home/yhjoo/projects/OpenFOAM/benchmark",
+  "views": [
+    "perspective",
+    "birdseye",
+    "floorplan",
+    "wireframe",
+    "section"
+  ],
+  "summary": {
+    "scene_count": 20,
+    "reference_case_count": 20,
+    "reference_success_count": 20,
+    "render_bundle_count": 20,
+    "evaluation_case_count": 20,
+    "evaluation_task_count": 100,
+    "expected_evaluation_task_count": 100,
+    "hard_issue_count": 0,
+    "soft_stress_signal_count": 11
+  },
+  "status_by_category": {
+    "A1": {
+      "total": 5,
+      "ok": 5
+    },
+    "A2": {
+      "total": 5,
+      "ok": 5
+    },
+    "A3": {
+      "total": 5,
+      "ok": 5
+    },
+    "A4": {
+      "total": 5,
+      "ok": 5
+    }
+  },
+  "section_axis_counts": {
+    "x": 11,
+    "y": 9
+  },
+  "hard_issue_counts": {},
+  "soft_stress_signal_counts": {
+    "stress_case_multi_attempt": 5,
+    "stress_case_preset_fallback": 3,
+    "stress_case_mesh_fallback": 2,
+    "stress_case_mode_fallback": 1
+  },
+  "stress_cases": [
+    {
+      "case_name": "bench_a1_04",
+      "category": "A1",
+      "attempt_count": 2,
+      "successful_preset": "ultra_robust",
+      "successful_mode": "RAS",
+      "successful_mesh_size": 0.35,
+      "signals": [
+        "stress_case_multi_attempt",
+        "stress_case_preset_fallback"
+      ]
+    },
+    {
+      "case_name": "bench_a2_01",
+      "category": "A2",
+      "attempt_count": 4,
+      "successful_preset": "conservative",
+      "successful_mode": "RAS",
+      "successful_mesh_size": 0.35,
+      "signals": [
+        "stress_case_multi_attempt",
+        "stress_case_preset_fallback"
+      ]
+    },
+    {
+      "case_name": "bench_a2_03",
+      "category": "A2",
+      "attempt_count": 2,
+      "successful_preset": "robust",
+      "successful_mode": "RAS",
+      "successful_mesh_size": 0.25,
+      "signals": [
+        "stress_case_multi_attempt",
+        "stress_case_mesh_fallback"
+      ]
+    },
+    {
+      "case_name": "bench_a4_02",
+      "category": "A4",
+      "attempt_count": 3,
+      "successful_preset": "laminar_fallback",
+      "successful_mode": "laminar",
+      "successful_mesh_size": 0.35,
+      "signals": [
+        "stress_case_multi_attempt",
+        "stress_case_mode_fallback",
+        "stress_case_preset_fallback"
+      ]
+    },
+    {
+      "case_name": "bench_a4_03",
+      "category": "A4",
+      "attempt_count": 2,
+      "successful_preset": "robust",
+      "successful_mode": "RAS",
+      "successful_mesh_size": 0.25,
+      "signals": [
+        "stress_case_multi_attempt",
+        "stress_case_mesh_fallback"
+      ]
+    }
+  ],
+  "cases": [
+    {
+      "case_name": "bench_a1_01",
+      "category": "A1",
+      "room_kind": "rectangular",
+      "obstacle_count": 1,
+      "scene_file": "/home/yhjoo/projects/OpenFOAM/benchmark/scenes/a1_01.json",
+      "reference_success": true,
+      "attempt_count": 1,
+      "successful_preset": "robust",
+      "successful_mode": "RAS",
+      "successful_mesh_size": 0.35,
+      "render_views_present": [
+        "birdseye",
+        "floorplan",
+        "perspective",
+        "section",
+        "wireframe"
+      ],
+      "evaluation_views_present": [
+        "birdseye",
+        "floorplan",
+        "perspective",
+        "section",
+        "wireframe"
+      ],
+      "section_axis": "x",
+      "section_plane_coordinate": 3.333,
+      "ok": true,
+      "issues": []
+    },
+    {
+      "case_name": "bench_a1_02",
+      "category": "A1",
+      "room_kind": "rectangular",
+      "obstacle_count": 0,
+      "scene_file": "/home/yhjoo/projects/OpenFOAM/benchmark/scenes/a1_02.json",
+      "reference_success": true,
+      "attempt_count": 1,
+      "successful_preset": "robust",
+      "successful_mode": "RAS",
+      "successful_mesh_size": 0.35,
+      "render_views_present": [
+        "birdseye",
+        "floorplan",
+        "perspective",
+        "section",
+        "wireframe"
+      ],
+      "evaluation_views_present": [
+        "birdseye",
+        "floorplan",
+        "perspective",
+        "section",
+        "wireframe"
+      ],
+      "section_axis": "x",
+      "section_plane_coordinate": 3.356,
+      "ok": true,
+      "issues": []
+    },
+    {
+      "case_name": "bench_a1_03",
+      "category": "A1",
+      "room_kind": "rectangular",
+      "obstacle_count": 1,
+      "scene_file": "/home/yhjoo/projects/OpenFOAM/benchmark/scenes/a1_03.json",
+      "reference_success": true,
+      "attempt_count": 1,
+      "successful_preset": "robust",
+      "successful_mode": "RAS",
+      "successful_mesh_size": 0.35,
+      "render_views_present": [
+        "birdseye",
+        "floorplan",
+        "perspective",
+        "section",
+        "wireframe"
+      ],
+      "evaluation_views_present": [
+        "birdseye",
+        "floorplan",
+        "perspective",
+        "section",
+        "wireframe"
+      ],
+      "section_axis": "y",
+      "section_plane_coordinate": 2.117,
+      "ok": true,
+      "issues": []
+    },
+    {
+      "case_name": "bench_a1_04",
+      "category": "A1",
+      "room_kind": "rectangular",
+      "obstacle_count": 1,
+      "scene_file": "/home/yhjoo/projects/OpenFOAM/benchmark/scenes/a1_04.json",
+      "reference_success": true,
+      "attempt_count": 2,
+      "successful_preset": "ultra_robust",
+      "successful_mode": "RAS",
+      "successful_mesh_size": 0.35,
+      "render_views_present": [
+        "birdseye",
+        "floorplan",
+        "perspective",
+        "section",
+        "wireframe"
+      ],
+      "evaluation_views_present": [
+        "birdseye",
+        "floorplan",
+        "perspective",
+        "section",
+        "wireframe"
+      ],
+      "section_axis": "x",
+      "section_plane_coordinate": 2.997,
+      "ok": true,
+      "issues": [
+        "stress_case_multi_attempt",
+        "stress_case_preset_fallback"
+      ]
+    },
+    {
+      "case_name": "bench_a1_05",
+      "category": "A1",
+      "room_kind": "rectangular",
+      "obstacle_count": 1,
+      "scene_file": "/home/yhjoo/projects/OpenFOAM/benchmark/scenes/a1_05.json",
+      "reference_success": true,
+      "attempt_count": 1,
+      "successful_preset": "robust",
+      "successful_mode": "RAS",
+      "successful_mesh_size": 0.35,
+      "render_views_present": [
+        "birdseye",
+        "floorplan",
+        "perspective",
+        "section",
+        "wireframe"
+      ],
+      "evaluation_views_present": [
+        "birdseye",
+        "floorplan",
+        "perspective",
+        "section",
+        "wireframe"
+      ],
+      "section_axis": "x",
+      "section_plane_coordinate": 2.905,
+      "ok": true,
+      "issues": []
+    },
+    {
+      "case_name": "bench_a2_01",
+      "category": "A2",
+      "room_kind": "rectangular",
+      "obstacle_count": 2,
+      "scene_file": "/home/yhjoo/projects/OpenFOAM/benchmark/scenes/a2_01.json",
+      "reference_success": true,
+      "attempt_count": 4,
+      "successful_preset": "conservative",
+      "successful_mode": "RAS",
+      "successful_mesh_size": 0.35,
+      "render_views_present": [
+        "birdseye",
+        "floorplan",
+        "perspective",
+        "section",
+        "wireframe"
+      ],
+      "evaluation_views_present": [
+        "birdseye",
+        "floorplan",
+        "perspective",
+        "section",
+        "wireframe"
+      ],
+      "section_axis": "x",
+      "section_plane_coordinate": 3.574,
+      "ok": true,
+      "issues": [
+        "stress_case_multi_attempt",
+        "stress_case_preset_fallback"
+      ]
+    },
+    {
+      "case_name": "bench_a2_02",
+      "category": "A2",
+      "room_kind": "rectangular",
+      "obstacle_count": 2,
+      "scene_file": "/home/yhjoo/projects/OpenFOAM/benchmark/scenes/a2_02.json",
+      "reference_success": true,
+      "attempt_count": 1,
+      "successful_preset": "robust",
+      "successful_mode": "RAS",
+      "successful_mesh_size": 0.35,
+      "render_views_present": [
+        "birdseye",
+        "floorplan",
+        "perspective",
+        "section",
+        "wireframe"
+      ],
+      "evaluation_views_present": [
+        "birdseye",
+        "floorplan",
+        "perspective",
+        "section",
+        "wireframe"
+      ],
+      "section_axis": "x",
+      "section_plane_coordinate": 1.681,
+      "ok": true,
+      "issues": []
+    },
+    {
+      "case_name": "bench_a2_03",
+      "category": "A2",
+      "room_kind": "rectangular",
+      "obstacle_count": 3,
+      "scene_file": "/home/yhjoo/projects/OpenFOAM/benchmark/scenes/a2_03.json",
+      "reference_success": true,
+      "attempt_count": 2,
+      "successful_preset": "robust",
+      "successful_mode": "RAS",
+      "successful_mesh_size": 0.25,
+      "render_views_present": [
+        "birdseye",
+        "floorplan",
+        "perspective",
+        "section",
+        "wireframe"
+      ],
+      "evaluation_views_present": [
+        "birdseye",
+        "floorplan",
+        "perspective",
+        "section",
+        "wireframe"
+      ],
+      "section_axis": "x",
+      "section_plane_coordinate": 3.276,
+      "ok": true,
+      "issues": [
+        "stress_case_multi_attempt",
+        "stress_case_mesh_fallback"
+      ]
+    },
+    {
+      "case_name": "bench_a2_04",
+      "category": "A2",
+      "room_kind": "rectangular",
+      "obstacle_count": 2,
+      "scene_file": "/home/yhjoo/projects/OpenFOAM/benchmark/scenes/a2_04.json",
+      "reference_success": true,
+      "attempt_count": 1,
+      "successful_preset": "robust",
+      "successful_mode": "RAS",
+      "successful_mesh_size": 0.35,
+      "render_views_present": [
+        "birdseye",
+        "floorplan",
+        "perspective",
+        "section",
+        "wireframe"
+      ],
+      "evaluation_views_present": [
+        "birdseye",
+        "floorplan",
+        "perspective",
+        "section",
+        "wireframe"
+      ],
+      "section_axis": "x",
+      "section_plane_coordinate": 2.665,
+      "ok": true,
+      "issues": []
+    },
+    {
+      "case_name": "bench_a2_05",
+      "category": "A2",
+      "room_kind": "rectangular",
+      "obstacle_count": 3,
+      "scene_file": "/home/yhjoo/projects/OpenFOAM/benchmark/scenes/a2_05.json",
+      "reference_success": true,
+      "attempt_count": 1,
+      "successful_preset": "robust",
+      "successful_mode": "RAS",
+      "successful_mesh_size": 0.35,
+      "render_views_present": [
+        "birdseye",
+        "floorplan",
+        "perspective",
+        "section",
+        "wireframe"
+      ],
+      "evaluation_views_present": [
+        "birdseye",
+        "floorplan",
+        "perspective",
+        "section",
+        "wireframe"
+      ],
+      "section_axis": "x",
+      "section_plane_coordinate": 2.704,
+      "ok": true,
+      "issues": []
+    },
+    {
+      "case_name": "bench_a3_01",
+      "category": "A3",
+      "room_kind": "composite",
+      "obstacle_count": 0,
+      "scene_file": "/home/yhjoo/projects/OpenFOAM/benchmark/scenes/a3_01.json",
+      "reference_success": true,
+      "attempt_count": 1,
+      "successful_preset": "robust",
+      "successful_mode": "RAS",
+      "successful_mesh_size": 0.35,
+      "render_views_present": [
+        "birdseye",
+        "floorplan",
+        "perspective",
+        "section",
+        "wireframe"
+      ],
+      "evaluation_views_present": [
+        "birdseye",
+        "floorplan",
+        "perspective",
+        "section",
+        "wireframe"
+      ],
+      "section_axis": "y",
+      "section_plane_coordinate": 1.889,
+      "ok": true,
+      "issues": []
+    },
+    {
+      "case_name": "bench_a3_02",
+      "category": "A3",
+      "room_kind": "composite",
+      "obstacle_count": 0,
+      "scene_file": "/home/yhjoo/projects/OpenFOAM/benchmark/scenes/a3_02.json",
+      "reference_success": true,
+      "attempt_count": 1,
+      "successful_preset": "robust",
+      "successful_mode": "RAS",
+      "successful_mesh_size": 0.35,
+      "render_views_present": [
+        "birdseye",
+        "floorplan",
+        "perspective",
+        "section",
+        "wireframe"
+      ],
+      "evaluation_views_present": [
+        "birdseye",
+        "floorplan",
+        "perspective",
+        "section",
+        "wireframe"
+      ],
+      "section_axis": "y",
+      "section_plane_coordinate": 2.15,
+      "ok": true,
+      "issues": []
+    },
+    {
+      "case_name": "bench_a3_03",
+      "category": "A3",
+      "room_kind": "composite",
+      "obstacle_count": 1,
+      "scene_file": "/home/yhjoo/projects/OpenFOAM/benchmark/scenes/a3_03.json",
+      "reference_success": true,
+      "attempt_count": 1,
+      "successful_preset": "robust",
+      "successful_mode": "RAS",
+      "successful_mesh_size": 0.35,
+      "render_views_present": [
+        "birdseye",
+        "floorplan",
+        "perspective",
+        "section",
+        "wireframe"
+      ],
+      "evaluation_views_present": [
+        "birdseye",
+        "floorplan",
+        "perspective",
+        "section",
+        "wireframe"
+      ],
+      "section_axis": "y",
+      "section_plane_coordinate": 2.591,
+      "ok": true,
+      "issues": []
+    },
+    {
+      "case_name": "bench_a3_04",
+      "category": "A3",
+      "room_kind": "composite",
+      "obstacle_count": 1,
+      "scene_file": "/home/yhjoo/projects/OpenFOAM/benchmark/scenes/a3_04.json",
+      "reference_success": true,
+      "attempt_count": 1,
+      "successful_preset": "robust",
+      "successful_mode": "RAS",
+      "successful_mesh_size": 0.35,
+      "render_views_present": [
+        "birdseye",
+        "floorplan",
+        "perspective",
+        "section",
+        "wireframe"
+      ],
+      "evaluation_views_present": [
+        "birdseye",
+        "floorplan",
+        "perspective",
+        "section",
+        "wireframe"
+      ],
+      "section_axis": "x",
+      "section_plane_coordinate": 4.067,
+      "ok": true,
+      "issues": []
+    },
+    {
+      "case_name": "bench_a3_05",
+      "category": "A3",
+      "room_kind": "composite",
+      "obstacle_count": 1,
+      "scene_file": "/home/yhjoo/projects/OpenFOAM/benchmark/scenes/a3_05.json",
+      "reference_success": true,
+      "attempt_count": 1,
+      "successful_preset": "robust",
+      "successful_mode": "RAS",
+      "successful_mesh_size": 0.35,
+      "render_views_present": [
+        "birdseye",
+        "floorplan",
+        "perspective",
+        "section",
+        "wireframe"
+      ],
+      "evaluation_views_present": [
+        "birdseye",
+        "floorplan",
+        "perspective",
+        "section",
+        "wireframe"
+      ],
+      "section_axis": "y",
+      "section_plane_coordinate": 0.868,
+      "ok": true,
+      "issues": []
+    },
+    {
+      "case_name": "bench_a4_01",
+      "category": "A4",
+      "room_kind": "composite",
+      "obstacle_count": 3,
+      "scene_file": "/home/yhjoo/projects/OpenFOAM/benchmark/scenes/a4_01.json",
+      "reference_success": true,
+      "attempt_count": 1,
+      "successful_preset": "robust",
+      "successful_mode": "RAS",
+      "successful_mesh_size": 0.35,
+      "render_views_present": [
+        "birdseye",
+        "floorplan",
+        "perspective",
+        "section",
+        "wireframe"
+      ],
+      "evaluation_views_present": [
+        "birdseye",
+        "floorplan",
+        "perspective",
+        "section",
+        "wireframe"
+      ],
+      "section_axis": "y",
+      "section_plane_coordinate": 2.401,
+      "ok": true,
+      "issues": []
+    },
+    {
+      "case_name": "bench_a4_02",
+      "category": "A4",
+      "room_kind": "composite",
+      "obstacle_count": 4,
+      "scene_file": "/home/yhjoo/projects/OpenFOAM/benchmark/scenes/a4_02.json",
+      "reference_success": true,
+      "attempt_count": 3,
+      "successful_preset": "laminar_fallback",
+      "successful_mode": "laminar",
+      "successful_mesh_size": 0.35,
+      "render_views_present": [
+        "birdseye",
+        "floorplan",
+        "perspective",
+        "section",
+        "wireframe"
+      ],
+      "evaluation_views_present": [
+        "birdseye",
+        "floorplan",
+        "perspective",
+        "section",
+        "wireframe"
+      ],
+      "section_axis": "y",
+      "section_plane_coordinate": 1.951,
+      "ok": true,
+      "issues": [
+        "stress_case_multi_attempt",
+        "stress_case_mode_fallback",
+        "stress_case_preset_fallback"
+      ]
+    },
+    {
+      "case_name": "bench_a4_03",
+      "category": "A4",
+      "room_kind": "composite",
+      "obstacle_count": 3,
+      "scene_file": "/home/yhjoo/projects/OpenFOAM/benchmark/scenes/a4_03.json",
+      "reference_success": true,
+      "attempt_count": 2,
+      "successful_preset": "robust",
+      "successful_mode": "RAS",
+      "successful_mesh_size": 0.25,
+      "render_views_present": [
+        "birdseye",
+        "floorplan",
+        "perspective",
+        "section",
+        "wireframe"
+      ],
+      "evaluation_views_present": [
+        "birdseye",
+        "floorplan",
+        "perspective",
+        "section",
+        "wireframe"
+      ],
+      "section_axis": "y",
+      "section_plane_coordinate": 1.756,
+      "ok": true,
+      "issues": [
+        "stress_case_multi_attempt",
+        "stress_case_mesh_fallback"
+      ]
+    },
+    {
+      "case_name": "bench_a4_04",
+      "category": "A4",
+      "room_kind": "composite",
+      "obstacle_count": 3,
+      "scene_file": "/home/yhjoo/projects/OpenFOAM/benchmark/scenes/a4_04.json",
+      "reference_success": true,
+      "attempt_count": 1,
+      "successful_preset": "robust",
+      "successful_mode": "RAS",
+      "successful_mesh_size": 0.35,
+      "render_views_present": [
+        "birdseye",
+        "floorplan",
+        "perspective",
+        "section",
+        "wireframe"
+      ],
+      "evaluation_views_present": [
+        "birdseye",
+        "floorplan",
+        "perspective",
+        "section",
+        "wireframe"
+      ],
+      "section_axis": "y",
+      "section_plane_coordinate": 2.338,
+      "ok": true,
+      "issues": []
+    },
+    {
+      "case_name": "bench_a4_05",
+      "category": "A4",
+      "room_kind": "composite",
+      "obstacle_count": 4,
+      "scene_file": "/home/yhjoo/projects/OpenFOAM/benchmark/scenes/a4_05.json",
+      "reference_success": true,
+      "attempt_count": 1,
+      "successful_preset": "robust",
+      "successful_mode": "RAS",
+      "successful_mesh_size": 0.35,
+      "render_views_present": [
+        "birdseye",
+        "floorplan",
+        "perspective",
+        "section",
+        "wireframe"
+      ],
+      "evaluation_views_present": [
+        "birdseye",
+        "floorplan",
+        "perspective",
+        "section",
+        "wireframe"
+      ],
+      "section_axis": "x",
+      "section_plane_coordinate": 6.169,
+      "ok": true,
+      "issues": []
+    }
+  ]
+}

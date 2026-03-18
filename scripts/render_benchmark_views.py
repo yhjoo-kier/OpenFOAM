@@ -304,6 +304,7 @@ def render_section(scene: dict, output: Path):
 
 
 def render_case(scene_path: Path, render_root: Path, views: list[str]) -> dict:
+    scene_path = scene_path.expanduser().resolve()
     scene = load_scene(scene_path)
     case_name = scene_path.stem if scene_path.stem.startswith("bench_") else f"bench_{scene_path.stem}"
     case_dir = render_root / case_name
