@@ -43,6 +43,7 @@ benchmark/
 - 성공한 evaluation task는 geometry 비교뿐 아니라 `scripts/compute_benchmark_cfd_metrics.py`를 통해 normalized-grid 기준의 CFD result-side 비교(`cfd_metrics.json`)도 추가로 기록함.
 - `scripts/verify_benchmark_bundle.py`는 frozen bundle의 scene/reference/render/evaluation 연결 상태를 한 번에 검증하고 `benchmark/manifests/dataset_integrity_summary.json`을 기록함.
 - `scripts/run_benchmark_stress_subset.py`는 integrity summary의 stress subset(현재 5 cases)만 골라 기존 reference batch flow로 빠르게 회귀 점검할 수 있게 해 줌.
+- `scripts/build_benchmark_dataset_card.py`는 위 manifest들을 paper/release용 요약 아티팩트로 묶어 `benchmark/manifests/dataset_card.json`과 `docs/26-03-18_benchmark_dataset_card.md`를 생성함.
 - 현재 evaluation smoke test 결과는 **1 blocked / 99 pending**이며, blocked 상태는 benchmark failure가 아니라 Gemini backend credential 부재를 의미함.
 
 운영상 주의:
@@ -55,4 +56,5 @@ benchmark/
 - frozen-20 상태 메모: `docs/26-03-18_frozen20_benchmark_status.md`
 - evaluation scaffold 메모: `docs/26-03-18_benchmark_evaluation_scaffold.md`
 - frozen-20 robustness / failure signals: `docs/26-03-18_frozen20_failure_signals.md`
+- dataset card / release snapshot: `docs/26-03-18_benchmark_dataset_card.md`
 - 프레임워크 스킬: `docs/skills/indoor-cfd-pipeline/SKILL.md`

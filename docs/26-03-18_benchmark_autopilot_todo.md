@@ -107,6 +107,7 @@ Build and validate the benchmark dataset pipeline for the OpenFOAM Image-to-CFD 
 - [x] Write a follow-up note for the 20-scene frozen subset and scaffold refresh
 - [x] Write a follow-up note for normalized-grid CFD benchmark metrics
 - [x] Write a robustness / failure-signals note for the frozen-20 reference bundle
+- [x] Generate a release-friendly dataset card / aggregate manifest for the frozen benchmark bundle
 - [x] Commit meaningful project changes in project repo when a stable checkpoint is reached (do not push unless explicitly requested)
 
 ## Current benchmark snapshot
@@ -141,3 +142,4 @@ Notes:
 4. Use `python3 scripts/run_benchmark_stress_subset.py` as the default quick regression lane after future meshing / solver changes; it now pulls the five known hard cases directly from the verifier manifest.
 5. If expansion continues beyond 20 scenes, monitor whether first-attempt `0.35 + robust` success starts to degrade.
 6. After any future partial rerun, refresh render/evaluation aggregates and rerun `python3 scripts/verify_benchmark_bundle.py` to catch artifact drift before reporting benchmark status.
+7. After future frozen-set changes, rerun `python3 scripts/build_benchmark_dataset_card.py` so the paper/release snapshot stays synchronized with the manifests.
