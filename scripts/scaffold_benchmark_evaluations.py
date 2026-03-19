@@ -31,6 +31,7 @@ RENDERINGS = BENCHMARK / "renderings"
 EVALUATIONS = BENCHMARK / "evaluations"
 DEFAULT_SETTING = "no_scale_hint_baseline"
 SCALE_HINTED_SETTING = "scale_hinted_longest_horizontal_span_v1"
+SCALE_HINTED_DUAL_SETTING = "scale_hinted_longest_span_plus_height_v1"
 
 SCENE_MANIFEST = MANIFESTS / "scene_manifest.json"
 DEFAULT_REFERENCE_STATUS = MANIFESTS / "reference_batch_summary.json"
@@ -87,23 +88,36 @@ def overall_bbox(boxes: list[dict[str, Any]]) -> dict[str, float]:
     }
 
 
-def compute_scale_hint(scene_path: Path, room_kind: str) -> dict[str, Any]:
+def compute_scale_hint(scene_path: Path, room_kind: str, setting: str) -> dict[str, Any]:
     scene = load_json(scene_path)
     bbox = overall_bbox(room_blocks(scene))
     axis = "x" if bbox["Lx"] >= bbox["Ly"] else "y"
     span = max(bbox["Lx"], bbox["Ly"])
-    return {
-        "kind": "longest_horizontal_span",
-        "axis": axis,
-        "span_m": round(span, 3),
-        "room_height_m": round(bbox["Lz"], 3),
-        "room_kind": room_kind,
-        "source_scene": str(scene_path),
-        "prompt_text": (
+    height = bbox["Lz"]
+    if setting == SCALE_HINTED_DUAL_SETTING:
+        kind = "longest_horizontal_span_plus_room_height"
+        prompt_text = (
+            f"Scale hint: the longest horizontal span of the room is approximately {span:.2f} m, "
+            f"and the ceiling height is approximately {height:.2f} m. "
+            "Use the span as the primary global metric anchor, and keep the ceiling height close to the hinted value when choosing room dimensions, opening sizes, and obstacle sizes. "
+            "Preserve the qualitative layout from the image instead of treating these hints as an exact full bounding box."
+        )
+    else:
+        kind = "longest_horizontal_span"
+        prompt_text = (
             f"Scale hint: the longest horizontal span of the room is approximately {span:.2f} m. "
             "Use this as a global metric anchor when choosing room dimensions, opening sizes, and obstacle sizes. "
             "Preserve the qualitative layout from the image instead of treating this hint as an exact full bounding box."
-        ),
+        )
+    return {
+        "kind": kind,
+        "axis": axis,
+        "span_m": round(span, 3),
+        "room_height_m": round(height, 3),
+        "room_kind": room_kind,
+        "setting": setting,
+        "source_scene": str(scene_path),
+        "prompt_text": prompt_text,
     }
 
 
@@ -113,7 +127,7 @@ def main() -> int:
     parser.add_argument("--reference-status", type=Path, default=DEFAULT_REFERENCE_STATUS)
     parser.add_argument("--renderings-manifest", type=Path, default=RENDERINGS_MANIFEST)
     parser.add_argument("--evaluation-root", type=Path, default=EVALUATIONS)
-    parser.add_argument("--setting", choices=[DEFAULT_SETTING, SCALE_HINTED_SETTING], default=DEFAULT_SETTING)
+    parser.add_argument("--setting", choices=[DEFAULT_SETTING, SCALE_HINTED_SETTING, SCALE_HINTED_DUAL_SETTING], default=DEFAULT_SETTING)
     args = parser.parse_args()
 
     scene_rows = load_json(args.scene_manifest)
@@ -146,7 +160,7 @@ def main() -> int:
             scene_src = PROJECT_ROOT / scene_src
         ref_case = PROJECT_ROOT / "cases" / case_name
         ref_results = PROJECT_ROOT / "results" / case_name
-        scale_hint = None if args.setting == DEFAULT_SETTING else compute_scale_hint(scene_src, scene_row["room_kind"])
+        scale_hint = None if args.setting == DEFAULT_SETTING else compute_scale_hint(scene_src, scene_row["room_kind"], args.setting)
 
         views_present = []
         for view in DEFAULT_VIEWS:

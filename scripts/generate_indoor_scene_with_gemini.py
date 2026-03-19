@@ -354,6 +354,14 @@ def _extract_text_from_candidate(payload: dict) -> str | None:
 def extract_scale_hint_span(scale_hint: str | None) -> float | None:
     if not scale_hint:
         return None
+    anchored_patterns = [
+        r"longest horizontal span[^0-9]*([0-9]+(?:\.[0-9]+)?)\s*m",
+        r"longest span[^0-9]*([0-9]+(?:\.[0-9]+)?)\s*m",
+    ]
+    for pattern in anchored_patterns:
+        match = re.search(pattern, scale_hint, flags=re.IGNORECASE)
+        if match:
+            return float(match.group(1))
     match = re.search(r"([0-9]+(?:\.[0-9]+)?)\s*m", scale_hint)
     if match:
         return float(match.group(1))
