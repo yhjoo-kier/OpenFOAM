@@ -329,7 +329,7 @@
 - obstacle hallucination이 있어도 opening/topology가 맞으면 CFD가 유지될 수 있음을 보여줌
 
 **현재 생산 가능 여부**
-- [~] 즉시 생산 가능
+- [x] 제작 + visual QC 완료
 
 **근거 자산**
 - `bench_a3_01`, `bench_a3_02`, `bench_a3_05`
@@ -337,14 +337,22 @@
 - 관련 evaluation outputs와 case notes 존재
 
 **판정**
-- 이 논문의 차별적 메시지라 우선순위 높음
+- 제작 완료. 현재 버전은 manuscript 삽입 가능한 production candidate로 승인함.
+
+**산출물 / 로그**
+- script: `scripts/paper_figures/make_figure9_obstacle_hallucination.py`
+- outputs:
+  - `results/paper_figures/figure9_obstacle_hallucination_limited_cfd_penalty.pdf`
+  - `results/paper_figures/figure9_obstacle_hallucination_limited_cfd_penalty.png`
+- QC log: `docs/figure_qc/26-03-19_figure9_obstacle_hallucination_qc.md`
 
 **체크리스트**
-- [ ] 대표 A3 사례 확정
-- [ ] obstacle count mismatch와 CFD similarity를 함께 보여줄 패널 구성 설계
-- [ ] PDF/PNG 출력
-- [ ] 자체 visual QC
-- [ ] Gemini CLI visual QC
+- [x] 대표 A3 사례 확정 (`bench_a3_01/floorplan`, `bench_a3_05/floorplan`)
+- [x] obstacle count mismatch와 CFD similarity를 함께 보여줄 패널 구성 설계
+- [x] PDF/PNG 출력
+- [x] 자체 visual QC
+- [x] 서브에이전트 visual QC
+- [x] Gemini CLI visual QC
 
 ---
 
@@ -442,12 +450,11 @@
 1. Figure 5 — Aggregate performance across input views
 2. Figure 6 — Aggregate performance across benchmark categories
 3. Figure 8 — Composite-room collapse under section view
-4. Figure 9 — Obstacle hallucination with limited CFD penalty
-5. Figure 10 — Dense composite structure-vs-CFD gap
-6. Figure 3 — Multi-view rendering protocol
-7. Figure 7 — Representative success/failure cases across views
-8. Figure 2 — Benchmark dataset design and difficulty matrix
-9. Figure 11 — Robustness and stabilization pathway
+4. Figure 10 — Dense composite structure-vs-CFD gap
+5. Figure 3 — Multi-view rendering protocol
+6. Figure 7 — Representative success/failure cases across views
+7. Figure 2 — Benchmark dataset design and difficulty matrix
+8. Figure 11 — Robustness and stabilization pathway
 
 ## 보강 후 진행
 
@@ -488,4 +495,19 @@
 - figure outputs: `results/paper_figures/`
 - figure scripts: `scripts/paper_figures/`
 - QC logs: `docs/figure_qc/`
+- Google Drive delivery folder: `/mnt/c/Users/User/GoogleDrive/OpenFOAM_paper_figures_qc_passed/`
 - 상태 관리 문서: 이 문서 자체를 갱신
+
+## Google Drive 전달 규칙
+
+- QC 3단계(자체 / 서브에이전트 / Gemini CLI)를 모두 통과한 figure만 Google Drive로 복사한다.
+- Google Drive에는 **QC 통과본만** 들어가야 하며, 실패본/중간본/초안은 올리지 않는다.
+- figure별로 가능하면 아래 구조를 유지한다.
+  - `/mnt/c/Users/User/GoogleDrive/OpenFOAM_paper_figures_qc_passed/Fig05_view_aggregate/`
+  - `/mnt/c/Users/User/GoogleDrive/OpenFOAM_paper_figures_qc_passed/Fig06_category_aggregate/`
+  - ...
+- 각 figure 폴더에는 기본적으로 아래를 함께 둔다.
+  - 최종 `PDF`
+  - 최종 `PNG` (600 dpi 이상)
+  - 짧은 `README.md` 또는 `qc_summary.md` (figure 의도, 배치 방식, QC 통과 메모)
+- production plan 문서에서 체크 완료(`[x]`) 처리되기 전에는 Google Drive로 복사하지 않는다.
