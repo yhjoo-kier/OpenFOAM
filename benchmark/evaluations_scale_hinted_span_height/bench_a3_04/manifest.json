@@ -1,0 +1,32 @@
+{
+  "case_name": "bench_a3_04",
+  "category": "A3",
+  "room_kind": "composite",
+  "obstacle_count": 1,
+  "setting": "scale_hinted_longest_span_plus_height_v1",
+  "scale_hint": {
+    "kind": "longest_horizontal_span_plus_room_height",
+    "axis": "x",
+    "span_m": 7.121,
+    "room_height_m": 3.088,
+    "room_kind": "composite",
+    "setting": "scale_hinted_longest_span_plus_height_v1",
+    "source_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/scenes/a3_04.json",
+    "prompt_text": "Scale hint: the longest horizontal span of the room is approximately 7.12 m, and the ceiling height is approximately 3.09 m. Use the span as the primary global metric anchor, and keep the ceiling height close to the hinted value when choosing room dimensions, opening sizes, and obstacle sizes. Preserve the qualitative layout from the image instead of treating these hints as an exact full bounding box."
+  },
+  "views": [
+    "birdseye",
+    "floorplan",
+    "perspective",
+    "section",
+    "wireframe"
+  ],
+  "reference_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations_scale_hinted_span_height/bench_a3_04/birdseye/reference_scene.json",
+  "reference_case": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations_scale_hinted_span_height/bench_a3_04/birdseye/reference_case",
+  "reference_results": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations_scale_hinted_span_height/bench_a3_04/birdseye/reference_results",
+  "task_count": 5,
+  "status_counts": {
+    "pending": 5
+  },
+  "case_root": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations_scale_hinted_span_height/bench_a3_04"
+}

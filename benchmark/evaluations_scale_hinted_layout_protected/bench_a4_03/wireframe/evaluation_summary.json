@@ -1,0 +1,393 @@
+{
+  "ok": true,
+  "setting": "scale_hinted_longest_span_layout_protected_v1",
+  "scale_hint": {
+    "kind": "longest_horizontal_span_layout_protected",
+    "axis": "x",
+    "span_m": 7.299,
+    "room_height_m": 3.103,
+    "room_kind": "composite",
+    "setting": "scale_hinted_longest_span_layout_protected_v1",
+    "source_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/scenes/a4_03.json",
+    "prompt_text": "Scale hint: the longest horizontal span of the room is approximately 7.30 m. First infer the room topology, opening-wall placement, and obstacle layout from the image. Then use this number only as a soft global metric anchor for the overall room span and proportionally scale the rest of the geometry. Do not move openings to different walls or collapse a clearly composite room just to satisfy the hinted span. If exact scale agreement conflicts with the image, preserve the image-consistent layout/topology first and treat the hint as approximate."
+  },
+  "task": {
+    "case_name": "bench_a4_03",
+    "view": "wireframe",
+    "task_json": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations_scale_hinted_layout_protected/bench_a4_03/wireframe/task.json",
+    "input_image": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations_scale_hinted_layout_protected/bench_a4_03/wireframe/input.png",
+    "reference_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations_scale_hinted_layout_protected/bench_a4_03/wireframe/reference_scene.json",
+    "evaluation_root": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations_scale_hinted_layout_protected"
+  },
+  "run": {
+    "name": "eval_scale_hinted_longest_span_layout_protected_v1_bench_a4_03_wireframe",
+    "command": [
+      "python3",
+      "/home/yhjoo/projects/OpenFOAM/scripts/run_indoor_stabilized.py",
+      "--backend",
+      "cli",
+      "--model",
+      "gemini-3-flash-preview",
+      "--image",
+      "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations_scale_hinted_layout_protected/bench_a4_03/wireframe/input.png",
+      "--scenario",
+      "Generate a simulation-ready indoor ventilation scene from the provided image. Use the image as the primary cue and infer a solver-friendly abstraction of room shape, openings, and only the largest flow-relevant obstacles. Do not assume hidden geometry beyond what is reasonably supported by the image. Favor simple box obstacles and use two joined room blocks only if the visible layout is clearly non-rectangular. The image is a wireframe benchmark rendering emphasizing structural edges.",
+      "--name",
+      "eval_scale_hinted_longest_span_layout_protected_v1_bench_a4_03_wireframe",
+      "--mesh-size",
+      "0.35",
+      "--end-time",
+      "250",
+      "--solver-timeout",
+      "600",
+      "--scale-hint",
+      "Scale hint: the longest horizontal span of the room is approximately 7.30 m. First infer the room topology, opening-wall placement, and obstacle layout from the image. Then use this number only as a soft global metric anchor for the overall room span and proportionally scale the rest of the geometry. Do not move openings to different walls or collapse a clearly composite room just to satisfy the hinted span. If exact scale agreement conflicts with the image, preserve the image-consistent layout/topology first and treat the hint as approximate."
+    ],
+    "returncode": 0,
+    "started_at": "2026-03-19T07:29:42Z",
+    "finished_at": "2026-03-19T07:30:44Z"
+  },
+  "outputs": {
+    "predicted_scene_json": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations_scale_hinted_layout_protected/bench_a4_03/wireframe/predicted_scene.json",
+    "predicted_case_dir": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations_scale_hinted_layout_protected/bench_a4_03/wireframe/predicted_case",
+    "predicted_results_dir": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations_scale_hinted_layout_protected/bench_a4_03/wireframe/predicted_results",
+    "stabilization_summary": "/home/yhjoo/projects/OpenFOAM/results/eval_scale_hinted_longest_span_layout_protected_v1_bench_a4_03_wireframe/stabilization_summary.json",
+    "cfd_metrics_json": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations_scale_hinted_layout_protected/bench_a4_03/wireframe/cfd_metrics.json"
+  },
+  "reference_summary": {
+    "success": true,
+    "successful_preset": null,
+    "successful_mode": null,
+    "successful_mesh_size": null,
+    "attempt_count": 2,
+    "risk": null,
+    "risk_score": null,
+    "risk_reasons": null
+  },
+  "prediction_summary": {
+    "reference_room_kind": "composite",
+    "predicted_room_kind": "composite",
+    "room_kind_match": true,
+    "reference_room_block_count": 2,
+    "predicted_room_block_count": 2,
+    "reference_room_bbox": {
+      "Lx": 7.2989999999999995,
+      "Ly": 4.514,
+      "Lz": 3.103
+    },
+    "predicted_room_bbox": {
+      "Lx": 7.3,
+      "Ly": 3.0,
+      "Lz": 2.5
+    },
+    "room_bbox_absolute_error": {
+      "Lx": 0.001,
+      "Ly": 1.514,
+      "Lz": 0.603
+    },
+    "room_bbox_relative_error": {
+      "Lx": 0.0001,
+      "Ly": 0.3354,
+      "Lz": 0.1943
+    },
+    "reference_room_volume": 92.7257,
+    "predicted_room_volume": 47.25,
+    "room_volume_relative_error": 0.4904,
+    "room_block_match": {
+      "label": "room_blocks",
+      "iou_match_threshold": 0.2,
+      "matched_pairs": [
+        {
+          "reference_index": 0,
+          "predicted_index": 0,
+          "iou": 0.4848,
+          "center_error_l2": 0.8452,
+          "size_error_l2": 1.6904,
+          "matched_above_threshold": true
+        },
+        {
+          "reference_index": 1,
+          "predicted_index": 1,
+          "iou": 0.448,
+          "center_error_l2": 0.7559,
+          "size_error_l2": 1.5124,
+          "matched_above_threshold": true
+        }
+      ],
+      "mean_iou": 0.4664,
+      "mean_center_error_l2": 0.8005,
+      "mean_size_error_l2": 1.6014,
+      "matched_above_threshold_count": 2,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "unmatched_reference_count": 0,
+      "unmatched_predicted_count": 0
+    },
+    "reference_obstacle_count": 3,
+    "predicted_obstacle_count": 3,
+    "obstacle_count_delta": 0,
+    "obstacle_match": {
+      "label": "obstacles",
+      "iou_match_threshold": 0.1,
+      "matched_pairs": [
+        {
+          "reference_index": 0,
+          "predicted_index": 1,
+          "iou": 0.0841,
+          "center_error_l2": 0.8672,
+          "size_error_l2": 1.247,
+          "matched_above_threshold": false
+        },
+        {
+          "reference_index": 1,
+          "predicted_index": 2,
+          "iou": 0.0984,
+          "center_error_l2": 0.8847,
+          "size_error_l2": 1.1548,
+          "matched_above_threshold": false
+        },
+        {
+          "reference_index": 2,
+          "predicted_index": 0,
+          "iou": 0.0,
+          "center_error_l2": 2.2148,
+          "size_error_l2": 0.8867,
+          "matched_above_threshold": false
+        }
+      ],
+      "mean_iou": 0.0608,
+      "mean_center_error_l2": null,
+      "mean_size_error_l2": null,
+      "matched_above_threshold_count": 0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "unmatched_reference_count": 3,
+      "unmatched_predicted_count": 3
+    },
+    "reference_opening_walls": [
+      "east",
+      "west"
+    ],
+    "predicted_opening_walls": [
+      "east",
+      "west"
+    ],
+    "opening_wall_match": true,
+    "opening_metrics": {
+      "reference_count": 2,
+      "predicted_count": 2,
+      "matched_type_count": 2,
+      "type_precision": 1.0,
+      "type_recall": 1.0,
+      "type_f1": 1.0,
+      "wall_match_ratio": 1.0,
+      "mean_center_error_l2": 1.3726,
+      "mean_size_error_l2": 0.0732,
+      "per_opening": {
+        "inlet": {
+          "present_in_reference": true,
+          "present_in_prediction": true,
+          "wall_match": true,
+          "center_error_l2": 0.87,
+          "size_error_l2": 0.0564
+        },
+        "outlet": {
+          "present_in_reference": true,
+          "present_in_prediction": true,
+          "wall_match": true,
+          "center_error_l2": 1.8753,
+          "size_error_l2": 0.0899
+        }
+      }
+    },
+    "structural_score": 0.75
+  },
+  "cfd_summary": {
+    "ok": true,
+    "grid": {
+      "nx": 18,
+      "ny": 18,
+      "nz": 10,
+      "point_count": 3240,
+      "epsilon": {
+        "x": 0.05,
+        "y": 0.05,
+        "z": 0.08
+      }
+    },
+    "reference": {
+      "scene": "/home/yhjoo/projects/OpenFOAM/benchmark/scenes/a4_03.json",
+      "case": "/home/yhjoo/projects/OpenFOAM/cases/bench_a4_03",
+      "vtk": "/home/yhjoo/projects/OpenFOAM/cases/bench_a4_03/VTK/bench_a4_03_200/internal.vtu",
+      "room_bounds": {
+        "Lx": 7.2989999999999995,
+        "Ly": 4.514,
+        "Lz": 3.103
+      },
+      "valid_count": 2658,
+      "valid_ratio": 0.82037
+    },
+    "predicted": {
+      "scene": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations_scale_hinted_layout_protected/bench_a4_03/wireframe/predicted_scene.json",
+      "case": "/home/yhjoo/projects/OpenFOAM/cases/eval_scale_hinted_longest_span_layout_protected_v1_bench_a4_03_wireframe",
+      "vtk": "/home/yhjoo/projects/OpenFOAM/cases/eval_scale_hinted_longest_span_layout_protected_v1_bench_a4_03_wireframe/VTK/eval_scale_hinted_longest_span_layout_protected_v1_bench_a4_03_wireframe_200/internal.vtu",
+      "room_bounds": {
+        "Lx": 7.3,
+        "Ly": 3.0,
+        "Lz": 2.5
+      },
+      "valid_count": 2672,
+      "valid_ratio": 0.824691
+    },
+    "overlap": {
+      "count": 2410,
+      "ratio_vs_total": 0.743827,
+      "ratio_vs_union": 0.825342,
+      "union_count": 2920
+    },
+    "field_metrics": {
+      "velocity_vector": {
+        "mae_l2": 0.011179,
+        "rmse_l2": 0.048341,
+        "reference_rms": 0.001857,
+        "relative_rmse": 26.028357,
+        "mean_direction_cosine": 0.412436,
+        "direction_comparable_count": 2288
+      },
+      "velocity_magnitude": {
+        "mae": 0.010677,
+        "rmse": 0.04821,
+        "reference_rms": 0.001857,
+        "relative_rmse": 25.957542,
+        "reference_mean": 0.001107,
+        "predicted_mean": 0.011127
+      },
+      "pressure": {
+        "mae": 0.446626,
+        "rmse": 0.446833,
+        "reference_rms": 0.000261,
+        "relative_rmse": 1711.942111,
+        "reference_mean": 0.000261,
+        "predicted_mean": -0.446365
+      }
+    },
+    "aggregate_score": {
+      "cfd_score": 0.38289,
+      "components": {
+        "overlap_ratio_vs_union": 0.825342,
+        "velocity_magnitude_similarity": 0.0,
+        "velocity_direction_similarity": 0.706218,
+        "pressure_similarity": 0.0
+      }
+    },
+    "runner": {
+      "command": [
+        "docker",
+        "run",
+        "--rm",
+        "-v",
+        "/home/yhjoo/projects/OpenFOAM:/home/yhjoo/projects/OpenFOAM",
+        "-w",
+        "/home/yhjoo/projects/OpenFOAM",
+        "openfoam-pipeline-local:latest",
+        "python3",
+        "/home/yhjoo/projects/OpenFOAM/scripts/compute_benchmark_cfd_metrics.py",
+        "--reference-scene",
+        "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations_scale_hinted_layout_protected/bench_a4_03/wireframe/reference_scene.json",
+        "--reference-case",
+        "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations_scale_hinted_layout_protected/bench_a4_03/wireframe/reference_case",
+        "--predicted-scene",
+        "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations_scale_hinted_layout_protected/bench_a4_03/wireframe/predicted_scene.json",
+        "--predicted-case",
+        "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations_scale_hinted_layout_protected/bench_a4_03/wireframe/predicted_case",
+        "--output",
+        "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations_scale_hinted_layout_protected/bench_a4_03/wireframe/cfd_metrics.json"
+      ],
+      "returncode": 0,
+      "stdout_tail": "      \"mean_direction_cosine\": 0.412436,\n      \"direction_comparable_count\": 2288\n    },\n    \"velocity_magnitude\": {\n      \"mae\": 0.010677,\n      \"rmse\": 0.04821,\n      \"reference_rms\": 0.001857,\n      \"relative_rmse\": 25.957542,\n      \"reference_mean\": 0.001107,\n      \"predicted_mean\": 0.011127\n    },\n    \"pressure\": {\n      \"mae\": 0.446626,\n      \"rmse\": 0.446833,\n      \"reference_rms\": 0.000261,\n      \"relative_rmse\": 1711.942111,\n      \"reference_mean\": 0.000261,\n      \"predicted_mean\": -0.446365\n    }\n  },\n  \"aggregate_score\": {\n    \"cfd_score\": 0.38289,\n    \"components\": {\n      \"overlap_ratio_vs_union\": 0.825342,\n      \"velocity_magnitude_similarity\": 0.0,\n      \"velocity_direction_similarity\": 0.706218,\n      \"pressure_similarity\": 0.0\n    }\n  }\n}",
+      "stderr_tail": ""
+    }
+  },
+  "pipeline_summary": {
+    "name": "eval_scale_hinted_longest_span_layout_protected_v1_bench_a4_03_wireframe",
+    "input_source_type": "image",
+    "requested_backend": "cli",
+    "requested_model": "gemini-3-flash-preview",
+    "input_images": [
+      "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations_scale_hinted_layout_protected/bench_a4_03/wireframe/input.png"
+    ],
+    "scale_hint": "Scale hint: the longest horizontal span of the room is approximately 7.30 m. First infer the room topology, opening-wall placement, and obstacle layout from the image. Then use this number only as a soft global metric anchor for the overall room span and proportionally scale the rest of the geometry. Do not move openings to different walls or collapse a clearly composite room just to satisfy the hinted span. If exact scale agreement conflicts with the image, preserve the image-consistent layout/topology first and treat the hint as approximate.",
+    "scene_json": "/home/yhjoo/projects/OpenFOAM/generated/eval_scale_hinted_longest_span_layout_protected_v1_bench_a4_03_wireframe.json",
+    "repaired_scene_json": "/home/yhjoo/projects/OpenFOAM/generated/eval_scale_hinted_longest_span_layout_protected_v1_bench_a4_03_wireframe_repaired.json",
+    "used_scene_json": "/home/yhjoo/projects/OpenFOAM/generated/eval_scale_hinted_longest_span_layout_protected_v1_bench_a4_03_wireframe.json",
+    "msh": "/home/yhjoo/projects/OpenFOAM/generated/eval_scale_hinted_longest_span_layout_protected_v1_bench_a4_03_wireframe.msh",
+    "case_dir": "/home/yhjoo/projects/OpenFOAM/cases/eval_scale_hinted_longest_span_layout_protected_v1_bench_a4_03_wireframe",
+    "generation_summary": {
+      "ok": true,
+      "errors": [],
+      "warnings": [],
+      "output": "/home/yhjoo/projects/OpenFOAM/generated/eval_scale_hinted_longest_span_layout_protected_v1_bench_a4_03_wireframe.json",
+      "backend": "cli",
+      "model": "gemini-3-flash-preview",
+      "requested_model": "gemini-3-flash-preview",
+      "fallback_used": false,
+      "fallback_notice": null,
+      "primary_model_retry_limit": 5,
+      "generation_history": [
+        {
+          "model": "gemini-3-flash-preview",
+          "attempt": 1,
+          "ok": true
+        }
+      ],
+      "scenario": "Generate a simulation-ready indoor ventilation scene from the provided image. Use the image as the primary cue and infer a solver-friendly abstraction of room shape, openings, and only the largest flow-relevant obstacles. Do not assume hidden geometry beyond what is reasonably supported by the image. Favor simple box obstacles and use two joined room blocks only if the visible layout is clearly non-rectangular. The image is a wireframe benchmark rendering emphasizing structural edges.",
+      "scale_hint": "Scale hint: the longest horizontal span of the room is approximately 7.30 m. First infer the room topology, opening-wall placement, and obstacle layout from the image. Then use this number only as a soft global metric anchor for the overall room span and proportionally scale the rest of the geometry. Do not move openings to different walls or collapse a clearly composite room just to satisfy the hinted span. If exact scale agreement conflicts with the image, preserve the image-consistent layout/topology first and treat the hint as approximate.",
+      "applied_scale_factor": 1.0,
+      "images": [
+        "/home/yhjoo/projects/OpenFOAM/benchmark/renderings/bench_a4_03/wireframe/bench_a4_03_wireframe.png"
+      ]
+    },
+    "repair_info": null,
+    "attempts": [
+      {
+        "scene_variant": "original",
+        "scene_json": "/home/yhjoo/projects/OpenFOAM/generated/eval_scale_hinted_longest_span_layout_protected_v1_bench_a4_03_wireframe.json",
+        "mesh_size": 0.35,
+        "preset": "robust",
+        "mode": "RAS",
+        "returncode": 0,
+        "reason": "completed",
+        "failure_family": null,
+        "failure_hints": [],
+        "mesh_risk_level": "high",
+        "mesh_risk_score": 8,
+        "mesh_risk_reasons": [
+          "defaultFaces=2622",
+          "maxNonOrtho=85.82>85",
+          "severeNonOrthoFaces=16",
+          "aspectRatio=33.14>20"
+        ],
+        "default_faces": 2622,
+        "checkmesh": {
+          "max_non_ortho": 85.824727,
+          "avg_non_ortho": 22.261421,
+          "severe_non_ortho_faces": 16,
+          "max_aspect_ratio": 33.138017,
+          "max_skewness": 0.82539244,
+          "mesh_ok": true
+        },
+        "log": "/home/yhjoo/projects/OpenFOAM/results/eval_scale_hinted_longest_span_layout_protected_v1_bench_a4_03_wireframe/log.simpleFoam_original_mesh0p35_robust.txt"
+      }
+    ],
+    "success": true,
+    "successful_preset": "robust",
+    "successful_mode": "RAS",
+    "successful_mesh_size": 0.35,
+    "successful_scene_variant": "original",
+    "compass_version": "2026-03-15_openfoam_solver_stabilization_compass"
+  },
+  "stdout_tail": "  },\\n  \"repair_info\": null,\\n  \"attempts\": [\\n    {\\n      \"scene_variant\": \"original\",\\n      \"scene_json\": \"/home/yhjoo/projects/OpenFOAM/generated/eval_scale_hinted_longest_span_layout_protected_v1_bench_a4_03_wireframe.json\",\\n      \"mesh_size\": 0.35,\\n      \"preset\": \"robust\",\\n      \"mode\": \"RAS\",\\n      \"returncode\": 0,\\n      \"reason\": \"completed\",\\n      \"failure_family\": null,\\n      \"failure_hints\": [],\\n      \"mesh_risk_level\": \"high\",\\n      \"mesh_risk_score\": 8,\\n      \"mesh_risk_reasons\": [\\n        \"defaultFaces=2622\",\\n        \"maxNonOrtho=85.82>85\",\\n        \"severeNonOrthoFaces=16\",\\n        \"aspectRatio=33.14>20\"\\n      ],\\n      \"default_faces\": 2622,\\n      \"checkmesh\": {\\n        \"max_non_ortho\": 85.824727,\\n        \"avg_non_ortho\": 22.261421,\\n        \"severe_non_ortho_faces\": 16,\\n        \"max_aspect_ratio\": 33.138017,\\n        \"max_skewness\": 0.82539244,\\n        \"mesh_ok\": true\\n      },\\n      \"log\": \"/home/yhjoo/projects/OpenFOAM/results/eval_scale_hinted_longest_span_layout_protected_v1_bench_a4_03_wireframe/log.simpleFoam_original_mesh0p35_robust.txt\"\\n    }\\n  ],\\n  \"success\": true,\\n  \"successful_preset\": \"robust\",\\n  \"successful_mode\": \"RAS\",\\n  \"successful_mesh_size\": 0.35,\\n  \"successful_scene_variant\": \"original\",\\n  \"compass_version\": \"2026-03-15_openfoam_solver_stabilization_compass\"\\n}",
+  "stderr_tail": ""
+}

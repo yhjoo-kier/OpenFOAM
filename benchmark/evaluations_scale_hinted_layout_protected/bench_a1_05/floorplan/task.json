@@ -1,0 +1,40 @@
+{
+  "case_name": "bench_a1_05",
+  "setting": "scale_hinted_longest_span_layout_protected_v1",
+  "category": "A1",
+  "variant_index": 5,
+  "room_kind": "rectangular",
+  "obstacle_count": 1,
+  "view": "floorplan",
+  "status": "pending",
+  "input_image": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations_scale_hinted_layout_protected/bench_a1_05/floorplan/input.png",
+  "reference_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations_scale_hinted_layout_protected/bench_a1_05/floorplan/reference_scene.json",
+  "reference_case": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations_scale_hinted_layout_protected/bench_a1_05/floorplan/reference_case",
+  "reference_results": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations_scale_hinted_layout_protected/bench_a1_05/floorplan/reference_results",
+  "expected_outputs": {
+    "predicted_scene_json": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations_scale_hinted_layout_protected/bench_a1_05/floorplan/predicted_scene.json",
+    "predicted_case_dir": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations_scale_hinted_layout_protected/bench_a1_05/floorplan/predicted_case",
+    "predicted_results_dir": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations_scale_hinted_layout_protected/bench_a1_05/floorplan/predicted_results",
+    "evaluation_summary_json": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations_scale_hinted_layout_protected/bench_a1_05/floorplan/evaluation_summary.json"
+  },
+  "reference_summary": {
+    "success": true,
+    "successful_preset": null,
+    "successful_mode": null,
+    "successful_mesh_size": null,
+    "attempt_count": 1,
+    "risk": null,
+    "risk_score": null,
+    "risk_reasons": null
+  },
+  "scale_hint": {
+    "kind": "longest_horizontal_span_layout_protected",
+    "axis": "x",
+    "span_m": 5.811,
+    "room_height_m": 2.968,
+    "room_kind": "rectangular",
+    "setting": "scale_hinted_longest_span_layout_protected_v1",
+    "source_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/scenes/a1_05.json",
+    "prompt_text": "Scale hint: the longest horizontal span of the room is approximately 5.81 m. First infer the room topology, opening-wall placement, and obstacle layout from the image. Then use this number only as a soft global metric anchor for the overall room span and proportionally scale the rest of the geometry. Do not move openings to different walls or collapse a clearly composite room just to satisfy the hinted span. If exact scale agreement conflicts with the image, preserve the image-consistent layout/topology first and treat the hint as approximate."
+  }
+}

@@ -1,0 +1,93 @@
+{
+  "schema_version": "indoor_cfd_scene_v1",
+  "units": "m",
+  "coordinate_system": {
+    "origin": "room_min_corner",
+    "x": "west_to_east",
+    "y": "south_to_north",
+    "z": "floor_to_ceiling"
+  },
+  "room": {
+    "size": {
+      "Lx": 6.67,
+      "Ly": 4.0,
+      "Lz": 2.66
+    }
+  },
+  "obstacles": [
+    {
+      "id": "obs_main_block",
+      "type": "box",
+      "min": {
+        "x": 2.1,
+        "y": 1.3,
+        "z": 0.0
+      },
+      "size": {
+        "dx": 1.4,
+        "dy": 1.4,
+        "dz": 1.4
+      }
+    },
+    {
+      "id": "obs_corner_sw",
+      "type": "box",
+      "min": {
+        "x": 0.1,
+        "y": 0.1,
+        "z": 0.0
+      },
+      "size": {
+        "dx": 0.3,
+        "dy": 0.3,
+        "dz": 0.8
+      }
+    },
+    {
+      "id": "obs_corner_ne",
+      "type": "box",
+      "min": {
+        "x": 6.27,
+        "y": 3.6,
+        "z": 0.0
+      },
+      "size": {
+        "dx": 0.3,
+        "dy": 0.3,
+        "dz": 0.8
+      }
+    }
+  ],
+  "openings": [
+    {
+      "id": "inlet_001",
+      "type": "inlet",
+      "wall": "west",
+      "center": {
+        "u": 2.0,
+        "v": 1.7
+      },
+      "size": {
+        "du": 0.5,
+        "dv": 0.4
+      }
+    },
+    {
+      "id": "outlet_001",
+      "type": "outlet",
+      "wall": "north",
+      "center": {
+        "u": 4.8,
+        "v": 1.7
+      },
+      "size": {
+        "du": 0.5,
+        "dv": 0.4
+      }
+    }
+  ],
+  "meta": {
+    "scene_type": "ventilated_room_with_central_obstacle",
+    "description": "A rectangular room featuring a large central cubic obstacle, a west-wall inlet, and a north-wall outlet, sized according to benchmark scale hints."
+  }
+}

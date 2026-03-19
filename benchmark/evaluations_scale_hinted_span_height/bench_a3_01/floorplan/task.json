@@ -1,0 +1,40 @@
+{
+  "case_name": "bench_a3_01",
+  "setting": "scale_hinted_longest_span_plus_height_v1",
+  "category": "A3",
+  "variant_index": 1,
+  "room_kind": "composite",
+  "obstacle_count": 0,
+  "view": "floorplan",
+  "status": "pending",
+  "input_image": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations_scale_hinted_span_height/bench_a3_01/floorplan/input.png",
+  "reference_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations_scale_hinted_span_height/bench_a3_01/floorplan/reference_scene.json",
+  "reference_case": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations_scale_hinted_span_height/bench_a3_01/floorplan/reference_case",
+  "reference_results": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations_scale_hinted_span_height/bench_a3_01/floorplan/reference_results",
+  "expected_outputs": {
+    "predicted_scene_json": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations_scale_hinted_span_height/bench_a3_01/floorplan/predicted_scene.json",
+    "predicted_case_dir": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations_scale_hinted_span_height/bench_a3_01/floorplan/predicted_case",
+    "predicted_results_dir": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations_scale_hinted_span_height/bench_a3_01/floorplan/predicted_results",
+    "evaluation_summary_json": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations_scale_hinted_span_height/bench_a3_01/floorplan/evaluation_summary.json"
+  },
+  "reference_summary": {
+    "success": true,
+    "successful_preset": null,
+    "successful_mode": null,
+    "successful_mesh_size": null,
+    "attempt_count": 1,
+    "risk": null,
+    "risk_score": null,
+    "risk_reasons": null
+  },
+  "scale_hint": {
+    "kind": "longest_horizontal_span_plus_room_height",
+    "axis": "x",
+    "span_m": 8.741,
+    "room_height_m": 3.173,
+    "room_kind": "composite",
+    "setting": "scale_hinted_longest_span_plus_height_v1",
+    "source_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/scenes/a3_01.json",
+    "prompt_text": "Scale hint: the longest horizontal span of the room is approximately 8.74 m, and the ceiling height is approximately 3.17 m. Use the span as the primary global metric anchor, and keep the ceiling height close to the hinted value when choosing room dimensions, opening sizes, and obstacle sizes. Preserve the qualitative layout from the image instead of treating these hints as an exact full bounding box."
+  }
+}

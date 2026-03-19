@@ -1,0 +1,86 @@
+{
+  "schema_version": "indoor_cfd_scene_v1",
+  "units": "m",
+  "coordinate_system": {
+    "origin": "room_min_corner",
+    "x": "west_to_east",
+    "y": "south_to_north",
+    "z": "floor_to_ceiling"
+  },
+  "room": {
+    "blocks": [
+      {
+        "origin": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "size": {
+          "dx": 5.12,
+          "dy": 4.0,
+          "dz": 2.79
+        }
+      },
+      {
+        "origin": {
+          "x": 5.12,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "size": {
+          "dx": 3.5,
+          "dy": 2.0,
+          "dz": 2.79
+        }
+      }
+    ]
+  },
+  "obstacles": [
+    {
+      "id": "obs_001",
+      "type": "box",
+      "min": {
+        "x": 6.3,
+        "y": 0.6,
+        "z": 0.0
+      },
+      "size": {
+        "dx": 1.2,
+        "dy": 0.8,
+        "dz": 1.0
+      }
+    }
+  ],
+  "openings": [
+    {
+      "id": "inlet_001",
+      "type": "inlet",
+      "wall": "south",
+      "center": {
+        "u": 7.0,
+        "v": 0.4
+      },
+      "size": {
+        "du": 0.8,
+        "dv": 0.2
+      }
+    },
+    {
+      "id": "outlet_001",
+      "type": "outlet",
+      "wall": "east",
+      "center": {
+        "u": 1.0,
+        "v": 1.4
+      },
+      "size": {
+        "du": 0.4,
+        "dv": 0.4
+      }
+    }
+  ],
+  "meta": {
+    "scene_type": "l_shaped_stepped_room",
+    "description": "A two-block rectangular room configuration forming an L-shape. The smaller leg contains a central box obstacle and ventilation ports on the southern and eastern outer walls."
+  }
+}

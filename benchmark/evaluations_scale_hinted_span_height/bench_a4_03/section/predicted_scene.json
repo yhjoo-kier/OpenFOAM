@@ -1,0 +1,114 @@
+{
+  "schema_version": "indoor_cfd_scene_v1",
+  "units": "m",
+  "coordinate_system": {
+    "origin": "room_min_corner",
+    "x": "west_to_east",
+    "y": "south_to_north",
+    "z": "floor_to_ceiling"
+  },
+  "room": {
+    "blocks": [
+      {
+        "origin": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "size": {
+          "dx": 4.8,
+          "dy": 4.5,
+          "dz": 3.1
+        }
+      },
+      {
+        "origin": {
+          "x": 4.8,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "size": {
+          "dx": 2.5,
+          "dy": 3.2,
+          "dz": 3.1
+        }
+      }
+    ]
+  },
+  "obstacles": [
+    {
+      "id": "obs_001",
+      "type": "box",
+      "min": {
+        "x": 3.1,
+        "y": 0.5,
+        "z": 0.0
+      },
+      "size": {
+        "dx": 1.2,
+        "dy": 3.5,
+        "dz": 1.8
+      }
+    },
+    {
+      "id": "obs_002",
+      "type": "box",
+      "min": {
+        "x": 5.6,
+        "y": 0.4,
+        "z": 0.0
+      },
+      "size": {
+        "dx": 1.0,
+        "dy": 2.4,
+        "dz": 2.1
+      }
+    },
+    {
+      "id": "obs_003",
+      "type": "box",
+      "min": {
+        "x": 0.5,
+        "y": 0.5,
+        "z": 0.0
+      },
+      "size": {
+        "dx": 1.0,
+        "dy": 1.0,
+        "dz": 0.4
+      }
+    }
+  ],
+  "openings": [
+    {
+      "id": "inlet_001",
+      "type": "inlet",
+      "wall": "west",
+      "center": {
+        "u": 2.25,
+        "v": 1.55
+      },
+      "size": {
+        "du": 0.6,
+        "dv": 0.6
+      }
+    },
+    {
+      "id": "outlet_001",
+      "type": "outlet",
+      "wall": "east",
+      "center": {
+        "u": 1.6,
+        "v": 1.55
+      },
+      "size": {
+        "du": 0.6,
+        "dv": 0.6
+      }
+    }
+  ],
+  "meta": {
+    "scene_type": "two_block_partitioned_workspace",
+    "description": "Indoor ventilation scene with a joined two-block room layout. The larger western block contains two obstacles, while the eastern recessed block features one central tall obstacle, approximating the benchmark section view."
+  }
+}

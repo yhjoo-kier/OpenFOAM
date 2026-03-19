@@ -1,0 +1,93 @@
+{
+  "schema_version": "indoor_cfd_scene_v1",
+  "units": "m",
+  "coordinate_system": {
+    "origin": "room_min_corner",
+    "x": "west_to_east",
+    "y": "south_to_north",
+    "z": "floor_to_ceiling"
+  },
+  "room": {
+    "size": {
+      "Lx": 6.55,
+      "Ly": 2.4,
+      "Lz": 2.5
+    }
+  },
+  "obstacles": [
+    {
+      "id": "obs_001",
+      "type": "box",
+      "min": {
+        "x": 1.4,
+        "y": 0.8,
+        "z": 0.0
+      },
+      "size": {
+        "dx": 0.7,
+        "dy": 0.8,
+        "dz": 1.6
+      }
+    },
+    {
+      "id": "obs_002",
+      "type": "box",
+      "min": {
+        "x": 3.4,
+        "y": 0.2,
+        "z": 0.0
+      },
+      "size": {
+        "dx": 1.0,
+        "dy": 1.0,
+        "dz": 0.9
+      }
+    },
+    {
+      "id": "obs_003",
+      "type": "box",
+      "min": {
+        "x": 5.1,
+        "y": 1.1,
+        "z": 0.0
+      },
+      "size": {
+        "dx": 0.8,
+        "dy": 0.8,
+        "dz": 1.2
+      }
+    }
+  ],
+  "openings": [
+    {
+      "id": "inlet_001",
+      "type": "inlet",
+      "wall": "west",
+      "center": {
+        "u": 1.2,
+        "v": 0.7
+      },
+      "size": {
+        "du": 0.5,
+        "dv": 0.3
+      }
+    },
+    {
+      "id": "outlet_001",
+      "type": "outlet",
+      "wall": "east",
+      "center": {
+        "u": 1.2,
+        "v": 0.7
+      },
+      "size": {
+        "du": 0.5,
+        "dv": 0.3
+      }
+    }
+  ],
+  "meta": {
+    "scene_type": "long_room_staggered_obstacles",
+    "description": "An elongated rectangular room featuring three staggered box obstacles of varying heights. Flow is driven by an inlet on the west wall and an outlet on the east wall, both positioned at a low-to-mid height."
+  }
+}

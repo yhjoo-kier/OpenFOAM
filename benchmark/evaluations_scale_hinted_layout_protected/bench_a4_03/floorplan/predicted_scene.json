@@ -1,0 +1,114 @@
+{
+  "schema_version": "indoor_cfd_scene_v1",
+  "units": "m",
+  "coordinate_system": {
+    "origin": "room_min_corner",
+    "x": "west_to_east",
+    "y": "south_to_north",
+    "z": "floor_to_ceiling"
+  },
+  "room": {
+    "blocks": [
+      {
+        "origin": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "size": {
+          "dx": 4.5,
+          "dy": 4.0,
+          "dz": 3.0
+        }
+      },
+      {
+        "origin": {
+          "x": 4.5,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "size": {
+          "dx": 2.8,
+          "dy": 2.5,
+          "dz": 3.0
+        }
+      }
+    ]
+  },
+  "obstacles": [
+    {
+      "id": "obs_001",
+      "type": "box",
+      "min": {
+        "x": 1.2,
+        "y": 2.5,
+        "z": 0.0
+      },
+      "size": {
+        "dx": 1.2,
+        "dy": 1.0,
+        "dz": 1.5
+      }
+    },
+    {
+      "id": "obs_002",
+      "type": "box",
+      "min": {
+        "x": 2.5,
+        "y": 0.5,
+        "z": 0.0
+      },
+      "size": {
+        "dx": 1.0,
+        "dy": 1.2,
+        "dz": 1.5
+      }
+    },
+    {
+      "id": "obs_003",
+      "type": "box",
+      "min": {
+        "x": 4.9,
+        "y": 0.6,
+        "z": 0.0
+      },
+      "size": {
+        "dx": 0.9,
+        "dy": 1.1,
+        "dz": 1.5
+      }
+    }
+  ],
+  "openings": [
+    {
+      "id": "inlet_001",
+      "type": "inlet",
+      "wall": "west",
+      "center": {
+        "u": 0.8,
+        "v": 1.5
+      },
+      "size": {
+        "du": 0.4,
+        "dv": 0.6
+      }
+    },
+    {
+      "id": "outlet_001",
+      "type": "outlet",
+      "wall": "east",
+      "center": {
+        "u": 1.25,
+        "v": 1.5
+      },
+      "size": {
+        "du": 0.4,
+        "dv": 0.6
+      }
+    }
+  ],
+  "meta": {
+    "scene_type": "indoor_ventilation",
+    "description": "Composite L-shaped room with two joined blocks, featuring three large box obstacles and a cross-flow ventilation layout between west and east walls."
+  }
+}

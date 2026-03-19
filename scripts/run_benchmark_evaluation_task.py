@@ -27,6 +27,7 @@ DEFAULT_TASK = EVALUATIONS / "bench_a1_01" / "perspective" / "task.json"
 DEFAULT_SETTING = "no_scale_hint_baseline"
 SCALE_HINTED_SETTING = "scale_hinted_longest_horizontal_span_v1"
 SCALE_HINTED_DUAL_SETTING = "scale_hinted_longest_span_plus_height_v1"
+SCALE_HINTED_LAYOUT_PROTECTED_SETTING = "scale_hinted_longest_span_layout_protected_v1"
 
 
 def utc_now() -> str:
@@ -120,6 +121,8 @@ def default_setting_for_root(evaluation_root: Path) -> str:
     root_name = evaluation_root.name
     if "span_height" in root_name or "dual" in root_name:
         return SCALE_HINTED_DUAL_SETTING
+    if "layout_protected" in root_name:
+        return SCALE_HINTED_LAYOUT_PROTECTED_SETTING
     if "scale_hint" in root_name:
         return SCALE_HINTED_SETTING
     return DEFAULT_SETTING
@@ -138,6 +141,15 @@ def compute_scale_hint(reference_scene_path: Path, setting: str = SCALE_HINTED_S
             f"and the ceiling height is approximately {height:.2f} m. "
             "Use the span as the primary global metric anchor, and keep the ceiling height close to the hinted value when choosing room dimensions, opening sizes, and obstacle sizes. "
             "Preserve the qualitative layout from the image instead of treating these hints as an exact full bounding box."
+        )
+    elif setting == SCALE_HINTED_LAYOUT_PROTECTED_SETTING:
+        kind = "longest_horizontal_span_layout_protected"
+        prompt_text = (
+            f"Scale hint: the longest horizontal span of the room is approximately {span:.2f} m. "
+            "First infer the room topology, opening-wall placement, and obstacle layout from the image. "
+            "Then use this number only as a soft global metric anchor for the overall room span and proportionally scale the rest of the geometry. "
+            "Do not move openings to different walls or collapse a clearly composite room just to satisfy the hinted span. "
+            "If exact scale agreement conflicts with the image, preserve the image-consistent layout/topology first and treat the hint as approximate."
         )
     else:
         kind = "longest_horizontal_span"
@@ -450,6 +462,8 @@ def refresh_evaluation_index(evaluation_root: Path) -> None:
                 "category": task.get("category"),
                 "room_kind": task.get("room_kind"),
                 "obstacle_count": task.get("obstacle_count"),
+                "setting": task.get("setting") or default_setting_for_root(evaluation_root),
+                "scale_hint": task.get("scale_hint"),
                 "views": [],
                 "reference_scene": task.get("reference_scene"),
                 "reference_case": task.get("reference_case"),
@@ -471,17 +485,19 @@ def refresh_evaluation_index(evaluation_root: Path) -> None:
         case_summaries.append(entry)
         write_json(Path(entry["case_root"]) / "manifest.json", entry)
 
+    setting = default_setting_for_root(evaluation_root)
     summary = {
         "ok": True,
         "benchmark_root": str(BENCHMARK),
         "evaluation_root": str(evaluation_root),
+        "setting": setting,
         "views": ["perspective", "birdseye", "floorplan", "wireframe", "section"],
         "case_count": len(case_summaries),
         "task_count": len(tasks),
         "status_counts": dict(status_counts),
         "cases": case_summaries,
     }
-    manifest = {"ok": True, "cases": case_summaries, "tasks": tasks}
+    manifest = {"ok": True, "setting": setting, "cases": case_summaries, "tasks": tasks}
     write_json(evaluation_root / "summary.json", summary)
     write_json(evaluation_root / "manifest.json", manifest)
 

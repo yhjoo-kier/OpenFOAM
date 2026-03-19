@@ -32,6 +32,7 @@ EVALUATIONS = BENCHMARK / "evaluations"
 DEFAULT_SETTING = "no_scale_hint_baseline"
 SCALE_HINTED_SETTING = "scale_hinted_longest_horizontal_span_v1"
 SCALE_HINTED_DUAL_SETTING = "scale_hinted_longest_span_plus_height_v1"
+SCALE_HINTED_LAYOUT_PROTECTED_SETTING = "scale_hinted_longest_span_layout_protected_v1"
 
 SCENE_MANIFEST = MANIFESTS / "scene_manifest.json"
 DEFAULT_REFERENCE_STATUS = MANIFESTS / "reference_batch_summary.json"
@@ -102,6 +103,15 @@ def compute_scale_hint(scene_path: Path, room_kind: str, setting: str) -> dict[s
             "Use the span as the primary global metric anchor, and keep the ceiling height close to the hinted value when choosing room dimensions, opening sizes, and obstacle sizes. "
             "Preserve the qualitative layout from the image instead of treating these hints as an exact full bounding box."
         )
+    elif setting == SCALE_HINTED_LAYOUT_PROTECTED_SETTING:
+        kind = "longest_horizontal_span_layout_protected"
+        prompt_text = (
+            f"Scale hint: the longest horizontal span of the room is approximately {span:.2f} m. "
+            "First infer the room topology, opening-wall placement, and obstacle layout from the image. "
+            "Then use this number only as a soft global metric anchor for the overall room span and proportionally scale the rest of the geometry. "
+            "Do not move openings to different walls or collapse a clearly composite room just to satisfy the hinted span. "
+            "If exact scale agreement conflicts with the image, preserve the image-consistent layout/topology first and treat the hint as approximate."
+        )
     else:
         kind = "longest_horizontal_span"
         prompt_text = (
@@ -127,7 +137,7 @@ def main() -> int:
     parser.add_argument("--reference-status", type=Path, default=DEFAULT_REFERENCE_STATUS)
     parser.add_argument("--renderings-manifest", type=Path, default=RENDERINGS_MANIFEST)
     parser.add_argument("--evaluation-root", type=Path, default=EVALUATIONS)
-    parser.add_argument("--setting", choices=[DEFAULT_SETTING, SCALE_HINTED_SETTING, SCALE_HINTED_DUAL_SETTING], default=DEFAULT_SETTING)
+    parser.add_argument("--setting", choices=[DEFAULT_SETTING, SCALE_HINTED_SETTING, SCALE_HINTED_DUAL_SETTING, SCALE_HINTED_LAYOUT_PROTECTED_SETTING], default=DEFAULT_SETTING)
     args = parser.parse_args()
 
     scene_rows = load_json(args.scene_manifest)

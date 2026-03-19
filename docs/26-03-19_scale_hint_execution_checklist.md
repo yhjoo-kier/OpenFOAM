@@ -81,6 +81,8 @@
 - [x] geometry/CFD/room bbox error가 baseline 대비 어떤 방향으로 바뀌는지 확인
 - [x] prompt wording / hint formulation의 1차 수정 필요 여부 판단
   - 메모: partial smoke 기준 longest-span only는 `Lx` 오차 완화에는 유효하지만 CFD 개선은 mixed하여 `ceiling height` 보강안 검토를 유지
+- [x] layout/topology 보호 문구를 포함한 redesign variant(`layout-protected span-only`) smoke 검증
+  - 결과: 20/20 success, `Lx` 개선은 유지하면서 CFD penalty를 single/dual 대비 줄였지만 baseline 대비 완전 회복은 아니어서 full rerun main setting 승격은 보류
 
 ---
 
@@ -112,6 +114,7 @@
   - [x] opening-wall match
 - [x] scale hint가 실제로 geometry scale mismatch를 줄였는지 결론 정리
 - [x] 결과를 문서화한 비교 note 작성
+  - 산출물: `26-03-19_scale_hint_variant_smoke_comparison.md`, `26-03-19_scale_hint_layout_protected_smoke_comparison.md`
 
 ---
 
@@ -138,4 +141,4 @@
 - 현재 figure 생산 cron은 중단된 상태다.
 - figure 작업은 scale-hinted evaluation의 방향이 확인된 뒤 재개한다.
 - 기존 100/100 evaluation은 버리지 말고 baseline artifact로 유지한다.
-존 100/100 evaluation은 버리지 말고 baseline artifact로 유지한다.
+- 현재 best redesign candidate는 `layout-protected span-only`이지만, frozen-20 full rerun 승격 전 추가 후속 점검이 필요하다.

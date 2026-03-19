@@ -3,6 +3,16 @@
   "category": "A3",
   "room_kind": "composite",
   "obstacle_count": 1,
+  "setting": "scale_hinted_longest_horizontal_span_v1",
+  "scale_hint": {
+    "kind": "longest_horizontal_span",
+    "axis": "x",
+    "span_m": 7.459,
+    "room_height_m": 2.828,
+    "room_kind": "composite",
+    "source_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/scenes/a3_05.json",
+    "prompt_text": "Scale hint: the longest horizontal span of the room is approximately 7.46 m. Use this as a global metric anchor when choosing room dimensions, opening sizes, and obstacle sizes. Preserve the qualitative layout from the image instead of treating this hint as an exact full bounding box."
+  },
   "views": [
     "birdseye",
     "floorplan",

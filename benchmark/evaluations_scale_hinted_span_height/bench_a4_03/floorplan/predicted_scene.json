@@ -1,0 +1,114 @@
+{
+  "schema_version": "indoor_cfd_scene_v1",
+  "units": "m",
+  "coordinate_system": {
+    "origin": "room_min_corner",
+    "x": "west_to_east",
+    "y": "south_to_north",
+    "z": "floor_to_ceiling"
+  },
+  "room": {
+    "blocks": [
+      {
+        "origin": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "size": {
+          "dx": 4.38,
+          "dy": 4.5,
+          "dz": 3.1
+        }
+      },
+      {
+        "origin": {
+          "x": 4.38,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "size": {
+          "dx": 2.92,
+          "dy": 3.0,
+          "dz": 3.1
+        }
+      }
+    ]
+  },
+  "obstacles": [
+    {
+      "id": "obs_001",
+      "type": "box",
+      "min": {
+        "x": 1.2,
+        "y": 3.0,
+        "z": 0.0
+      },
+      "size": {
+        "dx": 1.2,
+        "dy": 1.0,
+        "dz": 1.5
+      }
+    },
+    {
+      "id": "obs_002",
+      "type": "box",
+      "min": {
+        "x": 2.5,
+        "y": 0.8,
+        "z": 0.0
+      },
+      "size": {
+        "dx": 1.0,
+        "dy": 1.2,
+        "dz": 1.5
+      }
+    },
+    {
+      "id": "obs_003",
+      "type": "box",
+      "min": {
+        "x": 4.8,
+        "y": 0.9,
+        "z": 0.0
+      },
+      "size": {
+        "dx": 0.9,
+        "dy": 1.1,
+        "dz": 1.5
+      }
+    }
+  ],
+  "openings": [
+    {
+      "id": "inlet_001",
+      "type": "inlet",
+      "wall": "west",
+      "center": {
+        "u": 1.2,
+        "v": 1.5
+      },
+      "size": {
+        "du": 0.5,
+        "dv": 0.6
+      }
+    },
+    {
+      "id": "outlet_001",
+      "type": "outlet",
+      "wall": "east",
+      "center": {
+        "u": 2.0,
+        "v": 1.5
+      },
+      "size": {
+        "du": 0.5,
+        "dv": 0.6
+      }
+    }
+  ],
+  "meta": {
+    "scene_type": "l_shaped_room_with_obstacles",
+    "description": "An L-shaped ventilation scene with two joined blocks, three central obstacles, a west-wall inlet, and an east-wall outlet."
+  }
+}

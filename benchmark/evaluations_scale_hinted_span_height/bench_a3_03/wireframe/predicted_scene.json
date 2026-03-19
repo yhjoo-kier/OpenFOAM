@@ -1,0 +1,114 @@
+{
+  "schema_version": "indoor_cfd_scene_v1",
+  "units": "m",
+  "coordinate_system": {
+    "origin": "room_min_corner",
+    "x": "west_to_east",
+    "y": "south_to_north",
+    "z": "floor_to_ceiling"
+  },
+  "room": {
+    "blocks": [
+      {
+        "origin": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "size": {
+          "dx": 5.6,
+          "dy": 4.0,
+          "dz": 2.79
+        }
+      },
+      {
+        "origin": {
+          "x": 5.6,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "size": {
+          "dx": 3.02,
+          "dy": 2.0,
+          "dz": 2.79
+        }
+      }
+    ]
+  },
+  "obstacles": [
+    {
+      "id": "obs_001",
+      "type": "box",
+      "min": {
+        "x": 6.5,
+        "y": 0.5,
+        "z": 0.0
+      },
+      "size": {
+        "dx": 1.2,
+        "dy": 1.0,
+        "dz": 0.5
+      }
+    },
+    {
+      "id": "obs_002",
+      "type": "box",
+      "min": {
+        "x": 1.0,
+        "y": 3.5,
+        "z": 0.0
+      },
+      "size": {
+        "dx": 1.5,
+        "dy": 0.5,
+        "dz": 1.0
+      }
+    },
+    {
+      "id": "obs_003",
+      "type": "box",
+      "min": {
+        "x": 0.0,
+        "y": 1.0,
+        "z": 0.0
+      },
+      "size": {
+        "dx": 0.4,
+        "dy": 2.0,
+        "dz": 0.8
+      }
+    }
+  ],
+  "openings": [
+    {
+      "id": "inlet_001",
+      "type": "inlet",
+      "wall": "floor",
+      "center": {
+        "u": 7.1,
+        "v": 1.0
+      },
+      "size": {
+        "du": 0.6,
+        "dv": 0.3
+      }
+    },
+    {
+      "id": "outlet_001",
+      "type": "outlet",
+      "wall": "east",
+      "center": {
+        "u": 1.0,
+        "v": 1.4
+      },
+      "size": {
+        "du": 0.4,
+        "dv": 0.4
+      }
+    }
+  ],
+  "meta": {
+    "scene_type": "l_shaped_ventilation_annex",
+    "description": "An L-shaped room consisting of a large main area and a narrower annex. A floor inlet is positioned in the annex under a box obstacle, with an outlet on the far eastern wall."
+  }
+}

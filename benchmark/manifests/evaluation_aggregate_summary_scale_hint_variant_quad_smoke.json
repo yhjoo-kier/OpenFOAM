@@ -1,0 +1,100 @@
+{
+  "summaries": {
+    "baseline": {
+      "n": 20,
+      "mean_structural_score": 0.7613,
+      "mean_cfd_score": 0.5181,
+      "mean_Lx": 0.2737,
+      "mean_Ly": 0.1492,
+      "mean_Lz": 0.0714,
+      "mean_vol": 0.3092,
+      "room_kind_match_count": 20,
+      "opening_wall_match_count": 15
+    },
+    "single_anchor": {
+      "n": 20,
+      "mean_structural_score": 0.7913,
+      "mean_cfd_score": 0.4905,
+      "mean_Lx": 0.0154,
+      "mean_Ly": 0.1919,
+      "mean_Lz": 0.1251,
+      "mean_vol": 0.3062,
+      "room_kind_match_count": 20,
+      "opening_wall_match_count": 14
+    },
+    "dual_anchor": {
+      "n": 20,
+      "mean_structural_score": 0.8063,
+      "mean_cfd_score": 0.4801,
+      "mean_Lx": 0.0004,
+      "mean_Ly": 0.1867,
+      "mean_Lz": 0.001,
+      "mean_vol": 0.2208,
+      "room_kind_match_count": 20,
+      "opening_wall_match_count": 13
+    },
+    "layout_protected": {
+      "n": 20,
+      "mean_structural_score": 0.7854,
+      "mean_cfd_score": 0.5017,
+      "mean_Lx": 0.0004,
+      "mean_Ly": 0.1945,
+      "mean_Lz": 0.1305,
+      "mean_vol": 0.2908,
+      "room_kind_match_count": 20,
+      "opening_wall_match_count": 14
+    }
+  },
+  "deltas": {
+    "single_minus_baseline": {
+      "mean_structural_score": 0.0299,
+      "mean_cfd_score": -0.0276,
+      "mean_Lx": -0.2583,
+      "mean_Ly": 0.0428,
+      "mean_Lz": 0.0537,
+      "mean_vol": -0.003,
+      "room_kind_match_count": 0,
+      "opening_wall_match_count": -1
+    },
+    "dual_minus_baseline": {
+      "mean_structural_score": 0.0449,
+      "mean_cfd_score": -0.038,
+      "mean_Lx": -0.2733,
+      "mean_Ly": 0.0375,
+      "mean_Lz": -0.0704,
+      "mean_vol": -0.0884,
+      "room_kind_match_count": 0,
+      "opening_wall_match_count": -2
+    },
+    "layout_protected_minus_baseline": {
+      "mean_structural_score": 0.0241,
+      "mean_cfd_score": -0.0164,
+      "mean_Lx": -0.2733,
+      "mean_Ly": 0.0454,
+      "mean_Lz": 0.0591,
+      "mean_vol": -0.0183,
+      "room_kind_match_count": 0,
+      "opening_wall_match_count": -1
+    },
+    "layout_protected_minus_single": {
+      "mean_structural_score": -0.0058,
+      "mean_cfd_score": 0.0113,
+      "mean_Lx": -0.0149,
+      "mean_Ly": 0.0026,
+      "mean_Lz": 0.0054,
+      "mean_vol": -0.0153,
+      "room_kind_match_count": 0,
+      "opening_wall_match_count": 0
+    },
+    "layout_protected_minus_dual": {
+      "mean_structural_score": -0.0208,
+      "mean_cfd_score": 0.0216,
+      "mean_Lx": 0.0,
+      "mean_Ly": 0.0078,
+      "mean_Lz": 0.1295,
+      "mean_vol": 0.07,
+      "room_kind_match_count": 0,
+      "opening_wall_match_count": 1
+    }
+  }
+}

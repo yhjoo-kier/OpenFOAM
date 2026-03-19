@@ -1,0 +1,114 @@
+{
+  "schema_version": "indoor_cfd_scene_v1",
+  "units": "m",
+  "coordinate_system": {
+    "origin": "room_min_corner",
+    "x": "west_to_east",
+    "y": "south_to_north",
+    "z": "floor_to_ceiling"
+  },
+  "room": {
+    "blocks": [
+      {
+        "origin": {
+          "x": 0.0,
+          "y": 1.2,
+          "z": 0.0
+        },
+        "size": {
+          "dx": 4.5,
+          "dy": 2.8,
+          "dz": 3.1
+        }
+      },
+      {
+        "origin": {
+          "x": 4.5,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "size": {
+          "dx": 2.8,
+          "dy": 2.8,
+          "dz": 3.1
+        }
+      }
+    ]
+  },
+  "obstacles": [
+    {
+      "id": "obs_001",
+      "type": "box",
+      "min": {
+        "x": 2.0,
+        "y": 2.5,
+        "z": 0.0
+      },
+      "size": {
+        "dx": 1.6,
+        "dy": 1.0,
+        "dz": 1.2
+      }
+    },
+    {
+      "id": "obs_002",
+      "type": "box",
+      "min": {
+        "x": 3.3,
+        "y": 1.4,
+        "z": 0.0
+      },
+      "size": {
+        "dx": 1.0,
+        "dy": 1.0,
+        "dz": 1.0
+      }
+    },
+    {
+      "id": "obs_003",
+      "type": "box",
+      "min": {
+        "x": 5.3,
+        "y": 0.8,
+        "z": 0.0
+      },
+      "size": {
+        "dx": 1.2,
+        "dy": 1.2,
+        "dz": 1.5
+      }
+    }
+  ],
+  "openings": [
+    {
+      "id": "inlet_001",
+      "type": "inlet",
+      "wall": "west",
+      "center": {
+        "u": 2.6,
+        "v": 2.6
+      },
+      "size": {
+        "du": 0.4,
+        "dv": 0.4
+      }
+    },
+    {
+      "id": "outlet_001",
+      "type": "outlet",
+      "wall": "east",
+      "center": {
+        "u": 1.4,
+        "v": 1.8
+      },
+      "size": {
+        "du": 0.4,
+        "dv": 0.4
+      }
+    }
+  ],
+  "meta": {
+    "scene_type": "l_shaped_partitioned_space",
+    "description": "A two-block L-shaped room layout with a 7.3m total horizontal span and 3.1m ceiling height. Features three staggered box obstacles, a high-level inlet on the west wall, and a mid-level outlet on the east wall."
+  }
+}

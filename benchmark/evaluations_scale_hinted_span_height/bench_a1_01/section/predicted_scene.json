@@ -1,0 +1,93 @@
+{
+  "schema_version": "indoor_cfd_scene_v1",
+  "units": "m",
+  "coordinate_system": {
+    "origin": "room_min_corner",
+    "x": "west_to_east",
+    "y": "south_to_north",
+    "z": "floor_to_ceiling"
+  },
+  "room": {
+    "size": {
+      "Lx": 6.67,
+      "Ly": 4.0,
+      "Lz": 2.66
+    }
+  },
+  "obstacles": [
+    {
+      "id": "obs_001",
+      "type": "box",
+      "min": {
+        "x": 1.0,
+        "y": 1.75,
+        "z": 0.0
+      },
+      "size": {
+        "dx": 0.8,
+        "dy": 0.5,
+        "dz": 0.4
+      }
+    },
+    {
+      "id": "obs_002",
+      "type": "box",
+      "min": {
+        "x": 3.0,
+        "y": 1.75,
+        "z": 0.0
+      },
+      "size": {
+        "dx": 0.8,
+        "dy": 0.5,
+        "dz": 0.4
+      }
+    },
+    {
+      "id": "obs_003",
+      "type": "box",
+      "min": {
+        "x": 5.0,
+        "y": 1.75,
+        "z": 0.0
+      },
+      "size": {
+        "dx": 0.8,
+        "dy": 0.5,
+        "dz": 0.4
+      }
+    }
+  ],
+  "openings": [
+    {
+      "id": "inlet_001",
+      "type": "inlet",
+      "wall": "east",
+      "center": {
+        "u": 2.0,
+        "v": 1.33
+      },
+      "size": {
+        "du": 1.0,
+        "dv": 0.8
+      }
+    },
+    {
+      "id": "outlet_001",
+      "type": "outlet",
+      "wall": "west",
+      "center": {
+        "u": 2.0,
+        "v": 1.33
+      },
+      "size": {
+        "du": 1.0,
+        "dv": 0.8
+      }
+    }
+  ],
+  "meta": {
+    "scene_type": "empty_architectural_space",
+    "description": "A simple rectangular room based on a section view with a prominent east-wall opening and a corresponding west-wall outlet."
+  }
+}

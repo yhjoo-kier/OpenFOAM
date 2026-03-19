@@ -1,0 +1,114 @@
+{
+  "schema_version": "indoor_cfd_scene_v1",
+  "units": "m",
+  "coordinate_system": {
+    "origin": "room_min_corner",
+    "x": "west_to_east",
+    "y": "south_to_north",
+    "z": "floor_to_ceiling"
+  },
+  "room": {
+    "blocks": [
+      {
+        "origin": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "size": {
+          "dx": 4.31,
+          "dy": 6.0,
+          "dz": 3.0
+        }
+      },
+      {
+        "origin": {
+          "x": 4.31,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "size": {
+          "dx": 4.31,
+          "dy": 3.5,
+          "dz": 3.0
+        }
+      }
+    ]
+  },
+  "obstacles": [
+    {
+      "id": "obs_001",
+      "type": "box",
+      "min": {
+        "x": 5.8,
+        "y": 0.5,
+        "z": 0.0
+      },
+      "size": {
+        "dx": 1.2,
+        "dy": 1.2,
+        "dz": 0.8
+      }
+    },
+    {
+      "id": "obs_002",
+      "type": "box",
+      "min": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 0.0
+      },
+      "size": {
+        "dx": 1.2,
+        "dy": 1.2,
+        "dz": 0.6
+      }
+    },
+    {
+      "id": "obs_003",
+      "type": "box",
+      "min": {
+        "x": 1.0,
+        "y": 4.0,
+        "z": 0.0
+      },
+      "size": {
+        "dx": 1.2,
+        "dy": 1.2,
+        "dz": 0.6
+      }
+    }
+  ],
+  "openings": [
+    {
+      "id": "inlet_001",
+      "type": "inlet",
+      "wall": "south",
+      "center": {
+        "u": 6.4,
+        "v": 0.5
+      },
+      "size": {
+        "du": 0.8,
+        "dv": 0.4
+      }
+    },
+    {
+      "id": "outlet_001",
+      "type": "outlet",
+      "wall": "east",
+      "center": {
+        "u": 1.75,
+        "v": 0.5
+      },
+      "size": {
+        "du": 0.4,
+        "dv": 0.4
+      }
+    }
+  ],
+  "meta": {
+    "scene_type": "l_shaped_ventilation",
+    "description": "Stepped room layout with two joined blocks. A large western block is connected to a narrower eastern block. The ventilation path runs from a south-wall inlet in the narrow section to an east-wall outlet. A primary obstacle is located near the inlet."
+  }
+}

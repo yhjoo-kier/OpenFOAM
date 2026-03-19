@@ -1,0 +1,162 @@
+{
+  "ok": true,
+  "evaluation_root": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations_scale_hinted_layout_protected",
+  "count": 19,
+  "status_counts": {
+    "success": 19
+  },
+  "results": [
+    {
+      "case": "bench_a1_01",
+      "view": "birdseye",
+      "returncode": 0,
+      "status": "success",
+      "structural_score": 0.75,
+      "cfd_score": 0.41894
+    },
+    {
+      "case": "bench_a1_01",
+      "view": "floorplan",
+      "returncode": 0,
+      "status": "success",
+      "structural_score": 0.875,
+      "cfd_score": 0.556928
+    },
+    {
+      "case": "bench_a1_01",
+      "view": "perspective",
+      "returncode": 0,
+      "status": "success",
+      "structural_score": 0.75,
+      "cfd_score": 0.385108
+    },
+    {
+      "case": "bench_a1_01",
+      "view": "section",
+      "returncode": 0,
+      "status": "success",
+      "structural_score": 0.5,
+      "cfd_score": 0.339514
+    },
+    {
+      "case": "bench_a1_01",
+      "view": "wireframe",
+      "returncode": 0,
+      "status": "success",
+      "structural_score": 0.75,
+      "cfd_score": 0.625526
+    },
+    {
+      "case": "bench_a2_03",
+      "view": "birdseye",
+      "returncode": 0,
+      "status": "success",
+      "structural_score": 0.7083,
+      "cfd_score": 0.379594
+    },
+    {
+      "case": "bench_a2_03",
+      "view": "floorplan",
+      "returncode": 0,
+      "status": "success",
+      "structural_score": 1.0,
+      "cfd_score": 0.837846
+    },
+    {
+      "case": "bench_a2_03",
+      "view": "perspective",
+      "returncode": 0,
+      "status": "success",
+      "structural_score": 0.625,
+      "cfd_score": 0.351619
+    },
+    {
+      "case": "bench_a2_03",
+      "view": "section",
+      "returncode": 0,
+      "status": "success",
+      "structural_score": 0.625,
+      "cfd_score": 0.358233
+    },
+    {
+      "case": "bench_a2_03",
+      "view": "wireframe",
+      "returncode": 0,
+      "status": "success",
+      "structural_score": 0.625,
+      "cfd_score": 0.3458
+    },
+    {
+      "case": "bench_a3_03",
+      "view": "birdseye",
+      "returncode": 0,
+      "status": "success",
+      "structural_score": 0.875,
+      "cfd_score": 0.592649
+    },
+    {
+      "case": "bench_a3_03",
+      "view": "floorplan",
+      "returncode": 0,
+      "status": "success",
+      "structural_score": 1.0,
+      "cfd_score": 0.847307
+    },
+    {
+      "case": "bench_a3_03",
+      "view": "perspective",
+      "returncode": 0,
+      "status": "success",
+      "structural_score": 0.75,
+      "cfd_score": 0.649508
+    },
+    {
+      "case": "bench_a3_03",
+      "view": "section",
+      "returncode": 0,
+      "status": "success",
+      "structural_score": 0.625,
+      "cfd_score": 0.344038
+    },
+    {
+      "case": "bench_a3_03",
+      "view": "wireframe",
+      "returncode": 0,
+      "status": "success",
+      "structural_score": 0.75,
+      "cfd_score": 0.638962
+    },
+    {
+      "case": "bench_a4_03",
+      "view": "birdseye",
+      "returncode": 0,
+      "status": "success",
+      "structural_score": 1.0,
+      "cfd_score": 0.543162
+    },
+    {
+      "case": "bench_a4_03",
+      "view": "floorplan",
+      "returncode": 0,
+      "status": "success",
+      "structural_score": 1.0,
+      "cfd_score": 0.602359
+    },
+    {
+      "case": "bench_a4_03",
+      "view": "perspective",
+      "returncode": 0,
+      "status": "success",
+      "structural_score": 0.9167,
+      "cfd_score": 0.454138
+    },
+    {
+      "case": "bench_a4_03",
+      "view": "section",
+      "returncode": 0,
+      "status": "success",
+      "structural_score": 0.8333,
+      "cfd_score": 0.380112
+    }
+  ]
+}

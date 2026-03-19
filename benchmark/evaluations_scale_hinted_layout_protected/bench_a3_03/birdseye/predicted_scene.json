@@ -1,0 +1,114 @@
+{
+  "schema_version": "indoor_cfd_scene_v1",
+  "units": "m",
+  "coordinate_system": {
+    "origin": "room_min_corner",
+    "x": "west_to_east",
+    "y": "south_to_north",
+    "z": "floor_to_ceiling"
+  },
+  "room": {
+    "blocks": [
+      {
+        "origin": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "size": {
+          "dx": 5.0,
+          "dy": 4.0,
+          "dz": 2.8
+        }
+      },
+      {
+        "origin": {
+          "x": 5.0,
+          "y": 0.75,
+          "z": 0.0
+        },
+        "size": {
+          "dx": 3.62,
+          "dy": 2.5,
+          "dz": 2.8
+        }
+      }
+    ]
+  },
+  "obstacles": [
+    {
+      "id": "obs_main",
+      "type": "box",
+      "min": {
+        "x": 6.3,
+        "y": 1.4,
+        "z": 0.0
+      },
+      "size": {
+        "dx": 1.2,
+        "dy": 1.2,
+        "dz": 1.0
+      }
+    },
+    {
+      "id": "obs_floor_001",
+      "type": "box",
+      "min": {
+        "x": 0.5,
+        "y": 0.5,
+        "z": 0.0
+      },
+      "size": {
+        "dx": 0.6,
+        "dy": 0.6,
+        "dz": 0.1
+      }
+    },
+    {
+      "id": "obs_floor_002",
+      "type": "box",
+      "min": {
+        "x": 0.5,
+        "y": 2.9,
+        "z": 0.0
+      },
+      "size": {
+        "dx": 0.6,
+        "dy": 0.6,
+        "dz": 0.1
+      }
+    }
+  ],
+  "openings": [
+    {
+      "id": "inlet_001",
+      "type": "inlet",
+      "wall": "south",
+      "center": {
+        "u": 7.3,
+        "v": 0.3
+      },
+      "size": {
+        "du": 0.8,
+        "dv": 0.15
+      }
+    },
+    {
+      "id": "outlet_001",
+      "type": "outlet",
+      "wall": "east",
+      "center": {
+        "u": 2.0,
+        "v": 1.4
+      },
+      "size": {
+        "du": 0.4,
+        "dv": 0.4
+      }
+    }
+  ],
+  "meta": {
+    "scene_type": "composite_office_ventilation",
+    "description": "A simulation-ready L-shaped interior with a main rectangular room joined to a smaller alcove containing a central box obstacle. Ventilation is driven by a low-level inlet and a mid-level outlet in the alcove."
+  }
+}
