@@ -26,6 +26,7 @@ EVALUATIONS = BENCHMARK / "evaluations"
 DEFAULT_TASK = EVALUATIONS / "bench_a1_01" / "perspective" / "task.json"
 DEFAULT_SETTING = "no_scale_hint_baseline"
 SCALE_HINTED_SETTING = "scale_hinted_longest_horizontal_span_v1"
+SCALE_HINTED_DUAL_SETTING = "scale_hinted_longest_span_plus_height_v1"
 
 
 def utc_now() -> str:
@@ -116,26 +117,44 @@ def infer_evaluation_root(task_path: Path) -> Path:
 
 
 def default_setting_for_root(evaluation_root: Path) -> str:
-    return SCALE_HINTED_SETTING if "scale_hint" in evaluation_root.name else DEFAULT_SETTING
+    root_name = evaluation_root.name
+    if "span_height" in root_name or "dual" in root_name:
+        return SCALE_HINTED_DUAL_SETTING
+    if "scale_hint" in root_name:
+        return SCALE_HINTED_SETTING
+    return DEFAULT_SETTING
 
 
-def compute_scale_hint(reference_scene_path: Path) -> dict[str, Any]:
+def compute_scale_hint(reference_scene_path: Path, setting: str = SCALE_HINTED_SETTING) -> dict[str, Any]:
     reference_scene = load_json(reference_scene_path)
     bbox = overall_bbox(room_blocks(reference_scene))
     axis = "x" if bbox["Lx"] >= bbox["Ly"] else "y"
     span = max(bbox["Lx"], bbox["Ly"])
-    return {
-        "kind": "longest_horizontal_span",
-        "axis": axis,
-        "span_m": round(span, 3),
-        "room_height_m": round(bbox["Lz"], 3),
-        "room_kind": room_kind(reference_scene),
-        "source_scene": str(reference_scene_path),
-        "prompt_text": (
+    height = bbox["Lz"]
+    if setting == SCALE_HINTED_DUAL_SETTING:
+        kind = "longest_horizontal_span_plus_room_height"
+        prompt_text = (
+            f"Scale hint: the longest horizontal span of the room is approximately {span:.2f} m, "
+            f"and the ceiling height is approximately {height:.2f} m. "
+            "Use the span as the primary global metric anchor, and keep the ceiling height close to the hinted value when choosing room dimensions, opening sizes, and obstacle sizes. "
+            "Preserve the qualitative layout from the image instead of treating these hints as an exact full bounding box."
+        )
+    else:
+        kind = "longest_horizontal_span"
+        prompt_text = (
             f"Scale hint: the longest horizontal span of the room is approximately {span:.2f} m. "
             "Use this as a global metric anchor when choosing room dimensions, opening sizes, and obstacle sizes. "
             "Preserve the qualitative layout from the image instead of treating this hint as an exact full bounding box."
-        ),
+        )
+    return {
+        "kind": kind,
+        "axis": axis,
+        "span_m": round(span, 3),
+        "room_height_m": round(height, 3),
+        "room_kind": room_kind(reference_scene),
+        "setting": setting,
+        "source_scene": str(reference_scene_path),
+        "prompt_text": prompt_text,
     }
 
 
@@ -540,8 +559,8 @@ def main() -> int:
     evaluation_summary_path = output_paths["evaluation_summary_json"]
     setting = task.get("setting") or default_setting_for_root(evaluation_root)
     scale_hint = task.get("scale_hint")
-    if setting == SCALE_HINTED_SETTING and not scale_hint:
-        scale_hint = compute_scale_hint(Path(task["reference_scene"]))
+    if setting in {SCALE_HINTED_SETTING, SCALE_HINTED_DUAL_SETTING} and not scale_hint:
+        scale_hint = compute_scale_hint(Path(task["reference_scene"]), setting=setting)
         task["scale_hint"] = scale_hint
 
     if args.skip_existing_success and task.get("status") == "success" and evaluation_summary_path.exists():

@@ -85,8 +85,10 @@
 
 ## E. Full rerun scope 확정 및 실행
 
-- [~] smoke test 결과가 타당하면 frozen-20 전체 rerun 범위 확정
-- [ ] full scale-hinted evaluation 재실행
+- [x] frozen-20 전체 rerun 범위 결정
+  - 결론: **현재는 full rerun 보류**. single-anchor/dual-anchor 모두 smoke 기준으로 geometry scale 개선은 보였지만 CFD fidelity를 안정적으로 끌어올리지 못해, full frozen-20 rerun은 다음 hint redesign 뒤에 재판단
+- [~] full scale-hinted evaluation 재실행
+  - 전제: 다음 scale-hint redesign variant가 smoke에서 baseline 대비 CFD degradation 없이 통과할 때만 착수
 - [ ] per-task outputs 정리
   - [ ] predicted scene JSON
   - [ ] stabilization summary
@@ -134,3 +136,4 @@
 - 현재 figure 생산 cron은 중단된 상태다.
 - figure 작업은 scale-hinted evaluation의 방향이 확인된 뒤 재개한다.
 - 기존 100/100 evaluation은 버리지 말고 baseline artifact로 유지한다.
+존 100/100 evaluation은 버리지 말고 baseline artifact로 유지한다.
