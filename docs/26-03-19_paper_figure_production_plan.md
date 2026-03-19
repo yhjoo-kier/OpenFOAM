@@ -362,7 +362,7 @@
 - dense composite에서는 구조 점수가 높아도 CFD fidelity가 낮을 수 있음을 보여줌
 
 **현재 생산 가능 여부**
-- [~] 즉시 생산 가능
+- [x] 생산 완료 (QC 통과)
 
 **근거 자산**
 - `bench_a4_01`, `bench_a4_02`, `bench_a4_04`, `bench_a4_05`
@@ -373,11 +373,12 @@
 - discussion용 핵심 figure로 생산 가능
 
 **체크리스트**
-- [ ] 대표 A4 사례 확정
-- [ ] structural score high vs CFD moderate 사례 패널 구성
-- [ ] PDF/PNG 출력
-- [ ] 자체 visual QC
-- [ ] Gemini CLI visual QC
+- [x] 대표 A4 사례 확정
+- [x] structural score high vs CFD moderate 사례 패널 구성
+- [x] PDF/PNG 출력
+- [x] 자체 visual QC
+- [x] 서브에이전트 visual QC
+- [x] Gemini CLI visual QC
 
 ---
 

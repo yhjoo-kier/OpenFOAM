@@ -1,0 +1,22 @@
+You are doing visual QC for a journal paper figure.
+
+In the current working directory, inspect these two image files:
+- ./figure10.png
+- ./figure10_pdf_render.png
+
+The first is the direct PNG export. The second is the PDF rendered back to PNG.
+
+Evaluate:
+1) layout breakage or panel misalignment
+2) title/caption crowding
+3) font readability at two-column journal scale
+4) clipped annotations or callouts
+5) label/legend crowding
+6) PNG vs PDF-render mismatch
+7) whether the main claim is clear from the figure alone: dense composite rooms can look structurally correct while CFD fidelity remains limited
+
+Return exactly:
+VERDICT: PASS or FAIL
+- bullet findings
+- if FAIL, exact fixes to make
+Keep it concise.
