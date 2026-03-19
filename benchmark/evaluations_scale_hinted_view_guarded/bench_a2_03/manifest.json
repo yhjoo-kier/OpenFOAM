@@ -1,0 +1,32 @@
+{
+  "case_name": "bench_a2_03",
+  "category": "A2",
+  "room_kind": "rectangular",
+  "obstacle_count": 3,
+  "setting": "scale_hinted_longest_span_view_guarded_v1",
+  "scale_hint": {
+    "kind": "longest_horizontal_span_view_guarded",
+    "axis": "x",
+    "span_m": 6.553,
+    "room_height_m": 3.014,
+    "room_kind": "rectangular",
+    "setting": "scale_hinted_longest_span_view_guarded_v1",
+    "source_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations_scale_hinted_view_guarded/bench_a2_03/birdseye/reference_scene.json",
+    "prompt_text": "Scale hint: the longest horizontal span of the room is approximately 6.55 m. First preserve room topology, opening-wall identity, and the main flow path supported by the image. Then use this number only as a soft anchor for the dominant horizontal room span, not as an exact full bounding box or a reason to uniformly rescale every axis. Do not move openings to different walls, invent unsupported hidden depth, infer unseen ceiling height aggressively, or collapse a clearly composite room just to satisfy the hinted span. If the scene is dense or composite, preserve the connected room outline and opening topology before refining obstacle detail. If exact scale agreement conflicts with the image evidence, preserve the image-supported layout/topology first and treat the hint as approximate."
+  },
+  "views": [
+    "birdseye",
+    "floorplan",
+    "perspective",
+    "section",
+    "wireframe"
+  ],
+  "reference_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations_scale_hinted_view_guarded/bench_a2_03/birdseye/reference_scene.json",
+  "reference_case": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations_scale_hinted_view_guarded/bench_a2_03/birdseye/reference_case",
+  "reference_results": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations_scale_hinted_view_guarded/bench_a2_03/birdseye/reference_results",
+  "task_count": 5,
+  "status_counts": {
+    "success": 5
+  },
+  "case_root": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations_scale_hinted_view_guarded/bench_a2_03"
+}

@@ -28,6 +28,7 @@ DEFAULT_SETTING = "no_scale_hint_baseline"
 SCALE_HINTED_SETTING = "scale_hinted_longest_horizontal_span_v1"
 SCALE_HINTED_DUAL_SETTING = "scale_hinted_longest_span_plus_height_v1"
 SCALE_HINTED_LAYOUT_PROTECTED_SETTING = "scale_hinted_longest_span_layout_protected_v1"
+SCALE_HINTED_VIEW_GUARDED_SETTING = "scale_hinted_longest_span_view_guarded_v1"
 
 
 def utc_now() -> str:
@@ -121,6 +122,8 @@ def default_setting_for_root(evaluation_root: Path) -> str:
     root_name = evaluation_root.name
     if "span_height" in root_name or "dual" in root_name:
         return SCALE_HINTED_DUAL_SETTING
+    if "view_guarded" in root_name:
+        return SCALE_HINTED_VIEW_GUARDED_SETTING
     if "layout_protected" in root_name:
         return SCALE_HINTED_LAYOUT_PROTECTED_SETTING
     if "scale_hint" in root_name:
@@ -150,6 +153,16 @@ def compute_scale_hint(reference_scene_path: Path, setting: str = SCALE_HINTED_S
             "Then use this number only as a soft global metric anchor for the overall room span and proportionally scale the rest of the geometry. "
             "Do not move openings to different walls or collapse a clearly composite room just to satisfy the hinted span. "
             "If exact scale agreement conflicts with the image, preserve the image-consistent layout/topology first and treat the hint as approximate."
+        )
+    elif setting == SCALE_HINTED_VIEW_GUARDED_SETTING:
+        kind = "longest_horizontal_span_view_guarded"
+        prompt_text = (
+            f"Scale hint: the longest horizontal span of the room is approximately {span:.2f} m. "
+            "First preserve room topology, opening-wall identity, and the main flow path supported by the image. "
+            "Then use this number only as a soft anchor for the dominant horizontal room span, not as an exact full bounding box or a reason to uniformly rescale every axis. "
+            "Do not move openings to different walls, invent unsupported hidden depth, infer unseen ceiling height aggressively, or collapse a clearly composite room just to satisfy the hinted span. "
+            "If the scene is dense or composite, preserve the connected room outline and opening topology before refining obstacle detail. "
+            "If exact scale agreement conflicts with the image evidence, preserve the image-supported layout/topology first and treat the hint as approximate."
         )
     else:
         kind = "longest_horizontal_span"
@@ -364,7 +377,12 @@ def detect_backend_blocker(backend: str) -> dict[str, str] | None:
     return None
 
 
-def build_scenario_prompt(view: str) -> str:
+def build_scenario_prompt(
+    view: str,
+    setting: str = DEFAULT_SETTING,
+    room_kind: str | None = None,
+    obstacle_count: int | None = None,
+) -> str:
     view_hint = {
         "perspective": "The image is a perspective benchmark rendering with visible depth cues.",
         "birdseye": "The image is a bird's-eye benchmark rendering emphasizing overall layout.",
@@ -372,13 +390,40 @@ def build_scenario_prompt(view: str) -> str:
         "wireframe": "The image is a wireframe benchmark rendering emphasizing structural edges.",
         "section": "The image is a section-view benchmark rendering emphasizing one vertical cut through the space.",
     }.get(view, "The image is a benchmark rendering of an indoor ventilated space.")
-    return (
+    prompt = (
         "Generate a simulation-ready indoor ventilation scene from the provided image. "
         "Use the image as the primary cue and infer a solver-friendly abstraction of room shape, openings, and only the largest flow-relevant obstacles. "
         "Do not assume hidden geometry beyond what is reasonably supported by the image. "
         "Favor simple box obstacles and use two joined room blocks only if the visible layout is clearly non-rectangular. "
         f"{view_hint}"
     )
+    if setting == SCALE_HINTED_VIEW_GUARDED_SETTING:
+        prompt += (
+            " Preserve opening-wall identity before refining obstacle sizes or exact scale."
+            " Keep the main room outline and opening pair more faithful than small obstacle detail when cues conflict."
+            " Keep the image-supported flow path and room topology even when the scale hint suggests a different regularized box."
+        )
+        if view == "perspective":
+            prompt += (
+                " In perspective views, keep visible front/back ordering and side-wall depth conservative."
+                " Do not expand hidden depth or add recessed volume beyond what the image actually supports."
+            )
+        elif view == "section":
+            prompt += (
+                " In section views, trust the cut-plane geometry first."
+                " Do not infer unseen ceiling height, off-cut branches, or opening-wall relocation aggressively just to make the room look more regular."
+            )
+        if room_kind == "composite":
+            prompt += (
+                " If the visible layout is composite/L-shaped, preserve that connected outline instead of rectangularizing it for convenience."
+            )
+        if obstacle_count is not None and obstacle_count >= 3:
+            prompt += (
+                " For dense scenes, prioritize opening placement and connected-room topology over matching every small obstacle."
+                " If obstacle detail is uncertain, use fewer larger solver-friendly obstacles rather than speculative clutter."
+                " Keep generous clearance between large obstacles and do not let boxes overlap or interpenetrate."
+            )
+    return prompt
 
 
 def summarize_prediction(reference_scene_path: Path, predicted_scene_path: Path) -> dict[str, Any]:
@@ -575,9 +620,11 @@ def main() -> int:
     evaluation_summary_path = output_paths["evaluation_summary_json"]
     setting = task.get("setting") or default_setting_for_root(evaluation_root)
     scale_hint = task.get("scale_hint")
-    if setting in {SCALE_HINTED_SETTING, SCALE_HINTED_DUAL_SETTING} and not scale_hint:
-        scale_hint = compute_scale_hint(Path(task["reference_scene"]), setting=setting)
-        task["scale_hint"] = scale_hint
+    if setting in {SCALE_HINTED_SETTING, SCALE_HINTED_DUAL_SETTING, SCALE_HINTED_LAYOUT_PROTECTED_SETTING, SCALE_HINTED_VIEW_GUARDED_SETTING}:
+        refreshed_scale_hint = compute_scale_hint(Path(task["reference_scene"]), setting=setting)
+        if (not scale_hint) or (not isinstance(scale_hint, dict)) or (scale_hint.get("prompt_text") != refreshed_scale_hint.get("prompt_text")):
+            scale_hint = refreshed_scale_hint
+            task["scale_hint"] = scale_hint
 
     if args.skip_existing_success and task.get("status") == "success" and evaluation_summary_path.exists():
         refresh_evaluation_index(evaluation_root)
@@ -681,7 +728,12 @@ def main() -> int:
         "--backend", args.backend,
         "--model", args.model,
         "--image", str(input_image),
-        "--scenario", build_scenario_prompt(task["view"]),
+        "--scenario", build_scenario_prompt(
+            task["view"],
+            setting=setting,
+            room_kind=task.get("room_kind"),
+            obstacle_count=task.get("obstacle_count"),
+        ),
         "--name", run_name,
         "--mesh-size", str(args.mesh_size),
         "--end-time", str(args.end_time),

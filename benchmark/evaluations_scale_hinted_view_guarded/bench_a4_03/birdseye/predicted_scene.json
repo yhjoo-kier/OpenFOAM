@@ -1,0 +1,114 @@
+{
+  "schema_version": "indoor_cfd_scene_v1",
+  "units": "m",
+  "coordinate_system": {
+    "origin": "room_min_corner",
+    "x": "west_to_east",
+    "y": "south_to_north",
+    "z": "floor_to_ceiling"
+  },
+  "room": {
+    "blocks": [
+      {
+        "origin": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "size": {
+          "dx": 4.5,
+          "dy": 4.0,
+          "dz": 2.5
+        }
+      },
+      {
+        "origin": {
+          "x": 4.5,
+          "y": 0.8,
+          "z": 0.0
+        },
+        "size": {
+          "dx": 2.8,
+          "dy": 2.4,
+          "dz": 2.5
+        }
+      }
+    ]
+  },
+  "obstacles": [
+    {
+      "id": "obs_001",
+      "type": "box",
+      "min": {
+        "x": 1.5,
+        "y": 2.4,
+        "z": 0.0
+      },
+      "size": {
+        "dx": 1.8,
+        "dy": 1.0,
+        "dz": 1.2
+      }
+    },
+    {
+      "id": "obs_002",
+      "type": "box",
+      "min": {
+        "x": 2.2,
+        "y": 0.6,
+        "z": 0.0
+      },
+      "size": {
+        "dx": 1.2,
+        "dy": 1.0,
+        "dz": 1.0
+      }
+    },
+    {
+      "id": "obs_003",
+      "type": "box",
+      "min": {
+        "x": 5.4,
+        "y": 1.5,
+        "z": 0.0
+      },
+      "size": {
+        "dx": 1.0,
+        "dy": 1.0,
+        "dz": 0.8
+      }
+    }
+  ],
+  "openings": [
+    {
+      "id": "inlet_001",
+      "type": "inlet",
+      "wall": "west",
+      "center": {
+        "u": 2.0,
+        "v": 1.6
+      },
+      "size": {
+        "du": 0.4,
+        "dv": 0.3
+      }
+    },
+    {
+      "id": "outlet_001",
+      "type": "outlet",
+      "wall": "east",
+      "center": {
+        "u": 2.0,
+        "v": 0.6
+      },
+      "size": {
+        "du": 0.4,
+        "dv": 0.3
+      }
+    }
+  ],
+  "meta": {
+    "scene_type": "stepped_room_ventilation",
+    "description": "L-shaped indoor domain with staggered rectangular obstacles and opposing inlet-outlet pair."
+  }
+}

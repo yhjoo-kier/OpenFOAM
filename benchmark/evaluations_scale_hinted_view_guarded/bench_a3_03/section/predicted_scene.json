@@ -1,0 +1,114 @@
+{
+  "schema_version": "indoor_cfd_scene_v1",
+  "units": "m",
+  "coordinate_system": {
+    "origin": "room_min_corner",
+    "x": "west_to_east",
+    "y": "south_to_north",
+    "z": "floor_to_ceiling"
+  },
+  "room": {
+    "blocks": [
+      {
+        "origin": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "size": {
+          "dx": 5.6,
+          "dy": 5.0,
+          "dz": 3.0
+        }
+      },
+      {
+        "origin": {
+          "x": 5.6,
+          "y": 1.0,
+          "z": 0.0
+        },
+        "size": {
+          "dx": 3.02,
+          "dy": 3.0,
+          "dz": 3.0
+        }
+      }
+    ]
+  },
+  "obstacles": [
+    {
+      "id": "obs_001",
+      "type": "box",
+      "min": {
+        "x": 1.2,
+        "y": 1.5,
+        "z": 0.0
+      },
+      "size": {
+        "dx": 1.0,
+        "dy": 0.8,
+        "dz": 0.75
+      }
+    },
+    {
+      "id": "obs_002",
+      "type": "box",
+      "min": {
+        "x": 4.0,
+        "y": 3.5,
+        "z": 0.0
+      },
+      "size": {
+        "dx": 0.8,
+        "dy": 1.0,
+        "dz": 1.8
+      }
+    },
+    {
+      "id": "obs_003",
+      "type": "box",
+      "min": {
+        "x": 6.8,
+        "y": 1.8,
+        "z": 0.0
+      },
+      "size": {
+        "dx": 0.7,
+        "dy": 1.2,
+        "dz": 0.5
+      }
+    }
+  ],
+  "openings": [
+    {
+      "id": "inlet_001",
+      "type": "inlet",
+      "wall": "east",
+      "center": {
+        "u": 2.5,
+        "v": 1.5
+      },
+      "size": {
+        "du": 0.4,
+        "dv": 0.6
+      }
+    },
+    {
+      "id": "outlet_001",
+      "type": "outlet",
+      "wall": "west",
+      "center": {
+        "u": 2.5,
+        "v": 1.5
+      },
+      "size": {
+        "du": 0.5,
+        "dv": 0.7
+      }
+    }
+  ],
+  "meta": {
+    "scene_type": "dual_block_ventilation",
+    "description": "Simulation-ready abstraction of a two-block connected room based on a section view. The space features a wider western block and a narrower eastern block, with the inlet positioned on the eastern outer wall and the outlet on the western outer wall to establish a cross-room flow path."
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "case_name": "bench_a3_05",
+  "category": "A3",
+  "room_kind": "composite",
+  "obstacle_count": 1,
+  "setting": "scale_hinted_longest_span_view_guarded_v1",
+  "scale_hint": {
+    "kind": "longest_horizontal_span_view_guarded",
+    "axis": "x",
+    "span_m": 7.459,
+    "room_height_m": 2.828,
+    "room_kind": "composite",
+    "setting": "scale_hinted_longest_span_view_guarded_v1",
+    "source_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/scenes/a3_05.json",
+    "prompt_text": "Scale hint: the longest horizontal span of the room is approximately 7.46 m. First preserve room topology, opening-wall identity, and the main flow path supported by the image. Then use this number only as a soft global anchor for the overall room span and proportionally scale the rest of the geometry. Do not move openings to different walls, invent unsupported hidden depth, or collapse a clearly composite room just to satisfy the hinted span. If exact scale agreement conflicts with the image evidence, preserve the image-supported layout/topology first and treat the hint as approximate."
+  },
+  "views": [
+    "birdseye",
+    "floorplan",
+    "perspective",
+    "section",
+    "wireframe"
+  ],
+  "reference_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations_scale_hinted_view_guarded/bench_a3_05/birdseye/reference_scene.json",
+  "reference_case": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations_scale_hinted_view_guarded/bench_a3_05/birdseye/reference_case",
+  "reference_results": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations_scale_hinted_view_guarded/bench_a3_05/birdseye/reference_results",
+  "task_count": 5,
+  "status_counts": {
+    "pending": 5
+  },
+  "case_root": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations_scale_hinted_view_guarded/bench_a3_05"
+}

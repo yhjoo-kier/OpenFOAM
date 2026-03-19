@@ -124,6 +124,9 @@ Opening rules:
 Obstacle rules:
 - Create 3 to 5 non-overlapping box obstacles only when needed for the visible flow-relevant geometry.
 - If the image is mostly empty architectural space, use the minimum stable obstacle set and do not hallucinate furniture.
+- If obstacle detail is uncertain, preserve room topology and opening-wall identity first, then represent only the largest flow-relevant obstacles.
+- In dense scenes, prefer fewer larger solver-friendly obstacles over many speculative small boxes.
+- In dense scenes, keep clear separation between large obstacles; do not let boxes overlap or interpenetrate.
 - All obstacles must lie fully inside the room; for composite rooms, each obstacle must lie inside one of the room blocks.
 - Obstacles must not overlap each other.
 
@@ -164,8 +167,9 @@ def build_prompt(scenario: str, scale_hint: str | None = None) -> str:
             f"{scenario_text}\n\n"
             "Absolute scale hint:\n"
             f"- {scale_hint.strip()}\n"
-            "- Treat this as a global metric anchor: keep the predicted room's longest horizontal span close to the hinted value.\n"
-            "- Preserve image-consistent layout/aspect ratio while matching this absolute scale."
+            "- Treat this as a soft metric anchor for the dominant horizontal room span, not as an exact full bounding box.\n"
+            "- Preserve image-supported topology, opening-wall identity, and visible flow path before adjusting uncertain depth, height, or obstacle detail.\n"
+            "- If the image leaves some geometry ambiguous, keep those unsupported parts conservative instead of stretching them to satisfy the hint."
         )
     return PROMPT_TEMPLATE.format(scenario=scenario_text)
 

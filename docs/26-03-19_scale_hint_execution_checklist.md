@@ -120,10 +120,14 @@
 
 ## G. Figure / manuscript 영향 재판단
 
-- [ ] 어떤 figures가 scale-hinted 결과로 교체되어야 하는지 식별
-- [ ] 기존 figure source 중 invalid/obsolete 해진 것 표시
-- [ ] scale-hinted 결과 기준 대표 case 재선정 필요 여부 판단
-- [ ] paper plan / Results-Discussion 구조에 반영할 문장 초안 정리
+- [-] 어떤 figures가 scale-hinted 결과로 교체되어야 하는지 식별
+  - 메모: evaluation aggregate/case 해석에 직접 의존하는 `Figure 5/6/8/9/10/11`은 scale-hinted main setting이 확정되기 전까지 baseline-source production candidate로만 유지하고 최종본 확정은 보류
+- [-] 기존 figure source 중 invalid/obsolete 해진 것 표시
+  - 메모: 현재 baseline figure들은 `invalid`는 아니고 `no-scale-hint baseline artifact`로는 유효하나, main-setting figure source로는 잠정 보류 상태
+- [~] scale-hinted 결과 기준 대표 case 재선정 필요 여부 판단
+  - 메모: full rerun 보류 상태라 대표 case 최종 재선정은 아직 이르다. 다만 follow-up target은 `perspective`, `section`, `A4 dense composite` 축으로 좁혀짐
+- [x] paper plan / Results-Discussion 구조에 반영할 문장 초안 정리
+  - 산출물: `26-03-19_scale_hint_followup_design_targets.md`
 
 ---
 
@@ -133,6 +137,12 @@
 - [x] generation/evaluation 코드 수정 시작
 - [x] smoke subset 정의
 - [x] smoke run 실행
+- [x] `layout-protected span-only` 후속 wording redesign 설계
+- [x] `perspective`, `section`, `A4 dense composite` 축을 우선 타깃으로 하는 view-guarded variant 설계
+- [x] redesign variant 재-smoke 실행
+  - 결과: `view-guarded` smoke 20/20 success. 첫 `bench_a4_03/wireframe`은 dense obstacle overlap으로 meshing 실패했지만, dense obstacle clearance guard 추가 후 단일 재시도로 recover
+- [x] baseline 대비 CFD degradation 없이 통과하는지 재판단
+  - 결론: **미통과**. targeted 축(`perspective`, `section`, `A4 dense composite`)에서는 완화 신호가 뚜렷하지만, overall mean CFD는 baseline 대비 아직 음수라 frozen-20 full rerun은 계속 보류
 
 ---
 
