@@ -8,14 +8,37 @@
 
 - 최종 납품 형식은 기본적으로 `PDF + PNG` 동시 생성으로 한다.
 - 가능하면 **벡터 PDF**를 우선한다. (matplotlib/pdf backend, SVG→PDF 등)
+- 논문 본문에는 **벡터 PDF를 사용**하고, 이후 **LaTeX → PDF 빌드 경로**로 포함하는 것을 기본 원칙으로 한다.
 - figure는 기본적으로 **2-column journal 호환** 스타일을 따른다.
+- 각 figure마다 반드시 **1단 너비(single-column)** 로 갈지, **2단 너비(double-column)** 로 갈지를 먼저 결정하고 기록한다.
+- subfigure가 있는 경우, 각 패널 라벨 `(a), (b), ...``, subfigure caption 처리 방식, 메인 caption과의 역할 분리를 먼저 설계한다.
+- 모든 PNG 산출물은 **최소 600 dpi 이상**으로 저장한다.
+- PDF와 PNG는 가능한 한 **동일 레이아웃 / 동일 여백 / 동일 annotation** 을 유지해야 한다.
+- 축 라벨, 범례, tick, annotation, panel label의 폰트 크기는 논문 본문 삽입 후에도 읽히는 수준인지 반드시 검토한다.
+- 기본적으로 single-column 삽입을 우선 고려하되, 패널 수가 많거나 비교 메시지가 강하게 깨지는 경우에만 double-column figure를 허용한다.
 - figure 생성 직후에는 반드시 **visual QC**를 거친다.
-- visual QC는 최소 2단계로 한다.
+- visual QC는 최소 3단계로 한다.
   1. 에이전트 자체 시각 검토(이미지/패널 레이아웃/라벨/범례/가독성/잘림/왜곡)
-  2. Gemini CLI 기반 외부 시각 QC
-- 필요하면 서브에이전트를 사용해 별도 QC를 수행한다.
+  2. 서브에이전트 기반 별도 시각 QC
+  3. Gemini CLI 기반 외부 시각 QC
 - **QC가 통과되기 전에는 figure 체크박스를 완료 처리하지 않는다.**
 - 단순 생성 성공과 논문 품질 통과를 구분한다.
+
+## Figure layout / typography 기준
+
+- 기본 목표는 저널 2단 편집 기준에서 **재조정 없이 바로 LaTeX에 삽입 가능한 상태**다.
+- 각 figure마다 아래 항목을 production log 또는 QC log에 명시한다.
+  - intended width: `single-column` 또는 `double-column`
+  - panel layout: 예) `1x1`, `1x2`, `2x2`, `2x3`
+  - subfigure labels 사용 여부
+  - main caption과 subcaption 분리 방식
+  - export size (inch 또는 mm)
+  - PNG dpi
+  - PDF backend / vector 보존 여부
+- 가능한 경우 글꼴은 figure 간 일관성을 유지한다.
+- 축/범례/annotation이 많아 single-column에서 무너지면, 억지 축소 대신 double-column으로 승격한다.
+- subfigure caption은 장황하게 쓰지 말고, 패널 내부 라벨과 메인 caption이 자연스럽게 이어지도록 설계한다.
+- 색상, 선 두께, 마커 크기, 여백은 single-column 인쇄/축소 후에도 구분 가능해야 한다.
 
 ## 생산 상태 표기
 
@@ -197,7 +220,7 @@
 - A1/A2/A3/A4 category별 성능/해석 차이 제시
 
 **현재 생산 가능 여부**
-- [~] 사실상 즉시 생산 가능
+- [x] 제작 + visual QC 완료
 
 **근거 자산**
 - `benchmark/manifests/evaluation_aggregate_summary.json`
@@ -211,14 +234,22 @@
 - A4 dense composite structure-physics gap
 
 **판정**
-- Figure 5와 함께 바로 생산 가능한 정량 figure
+- 제작 완료. 현재 버전은 manuscript 삽입 가능한 production candidate로 승인함.
+
+**산출물 / 로그**
+- script: `scripts/paper_figures/make_figure6_category_aggregate.py`
+- outputs:
+  - `results/paper_figures/figure6_category_aggregate_performance.pdf`
+  - `results/paper_figures/figure6_category_aggregate_performance.png`
+- QC log: `docs/figure_qc/26-03-19_figure6_category_aggregate_qc.md`
 
 **체크리스트**
-- [ ] structural / CFD / opening-wall match 구성 확정
-- [ ] plotting script 작성
-- [ ] PDF/PNG 출력
-- [ ] 자체 visual QC
-- [ ] Gemini CLI visual QC
+- [x] structural / CFD / opening-wall match 구성 확정
+- [x] plotting script 작성
+- [x] PDF/PNG 출력
+- [x] 자체 visual QC
+- [x] 서브에이전트 visual QC
+- [x] Gemini CLI visual QC
 
 ---
 
