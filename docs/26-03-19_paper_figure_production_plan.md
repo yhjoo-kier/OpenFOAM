@@ -293,25 +293,33 @@
 - section view가 composite topology에 취약하다는 핵심 failure mode 시각화
 
 **현재 생산 가능 여부**
-- [~] 즉시 생산 가능
+- [x] 제작 + visual QC 완료
 
 **근거 자산**
 - `bench_a3_04/section`
 - `bench_a4_05/section`
 - 관련 aggregate note와 per-case notes
-- 대응하는 3D comparison / 2D comparison 결과물 존재
+- 대응하는 reference/predicted scene JSON 및 evaluation summary 존재
 
 **판정**
-- discussion용 핵심 failure figure로 바로 제작 가능
+- 제작 완료. 현재 버전은 manuscript 삽입 가능한 production candidate로 승인함.
+
+**산출물 / 로그**
+- script: `scripts/paper_figures/make_figure8_section_collapse.py`
+- outputs:
+  - `results/paper_figures/figure8_section_view_composite_collapse.pdf`
+  - `results/paper_figures/figure8_section_view_composite_collapse.png`
+- QC log: `docs/figure_qc/26-03-19_figure8_section_collapse_qc.md`
 
 **체크리스트**
-- [ ] 대표 case 1개 또는 2개 비교 선택
-- [ ] GT vs predicted geometry 패널 확정
-- [ ] CFD comparison 포함 여부 결정
-- [ ] collapse annotation 추가
-- [ ] PDF/PNG 출력
-- [ ] 자체 visual QC
-- [ ] Gemini CLI visual QC
+- [x] 대표 case 2개 비교 선택 (`bench_a3_04/section`, `bench_a4_05/section`)
+- [x] GT vs predicted geometry 패널 확정
+- [x] CFD comparison 포함 여부 결정 (full CFD panel은 생략하고 structural/CFD penalty를 annotation으로 반영)
+- [x] collapse annotation 추가
+- [x] PDF/PNG 출력
+- [x] 자체 visual QC
+- [x] 서브에이전트 visual QC
+- [x] Gemini CLI visual QC
 
 ---
 
