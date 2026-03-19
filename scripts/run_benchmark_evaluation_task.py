@@ -29,6 +29,7 @@ SCALE_HINTED_SETTING = "scale_hinted_longest_horizontal_span_v1"
 SCALE_HINTED_DUAL_SETTING = "scale_hinted_longest_span_plus_height_v1"
 SCALE_HINTED_LAYOUT_PROTECTED_SETTING = "scale_hinted_longest_span_layout_protected_v1"
 SCALE_HINTED_VIEW_GUARDED_SETTING = "scale_hinted_longest_span_view_guarded_v1"
+SCALE_HINTED_GUARD_WEIGHTED_SETTING = "scale_hinted_longest_span_guard_weighted_v1"
 
 
 def utc_now() -> str:
@@ -163,6 +164,16 @@ def compute_scale_hint(reference_scene_path: Path, setting: str = SCALE_HINTED_S
             "Do not move openings to different walls, invent unsupported hidden depth, infer unseen ceiling height aggressively, or collapse a clearly composite room just to satisfy the hinted span. "
             "If the scene is dense or composite, preserve the connected room outline and opening topology before refining obstacle detail. "
             "If exact scale agreement conflicts with the image evidence, preserve the image-supported layout/topology first and treat the hint as approximate."
+        )
+    elif setting == SCALE_HINTED_GUARD_WEIGHTED_SETTING:
+        kind = "longest_horizontal_span_guard_weighted"
+        prompt_text = (
+            f"Scale hint: the longest horizontal span of the room is approximately {span:.2f} m. "
+            "Keep the image-supported room topology, opening-wall identity, and dominant flow path first. "
+            "Use this number only as a soft metric anchor for the dominant horizontal span, not as an exact full bounding box and not as a reason to regularize every view in the same way. "
+            "Apply the hint conservatively on views that already expose layout well, and prefer conservative unsupported geometry over aggressive hidden-depth or unseen-height completion. "
+            "If the scene is dense or composite, preserve connected-room topology and opening placement before refining obstacle detail. "
+            "If exact scale agreement conflicts with the visible evidence, preserve the image-supported layout/topology first and treat the hint as approximate."
         )
     else:
         kind = "longest_horizontal_span"
@@ -397,32 +408,67 @@ def build_scenario_prompt(
         "Favor simple box obstacles and use two joined room blocks only if the visible layout is clearly non-rectangular. "
         f"{view_hint}"
     )
-    if setting == SCALE_HINTED_VIEW_GUARDED_SETTING:
+    if setting in {SCALE_HINTED_VIEW_GUARDED_SETTING, SCALE_HINTED_GUARD_WEIGHTED_SETTING}:
         prompt += (
             " Preserve opening-wall identity before refining obstacle sizes or exact scale."
             " Keep the main room outline and opening pair more faithful than small obstacle detail when cues conflict."
             " Keep the image-supported flow path and room topology even when the scale hint suggests a different regularized box."
         )
-        if view == "perspective":
-            prompt += (
-                " In perspective views, keep visible front/back ordering and side-wall depth conservative."
-                " Do not expand hidden depth or add recessed volume beyond what the image actually supports."
-            )
-        elif view == "section":
-            prompt += (
-                " In section views, trust the cut-plane geometry first."
-                " Do not infer unseen ceiling height, off-cut branches, or opening-wall relocation aggressively just to make the room look more regular."
-            )
-        if room_kind == "composite":
-            prompt += (
-                " If the visible layout is composite/L-shaped, preserve that connected outline instead of rectangularizing it for convenience."
-            )
-        if obstacle_count is not None and obstacle_count >= 3:
-            prompt += (
-                " For dense scenes, prioritize opening placement and connected-room topology over matching every small obstacle."
-                " If obstacle detail is uncertain, use fewer larger solver-friendly obstacles rather than speculative clutter."
-                " Keep generous clearance between large obstacles and do not let boxes overlap or interpenetrate."
-            )
+
+        if setting == SCALE_HINTED_VIEW_GUARDED_SETTING:
+            if view == "perspective":
+                prompt += (
+                    " In perspective views, keep visible front/back ordering and side-wall depth conservative."
+                    " Do not expand hidden depth or add recessed volume beyond what the image actually supports."
+                )
+            elif view == "section":
+                prompt += (
+                    " In section views, trust the cut-plane geometry first."
+                    " Do not infer unseen ceiling height, off-cut branches, or opening-wall relocation aggressively just to make the room look more regular."
+                )
+            if room_kind == "composite":
+                prompt += (
+                    " If the visible layout is composite/L-shaped, preserve that connected outline instead of rectangularizing it for convenience."
+                )
+            if obstacle_count is not None and obstacle_count >= 3:
+                prompt += (
+                    " For dense scenes, prioritize opening placement and connected-room topology over matching every small obstacle."
+                    " If obstacle detail is uncertain, use fewer larger solver-friendly obstacles rather than speculative clutter."
+                    " Keep generous clearance between large obstacles and do not let boxes overlap or interpenetrate."
+                )
+
+        elif setting == SCALE_HINTED_GUARD_WEIGHTED_SETTING:
+            if room_kind == "composite":
+                prompt += (
+                    " If the visible layout is composite/L-shaped, preserve that connected outline instead of rectangularizing it for convenience."
+                )
+            if obstacle_count is not None and obstacle_count >= 3:
+                prompt += (
+                    " For dense scenes, prioritize opening placement and connected-room topology over exact obstacle-by-obstacle detail."
+                    " When obstacle detail is uncertain, use fewer larger solver-friendly obstacles with clear separation, and never block or blur the opening topology."
+                )
+            if view == "perspective":
+                if room_kind == "composite" and (obstacle_count is not None and obstacle_count >= 3):
+                    prompt += (
+                        " In dense composite perspective views, keep visible front/back ordering conservative and avoid inventing hidden depth, recessed volume, or extra back-room span beyond what the image supports."
+                    )
+                else:
+                    prompt += (
+                        " In perspective views, keep visible front/back ordering plausible, but do not over-regularize depth if the layout is already visually clear."
+                    )
+            elif view == "section":
+                prompt += (
+                    " In section views, trust the cut-plane geometry and the observed opening-wall identity before applying global scale."
+                    " Do not relocate openings across walls, and keep unseen height or off-cut completion conservative and minimal."
+                )
+            elif view in {"floorplan", "birdseye"}:
+                prompt += (
+                    " In layout-dominant views, apply the scale hint lightly: preserve connected-room outline and opening placement first, and avoid adding extra caution that would distort an already clear plan."
+                )
+            elif view == "wireframe":
+                prompt += (
+                    " In wireframe views, keep the structural edge layout close to the image and use the scale hint only as a mild span anchor, not as a reason to reshape a geometry that is already clear."
+                )
     return prompt
 
 
@@ -620,7 +666,7 @@ def main() -> int:
     evaluation_summary_path = output_paths["evaluation_summary_json"]
     setting = task.get("setting") or default_setting_for_root(evaluation_root)
     scale_hint = task.get("scale_hint")
-    if setting in {SCALE_HINTED_SETTING, SCALE_HINTED_DUAL_SETTING, SCALE_HINTED_LAYOUT_PROTECTED_SETTING, SCALE_HINTED_VIEW_GUARDED_SETTING}:
+    if setting in {SCALE_HINTED_SETTING, SCALE_HINTED_DUAL_SETTING, SCALE_HINTED_LAYOUT_PROTECTED_SETTING, SCALE_HINTED_VIEW_GUARDED_SETTING, SCALE_HINTED_GUARD_WEIGHTED_SETTING}:
         refreshed_scale_hint = compute_scale_hint(Path(task["reference_scene"]), setting=setting)
         if (not scale_hint) or (not isinstance(scale_hint, dict)) or (scale_hint.get("prompt_text") != refreshed_scale_hint.get("prompt_text")):
             scale_hint = refreshed_scale_hint

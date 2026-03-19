@@ -33,6 +33,8 @@ DEFAULT_SETTING = "no_scale_hint_baseline"
 SCALE_HINTED_SETTING = "scale_hinted_longest_horizontal_span_v1"
 SCALE_HINTED_DUAL_SETTING = "scale_hinted_longest_span_plus_height_v1"
 SCALE_HINTED_LAYOUT_PROTECTED_SETTING = "scale_hinted_longest_span_layout_protected_v1"
+SCALE_HINTED_VIEW_GUARDED_SETTING = "scale_hinted_longest_span_view_guarded_v1"
+SCALE_HINTED_GUARD_WEIGHTED_SETTING = "scale_hinted_longest_span_guard_weighted_v1"
 
 SCENE_MANIFEST = MANIFESTS / "scene_manifest.json"
 DEFAULT_REFERENCE_STATUS = MANIFESTS / "reference_batch_summary.json"
@@ -112,6 +114,25 @@ def compute_scale_hint(scene_path: Path, room_kind: str, setting: str) -> dict[s
             "Do not move openings to different walls or collapse a clearly composite room just to satisfy the hinted span. "
             "If exact scale agreement conflicts with the image, preserve the image-consistent layout/topology first and treat the hint as approximate."
         )
+    elif setting == SCALE_HINTED_VIEW_GUARDED_SETTING:
+        kind = "longest_horizontal_span_view_guarded"
+        prompt_text = (
+            f"Scale hint: the longest horizontal span of the room is approximately {span:.2f} m. "
+            "First preserve room topology, opening-wall identity, and the main flow path supported by the image. "
+            "Then use this number only as a soft global anchor for the overall room span and proportionally scale the rest of the geometry. "
+            "Do not move openings to different walls, invent unsupported hidden depth, or collapse a clearly composite room just to satisfy the hinted span. "
+            "If exact scale agreement conflicts with the image evidence, preserve the image-supported layout/topology first and treat the hint as approximate."
+        )
+    elif setting == SCALE_HINTED_GUARD_WEIGHTED_SETTING:
+        kind = "longest_horizontal_span_guard_weighted"
+        prompt_text = (
+            f"Scale hint: the longest horizontal span of the room is approximately {span:.2f} m. "
+            "Keep the image-supported room topology, opening-wall identity, and dominant flow path first. "
+            "Use this number only as a soft metric anchor for the dominant horizontal span, not as an exact full bounding box and not as a reason to regularize every view in the same way. "
+            "Apply the hint conservatively on views that already expose layout well, and prefer conservative unsupported geometry over aggressive hidden-depth or unseen-height completion. "
+            "If the scene is dense or composite, preserve connected-room topology and opening placement before refining obstacle detail. "
+            "If exact scale agreement conflicts with the visible evidence, preserve the image-supported layout/topology first and treat the hint as approximate."
+        )
     else:
         kind = "longest_horizontal_span"
         prompt_text = (
@@ -137,7 +158,7 @@ def main() -> int:
     parser.add_argument("--reference-status", type=Path, default=DEFAULT_REFERENCE_STATUS)
     parser.add_argument("--renderings-manifest", type=Path, default=RENDERINGS_MANIFEST)
     parser.add_argument("--evaluation-root", type=Path, default=EVALUATIONS)
-    parser.add_argument("--setting", choices=[DEFAULT_SETTING, SCALE_HINTED_SETTING, SCALE_HINTED_DUAL_SETTING, SCALE_HINTED_LAYOUT_PROTECTED_SETTING], default=DEFAULT_SETTING)
+    parser.add_argument("--setting", choices=[DEFAULT_SETTING, SCALE_HINTED_SETTING, SCALE_HINTED_DUAL_SETTING, SCALE_HINTED_LAYOUT_PROTECTED_SETTING, SCALE_HINTED_VIEW_GUARDED_SETTING, SCALE_HINTED_GUARD_WEIGHTED_SETTING], default=DEFAULT_SETTING)
     args = parser.parse_args()
 
     scene_rows = load_json(args.scene_manifest)

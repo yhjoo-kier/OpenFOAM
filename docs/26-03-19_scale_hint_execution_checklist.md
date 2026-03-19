@@ -143,6 +143,12 @@
   - 결과: `view-guarded` smoke 20/20 success. 첫 `bench_a4_03/wireframe`은 dense obstacle overlap으로 meshing 실패했지만, dense obstacle clearance guard 추가 후 단일 재시도로 recover
 - [x] baseline 대비 CFD degradation 없이 통과하는지 재판단
   - 결론: **미통과**. targeted 축(`perspective`, `section`, `A4 dense composite`)에서는 완화 신호가 뚜렷하지만, overall mean CFD는 baseline 대비 아직 음수라 frozen-20 full rerun은 계속 보류
+- [x] post-`view-guarded` residual regression localization 및 next redesign gate 문서화
+  - 산출물: `26-03-20_scale_hint_post_view_guarded_gate_note.md`
+- [x] `guard-weighted` wording redesign variant 설계 및 stress-lane(6-task) smoke 실행
+  - 산출물: `26-03-20_scale_hint_guard_weighted_stress_smoke.md`
+- [x] `guard-weighted`가 perspective hidden-depth 억제 / section unseen-height 억제 / dense composite opening-topology 우선순위를 실제로 분리 적용하는지 확인
+  - 결론: perspective bbox 억제 효과는 확인됐지만, `section` room-kind collapse와 `floorplan` CFD regression이 남아 frozen-20 main setting 승격은 보류
 
 ---
 
