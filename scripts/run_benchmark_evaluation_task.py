@@ -24,6 +24,8 @@ SCRIPTS = PROJECT_ROOT / "scripts"
 BENCHMARK = PROJECT_ROOT / "benchmark"
 EVALUATIONS = BENCHMARK / "evaluations"
 DEFAULT_TASK = EVALUATIONS / "bench_a1_01" / "perspective" / "task.json"
+DEFAULT_SETTING = "no_scale_hint_baseline"
+SCALE_HINTED_SETTING = "scale_hinted_longest_horizontal_span_v1"
 
 
 def utc_now() -> str:
@@ -106,6 +108,34 @@ def overall_bbox(boxes: list[dict[str, Any]]) -> dict[str, float]:
         "Lx": max(b[3] for b in bounds) - min(b[0] for b in bounds),
         "Ly": max(b[4] for b in bounds) - min(b[1] for b in bounds),
         "Lz": max(b[5] for b in bounds) - min(b[2] for b in bounds),
+    }
+
+
+def infer_evaluation_root(task_path: Path) -> Path:
+    return task_path.parent.parent.parent
+
+
+def default_setting_for_root(evaluation_root: Path) -> str:
+    return SCALE_HINTED_SETTING if "scale_hint" in evaluation_root.name else DEFAULT_SETTING
+
+
+def compute_scale_hint(reference_scene_path: Path) -> dict[str, Any]:
+    reference_scene = load_json(reference_scene_path)
+    bbox = overall_bbox(room_blocks(reference_scene))
+    axis = "x" if bbox["Lx"] >= bbox["Ly"] else "y"
+    span = max(bbox["Lx"], bbox["Ly"])
+    return {
+        "kind": "longest_horizontal_span",
+        "axis": axis,
+        "span_m": round(span, 3),
+        "room_height_m": round(bbox["Lz"], 3),
+        "room_kind": room_kind(reference_scene),
+        "source_scene": str(reference_scene_path),
+        "prompt_text": (
+            f"Scale hint: the longest horizontal span of the room is approximately {span:.2f} m. "
+            "Use this as a global metric anchor when choosing room dimensions, opening sizes, and obstacle sizes. "
+            "Preserve the qualitative layout from the image instead of treating this hint as an exact full bounding box."
+        ),
     }
 
 
@@ -379,11 +409,11 @@ def summarize_prediction(reference_scene_path: Path, predicted_scene_path: Path)
     }
 
 
-def refresh_evaluation_index() -> None:
-    task_paths = sorted(EVALUATIONS.glob("*/ */task.json".replace(" ", "")))
+def refresh_evaluation_index(evaluation_root: Path) -> None:
+    task_paths = sorted(evaluation_root.glob("*/ */task.json".replace(" ", "")))
     # Fallback if the above glob behaves unexpectedly across platforms.
     if not task_paths:
-        task_paths = sorted(EVALUATIONS.glob("*/*/task.json"))
+        task_paths = sorted(evaluation_root.glob("*/*/task.json"))
 
     tasks: list[dict[str, Any]] = []
     case_map: dict[str, dict[str, Any]] = {}
@@ -433,8 +463,8 @@ def refresh_evaluation_index() -> None:
         "cases": case_summaries,
     }
     manifest = {"ok": True, "cases": case_summaries, "tasks": tasks}
-    write_json(EVALUATIONS / "summary.json", summary)
-    write_json(EVALUATIONS / "manifest.json", manifest)
+    write_json(evaluation_root / "summary.json", summary)
+    write_json(evaluation_root / "manifest.json", manifest)
 
 
 def cleanup_outputs(output_paths: dict[str, Path]) -> None:
@@ -504,18 +534,33 @@ def main() -> int:
     if not task_path.exists():
         raise FileNotFoundError(f"Task file does not exist: {task_path}")
 
+    evaluation_root = infer_evaluation_root(task_path)
     task = load_json(task_path)
     output_paths = {k: Path(v) for k, v in task["expected_outputs"].items()}
     evaluation_summary_path = output_paths["evaluation_summary_json"]
+    setting = task.get("setting") or default_setting_for_root(evaluation_root)
+    scale_hint = task.get("scale_hint")
+    if setting == SCALE_HINTED_SETTING and not scale_hint:
+        scale_hint = compute_scale_hint(Path(task["reference_scene"]))
+        task["scale_hint"] = scale_hint
 
     if args.skip_existing_success and task.get("status") == "success" and evaluation_summary_path.exists():
-        refresh_evaluation_index()
-        print(json.dumps({"ok": True, "skipped": True, "reason": "existing_success", "task": str(task_path)}, indent=2))
+        refresh_evaluation_index(evaluation_root)
+        print(json.dumps({
+            "ok": True,
+            "skipped": True,
+            "reason": "existing_success",
+            "task": str(task_path),
+            "evaluation_root": str(evaluation_root),
+            "setting": setting,
+        }, indent=2))
         return 0
 
     blocker = detect_backend_blocker(args.backend)
     if blocker:
         task["status"] = "blocked"
+        task["setting"] = setting
+        task["scale_hint"] = scale_hint
         task["last_finished_at"] = utc_now()
         task["run_request"] = {
             "backend": args.backend,
@@ -523,6 +568,8 @@ def main() -> int:
             "mesh_size": args.mesh_size,
             "end_time": args.end_time,
             "solver_timeout": args.solver_timeout,
+            "setting": setting,
+            "scale_hint": scale_hint,
         }
         task["blocked_reason"] = blocker["reason"]
         task["evaluation_summary"] = str(evaluation_summary_path)
@@ -535,6 +582,8 @@ def main() -> int:
         evaluation_summary = {
             "ok": False,
             "blocked": True,
+            "setting": setting,
+            "scale_hint": scale_hint,
             "blocker": blocker,
             "task": {
                 "case_name": task["case_name"],
@@ -542,6 +591,7 @@ def main() -> int:
                 "task_json": str(task_path),
                 "input_image": str(task["input_image"]),
                 "reference_scene": str(task["reference_scene"]),
+                "evaluation_root": str(evaluation_root),
             },
             "run": {
                 "name": None,
@@ -563,7 +613,7 @@ def main() -> int:
             "stderr_tail": blocker["message"],
         }
         write_json(evaluation_summary_path, evaluation_summary)
-        refresh_evaluation_index()
+        refresh_evaluation_index(evaluation_root)
         print(json.dumps(evaluation_summary, indent=2))
         return 2
 
@@ -573,6 +623,8 @@ def main() -> int:
         cfd_summary_path.unlink()
 
     task["status"] = "running"
+    task["setting"] = setting
+    task["scale_hint"] = scale_hint
     task["last_started_at"] = utc_now()
     task["run_request"] = {
         "backend": args.backend,
@@ -580,13 +632,15 @@ def main() -> int:
         "mesh_size": args.mesh_size,
         "end_time": args.end_time,
         "solver_timeout": args.solver_timeout,
+        "setting": setting,
+        "scale_hint": scale_hint,
     }
     write_json(task_path, task)
-    refresh_evaluation_index()
+    refresh_evaluation_index(evaluation_root)
 
     input_image = Path(task["input_image"])
     reference_scene_path = Path(task["reference_scene"])
-    run_name = f"eval_{task['case_name']}_{task['view']}"
+    run_name = f"eval_{setting}_{task['case_name']}_{task['view']}"
     run_cmd = [
         "python3", str(SCRIPTS / "run_indoor_stabilized.py"),
         "--backend", args.backend,
@@ -598,6 +652,8 @@ def main() -> int:
         "--end-time", str(args.end_time),
         "--solver-timeout", str(args.solver_timeout),
     ]
+    if scale_hint and isinstance(scale_hint, dict) and scale_hint.get("prompt_text"):
+        run_cmd.extend(["--scale-hint", str(scale_hint["prompt_text"])])
 
     proc = subprocess.run(run_cmd, cwd=PROJECT_ROOT, text=True, capture_output=True)
     results_dir = PROJECT_ROOT / "results" / run_name
@@ -614,7 +670,6 @@ def main() -> int:
     predicted_scene_out = output_paths["predicted_scene_json"]
     predicted_case_out = output_paths["predicted_case_dir"]
     predicted_results_out = output_paths["predicted_results_dir"]
-    cfd_summary_path = task_path.parent / "cfd_metrics.json"
 
     success = bool(stabilization_summary and stabilization_summary.get("success"))
     if success and predicted_scene_src and predicted_scene_src.exists():
@@ -634,14 +689,18 @@ def main() -> int:
             predicted_case_out,
             cfd_summary_path,
         )
+
     evaluation_summary = {
         "ok": success,
+        "setting": setting,
+        "scale_hint": scale_hint,
         "task": {
             "case_name": task["case_name"],
             "view": task["view"],
             "task_json": str(task_path),
             "input_image": str(input_image),
             "reference_scene": str(reference_scene_path),
+            "evaluation_root": str(evaluation_root),
         },
         "run": {
             "name": run_name,
@@ -661,8 +720,8 @@ def main() -> int:
         "prediction_summary": comparison,
         "cfd_summary": cfd_summary,
         "pipeline_summary": stabilization_summary,
-        "stdout_tail": "\n".join((proc.stdout or "").splitlines()[-40:]),
-        "stderr_tail": "\n".join((proc.stderr or "").splitlines()[-40:]),
+        "stdout_tail": "\\n".join((proc.stdout or "").splitlines()[-40:]),
+        "stderr_tail": "\\n".join((proc.stderr or "").splitlines()[-40:]),
     }
     write_json(evaluation_summary_path, evaluation_summary)
 
@@ -678,7 +737,7 @@ def main() -> int:
         "cfd_metrics_json": str(cfd_summary_path) if cfd_summary_path.exists() else None,
     }
     write_json(task_path, task)
-    refresh_evaluation_index()
+    refresh_evaluation_index(evaluation_root)
 
     print(json.dumps(evaluation_summary, indent=2))
     return 0 if success else 1

@@ -10,10 +10,10 @@ Inputs:
 - benchmark/renderings/renderings_manifest.json
 
 Outputs:
-- benchmark/evaluations/manifest.json
-- benchmark/evaluations/summary.json
-- benchmark/evaluations/<case>/<view>/task.json
-- benchmark/evaluations/<case>/<view>/{input.png,reference_scene.json,reference_case,reference_results}
+- <evaluation-root>/manifest.json
+- <evaluation-root>/summary.json
+- <evaluation-root>/<case>/<view>/task.json
+- <evaluation-root>/<case>/<view>/{input.png,reference_scene.json,reference_case,reference_results}
 """
 
 from __future__ import annotations
@@ -29,6 +29,8 @@ BENCHMARK = PROJECT_ROOT / "benchmark"
 MANIFESTS = BENCHMARK / "manifests"
 RENDERINGS = BENCHMARK / "renderings"
 EVALUATIONS = BENCHMARK / "evaluations"
+DEFAULT_SETTING = "no_scale_hint_baseline"
+SCALE_HINTED_SETTING = "scale_hinted_longest_horizontal_span_v1"
 
 SCENE_MANIFEST = MANIFESTS / "scene_manifest.json"
 DEFAULT_REFERENCE_STATUS = MANIFESTS / "reference_batch_summary.json"
@@ -51,11 +53,67 @@ def ensure_link(src: Path, dst: Path) -> None:
     dst.symlink_to(src)
 
 
+def room_blocks(scene: dict[str, Any]) -> list[dict[str, Any]]:
+    room = scene.get("room", {})
+    if "blocks" in room:
+        return room["blocks"]
+    size = room.get("size", {})
+    return [{
+        "origin": {"x": 0.0, "y": 0.0, "z": 0.0},
+        "size": {"dx": size.get("Lx", 0.0), "dy": size.get("Ly", 0.0), "dz": size.get("Lz", 0.0)},
+    }]
+
+
+def box_bounds(box: dict[str, Any]) -> tuple[float, float, float, float, float, float]:
+    origin = box.get("origin") or box.get("min") or {"x": 0.0, "y": 0.0, "z": 0.0}
+    size = box.get("size", {})
+    dx = size.get("dx", size.get("Lx", 0.0))
+    dy = size.get("dy", size.get("Ly", 0.0))
+    dz = size.get("dz", size.get("Lz", 0.0))
+    x0 = float(origin.get("x", 0.0))
+    y0 = float(origin.get("y", 0.0))
+    z0 = float(origin.get("z", 0.0))
+    return x0, y0, z0, x0 + float(dx), y0 + float(dy), z0 + float(dz)
+
+
+def overall_bbox(boxes: list[dict[str, Any]]) -> dict[str, float]:
+    bounds = [box_bounds(box) for box in boxes]
+    if not bounds:
+        return {"Lx": 0.0, "Ly": 0.0, "Lz": 0.0}
+    return {
+        "Lx": max(b[3] for b in bounds) - min(b[0] for b in bounds),
+        "Ly": max(b[4] for b in bounds) - min(b[1] for b in bounds),
+        "Lz": max(b[5] for b in bounds) - min(b[2] for b in bounds),
+    }
+
+
+def compute_scale_hint(scene_path: Path, room_kind: str) -> dict[str, Any]:
+    scene = load_json(scene_path)
+    bbox = overall_bbox(room_blocks(scene))
+    axis = "x" if bbox["Lx"] >= bbox["Ly"] else "y"
+    span = max(bbox["Lx"], bbox["Ly"])
+    return {
+        "kind": "longest_horizontal_span",
+        "axis": axis,
+        "span_m": round(span, 3),
+        "room_height_m": round(bbox["Lz"], 3),
+        "room_kind": room_kind,
+        "source_scene": str(scene_path),
+        "prompt_text": (
+            f"Scale hint: the longest horizontal span of the room is approximately {span:.2f} m. "
+            "Use this as a global metric anchor when choosing room dimensions, opening sizes, and obstacle sizes. "
+            "Preserve the qualitative layout from the image instead of treating this hint as an exact full bounding box."
+        ),
+    }
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description="Scaffold benchmark evaluation tasks from the frozen reference bundle")
     parser.add_argument("--scene-manifest", type=Path, default=SCENE_MANIFEST)
     parser.add_argument("--reference-status", type=Path, default=DEFAULT_REFERENCE_STATUS)
     parser.add_argument("--renderings-manifest", type=Path, default=RENDERINGS_MANIFEST)
+    parser.add_argument("--evaluation-root", type=Path, default=EVALUATIONS)
+    parser.add_argument("--setting", choices=[DEFAULT_SETTING, SCALE_HINTED_SETTING], default=DEFAULT_SETTING)
     args = parser.parse_args()
 
     scene_rows = load_json(args.scene_manifest)
@@ -65,7 +123,8 @@ def main() -> int:
     ref_by_case = {row["case_name"]: row for row in ref_payload["results"]}
     render_by_case = {row["case_name"]: row for row in render_payload["cases"]}
 
-    EVALUATIONS.mkdir(parents=True, exist_ok=True)
+    evaluation_root = args.evaluation_root.expanduser().resolve()
+    evaluation_root.mkdir(parents=True, exist_ok=True)
 
     tasks: list[dict[str, Any]] = []
     case_summaries: list[dict[str, Any]] = []
@@ -79,7 +138,7 @@ def main() -> int:
         if not ref_row.get("success"):
             raise RuntimeError(f"Reference CFD is not successful for {case_name}; refusing to scaffold evaluation tasks")
 
-        case_dir = EVALUATIONS / case_name
+        case_dir = evaluation_root / case_name
         case_dir.mkdir(parents=True, exist_ok=True)
 
         scene_src = Path(scene_row["scene_file"])
@@ -87,6 +146,7 @@ def main() -> int:
             scene_src = PROJECT_ROOT / scene_src
         ref_case = PROJECT_ROOT / "cases" / case_name
         ref_results = PROJECT_ROOT / "results" / case_name
+        scale_hint = None if args.setting == DEFAULT_SETTING else compute_scale_hint(scene_src, scene_row["room_kind"])
 
         views_present = []
         for view in DEFAULT_VIEWS:
@@ -107,6 +167,7 @@ def main() -> int:
             existing_task = load_json(task_path) if task_path.exists() else {}
             task = {
                 "case_name": case_name,
+                "setting": args.setting,
                 "category": scene_row["category"],
                 "variant_index": scene_row["variant_index"],
                 "room_kind": scene_row["room_kind"],
@@ -133,6 +194,7 @@ def main() -> int:
                     "risk_score": ref_row.get("risk_score"),
                     "risk_reasons": ref_row.get("risk_reasons"),
                 },
+                "scale_hint": scale_hint,
             }
             for key in ("last_started_at", "last_finished_at", "last_run_name", "evaluation_summary", "actual_outputs", "run_request"):
                 if key in existing_task:
@@ -145,6 +207,8 @@ def main() -> int:
             "category": scene_row["category"],
             "room_kind": scene_row["room_kind"],
             "obstacle_count": scene_row["obstacle_count"],
+            "setting": args.setting,
+            "scale_hint": scale_hint,
             "views": views_present,
             "reference_scene": str(scene_src),
             "reference_case": str(ref_case),
@@ -163,7 +227,8 @@ def main() -> int:
     summary = {
         "ok": True,
         "benchmark_root": str(BENCHMARK),
-        "evaluation_root": str(EVALUATIONS),
+        "evaluation_root": str(evaluation_root),
+        "setting": args.setting,
         "views": DEFAULT_VIEWS,
         "case_count": len(case_summaries),
         "task_count": len(tasks),
@@ -172,12 +237,13 @@ def main() -> int:
     }
     manifest = {
         "ok": True,
+        "setting": args.setting,
         "cases": case_summaries,
         "tasks": tasks,
     }
 
-    (EVALUATIONS / "summary.json").write_text(json.dumps(summary, indent=2), encoding="utf-8")
-    (EVALUATIONS / "manifest.json").write_text(json.dumps(manifest, indent=2), encoding="utf-8")
+    (evaluation_root / "summary.json").write_text(json.dumps(summary, indent=2), encoding="utf-8")
+    (evaluation_root / "manifest.json").write_text(json.dumps(manifest, indent=2), encoding="utf-8")
     print(json.dumps(summary, indent=2))
     return 0
 

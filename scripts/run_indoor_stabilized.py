@@ -540,6 +540,7 @@ def main() -> int:
     parser.add_argument("--backend", choices=["cli", "api"], default="api")
     parser.add_argument("--model", default="gemini-3.1-pro-preview")
     parser.add_argument("--image", dest="images", action="append", default=[], help="Optional image/photo/rendering path; repeatable")
+    parser.add_argument("--scale-hint", default=None, help="Optional absolute scale anchor text forwarded to Gemini generation")
     parser.add_argument("--mesh-size", type=float, default=0.35)
     parser.add_argument("--skip-mesh-ladder", action="store_true")
     parser.add_argument("--end-time", type=int, default=1000)
@@ -581,6 +582,8 @@ def main() -> int:
         ]
         for image_path in args.images:
             gen_cmd.extend(["--image", image_path])
+        if args.scale_hint:
+            gen_cmd.extend(["--scale-hint", args.scale_hint])
         if args.no_fallback:
             gen_cmd.append("--no-fallback")
         generation_result = run(gen_cmd, cwd=PROJECT_ROOT, check=False)
@@ -742,6 +745,7 @@ def main() -> int:
         "requested_backend": args.backend,
         "requested_model": args.model,
         "input_images": args.images,
+        "scale_hint": args.scale_hint,
         "scene_json": str(scene_json),
         "repaired_scene_json": None if args.disable_repair else str(repaired_scene_json),
         "used_scene_json": str(used_scene_json),

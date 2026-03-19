@@ -10,6 +10,7 @@ from __future__ import annotations
 import argparse
 import base64
 import json
+import re
 import mimetypes
 import os
 import shutil
@@ -156,8 +157,17 @@ def ensure_gemini_available(backend: str) -> None:
     raise RuntimeError(f"Unsupported backend: {backend}")
 
 
-def build_prompt(scenario: str) -> str:
-    return PROMPT_TEMPLATE.format(scenario=scenario.strip())
+def build_prompt(scenario: str, scale_hint: str | None = None) -> str:
+    scenario_text = scenario.strip()
+    if scale_hint:
+        scenario_text = (
+            f"{scenario_text}\n\n"
+            "Absolute scale hint:\n"
+            f"- {scale_hint.strip()}\n"
+            "- Treat this as a global metric anchor: keep the predicted room's longest horizontal span close to the hinted value.\n"
+            "- Preserve image-consistent layout/aspect ratio while matching this absolute scale."
+        )
+    return PROMPT_TEMPLATE.format(scenario=scenario_text)
 
 
 def _build_cli_prompt(prompt: str, image_paths: list[Path]) -> str:
@@ -341,6 +351,71 @@ def _extract_text_from_candidate(payload: dict) -> str | None:
     return None
 
 
+def extract_scale_hint_span(scale_hint: str | None) -> float | None:
+    if not scale_hint:
+        return None
+    match = re.search(r"([0-9]+(?:\.[0-9]+)?)\s*m", scale_hint)
+    if match:
+        return float(match.group(1))
+    match = re.search(r"([0-9]+(?:\.[0-9]+)?)", scale_hint)
+    return float(match.group(1)) if match else None
+
+
+def room_horizontal_bbox(scene: dict) -> tuple[float, float]:
+    room = scene.get("room", {})
+    if "blocks" in room:
+        blocks = room.get("blocks") or []
+        if not blocks:
+            return 0.0, 0.0
+        xs, ys = [], []
+        for block in blocks:
+            origin = block.get("origin", {})
+            size = block.get("size", {})
+            x0 = float(origin.get("x", 0.0))
+            y0 = float(origin.get("y", 0.0))
+            dx = float(size.get("dx", size.get("Lx", 0.0)))
+            dy = float(size.get("dy", size.get("Ly", 0.0)))
+            xs.extend([x0, x0 + dx])
+            ys.extend([y0, y0 + dy])
+        return max(xs) - min(xs), max(ys) - min(ys)
+    size = room.get("size", {})
+    return float(size.get("Lx", 0.0)), float(size.get("Ly", 0.0))
+
+
+def apply_uniform_scale(scene: dict, factor: float) -> dict:
+    if abs(factor - 1.0) < 1e-9:
+        return scene
+    room = scene.get("room", {})
+    if "size" in room:
+        for key in ("Lx", "Ly", "Lz"):
+            if key in room["size"]:
+                room["size"][key] = round(float(room["size"][key]) * factor, 6)
+    elif "blocks" in room:
+        for block in room.get("blocks", []):
+            for key in ("x", "y", "z"):
+                if key in block.get("origin", {}):
+                    block["origin"][key] = round(float(block["origin"][key]) * factor, 6)
+            for key in ("dx", "dy", "dz", "Lx", "Ly", "Lz"):
+                if key in block.get("size", {}):
+                    block["size"][key] = round(float(block["size"][key]) * factor, 6)
+    for obstacle in scene.get("obstacles", []):
+        for key in ("x", "y", "z"):
+            if key in obstacle.get("min", {}):
+                obstacle["min"][key] = round(float(obstacle["min"][key]) * factor, 6)
+        for key in ("dx", "dy", "dz", "Lx", "Ly", "Lz"):
+            if key in obstacle.get("size", {}):
+                obstacle["size"][key] = round(float(obstacle["size"][key]) * factor, 6)
+    for opening in scene.get("openings", []):
+        for key in ("u", "v"):
+            if key in opening.get("center", {}):
+                opening["center"][key] = round(float(opening["center"][key]) * factor, 6)
+        for key in ("du", "dv"):
+            if key in opening.get("size", {}):
+                opening["size"][key] = round(float(opening["size"][key]) * factor, 6)
+    scene.setdefault("meta", {})["scale_hint_rescale_factor"] = round(factor, 6)
+    return scene
+
+
 def parse_scene(raw_output: str) -> dict:
     try:
         payload = json.loads(raw_output)
@@ -423,6 +498,12 @@ def main() -> int:
         help="Print the full prompt before running Gemini",
     )
     parser.add_argument(
+        "--scale-hint",
+        type=str,
+        default=None,
+        help="Optional absolute scale anchor text injected into the prompt",
+    )
+    parser.add_argument(
         "--strict",
         action="store_true",
         help="Exit with nonzero code if validation warnings exist",
@@ -440,7 +521,7 @@ def main() -> int:
             raise RuntimeError(f"Image path does not exist: {image_path}")
 
     ensure_gemini_available(args.backend)
-    prompt = build_prompt(args.scenario)
+    prompt = build_prompt(args.scenario, scale_hint=args.scale_hint)
 
     if args.print_prompt:
         print("=" * 80)
@@ -460,6 +541,14 @@ def main() -> int:
         allow_fallback=not args.no_fallback,
     )
     scene = parse_scene(raw_output)
+    applied_scale_factor = None
+    target_span = extract_scale_hint_span(args.scale_hint)
+    if target_span is not None and target_span > 0:
+        lx, ly = room_horizontal_bbox(scene)
+        predicted_span = max(lx, ly)
+        if predicted_span > 0:
+            applied_scale_factor = target_span / predicted_span
+            scene = apply_uniform_scale(scene, applied_scale_factor)
 
     args.output.parent.mkdir(parents=True, exist_ok=True)
     with args.output.open("w", encoding="utf-8") as f:
@@ -483,6 +572,8 @@ def main() -> int:
         "primary_model_retry_limit": PRIMARY_MODEL_RETRIES,
         "generation_history": generation_history,
         "scenario": args.scenario,
+        "scale_hint": args.scale_hint,
+        "applied_scale_factor": applied_scale_factor,
         "images": [str(p) for p in image_paths],
     }
     print("---")

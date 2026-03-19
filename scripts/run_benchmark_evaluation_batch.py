@@ -135,6 +135,7 @@ def main() -> int:
 
     payload = {
         "ok": True,
+        "evaluation_root": str(evaluation_root),
         "backend": args.backend,
         "model": args.model,
         "filters": {
@@ -158,3 +159,8 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
+Exit(main())

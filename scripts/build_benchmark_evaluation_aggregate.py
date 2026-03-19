@@ -593,7 +593,7 @@ def main() -> int:
     args = parser.parse_args()
 
     rows = collect_rows(args.evaluation_root)
-    payload = build_payload(rows)
+    payload = build_payload(rows, args.evaluation_root)
 
     args.json_output.parent.mkdir(parents=True, exist_ok=True)
     args.json_output.write_text(json.dumps(payload, indent=2), encoding="utf-8")
