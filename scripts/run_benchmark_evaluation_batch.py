@@ -33,13 +33,14 @@ def write_json(path: Path, payload: Any) -> None:
 
 def selected_tasks(
     *,
+    evaluation_root: Path,
     cases: list[str] | None,
     categories: list[str] | None,
     views: list[str] | None,
     statuses: list[str] | None,
     limit: int | None,
 ) -> list[Path]:
-    task_paths = sorted(EVALUATIONS.glob("*/*/task.json"))
+    task_paths = sorted(evaluation_root.glob("*/*/task.json"))
     picked: list[Path] = []
     for task_path in task_paths:
         task = load_json(task_path)
@@ -59,6 +60,7 @@ def selected_tasks(
 
 def main() -> int:
     parser = argparse.ArgumentParser(description="Run a filtered batch of benchmark evaluation tasks")
+    parser.add_argument("--evaluation-root", type=Path, default=EVALUATIONS)
     parser.add_argument("--cases", nargs="*", default=None, help="Case names to run, e.g. bench_a1_01")
     parser.add_argument("--categories", nargs="*", default=None, help="Categories to run, e.g. A1 A3")
     parser.add_argument("--views", nargs="*", choices=DEFAULT_VIEWS, default=None, help="View types to run")
@@ -78,7 +80,9 @@ def main() -> int:
     )
     args = parser.parse_args()
 
+    evaluation_root = args.evaluation_root.expanduser().resolve()
     task_paths = selected_tasks(
+        evaluation_root=evaluation_root,
         cases=args.cases,
         categories=args.categories,
         views=args.views,
@@ -159,8 +163,3 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-
-
-if __name__ == "__main__":
-    raise SystemExit(main())
-Exit(main())

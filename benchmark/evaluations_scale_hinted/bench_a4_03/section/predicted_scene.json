@@ -1,0 +1,100 @@
+{
+  "schema_version": "indoor_cfd_scene_v1",
+  "units": "m",
+  "coordinate_system": {
+    "origin": "room_min_corner",
+    "x": "west_to_east",
+    "y": "south_to_north",
+    "z": "floor_to_ceiling"
+  },
+  "room": {
+    "blocks": [
+      {
+        "origin": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "size": {
+          "dx": 4.5,
+          "dy": 5.0,
+          "dz": 3.2
+        }
+      },
+      {
+        "origin": {
+          "x": 4.5,
+          "y": 0,
+          "z": 0
+        },
+        "size": {
+          "dx": 2.8,
+          "dy": 3.8,
+          "dz": 3.2
+        }
+      }
+    ]
+  },
+  "obstacles": [
+    {
+      "id": "obs_001",
+      "type": "box",
+      "min": {
+        "x": 2.6,
+        "y": 1.5,
+        "z": 0
+      },
+      "size": {
+        "dx": 1.1,
+        "dy": 2.0,
+        "dz": 1.8
+      }
+    },
+    {
+      "id": "obs_002",
+      "type": "box",
+      "min": {
+        "x": 5.4,
+        "y": 0.9,
+        "z": 0
+      },
+      "size": {
+        "dx": 1.0,
+        "dy": 2.0,
+        "dz": 2.1
+      }
+    }
+  ],
+  "openings": [
+    {
+      "id": "inlet_001",
+      "type": "inlet",
+      "wall": "west",
+      "center": {
+        "u": 2.5,
+        "v": 2.4
+      },
+      "size": {
+        "du": 0.6,
+        "dv": 0.4
+      }
+    },
+    {
+      "id": "outlet_001",
+      "type": "outlet",
+      "wall": "east",
+      "center": {
+        "u": 1.9,
+        "v": 0.8
+      },
+      "size": {
+        "du": 0.6,
+        "dv": 0.4
+      }
+    }
+  ],
+  "meta": {
+    "scene_type": "two-block recessed room",
+    "description": "An L-shaped or recessed room layout with two distinct rectangular blocks totaling 7.3m in length, featuring two box obstacles of different heights as indicated by the section view."
+  }
+}

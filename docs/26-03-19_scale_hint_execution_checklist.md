@@ -31,7 +31,7 @@
 - [x] scale issue / pivot 배경 문서 작성 (`26-03-19_scale_hint_pivot_plan.md`)
 - [x] 기존 결과를 `no-scale-hint baseline`으로 명시하는 bookkeeping 전략 확정
 - [x] 새 결과를 `scale-hinted` setting으로 분리 저장하는 디렉터리/manifest 전략 확정
-- [-] 논문 계획 문서에 scale-hint setting 도입 사실 반영
+- [x] 논문 계획 문서에 scale-hint setting 도입 사실 반영
 
 ---
 
@@ -62,7 +62,7 @@
 - [x] evaluation summary에 실제 사용된 `scale_hint` 값 기록
 
 ### C3. Batch / aggregate / bookkeeping
-- [-] `scripts/run_benchmark_evaluation_batch.py`에 scale-hinted mode 반영 필요 여부 점검
+- [x] `scripts/run_benchmark_evaluation_batch.py`에 scale-hinted mode 반영 필요 여부 점검
 - [x] aggregate summary 생성 스크립트가 setting 구분을 다루도록 수정 필요 여부 점검
 - [x] baseline과 scale-hinted 결과가 섞이지 않도록 경로/manifest 전략 정리
 
@@ -76,9 +76,10 @@
   - [x] light composite 1개
   - [x] dense composite 1개
 - [x] 최소 4 case × 5 views 또는 더 작은 smoke subset 범위 확정
-- [-] scale-hinted smoke test 실행
+- [x] scale-hinted smoke test 실행
 - [x] geometry/CFD/room bbox error가 baseline 대비 어떤 방향으로 바뀌는지 확인
 - [x] prompt wording / hint formulation의 1차 수정 필요 여부 판단
+  - 메모: partial smoke 기준 longest-span only는 `Lx` 오차 완화에는 유효하지만 CFD 개선은 mixed하여 `ceiling height` 보강안 검토를 유지
 
 ---
 
@@ -98,15 +99,15 @@
 ## F. 결과 집계 및 비교
 
 - [ ] scale-hinted aggregate summary 생성
-- [-] no-scale-hint baseline vs scale-hinted 비교 summary 생성
-- [ ] 특히 아래 항목 비교
-  - [ ] room bbox absolute / relative error
-  - [ ] structural score
-  - [ ] CFD score
-  - [ ] room-kind match
-  - [ ] opening-wall match
-- [ ] scale hint가 실제로 geometry scale mismatch를 줄였는지 결론 정리
-- [ ] 결과를 문서화한 비교 note 작성
+- [x] no-scale-hint baseline vs scale-hinted 비교 summary 생성
+- [x] 특히 아래 항목 비교
+  - [x] room bbox absolute / relative error
+  - [x] structural score
+  - [x] CFD score
+  - [x] room-kind match
+  - [x] opening-wall match
+- [x] scale hint가 실제로 geometry scale mismatch를 줄였는지 결론 정리
+- [x] 결과를 문서화한 비교 note 작성
 
 ---
 
@@ -124,7 +125,7 @@
 - [x] scale hint 최종 스펙 문구 결정
 - [x] generation/evaluation 코드 수정 시작
 - [x] smoke subset 정의
-- [-] smoke run 실행
+- [x] smoke run 실행
 
 ---
 

@@ -1,0 +1,21 @@
+{
+  "case_name": "bench_a3_02",
+  "category": "A3",
+  "room_kind": "composite",
+  "obstacle_count": 0,
+  "views": [
+    "birdseye",
+    "floorplan",
+    "perspective",
+    "section",
+    "wireframe"
+  ],
+  "reference_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations_scale_hinted/bench_a3_02/birdseye/reference_scene.json",
+  "reference_case": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations_scale_hinted/bench_a3_02/birdseye/reference_case",
+  "reference_results": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations_scale_hinted/bench_a3_02/birdseye/reference_results",
+  "task_count": 5,
+  "status_counts": {
+    "pending": 5
+  },
+  "case_root": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations_scale_hinted/bench_a3_02"
+}

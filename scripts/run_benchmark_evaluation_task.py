@@ -455,7 +455,7 @@ def refresh_evaluation_index(evaluation_root: Path) -> None:
     summary = {
         "ok": True,
         "benchmark_root": str(BENCHMARK),
-        "evaluation_root": str(EVALUATIONS),
+        "evaluation_root": str(evaluation_root),
         "views": ["perspective", "birdseye", "floorplan", "wireframe", "section"],
         "case_count": len(case_summaries),
         "task_count": len(tasks),

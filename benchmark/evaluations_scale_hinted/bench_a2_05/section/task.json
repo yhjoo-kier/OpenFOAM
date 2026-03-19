@@ -1,0 +1,39 @@
+{
+  "case_name": "bench_a2_05",
+  "setting": "scale_hinted_longest_horizontal_span_v1",
+  "category": "A2",
+  "variant_index": 5,
+  "room_kind": "rectangular",
+  "obstacle_count": 3,
+  "view": "section",
+  "status": "pending",
+  "input_image": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations_scale_hinted/bench_a2_05/section/input.png",
+  "reference_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations_scale_hinted/bench_a2_05/section/reference_scene.json",
+  "reference_case": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations_scale_hinted/bench_a2_05/section/reference_case",
+  "reference_results": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations_scale_hinted/bench_a2_05/section/reference_results",
+  "expected_outputs": {
+    "predicted_scene_json": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations_scale_hinted/bench_a2_05/section/predicted_scene.json",
+    "predicted_case_dir": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations_scale_hinted/bench_a2_05/section/predicted_case",
+    "predicted_results_dir": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations_scale_hinted/bench_a2_05/section/predicted_results",
+    "evaluation_summary_json": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations_scale_hinted/bench_a2_05/section/evaluation_summary.json"
+  },
+  "reference_summary": {
+    "success": true,
+    "successful_preset": null,
+    "successful_mode": null,
+    "successful_mesh_size": null,
+    "attempt_count": 1,
+    "risk": null,
+    "risk_score": null,
+    "risk_reasons": null
+  },
+  "scale_hint": {
+    "kind": "longest_horizontal_span",
+    "axis": "y",
+    "span_m": 5.69,
+    "room_height_m": 2.663,
+    "room_kind": "rectangular",
+    "source_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/scenes/a2_05.json",
+    "prompt_text": "Scale hint: the longest horizontal span of the room is approximately 5.69 m. Use this as a global metric anchor when choosing room dimensions, opening sizes, and obstacle sizes. Preserve the qualitative layout from the image instead of treating this hint as an exact full bounding box."
+  }
+}

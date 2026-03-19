@@ -145,6 +145,14 @@ benchmark/                             # 생성된 데이터셋
 └── evaluations/                       # 프레임워크 적용 결과 및 평가
 ```
 
+## 5.4 Image-conditioned evaluation setting note (2026-03-19 pivot)
+
+- benchmark dataset 자체(`scene JSON`, `reference CFD`, `5-view rendering`)는 유지한다.
+- 기존 100/100 image-conditioned 결과는 **no-scale-hint baseline** 으로 보존한다.
+- 앞으로의 main image-conditioned evaluation은 **scale-hinted setting** 을 기본 후보로 본다.
+- 1차 scale hint는 benchmark reference scene에서 자동 계산한 **longest horizontal span (m)** 이다.
+- full rerun 여부는 smoke subset 결과를 본 뒤 최종 확정한다.
+
 ## 6. 평가 지표
 
 | 레벨 | 지표 | 설명 |

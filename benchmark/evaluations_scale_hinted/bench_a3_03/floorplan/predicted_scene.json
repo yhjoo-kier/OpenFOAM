@@ -1,0 +1,114 @@
+{
+  "schema_version": "indoor_cfd_scene_v1",
+  "units": "m",
+  "coordinate_system": {
+    "origin": "room_min_corner",
+    "x": "west_to_east",
+    "y": "south_to_north",
+    "z": "floor_to_ceiling"
+  },
+  "room": {
+    "blocks": [
+      {
+        "origin": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "size": {
+          "dx": 5.2,
+          "dy": 5.5,
+          "dz": 3.0
+        }
+      },
+      {
+        "origin": {
+          "x": 5.2,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "size": {
+          "dx": 3.42,
+          "dy": 4.0,
+          "dz": 3.0
+        }
+      }
+    ]
+  },
+  "obstacles": [
+    {
+      "id": "obs_001",
+      "type": "box",
+      "min": {
+        "x": 6.8,
+        "y": 0.8,
+        "z": 0.0
+      },
+      "size": {
+        "dx": 1.0,
+        "dy": 2.0,
+        "dz": 1.2
+      }
+    },
+    {
+      "id": "obs_002",
+      "type": "box",
+      "min": {
+        "x": 0.2,
+        "y": 2.5,
+        "z": 0.0
+      },
+      "size": {
+        "dx": 0.5,
+        "dy": 1.2,
+        "dz": 0.8
+      }
+    },
+    {
+      "id": "obs_003",
+      "type": "box",
+      "min": {
+        "x": 2.0,
+        "y": 5.0,
+        "z": 0.0
+      },
+      "size": {
+        "dx": 1.8,
+        "dy": 0.4,
+        "dz": 1.0
+      }
+    }
+  ],
+  "openings": [
+    {
+      "id": "inlet_001",
+      "type": "inlet",
+      "wall": "east",
+      "center": {
+        "u": 2.2,
+        "v": 1.5
+      },
+      "size": {
+        "du": 0.6,
+        "dv": 0.6
+      }
+    },
+    {
+      "id": "outlet_001",
+      "type": "outlet",
+      "wall": "south",
+      "center": {
+        "u": 7.5,
+        "v": 0.4
+      },
+      "size": {
+        "du": 1.0,
+        "dv": 0.6
+      }
+    }
+  ],
+  "meta": {
+    "scene_type": "l_shaped_ventilation",
+    "description": "A two-block composite room with a step-down in height from west to east. The scene features a primary central obstacle in the east block and two peripheral obstacles in the west block. Ventilation is facilitated by an east-wall inlet and a low-level south-wall outlet."
+  }
+}
