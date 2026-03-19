@@ -1,0 +1,773 @@
+{
+  "ok": true,
+  "project_root": "/home/yhjoo/projects/OpenFOAM",
+  "evaluation_root": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations_posthoc_scaled_longest_span",
+  "setting": "posthoc_uniform_longest_span_v1",
+  "overall": {
+    "n": 20,
+    "mean_structural_score": 0.8307,
+    "mean_cfd_score": 0.5329,
+    "mean_room_bbox_rel_error_Lx": 0.0,
+    "mean_room_bbox_rel_error_Ly": 0.2209,
+    "mean_room_bbox_rel_error_Lz": 0.2151,
+    "mean_room_volume_relative_error": 0.3861,
+    "room_kind_match_rate": 1.0,
+    "opening_wall_match_rate": 0.75,
+    "used_repair_count": 0,
+    "ultra_robust_count": 0,
+    "laminar_fallback_count": 1,
+    "conservative_count": 1,
+    "mesh025_count": 0,
+    "nonblocking_repair_sidecar_warning_count": 0
+  },
+  "by_view": {
+    "perspective": {
+      "n": 4,
+      "mean_structural_score": 0.8229,
+      "mean_cfd_score": 0.5522,
+      "mean_room_bbox_rel_error_Lx": 0.0,
+      "mean_room_bbox_rel_error_Ly": 0.3458,
+      "mean_room_bbox_rel_error_Lz": 0.2037,
+      "mean_room_volume_relative_error": 0.5027,
+      "room_kind_match_rate": 1.0,
+      "opening_wall_match_rate": 0.75,
+      "used_repair_count": 0,
+      "ultra_robust_count": 0,
+      "laminar_fallback_count": 0,
+      "conservative_count": 0,
+      "mesh025_count": 0,
+      "nonblocking_repair_sidecar_warning_count": 0
+    },
+    "birdseye": {
+      "n": 4,
+      "mean_structural_score": 0.7708,
+      "mean_cfd_score": 0.5637,
+      "mean_room_bbox_rel_error_Lx": 0.0,
+      "mean_room_bbox_rel_error_Ly": 0.2415,
+      "mean_room_bbox_rel_error_Lz": 0.2727,
+      "mean_room_volume_relative_error": 0.4551,
+      "room_kind_match_rate": 1.0,
+      "opening_wall_match_rate": 0.75,
+      "used_repair_count": 0,
+      "ultra_robust_count": 0,
+      "laminar_fallback_count": 0,
+      "conservative_count": 0,
+      "mesh025_count": 0,
+      "nonblocking_repair_sidecar_warning_count": 0
+    },
+    "floorplan": {
+      "n": 4,
+      "mean_structural_score": 0.9479,
+      "mean_cfd_score": 0.598,
+      "mean_room_bbox_rel_error_Lx": 0.0,
+      "mean_room_bbox_rel_error_Ly": 0.0862,
+      "mean_room_bbox_rel_error_Lz": 0.2726,
+      "mean_room_volume_relative_error": 0.3416,
+      "room_kind_match_rate": 1.0,
+      "opening_wall_match_rate": 1.0,
+      "used_repair_count": 0,
+      "ultra_robust_count": 0,
+      "laminar_fallback_count": 0,
+      "conservative_count": 0,
+      "mesh025_count": 0,
+      "nonblocking_repair_sidecar_warning_count": 0
+    },
+    "wireframe": {
+      "n": 4,
+      "mean_structural_score": 0.7887,
+      "mean_cfd_score": 0.5422,
+      "mean_room_bbox_rel_error_Lx": 0.0,
+      "mean_room_bbox_rel_error_Ly": 0.3676,
+      "mean_room_bbox_rel_error_Lz": 0.2351,
+      "mean_room_volume_relative_error": 0.5312,
+      "room_kind_match_rate": 1.0,
+      "opening_wall_match_rate": 0.75,
+      "used_repair_count": 0,
+      "ultra_robust_count": 0,
+      "laminar_fallback_count": 0,
+      "conservative_count": 0,
+      "mesh025_count": 0,
+      "nonblocking_repair_sidecar_warning_count": 0
+    },
+    "section": {
+      "n": 4,
+      "mean_structural_score": 0.8229,
+      "mean_cfd_score": 0.4086,
+      "mean_room_bbox_rel_error_Lx": 0.0,
+      "mean_room_bbox_rel_error_Ly": 0.0634,
+      "mean_room_bbox_rel_error_Lz": 0.0915,
+      "mean_room_volume_relative_error": 0.0998,
+      "room_kind_match_rate": 1.0,
+      "opening_wall_match_rate": 0.5,
+      "used_repair_count": 0,
+      "ultra_robust_count": 0,
+      "laminar_fallback_count": 1,
+      "conservative_count": 1,
+      "mesh025_count": 0,
+      "nonblocking_repair_sidecar_warning_count": 0
+    }
+  },
+  "by_category": {
+    "A1": {
+      "n": 5,
+      "mean_structural_score": 0.825,
+      "mean_cfd_score": 0.5648,
+      "mean_room_bbox_rel_error_Lx": 0.0,
+      "mean_room_bbox_rel_error_Ly": 0.1298,
+      "mean_room_bbox_rel_error_Lz": 0.0699,
+      "mean_room_volume_relative_error": 0.1957,
+      "room_kind_match_rate": 1.0,
+      "opening_wall_match_rate": 1.0,
+      "used_repair_count": 0,
+      "ultra_robust_count": 0,
+      "laminar_fallback_count": 0,
+      "conservative_count": 0,
+      "mesh025_count": 0,
+      "nonblocking_repair_sidecar_warning_count": 0
+    },
+    "A2": {
+      "n": 5,
+      "mean_structural_score": 0.7167,
+      "mean_cfd_score": 0.4141,
+      "mean_room_bbox_rel_error_Lx": 0.0,
+      "mean_room_bbox_rel_error_Ly": 0.2748,
+      "mean_room_bbox_rel_error_Lz": 0.2902,
+      "mean_room_volume_relative_error": 0.4781,
+      "room_kind_match_rate": 1.0,
+      "opening_wall_match_rate": 0.2,
+      "used_repair_count": 0,
+      "ultra_robust_count": 0,
+      "laminar_fallback_count": 0,
+      "conservative_count": 1,
+      "mesh025_count": 0,
+      "nonblocking_repair_sidecar_warning_count": 0
+    },
+    "A3": {
+      "n": 5,
+      "mean_structural_score": 0.9,
+      "mean_cfd_score": 0.5944,
+      "mean_room_bbox_rel_error_Lx": 0.0,
+      "mean_room_bbox_rel_error_Ly": 0.2533,
+      "mean_room_bbox_rel_error_Lz": 0.1828,
+      "mean_room_volume_relative_error": 0.3591,
+      "room_kind_match_rate": 1.0,
+      "opening_wall_match_rate": 0.8,
+      "used_repair_count": 0,
+      "ultra_robust_count": 0,
+      "laminar_fallback_count": 1,
+      "conservative_count": 0,
+      "mesh025_count": 0,
+      "nonblocking_repair_sidecar_warning_count": 0
+    },
+    "A4": {
+      "n": 5,
+      "mean_structural_score": 0.881,
+      "mean_cfd_score": 0.5583,
+      "mean_room_bbox_rel_error_Lx": 0.0,
+      "mean_room_bbox_rel_error_Ly": 0.2256,
+      "mean_room_bbox_rel_error_Lz": 0.3176,
+      "mean_room_volume_relative_error": 0.5113,
+      "room_kind_match_rate": 1.0,
+      "opening_wall_match_rate": 1.0,
+      "used_repair_count": 0,
+      "ultra_robust_count": 0,
+      "laminar_fallback_count": 0,
+      "conservative_count": 0,
+      "mesh025_count": 0,
+      "nonblocking_repair_sidecar_warning_count": 0
+    }
+  },
+  "by_room_kind": {
+    "rectangular": {
+      "n": 10,
+      "mean_structural_score": 0.7708,
+      "mean_cfd_score": 0.4894,
+      "mean_room_bbox_rel_error_Lx": 0.0,
+      "mean_room_bbox_rel_error_Ly": 0.2023,
+      "mean_room_bbox_rel_error_Lz": 0.18,
+      "mean_room_volume_relative_error": 0.3369,
+      "room_kind_match_rate": 1.0,
+      "opening_wall_match_rate": 0.6,
+      "used_repair_count": 0,
+      "ultra_robust_count": 0,
+      "laminar_fallback_count": 0,
+      "conservative_count": 1,
+      "mesh025_count": 0,
+      "nonblocking_repair_sidecar_warning_count": 0
+    },
+    "composite": {
+      "n": 10,
+      "mean_structural_score": 0.8905,
+      "mean_cfd_score": 0.5764,
+      "mean_room_bbox_rel_error_Lx": 0.0,
+      "mean_room_bbox_rel_error_Ly": 0.2395,
+      "mean_room_bbox_rel_error_Lz": 0.2502,
+      "mean_room_volume_relative_error": 0.4352,
+      "room_kind_match_rate": 1.0,
+      "opening_wall_match_rate": 0.9,
+      "used_repair_count": 0,
+      "ultra_robust_count": 0,
+      "laminar_fallback_count": 1,
+      "conservative_count": 0,
+      "mesh025_count": 0,
+      "nonblocking_repair_sidecar_warning_count": 0
+    }
+  },
+  "case_rankings": {
+    "lowest_mean_cfd": [
+      {
+        "case": "bench_a2_03",
+        "category": "A2",
+        "room_kind": "rectangular",
+        "mean_structural_score": 0.7167,
+        "mean_cfd_score": 0.4141,
+        "mean_room_bbox_rel_error_Lx": 0.0,
+        "mean_room_bbox_rel_error_Ly": 0.2748,
+        "mean_room_bbox_rel_error_Lz": 0.2902,
+        "room_kind_match_count": 5,
+        "opening_wall_match_count": 1,
+        "used_repair_views": [],
+        "ultra_robust_views": [],
+        "laminar_fallback_views": [],
+        "mesh025_views": [],
+        "hallucination_views": [],
+        "nonblocking_repair_sidecar_warning_views": [],
+        "derived_tag_counts": {
+          "rectangular_blockage_layout_failure": 4
+        },
+        "dominant_tags": [
+          "rectangular_blockage_layout_failure"
+        ]
+      },
+      {
+        "case": "bench_a4_03",
+        "category": "A4",
+        "room_kind": "composite",
+        "mean_structural_score": 0.881,
+        "mean_cfd_score": 0.5583,
+        "mean_room_bbox_rel_error_Lx": 0.0,
+        "mean_room_bbox_rel_error_Ly": 0.2256,
+        "mean_room_bbox_rel_error_Lz": 0.3176,
+        "room_kind_match_count": 5,
+        "opening_wall_match_count": 5,
+        "used_repair_views": [],
+        "ultra_robust_views": [],
+        "laminar_fallback_views": [],
+        "mesh025_views": [],
+        "hallucination_views": [
+          "wireframe"
+        ],
+        "nonblocking_repair_sidecar_warning_views": [],
+        "derived_tag_counts": {
+          "opening_topology_preserved_with_obstacle_hallucination": 1
+        },
+        "dominant_tags": []
+      },
+      {
+        "case": "bench_a1_01",
+        "category": "A1",
+        "room_kind": "rectangular",
+        "mean_structural_score": 0.825,
+        "mean_cfd_score": 0.5648,
+        "mean_room_bbox_rel_error_Lx": 0.0,
+        "mean_room_bbox_rel_error_Ly": 0.1298,
+        "mean_room_bbox_rel_error_Lz": 0.0699,
+        "room_kind_match_count": 5,
+        "opening_wall_match_count": 5,
+        "used_repair_views": [],
+        "ultra_robust_views": [],
+        "laminar_fallback_views": [],
+        "mesh025_views": [],
+        "hallucination_views": [
+          "floorplan"
+        ],
+        "nonblocking_repair_sidecar_warning_views": [],
+        "derived_tag_counts": {},
+        "dominant_tags": []
+      },
+      {
+        "case": "bench_a3_03",
+        "category": "A3",
+        "room_kind": "composite",
+        "mean_structural_score": 0.9,
+        "mean_cfd_score": 0.5944,
+        "mean_room_bbox_rel_error_Lx": 0.0,
+        "mean_room_bbox_rel_error_Ly": 0.2533,
+        "mean_room_bbox_rel_error_Lz": 0.1828,
+        "room_kind_match_count": 5,
+        "opening_wall_match_count": 4,
+        "used_repair_views": [],
+        "ultra_robust_views": [],
+        "laminar_fallback_views": [
+          "section"
+        ],
+        "mesh025_views": [],
+        "hallucination_views": [
+          "birdseye",
+          "section",
+          "wireframe"
+        ],
+        "nonblocking_repair_sidecar_warning_views": [],
+        "derived_tag_counts": {
+          "laminar_fallback_success": 1,
+          "opening_topology_preserved_with_obstacle_hallucination": 2
+        },
+        "dominant_tags": [
+          "opening_topology_preserved_with_obstacle_hallucination"
+        ]
+      }
+    ],
+    "highest_mean_cfd": [
+      {
+        "case": "bench_a3_03",
+        "category": "A3",
+        "room_kind": "composite",
+        "mean_structural_score": 0.9,
+        "mean_cfd_score": 0.5944,
+        "mean_room_bbox_rel_error_Lx": 0.0,
+        "mean_room_bbox_rel_error_Ly": 0.2533,
+        "mean_room_bbox_rel_error_Lz": 0.1828,
+        "room_kind_match_count": 5,
+        "opening_wall_match_count": 4,
+        "used_repair_views": [],
+        "ultra_robust_views": [],
+        "laminar_fallback_views": [
+          "section"
+        ],
+        "mesh025_views": [],
+        "hallucination_views": [
+          "birdseye",
+          "section",
+          "wireframe"
+        ],
+        "nonblocking_repair_sidecar_warning_views": [],
+        "derived_tag_counts": {
+          "laminar_fallback_success": 1,
+          "opening_topology_preserved_with_obstacle_hallucination": 2
+        },
+        "dominant_tags": [
+          "opening_topology_preserved_with_obstacle_hallucination"
+        ]
+      },
+      {
+        "case": "bench_a1_01",
+        "category": "A1",
+        "room_kind": "rectangular",
+        "mean_structural_score": 0.825,
+        "mean_cfd_score": 0.5648,
+        "mean_room_bbox_rel_error_Lx": 0.0,
+        "mean_room_bbox_rel_error_Ly": 0.1298,
+        "mean_room_bbox_rel_error_Lz": 0.0699,
+        "room_kind_match_count": 5,
+        "opening_wall_match_count": 5,
+        "used_repair_views": [],
+        "ultra_robust_views": [],
+        "laminar_fallback_views": [],
+        "mesh025_views": [],
+        "hallucination_views": [
+          "floorplan"
+        ],
+        "nonblocking_repair_sidecar_warning_views": [],
+        "derived_tag_counts": {},
+        "dominant_tags": []
+      },
+      {
+        "case": "bench_a4_03",
+        "category": "A4",
+        "room_kind": "composite",
+        "mean_structural_score": 0.881,
+        "mean_cfd_score": 0.5583,
+        "mean_room_bbox_rel_error_Lx": 0.0,
+        "mean_room_bbox_rel_error_Ly": 0.2256,
+        "mean_room_bbox_rel_error_Lz": 0.3176,
+        "room_kind_match_count": 5,
+        "opening_wall_match_count": 5,
+        "used_repair_views": [],
+        "ultra_robust_views": [],
+        "laminar_fallback_views": [],
+        "mesh025_views": [],
+        "hallucination_views": [
+          "wireframe"
+        ],
+        "nonblocking_repair_sidecar_warning_views": [],
+        "derived_tag_counts": {
+          "opening_topology_preserved_with_obstacle_hallucination": 1
+        },
+        "dominant_tags": []
+      },
+      {
+        "case": "bench_a2_03",
+        "category": "A2",
+        "room_kind": "rectangular",
+        "mean_structural_score": 0.7167,
+        "mean_cfd_score": 0.4141,
+        "mean_room_bbox_rel_error_Lx": 0.0,
+        "mean_room_bbox_rel_error_Ly": 0.2748,
+        "mean_room_bbox_rel_error_Lz": 0.2902,
+        "room_kind_match_count": 5,
+        "opening_wall_match_count": 1,
+        "used_repair_views": [],
+        "ultra_robust_views": [],
+        "laminar_fallback_views": [],
+        "mesh025_views": [],
+        "hallucination_views": [],
+        "nonblocking_repair_sidecar_warning_views": [],
+        "derived_tag_counts": {
+          "rectangular_blockage_layout_failure": 4
+        },
+        "dominant_tags": [
+          "rectangular_blockage_layout_failure"
+        ]
+      }
+    ]
+  },
+  "derived_tags": {
+    "task_counts": {
+      "opening_topology_preserved_with_obstacle_hallucination": 3,
+      "rectangular_blockage_layout_failure": 4,
+      "dense_composite_structure_physics_gap": 0,
+      "section_room_kind_collapse": 0,
+      "repair_salvaged_success": 0,
+      "mesh025_fallback": 0,
+      "ultra_robust_escalation": 0,
+      "laminar_fallback_success": 1,
+      "nonblocking_repair_sidecar_warning": 0
+    },
+    "task_examples": {
+      "opening_topology_preserved_with_obstacle_hallucination": [
+        {
+          "case": "bench_a3_03",
+          "view": "birdseye",
+          "category": "A3",
+          "room_kind": "composite",
+          "structural_score": 0.875,
+          "cfd_score": 0.6319
+        },
+        {
+          "case": "bench_a3_03",
+          "view": "wireframe",
+          "category": "A3",
+          "room_kind": "composite",
+          "structural_score": 0.875,
+          "cfd_score": 0.5997
+        },
+        {
+          "case": "bench_a4_03",
+          "view": "wireframe",
+          "category": "A4",
+          "room_kind": "composite",
+          "structural_score": 0.8214,
+          "cfd_score": 0.572
+        }
+      ],
+      "rectangular_blockage_layout_failure": [
+        {
+          "case": "bench_a2_03",
+          "view": "birdseye",
+          "category": "A2",
+          "room_kind": "rectangular",
+          "structural_score": 0.625,
+          "cfd_score": 0.3541
+        },
+        {
+          "case": "bench_a2_03",
+          "view": "perspective",
+          "category": "A2",
+          "room_kind": "rectangular",
+          "structural_score": 0.625,
+          "cfd_score": 0.3733
+        },
+        {
+          "case": "bench_a2_03",
+          "view": "section",
+          "category": "A2",
+          "room_kind": "rectangular",
+          "structural_score": 0.625,
+          "cfd_score": 0.3645
+        },
+        {
+          "case": "bench_a2_03",
+          "view": "wireframe",
+          "category": "A2",
+          "room_kind": "rectangular",
+          "structural_score": 0.7083,
+          "cfd_score": 0.3361
+        }
+      ],
+      "dense_composite_structure_physics_gap": [],
+      "section_room_kind_collapse": [],
+      "repair_salvaged_success": [],
+      "mesh025_fallback": [],
+      "ultra_robust_escalation": [],
+      "laminar_fallback_success": [
+        {
+          "case": "bench_a3_03",
+          "view": "section",
+          "category": "A3",
+          "room_kind": "composite",
+          "structural_score": 0.75,
+          "cfd_score": 0.3193
+        }
+      ],
+      "nonblocking_repair_sidecar_warning": []
+    },
+    "case_examples": {
+      "opening_topology_preserved_with_obstacle_hallucination": [
+        {
+          "case": "bench_a3_03",
+          "category": "A3",
+          "room_kind": "composite",
+          "mean_structural_score": 0.9,
+          "mean_cfd_score": 0.5944
+        }
+      ],
+      "rectangular_blockage_layout_failure": [
+        {
+          "case": "bench_a2_03",
+          "category": "A2",
+          "room_kind": "rectangular",
+          "mean_structural_score": 0.7167,
+          "mean_cfd_score": 0.4141
+        }
+      ],
+      "dense_composite_structure_physics_gap": [],
+      "section_room_kind_collapse": [],
+      "repair_salvaged_success": [],
+      "mesh025_fallback": [],
+      "ultra_robust_escalation": [],
+      "laminar_fallback_success": [],
+      "nonblocking_repair_sidecar_warning": []
+    },
+    "descriptions": {
+      "opening_topology_preserved_with_obstacle_hallucination": "Composite task kept opening/topology signal strong enough for CFD despite extra hallucinated obstacles.",
+      "rectangular_blockage_layout_failure": "Rectangular multi-obstacle task underperformed through blockage/layout distortion and/or opening-wall mismatch rather than room collapse.",
+      "dense_composite_structure_physics_gap": "Dense composite task looked structurally acceptable but still lost CFD fidelity.",
+      "section_room_kind_collapse": "Section-view task collapsed a composite room into a rectangular prediction.",
+      "repair_salvaged_success": "Task required repaired-scene salvage to finish successfully.",
+      "mesh025_fallback": "Task needed the smaller 0.25 mesh-size fallback to succeed.",
+      "ultra_robust_escalation": "Task required ultra_robust solver escalation.",
+      "laminar_fallback_success": "Task finished only after falling back to a laminar run.",
+      "nonblocking_repair_sidecar_warning": "Original scene succeeded, but a repair-sidecar attempt still left warning traces worth preserving as robustness metadata."
+    }
+  },
+  "notables": {
+    "room_kind_mismatch_tasks": [],
+    "repair_used_tasks": [],
+    "laminar_fallback_tasks": [
+      {
+        "case": "bench_a3_03",
+        "view": "section",
+        "mesh_size": 0.35,
+        "structural_score": 0.75,
+        "cfd_score": 0.3193
+      }
+    ],
+    "ultra_robust_tasks": [],
+    "mesh025_tasks": [],
+    "nonblocking_repair_sidecar_warning_tasks": [],
+    "highest_cfd_tasks": [
+      {
+        "case": "bench_a3_03",
+        "view": "floorplan",
+        "category": "A3",
+        "room_kind": "composite",
+        "structural_score": 1.0,
+        "cfd_score": 0.7493,
+        "derived_tags": []
+      },
+      {
+        "case": "bench_a1_01",
+        "view": "birdseye",
+        "category": "A1",
+        "room_kind": "rectangular",
+        "structural_score": 0.75,
+        "cfd_score": 0.6869,
+        "derived_tags": []
+      },
+      {
+        "case": "bench_a3_03",
+        "view": "perspective",
+        "category": "A3",
+        "room_kind": "composite",
+        "structural_score": 1.0,
+        "cfd_score": 0.672,
+        "derived_tags": []
+      },
+      {
+        "case": "bench_a1_01",
+        "view": "wireframe",
+        "category": "A1",
+        "room_kind": "rectangular",
+        "structural_score": 0.75,
+        "cfd_score": 0.6609,
+        "derived_tags": []
+      },
+      {
+        "case": "bench_a1_01",
+        "view": "perspective",
+        "category": "A1",
+        "room_kind": "rectangular",
+        "structural_score": 0.75,
+        "cfd_score": 0.6443,
+        "derived_tags": []
+      },
+      {
+        "case": "bench_a2_03",
+        "view": "floorplan",
+        "category": "A2",
+        "room_kind": "rectangular",
+        "structural_score": 1.0,
+        "cfd_score": 0.6426,
+        "derived_tags": []
+      },
+      {
+        "case": "bench_a3_03",
+        "view": "birdseye",
+        "category": "A3",
+        "room_kind": "composite",
+        "structural_score": 0.875,
+        "cfd_score": 0.6319,
+        "derived_tags": [
+          "opening_topology_preserved_with_obstacle_hallucination"
+        ]
+      },
+      {
+        "case": "bench_a4_03",
+        "view": "floorplan",
+        "category": "A4",
+        "room_kind": "composite",
+        "structural_score": 0.9167,
+        "cfd_score": 0.611,
+        "derived_tags": []
+      },
+      {
+        "case": "bench_a3_03",
+        "view": "wireframe",
+        "category": "A3",
+        "room_kind": "composite",
+        "structural_score": 0.875,
+        "cfd_score": 0.5997,
+        "derived_tags": [
+          "opening_topology_preserved_with_obstacle_hallucination"
+        ]
+      },
+      {
+        "case": "bench_a4_03",
+        "view": "birdseye",
+        "category": "A4",
+        "room_kind": "composite",
+        "structural_score": 0.8333,
+        "cfd_score": 0.5818,
+        "derived_tags": []
+      }
+    ],
+    "lowest_cfd_tasks": [
+      {
+        "case": "bench_a3_03",
+        "view": "section",
+        "category": "A3",
+        "room_kind": "composite",
+        "structural_score": 0.75,
+        "cfd_score": 0.3193,
+        "derived_tags": [
+          "laminar_fallback_success"
+        ]
+      },
+      {
+        "case": "bench_a2_03",
+        "view": "wireframe",
+        "category": "A2",
+        "room_kind": "rectangular",
+        "structural_score": 0.7083,
+        "cfd_score": 0.3361,
+        "derived_tags": [
+          "rectangular_blockage_layout_failure"
+        ]
+      },
+      {
+        "case": "bench_a2_03",
+        "view": "birdseye",
+        "category": "A2",
+        "room_kind": "rectangular",
+        "structural_score": 0.625,
+        "cfd_score": 0.3541,
+        "derived_tags": [
+          "rectangular_blockage_layout_failure"
+        ]
+      },
+      {
+        "case": "bench_a2_03",
+        "view": "section",
+        "category": "A2",
+        "room_kind": "rectangular",
+        "structural_score": 0.625,
+        "cfd_score": 0.3645,
+        "derived_tags": [
+          "rectangular_blockage_layout_failure"
+        ]
+      },
+      {
+        "case": "bench_a2_03",
+        "view": "perspective",
+        "category": "A2",
+        "room_kind": "rectangular",
+        "structural_score": 0.625,
+        "cfd_score": 0.3733,
+        "derived_tags": [
+          "rectangular_blockage_layout_failure"
+        ]
+      },
+      {
+        "case": "bench_a1_01",
+        "view": "floorplan",
+        "category": "A1",
+        "room_kind": "rectangular",
+        "structural_score": 0.875,
+        "cfd_score": 0.3891,
+        "derived_tags": []
+      },
+      {
+        "case": "bench_a1_01",
+        "view": "section",
+        "category": "A1",
+        "room_kind": "rectangular",
+        "structural_score": 1.0,
+        "cfd_score": 0.4427,
+        "derived_tags": []
+      },
+      {
+        "case": "bench_a4_03",
+        "view": "section",
+        "category": "A4",
+        "room_kind": "composite",
+        "structural_score": 0.9167,
+        "cfd_score": 0.5079,
+        "derived_tags": []
+      },
+      {
+        "case": "bench_a4_03",
+        "view": "perspective",
+        "category": "A4",
+        "room_kind": "composite",
+        "structural_score": 0.9167,
+        "cfd_score": 0.519,
+        "derived_tags": []
+      },
+      {
+        "case": "bench_a4_03",
+        "view": "wireframe",
+        "category": "A4",
+        "room_kind": "composite",
+        "structural_score": 0.8214,
+        "cfd_score": 0.572,
+        "derived_tags": [
+          "opening_topology_preserved_with_obstacle_hallucination"
+        ]
+      }
+    ]
+  },
+  "generated_from": {
+    "task_count": 20,
+    "evaluation_summary_pattern": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations_posthoc_scaled_longest_span/*/*/evaluation_summary.json"
+  }
+}

@@ -65,6 +65,7 @@ def main() -> int:
     parser.add_argument("--categories", nargs="*", default=None, help="Categories to run, e.g. A1 A3")
     parser.add_argument("--views", nargs="*", choices=DEFAULT_VIEWS, default=None, help="View types to run")
     parser.add_argument("--statuses", nargs="*", default=["pending"], help="Only run tasks currently in these statuses")
+    parser.add_argument("--task-runner", type=Path, default=TASK_RUNNER, help="Task runner script path")
     parser.add_argument("--backend", choices=["cli", "api"], default="cli")
     parser.add_argument("--model", default="gemini-3-flash-preview")
     parser.add_argument("--mesh-size", type=float, default=0.35)
@@ -95,13 +96,9 @@ def main() -> int:
         task = load_json(task_path)
         cmd = [
             "python3",
-            str(TASK_RUNNER),
+            str(args.task_runner.expanduser().resolve()),
             "--task",
             str(task_path),
-            "--backend",
-            args.backend,
-            "--model",
-            args.model,
             "--mesh-size",
             str(args.mesh_size),
             "--end-time",
@@ -109,6 +106,14 @@ def main() -> int:
             "--solver-timeout",
             str(args.solver_timeout),
         ]
+        runner_name = args.task_runner.name
+        if runner_name == "run_benchmark_evaluation_task.py":
+            cmd.extend([
+                "--backend",
+                args.backend,
+                "--model",
+                args.model,
+            ])
         if args.skip_existing_success:
             cmd.append("--skip-existing-success")
         proc = subprocess.run(cmd, cwd=PROJECT_ROOT, text=True, capture_output=True)
@@ -140,6 +145,7 @@ def main() -> int:
     payload = {
         "ok": True,
         "evaluation_root": str(evaluation_root),
+        "task_runner": str(args.task_runner.expanduser().resolve()),
         "backend": args.backend,
         "model": args.model,
         "filters": {
