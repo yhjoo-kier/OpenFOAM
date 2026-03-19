@@ -38,7 +38,8 @@
 ## B. Scale hint specification 확정
 
 - [x] 1차 기본안 확정: `longest horizontal span` 힌트 사용 여부 결정
-- [-] 대안안 검토: `ceiling height + longest horizontal span` 필요성 판단
+- [x] 대안안 검토: `ceiling height + longest horizontal span` 필요성 판단
+  - 결론: dual-anchor는 `Lz`/structure는 소폭 개선했지만 CFD 및 opening-wall fidelity를 회복하지 못해 현 시점 main setting으로 채택하지 않음
 - [x] benchmark reference scene에서 scale hint를 자동 계산하는 규칙 정의
   - [x] rectangular case 규칙
   - [x] composite case 규칙
@@ -100,7 +101,8 @@
 
 ## F. 결과 집계 및 비교
 
-- [ ] scale-hinted aggregate summary 생성
+- [x] scale-hinted aggregate summary 생성
+  - 산출물: `evaluation_aggregate_summary_scale_hinted_smoke.json`, `evaluation_aggregate_summary_scale_hinted_span_height_smoke.json` 및 대응 markdown note
 - [x] no-scale-hint baseline vs scale-hinted 비교 summary 생성
 - [x] 특히 아래 항목 비교
   - [x] room bbox absolute / relative error
