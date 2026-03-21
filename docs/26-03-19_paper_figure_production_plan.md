@@ -35,9 +35,12 @@
   - export size (inch 또는 mm)
   - PNG dpi
   - PDF backend / vector 보존 여부
-- 가능한 경우 글꼴은 figure 간 일관성을 유지한다.
+  - font family (기본: Arial)
+  - figure 내부 panel title / annotation가 캡션형 문장 없이 억제되었는지 여부
+- 가능한 경우 글꼴은 figure 간 일관성을 유지하며, 기본은 **Arial**로 고정한다.
 - 축/범례/annotation이 많아 single-column에서 무너지면, 억지 축소 대신 double-column으로 승격한다.
 - subfigure caption은 장황하게 쓰지 말고, 패널 내부 라벨과 메인 caption이 자연스럽게 이어지도록 설계한다.
+- panel title이 필요하더라도 짧은 식별자 수준으로 유지하고, figure-level 주장 문장이나 캡션성 문장을 내부에 넣지 않는다.
 - 색상, 선 두께, 마커 크기, 여백은 single-column 인쇄/축소 후에도 구분 가능해야 한다.
 
 ## 생산 상태 표기
@@ -179,7 +182,7 @@
 - view별 structural/CFD 성능 차이를 headline figure로 제시
 
 **현재 생산 가능 여부**
-- [x] 제작 + visual QC 완료
+- [x] 제작 + visual QC 완료 (2026-03-19 새 규칙 기준으로 재생성/재QC 완료)
 
 **근거 자산**
 - `benchmark/manifests/evaluation_aggregate_summary.json`
@@ -196,6 +199,7 @@
 
 **판정**
 - 제작 완료. 현재 버전은 manuscript 삽입 가능한 production candidate로 승인함.
+- 비고: 초기 QC 통과본은 내부 `Figure 5` 문구와 300 dpi PNG 때문에 새 규칙에 부합하지 않았고, 2026-03-19에 내부 번호/캡션 제거 + Arial-first fallback 기록 + 600 dpi 재출력 + 재QC로 갱신함.
 
 **산출물 / 로그**
 - script: `scripts/paper_figures/make_figure5_view_aggregate.py`
@@ -220,7 +224,7 @@
 - A1/A2/A3/A4 category별 성능/해석 차이 제시
 
 **현재 생산 가능 여부**
-- [x] 제작 + visual QC 완료
+- [~] 재생성 필요 (기존 QC 통과본은 논문 figure 규칙 재검토 대상)
 
 **근거 자산**
 - `benchmark/manifests/evaluation_aggregate_summary.json`
@@ -329,7 +333,7 @@
 - obstacle hallucination이 있어도 opening/topology가 맞으면 CFD가 유지될 수 있음을 보여줌
 
 **현재 생산 가능 여부**
-- [x] 제작 + visual QC 완료
+- [-] baseline floorplan pass는 보존, scale-calibrated wireframe branch는 split-asset rebuild 진행 중
 
 **근거 자산**
 - `bench_a3_01`, `bench_a3_02`, `bench_a3_05`
@@ -337,22 +341,40 @@
 - 관련 evaluation outputs와 case notes 존재
 
 **판정**
-- 제작 완료. 현재 버전은 manuscript 삽입 가능한 production candidate로 승인함.
+- 2026-03-19 floorplan production candidate는 QC 통과 상태로 보존한다.
+- 다만 2026-03-21 scale-calibrated wireframe branch는 별도 재작업 대상으로 간주하며, 현재는 **제작 중(-)** 상태다.
 
 **산출물 / 로그**
-- script: `scripts/paper_figures/make_figure9_obstacle_hallucination.py`
-- outputs:
+- baseline script: `scripts/paper_figures/make_figure9_obstacle_hallucination.py`
+- baseline outputs:
   - `results/paper_figures/figure9_obstacle_hallucination_limited_cfd_penalty.pdf`
   - `results/paper_figures/figure9_obstacle_hallucination_limited_cfd_penalty.png`
-- QC log: `docs/figure_qc/26-03-19_figure9_obstacle_hallucination_qc.md`
+- baseline QC log: `docs/figure_qc/26-03-19_figure9_obstacle_hallucination_qc.md`
+- current rebuild/QC log: `docs/figure_qc/26-03-21_figure9_obstacle_hallucination_qc.md`
+- split-asset rebuild spec: `docs/figure_qc/26-03-21_figure9_split_asset_rebuild_path.md`
+- split-asset builder: `scripts/paper_figures/make_figure9_obstacle_hallucination_split_assets.py`
+- split-asset outputs:
+  - `results/paper_figures/figure9_split_assets/figure9_split_asset_preview.pdf`
+  - `results/paper_figures/figure9_split_assets/figure9_split_asset_preview.png`
+  - `results/paper_figures/figure9_split_assets/figure9_split_manifest.json`
+
+**2026-03-21 전략 전환 메모 (최종)**
+- 15+ revision cycle 실패 후 근본 원인을 architectural issue로 진단하고 radical layout rebuild 수행.
+- **핵심 변경**: 4-column (input/ref/pred/evidence) → **2×2 (ref/pred) + bottom summary strip**.
+  - wireframe input column 완전 제거 → wireframe-vs-plan-view balance instability 해소
+  - right-side cue-card lane 완전 제거 → overloaded cue lane 해소
+  - 각 prediction panel 면적 ~2배 확보 → panel (f) crowding 해소
+- wireframe input은 caption에서 참조 (Figures 3/5/7에서 multi-view 예시 이미 제공됨).
+- summary strip: per-case `obstacles / openings / CFD score` compact metrics.
+- 기존 split-asset builder (`make_figure9_obstacle_hallucination_split_assets.py`)는 더 이상 사용하지 않고, main script (`make_figure9_obstacle_hallucination.py`)를 2×2 layout으로 재작성함.
 
 **체크리스트**
-- [x] 대표 A3 사례 확정 (`bench_a3_01/floorplan`, `bench_a3_05/floorplan`)
-- [x] obstacle count mismatch와 CFD similarity를 함께 보여줄 패널 구성 설계
-- [x] PDF/PNG 출력
-- [x] 자체 visual QC
-- [x] 서브에이전트 visual QC
-- [x] Gemini CLI visual QC
+- [x] 대표 A3 사례 확정 (`bench_a3_01/floorplan`, `bench_a3_05/floorplan`) — baseline
+- [x] scale-calibrated wireframe branch representative pair lock (`bench_a3_01/wireframe`, `bench_a3_03/wireframe`)
+- [x] radical layout rebuild (2×2 + summary strip)
+- [x] 자체 visual QC — PASS
+- [-] 서브에이전트 visual QC
+- [ ] Gemini CLI visual QC
 
 ---
 

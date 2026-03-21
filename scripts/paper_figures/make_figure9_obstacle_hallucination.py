@@ -1,53 +1,89 @@
 #!/usr/bin/env python3
+"""Figure 9: Obstacle hallucination with limited CFD penalty.
+
+Split-asset rebuild.  Layout: 2x2 geometry panels (reference / prediction)
++ bottom summary strip.  Wireframe inputs are omitted from panels
+(referenced in caption) to eliminate the persistent wireframe-vs-plan-view
+balance instability and give each prediction panel ~2x the area of the
+previous 4-column layout.
+
+Representative cases (locked):
+  - bench_a3_01 / wireframe  (0 -> 3 obstacles, CFD 0.604, N/W preserved)
+  - bench_a3_03 / wireframe  (1 -> 3 obstacles, CFD 0.600, E/S preserved)
+"""
 from __future__ import annotations
 
 import json
 from pathlib import Path
 from typing import Any
 
-import matplotlib.image as mpimg
+import matplotlib.font_manager as fm
+import matplotlib.patheffects as pe
 import matplotlib.pyplot as plt
-from matplotlib.patches import Rectangle
+from matplotlib.lines import Line2D
+from matplotlib.patches import Patch, Rectangle
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
-OUT_DIR = PROJECT_ROOT / "results/paper_figures"
+EVAL_ROOT = PROJECT_ROOT / "benchmark" / "evaluations_posthoc_scaled_longest_span"
+OUT_DIR = PROJECT_ROOT / "results" / "paper_figures"
 PDF_OUT = OUT_DIR / "figure9_obstacle_hallucination_limited_cfd_penalty.pdf"
 PNG_OUT = OUT_DIR / "figure9_obstacle_hallucination_limited_cfd_penalty.png"
+
+FONT_CANDIDATES = ["Arial", "Liberation Sans", "DejaVu Sans"]
 
 CASES = [
     {
         "case": "bench_a3_01",
-        "view": "floorplan",
-        "row_title": "A3-01 empty composite",
-        "tagline": "",
+        "view": "wireframe",
+        "label": "A3-01",
+        "obstacle_gt": 0,
+        "obstacle_pred": 3,
+        "topology_note": "N / W preserved",
     },
     {
-        "case": "bench_a3_05",
-        "view": "floorplan",
-        "row_title": "A3-05 one-obstacle composite",
-        "tagline": "",
+        "case": "bench_a3_03",
+        "view": "wireframe",
+        "label": "A3-03",
+        "obstacle_gt": 1,
+        "obstacle_pred": 3,
+        "topology_note": "E / S preserved",
     },
 ]
 
 COLORS = {
     "room_fill": "#EEF3F8",
-    "room_edge": "#1F2937",
-    "obstacle_fill": "#E5A657",
-    "obstacle_edge": "#8A4B08",
-    "reference_obstacle_outline": "#2563EB",
+    "room_edge": "#334155",
+    "ref_obstacle_fill": "#D2D8E1",
+    "ref_obstacle_edge": "#667085",
+    "matched_fill": "#F5E6CC",
+    "matched_edge": "#8B5A1F",
+    "extra_fill": "#C45A20",
+    "extra_edge": "#7C2D12",
+    "gt_outline": "#7C3AED",
     "inlet": "#2563EB",
     "outlet": "#C83E3A",
-    "title": "#111827",
     "subtitle": "#334155",
-    "metric_box": "#F8FAFC",
-    "grid": "#E5E7EB",
-    "callout": "#FFF7ED",
-    "callout_edge": "#D97706",
+    "panel_frame": "#CBD5E1",
+    "summary_bg": "#F8FAFC",
+    "summary_edge": "#94A3B8",
+    "ok_green": "#047857",
 }
 
 
-def load_json(path: Path) -> Any:
-    return json.loads(path.read_text(encoding="utf-8"))
+# ---------------------------------------------------------------------------
+# Helpers
+# ---------------------------------------------------------------------------
+
+def pick_font() -> str:
+    available = {f.name for f in fm.fontManager.ttflist}
+    for c in FONT_CANDIDATES:
+        if c in available:
+            return c
+    return "DejaVu Sans"
+
+
+def load_json(p: Path) -> Any:
+    return json.loads(p.read_text(encoding="utf-8"))
 
 
 def room_blocks(scene: dict[str, Any]) -> list[dict[str, float]]:
@@ -55,251 +91,388 @@ def room_blocks(scene: dict[str, Any]) -> list[dict[str, float]]:
     if "blocks" in room:
         return [
             {
-                "x": float(block["origin"]["x"]),
-                "y": float(block["origin"]["y"]),
-                "dx": float(block["size"]["dx"]),
-                "dy": float(block["size"]["dy"]),
+                "x": float(b["origin"]["x"]),
+                "y": float(b["origin"]["y"]),
+                "dx": float(b["size"]["dx"]),
+                "dy": float(b["size"]["dy"]),
             }
-            for block in room["blocks"]
+            for b in room["blocks"]
         ]
-    size = room["size"]
-    return [{"x": 0.0, "y": 0.0, "dx": float(size["Lx"]), "dy": float(size["Ly"])}]
+    s = room["size"]
+    return [{"x": 0.0, "y": 0.0, "dx": float(s["Lx"]), "dy": float(s["Ly"])}]
 
 
 def room_extent(blocks: list[dict[str, float]]) -> tuple[float, float]:
-    max_x = max(block["x"] + block["dx"] for block in blocks)
-    max_y = max(block["y"] + block["dy"] for block in blocks)
-    return max_x, max_y
+    return (
+        max(b["x"] + b["dx"] for b in blocks),
+        max(b["y"] + b["dy"] for b in blocks),
+    )
 
 
-def prepare_opening_geometry(opening: dict[str, Any], x_max: float, y_max: float) -> tuple[str, dict[str, float], dict[str, float]]:
-    wall = opening["wall"]
-    center = {
-        "u": float(opening["center"]["u"]),
-        "wall_x_max": x_max,
-        "wall_y_max": y_max,
-    }
-    size = {"du": float(opening["size"]["du"]), "dv": float(opening["size"]["dv"])}
-    return wall, center, size
+def find_extra_obstacles(
+    pred_scene: dict[str, Any], ref_scene: dict[str, Any]
+) -> set[tuple[float, float, float, float]]:
+    ref_boxes: list[tuple[float, float, float, float]] = []
+    for o in ref_scene.get("obstacles", []):
+        x0 = float(o["min"]["x"])
+        y0 = float(o["min"]["y"])
+        dx = float(o["size"]["dx"])
+        dy = float(o["size"]["dy"])
+        ref_boxes.append((x0, y0, x0 + dx, y0 + dy))
+
+    extras: set[tuple[float, float, float, float]] = set()
+    for o in pred_scene.get("obstacles", []):
+        x0 = float(o["min"]["x"])
+        y0 = float(o["min"]["y"])
+        dx = float(o["size"]["dx"])
+        dy = float(o["size"]["dy"])
+        matched = False
+        for rx0, ry0, rx1, ry1 in ref_boxes:
+            ix = max(0.0, min(x0 + dx, rx1) - max(x0, rx0))
+            iy = max(0.0, min(y0 + dy, ry1) - max(y0, ry0))
+            inter = ix * iy
+            union = dx * dy + (rx1 - rx0) * (ry1 - ry0) - inter
+            if union > 0 and inter / union >= 0.18:
+                matched = True
+                break
+        if not matched:
+            extras.add((x0, y0, dx, dy))
+    return extras
 
 
-def draw_opening(ax: plt.Axes, wall: str, center: dict[str, float], size: dict[str, float], color: str, lw: float = 2.6) -> None:
-    if wall in {"north", "south"}:
-        x0 = center["u"] - size["du"] / 2.0
-        x1 = center["u"] + size["du"] / 2.0
-        y = 0.0 if wall == "south" else center["wall_y_max"]
-        ax.plot([x0, x1], [y, y], color=color, lw=lw, solid_capstyle="round", zorder=8)
-    elif wall in {"west", "east"}:
-        y0 = center["u"] - size["du"] / 2.0
-        y1 = center["u"] + size["du"] / 2.0
-        x = 0.0 if wall == "west" else center["wall_x_max"]
-        ax.plot([x, x], [y0, y1], color=color, lw=lw, solid_capstyle="round", zorder=8)
+def draw_opening(
+    ax: plt.Axes,
+    wall: str,
+    u: float,
+    du: float,
+    x_max: float,
+    y_max: float,
+    color: str,
+    lw: float = 6.0,
+) -> None:
+    line = None
+    if wall in ("north", "south"):
+        x0, x1 = u - du / 2, u + du / 2
+        y = 0.0 if wall == "south" else y_max
+        line = ax.plot(
+            [x0, x1], [y, y], color=color, lw=lw,
+            solid_capstyle="round", zorder=12,
+        )[0]
+    elif wall in ("west", "east"):
+        y0, y1 = u - du / 2, u + du / 2
+        x = 0.0 if wall == "west" else x_max
+        line = ax.plot(
+            [x, x], [y0, y1], color=color, lw=lw,
+            solid_capstyle="round", zorder=12,
+        )[0]
+    if line is not None:
+        line.set_path_effects(
+            [pe.Stroke(linewidth=lw + 3.0, foreground="white"), pe.Normal()]
+        )
 
 
-def draw_scene(
+# ---------------------------------------------------------------------------
+# Panel drawing
+# ---------------------------------------------------------------------------
+
+def draw_panel(
     ax: plt.Axes,
     scene: dict[str, Any],
     *,
     title: str,
     panel_extent: tuple[float, float],
-    reference_scene: dict[str, Any] | None = None,
-    metric_text: str | None = None,
-    callout_text: str | None = None,
+    ref_scene: dict[str, Any] | None = None,
+    style: str = "reference",
 ) -> None:
     x_max, y_max = panel_extent
-    for block in room_blocks(scene):
+
+    # Room blocks
+    for b in room_blocks(scene):
         ax.add_patch(
             Rectangle(
-                (block["x"], block["y"]),
-                block["dx"],
-                block["dy"],
+                (b["x"], b["y"]), b["dx"], b["dy"],
                 facecolor=COLORS["room_fill"],
                 edgecolor=COLORS["room_edge"],
-                linewidth=1.3,
-                zorder=2,
+                linewidth=1.8, zorder=2,
             )
         )
 
-    if reference_scene is not None:
-        for obstacle in reference_scene.get("obstacles", []):
+    if style == "reference":
+        for o in scene.get("obstacles", []):
             ax.add_patch(
                 Rectangle(
-                    (float(obstacle["min"]["x"]), float(obstacle["min"]["y"])),
-                    float(obstacle["size"]["dx"]),
-                    float(obstacle["size"]["dy"]),
-                    facecolor="none",
-                    edgecolor=COLORS["reference_obstacle_outline"],
-                    linewidth=1.4,
-                    linestyle=(0, (4, 2)),
-                    zorder=5,
+                    (float(o["min"]["x"]), float(o["min"]["y"])),
+                    float(o["size"]["dx"]), float(o["size"]["dy"]),
+                    facecolor=COLORS["ref_obstacle_fill"],
+                    edgecolor=COLORS["ref_obstacle_edge"],
+                    linewidth=1.8, hatch="///", zorder=4,
+                )
+            )
+    else:
+        extras = find_extra_obstacles(scene, ref_scene) if ref_scene else set()
+
+        # GT obstacle outlines (from reference)
+        if ref_scene:
+            for o in ref_scene.get("obstacles", []):
+                x0 = float(o["min"]["x"])
+                y0 = float(o["min"]["y"])
+                dx = float(o["size"]["dx"])
+                dy = float(o["size"]["dy"])
+                p = Rectangle(
+                    (x0, y0), dx, dy,
+                    facecolor=(0.93, 0.88, 1.0, 0.12),
+                    edgecolor=COLORS["gt_outline"],
+                    linewidth=3.0,
+                    linestyle=(0, (5.5, 2.0)),
+                    zorder=7,
+                )
+                p.set_path_effects(
+                    [pe.Stroke(linewidth=4.5, foreground="white"), pe.Normal()]
+                )
+                ax.add_patch(p)
+
+        # Predicted obstacles
+        for o in scene.get("obstacles", []):
+            x0 = float(o["min"]["x"])
+            y0 = float(o["min"]["y"])
+            dx = float(o["size"]["dx"])
+            dy = float(o["size"]["dy"])
+            is_extra = (x0, y0, dx, dy) in extras
+            ax.add_patch(
+                Rectangle(
+                    (x0, y0), dx, dy,
+                    facecolor=COLORS["extra_fill"] if is_extra else COLORS["matched_fill"],
+                    edgecolor=COLORS["extra_edge"] if is_extra else COLORS["matched_edge"],
+                    linewidth=2.4 if is_extra else 1.4,
+                    alpha=0.92 if is_extra else 0.45,
+                    hatch="xx" if is_extra else None,
+                    zorder=5 if is_extra else 4,
                 )
             )
 
-    for obstacle in scene.get("obstacles", []):
-        ax.add_patch(
-            Rectangle(
-                (float(obstacle["min"]["x"]), float(obstacle["min"]["y"])),
-                float(obstacle["size"]["dx"]),
-                float(obstacle["size"]["dy"]),
-                facecolor=COLORS["obstacle_fill"],
-                edgecolor=COLORS["obstacle_edge"],
-                linewidth=0.95,
-                zorder=4,
-            )
-        )
+    # Openings
+    for op in scene.get("openings", []):
+        wall = op["wall"]
+        u = float(op["center"]["u"])
+        du = float(op["size"]["du"])
+        color = COLORS["inlet"] if op["type"] == "inlet" else COLORS["outlet"]
+        draw_opening(ax, wall, u, du, x_max, y_max, color, lw=6.5)
 
-    for opening in scene.get("openings", []):
-        wall, center, size = prepare_opening_geometry(opening, x_max, y_max)
-        color = COLORS["inlet"] if opening["type"] == "inlet" else COLORS["outlet"]
-        draw_opening(ax, wall, center, size, color=color)
-
-    ax.set_xlim(-0.08 * x_max, x_max * 1.04)
-    ax.set_ylim(-0.10 * y_max, y_max * 1.08)
+    # Panel styling — generous padding
+    pad = 0.07
+    ax.set_xlim(-pad * x_max, x_max * (1 + pad))
+    ax.set_ylim(-pad * y_max, y_max * (1 + pad))
     ax.set_aspect("equal")
     ax.set_facecolor("white")
-    ax.grid(True, color=COLORS["grid"], linewidth=0.7, zorder=0)
-    ax.set_axisbelow(True)
-    ax.spines["top"].set_visible(False)
-    ax.spines["right"].set_visible(False)
-    ax.set_xlabel("x [m]")
-    ax.set_ylabel("y [m]")
-    ax.set_title(title, loc="left", fontsize=9.5, fontweight="bold", color=COLORS["subtitle"], pad=6)
-    ax.tick_params(labelsize=8.0)
-
-    if metric_text:
-        ax.text(
-            0.98,
-            0.06,
-            metric_text,
-            transform=ax.transAxes,
-            ha="right",
-            va="bottom",
-            fontsize=8.8,
-            color=COLORS["subtitle"],
-            bbox={"boxstyle": "round,pad=0.30", "facecolor": COLORS["metric_box"], "edgecolor": "#CBD5E1", "linewidth": 0.9},
-            zorder=10,
-        )
-    if callout_text:
-        ax.text(
-            0.02,
-            0.98,
-            callout_text,
-            transform=ax.transAxes,
-            ha="left",
-            va="top",
-            fontsize=8.15,
-            color=COLORS["callout_edge"],
-            fontweight="bold",
-            bbox={"boxstyle": "round,pad=0.28", "facecolor": COLORS["callout"], "edgecolor": COLORS["callout_edge"], "linewidth": 0.9},
-            zorder=10,
-        )
+    ax.set_xticks([])
+    ax.set_yticks([])
+    ax.set_title(
+        title, loc="left", fontsize=13.5, fontweight="bold",
+        color=COLORS["subtitle"], pad=6,
+    )
+    for sp in ax.spines.values():
+        sp.set_linewidth(1.0)
+        sp.set_color(COLORS["panel_frame"])
 
 
-def metric_text(summary: dict[str, Any]) -> str:
-    pred = summary["prediction_summary"]
-    cfd = summary["cfd_summary"]["aggregate_score"]["cfd_score"]
-    openings_ref = "/".join(w[0].upper() for w in pred["reference_opening_walls"])
-    openings_pred = "/".join(w[0].upper() for w in pred["predicted_opening_walls"])
-    return (
-        f"S = {pred['structural_score']:.3f}\n"
-        f"CFD = {cfd:.3f}\n"
-        f"obstacles {pred['reference_obstacle_count']} → {pred['predicted_obstacle_count']}\n"
-        f"openings {openings_ref} → {openings_pred}"
+# ---------------------------------------------------------------------------
+# Summary strip
+# ---------------------------------------------------------------------------
+
+def draw_summary_box(
+    ax: plt.Axes,
+    label: str,
+    obstacle_gt: int,
+    obstacle_pred: int,
+    topology_note: str,
+    cfd_score: float,
+) -> None:
+    ax.set_xlim(0, 1)
+    ax.set_ylim(0, 1)
+    ax.set_facecolor(COLORS["summary_bg"])
+    ax.set_xticks([])
+    ax.set_yticks([])
+    for sp in ax.spines.values():
+        sp.set_linewidth(1.1)
+        sp.set_color(COLORS["summary_edge"])
+
+    # Case label (left edge)
+    ax.text(
+        0.03, 0.50, label, fontsize=16.5, fontweight="bold",
+        color=COLORS["subtitle"], va="center", rotation=90,
     )
 
+    # Three metric blocks evenly spaced
+    col_xs = [0.18, 0.50, 0.82]
+
+    # Obstacle count
+    ax.text(
+        col_xs[0], 0.76, "obstacles", fontsize=12.0, fontweight="bold",
+        color=COLORS["subtitle"], va="center", ha="center",
+    )
+    ax.text(
+        col_xs[0], 0.34, f"{obstacle_gt} \u2192 {obstacle_pred}",
+        fontsize=18.5, fontweight="bold", color=COLORS["extra_edge"],
+        va="center", ha="center",
+    )
+
+    # Opening topology
+    topo_value = topology_note.replace(" / ", "/").replace(" preserved", "\npreserved")
+    ax.text(
+        col_xs[1], 0.76, "openings", fontsize=12.0, fontweight="bold",
+        color=COLORS["subtitle"], va="center", ha="center",
+    )
+    ax.text(
+        col_xs[1], 0.34, topo_value,
+        fontsize=13.0, fontweight="bold", color=COLORS["ok_green"],
+        va="center", ha="center", linespacing=1.0,
+    )
+
+    # CFD cue with explicit interpretation
+    ax.text(
+        col_xs[2], 0.76, "CFD response", fontsize=12.0, fontweight="bold",
+        color=COLORS["subtitle"], va="center", ha="center",
+    )
+    ax.text(
+        col_xs[2], 0.38, "moderate", fontsize=16.5, fontweight="bold",
+        color=COLORS["subtitle"], va="center", ha="center",
+    )
+    ax.text(
+        col_xs[2], 0.15, f"score {cfd_score:.2f}",
+        fontsize=11.2, color=COLORS["subtitle"], va="center", ha="center",
+    )
+
+
+# ---------------------------------------------------------------------------
+# Main
+# ---------------------------------------------------------------------------
 
 def main() -> None:
-    plt.rcParams.update(
-        {
-            "font.family": "DejaVu Sans",
-            "font.size": 9.4,
-            "axes.titlesize": 9.7,
-            "axes.labelsize": 9.0,
-            "xtick.labelsize": 8.0,
-            "ytick.labelsize": 8.0,
-            "pdf.fonttype": 42,
-            "ps.fonttype": 42,
-        }
+    font = pick_font()
+    plt.rcParams.update({
+        "font.family": "sans-serif",
+        "font.sans-serif": [font],
+        "font.size": 12.0,
+        "axes.titlesize": 13.0,
+        "pdf.fonttype": 42,
+        "ps.fonttype": 42,
+    })
+
+    fig = plt.figure(figsize=(11.6, 9.3), constrained_layout=False)
+
+    # --- Main 2x2 geometry grid ---
+    gs_main = fig.add_gridspec(
+        2, 2,
+        left=0.05, right=0.95, top=0.90, bottom=0.34,
+        wspace=0.14, hspace=0.20,
+        width_ratios=[1.0, 1.15],
     )
 
-    fig = plt.figure(figsize=(7.40, 5.80), constrained_layout=False)
-    gs = fig.add_gridspec(
-        2,
-        3,
-        left=0.06,
-        right=0.988,
-        bottom=0.14,
-        top=0.84,
-        wspace=0.22,
-        hspace=0.44,
-        width_ratios=[0.94, 1.0, 1.08],
+    # Column headers
+    fig.text(
+        0.28, 0.935, "reference", ha="center", fontsize=14.5,
+        fontweight="bold", color=COLORS["subtitle"],
+    )
+    fig.text(
+        0.72, 0.935, "prediction", ha="center",
+        fontsize=15.0, fontweight="bold", color=COLORS["subtitle"],
     )
 
-    panel_labels = ["(a)", "(b)", "(c)", "(d)", "(e)", "(f)"]
+    panel_labels = ["(a)", "(b)", "(c)", "(d)"]
+    cfd_scores: list[float] = []
 
-    for row_idx, case_cfg in enumerate(CASES):
-        case = case_cfg["case"]
-        view = case_cfg["view"]
-        eval_dir = PROJECT_ROOT / "benchmark" / "evaluations" / case / view
+    for row, cfg in enumerate(CASES):
+        eval_dir = EVAL_ROOT / cfg["case"] / cfg["view"]
         task = load_json(eval_dir / "task.json")
         summary = load_json(eval_dir / "evaluation_summary.json")
-        reference_scene = load_json(Path(task["reference_scene"]))
-        predicted_scene = load_json(eval_dir / "predicted_scene.json")
-        panel_extent = tuple(
-            max(a, b) for a, b in zip(room_extent(room_blocks(reference_scene)), room_extent(room_blocks(predicted_scene)))
+        ref_scene = load_json(Path(task["reference_scene"]))
+        pred_scene = load_json(eval_dir / "predicted_scene.json")
+        pe_val = tuple(
+            max(a, b)
+            for a, b in zip(
+                room_extent(room_blocks(ref_scene)),
+                room_extent(room_blocks(pred_scene)),
+            )
+        )
+        cfd_score = float(
+            summary["cfd_summary"]["aggregate_score"]["cfd_score"]
+        )
+        cfd_scores.append(cfd_score)
+
+        # Reference panel
+        ax_ref = fig.add_subplot(gs_main[row, 0])
+        draw_panel(
+            ax_ref, ref_scene,
+            title=f"{panel_labels[row * 2]}  {cfg['label']}",
+            panel_extent=pe_val,
+            style="reference",
         )
 
-        ax_img = fig.add_subplot(gs[row_idx, 0])
-        image = mpimg.imread(task["input_image"])
-        ax_img.imshow(image)
-        ax_img.set_xticks([])
-        ax_img.set_yticks([])
-        for spine in ax_img.spines.values():
-            spine.set_visible(False)
-        ax_img.set_title(f"{panel_labels[row_idx * 3]} {case_cfg['row_title']}\nInput floor-plan image", loc="left", fontsize=9.3, fontweight="bold", color=COLORS["subtitle"], pad=5)
-
-        ax_ref = fig.add_subplot(gs[row_idx, 1])
-        draw_scene(ax_ref, reference_scene, title=f"{panel_labels[row_idx * 3 + 1]} Reference geometry", panel_extent=panel_extent)
-
-        ax_pred = fig.add_subplot(gs[row_idx, 2])
-        callout = "extra obstacles hallucinated\nwhile room topology stays composite"
-        if row_idx == 1:
-            callout = "obstacle count inflates to three\nbut opening topology still matches"
-        draw_scene(
-            ax_pred,
-            predicted_scene,
-            title=f"{panel_labels[row_idx * 3 + 2]} Predicted geometry",
-            panel_extent=panel_extent,
-            reference_scene=reference_scene,
-            metric_text=metric_text(summary),
-            callout_text=callout,
+        # Prediction panel
+        ax_pred = fig.add_subplot(gs_main[row, 1])
+        draw_panel(
+            ax_pred, pred_scene,
+            title=f"{panel_labels[row * 2 + 1]}  {cfg['label']}",
+            panel_extent=pe_val,
+            ref_scene=ref_scene,
+            style="prediction",
         )
 
-    fig.suptitle(
-        "Figure 9. A3 composite cases can hallucinate obstacles while keeping strong CFD fidelity",
-        x=0.5,
-        y=0.965,
-        fontsize=10.9,
-        fontweight="bold",
-        color=COLORS["title"],
+    # --- Bottom summary strip ---
+    gs_summary = fig.add_gridspec(
+        1, 2,
+        left=0.05, right=0.95, top=0.275, bottom=0.125,
+        wspace=0.14,
     )
-    fig.text(
-        0.5,
-        0.924,
-        "Both examples preserve the opening-wall topology (blue/red) and keep CFD score near 0.69 even though obstacle count is inflated.",
-        ha="center",
-        va="center",
-        fontsize=8.6,
-        color=COLORS["subtitle"],
-    )
-    fig.text(
-        0.5,
-        0.080,
-        "Predicted panels use orange filled boxes for inferred obstacles; dashed blue outlines indicate reference obstacles when present.",
-        ha="center",
-        va="center",
-        fontsize=8.1,
-        color=COLORS["subtitle"],
+
+    for i, cfg in enumerate(CASES):
+        ax_sum = fig.add_subplot(gs_summary[0, i])
+        draw_summary_box(
+            ax_sum,
+            label=cfg["label"],
+            obstacle_gt=cfg["obstacle_gt"],
+            obstacle_pred=cfg["obstacle_pred"],
+            topology_note=cfg["topology_note"],
+            cfd_score=cfd_scores[i],
+        )
+
+    # --- Legend ---
+    legend_handles = [
+        Patch(
+            facecolor=COLORS["ref_obstacle_fill"],
+            edgecolor=COLORS["ref_obstacle_edge"],
+            hatch="///", label="ref. obstacle",
+        ),
+        Patch(
+            facecolor=COLORS["matched_fill"],
+            edgecolor=COLORS["matched_edge"],
+            label="matched pred.",
+        ),
+        Patch(
+            facecolor=COLORS["extra_fill"],
+            edgecolor=COLORS["extra_edge"],
+            hatch="xx", label="extra pred. (hallucinated)",
+        ),
+        Rectangle(
+            (0, 0), 1, 1,
+            facecolor="none", edgecolor=COLORS["gt_outline"],
+            linewidth=3.0, linestyle=(0, (8, 3)),
+            label="GT obstacle outline",
+        ),
+        Line2D([0], [0], color=COLORS["inlet"], lw=5.5, label="inlet"),
+        Line2D([0], [0], color=COLORS["outlet"], lw=5.5, label="outlet"),
+    ]
+    fig.legend(
+        handles=legend_handles,
+        loc="lower center",
+        ncol=3,
+        bbox_to_anchor=(0.50, 0.020),
+        frameon=False,
+        fontsize=13.8,
+        handlelength=3.2,
+        handletextpad=1.0,
+        columnspacing=2.1,
+        borderaxespad=0.8,
     )
 
     OUT_DIR.mkdir(parents=True, exist_ok=True)
