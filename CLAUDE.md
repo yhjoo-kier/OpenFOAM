@@ -166,5 +166,39 @@ python -m grid_study run cases/heatsink_water_cht_steady --adaptive -t 1.0
 - **핵심 접근**: rule-based 벤치마크 데이터셋 (형상 난이도 × 뷰 타입) + reference CFD 정답 확보 → 프레임워크 정량 평가
 - **데이터셋 위치**: `benchmark/` — rule-based 형상 생성, reference CFD, 2D 렌더링, 평가 결과 일체
 
+## Paper Writing Convention (Markdown → LaTeX → PDF)
+
+### Figure
+- 폰트: Arial (불가 시 Liberation Sans → DejaVu Sans fallback, QC log에 기록)
+- 파일 형식: PDF (벡터, 기본) + PNG (600 dpi 이상)
+- 네이밍: `fig_섹션키워드_설명.pdf` (숫자 번호 사용 금지, LaTeX에서 자동 번호 할당)
+- 키워드 예시: bench (benchmark), method (methodology), result (results), discuss (discussion), demo (application demo)
+- 본문 참조: `[Fig:label]` → LaTeX 변환 시 `Fig.~\ref{fig:label}`
+
+### Table
+- 캡션+레이블을 표 상단에 배치: `[Table:키워드-설명]`
+- 숫자 번호 사용 금지
+- LaTeX 변환 시 `Table~\ref{tab:키워드-설명}`
+
+### Equation
+- `\tag{Eq:키워드-변수}` 형식, 숫자 번호 금지
+- LaTeX 변환 시 `Eq.~\ref{eq:키워드-변수}`
+
+### Algorithm
+- `[Alg:키워드-설명]` 형식 레이블+캡션 상단 배치
+- algorithm2e 또는 algorithmicx 패키지 사용
+
+### Citation
+- 초안 작성 시: `[저자 연도 키워드]` 형식 (의미론적 임시 인용)
+- 확정 시: Zotero BibTeX → `[@citekey]`
+- LaTeX 변환: `[@citekey]` → `\cite{citekey}`
+- 참고문헌 등장순 정렬 (elsarticle-num 스타일)
+
+### LaTeX 빌드
+- 빌드 순서: pdflatex → bibtex → pdflatex → pdflatex
+- natbib sort&compress 사용
+- siunitx 패키지로 SI 단위
+- LaTeX 변환 규칙: `[Fig:label]` → `Fig.~\ref{fig:label}`, `[Table:label]` → `Table~\ref{tab:label}`, `[Eq:label]` → `Eq.~\ref{eq:label}`, `[@citekey]` → `\cite{citekey}`
+
 ## Adding New Cases
 새 케이스 생성 시 `cases/CLAUDE.md`의 템플릿을 참고할 것.
