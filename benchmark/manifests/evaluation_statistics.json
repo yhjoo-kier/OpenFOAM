@@ -1,0 +1,815 @@
+{
+  "description": "Aggregate statistics for posthoc_scaled_longest_span evaluations",
+  "total_valid": 97,
+  "total_skipped": 3,
+  "skipped_cases": [
+    "bench_a3_04/perspective: prediction_summary or cfd_summary is None",
+    "bench_a4_02/perspective: prediction_summary or cfd_summary is None",
+    "bench_a4_02/wireframe: prediction_summary or cfd_summary is None"
+  ],
+  "overall": {
+    "structural_score": {
+      "mean": 0.781292,
+      "std": 0.149704,
+      "n": 97
+    },
+    "cfd_score": {
+      "mean": 0.490933,
+      "std": 0.131138,
+      "n": 97
+    }
+  },
+  "by_view": {
+    "birdseye": {
+      "structural_score": {
+        "mean": 0.8,
+        "std": 0.13904,
+        "n": 20
+      },
+      "cfd_score": {
+        "mean": 0.508956,
+        "std": 0.131545,
+        "n": 20
+      }
+    },
+    "floorplan": {
+      "structural_score": {
+        "mean": 0.88396,
+        "std": 0.106868,
+        "n": 20
+      },
+      "cfd_score": {
+        "mean": 0.53791,
+        "std": 0.147172,
+        "n": 20
+      }
+    },
+    "perspective": {
+      "structural_score": {
+        "mean": 0.782411,
+        "std": 0.13997,
+        "n": 18
+      },
+      "cfd_score": {
+        "mean": 0.467718,
+        "std": 0.110668,
+        "n": 18
+      }
+    },
+    "section": {
+      "structural_score": {
+        "mean": 0.678815,
+        "std": 0.155548,
+        "n": 20
+      },
+      "cfd_score": {
+        "mean": 0.430438,
+        "std": 0.114318,
+        "n": 20
+      }
+    },
+    "wireframe": {
+      "structural_score": {
+        "mean": 0.760337,
+        "std": 0.122705,
+        "n": 19
+      },
+      "cfd_score": {
+        "mean": 0.508187,
+        "std": 0.118729,
+        "n": 19
+      }
+    }
+  },
+  "by_category": {
+    "A1": {
+      "structural_score": {
+        "mean": 0.845,
+        "std": 0.123895,
+        "n": 25
+      },
+      "cfd_score": {
+        "mean": 0.54524,
+        "std": 0.136226,
+        "n": 25
+      }
+    },
+    "A2": {
+      "structural_score": {
+        "mean": 0.707,
+        "std": 0.159597,
+        "n": 25
+      },
+      "cfd_score": {
+        "mean": 0.426011,
+        "std": 0.110175,
+        "n": 25
+      }
+    },
+    "A3": {
+      "structural_score": {
+        "mean": 0.782987,
+        "std": 0.136068,
+        "n": 24
+      },
+      "cfd_score": {
+        "mean": 0.533556,
+        "std": 0.133102,
+        "n": 24
+      }
+    },
+    "A4": {
+      "structural_score": {
+        "mean": 0.791026,
+        "std": 0.142542,
+        "n": 23
+      },
+      "cfd_score": {
+        "mean": 0.457997,
+        "std": 0.099537,
+        "n": 23
+      }
+    }
+  },
+  "records": [
+    {
+      "case": "bench_a1_01",
+      "view": "birdseye",
+      "category": "A1",
+      "structural_score": 0.75,
+      "cfd_score": 0.686901
+    },
+    {
+      "case": "bench_a1_01",
+      "view": "floorplan",
+      "category": "A1",
+      "structural_score": 0.875,
+      "cfd_score": 0.389051
+    },
+    {
+      "case": "bench_a1_01",
+      "view": "perspective",
+      "category": "A1",
+      "structural_score": 0.75,
+      "cfd_score": 0.644337
+    },
+    {
+      "case": "bench_a1_01",
+      "view": "section",
+      "category": "A1",
+      "structural_score": 1.0,
+      "cfd_score": 0.442651
+    },
+    {
+      "case": "bench_a1_01",
+      "view": "wireframe",
+      "category": "A1",
+      "structural_score": 0.75,
+      "cfd_score": 0.660947
+    },
+    {
+      "case": "bench_a1_02",
+      "view": "birdseye",
+      "category": "A1",
+      "structural_score": 1.0,
+      "cfd_score": 0.382328
+    },
+    {
+      "case": "bench_a1_02",
+      "view": "floorplan",
+      "category": "A1",
+      "structural_score": 1.0,
+      "cfd_score": 0.809057
+    },
+    {
+      "case": "bench_a1_02",
+      "view": "perspective",
+      "category": "A1",
+      "structural_score": 0.75,
+      "cfd_score": 0.606202
+    },
+    {
+      "case": "bench_a1_02",
+      "view": "section",
+      "category": "A1",
+      "structural_score": 0.625,
+      "cfd_score": 0.364882
+    },
+    {
+      "case": "bench_a1_02",
+      "view": "wireframe",
+      "category": "A1",
+      "structural_score": 0.75,
+      "cfd_score": 0.651487
+    },
+    {
+      "case": "bench_a1_03",
+      "view": "birdseye",
+      "category": "A1",
+      "structural_score": 0.875,
+      "cfd_score": 0.733948
+    },
+    {
+      "case": "bench_a1_03",
+      "view": "floorplan",
+      "category": "A1",
+      "structural_score": 1.0,
+      "cfd_score": 0.664271
+    },
+    {
+      "case": "bench_a1_03",
+      "view": "perspective",
+      "category": "A1",
+      "structural_score": 0.75,
+      "cfd_score": 0.623122
+    },
+    {
+      "case": "bench_a1_03",
+      "view": "section",
+      "category": "A1",
+      "structural_score": 0.875,
+      "cfd_score": 0.710065
+    },
+    {
+      "case": "bench_a1_03",
+      "view": "wireframe",
+      "category": "A1",
+      "structural_score": 0.75,
+      "cfd_score": 0.742101
+    },
+    {
+      "case": "bench_a1_04",
+      "view": "birdseye",
+      "category": "A1",
+      "structural_score": 1.0,
+      "cfd_score": 0.441316
+    },
+    {
+      "case": "bench_a1_04",
+      "view": "floorplan",
+      "category": "A1",
+      "structural_score": 0.75,
+      "cfd_score": 0.435493
+    },
+    {
+      "case": "bench_a1_04",
+      "view": "perspective",
+      "category": "A1",
+      "structural_score": 0.875,
+      "cfd_score": 0.447949
+    },
+    {
+      "case": "bench_a1_04",
+      "view": "section",
+      "category": "A1",
+      "structural_score": 0.75,
+      "cfd_score": 0.411038
+    },
+    {
+      "case": "bench_a1_04",
+      "view": "wireframe",
+      "category": "A1",
+      "structural_score": 1.0,
+      "cfd_score": 0.43783
+    },
+    {
+      "case": "bench_a1_05",
+      "view": "birdseye",
+      "category": "A1",
+      "structural_score": 1.0,
+      "cfd_score": 0.555499
+    },
+    {
+      "case": "bench_a1_05",
+      "view": "floorplan",
+      "category": "A1",
+      "structural_score": 0.875,
+      "cfd_score": 0.325231
+    },
+    {
+      "case": "bench_a1_05",
+      "view": "perspective",
+      "category": "A1",
+      "structural_score": 0.75,
+      "cfd_score": 0.480354
+    },
+    {
+      "case": "bench_a1_05",
+      "view": "section",
+      "category": "A1",
+      "structural_score": 0.625,
+      "cfd_score": 0.483732
+    },
+    {
+      "case": "bench_a1_05",
+      "view": "wireframe",
+      "category": "A1",
+      "structural_score": 1.0,
+      "cfd_score": 0.501199
+    },
+    {
+      "case": "bench_a2_01",
+      "view": "birdseye",
+      "category": "A2",
+      "structural_score": 0.75,
+      "cfd_score": 0.427455
+    },
+    {
+      "case": "bench_a2_01",
+      "view": "floorplan",
+      "category": "A2",
+      "structural_score": 0.95,
+      "cfd_score": 0.295944
+    },
+    {
+      "case": "bench_a2_01",
+      "view": "perspective",
+      "category": "A2",
+      "structural_score": 0.75,
+      "cfd_score": 0.477253
+    },
+    {
+      "case": "bench_a2_01",
+      "view": "section",
+      "category": "A2",
+      "structural_score": 0.725,
+      "cfd_score": 0.422185
+    },
+    {
+      "case": "bench_a2_01",
+      "view": "wireframe",
+      "category": "A2",
+      "structural_score": 0.75,
+      "cfd_score": 0.398913
+    },
+    {
+      "case": "bench_a2_02",
+      "view": "birdseye",
+      "category": "A2",
+      "structural_score": 0.625,
+      "cfd_score": 0.325552
+    },
+    {
+      "case": "bench_a2_02",
+      "view": "floorplan",
+      "category": "A2",
+      "structural_score": 1.0,
+      "cfd_score": 0.503805
+    },
+    {
+      "case": "bench_a2_02",
+      "view": "perspective",
+      "category": "A2",
+      "structural_score": 0.625,
+      "cfd_score": 0.311217
+    },
+    {
+      "case": "bench_a2_02",
+      "view": "section",
+      "category": "A2",
+      "structural_score": 0.5,
+      "cfd_score": 0.322493
+    },
+    {
+      "case": "bench_a2_02",
+      "view": "wireframe",
+      "category": "A2",
+      "structural_score": 0.625,
+      "cfd_score": 0.337247
+    },
+    {
+      "case": "bench_a2_03",
+      "view": "birdseye",
+      "category": "A2",
+      "structural_score": 0.625,
+      "cfd_score": 0.34823
+    },
+    {
+      "case": "bench_a2_03",
+      "view": "floorplan",
+      "category": "A2",
+      "structural_score": 1.0,
+      "cfd_score": 0.642621
+    },
+    {
+      "case": "bench_a2_03",
+      "view": "perspective",
+      "category": "A2",
+      "structural_score": 0.625,
+      "cfd_score": 0.373303
+    },
+    {
+      "case": "bench_a2_03",
+      "view": "section",
+      "category": "A2",
+      "structural_score": 0.625,
+      "cfd_score": 0.36451
+    },
+    {
+      "case": "bench_a2_03",
+      "view": "wireframe",
+      "category": "A2",
+      "structural_score": 0.7083,
+      "cfd_score": 0.336063
+    },
+    {
+      "case": "bench_a2_04",
+      "view": "birdseye",
+      "category": "A2",
+      "structural_score": 0.5,
+      "cfd_score": 0.400336
+    },
+    {
+      "case": "bench_a2_04",
+      "view": "floorplan",
+      "category": "A2",
+      "structural_score": 0.75,
+      "cfd_score": 0.599611
+    },
+    {
+      "case": "bench_a2_04",
+      "view": "perspective",
+      "category": "A2",
+      "structural_score": 0.5,
+      "cfd_score": 0.504819
+    },
+    {
+      "case": "bench_a2_04",
+      "view": "section",
+      "category": "A2",
+      "structural_score": 0.5,
+      "cfd_score": 0.333623
+    },
+    {
+      "case": "bench_a2_04",
+      "view": "wireframe",
+      "category": "A2",
+      "structural_score": 0.5,
+      "cfd_score": 0.510766
+    },
+    {
+      "case": "bench_a2_05",
+      "view": "birdseye",
+      "category": "A2",
+      "structural_score": 0.9167,
+      "cfd_score": 0.602228
+    },
+    {
+      "case": "bench_a2_05",
+      "view": "floorplan",
+      "category": "A2",
+      "structural_score": 1.0,
+      "cfd_score": 0.696306
+    },
+    {
+      "case": "bench_a2_05",
+      "view": "perspective",
+      "category": "A2",
+      "structural_score": 0.7917,
+      "cfd_score": 0.366454
+    },
+    {
+      "case": "bench_a2_05",
+      "view": "section",
+      "category": "A2",
+      "structural_score": 0.625,
+      "cfd_score": 0.343245
+    },
+    {
+      "case": "bench_a2_05",
+      "view": "wireframe",
+      "category": "A2",
+      "structural_score": 0.7083,
+      "cfd_score": 0.406094
+    },
+    {
+      "case": "bench_a3_01",
+      "view": "birdseye",
+      "category": "A3",
+      "structural_score": 0.75,
+      "cfd_score": 0.789199
+    },
+    {
+      "case": "bench_a3_01",
+      "view": "floorplan",
+      "category": "A3",
+      "structural_score": 0.75,
+      "cfd_score": 0.344962
+    },
+    {
+      "case": "bench_a3_01",
+      "view": "perspective",
+      "category": "A3",
+      "structural_score": 0.75,
+      "cfd_score": 0.357725
+    },
+    {
+      "case": "bench_a3_01",
+      "view": "section",
+      "category": "A3",
+      "structural_score": 0.625,
+      "cfd_score": 0.598114
+    },
+    {
+      "case": "bench_a3_01",
+      "view": "wireframe",
+      "category": "A3",
+      "structural_score": 0.75,
+      "cfd_score": 0.604372
+    },
+    {
+      "case": "bench_a3_02",
+      "view": "birdseye",
+      "category": "A3",
+      "structural_score": 0.75,
+      "cfd_score": 0.568429
+    },
+    {
+      "case": "bench_a3_02",
+      "view": "floorplan",
+      "category": "A3",
+      "structural_score": 0.75,
+      "cfd_score": 0.521485
+    },
+    {
+      "case": "bench_a3_02",
+      "view": "perspective",
+      "category": "A3",
+      "structural_score": 1.0,
+      "cfd_score": 0.451163
+    },
+    {
+      "case": "bench_a3_02",
+      "view": "section",
+      "category": "A3",
+      "structural_score": 0.625,
+      "cfd_score": 0.634641
+    },
+    {
+      "case": "bench_a3_02",
+      "view": "wireframe",
+      "category": "A3",
+      "structural_score": 0.75,
+      "cfd_score": 0.430827
+    },
+    {
+      "case": "bench_a3_03",
+      "view": "birdseye",
+      "category": "A3",
+      "structural_score": 0.875,
+      "cfd_score": 0.631873
+    },
+    {
+      "case": "bench_a3_03",
+      "view": "floorplan",
+      "category": "A3",
+      "structural_score": 1.0,
+      "cfd_score": 0.749312
+    },
+    {
+      "case": "bench_a3_03",
+      "view": "perspective",
+      "category": "A3",
+      "structural_score": 1.0,
+      "cfd_score": 0.672049
+    },
+    {
+      "case": "bench_a3_03",
+      "view": "section",
+      "category": "A3",
+      "structural_score": 0.75,
+      "cfd_score": 0.319265
+    },
+    {
+      "case": "bench_a3_03",
+      "view": "wireframe",
+      "category": "A3",
+      "structural_score": 0.875,
+      "cfd_score": 0.599708
+    },
+    {
+      "case": "bench_a3_04",
+      "view": "birdseye",
+      "category": "A3",
+      "structural_score": 0.75,
+      "cfd_score": 0.402118
+    },
+    {
+      "case": "bench_a3_04",
+      "view": "floorplan",
+      "category": "A3",
+      "structural_score": 0.75,
+      "cfd_score": 0.647954
+    },
+    {
+      "case": "bench_a3_04",
+      "view": "section",
+      "category": "A3",
+      "structural_score": 0.4167,
+      "cfd_score": 0.33366
+    },
+    {
+      "case": "bench_a3_04",
+      "view": "wireframe",
+      "category": "A3",
+      "structural_score": 0.625,
+      "cfd_score": 0.420445
+    },
+    {
+      "case": "bench_a3_05",
+      "view": "birdseye",
+      "category": "A3",
+      "structural_score": 0.875,
+      "cfd_score": 0.539851
+    },
+    {
+      "case": "bench_a3_05",
+      "view": "floorplan",
+      "category": "A3",
+      "structural_score": 0.875,
+      "cfd_score": 0.720356
+    },
+    {
+      "case": "bench_a3_05",
+      "view": "perspective",
+      "category": "A3",
+      "structural_score": 1.0,
+      "cfd_score": 0.510327
+    },
+    {
+      "case": "bench_a3_05",
+      "view": "section",
+      "category": "A3",
+      "structural_score": 0.75,
+      "cfd_score": 0.528548
+    },
+    {
+      "case": "bench_a3_05",
+      "view": "wireframe",
+      "category": "A3",
+      "structural_score": 0.75,
+      "cfd_score": 0.42897
+    },
+    {
+      "case": "bench_a4_01",
+      "view": "birdseye",
+      "category": "A4",
+      "structural_score": 0.8333,
+      "cfd_score": 0.515968
+    },
+    {
+      "case": "bench_a4_01",
+      "view": "floorplan",
+      "category": "A4",
+      "structural_score": 0.75,
+      "cfd_score": 0.480223
+    },
+    {
+      "case": "bench_a4_01",
+      "view": "perspective",
+      "category": "A4",
+      "structural_score": 0.7083,
+      "cfd_score": 0.298103
+    },
+    {
+      "case": "bench_a4_01",
+      "view": "section",
+      "category": "A4",
+      "structural_score": 0.7083,
+      "cfd_score": 0.324881
+    },
+    {
+      "case": "bench_a4_01",
+      "view": "wireframe",
+      "category": "A4",
+      "structural_score": 0.9167,
+      "cfd_score": 0.667457
+    },
+    {
+      "case": "bench_a4_02",
+      "view": "birdseye",
+      "category": "A4",
+      "structural_score": 0.8125,
+      "cfd_score": 0.33569
+    },
+    {
+      "case": "bench_a4_02",
+      "view": "floorplan",
+      "category": "A4",
+      "structural_score": 0.9375,
+      "cfd_score": 0.408557
+    },
+    {
+      "case": "bench_a4_02",
+      "view": "section",
+      "category": "A4",
+      "structural_score": 0.8929,
+      "cfd_score": 0.336753
+    },
+    {
+      "case": "bench_a4_03",
+      "view": "birdseye",
+      "category": "A4",
+      "structural_score": 0.8333,
+      "cfd_score": 0.581834
+    },
+    {
+      "case": "bench_a4_03",
+      "view": "floorplan",
+      "category": "A4",
+      "structural_score": 0.9167,
+      "cfd_score": 0.610993
+    },
+    {
+      "case": "bench_a4_03",
+      "view": "perspective",
+      "category": "A4",
+      "structural_score": 0.9167,
+      "cfd_score": 0.51904
+    },
+    {
+      "case": "bench_a4_03",
+      "view": "section",
+      "category": "A4",
+      "structural_score": 0.9167,
+      "cfd_score": 0.507853
+    },
+    {
+      "case": "bench_a4_03",
+      "view": "wireframe",
+      "category": "A4",
+      "structural_score": 0.8214,
+      "cfd_score": 0.571965
+    },
+    {
+      "case": "bench_a4_04",
+      "view": "birdseye",
+      "category": "A4",
+      "structural_score": 0.9167,
+      "cfd_score": 0.498142
+    },
+    {
+      "case": "bench_a4_04",
+      "view": "floorplan",
+      "category": "A4",
+      "structural_score": 1.0,
+      "cfd_score": 0.458379
+    },
+    {
+      "case": "bench_a4_04",
+      "view": "perspective",
+      "category": "A4",
+      "structural_score": 0.9167,
+      "cfd_score": 0.379991
+    },
+    {
+      "case": "bench_a4_04",
+      "view": "section",
+      "category": "A4",
+      "structural_score": 0.625,
+      "cfd_score": 0.49936
+    },
+    {
+      "case": "bench_a4_04",
+      "view": "wireframe",
+      "category": "A4",
+      "structural_score": 0.7917,
+      "cfd_score": 0.557502
+    },
+    {
+      "case": "bench_a4_05",
+      "view": "birdseye",
+      "category": "A4",
+      "structural_score": 0.5625,
+      "cfd_score": 0.412217
+    },
+    {
+      "case": "bench_a4_05",
+      "view": "floorplan",
+      "category": "A4",
+      "structural_score": 0.75,
+      "cfd_score": 0.454593
+    },
+    {
+      "case": "bench_a4_05",
+      "view": "perspective",
+      "category": "A4",
+      "structural_score": 0.625,
+      "cfd_score": 0.39551
+    },
+    {
+      "case": "bench_a4_05",
+      "view": "section",
+      "category": "A4",
+      "structural_score": 0.4167,
+      "cfd_score": 0.327251
+    },
+    {
+      "case": "bench_a4_05",
+      "view": "wireframe",
+      "category": "A4",
+      "structural_score": 0.625,
+      "cfd_score": 0.391662
+    }
+  ]
+}

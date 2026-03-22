@@ -1,0 +1,244 @@
+{
+  "experiment": "vlm_repeatability_test",
+  "model": "gemini-3.1-pro-preview",
+  "backend": "api",
+  "temperature": 0.2,
+  "n_repeats": 3,
+  "started_at": "2026-03-21T10:07:48Z",
+  "cases": {
+    "bench_a1_01/floorplan": {
+      "case_name": "bench_a1_01",
+      "view": "floorplan",
+      "runs": [
+        {
+          "run_index": 0,
+          "used_model": "gemini-3.1-pro-preview",
+          "elapsed_seconds": 26.54,
+          "scale_factor": 0.6666,
+          "structural_score": 0.875,
+          "room_kind_match": true,
+          "opening_wall_match": true,
+          "obstacle_f1": 0.5,
+          "room_block_f1": 1.0,
+          "opening_type_f1": 1.0,
+          "opening_wall_match_ratio": 1.0,
+          "predicted_room_bbox": {
+            "Lx": 6.666,
+            "Ly": 5.3328,
+            "Lz": 1.9998
+          },
+          "predicted_obstacle_count": 3,
+          "temp_scene_path": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations_posthoc_scaled_longest_span/bench_a1_01/floorplan/repeatability_run_0.json"
+        },
+        {
+          "run_index": 1,
+          "used_model": "gemini-3.1-pro-preview",
+          "elapsed_seconds": 26.84,
+          "scale_factor": 0.6666,
+          "structural_score": 0.875,
+          "room_kind_match": true,
+          "opening_wall_match": true,
+          "obstacle_f1": 0.5,
+          "room_block_f1": 1.0,
+          "opening_type_f1": 1.0,
+          "opening_wall_match_ratio": 1.0,
+          "predicted_room_bbox": {
+            "Lx": 6.666,
+            "Ly": 5.3328,
+            "Lz": 1.9998
+          },
+          "predicted_obstacle_count": 3,
+          "temp_scene_path": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations_posthoc_scaled_longest_span/bench_a1_01/floorplan/repeatability_run_1.json"
+        },
+        {
+          "run_index": 2,
+          "used_model": "gemini-3.1-pro-preview",
+          "elapsed_seconds": 30.72,
+          "scale_factor": 0.6666,
+          "structural_score": 0.875,
+          "room_kind_match": true,
+          "opening_wall_match": true,
+          "obstacle_f1": 0.5,
+          "room_block_f1": 1.0,
+          "opening_type_f1": 1.0,
+          "opening_wall_match_ratio": 1.0,
+          "predicted_room_bbox": {
+            "Lx": 6.666,
+            "Ly": 5.3328,
+            "Lz": 1.9998
+          },
+          "predicted_obstacle_count": 3,
+          "temp_scene_path": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations_posthoc_scaled_longest_span/bench_a1_01/floorplan/repeatability_run_2.json"
+        }
+      ],
+      "scores": [
+        0.875,
+        0.875,
+        0.875
+      ],
+      "mean_structural_score": 0.875,
+      "std_structural_score": 0.0,
+      "min_structural_score": 0.875,
+      "max_structural_score": 0.875,
+      "range": 0.0,
+      "is_deterministic": true
+    },
+    "bench_a3_03/floorplan": {
+      "case_name": "bench_a3_03",
+      "view": "floorplan",
+      "runs": [
+        {
+          "run_index": 0,
+          "used_model": "gemini-3.1-pro-preview",
+          "elapsed_seconds": 37.61,
+          "scale_factor": 0.539,
+          "structural_score": 1.0,
+          "room_kind_match": true,
+          "opening_wall_match": true,
+          "obstacle_f1": 1.0,
+          "room_block_f1": 1.0,
+          "opening_type_f1": 1.0,
+          "opening_wall_match_ratio": 1.0,
+          "predicted_room_bbox": {
+            "Lx": 8.623999999999999,
+            "Ly": 5.39,
+            "Lz": 1.617
+          },
+          "predicted_obstacle_count": 1,
+          "temp_scene_path": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations_posthoc_scaled_longest_span/bench_a3_03/floorplan/repeatability_run_0.json"
+        },
+        {
+          "run_index": 1,
+          "used_model": "gemini-3.1-pro-preview",
+          "elapsed_seconds": 53.5,
+          "scale_factor": 1.078,
+          "structural_score": 0.875,
+          "room_kind_match": true,
+          "opening_wall_match": true,
+          "obstacle_f1": 0.5,
+          "room_block_f1": 1.0,
+          "opening_type_f1": 1.0,
+          "opening_wall_match_ratio": 1.0,
+          "predicted_obstacle_count": 3,
+          "note": "retry after initial timeout"
+        },
+        {
+          "run_index": 2,
+          "used_model": "gemini-3.1-pro-preview",
+          "elapsed_seconds": 48.34,
+          "scale_factor": 0.8624,
+          "structural_score": 0.875,
+          "room_kind_match": true,
+          "opening_wall_match": true,
+          "obstacle_f1": 0.5,
+          "room_block_f1": 1.0,
+          "opening_type_f1": 1.0,
+          "opening_wall_match_ratio": 1.0,
+          "predicted_room_bbox": {
+            "Lx": 8.624,
+            "Ly": 5.1744,
+            "Lz": 2.5872
+          },
+          "predicted_obstacle_count": 3,
+          "temp_scene_path": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations_posthoc_scaled_longest_span/bench_a3_03/floorplan/repeatability_run_2.json"
+        }
+      ],
+      "scores": [
+        1.0,
+        0.875,
+        0.875
+      ],
+      "mean_structural_score": 0.9167,
+      "std_structural_score": 0.0589,
+      "min_structural_score": 0.875,
+      "max_structural_score": 1.0,
+      "range": 0.125,
+      "is_deterministic": false
+    },
+    "bench_a4_03/floorplan": {
+      "case_name": "bench_a4_03",
+      "view": "floorplan",
+      "runs": [
+        {
+          "run_index": 0,
+          "used_model": "gemini-3.1-pro-preview",
+          "elapsed_seconds": 28.0,
+          "scale_factor": 0.768316,
+          "structural_score": 0.9167,
+          "room_kind_match": true,
+          "opening_wall_match": true,
+          "obstacle_f1": 0.6667,
+          "room_block_f1": 1.0,
+          "opening_type_f1": 1.0,
+          "opening_wall_match_ratio": 1.0,
+          "predicted_room_bbox": {
+            "Lx": 7.2989999999999995,
+            "Ly": 6.146526,
+            "Lz": 2.304947
+          },
+          "predicted_obstacle_count": 3,
+          "temp_scene_path": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations_posthoc_scaled_longest_span/bench_a4_03/floorplan/repeatability_run_0.json"
+        },
+        {
+          "run_index": 1,
+          "used_model": "gemini-3.1-pro-preview",
+          "elapsed_seconds": 30.17,
+          "scale_factor": 0.7299,
+          "structural_score": 1.0,
+          "room_kind_match": true,
+          "opening_wall_match": true,
+          "obstacle_f1": 1.0,
+          "room_block_f1": 1.0,
+          "opening_type_f1": 1.0,
+          "opening_wall_match_ratio": 1.0,
+          "predicted_room_bbox": {
+            "Lx": 7.2989999999999995,
+            "Ly": 5.47425,
+            "Lz": 2.1897
+          },
+          "predicted_obstacle_count": 3,
+          "temp_scene_path": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations_posthoc_scaled_longest_span/bench_a4_03/floorplan/repeatability_run_1.json"
+        },
+        {
+          "run_index": 2,
+          "used_model": "gemini-3.1-pro-preview",
+          "elapsed_seconds": 23.35,
+          "scale_factor": 0.768316,
+          "structural_score": 1.0,
+          "room_kind_match": true,
+          "opening_wall_match": true,
+          "obstacle_f1": 1.0,
+          "room_block_f1": 1.0,
+          "opening_type_f1": 1.0,
+          "opening_wall_match_ratio": 1.0,
+          "predicted_room_bbox": {
+            "Lx": 7.2989999999999995,
+            "Ly": 4.609895,
+            "Lz": 2.304947
+          },
+          "predicted_obstacle_count": 3,
+          "temp_scene_path": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations_posthoc_scaled_longest_span/bench_a4_03/floorplan/repeatability_run_2.json"
+        }
+      ],
+      "scores": [
+        0.9167,
+        1.0,
+        1.0
+      ],
+      "mean_structural_score": 0.9722,
+      "std_structural_score": 0.0393,
+      "min_structural_score": 0.9167,
+      "max_structural_score": 1.0,
+      "range": 0.0833,
+      "is_deterministic": false
+    }
+  },
+  "finished_at": "2026-03-21T10:14:01Z",
+  "overall": {
+    "mean_std_across_cases": 0.0327,
+    "max_std_across_cases": 0.0589,
+    "any_deterministic": true,
+    "all_deterministic": false,
+    "note": "Temperature is set to 0.2 in the Gemini API generationConfig. Non-zero temperature means outputs are stochastic."
+  }
+}

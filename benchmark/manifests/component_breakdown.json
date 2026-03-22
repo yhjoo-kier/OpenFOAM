@@ -1,0 +1,40 @@
+{
+  "description": "Component-level breakdown of structural scores across three conditions",
+  "conditions": {
+    "naive": "Fixed 5x4x3 room, no obstacles, west inlet + east outlet",
+    "no_scaling": "VLM prediction without scale calibration",
+    "scale_calibrated": "VLM prediction with post-hoc longest-span scale calibration"
+  },
+  "sample_sizes": {
+    "naive": 100,
+    "no_scaling": 100,
+    "scale_calibrated": 97
+  },
+  "components": {
+    "room_block_f1": {
+      "naive": 0.8333,
+      "no_scaling": 0.9033,
+      "scale_calibrated": 0.988
+    },
+    "obstacle_f1": {
+      "naive": 0.15,
+      "no_scaling": 0.1884,
+      "scale_calibrated": 0.4001
+    },
+    "opening_type_f1": {
+      "naive": 1.0,
+      "no_scaling": 1.0,
+      "scale_calibrated": 1.0
+    },
+    "opening_wall_match": {
+      "naive": 0.5,
+      "no_scaling": 0.735,
+      "scale_calibrated": 0.7371
+    },
+    "overall_structural_score": {
+      "naive": 0.6209,
+      "no_scaling": 0.7067,
+      "scale_calibrated": 0.7813
+    }
+  }
+}

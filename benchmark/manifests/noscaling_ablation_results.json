@@ -1,0 +1,114 @@
+{
+  "ok": true,
+  "description": "No-scaling ablation baseline: structural scores from VLM raw output without post-hoc scale calibration",
+  "evaluation_root": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations_posthoc_scaled_longest_span",
+  "source_file": "baseline_evaluation_summary.json",
+  "total_expected": 100,
+  "total_found": 100,
+  "missing_count": 0,
+  "overall": {
+    "n": 100,
+    "mean_structural_score": 0.7067,
+    "median_structural_score": 0.75,
+    "std_structural_score": 0.1524,
+    "min_structural_score": 0.375,
+    "max_structural_score": 1.0,
+    "room_kind_match_rate": 0.98,
+    "opening_wall_match_rate": 0.72
+  },
+  "by_view": {
+    "birdseye": {
+      "n": 20,
+      "mean_structural_score": 0.711,
+      "median_structural_score": 0.75,
+      "std_structural_score": 0.1496,
+      "min_structural_score": 0.375,
+      "max_structural_score": 1.0,
+      "room_kind_match_rate": 1.0,
+      "opening_wall_match_rate": 0.85
+    },
+    "floorplan": {
+      "n": 20,
+      "mean_structural_score": 0.7623,
+      "median_structural_score": 0.75,
+      "std_structural_score": 0.1748,
+      "min_structural_score": 0.375,
+      "max_structural_score": 1.0,
+      "room_kind_match_rate": 1.0,
+      "opening_wall_match_rate": 1.0
+    },
+    "perspective": {
+      "n": 20,
+      "mean_structural_score": 0.6958,
+      "median_structural_score": 0.7291,
+      "std_structural_score": 0.1634,
+      "min_structural_score": 0.375,
+      "max_structural_score": 1.0,
+      "room_kind_match_rate": 1.0,
+      "opening_wall_match_rate": 0.7
+    },
+    "section": {
+      "n": 20,
+      "mean_structural_score": 0.6633,
+      "median_structural_score": 0.625,
+      "std_structural_score": 0.1452,
+      "min_structural_score": 0.4167,
+      "max_structural_score": 1.0,
+      "room_kind_match_rate": 0.9,
+      "opening_wall_match_rate": 0.25
+    },
+    "wireframe": {
+      "n": 20,
+      "mean_structural_score": 0.7009,
+      "median_structural_score": 0.75,
+      "std_structural_score": 0.122,
+      "min_structural_score": 0.375,
+      "max_structural_score": 0.9167,
+      "room_kind_match_rate": 1.0,
+      "opening_wall_match_rate": 0.8
+    }
+  },
+  "by_category": {
+    "A1": {
+      "n": 25,
+      "mean_structural_score": 0.785,
+      "median_structural_score": 0.75,
+      "std_structural_score": 0.099,
+      "min_structural_score": 0.625,
+      "max_structural_score": 1.0,
+      "room_kind_match_rate": 1.0,
+      "opening_wall_match_rate": 0.88
+    },
+    "A2": {
+      "n": 25,
+      "mean_structural_score": 0.6727,
+      "median_structural_score": 0.7083,
+      "std_structural_score": 0.1273,
+      "min_structural_score": 0.5,
+      "max_structural_score": 0.95,
+      "room_kind_match_rate": 1.0,
+      "opening_wall_match_rate": 0.48
+    },
+    "A3": {
+      "n": 25,
+      "mean_structural_score": 0.6567,
+      "median_structural_score": 0.625,
+      "std_structural_score": 0.1825,
+      "min_structural_score": 0.375,
+      "max_structural_score": 1.0,
+      "room_kind_match_rate": 0.96,
+      "opening_wall_match_rate": 0.72
+    },
+    "A4": {
+      "n": 25,
+      "mean_structural_score": 0.7124,
+      "median_structural_score": 0.75,
+      "std_structural_score": 0.162,
+      "min_structural_score": 0.375,
+      "max_structural_score": 1.0,
+      "room_kind_match_rate": 0.96,
+      "opening_wall_match_rate": 0.8
+    }
+  },
+  "missing_files": []
+}

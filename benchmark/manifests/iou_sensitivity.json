@@ -1,0 +1,32 @@
+{
+  "0.05": {
+    "iou_threshold": 0.05,
+    "mean_structural_score": 0.8033,
+    "n_cases": 97
+  },
+  "0.1": {
+    "iou_threshold": 0.1,
+    "mean_structural_score": 0.7826,
+    "n_cases": 97
+  },
+  "0.15": {
+    "iou_threshold": 0.15,
+    "mean_structural_score": 0.7593,
+    "n_cases": 97
+  },
+  "0.2": {
+    "iou_threshold": 0.2,
+    "mean_structural_score": 0.7494,
+    "n_cases": 97
+  },
+  "0.3": {
+    "iou_threshold": 0.3,
+    "mean_structural_score": 0.7095,
+    "n_cases": 97
+  },
+  "0.5": {
+    "iou_threshold": 0.5,
+    "mean_structural_score": 0.6179,
+    "n_cases": 97
+  }
+}
