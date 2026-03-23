@@ -1,0 +1,2215 @@
+TY  - GENERIC
+DO  - 10.1007/978-3-030-58452-8_24
+UR  - http://dx.doi.org/10.1007/978-3-030-58452-8_24
+TI  - NeRF: Representing Scenes as Neural Radiance Fields for View Synthesis
+T2  - Lecture Notes in Computer Science
+AU  - Mildenhall, Ben
+AU  - Srinivasan, Pratul P.
+AU  - Tancik, Matthew
+AU  - Barron, Jonathan T.
+AU  - Ramamoorthi, Ravi
+AU  - Ng, Ren
+PY  - 2020
+PB  - Springer International Publishing
+SP  - 405-421
+SN  - 0302-9743
+SN  - 1611-3349
+SN  - 9783030584511
+SN  - 9783030584528
+ER  -
+
+TY  - JOUR
+DO  - 10.2514/3.12149
+UR  - http://dx.doi.org/10.2514/3.12149
+TI  - Two-equation eddy-viscosity turbulence models for engineering applications
+T2  - AIAA Journal
+AU  - Menter, F. R.
+PY  - 1994
+DA  - 1994/08
+PB  - American Institute of Aeronautics and Astronautics (AIAA)
+SP  - 1598-1605
+IS  - 8
+VL  - 32
+SN  - 0001-1452
+SN  - 1533-385X
+ER  -
+
+TY  - CPAPER
+DO  - 10.1145/2939672.2939738
+UR  - http://dx.doi.org/10.1145/2939672.2939738
+TI  - Convolutional Neural Networks for Steady Flow Approximation
+T2  - Proceedings of the 22nd ACM SIGKDD International Conference on Knowledge Discovery and Data Mining
+AU  - Guo, Xiaoxiao
+AU  - Li, Wei
+AU  - Iorio, Francesco
+PY  - 2016
+DA  - 2016/08/13
+PB  - ACM
+SP  - 481-490
+ER  -
+
+TY  - JOUR
+DO  - 10.1016/j.ssci.2020.104866
+UR  - http://dx.doi.org/10.1016/j.ssci.2020.104866
+TI  - Modelling aerosol transport and virus exposure with numerical simulations in relation to SARS-CoV-2 transmission by inhalation indoors
+T2  - Safety Science
+AU  - Vuorinen, Ville
+AU  - Aarnio, Mia
+AU  - Alava, Mikko
+AU  - Alopaeus, Ville
+AU  - Atanasova, Nina
+AU  - Auvinen, Mikko
+AU  - Balasubramanian, Nallannan
+AU  - Bordbar, Hadi
+AU  - Erästö, Panu
+AU  - Grande, Rafael
+AU  - Hayward, Nick
+AU  - Hellsten, Antti
+AU  - Hostikka, Simo
+AU  - Hokkanen, Jyrki
+AU  - Kaario, Ossi
+AU  - Karvinen, Aku
+AU  - Kivistö, Ilkka
+AU  - Korhonen, Marko
+AU  - Kosonen, Risto
+AU  - Kuusela, Janne
+AU  - Lestinen, Sami
+AU  - Laurila, Erkki
+AU  - Nieminen, Heikki J.
+AU  - Peltonen, Petteri
+AU  - Pokki, Juho
+AU  - Puisto, Antti
+AU  - Råback, Peter
+AU  - Salmenjoki, Henri
+AU  - Sironen, Tarja
+AU  - Österberg, Monika
+PY  - 2020
+DA  - 2020/10
+PB  - Elsevier BV
+SP  - 104866
+VL  - 130
+SN  - 0925-7535
+ER  -
+
+TY  - JOUR
+DO  - 10.1016/j.buildenv.2021.108315
+UR  - http://dx.doi.org/10.1016/j.buildenv.2021.108315
+TI  - Deep learning to replace, improve, or aid CFD analysis in built environment applications: A review
+T2  - Building and Environment
+AU  - Calzolari, Giovanni
+AU  - Liu, Wei
+PY  - 2021
+DA  - 2021/12
+PB  - Elsevier BV
+SP  - 108315
+VL  - 206
+SN  - 0360-1323
+ER  -
+
+TY  - JOUR
+DO  - 10.1016/j.scs.2021.103408
+UR  - http://dx.doi.org/10.1016/j.scs.2021.103408
+TI  - Effective ventilation and air disinfection system for reducing coronavirus disease 2019 (COVID-19) infection risk in office buildings
+T2  - Sustainable Cities and Society
+AU  - Srivastava, Shubham
+AU  - Zhao, Xingwang
+AU  - Manay, Ati
+AU  - Chen, Qingyan
+PY  - 2021
+DA  - 2021/12
+PB  - Elsevier BV
+SP  - 103408
+VL  - 75
+SN  - 2210-6707
+ER  -
+
+TY  - JOUR
+DO  - 10.1063/5.0040188
+UR  - http://dx.doi.org/10.1063/5.0040188
+TI  - Simulation-based study of COVID-19 outbreak associated with air-conditioning
+          in a restaurant
+T2  - Physics of Fluids
+AU  - Liu, Han
+AU  - He, Sida
+AU  - Shen, Lian
+AU  - Hong, Jiarong
+PY  - 2021
+DA  - 2021/02/01
+PB  - AIP Publishing
+IS  - 2
+VL  - 33
+SN  - 1070-6631
+SN  - 1089-7666
+ER  -
+
+TY  - JOUR
+DO  - 10.3390/su11154166
+UR  - http://dx.doi.org/10.3390/su11154166
+TI  - A Review of CFD Analysis Methods for Personalized Ventilation (PV) in Indoor Built Environments
+T2  - Sustainability
+AU  - Liu, Jiying
+AU  - Zhu, Shengwei
+AU  - Kim, Moon Keun
+AU  - Srebric, Jelena
+PY  - 2019
+DA  - 2019/08/01
+PB  - MDPI AG
+SP  - 4166
+IS  - 15
+VL  - 11
+SN  - 2071-1050
+ER  -
+
+TY  - JOUR
+DO  - 10.1016/j.buildenv.2019.03.019
+UR  - http://dx.doi.org/10.1016/j.buildenv.2019.03.019
+TI  - Cross-ventilation in a generic isolated building equipped with louvers: Wind-tunnel experiments and CFD simulations
+T2  - Building and Environment
+AU  - Kosutova, Katarina
+AU  - van Hooff, Twan
+AU  - Vanderwel, Christina
+AU  - Blocken, Bert
+AU  - Hensen, Jan
+PY  - 2019
+DA  - 2019/05
+PB  - Elsevier BV
+SP  - 263-280
+VL  - 154
+SN  - 0360-1323
+ER  -
+
+TY  - JOUR
+DO  - 10.1016/j.scs.2019.101673
+UR  - http://dx.doi.org/10.1016/j.scs.2019.101673
+TI  - Development and application of linear ventilation and temperature models for indoor environmental prediction and HVAC systems control
+T2  - Sustainable Cities and Society
+AU  - Ren, Chen
+AU  - Cao, Shi-Jie
+PY  - 2019
+DA  - 2019/11
+PB  - Elsevier BV
+SP  - 101673
+VL  - 51
+SN  - 2210-6707
+ER  -
+
+TY  - JOUR
+DO  - 10.1016/j.jobe.2022.104681
+UR  - http://dx.doi.org/10.1016/j.jobe.2022.104681
+TI  - Assessing the impact of urban microclimate on building energy demand by coupling CFD and building performance simulation
+T2  - Journal of Building Engineering
+AU  - Brozovsky, J.
+AU  - Radivojevic, J.
+AU  - Simonsen, A.
+PY  - 2022
+DA  - 2022/09
+PB  - Elsevier BV
+SP  - 104681
+VL  - 55
+SN  - 2352-7102
+ER  -
+
+TY  - CPAPER
+DO  - 10.1109/cvpr52733.2024.01370
+UR  - http://dx.doi.org/10.1109/CVPR52733.2024.01370
+TI  - SpatialVLM: Endowing Vision-Language Models with Spatial Reasoning Capabilities
+T2  - 2024 IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)
+AU  - Chen, Boyuan
+AU  - Xu, Zhuo
+AU  - Kirmani, Sean
+AU  - Ichter, Brian
+AU  - Sadigh, Dorsa
+AU  - Guibas, Leonidas
+AU  - Xia, Fei
+PY  - 2024
+DA  - 2024/06/16
+PB  - IEEE
+SP  - 14455-14465
+ER  -
+
+TY  - CPAPER
+DO  - 10.1109/iccv51070.2023.01807
+UR  - http://dx.doi.org/10.1109/ICCV51070.2023.01807
+TI  - LERF: Language Embedded Radiance Fields
+T2  - 2023 IEEE/CVF International Conference on Computer Vision (ICCV)
+AU  - Kerr, Justin
+AU  - Kim, Chung Min
+AU  - Goldberg, Ken
+AU  - Kanazawa, Angjoo
+AU  - Tancik, Matthew
+PY  - 2023
+DA  - 2023/10/01
+PB  - IEEE
+SP  - 19672-19682
+ER  -
+
+TY  - JOUR
+DO  - 10.1016/j.autcon.2020.103225
+UR  - http://dx.doi.org/10.1016/j.autcon.2020.103225
+TI  - Interoperability and data exchange within BIM platform to evaluate building energy performance and indoor comfort
+T2  - Automation in Construction
+AU  - Utkucu, Duygu
+AU  - Sözer, Hatice
+PY  - 2020
+DA  - 2020/08
+PB  - Elsevier BV
+SP  - 103225
+VL  - 116
+SN  - 0926-5805
+ER  -
+
+TY  - JOUR
+DO  - 10.1016/j.buildenv.2019.02.027
+UR  - http://dx.doi.org/10.1016/j.buildenv.2019.02.027
+TI  - A holistic framework to utilize natural ventilation to optimize energy performance of residential high-rise buildings
+T2  - Building and Environment
+AU  - Weerasuriya, A.U.
+AU  - Zhang, Xuelin
+AU  - Gan, Vincent J.L.
+AU  - Tan, Yi
+PY  - 2019
+DA  - 2019/04
+PB  - Elsevier BV
+SP  - 218-232
+VL  - 153
+SN  - 0360-1323
+ER  -
+
+TY  - JOUR
+DO  - 10.1016/j.buildenv.2022.109576
+UR  - http://dx.doi.org/10.1016/j.buildenv.2022.109576
+TI  - Prediction and optimization of thermal comfort, IAQ and energy consumption of typical air-conditioned rooms based on a hybrid prediction model
+T2  - Building and Environment
+AU  - Hou, Fangli
+AU  - Ma, Jun
+AU  - Kwok, Helen H.L.
+AU  - Cheng, Jack C.P.
+PY  - 2022
+DA  - 2022/11
+PB  - Elsevier BV
+SP  - 109576
+VL  - 225
+SN  - 0360-1323
+ER  -
+
+TY  - JOUR
+DO  - 10.1016/j.rser.2016.02.009
+UR  - http://dx.doi.org/10.1016/j.rser.2016.02.009
+TI  - Building Information Modelling for analysis of energy efficient industrial buildings – A case study
+T2  - Renewable and Sustainable Energy Reviews
+AU  - Gourlis, Georgios
+AU  - Kovacic, Iva
+PY  - 2017
+DA  - 2017/02
+PB  - Elsevier BV
+SP  - 953-963
+VL  - 68
+SN  - 1364-0321
+ER  -
+
+TY  - JOUR
+DO  - 10.1016/j.psep.2021.01.045
+UR  - http://dx.doi.org/10.1016/j.psep.2021.01.045
+TI  - Industrial reheating furnaces: A review of energy efficiency assessments, waste heat recovery potentials, heating process characteristics and perspectives for steel industry
+T2  - Process Safety and Environmental Protection
+AU  - Zhao, Jun
+AU  - Ma, Ling
+AU  - Zayed, Mohamed E.
+AU  - Elsheikh, Ammar H.
+AU  - Li, Wenjia
+AU  - Yan, Qi
+AU  - Wang, Jiachen
+PY  - 2021
+DA  - 2021/03
+PB  - Elsevier BV
+SP  - 1209-1228
+VL  - 147
+SN  - 0957-5820
+ER  -
+
+TY  - JOUR
+DO  - 10.3390/heritage3010004
+UR  - http://dx.doi.org/10.3390/heritage3010004
+TI  - A Scan-to-BIM Methodology Applied to Heritage Buildings
+T2  - Heritage
+AU  - Rocha, Gustavo
+AU  - Mateus, Luís
+AU  - Fernández, Jorge
+AU  - Ferreira, Victor
+PY  - 2020
+DA  - 2020/02/06
+PB  - MDPI AG
+SP  - 47-67
+IS  - 1
+VL  - 3
+SN  - 2571-9408
+ER  -
+
+TY  - JOUR
+DO  - 10.3390/rs11030365
+UR  - http://dx.doi.org/10.3390/rs11030365
+TI  - An Application Oriented Scan-to-BIM Framework
+T2  - Remote Sensing
+AU  - Wang, Qian
+AU  - Guo, Jingjing
+AU  - Kim, Min-Koo
+PY  - 2019
+DA  - 2019/02/12
+PB  - MDPI AG
+SP  - 365
+IS  - 3
+VL  - 11
+SN  - 2072-4292
+ER  -
+
+TY  - JOUR
+DO  - 10.1016/j.buildenv.2023.110384
+UR  - http://dx.doi.org/10.1016/j.buildenv.2023.110384
+TI  - A GAN-Based Surrogate Model for Instantaneous Urban Wind Flow Prediction
+T2  - Building and Environment
+AU  - Kastner, Patrick
+AU  - Dogan, Timur
+PY  - 2023
+DA  - 2023/08
+PB  - Elsevier BV
+SP  - 110384
+VL  - 242
+SN  - 0360-1323
+ER  -
+
+TY  - JOUR
+DO  - 10.1016/j.scs.2021.103187
+UR  - http://dx.doi.org/10.1016/j.scs.2021.103187
+TI  - Unsteady-state CFD simulations on the impacts of urban geometry on outdoor thermal comfort within idealized building arrays
+T2  - Sustainable Cities and Society
+AU  - Chen, Guoxing
+AU  - Rong, Li
+AU  - Zhang, Guoqiang
+PY  - 2021
+DA  - 2021/11
+PB  - Elsevier BV
+SP  - 103187
+VL  - 74
+SN  - 2210-6707
+ER  -
+
+TY  - JOUR
+DO  - 10.1063/1.168744
+UR  - http://dx.doi.org/10.1063/1.168744
+TI  - A tensorial approach to computational continuum mechanics using object-oriented techniques
+T2  - Computers in Physics
+AU  - Weller, H. G.
+AU  - Tabor, G.
+AU  - Jasak, H.
+AU  - Fureby, C.
+PY  - 1998
+DA  - 1998/11/01
+PB  - AIP Publishing
+SP  - 620-631
+IS  - 6
+VL  - 12
+SN  - 0894-1866
+ER  -
+
+TY  - JOUR
+DO  - 10.1002/nme.2579
+UR  - http://dx.doi.org/10.1002/nme.2579
+TI  - Gmsh: A 3‐D finite element mesh generator with built‐in pre‐ and post‐processing facilities
+T2  - International Journal for Numerical Methods in Engineering
+AU  - Geuzaine, Christophe
+AU  - Remacle, Jean‐François
+PY  - 2009
+DA  - 2009/05/07
+PB  - Wiley
+SP  - 1309-1331
+IS  - 11
+VL  - 79
+SN  - 0029-5981
+SN  - 1097-0207
+ER  -
+
+TY  - JOUR
+DO  - 10.1504/ijep.2011.038443
+UR  - http://dx.doi.org/10.1504/IJEP.2011.038443
+TI  - The COST 732 Best Practice Guideline for CFD simulation of flows in the urban environment: a summary
+T2  - International Journal of Environment and Pollution
+AU  - Franke, Jorg
+AU  - Hellsten, Antti
+AU  - Schlunzen, K. Heinke
+AU  - Carissimo, Bertrand
+PY  - 2011
+PB  - Inderscience Publishers
+SP  - 419
+IS  - 1/2/3/4
+VL  - 44
+SN  - 0957-4352
+SN  - 1741-5101
+ER  -
+
+TY  - JOUR
+DO  - 10.1016/0017-9310(72)90054-3
+UR  - http://dx.doi.org/10.1016/0017-9310(72)90054-3
+TI  - A calculation procedure for heat, mass and momentum transfer in three-dimensional parabolic flows
+T2  - International Journal of Heat and Mass Transfer
+AU  - Patankar, S.V
+AU  - Spalding, D.B
+PY  - 1972
+DA  - 1972/10
+PB  - Elsevier BV
+SP  - 1787-1806
+IS  - 10
+VL  - 15
+SN  - 0017-9310
+ER  -
+
+TY  - JOUR
+DO  - 10.1016/0045-7825(74)90029-2
+UR  - http://dx.doi.org/10.1016/0045-7825(74)90029-2
+TI  - The numerical computation of turbulent flows
+T2  - Computer Methods in Applied Mechanics and Engineering
+AU  - Launder, B.E.
+AU  - Spalding, D.B.
+PY  - 1974
+DA  - 1974/03
+PB  - Elsevier BV
+SP  - 269-289
+IS  - 2
+VL  - 3
+SN  - 0045-7825
+ER  -
+
+TY  - JOUR
+DO  - 10.1021/acs.iecr.3c01639
+UR  - http://dx.doi.org/10.1021/acs.iecr.3c01639
+TI  - FLUID-GPT (Fast Learning to Understand and Investigate Dynamics with a Generative Pre-Trained Transformer): Efficient Predictions of Particle Trajectories and Erosion
+T2  - Industrial &amp; Engineering Chemistry Research
+AU  - Yang, Steve D.
+AU  - Ali, Zulfikhar A.
+AU  - Wong, Bryan M.
+PY  - 2023
+DA  - 2023/09/08
+PB  - American Chemical Society (ACS)
+SP  - 15278-15289
+IS  - 37
+VL  - 62
+SN  - 0888-5885
+SN  - 1520-5045
+ER  -
+
+TY  - JOUR
+DO  - 10.1063/5.0257555
+UR  - http://dx.doi.org/10.1063/5.0257555
+TI  - OpenFOAMGPT: A retrieval-augmented large language model (LLM) agent for OpenFOAM-based computational fluid dynamics
+T2  - Physics of Fluids
+AU  - Pandey, Sandeep
+AU  - Xu, Ran
+AU  - Wang, Wenkang
+AU  - Chu, Xu
+PY  - 2025
+DA  - 2025/03/01
+PB  - AIP Publishing
+IS  - 3
+VL  - 37
+SN  - 1070-6631
+SN  - 1089-7666
+ER  -
+
+TY  - JOUR
+DO  - 10.1016/j.taml.2025.100594
+UR  - http://dx.doi.org/10.1016/j.taml.2025.100594
+TI  - Fine-tuning a large language model for automating computational fluid dynamics simulations
+T2  - Theoretical and Applied Mechanics Letters
+AU  - Dong, Zhehao
+AU  - Lu, Zhen
+AU  - Yang, Yue
+PY  - 2025
+DA  - 2025/05
+PB  - Elsevier BV
+SP  - 100594
+IS  - 3
+VL  - 15
+SN  - 2095-0349
+ER  -
+
+TY  - GEN
+T1  - GPT-4 Technical Report
+AU  - OpenAI, 
+AU  - Achiam, Josh
+AU  - Adler, Steven
+AU  - Agarwal, Sandhini
+AU  - Ahmad, Lama
+AU  - Akkaya, Ilge
+AU  - Aleman, Florencia Leoni
+AU  - Almeida, Diogo
+AU  - Altenschmidt, Janko
+AU  - Altman, Sam
+AU  - Anadkat, Shyamal
+AU  - Avila, Red
+AU  - Babuschkin, Igor
+AU  - Balaji, Suchir
+AU  - Balcom, Valerie
+AU  - Baltescu, Paul
+AU  - Bao, Haiming
+AU  - Bavarian, Mohammad
+AU  - Belgum, Jeff
+AU  - Bello, Irwan
+AU  - Berdine, Jake
+AU  - Bernadett-Shapiro, Gabriel
+AU  - Berner, Christopher
+AU  - Bogdonoff, Lenny
+AU  - Boiko, Oleg
+AU  - Boyd, Madelaine
+AU  - Brakman, Anna-Luisa
+AU  - Brockman, Greg
+AU  - Brooks, Tim
+AU  - Brundage, Miles
+AU  - Button, Kevin
+AU  - Cai, Trevor
+AU  - Campbell, Rosie
+AU  - Cann, Andrew
+AU  - Carey, Brittany
+AU  - Carlson, Chelsea
+AU  - Carmichael, Rory
+AU  - Chan, Brooke
+AU  - Chang, Che
+AU  - Chantzis, Fotis
+AU  - Chen, Derek
+AU  - Chen, Sully
+AU  - Chen, Ruby
+AU  - Chen, Jason
+AU  - Chen, Mark
+AU  - Chess, Ben
+AU  - Cho, Chester
+AU  - Chu, Casey
+AU  - Chung, Hyung Won
+AU  - Cummings, Dave
+AU  - Currier, Jeremiah
+AU  - Dai, Yunxing
+AU  - Decareaux, Cory
+AU  - Degry, Thomas
+AU  - Deutsch, Noah
+AU  - Deville, Damien
+AU  - Dhar, Arka
+AU  - Dohan, David
+AU  - Dowling, Steve
+AU  - Dunning, Sheila
+AU  - Ecoffet, Adrien
+AU  - Eleti, Atty
+AU  - Eloundou, Tyna
+AU  - Farhi, David
+AU  - Fedus, Liam
+AU  - Felix, Niko
+AU  - Fishman, Simón Posada
+AU  - Forte, Juston
+AU  - Fulford, Isabella
+AU  - Gao, Leo
+AU  - Georges, Elie
+AU  - Gibson, Christian
+AU  - Goel, Vik
+AU  - Gogineni, Tarun
+AU  - Goh, Gabriel
+AU  - Gontijo-Lopes, Rapha
+AU  - Gordon, Jonathan
+AU  - Grafstein, Morgan
+AU  - Gray, Scott
+AU  - Greene, Ryan
+AU  - Gross, Joshua
+AU  - Gu, Shixiang Shane
+AU  - Guo, Yufei
+AU  - Hallacy, Chris
+AU  - Han, Jesse
+AU  - Harris, Jeff
+AU  - He, Yuchen
+AU  - Heaton, Mike
+AU  - Heidecke, Johannes
+AU  - Hesse, Chris
+AU  - Hickey, Alan
+AU  - Hickey, Wade
+AU  - Hoeschele, Peter
+AU  - Houghton, Brandon
+AU  - Hsu, Kenny
+AU  - Hu, Shengli
+AU  - Hu, Xin
+AU  - Huizinga, Joost
+AU  - Jain, Shantanu
+AU  - Jain, Shawn
+AU  - Jang, Joanne
+AU  - Jiang, Angela
+AU  - Jiang, Roger
+AU  - Jin, Haozhun
+AU  - Jin, Denny
+AU  - Jomoto, Shino
+AU  - Jonn, Billie
+AU  - Jun, Heewoo
+AU  - Kaftan, Tomer
+AU  - Kaiser, Łukasz
+AU  - Kamali, Ali
+AU  - Kanitscheider, Ingmar
+AU  - Keskar, Nitish Shirish
+AU  - Khan, Tabarak
+AU  - Kilpatrick, Logan
+AU  - Kim, Jong Wook
+AU  - Kim, Christina
+AU  - Kim, Yongjik
+AU  - Kirchner, Jan Hendrik
+AU  - Kiros, Jamie
+AU  - Knight, Matt
+AU  - Kokotajlo, Daniel
+AU  - Kondraciuk, Łukasz
+AU  - Kondrich, Andrew
+AU  - Konstantinidis, Aris
+AU  - Kosic, Kyle
+AU  - Krueger, Gretchen
+AU  - Kuo, Vishal
+AU  - Lampe, Michael
+AU  - Lan, Ikai
+AU  - Lee, Teddy
+AU  - Leike, Jan
+AU  - Leung, Jade
+AU  - Levy, Daniel
+AU  - Li, Chak Ming
+AU  - Lim, Rachel
+AU  - Lin, Molly
+AU  - Lin, Stephanie
+AU  - Litwin, Mateusz
+AU  - Lopez, Theresa
+AU  - Lowe, Ryan
+AU  - Lue, Patricia
+AU  - Makanju, Anna
+AU  - Malfacini, Kim
+AU  - Manning, Sam
+AU  - Markov, Todor
+AU  - Markovski, Yaniv
+AU  - Martin, Bianca
+AU  - Mayer, Katie
+AU  - Mayne, Andrew
+AU  - McGrew, Bob
+AU  - McKinney, Scott Mayer
+AU  - McLeavey, Christine
+AU  - McMillan, Paul
+AU  - McNeil, Jake
+AU  - Medina, David
+AU  - Mehta, Aalok
+AU  - Menick, Jacob
+AU  - Metz, Luke
+AU  - Mishchenko, Andrey
+AU  - Mishkin, Pamela
+AU  - Monaco, Vinnie
+AU  - Morikawa, Evan
+AU  - Mossing, Daniel
+AU  - Mu, Tong
+AU  - Murati, Mira
+AU  - Murk, Oleg
+AU  - Mély, David
+AU  - Nair, Ashvin
+AU  - Nakano, Reiichiro
+AU  - Nayak, Rajeev
+AU  - Neelakantan, Arvind
+AU  - Ngo, Richard
+AU  - Noh, Hyeonwoo
+AU  - Ouyang, Long
+AU  - O'Keefe, Cullen
+AU  - Pachocki, Jakub
+AU  - Paino, Alex
+AU  - Palermo, Joe
+AU  - Pantuliano, Ashley
+AU  - Parascandolo, Giambattista
+AU  - Parish, Joel
+AU  - Parparita, Emy
+AU  - Passos, Alex
+AU  - Pavlov, Mikhail
+AU  - Peng, Andrew
+AU  - Perelman, Adam
+AU  - Peres, Filipe de Avila Belbute
+AU  - Petrov, Michael
+AU  - Pinto, Henrique Ponde de Oliveira
+AU  - Michael, 
+AU  - Pokorny
+AU  - Pokrass, Michelle
+AU  - Pong, Vitchyr H.
+AU  - Powell, Tolly
+AU  - Power, Alethea
+AU  - Power, Boris
+AU  - Proehl, Elizabeth
+AU  - Puri, Raul
+AU  - Radford, Alec
+AU  - Rae, Jack
+AU  - Ramesh, Aditya
+AU  - Raymond, Cameron
+AU  - Real, Francis
+AU  - Rimbach, Kendra
+AU  - Ross, Carl
+AU  - Rotsted, Bob
+AU  - Roussez, Henri
+AU  - Ryder, Nick
+AU  - Saltarelli, Mario
+AU  - Sanders, Ted
+AU  - Santurkar, Shibani
+AU  - Sastry, Girish
+AU  - Schmidt, Heather
+AU  - Schnurr, David
+AU  - Schulman, John
+AU  - Selsam, Daniel
+AU  - Sheppard, Kyla
+AU  - Sherbakov, Toki
+AU  - Shieh, Jessica
+AU  - Shoker, Sarah
+AU  - Shyam, Pranav
+AU  - Sidor, Szymon
+AU  - Sigler, Eric
+AU  - Simens, Maddie
+AU  - Sitkin, Jordan
+AU  - Slama, Katarina
+AU  - Sohl, Ian
+AU  - Sokolowsky, Benjamin
+AU  - Song, Yang
+AU  - Staudacher, Natalie
+AU  - Such, Felipe Petroski
+AU  - Summers, Natalie
+AU  - Sutskever, Ilya
+AU  - Tang, Jie
+AU  - Tezak, Nikolas
+AU  - Thompson, Madeleine B.
+AU  - Tillet, Phil
+AU  - Tootoonchian, Amin
+AU  - Tseng, Elizabeth
+AU  - Tuggle, Preston
+AU  - Turley, Nick
+AU  - Tworek, Jerry
+AU  - Uribe, Juan Felipe Cerón
+AU  - Vallone, Andrea
+AU  - Vijayvergiya, Arun
+AU  - Voss, Chelsea
+AU  - Wainwright, Carroll
+AU  - Wang, Justin Jay
+AU  - Wang, Alvin
+AU  - Wang, Ben
+AU  - Ward, Jonathan
+AU  - Wei, Jason
+AU  - Weinmann, CJ
+AU  - Welihinda, Akila
+AU  - Welinder, Peter
+AU  - Weng, Jiayi
+AU  - Weng, Lilian
+AU  - Wiethoff, Matt
+AU  - Willner, Dave
+AU  - Winter, Clemens
+AU  - Wolrich, Samuel
+AU  - Wong, Hannah
+AU  - Workman, Lauren
+AU  - Wu, Sherwin
+AU  - Wu, Jeff
+AU  - Wu, Michael
+AU  - Xiao, Kai
+AU  - Xu, Tao
+AU  - Yoo, Sarah
+AU  - Yu, Kevin
+AU  - Yuan, Qiming
+AU  - Zaremba, Wojciech
+AU  - Zellers, Rowan
+AU  - Zhang, Chong
+AU  - Zhang, Marvin
+AU  - Zhao, Shengjia
+AU  - Zheng, Tianhao
+AU  - Zhuang, Juntang
+AU  - Zhuk, William
+AU  - Zoph, Barret
+DO  - 10.48550/ARXIV.2303.08774
+UR  - https://arxiv.org/abs/2303.08774
+AB  - We report the development of GPT-4, a large-scale, multimodal model which can accept image and text inputs and produce text outputs. While less capable than humans in many real-world scenarios, GPT-4 exhibits human-level performance on various professional and academic benchmarks, including passing a simulated bar exam with a score around the top 10% of test takers. GPT-4 is a Transformer-based model pre-trained to predict the next token in a document. The post-training alignment process results in improved performance on measures of factuality and adherence to desired behavior. A core component of this project was developing infrastructure and optimization methods that behave predictably across a wide range of scales. This allowed us to accurately predict some aspects of GPT-4's performance based on models trained with no more than 1/1,000th the compute of GPT-4.
+KW  - Computation and Language (cs.CL)
+KW  - Artificial Intelligence (cs.AI)
+KW  - FOS: Computer and information sciences
+KW  - FOS: Computer and information sciences
+PY  - 2023
+PB  - arXiv
+ER  -
+
+TY  - GEN
+T1  - Gemini: A Family of Highly Capable Multimodal Models
+AU  - Gemini Team
+AU  - Anil, Rohan
+AU  - Borgeaud, Sebastian
+AU  - Alayrac, Jean-Baptiste
+AU  - Yu, Jiahui
+AU  - Soricut, Radu
+AU  - Schalkwyk, Johan
+AU  - Dai, Andrew M.
+AU  - Hauth, Anja
+AU  - Millican, Katie
+AU  - Silver, David
+AU  - Johnson, Melvin
+AU  - Antonoglou, Ioannis
+AU  - Schrittwieser, Julian
+AU  - Glaese, Amelia
+AU  - Chen, Jilin
+AU  - Pitler, Emily
+AU  - Lillicrap, Timothy
+AU  - Lazaridou, Angeliki
+AU  - Firat, Orhan
+AU  - Molloy, James
+AU  - Isard, Michael
+AU  - Barham, Paul R.
+AU  - Hennigan, Tom
+AU  - Lee, Benjamin
+AU  - Viola, Fabio
+AU  - Reynolds, Malcolm
+AU  - Xu, Yuanzhong
+AU  - Doherty, Ryan
+AU  - Collins, Eli
+AU  - Meyer, Clemens
+AU  - Rutherford, Eliza
+AU  - Moreira, Erica
+AU  - Ayoub, Kareem
+AU  - Goel, Megha
+AU  - Krawczyk, Jack
+AU  - Du, Cosmo
+AU  - Chi, Ed
+AU  - Cheng, Heng-Tze
+AU  - Ni, Eric
+AU  - Shah, Purvi
+AU  - Kane, Patrick
+AU  - Chan, Betty
+AU  - Faruqui, Manaal
+AU  - Severyn, Aliaksei
+AU  - Lin, Hanzhao
+AU  - Li, YaGuang
+AU  - Cheng, Yong
+AU  - Ittycheriah, Abe
+AU  - Mahdieh, Mahdis
+AU  - Chen, Mia
+AU  - Sun, Pei
+AU  - Tran, Dustin
+AU  - Bagri, Sumit
+AU  - Lakshminarayanan, Balaji
+AU  - Liu, Jeremiah
+AU  - Orban, Andras
+AU  - Güra, Fabian
+AU  - Zhou, Hao
+AU  - Song, Xinying
+AU  - Boffy, Aurelien
+AU  - Ganapathy, Harish
+AU  - Zheng, Steven
+AU  - Choe, HyunJeong
+AU  - Weisz, Ágoston
+AU  - Zhu, Tao
+AU  - Lu, Yifeng
+AU  - Gopal, Siddharth
+AU  - Kahn, Jarrod
+AU  - Kula, Maciej
+AU  - Pitman, Jeff
+AU  - Shah, Rushin
+AU  - Taropa, Emanuel
+AU  - Merey, Majd Al
+AU  - Baeuml, Martin
+AU  - Chen, Zhifeng
+AU  - Shafey, Laurent El
+AU  - Zhang, Yujing
+AU  - Sercinoglu, Olcan
+AU  - Tucker, George
+AU  - Piqueras, Enrique
+AU  - Krikun, Maxim
+AU  - Barr, Iain
+AU  - Savinov, Nikolay
+AU  - Danihelka, Ivo
+AU  - Roelofs, Becca
+AU  - White, Anaïs
+AU  - Andreassen, Anders
+AU  - von Glehn, Tamara
+AU  - Yagati, Lakshman
+AU  - Kazemi, Mehran
+AU  - Gonzalez, Lucas
+AU  - Khalman, Misha
+AU  - Sygnowski, Jakub
+AU  - Frechette, Alexandre
+AU  - Smith, Charlotte
+AU  - Culp, Laura
+AU  - Proleev, Lev
+AU  - Luan, Yi
+AU  - Chen, Xi
+AU  - Lottes, James
+AU  - Schucher, Nathan
+AU  - Lebron, Federico
+AU  - Rrustemi, Alban
+AU  - Clay, Natalie
+AU  - Crone, Phil
+AU  - Kocisky, Tomas
+AU  - Zhao, Jeffrey
+AU  - Perz, Bartek
+AU  - Yu, Dian
+AU  - Howard, Heidi
+AU  - Bloniarz, Adam
+AU  - Rae, Jack W.
+AU  - Lu, Han
+AU  - Sifre, Laurent
+AU  - Maggioni, Marcello
+AU  - Alcober, Fred
+AU  - Garrette, Dan
+AU  - Barnes, Megan
+AU  - Thakoor, Shantanu
+AU  - Austin, Jacob
+AU  - Barth-Maron, Gabriel
+AU  - Wong, William
+AU  - Joshi, Rishabh
+AU  - Chaabouni, Rahma
+AU  - Fatiha, Deeni
+AU  - Ahuja, Arun
+AU  - Tomar, Gaurav Singh
+AU  - Senter, Evan
+AU  - Chadwick, Martin
+AU  - Kornakov, Ilya
+AU  - Attaluri, Nithya
+AU  - Iturrate, Iñaki
+AU  - Liu, Ruibo
+AU  - Li, Yunxuan
+AU  - Cogan, Sarah
+AU  - Chen, Jeremy
+AU  - Jia, Chao
+AU  - Gu, Chenjie
+AU  - Zhang, Qiao
+AU  - Grimstad, Jordan
+AU  - Hartman, Ale Jakse
+AU  - Garcia, Xavier
+AU  - Pillai, Thanumalayan Sankaranarayana
+AU  - Devlin, Jacob
+AU  - Laskin, Michael
+AU  - Casas, Diego de Las
+AU  - Valter, Dasha
+AU  - Tao, Connie
+AU  - Blanco, Lorenzo
+AU  - Badia, Adrià Puigdomènech
+AU  - Reitter, David
+AU  - Chen, Mianna
+AU  - Brennan, Jenny
+AU  - Rivera, Clara
+AU  - Brin, Sergey
+AU  - Iqbal, Shariq
+AU  - Surita, Gabriela
+AU  - Labanowski, Jane
+AU  - Rao, Abhi
+AU  - Winkler, Stephanie
+AU  - Parisotto, Emilio
+AU  - Gu, Yiming
+AU  - Olszewska, Kate
+AU  - Addanki, Ravi
+AU  - Miech, Antoine
+AU  - Louis, Annie
+AU  - Teplyashin, Denis
+AU  - Brown, Geoff
+AU  - Catt, Elliot
+AU  - Balaguer, Jan
+AU  - Xiang, Jackie
+AU  - Wang, Pidong
+AU  - Ashwood, Zoe
+AU  - Briukhov, Anton
+AU  - Webson, Albert
+AU  - Ganapathy, Sanjay
+AU  - Sanghavi, Smit
+AU  - Kannan, Ajay
+AU  - Chang, Ming-Wei
+AU  - Stjerngren, Axel
+AU  - Djolonga, Josip
+AU  - Sun, Yuting
+AU  - Bapna, Ankur
+AU  - Aitchison, Matthew
+AU  - Pejman, Pedram
+AU  - Michalewski, Henryk
+AU  - Yu, Tianhe
+AU  - Wang, Cindy
+AU  - Love, Juliette
+AU  - Ahn, Junwhan
+AU  - Bloxwich, Dawn
+AU  - Han, Kehang
+AU  - Humphreys, Peter
+AU  - Sellam, Thibault
+AU  - Bradbury, James
+AU  - Godbole, Varun
+AU  - Samangooei, Sina
+AU  - Damoc, Bogdan
+AU  - Kaskasoli, Alex
+AU  - Arnold, Sébastien M. R.
+AU  - Vasudevan, Vijay
+AU  - Agrawal, Shubham
+AU  - Riesa, Jason
+AU  - Lepikhin, Dmitry
+AU  - Tanburn, Richard
+AU  - Srinivasan, Srivatsan
+AU  - Lim, Hyeontaek
+AU  - Hodkinson, Sarah
+AU  - Shyam, Pranav
+AU  - Ferret, Johan
+AU  - Hand, Steven
+AU  - Garg, Ankush
+AU  - Paine, Tom Le
+AU  - Li, Jian
+AU  - Li, Yujia
+AU  - Giang, Minh
+AU  - Neitz, Alexander
+AU  - Abbas, Zaheer
+AU  - York, Sarah
+AU  - Reid, Machel
+AU  - Cole, Elizabeth
+AU  - Chowdhery, Aakanksha
+AU  - Das, Dipanjan
+AU  - Rogozińska, Dominika
+AU  - Nikolaev, Vitaliy
+AU  - Sprechmann, Pablo
+AU  - Nado, Zachary
+AU  - Zilka, Lukas
+AU  - Prost, Flavien
+AU  - He, Luheng
+AU  - Monteiro, Marianne
+AU  - Mishra, Gaurav
+AU  - Welty, Chris
+AU  - Newlan, Josh
+AU  - Jia, Dawei
+AU  - Allamanis, Miltiadis
+AU  - Hu, Clara Huiyi
+AU  - de Liedekerke, Raoul
+AU  - Gilmer, Justin
+AU  - Saroufim, Carl
+AU  - Rijhwani, Shruti
+AU  - Hou, Shaobo
+AU  - Shrivastava, Disha
+AU  - Baddepudi, Anirudh
+AU  - Goldin, Alex
+AU  - Ozturel, Adnan
+AU  - Cassirer, Albin
+AU  - Xu, Yunhan
+AU  - Sohn, Daniel
+AU  - Sachan, Devendra
+AU  - Amplayo, Reinald Kim
+AU  - Swanson, Craig
+AU  - Petrova, Dessie
+AU  - Narayan, Shashi
+AU  - Guez, Arthur
+AU  - Brahma, Siddhartha
+AU  - Landon, Jessica
+AU  - Patel, Miteyan
+AU  - Zhao, Ruizhe
+AU  - Villela, Kevin
+AU  - Wang, Luyu
+AU  - Jia, Wenhao
+AU  - Rahtz, Matthew
+AU  - Giménez, Mai
+AU  - Yeung, Legg
+AU  - Keeling, James
+AU  - Georgiev, Petko
+AU  - Mincu, Diana
+AU  - Wu, Boxi
+AU  - Haykal, Salem
+AU  - Saputro, Rachel
+AU  - Vodrahalli, Kiran
+AU  - Qin, James
+AU  - Cankara, Zeynep
+AU  - Sharma, Abhanshu
+AU  - Fernando, Nick
+AU  - Hawkins, Will
+AU  - Neyshabur, Behnam
+AU  - Kim, Solomon
+AU  - Hutter, Adrian
+AU  - Agrawal, Priyanka
+AU  - Castro-Ros, Alex
+AU  - Driessche, George van den
+AU  - Wang, Tao
+AU  - Yang, Fan
+AU  - Chang, Shuo-yiin
+AU  - Komarek, Paul
+AU  - McIlroy, Ross
+AU  - Lučić, Mario
+AU  - Zhang, Guodong
+AU  - Farhan, Wael
+AU  - Sharman, Michael
+AU  - Natsev, Paul
+AU  - Michel, Paul
+AU  - Bansal, Yamini
+AU  - Qiao, Siyuan
+AU  - Cao, Kris
+AU  - Shakeri, Siamak
+AU  - Butterfield, Christina
+AU  - Chung, Justin
+AU  - Rubenstein, Paul Kishan
+AU  - Agrawal, Shivani
+AU  - Mensch, Arthur
+AU  - Soparkar, Kedar
+AU  - Lenc, Karel
+AU  - Chung, Timothy
+AU  - Pope, Aedan
+AU  - Maggiore, Loren
+AU  - Kay, Jackie
+AU  - Jhakra, Priya
+AU  - Wang, Shibo
+AU  - Maynez, Joshua
+AU  - Phuong, Mary
+AU  - Tobin, Taylor
+AU  - Tacchetti, Andrea
+AU  - Trebacz, Maja
+AU  - Robinson, Kevin
+AU  - Katariya, Yash
+AU  - Riedel, Sebastian
+AU  - Bailey, Paige
+AU  - Xiao, Kefan
+AU  - Ghelani, Nimesh
+AU  - Aroyo, Lora
+AU  - Slone, Ambrose
+AU  - Houlsby, Neil
+AU  - Xiong, Xuehan
+AU  - Yang, Zhen
+AU  - Gribovskaya, Elena
+AU  - Adler, Jonas
+AU  - Wirth, Mateo
+AU  - Lee, Lisa
+AU  - Li, Music
+AU  - Kagohara, Thais
+AU  - Pavagadhi, Jay
+AU  - Bridgers, Sophie
+AU  - Bortsova, Anna
+AU  - Ghemawat, Sanjay
+AU  - Ahmed, Zafarali
+AU  - Liu, Tianqi
+AU  - Powell, Richard
+AU  - Bolina, Vijay
+AU  - Iinuma, Mariko
+AU  - Zablotskaia, Polina
+AU  - Besley, James
+AU  - Chung, Da-Woon
+AU  - Dozat, Timothy
+AU  - Comanescu, Ramona
+AU  - Si, Xiance
+AU  - Greer, Jeremy
+AU  - Su, Guolong
+AU  - Polacek, Martin
+AU  - Kaufman, Raphaël Lopez
+AU  - Tokumine, Simon
+AU  - Hu, Hexiang
+AU  - Buchatskaya, Elena
+AU  - Miao, Yingjie
+AU  - Elhawaty, Mohamed
+AU  - Siddhant, Aditya
+AU  - Tomasev, Nenad
+AU  - Xing, Jinwei
+AU  - Greer, Christina
+AU  - Miller, Helen
+AU  - Ashraf, Shereen
+AU  - Roy, Aurko
+AU  - Zhang, Zizhao
+AU  - Ma, Ada
+AU  - Filos, Angelos
+AU  - Besta, Milos
+AU  - Blevins, Rory
+AU  - Klimenko, Ted
+AU  - Yeh, Chih-Kuan
+AU  - Changpinyo, Soravit
+AU  - Mu, Jiaqi
+AU  - Chang, Oscar
+AU  - Pajarskas, Mantas
+AU  - Muir, Carrie
+AU  - Cohen, Vered
+AU  - Lan, Charline Le
+AU  - Haridasan, Krishna
+AU  - Marathe, Amit
+AU  - Hansen, Steven
+AU  - Douglas, Sholto
+AU  - Samuel, Rajkumar
+AU  - Wang, Mingqiu
+AU  - Austin, Sophia
+AU  - Lan, Chang
+AU  - Jiang, Jiepu
+AU  - Chiu, Justin
+AU  - Lorenzo, Jaime Alonso
+AU  - Sjösund, Lars Lowe
+AU  - Cevey, Sébastien
+AU  - Gleicher, Zach
+AU  - Avrahami, Thi
+AU  - Boral, Anudhyan
+AU  - Srinivasan, Hansa
+AU  - Selo, Vittorio
+AU  - May, Rhys
+AU  - Aisopos, Konstantinos
+AU  - Hussenot, Léonard
+AU  - Soares, Livio Baldini
+AU  - Baumli, Kate
+AU  - Chang, Michael B.
+AU  - Recasens, Adrià
+AU  - Caine, Ben
+AU  - Pritzel, Alexander
+AU  - Pavetic, Filip
+AU  - Pardo, Fabio
+AU  - Gergely, Anita
+AU  - Frye, Justin
+AU  - Ramasesh, Vinay
+AU  - Horgan, Dan
+AU  - Badola, Kartikeya
+AU  - Kassner, Nora
+AU  - Roy, Subhrajit
+AU  - Dyer, Ethan
+AU  - Campos, Víctor Campos
+AU  - Tomala, Alex
+AU  - Tang, Yunhao
+AU  - Badawy, Dalia El
+AU  - White, Elspeth
+AU  - Mustafa, Basil
+AU  - Lang, Oran
+AU  - Jindal, Abhishek
+AU  - Vikram, Sharad
+AU  - Gong, Zhitao
+AU  - Caelles, Sergi
+AU  - Hemsley, Ross
+AU  - Thornton, Gregory
+AU  - Feng, Fangxiaoyu
+AU  - Stokowiec, Wojciech
+AU  - Zheng, Ce
+AU  - Thacker, Phoebe
+AU  - Ünlü, Çağlar
+AU  - Zhang, Zhishuai
+AU  - Saleh, Mohammad
+AU  - Svensson, James
+AU  - Bileschi, Max
+AU  - Patil, Piyush
+AU  - Anand, Ankesh
+AU  - Ring, Roman
+AU  - Tsihlas, Katerina
+AU  - Vezer, Arpi
+AU  - Selvi, Marco
+AU  - Shevlane, Toby
+AU  - Rodriguez, Mikel
+AU  - Kwiatkowski, Tom
+AU  - Daruki, Samira
+AU  - Rong, Keran
+AU  - Dafoe, Allan
+AU  - FitzGerald, Nicholas
+AU  - Gu-Lemberg, Keren
+AU  - Khan, Mina
+AU  - Hendricks, Lisa Anne
+AU  - Pellat, Marie
+AU  - Feinberg, Vladimir
+AU  - Cobon-Kerr, James
+AU  - Sainath, Tara
+AU  - Rauh, Maribeth
+AU  - Hashemi, Sayed Hadi
+AU  - Ives, Richard
+AU  - Hasson, Yana
+AU  - Noland, Eric
+AU  - Cao, Yuan
+AU  - Byrd, Nathan
+AU  - Hou, Le
+AU  - Wang, Qingze
+AU  - Sottiaux, Thibault
+AU  - Paganini, Michela
+AU  - Lespiau, Jean-Baptiste
+AU  - Moufarek, Alexandre
+AU  - Hassan, Samer
+AU  - Shivakumar, Kaushik
+AU  - van Amersfoort, Joost
+AU  - Mandhane, Amol
+AU  - Joshi, Pratik
+AU  - Goyal, Anirudh
+AU  - Tung, Matthew
+AU  - Brock, Andrew
+AU  - Sheahan, Hannah
+AU  - Misra, Vedant
+AU  - Li, Cheng
+AU  - Rakićević, Nemanja
+AU  - Dehghani, Mostafa
+AU  - Liu, Fangyu
+AU  - Mittal, Sid
+AU  - Oh, Junhyuk
+AU  - Noury, Seb
+AU  - Sezener, Eren
+AU  - Huot, Fantine
+AU  - Lamm, Matthew
+AU  - De Cao, Nicola
+AU  - Chen, Charlie
+AU  - Mudgal, Sidharth
+AU  - Stella, Romina
+AU  - Brooks, Kevin
+AU  - Vasudevan, Gautam
+AU  - Liu, Chenxi
+AU  - Chain, Mainak
+AU  - Melinkeri, Nivedita
+AU  - Cohen, Aaron
+AU  - Wang, Venus
+AU  - Seymore, Kristie
+AU  - Zubkov, Sergey
+AU  - Goel, Rahul
+AU  - Yue, Summer
+AU  - Krishnakumaran, Sai
+AU  - Albert, Brian
+AU  - Hurley, Nate
+AU  - Sano, Motoki
+AU  - Mohananey, Anhad
+AU  - Joughin, Jonah
+AU  - Filonov, Egor
+AU  - Kępa, Tomasz
+AU  - Eldawy, Yomna
+AU  - Lim, Jiawern
+AU  - Rishi, Rahul
+AU  - Badiezadegan, Shirin
+AU  - Bos, Taylor
+AU  - Chang, Jerry
+AU  - Jain, Sanil
+AU  - Padmanabhan, Sri Gayatri Sundara
+AU  - Puttagunta, Subha
+AU  - Krishna, Kalpesh
+AU  - Baker, Leslie
+AU  - Kalb, Norbert
+AU  - Bedapudi, Vamsi
+AU  - Kurzrok, Adam
+AU  - Lei, Shuntong
+AU  - Yu, Anthony
+AU  - Litvin, Oren
+AU  - Zhou, Xiang
+AU  - Wu, Zhichun
+AU  - Sobell, Sam
+AU  - Siciliano, Andrea
+AU  - Papir, Alan
+AU  - Neale, Robby
+AU  - Bragagnolo, Jonas
+AU  - Toor, Tej
+AU  - Chen, Tina
+AU  - Anklin, Valentin
+AU  - Wang, Feiran
+AU  - Feng, Richie
+AU  - Gholami, Milad
+AU  - Ling, Kevin
+AU  - Liu, Lijuan
+AU  - Walter, Jules
+AU  - Moghaddam, Hamid
+AU  - Kishore, Arun
+AU  - Adamek, Jakub
+AU  - Mercado, Tyler
+AU  - Mallinson, Jonathan
+AU  - Wandekar, Siddhinita
+AU  - Cagle, Stephen
+AU  - Ofek, Eran
+AU  - Garrido, Guillermo
+AU  - Lombriser, Clemens
+AU  - Mukha, Maksim
+AU  - Sun, Botu
+AU  - Mohammad, Hafeezul Rahman
+AU  - Matak, Josip
+AU  - Qian, Yadi
+AU  - Peswani, Vikas
+AU  - Janus, Pawel
+AU  - Yuan, Quan
+AU  - Schelin, Leif
+AU  - David, Oana
+AU  - Garg, Ankur
+AU  - He, Yifan
+AU  - Duzhyi, Oleksii
+AU  - Älgmyr, Anton
+AU  - Lottaz, Timothée
+AU  - Li, Qi
+AU  - Yadav, Vikas
+AU  - Xu, Luyao
+AU  - Chinien, Alex
+AU  - Shivanna, Rakesh
+AU  - Chuklin, Aleksandr
+AU  - Li, Josie
+AU  - Spadine, Carrie
+AU  - Wolfe, Travis
+AU  - Mohamed, Kareem
+AU  - Das, Subhabrata
+AU  - Dai, Zihang
+AU  - He, Kyle
+AU  - von Dincklage, Daniel
+AU  - Upadhyay, Shyam
+AU  - Maurya, Akanksha
+AU  - Chi, Luyan
+AU  - Krause, Sebastian
+AU  - Salama, Khalid
+AU  - Rabinovitch, Pam G
+AU  - M, Pavan Kumar Reddy
+AU  - Selvan, Aarush
+AU  - Dektiarev, Mikhail
+AU  - Ghiasi, Golnaz
+AU  - Guven, Erdem
+AU  - Gupta, Himanshu
+AU  - Liu, Boyi
+AU  - Sharma, Deepak
+AU  - Shtacher, Idan Heimlich
+AU  - Paul, Shachi
+AU  - Akerlund, Oscar
+AU  - Aubet, François-Xavier
+AU  - Huang, Terry
+AU  - Zhu, Chen
+AU  - Zhu, Eric
+AU  - Teixeira, Elico
+AU  - Fritze, Matthew
+AU  - Bertolini, Francesco
+AU  - Marinescu, Liana-Eleonora
+AU  - Bölle, Martin
+AU  - Paulus, Dominik
+AU  - Gupta, Khyatti
+AU  - Latkar, Tejasi
+AU  - Chang, Max
+AU  - Sanders, Jason
+AU  - Wilson, Roopa
+AU  - Wu, Xuewei
+AU  - Tan, Yi-Xuan
+AU  - Thiet, Lam Nguyen
+AU  - Doshi, Tulsee
+AU  - Lall, Sid
+AU  - Mishra, Swaroop
+AU  - Chen, Wanming
+AU  - Luong, Thang
+AU  - Benjamin, Seth
+AU  - Lee, Jasmine
+AU  - Andrejczuk, Ewa
+AU  - Rabiej, Dominik
+AU  - Ranjan, Vipul
+AU  - Styrc, Krzysztof
+AU  - Yin, Pengcheng
+AU  - Simon, Jon
+AU  - Harriott, Malcolm Rose
+AU  - Bansal, Mudit
+AU  - Robsky, Alexei
+AU  - Bacon, Geoff
+AU  - Greene, David
+AU  - Mirylenka, Daniil
+AU  - Zhou, Chen
+AU  - Sarvana, Obaid
+AU  - Goyal, Abhimanyu
+AU  - Andermatt, Samuel
+AU  - Siegler, Patrick
+AU  - Horn, Ben
+AU  - Israel, Assaf
+AU  - Pongetti, Francesco
+AU  - Chen, Chih-Wei "Louis"
+AU  - Selvatici, Marco
+AU  - Silva, Pedro
+AU  - Wang, Kathie
+AU  - Tolins, Jackson
+AU  - Guu, Kelvin
+AU  - Yogev, Roey
+AU  - Cai, Xiaochen
+AU  - Agostini, Alessandro
+AU  - Shah, Maulik
+AU  - Nguyen, Hung
+AU  - Donnaile, Noah Ó
+AU  - Pereira, Sébastien
+AU  - Friso, Linda
+AU  - Stambler, Adam
+AU  - Kurzrok, Adam
+AU  - Kuang, Chenkai
+AU  - Romanikhin, Yan
+AU  - Geller, Mark
+AU  - Yan, ZJ
+AU  - Jang, Kane
+AU  - Lee, Cheng-Chun
+AU  - Fica, Wojciech
+AU  - Malmi, Eric
+AU  - Tan, Qijun
+AU  - Banica, Dan
+AU  - Balle, Daniel
+AU  - Pham, Ryan
+AU  - Huang, Yanping
+AU  - Avram, Diana
+AU  - Shi, Hongzhi
+AU  - Singh, Jasjot
+AU  - Hidey, Chris
+AU  - Ahuja, Niharika
+AU  - Saxena, Pranab
+AU  - Dooley, Dan
+AU  - Potharaju, Srividya Pranavi
+AU  - O'Neill, Eileen
+AU  - Gokulchandran, Anand
+AU  - Foley, Ryan
+AU  - Zhao, Kai
+AU  - Dusenberry, Mike
+AU  - Liu, Yuan
+AU  - Mehta, Pulkit
+AU  - Kotikalapudi, Ragha
+AU  - Safranek-Shrader, Chalence
+AU  - Goodman, Andrew
+AU  - Kessinger, Joshua
+AU  - Globen, Eran
+AU  - Kolhar, Prateek
+AU  - Gorgolewski, Chris
+AU  - Ibrahim, Ali
+AU  - Song, Yang
+AU  - Eichenbaum, Ali
+AU  - Brovelli, Thomas
+AU  - Potluri, Sahitya
+AU  - Lahoti, Preethi
+AU  - Baetu, Cip
+AU  - Ghorbani, Ali
+AU  - Chen, Charles
+AU  - Crawford, Andy
+AU  - Pal, Shalini
+AU  - Sridhar, Mukund
+AU  - Gurita, Petru
+AU  - Mujika, Asier
+AU  - Petrovski, Igor
+AU  - Cedoz, Pierre-Louis
+AU  - Li, Chenmei
+AU  - Chen, Shiyuan
+AU  - Santo, Niccolò Dal
+AU  - Goyal, Siddharth
+AU  - Punjabi, Jitesh
+AU  - Kappaganthu, Karthik
+AU  - Kwak, Chester
+AU  - LV, Pallavi
+AU  - Velury, Sarmishta
+AU  - Choudhury, Himadri
+AU  - Hall, Jamie
+AU  - Shah, Premal
+AU  - Figueira, Ricardo
+AU  - Thomas, Matt
+AU  - Lu, Minjie
+AU  - Zhou, Ting
+AU  - Kumar, Chintu
+AU  - Jurdi, Thomas
+AU  - Chikkerur, Sharat
+AU  - Ma, Yenai
+AU  - Yu, Adams
+AU  - Kwak, Soo
+AU  - Ähdel, Victor
+AU  - Rajayogam, Sujeevan
+AU  - Choma, Travis
+AU  - Liu, Fei
+AU  - Barua, Aditya
+AU  - Ji, Colin
+AU  - Park, Ji Ho
+AU  - Hellendoorn, Vincent
+AU  - Bailey, Alex
+AU  - Bilal, Taylan
+AU  - Zhou, Huanjie
+AU  - Khatir, Mehrdad
+AU  - Sutton, Charles
+AU  - Rzadkowski, Wojciech
+AU  - Macintosh, Fiona
+AU  - Vij, Roopali
+AU  - Shagin, Konstantin
+AU  - Medina, Paul
+AU  - Liang, Chen
+AU  - Zhou, Jinjing
+AU  - Shah, Pararth
+AU  - Bi, Yingying
+AU  - Dankovics, Attila
+AU  - Banga, Shipra
+AU  - Lehmann, Sabine
+AU  - Bredesen, Marissa
+AU  - Lin, Zifan
+AU  - Hoffmann, John Eric
+AU  - Lai, Jonathan
+AU  - Chung, Raynald
+AU  - Yang, Kai
+AU  - Balani, Nihal
+AU  - Bražinskas, Arthur
+AU  - Sozanschi, Andrei
+AU  - Hayes, Matthew
+AU  - Alcalde, Héctor Fernández
+AU  - Makarov, Peter
+AU  - Chen, Will
+AU  - Stella, Antonio
+AU  - Snijders, Liselotte
+AU  - Mandl, Michael
+AU  - Kärrman, Ante
+AU  - Nowak, Paweł
+AU  - Wu, Xinyi
+AU  - Dyck, Alex
+AU  - Vaidyanathan, Krishnan
+AU  - R, Raghavender
+AU  - Mallet, Jessica
+AU  - Rudominer, Mitch
+AU  - Johnston, Eric
+AU  - Mittal, Sushil
+AU  - Udathu, Akhil
+AU  - Christensen, Janara
+AU  - Verma, Vishal
+AU  - Irving, Zach
+AU  - Santucci, Andreas
+AU  - Elsayed, Gamaleldin
+AU  - Davoodi, Elnaz
+AU  - Georgiev, Marin
+AU  - Tenney, Ian
+AU  - Hua, Nan
+AU  - Cideron, Geoffrey
+AU  - Leurent, Edouard
+AU  - Alnahlawi, Mahmoud
+AU  - Georgescu, Ionut
+AU  - Wei, Nan
+AU  - Zheng, Ivy
+AU  - Scandinaro, Dylan
+AU  - Jiang, Heinrich
+AU  - Snoek, Jasper
+AU  - Sundararajan, Mukund
+AU  - Wang, Xuezhi
+AU  - Ontiveros, Zack
+AU  - Karo, Itay
+AU  - Cole, Jeremy
+AU  - Rajashekhar, Vinu
+AU  - Tumeh, Lara
+AU  - Ben-David, Eyal
+AU  - Jain, Rishub
+AU  - Uesato, Jonathan
+AU  - Datta, Romina
+AU  - Bunyan, Oskar
+AU  - Wu, Shimu
+AU  - Zhang, John
+AU  - Stanczyk, Piotr
+AU  - Zhang, Ye
+AU  - Steiner, David
+AU  - Naskar, Subhajit
+AU  - Azzam, Michael
+AU  - Johnson, Matthew
+AU  - Paszke, Adam
+AU  - Chiu, Chung-Cheng
+AU  - Elias, Jaume Sanchez
+AU  - Mohiuddin, Afroz
+AU  - Muhammad, Faizan
+AU  - Miao, Jin
+AU  - Lee, Andrew
+AU  - Vieillard, Nino
+AU  - Park, Jane
+AU  - Zhang, Jiageng
+AU  - Stanway, Jeff
+AU  - Garmon, Drew
+AU  - Karmarkar, Abhijit
+AU  - Dong, Zhe
+AU  - Lee, Jong
+AU  - Kumar, Aviral
+AU  - Zhou, Luowei
+AU  - Evens, Jonathan
+AU  - Isaac, William
+AU  - Irving, Geoffrey
+AU  - Loper, Edward
+AU  - Fink, Michael
+AU  - Arkatkar, Isha
+AU  - Chen, Nanxin
+AU  - Shafran, Izhak
+AU  - Petrychenko, Ivan
+AU  - Chen, Zhe
+AU  - Jia, Johnson
+AU  - Levskaya, Anselm
+AU  - Zhu, Zhenkai
+AU  - Grabowski, Peter
+AU  - Mao, Yu
+AU  - Magni, Alberto
+AU  - Yao, Kaisheng
+AU  - Snaider, Javier
+AU  - Casagrande, Norman
+AU  - Palmer, Evan
+AU  - Suganthan, Paul
+AU  - Castaño, Alfonso
+AU  - Giannoumis, Irene
+AU  - Kim, Wooyeol
+AU  - Rybiński, Mikołaj
+AU  - Sreevatsa, Ashwin
+AU  - Prendki, Jennifer
+AU  - Soergel, David
+AU  - Goedeckemeyer, Adrian
+AU  - Gierke, Willi
+AU  - Jafari, Mohsen
+AU  - Gaba, Meenu
+AU  - Wiesner, Jeremy
+AU  - Wright, Diana Gage
+AU  - Wei, Yawen
+AU  - Vashisht, Harsha
+AU  - Kulizhskaya, Yana
+AU  - Hoover, Jay
+AU  - Le, Maigo
+AU  - Li, Lu
+AU  - Iwuanyanwu, Chimezie
+AU  - Liu, Lu
+AU  - Ramirez, Kevin
+AU  - Khorlin, Andrey
+AU  - Cui, Albert
+AU  - LIN, Tian
+AU  - Wu, Marcus
+AU  - Aguilar, Ricardo
+AU  - Pallo, Keith
+AU  - Chakladar, Abhishek
+AU  - Perng, Ginger
+AU  - Abellan, Elena Allica
+AU  - Zhang, Mingyang
+AU  - Dasgupta, Ishita
+AU  - Kushman, Nate
+AU  - Penchev, Ivo
+AU  - Repina, Alena
+AU  - Wu, Xihui
+AU  - van der Weide, Tom
+AU  - Ponnapalli, Priya
+AU  - Kaplan, Caroline
+AU  - Simsa, Jiri
+AU  - Li, Shuangfeng
+AU  - Dousse, Olivier
+AU  - Yang, Fan
+AU  - Piper, Jeff
+AU  - Ie, Nathan
+AU  - Pasumarthi, Rama
+AU  - Lintz, Nathan
+AU  - Vijayakumar, Anitha
+AU  - Andor, Daniel
+AU  - Valenzuela, Pedro
+AU  - Lui, Minnie
+AU  - Paduraru, Cosmin
+AU  - Peng, Daiyi
+AU  - Lee, Katherine
+AU  - Zhang, Shuyuan
+AU  - Greene, Somer
+AU  - Nguyen, Duc Dung
+AU  - Kurylowicz, Paula
+AU  - Hardin, Cassidy
+AU  - Dixon, Lucas
+AU  - Janzer, Lili
+AU  - Choo, Kiam
+AU  - Feng, Ziqiang
+AU  - Zhang, Biao
+AU  - Singhal, Achintya
+AU  - Du, Dayou
+AU  - McKinnon, Dan
+AU  - Antropova, Natasha
+AU  - Bolukbasi, Tolga
+AU  - Keller, Orgad
+AU  - Reid, David
+AU  - Finchelstein, Daniel
+AU  - Raad, Maria Abi
+AU  - Crocker, Remi
+AU  - Hawkins, Peter
+AU  - Dadashi, Robert
+AU  - Gaffney, Colin
+AU  - Franko, Ken
+AU  - Bulanova, Anna
+AU  - Leblond, Rémi
+AU  - Chung, Shirley
+AU  - Askham, Harry
+AU  - Cobo, Luis C.
+AU  - Xu, Kelvin
+AU  - Fischer, Felix
+AU  - Xu, Jun
+AU  - Sorokin, Christina
+AU  - Alberti, Chris
+AU  - Lin, Chu-Cheng
+AU  - Evans, Colin
+AU  - Dimitriev, Alek
+AU  - Forbes, Hannah
+AU  - Banarse, Dylan
+AU  - Tung, Zora
+AU  - Omernick, Mark
+AU  - Bishop, Colton
+AU  - Sterneck, Rachel
+AU  - Jain, Rohan
+AU  - Xia, Jiawei
+AU  - Amid, Ehsan
+AU  - Piccinno, Francesco
+AU  - Wang, Xingyu
+AU  - Banzal, Praseem
+AU  - Mankowitz, Daniel J.
+AU  - Polozov, Alex
+AU  - Krakovna, Victoria
+AU  - Brown, Sasha
+AU  - Bateni, MohammadHossein
+AU  - Duan, Dennis
+AU  - Firoiu, Vlad
+AU  - Thotakuri, Meghana
+AU  - Natan, Tom
+AU  - Geist, Matthieu
+AU  - Girgin, Ser tan
+AU  - Li, Hui
+AU  - Ye, Jiayu
+AU  - Roval, Ofir
+AU  - Tojo, Reiko
+AU  - Kwong, Michael
+AU  - Lee-Thorp, James
+AU  - Yew, Christopher
+AU  - Sinopalnikov, Danila
+AU  - Ramos, Sabela
+AU  - Mellor, John
+AU  - Sharma, Abhishek
+AU  - Wu, Kathy
+AU  - Miller, David
+AU  - Sonnerat, Nicolas
+AU  - Vnukov, Denis
+AU  - Greig, Rory
+AU  - Beattie, Jennifer
+AU  - Caveness, Emily
+AU  - Bai, Libin
+AU  - Eisenschlos, Julian
+AU  - Korchemniy, Alex
+AU  - Tsai, Tomy
+AU  - Jasarevic, Mimi
+AU  - Kong, Weize
+AU  - Dao, Phuong
+AU  - Zheng, Zeyu
+AU  - Liu, Frederick
+AU  - Yang, Fan
+AU  - Zhu, Rui
+AU  - Teh, Tian Huey
+AU  - Sanmiya, Jason
+AU  - Gladchenko, Evgeny
+AU  - Trdin, Nejc
+AU  - Toyama, Daniel
+AU  - Rosen, Evan
+AU  - Tavakkol, Sasan
+AU  - Xue, Linting
+AU  - Elkind, Chen
+AU  - Woodman, Oliver
+AU  - Carpenter, John
+AU  - Papamakarios, George
+AU  - Kemp, Rupert
+AU  - Kafle, Sushant
+AU  - Grunina, Tanya
+AU  - Sinha, Rishika
+AU  - Talbert, Alice
+AU  - Wu, Diane
+AU  - Owusu-Afriyie, Denese
+AU  - Du, Cosmo
+AU  - Thornton, Chloe
+AU  - Pont-Tuset, Jordi
+AU  - Narayana, Pradyumna
+AU  - Li, Jing
+AU  - Fatehi, Saaber
+AU  - Wieting, John
+AU  - Ajmeri, Omar
+AU  - Uria, Benigno
+AU  - Ko, Yeongil
+AU  - Knight, Laura
+AU  - Héliou, Amélie
+AU  - Niu, Ning
+AU  - Gu, Shane
+AU  - Pang, Chenxi
+AU  - Li, Yeqing
+AU  - Levine, Nir
+AU  - Stolovich, Ariel
+AU  - Santamaria-Fernandez, Rebeca
+AU  - Goenka, Sonam
+AU  - Yustalim, Wenny
+AU  - Strudel, Robin
+AU  - Elqursh, Ali
+AU  - Deck, Charlie
+AU  - Lee, Hyo
+AU  - Li, Zonglin
+AU  - Levin, Kyle
+AU  - Hoffmann, Raphael
+AU  - Holtmann-Rice, Dan
+AU  - Bachem, Olivier
+AU  - Arora, Sho
+AU  - Koh, Christy
+AU  - Yeganeh, Soheil Hassas
+AU  - Põder, Siim
+AU  - Tariq, Mukarram
+AU  - Sun, Yanhua
+AU  - Ionita, Lucian
+AU  - Seyedhosseini, Mojtaba
+AU  - Tafti, Pouya
+AU  - Liu, Zhiyu
+AU  - Gulati, Anmol
+AU  - Liu, Jasmine
+AU  - Ye, Xinyu
+AU  - Chrzaszcz, Bart
+AU  - Wang, Lily
+AU  - Sethi, Nikhil
+AU  - Li, Tianrun
+AU  - Brown, Ben
+AU  - Singh, Shreya
+AU  - Fan, Wei
+AU  - Parisi, Aaron
+AU  - Stanton, Joe
+AU  - Koverkathu, Vinod
+AU  - Choquette-Choo, Christopher A.
+AU  - Li, Yunjie
+AU  - Lu, TJ
+AU  - Ittycheriah, Abe
+AU  - Shroff, Prakash
+AU  - Varadarajan, Mani
+AU  - Bahargam, Sanaz
+AU  - Willoughby, Rob
+AU  - Gaddy, David
+AU  - Desjardins, Guillaume
+AU  - Cornero, Marco
+AU  - Robenek, Brona
+AU  - Mittal, Bhavishya
+AU  - Albrecht, Ben
+AU  - Shenoy, Ashish
+AU  - Moiseev, Fedor
+AU  - Jacobsson, Henrik
+AU  - Ghaffarkhah, Alireza
+AU  - Rivière, Morgane
+AU  - Walton, Alanna
+AU  - Crepy, Clément
+AU  - Parrish, Alicia
+AU  - Zhou, Zongwei
+AU  - Farabet, Clement
+AU  - Radebaugh, Carey
+AU  - Srinivasan, Praveen
+AU  - van der Salm, Claudia
+AU  - Fidjeland, Andreas
+AU  - Scellato, Salvatore
+AU  - Latorre-Chimoto, Eri
+AU  - Klimczak-Plucińska, Hanna
+AU  - Bridson, David
+AU  - de Cesare, Dario
+AU  - Hudson, Tom
+AU  - Mendolicchio, Piermaria
+AU  - Walker, Lexi
+AU  - Morris, Alex
+AU  - Mauger, Matthew
+AU  - Guseynov, Alexey
+AU  - Reid, Alison
+AU  - Odoom, Seth
+AU  - Loher, Lucia
+AU  - Cotruta, Victor
+AU  - Yenugula, Madhavi
+AU  - Grewe, Dominik
+AU  - Petrushkina, Anastasia
+AU  - Duerig, Tom
+AU  - Sanchez, Antonio
+AU  - Yadlowsky, Steve
+AU  - Shen, Amy
+AU  - Globerson, Amir
+AU  - Webb, Lynette
+AU  - Dua, Sahil
+AU  - Li, Dong
+AU  - Bhupatiraju, Surya
+AU  - Hurt, Dan
+AU  - Qureshi, Haroon
+AU  - Agarwal, Ananth
+AU  - Shani, Tomer
+AU  - Eyal, Matan
+AU  - Khare, Anuj
+AU  - Belle, Shreyas Rammohan
+AU  - Wang, Lei
+AU  - Tekur, Chetan
+AU  - Kale, Mihir Sanjay
+AU  - Wei, Jinliang
+AU  - Sang, Ruoxin
+AU  - Saeta, Brennan
+AU  - Liechty, Tyler
+AU  - Sun, Yi
+AU  - Zhao, Yao
+AU  - Lee, Stephan
+AU  - Nayak, Pandu
+AU  - Fritz, Doug
+AU  - Vuyyuru, Manish Reddy
+AU  - Aslanides, John
+AU  - Vyas, Nidhi
+AU  - Wicke, Martin
+AU  - Ma, Xiao
+AU  - Eltyshev, Evgenii
+AU  - Martin, Nina
+AU  - Cate, Hardie
+AU  - Manyika, James
+AU  - Amiri, Keyvan
+AU  - Kim, Yelin
+AU  - Xiong, Xi
+AU  - Kang, Kai
+AU  - Luisier, Florian
+AU  - Tripuraneni, Nilesh
+AU  - Madras, David
+AU  - Guo, Mandy
+AU  - Waters, Austin
+AU  - Wang, Oliver
+AU  - Ainslie, Joshua
+AU  - Baldridge, Jason
+AU  - Zhang, Han
+AU  - Pruthi, Garima
+AU  - Bauer, Jakob
+AU  - Yang, Feng
+AU  - Mansour, Riham
+AU  - Gelman, Jason
+AU  - Xu, Yang
+AU  - Polovets, George
+AU  - Liu, Ji
+AU  - Cai, Honglong
+AU  - Chen, Warren
+AU  - Sheng, XiangHai
+AU  - Xue, Emily
+AU  - Ozair, Sherjil
+AU  - Angermueller, Christof
+AU  - Li, Xiaowei
+AU  - Sinha, Anoop
+AU  - Wang, Weiren
+AU  - Wiesinger, Julia
+AU  - Koukoumidis, Emmanouil
+AU  - Tian, Yuan
+AU  - Iyer, Anand
+AU  - Gurumurthy, Madhu
+AU  - Goldenson, Mark
+AU  - Shah, Parashar
+AU  - Blake, MK
+AU  - Yu, Hongkun
+AU  - Urbanowicz, Anthony
+AU  - Palomaki, Jennimaria
+AU  - Fernando, Chrisantha
+AU  - Durden, Ken
+AU  - Mehta, Harsh
+AU  - Momchev, Nikola
+AU  - Rahimtoroghi, Elahe
+AU  - Georgaki, Maria
+AU  - Raul, Amit
+AU  - Ruder, Sebastian
+AU  - Redshaw, Morgan
+AU  - Lee, Jinhyuk
+AU  - Zhou, Denny
+AU  - Jalan, Komal
+AU  - Li, Dinghua
+AU  - Hechtman, Blake
+AU  - Schuh, Parker
+AU  - Nasr, Milad
+AU  - Milan, Kieran
+AU  - Mikulik, Vladimir
+AU  - Franco, Juliana
+AU  - Green, Tim
+AU  - Nguyen, Nam
+AU  - Kelley, Joe
+AU  - Mahendru, Aroma
+AU  - Hu, Andrea
+AU  - Howland, Joshua
+AU  - Vargas, Ben
+AU  - Hui, Jeffrey
+AU  - Bansal, Kshitij
+AU  - Rao, Vikram
+AU  - Ghiya, Rakesh
+AU  - Wang, Emma
+AU  - Ye, Ke
+AU  - Sarr, Jean Michel
+AU  - Preston, Melanie Moranski
+AU  - Elish, Madeleine
+AU  - Li, Steve
+AU  - Kaku, Aakash
+AU  - Gupta, Jigar
+AU  - Pasupat, Ice
+AU  - Juan, Da-Cheng
+AU  - Someswar, Milan
+AU  - M., Tejvi
+AU  - Chen, Xinyun
+AU  - Amini, Aida
+AU  - Fabrikant, Alex
+AU  - Chu, Eric
+AU  - Dong, Xuanyi
+AU  - Muthal, Amruta
+AU  - Buthpitiya, Senaka
+AU  - Jauhari, Sarthak
+AU  - Hua, Nan
+AU  - Khandelwal, Urvashi
+AU  - Hitron, Ayal
+AU  - Ren, Jie
+AU  - Rinaldi, Larissa
+AU  - Drath, Shahar
+AU  - Dabush, Avigail
+AU  - Jiang, Nan-Jiang
+AU  - Godhia, Harshal
+AU  - Sachs, Uli
+AU  - Chen, Anthony
+AU  - Fan, Yicheng
+AU  - Taitelbaum, Hagai
+AU  - Noga, Hila
+AU  - Dai, Zhuyun
+AU  - Wang, James
+AU  - Liang, Chen
+AU  - Hamer, Jenny
+AU  - Ferng, Chun-Sung
+AU  - Elkind, Chenel
+AU  - Atias, Aviel
+AU  - Lee, Paulina
+AU  - Listík, Vít
+AU  - Carlen, Mathias
+AU  - van de Kerkhof, Jan
+AU  - Pikus, Marcin
+AU  - Zaher, Krunoslav
+AU  - Müller, Paul
+AU  - Zykova, Sasha
+AU  - Stefanec, Richard
+AU  - Gatsko, Vitaly
+AU  - Hirnschall, Christoph
+AU  - Sethi, Ashwin
+AU  - Xu, Xingyu Federico
+AU  - Ahuja, Chetan
+AU  - Tsai, Beth
+AU  - Stefanoiu, Anca
+AU  - Feng, Bo
+AU  - Dhandhania, Keshav
+AU  - Katyal, Manish
+AU  - Gupta, Akshay
+AU  - Parulekar, Atharva
+AU  - Pitta, Divya
+AU  - Zhao, Jing
+AU  - Bhatia, Vivaan
+AU  - Bhavnani, Yashodha
+AU  - Alhadlaq, Omar
+AU  - Li, Xiaolin
+AU  - Danenberg, Peter
+AU  - Tu, Dennis
+AU  - Pine, Alex
+AU  - Filippova, Vera
+AU  - Ghosh, Abhipso
+AU  - Limonchik, Ben
+AU  - Urala, Bhargava
+AU  - Lanka, Chaitanya Krishna
+AU  - Clive, Derik
+AU  - Sun, Yi
+AU  - Li, Edward
+AU  - Wu, Hao
+AU  - Hongtongsak, Kevin
+AU  - Li, Ianna
+AU  - Thakkar, Kalind
+AU  - Omarov, Kuanysh
+AU  - Majmundar, Kushal
+AU  - Alverson, Michael
+AU  - Kucharski, Michael
+AU  - Patel, Mohak
+AU  - Jain, Mudit
+AU  - Zabelin, Maksim
+AU  - Pelagatti, Paolo
+AU  - Kohli, Rohan
+AU  - Kumar, Saurabh
+AU  - Kim, Joseph
+AU  - Sankar, Swetha
+AU  - Shah, Vineet
+AU  - Ramachandruni, Lakshmi
+AU  - Zeng, Xiangkai
+AU  - Bariach, Ben
+AU  - Weidinger, Laura
+AU  - Vu, Tu
+AU  - Andreev, Alek
+AU  - He, Antoine
+AU  - Hui, Kevin
+AU  - Kashem, Sheleem
+AU  - Subramanya, Amar
+AU  - Hsiao, Sissie
+AU  - Hassabis, Demis
+AU  - Kavukcuoglu, Koray
+AU  - Sadovsky, Adam
+AU  - Le, Quoc
+AU  - Strohman, Trevor
+AU  - Wu, Yonghui
+AU  - Petrov, Slav
+AU  - Dean, Jeffrey
+AU  - Vinyals, Oriol
+DO  - 10.48550/ARXIV.2312.11805
+UR  - https://arxiv.org/abs/2312.11805
+AB  - This report introduces a new family of multimodal models, Gemini, that exhibit remarkable capabilities across image, audio, video, and text understanding. The Gemini family consists of Ultra, Pro, and Nano sizes, suitable for applications ranging from complex reasoning tasks to on-device memory-constrained use-cases. Evaluation on a broad range of benchmarks shows that our most-capable Gemini Ultra model advances the state of the art in 30 of 32 of these benchmarks - notably being the first model to achieve human-expert performance on the well-studied exam benchmark MMLU, and improving the state of the art in every one of the 20 multimodal benchmarks we examined. We believe that the new capabilities of the Gemini family in cross-modal reasoning and language understanding will enable a wide variety of use cases. We discuss our approach toward post-training and deploying Gemini models responsibly to users through services including Gemini, Gemini Advanced, Google AI Studio, and Cloud Vertex AI.
+KW  - Computation and Language (cs.CL)
+KW  - Artificial Intelligence (cs.AI)
+KW  - Computer Vision and Pattern Recognition (cs.CV)
+KW  - FOS: Computer and information sciences
+KW  - FOS: Computer and information sciences
+PY  - 2023
+PB  - arXiv
+ER  -
+
+TY  - BOOK
+AU  - Patankar, Suhas V.
+TI  - Numerical Heat Transfer and Fluid Flow
+PB  - Hemisphere Publishing Corporation
+PY  - 1980
+CY  - Washington, DC
+SN  - 978-0-89116-522-4
+ER  -
+
+TY  - CONF
+AU  - Hong, Yining
+AU  - Zhen, Haiyu
+AU  - Chen, Peihao
+AU  - Zheng, Shuhong
+AU  - Du, Yilun
+AU  - Chen, Zhenfang
+AU  - Gan, Chuang
+TI  - 3D-LLM: Injecting the 3D World into Large Language Models
+T2  - Advances in Neural Information Processing Systems (NeurIPS)
+PY  - 2023
+UR  - https://arxiv.org/abs/2307.12981
+ER  -
+

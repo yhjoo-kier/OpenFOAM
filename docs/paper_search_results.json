@@ -1,0 +1,1458 @@
+{
+  "indoor_cfd": [
+    {
+      "title": "Modelling aerosol transport and virus exposure with numerical simulations in relation to SARS-CoV-2 transmission by inhalation indoors",
+      "doi": "10.1016/j.ssci.2020.104866",
+      "cited": 412,
+      "year": "2020",
+      "journal": "Safety Science",
+      "authors": "Vuorinen V., Aarnio M., Alava M., Alopaeus V.",
+      "abstract": "We provide research findings on the physics of aerosol and droplet dispersion relevant to the hypothesized aerosol transmission of SARS-CoV-2 during the current pandemic. We utilize physics-based modeling at different levels of complexity, along with previous literature on coronaviruses, to investigate the possibility of airborne transmission. The previous literature, our 0D-3D simulations by vari"
+    },
+    {
+      "title": "Deep learning to replace, improve, or aid CFD analysis in built environment applications: A review",
+      "doi": "10.1016/j.buildenv.2021.108315",
+      "cited": 213,
+      "year": "2021",
+      "journal": "Building and Environment",
+      "authors": "Calzolari G., Liu W.",
+      "abstract": "Fast and accurate airflow simulations in the built environment are critical to provide acceptable thermal comfort and air quality to the occupants. Computational Fluid Dynamics (CFD) offers detailed analysis on airflow motion, heat transfer, and contaminant transport in indoor environment, as well as wind flow and pollution dispersion around buildings in urban environments. However, CFD still face"
+    },
+    {
+      "title": "Effective ventilation and air disinfection system for reducing coronavirus disease 2019 (COVID-19) infection risk in office buildings",
+      "doi": "10.1016/j.scs.2021.103408",
+      "cited": 149,
+      "year": "2021",
+      "journal": "Sustainable Cities and Society",
+      "authors": "Srivastava S., Zhao X., Manay A., Chen Q.",
+      "abstract": "During the COVID-19 pandemic, an increasing amount of evidence has suggested that the virus can be transmitted through the air inside buildings. The ventilation system used to create the indoor environment would facilitate the transmission of the airborne infectious diseases. However, the existing ventilation systems in most buildings cannot supply sufficient clean outdoor air for diluting the vir"
+    },
+    {
+      "title": "Simulation-based study of COVID-19 outbreak associated with air-conditioning in a restaurant",
+      "doi": "10.1063/5.0040188",
+      "cited": 141,
+      "year": "2021",
+      "journal": "Physics of Fluids",
+      "authors": "Liu H., He S., Shen L., Hong J.",
+      "abstract": "COVID-19 has shown a high potential of transmission via virus-carrying aerosols as supported by growing evidence. However, detailed investigations that draw direct links between aerosol transport and virus infection are still lacking. To fill in the gap, we conducted a systematic computational fluid dynamics (CFD)-based investigation of indoor airflow and the associated aerosol transport in a rest"
+    },
+    {
+      "title": "The role of air conditioning in the diffusion of Sars-CoV-2 in indoor environments: A first computational fluid dynamic model, based on investigations performed at the Vatican State Children's hospital",
+      "doi": "10.1016/j.envres.2020.110343",
+      "cited": 141,
+      "year": "2021",
+      "journal": "Environmental Research",
+      "authors": "Borro L., Mazzei L., Raponi M., Piscitelli P.",
+      "abstract": "Background: About 15 million people worldwide were affected by the Sars-Cov-2 infection, which already caused 600,000 deaths. This virus is mainly transmitted through exhalations from the airways of infected persons, so that Heating, Ventilation and Air Conditioning (HVAC) systems might play a role in increasing or reducing the spreading of the infection in indoor environments. Methods: We modeled"
+    },
+    {
+      "title": "Cross-ventilation in a generic isolated building equipped with louvers: Wind-tunnel experiments and CFD simulations",
+      "doi": "10.1016/j.buildenv.2019.03.019",
+      "cited": 132,
+      "year": "2019",
+      "journal": "Building and Environment",
+      "authors": "Kosutova K., van Hooff T., Vanderwel C., Blocken B.",
+      "abstract": "Natural ventilation can be used to improve indoor air quality, remove contaminants from spaces and to remove heat from a building during the day, or during the night. In some cases, openings for natural ventilation are equipped with shading devices – such as louvers – to reduce solar heat gains while allowing natural ventilation. This study presents wind-tunnel experiments and computational fluid "
+    },
+    {
+      "title": "Development and application of linear ventilation and temperature models for indoor environmental prediction and HVAC systems control",
+      "doi": "10.1016/j.scs.2019.101673",
+      "cited": 130,
+      "year": "2019",
+      "journal": "Sustainable Cities and Society",
+      "authors": "Ren C., Cao S.J.",
+      "abstract": "It has been of great importance to develop better control techniques for heating, ventilation and air conditioning (HVAC) systems to provide occupancy driven energy and comfort management due to the significance of building energy conservation. Following with our previous work, where low-dimensional linear ventilation model (LLVM) and artificial neural network (ANN) were incorporated to realize on"
+    },
+    {
+      "title": "The effect of dynamic solar heat load on the greenhouse microclimate using CFD simulation",
+      "doi": "10.1016/j.renene.2019.01.108",
+      "cited": 129,
+      "year": "2019",
+      "journal": "Renewable Energy",
+      "authors": "Saberian A., Sajadiye S.M.",
+      "abstract": "Indoor greenhouse temperature exceeds tolerable range for plants growth mostly during the summer in Ahvaz-Iran. Attempts for improving ventilation in summer was not adequate despite a huge energy consumption. Computational fluid dynamic models of a full scaled gable greenhouse covered by semitransparent materials among several adjacent greenhouses inside a greenhouse paradise for predicting the dy"
+    },
+    {
+      "title": "Distribution of droplet aerosols generated by mouth coughing and nose breathing in an air-conditioned room",
+      "doi": "10.1016/j.scs.2019.101721",
+      "cited": 126,
+      "year": "2019",
+      "journal": "Sustainable Cities and Society",
+      "authors": "Zhang Y., Feng G., Bi Y., Cai Y.",
+      "abstract": "The objective of this study is to understand the distribution of droplet aerosols in an air-conditioned room, which is very important to comprehend how infectious bacteria and viruses transmit from person to person through respiratory activities. To predict droplet aerosols distribution in this paper, adopted Large Eddy Simulation (LES) CFD model coupling with Lagrangian method is established and "
+    },
+    {
+      "title": "Investigation of airborne particle exposure in an office with mixing and displacement ventilation",
+      "doi": "10.1016/j.scs.2022.103718",
+      "cited": 126,
+      "year": "2022",
+      "journal": "Sustainable Cities and Society",
+      "authors": "Liu S., Koupriyanov M., Paskaruk D., Fediuk G.",
+      "abstract": "Effective ventilation could reduce COVID-19 infection in buildings. By using a computational fluid dynamics technique and advanced experimental measurement methods, this investigation studied the air velocity, air temperature, and particle number concentration in an office under a mixing ventilation (MV) system and a displacement ventilation (DV) system with different ventilation rates. The result"
+    },
+    {
+      "title": "Numerical Study of Three Ventilation Strategies in a prefabricated COVID-19 inpatient ward",
+      "doi": "10.1016/j.buildenv.2020.107467",
+      "cited": 122,
+      "year": "2021",
+      "journal": "Building and Environment",
+      "authors": "Ren J., Wang Y., Liu Q., Liu Y.",
+      "abstract": "Prefabricated inpatient wards have been proven to be an efficient alternative to quickly extend the caring capacity for patients. In this study, three typical ventilation strategies were studied using computational fluid dynamics in a prefabricated Coronavirus disease 2019 double-patient ward. Pollutants are the respiratory droplets and aerosols injected from two manikins. They are modelled as par"
+    },
+    {
+      "title": "CFD simulation of natural ventilation of a generic building in various incident wind directions: Comparison of turbulence modelling, evaluation methods, and ventilation mechanisms",
+      "doi": "10.1016/j.enbuild.2020.110516",
+      "cited": 119,
+      "year": "2020",
+      "journal": "Energy and Buildings",
+      "authors": "Zhang X., Weerasuriya A.U., Tse K.T.",
+      "abstract": "Single-sided and cross- ventilation of a cube-shaped building at various incident wind directions were stimulated using computational fluid dynamics (CFD). The simulation used either the Reynolds-averaged Navier-Stokes (RANS) equations in conjunction with a 2-equation turbulence model (Standard k-ε model (SKT), Realizable k-ε model (RLZ), or Renormalization group k-ε model (RNG)), or Large Eddy Si"
+    },
+    {
+      "title": "Evaluating the commercial airliner cabin environment with different air distribution systems",
+      "doi": "10.1111/ina.12578",
+      "cited": 112,
+      "year": "2019",
+      "journal": "Indoor Air",
+      "authors": "You R., Lin C.H., Wei D., Chen Q.",
+      "abstract": "Ventilation systems for commercial airliner cabins are important in reducing contaminant transport and maintaining thermal comfort. To evaluate the performance of a personalized displacement ventilation system, a conventional displacement ventilation system, and a mixing ventilation system, this study first used the Wells-Riley equation integrated with CFD to obtain the SARS quanta value based on "
+    },
+    {
+      "title": "Solar chimney optimization for enhancing thermal comfort in Egypt: An experimental and numerical study",
+      "doi": "10.1016/j.solener.2019.01.063",
+      "cited": 110,
+      "year": "2019",
+      "journal": "Solar Energy",
+      "authors": "Abdeen A., Serageldin A.A., Ibrahim M.G.E., El-Zafarany A.",
+      "abstract": "Air motion can be induced in naturally ventilated buildings using passive solar chimneys. This work aimed to optimize solar chimney design to maximize indoor air velocity induced by natural convection, with a particular emphasis on thermal comfort. A three-dimensional, quasi-steady computational fluid dynamics (CFD) model was established for the prediction of buoyant air flow using the renormaliza"
+    },
+    {
+      "title": "Interoperability and data exchange within BIM platform to evaluate building energy performance and indoor comfort",
+      "doi": "10.1016/j.autcon.2020.103225",
+      "cited": 102,
+      "year": "2020",
+      "journal": "Automation in Construction",
+      "authors": "Utkucu D., Sözer H.",
+      "abstract": "Most applied strategies during the building design process require careful consideration of indoor air quality and thermal conditions. This requires a detailed analysis involving multi and interdisciplinary efforts during the design process and thus, in turn, manifold interactions among various analysis methods and their simulation tools. An undesired consequence of this activity may be major prob"
+    },
+    {
+      "title": "Data-driven model for cross ventilation potential in high-density cities based on coupled CFD simulation and machine learning",
+      "doi": "10.1016/j.buildenv.2019.106394",
+      "cited": 101,
+      "year": "2019",
+      "journal": "Building and Environment",
+      "authors": "Ding C., Lam K.P.",
+      "abstract": "Effective urban ventilation through decent urban planning and building design can alleviate the deterioration of the urban built environment. However, natural ventilation requirements and guidelines in current building codes and standards are either qualitative or quantitative but subject to an absolute indoor airspeed threshold without considering the outdoor wind environment. To fill this gap, t"
+    },
+    {
+      "title": "Airborne transmission of COVID-19 virus in enclosed spaces: An overview of research methods",
+      "doi": "10.1111/ina.13056",
+      "cited": 98,
+      "year": "2022",
+      "journal": "Indoor Air",
+      "authors": "Zhao X., Liu S., Yin Y., Zhang T.",
+      "abstract": "Since the outbreak of COVID-19 in December 2019, the severe acute respiratory syndrome coronavirus 2 (SARS CoV-2) has spread worldwide. This study summarized the transmission mechanisms of COVID-19 and their main influencing factors, such as airflow patterns, air temperature, relative humidity, and social distancing. The transmission characteristics in existing cases are providing more and more ev"
+    },
+    {
+      "title": "Close proximity risk assessment for SARS-CoV-2 infection",
+      "doi": "10.1016/j.scitotenv.2021.148749",
+      "cited": 98,
+      "year": "2021",
+      "journal": "Science of the Total Environment",
+      "authors": "Cortellessa G., Stabile L., Arpino F., Faleiros D.E.",
+      "abstract": "Although the interpersonal distance represents an important parameter affecting the risk of infection due to respiratory viruses, the mechanism of exposure to exhaled droplets remains insufficiently characterized. In this study, an integrated risk assessment is presented for SARS-CoV-2 close proximity exposure between a speaking infectious subject and a susceptible subject. It is based on a three-"
+    },
+    {
+      "title": "Infection probability under different air distribution patterns",
+      "doi": "10.1016/j.buildenv.2021.108555",
+      "cited": 96,
+      "year": "2022",
+      "journal": "Building and Environment",
+      "authors": "Su W., Yang B., Melikov A., Liang C.",
+      "abstract": "Infectious diseases have caused significant physical harm to humans as well as enormous economic losses over the years. Effective ventilation and distribution of fresh air could help to reduce indoor cross-infection. The computational fluid dynamics (CFD) method was used in this paper to investigate airborne transmission with seven different air distribution methods. The revised Wells-Riley model,"
+    },
+    {
+      "title": "Challenges of using CFD simulation for the design and online control of ventilation systems",
+      "doi": "10.1177/1420326X18810568",
+      "cited": 95,
+      "year": "2019",
+      "journal": "Indoor and Built Environment",
+      "authors": "Cao S.J.",
+      "abstract": ""
+    }
+  ],
+  "vlm_spatial": [
+    {
+      "title": "LERF: Language Embedded Radiance Fields",
+      "doi": "10.1109/ICCV51070.2023.01807",
+      "cited": 290,
+      "year": "2023",
+      "journal": "Proceedings of the IEEE International Conference on Computer Vision",
+      "authors": "Kerr J., Kim C.M., Goldberg K., Kanazawa A.",
+      "abstract": "Humans describe the physical world using natural language to refer to specific 3D locations based on a vast range of properties: visual appearance, semantics, abstract associations, or actionable affordances. In this work we propose Language Embedded Radiance Fields (LERFs), a method for grounding language embeddings from off-the-shelf models like CLIP into NeRF, which enable these types of open-e"
+    },
+    {
+      "title": "ULIP: Learning a Unified Representation of Language, Images, and Point Clouds for 3D Understanding",
+      "doi": "10.1109/CVPR52729.2023.00120",
+      "cited": 236,
+      "year": "2023",
+      "journal": "Proceedings of the IEEE Computer Society Conference on Computer Vision and Pattern Recognition",
+      "authors": "Xue L., Gao M., Xing C., Martín-Martín R.",
+      "abstract": "The recognition capabilities of current state-of-the-art 3D models are limited by datasets with a small number of annotated data and a pre-defined set of categories. In its 2D counterpart, recent advances have shown that similar problems can be significantly alleviated by employing knowledge from other modalities, such as language. Inspired by this, leveraging multimodal information for 3D modalit"
+    },
+    {
+      "title": "3D-LLM: Injecting the 3D World into Large Language Models",
+      "doi": "",
+      "cited": 183,
+      "year": "2023",
+      "journal": "Advances in Neural Information Processing Systems",
+      "authors": "Hong Y., Zhen H., Chen P., Zheng S.",
+      "abstract": "Large language models (LLMs) and Vision-Language Models (VLMs) have been proven to excel at multiple tasks, such as commonsense reasoning. Powerful as these models can be, they are not grounded in the 3D physical world, which involves richer concepts such as spatial relationships, affordances, physics, layout, and so on. In this work, we propose to inject the 3D world into large language models an"
+    },
+    {
+      "title": "GeoChat:Grounded Large Vision-Language Model for Remote Sensing",
+      "doi": "10.1109/CVPR52733.2024.02629",
+      "cited": 177,
+      "year": "2024",
+      "journal": "Proceedings of the IEEE Computer Society Conference on Computer Vision and Pattern Recognition",
+      "authors": "Kuckreja K., Danish M.S., Naseer M., Das A.",
+      "abstract": "Recent advancements in Large Vision-Language Models (VLMs) have shown great promise in natural image domains, allowing users to hold a dialogue about given visual content. However, such general-domain VLMs perform poorly for Remote Sensing (RS) scenarios, leading to inaccurate or fabricated information when presented with RS domain-specific queries. Such a behavior emerges due to the unique challe"
+    },
+    {
+      "title": "SpatialVLM: Endowing Vision-Language Models with Spatial Reasoning Capabilities",
+      "doi": "10.1109/CVPR52733.2024.01370",
+      "cited": 139,
+      "year": "2024",
+      "journal": "Proceedings of the IEEE Computer Society Conference on Computer Vision and Pattern Recognition",
+      "authors": "Chen B., Xu Z., Kirmani S., Ichter B.",
+      "abstract": "Understanding and reasoning about spatial relationships is a fundamental capability for Visual Question Answering (VQA) and robotics. While Vision Language Models (VLM) have demonstrated remarkable performance in certain VQA benchmarks, they still lack capabilities in 3D spatial reasoning, such as recognizing quantitative relationships of physical objects like distances or size difference. We hypo"
+    },
+    {
+      "title": "ConceptGraphs: Open-Vocabulary 3D Scene Graphs for Perception and Planning",
+      "doi": "10.1109/ICRA57147.2024.10610243",
+      "cited": 135,
+      "year": "2024",
+      "journal": "Proceedings IEEE International Conference on Robotics and Automation",
+      "authors": "Gu Q., Kuwajerwala A., Morin S., Jatavallabhula K.M.",
+      "abstract": "For robots to perform a wide variety of tasks, they require a 3D representation of the world that is semantically rich, yet compact and efficient for task-driven perception and planning. Recent approaches have attempted to leverage features from large vision-language models to encode semantics in 3D representations. However, these approaches tend to produce maps with per-point feature vectors, whi"
+    },
+    {
+      "title": "A Comprehensive Survey of Convolutions in Deep Learning: Applications, Challenges, and Future Trends",
+      "doi": "10.1109/ACCESS.2024.3376441",
+      "cited": 135,
+      "year": "2024",
+      "journal": "IEEE Access",
+      "authors": "Younesi A., Ansari M., Fazli M., Ejlali A.",
+      "abstract": "In today's digital age, Convolutional Neural Networks (CNNs), a subset of Deep Learning (DL), are widely used for various computer vision tasks such as image classification, object detection, and image segmentation. There are numerous types of CNNs designed to meet specific needs and requirements, including 1D, 2D, and 3D CNNs, as well as dilated, grouped, attention, depthwise convolutions, and NA"
+    },
+    {
+      "title": "Autonomous GIS: the next-generation AI-powered GIS",
+      "doi": "10.1080/17538947.2023.2278895",
+      "cited": 127,
+      "year": "2023",
+      "journal": "International Journal of Digital Earth",
+      "authors": "Li Z., Ning H.",
+      "abstract": "Large Language Models (LLMs), such as ChatGPT, demonstrate a strong understanding of human natural language and have been explored and applied in various fields, including reasoning, creative writing, code generation, translation, and information retrieval. By adopting LLM as the reasoning core, we introduce Autonomous GIS as an AI-powered geographic information system (GIS) that leverages the LLM"
+    },
+    {
+      "title": "NeRDi: Single-View NeRF Synthesis with Language-Guided Diffusion as General Image Priors",
+      "doi": "10.1109/CVPR52729.2023.01977",
+      "cited": 126,
+      "year": "2023",
+      "journal": "Proceedings of the IEEE Computer Society Conference on Computer Vision and Pattern Recognition",
+      "authors": "Deng C., Jiang C., Qi C.R., Yan X.",
+      "abstract": "2D-to-3D reconstruction is an ill-posed problem, yet humans are good at solving this problem due to their prior knowledge of the 3D world developed over years. Driven by this observation, we propose NeRDi, a single-view NeRF synthesis framework with general image priors from 2D diffusion models. Formulating single-view reconstruction as an image-conditioned 3D generation problem, we optimize the N"
+    },
+    {
+      "title": "VoxPoser: Composable 3D Value Maps for Robotic Manipulation with Language Models",
+      "doi": "",
+      "cited": 111,
+      "year": "2023",
+      "journal": "Proceedings of Machine Learning Research",
+      "authors": "Huang W., Wang C., Zhang R., Li Y.",
+      "abstract": "Large language models (LLMs) are shown to possess a wealth of actionable knowledge that can be extracted for robot manipulation in the form of reasoning and planning. Despite the progress, most still rely on pre-defined motion primitives to carry out the physical interactions with the environment, which remains a major bottleneck. In this work, we aim to synthesize robot trajectories, i.e., a dens"
+    },
+    {
+      "title": "Chat-UniVi: Unified Visual Representation Empowers Large Language Models with Image and Video Understanding",
+      "doi": "10.1109/CVPR52733.2024.01300",
+      "cited": 106,
+      "year": "2024",
+      "journal": "Proceedings of the IEEE Computer Society Conference on Computer Vision and Pattern Recognition",
+      "authors": "Jin P., Takanobu R., Zhang W., Cao X.",
+      "abstract": "Large language models have demonstrated impressive universal capabilities across a wide range of open-ended tasks and have extended their utility to encompass multi-modal conversations. However, existing methods encounter challenges in effectively handling both image and video understanding, particularly with limited visual tokens. In this work, we introduce Chat-UniVi, a Unified Vision-language m"
+    },
+    {
+      "title": "BLIVA: A Simple Multimodal LLM for Better Handling of Text-Rich Visual Questions",
+      "doi": "10.1609/aaai.v38i3.27999",
+      "cited": 97,
+      "year": "2024",
+      "journal": "Proceedings of the Aaai Conference on Artificial Intelligence",
+      "authors": "Hu W., Xu Y., Li Y., Li W.",
+      "abstract": "Vision Language Models (VLMs), which extend Large Language Models (LLM) by incorporating visual understanding capability, have demonstrated significant advancements in addressing open-ended visual question-answering (VQA) tasks. However, these models cannot accurately interpret images infused with text, a common occurrence in real-world scenarios. Standard procedures for extracting information fro"
+    },
+    {
+      "title": "CLIP2: Contrastive Language-Image-Point Pretraining from Real-World Point Cloud Data",
+      "doi": "10.1109/CVPR52729.2023.01463",
+      "cited": 97,
+      "year": "2023",
+      "journal": "Proceedings of the IEEE Computer Society Conference on Computer Vision and Pattern Recognition",
+      "authors": "Zeng Y., Jiang C., Mao J., Han J.",
+      "abstract": "Contrastive Language-Image Pre-training, benefiting from large-scale unlabeled text-image pairs, has demonstrated great performance in open-world vision understanding tasks. However, due to the limited Text-3D data pairs, adapting the success of 2D Vision-Language Models (VLM) to the 3D space remains an open problem. Existing works that leverage VLM for 3D understanding generally resort to constru"
+    },
+    {
+      "title": "Embodied intelligence in manufacturing: leveraging large language models for autonomous industrial robotics",
+      "doi": "10.1007/s10845-023-02294-y",
+      "cited": 87,
+      "year": "2025",
+      "journal": "Journal of Intelligent Manufacturing",
+      "authors": "Fan H., Liu X., Fuh J.Y.H., Lu W.F.",
+      "abstract": "This paper delves into the potential of Large Language Model (LLM) agents for industrial robotics, with an emphasis on autonomous design, decision-making, and task execution within manufacturing contexts. We propose a comprehensive framework that includes three core components: (1) matches manufacturing tasks with process parameters, emphasizing the challenges in LLM agents’ understanding of human"
+    },
+    {
+      "title": "VLFM: Vision-Language Frontier Maps for Zero-Shot Semantic Navigation",
+      "doi": "10.1109/ICRA57147.2024.10610712",
+      "cited": 84,
+      "year": "2024",
+      "journal": "Proceedings IEEE International Conference on Robotics and Automation",
+      "authors": "Yokoyama N., Ha S., Batra D., Wang J.",
+      "abstract": "Understanding how humans leverage semantic knowledge to navigate unfamiliar environments and decide where to explore next is pivotal for developing robots capable of human-like search behaviors. We introduce a zero-shot navigation approach, Vision-Language Frontier Maps (VLFM), which is inspired by human reasoning and designed to navigate towards unseen semantic objects in novel environments. VLFM"
+    },
+    {
+      "title": "Alpha-CLIP: A CLIP Model Focusing on Wherever you Want",
+      "doi": "10.1109/CVPR52733.2024.01237",
+      "cited": 78,
+      "year": "2024",
+      "journal": "Proceedings of the IEEE Computer Society Conference on Computer Vision and Pattern Recognition",
+      "authors": "Sun Z., Fang Y., Wu T., Zhang P.",
+      "abstract": "Contrastive Language-Image Pre-training (CLIP) plays an essential role in extracting valuable content information from images across diverse tasks. It aligns textual and visual modalities to comprehend the entire image, including all the details, even those irrelevant to specific tasks. How-ever, for a finer understanding and controlled editing of images, it becomes crucial to focus on specific re"
+    },
+    {
+      "title": "Task Arithmetic in the Tangent Space: Improved Editing of Pre-Trained Models",
+      "doi": "",
+      "cited": 76,
+      "year": "2023",
+      "journal": "Advances in Neural Information Processing Systems",
+      "authors": "Ortiz-Jimenez G., Favero A., Frossard P.",
+      "abstract": "Task arithmetic has recently emerged as a cost-effective and scalable approach to edit pre-trained models directly in weight space: By adding the fine-tuned weights of different tasks, the model's performance can be improved on these tasks, while negating them leads to task forgetting. Yet, our understanding of the effectiveness of task arithmetic and its underlying principles remains limited. We "
+    },
+    {
+      "title": "Honeybee: Locality-Enhanced Projector for Multimodal LLM",
+      "doi": "10.1109/CVPR52733.2024.01311",
+      "cited": 72,
+      "year": "2024",
+      "journal": "Proceedings of the IEEE Computer Society Conference on Computer Vision and Pattern Recognition",
+      "authors": "Cha J., Kang W., Mun J., Roh B.",
+      "abstract": "In Multimodal Large Language Models (MLLMs), a visual projector plays a crucial role in bridging pre-trained vision encoders with LLMs, enabling profound visual understanding while harnessing the LLMs' robust capabilities. Despite the importance of the visual projector, it has been relatively less explored. In this study, we first identify two essential projector properties: (i) flexibility in man"
+    },
+    {
+      "title": "LLMR: Real-time Prompting of Interactive Worlds using Large Language Models",
+      "doi": "10.1145/3613904.3642579",
+      "cited": 70,
+      "year": "2024",
+      "journal": "Conference on Human Factors in Computing Systems Proceedings",
+      "authors": "De La Torre F., Fang C.M., Huang H., Banburski-Fahey A.",
+      "abstract": "We present Large Language Model for Mixed Reality (LLMR), a framework for the real-time creation and modification of interactive Mixed Reality experiences using LLMs. LLMR leverages novel strategies to tackle difficult cases where ideal training data is scarce, or where the design goal requires the synthesis of internal dynamics, intuitive analysis, or advanced interactivity. Our framework relies "
+    },
+    {
+      "title": "Towards Understanding the Geospatial Skills of ChatGPT: Taking a Geographic Information Systems (GIS) Exam",
+      "doi": "10.1145/3615886.3627745",
+      "cited": 67,
+      "year": "2023",
+      "journal": "Geoai 2023 Proceedings of the 6th ACM Sigspatial International Workshop on AI for Geographic Knowledge Discovery",
+      "authors": "Mooney P., Cui W., Guan B., Juhász L.",
+      "abstract": "This paper examines the performance of ChatGPT, a large language model (LLM), in a geographic information systems (GIS) exam. As LLMs like ChatGPT become increasingly prevalent in various domains, including education, it is important to understand their capabilities and limitations in specialized subject areas such as GIS. Human learning of spatial concepts significantly differs from LLM training "
+    }
+  ],
+  "dl_surrogate": [
+    {
+      "title": "Explainable artificial intelligence: an analytical review",
+      "doi": "10.1002/widm.1424",
+      "cited": 706,
+      "year": "2021",
+      "journal": "Wiley Interdisciplinary Reviews Data Mining and Knowledge Discovery",
+      "authors": "Angelov P.P., Soares E.A., Jiang R., Arnold N.I.",
+      "abstract": "This paper provides a brief analytical review of the current state-of-the-art in relation to the explainability of artificial intelligence in the context of recent advances in machine learning and deep learning. The paper starts with a brief historical introduction and a taxonomy, and formulates the main challenges in terms of explainability building on the recently formulated National Institute o"
+    },
+    {
+      "title": "Traffic Flow Prediction via Spatial Temporal Graph Neural Network",
+      "doi": "10.1145/3366423.3380186",
+      "cited": 625,
+      "year": "2020",
+      "journal": "Web Conference 2020 Proceedings of the World Wide Web Conference Www 2020",
+      "authors": "Wang X., Ma Y., Wang Y., Jin W.",
+      "abstract": "Traffic flow analysis, prediction and management are keystones for building smart cities in the new era. With the help of deep neural networks and big traffic data, we can better understand the latent patterns hidden in the complex transportation networks. The dynamic of the traffic flow on one road not only depends on the sequential patterns in the temporal dimension but also relies on other road"
+    },
+    {
+      "title": "Predicting concrete compressive strength using hybrid ensembling of surrogate machine learning models",
+      "doi": "10.1016/j.cemconres.2021.106449",
+      "cited": 574,
+      "year": "2021",
+      "journal": "Cement and Concrete Research",
+      "authors": "Asteris P.G., Skentou A.D., Bardhan A., Samui P.",
+      "abstract": "This study aims to implement a hybrid ensemble surrogate machine learning technique in predicting the compressive strength (CS) of concrete, an important parameter used for durability design and service life prediction of concrete structures in civil engineering projects. For this purpose, an experimental database consisting of 1030 records has been compiled from the machine learning repository of"
+    },
+    {
+      "title": "Physics-guided convolutional neural network (PhyCNN) for data-driven seismic response modeling",
+      "doi": "10.1016/j.engstruct.2020.110704",
+      "cited": 429,
+      "year": "2020",
+      "journal": "Engineering Structures",
+      "authors": "Zhang R., Liu Y., Sun H.",
+      "abstract": "Accurate prediction of building's response subjected to earthquakes makes possible to evaluate building performance. To this end, we leverage the recent advances in deep learning and develop a physics-guided convolutional neural network (PhyCNN) for data-driven structural seismic response modeling. The concept is to train a deep PhyCNN model based on limited seismic input–output datasets (e.g., fr"
+    },
+    {
+      "title": "Machine Learning-based traffic prediction models for Intelligent Transportation Systems",
+      "doi": "10.1016/j.comnet.2020.107530",
+      "cited": 274,
+      "year": "2020",
+      "journal": "Computer Networks",
+      "authors": "Boukerche A., Wang J.",
+      "abstract": "Intelligent Transportation Systems (ITS) have attracted an increasing amount of attention in recent years. Thanks to the fast development of vehicular computing hardware, vehicular sensors and citywide infrastructures, many impressive applications have been proposed under the topic of ITS, such as Vehicular Cloud (VC), intelligent traffic controls, etc. These applications can bring us a safer, mor"
+    },
+    {
+      "title": "The Remarkable Robustness of Surrogate Gradient Learning for Instilling Complex Function in Spiking Neural Networks",
+      "doi": "10.1162/neco_a_01367",
+      "cited": 224,
+      "year": "2021",
+      "journal": "Neural Computation",
+      "authors": "Zenke F., Vogels T.P.",
+      "abstract": "Brains process information in spiking neural networks. Their intricate connections shape the diverse functions these networks perform. Yet how network connectivity relates to function is poorly understood, and the functional capabilities of models of spiking networks are still rudimentary. The lack of both theoretical insight and practical algorithms to find the necessary connectivity poses a majo"
+    },
+    {
+      "title": "Deep learning to replace, improve, or aid CFD analysis in built environment applications: A review",
+      "doi": "10.1016/j.buildenv.2021.108315",
+      "cited": 213,
+      "year": "2021",
+      "journal": "Building and Environment",
+      "authors": "Calzolari G., Liu W.",
+      "abstract": "Fast and accurate airflow simulations in the built environment are critical to provide acceptable thermal comfort and air quality to the occupants. Computational Fluid Dynamics (CFD) offers detailed analysis on airflow motion, heat transfer, and contaminant transport in indoor environment, as well as wind flow and pollution dispersion around buildings in urban environments. However, CFD still face"
+    },
+    {
+      "title": "Configuration and intercomparison of deep learning neural models for statistical downscaling",
+      "doi": "10.5194/gmd-13-2109-2020",
+      "cited": 199,
+      "year": "2020",
+      "journal": "Geoscientific Model Development",
+      "authors": "Baño-Medina J., Manzanas R., Gutierrez J.M.",
+      "abstract": "Deep learning techniques (in particular convolutional neural networks, CNNs) have recently emerged as a promising approach for statistical downscaling due to their ability to learn spatial features from huge spatiotemporal datasets. However, existing studies are based on complex models, applied to particular case studies and using simple validation frameworks, which makes a proper assessment of th"
+    },
+    {
+      "title": "Every Pixel Counts ++: Joint Learning of Geometry and Motion with 3D Holistic Understanding",
+      "doi": "10.1109/TPAMI.2019.2930258",
+      "cited": 192,
+      "year": "2020",
+      "journal": "IEEE Transactions on Pattern Analysis and Machine Intelligence",
+      "authors": "Luo C., Yang Z., Wang P., Wang Y.",
+      "abstract": "Learning to estimate 3D geometry in a single frame and optical flow from consecutive frames by watching unlabeled videos via deep convolutional network has made significant progress recently. Current state-of-the-art (SoTA) methods treat the two tasks independently. One typical assumption of the existing depth estimation methods is that the scenes contain no independent moving objects. while objec"
+    },
+    {
+      "title": "Data-driven predictive control for smart HVAC system in IoT-integrated buildings with time-series forecasting and reinforcement learning",
+      "doi": "10.1016/j.apenergy.2023.120936",
+      "cited": 190,
+      "year": "2023",
+      "journal": "Applied Energy",
+      "authors": "Zhuang D., Gan V.J.L., Duygu Tekler Z., Chong A.",
+      "abstract": "Optimising HVAC operations towards human wellness and energy efficiency is a major challenge for smart facilities management, especially amid COVID situations. Although IoT sensors and deep learning were applied to support HVAC operations, the loss of forecasting accuracy in recursive prediction largely hinders their applications. This study presents a data-driven predictive control method with ti"
+    },
+    {
+      "title": "Multi-objective optimization of building energy performance and indoor thermal comfort by combining artificial neural networks and metaheuristic algorithms",
+      "doi": "10.1016/j.enbuild.2021.110839",
+      "cited": 174,
+      "year": "2021",
+      "journal": "Energy and Buildings",
+      "authors": "Chegari B., Tabaa M., Simeu E., Moutaouakkil F.",
+      "abstract": "During the last few years, multi-objective optimization processes have become one of the main challenges for energy efficiency in buildings. In this work, a new efficient multi-objective optimization method, based on the Building Performance Optimization (BPO) technique, has been developed to improve the indoor thermal comfort and energy performance of residential buildings, i.e. a Moroccan ground"
+    },
+    {
+      "title": "Application and characterization of metamodels based on artificial neural networks for building performance simulation: A systematic review",
+      "doi": "10.1016/j.enbuild.2020.109972",
+      "cited": 167,
+      "year": "2020",
+      "journal": "Energy and Buildings",
+      "authors": "Roman N.D., Bre F., Fachinotti V.D., Lamberts R.",
+      "abstract": "In most of the countries, buildings are often one of the major energy consumers, leading to the necessity of achieving sustainable building designs, and to the mandatory use of building performance simulation (BPS) tools in order to retrofit or design new energy efficient buildings. In the last years, the use of artificial neural networks (ANNs) metamodels has increased and gained confidence in BP"
+    },
+    {
+      "title": "Smart Detection of Fire Source in Tunnel Based on the Numerical Database and Artificial Intelligence",
+      "doi": "10.1007/s10694-020-00985-z",
+      "cited": 143,
+      "year": "2021",
+      "journal": "Fire Technology",
+      "authors": "Wu X., Park Y., Li A., Huang X.",
+      "abstract": "The fire event in a tunnel creates a rapid spread of heat and smoke flows in a long and confined space, which not only endangers human life but also challenges the fire-evacuation and firefighting strategies. A quick and accurate identification for the location and size of the original fire source is of great scientific and practical value in guiding fire rescue and fighting the tunnel fire. Never"
+    },
+    {
+      "title": "Intelligent structural design of shear wall residence using physics-enhanced generative adversarial networks",
+      "doi": "10.1002/eqe.3632",
+      "cited": 142,
+      "year": "2022",
+      "journal": "Earthquake Engineering and Structural Dynamics",
+      "authors": "Lu X., Liao W., Zhang Y., Huang Y.",
+      "abstract": "Intelligent structural design using generative adversarial networks (GANs) is a revolutionary design approach for building structures. Despite its far-reaching capability, the data quantity and quality may have limited the performance of such a data-driven network. This study proposes to enhance the objectiveness of training processes by innovatively introducing a surrogate model, Physics Estimato"
+    },
+    {
+      "title": "DeepM&Mnet for hypersonics: Predicting the coupled flow and finite-rate chemistry behind a normal shock using neural-network approximation of operators",
+      "doi": "10.1016/j.jcp.2021.110698",
+      "cited": 132,
+      "year": "2021",
+      "journal": "Journal of Computational Physics",
+      "authors": "Mao Z., Lu L., Marxen O., Zaki T.A.",
+      "abstract": "In high-speed flow past a normal shock, the fluid temperature rises rapidly triggering downstream chemical dissociation reactions. The chemical changes lead to appreciable changes in fluid properties, and these coupled multiphysics and the resulting multiscale dynamics are challenging to resolve numerically. Using conventional computational fluid dynamics (CFD) requires excessive computing cost. H"
+    },
+    {
+      "title": "Physics-informed convolutional neural networks for temperature field prediction of heat source layout without labeled data",
+      "doi": "10.1016/j.engappai.2022.105516",
+      "cited": 122,
+      "year": "2023",
+      "journal": "Engineering Applications of Artificial Intelligence",
+      "authors": "Zhao X., Gong Z., Zhang Y., Yao W.",
+      "abstract": "Recently, surrogate models based on deep learning have attracted much attention for engineering analysis and optimization. Since constructing data pairs in most engineering problems is time-consuming, data acquisition is becoming the predictive capability bottleneck of most deep surrogate models, which also exist in surrogate for thermal analysis and design. In contrast with data-driven learning, "
+    },
+    {
+      "title": "Data-driven prediction of vehicle cabin thermal comfort: using machine learning and high-fidelity simulation results",
+      "doi": "10.1016/j.ijheatmasstransfer.2019.119083",
+      "cited": 121,
+      "year": "2020",
+      "journal": "International Journal of Heat and Mass Transfer",
+      "authors": "Warey A., Kaushik S., Khalighi B., Cruse M.",
+      "abstract": "Predicting thermal comfort in an automotive vehicle cabin's highly asymmetric and dynamic thermal environment is critical for developing energy efficient heating, ventilation and air conditioning (HVAC) systems. In this study we have coupled high-fidelity Computational Fluid Dynamics (CFD) simulations and machine learning algorithms to predict vehicle occupant thermal comfort for any combination o"
+    },
+    {
+      "title": "Expensive Multiobjective Optimization by Relation Learning and Prediction",
+      "doi": "10.1109/TEVC.2022.3152582",
+      "cited": 119,
+      "year": "2022",
+      "journal": "IEEE Transactions on Evolutionary Computation",
+      "authors": "Hao H., Zhou A., Qian H., Zhang H.",
+      "abstract": "Expensive multiobjective optimization problems pose great challenges to evolutionary algorithms due to their costly evaluation. Building cheap surrogate models to replace the expensive real models has been proved to be a practical way to reduce the number of costly evaluations. Supervised learning techniques from the community of machine learning have been widely applied to build either regressors"
+    },
+    {
+      "title": "Survey on traditional and AI based estimation techniques for hydrodynamic coefficients of autonomous underwater vehicle",
+      "doi": "10.1016/j.oceaneng.2022.113300",
+      "cited": 118,
+      "year": "2023",
+      "journal": "Ocean Engineering",
+      "authors": "Ahmed F., Xiang X., Jiang C., Xiang G.",
+      "abstract": "An accurately predicted dynamic model is essentially required to design a robust control system for an autonomous underwater vehicle (AUV) maneuvering in six degrees of freedom. The dynamic model consists of hydrodynamic derivatives which include inertial and damping coefficients. Traditionally, these coefficients can be estimated through Analytical and Semi-Empirical (ASE) methods, Computational "
+    },
+    {
+      "title": "Data-driven district energy management with surrogate models and deep reinforcement learning",
+      "doi": "10.1016/j.apenergy.2021.117642",
+      "cited": 116,
+      "year": "2021",
+      "journal": "Applied Energy",
+      "authors": "Pinto G., Deltetto D., Capozzoli A.",
+      "abstract": "Demand side management at district scale plays a crucial role in the energy transition process, being an ideal candidate to balance the needs of both users and grid, by managing the volatility of renewable sources and increasing energy flexibility. The presented study aims to explore the benefits of a coordinated approach for the energy management of a cluster of buildings to optimise the electric"
+    }
+  ],
+  "cfd_automation": [
+    {
+      "title": "Deep-learning-based automatic computer-aided diagnosis system for diabetic retinopathy",
+      "doi": "10.1007/s13534-017-0047-y",
+      "cited": 228,
+      "year": "2018",
+      "journal": "Biomedical Engineering Letters",
+      "authors": "Mansour R.F.",
+      "abstract": "The high-pace rise in advanced computing and imaging systems has given rise to a new research dimension called computer-aided diagnosis (CAD) system for various biomedical purposes. CAD-based diabetic retinopathy (DR) can be of paramount significance to enable early disease detection and diagnosis decision. Considering the robustness of deep neural networks (DNNs) to solve highly intricate classif"
+    },
+    {
+      "title": "Efficient mesh generation and deformation for aerodynamic shape optimization",
+      "doi": "10.2514/1.J059491",
+      "cited": 174,
+      "year": "2021",
+      "journal": "AIAA Journal",
+      "authors": "Secco N.R., Kenway G.K.W., He P., Mader C.",
+      "abstract": "Mesh generation and deformation are critical elements in gradient-based aerodynamic shape optimization (ASO). Improperly generated or deformed meshes may contain bad-quality cells that degrade the accuracy of computational fluid dynamics (CFD) solvers. Moreover, an inefficient mesh deformation method can become the bottleneck for the entire ASO process. To perform practical ASO, mesh generation an"
+    },
+    {
+      "title": "Polyhedral meshing in numerical analysis of conjugate heat transfer",
+      "doi": "10.1051/epjconf/201817002096",
+      "cited": 150,
+      "year": "2018",
+      "journal": "EPJ Web of Conferences",
+      "authors": "Sosnowski M., Krzywanski J., Grabowska K., Gnatowska R.",
+      "abstract": "Computational methods have been widely applied in conjugate heat transfer analysis. The very first and crucial step in such research is the meshing process which consists in dividing the analysed geometry into numerous small control volumes (cells). In Computational Fluid Dynamics (CFD) applications it is desirable to use the hexahedral cells as the resulting mesh is characterized by low numerical"
+    },
+    {
+      "title": "nn-PINNs: Non-Newtonian physics-informed neural networks for complex fluid modeling",
+      "doi": "10.1039/d1sm01298c",
+      "cited": 96,
+      "year": "2022",
+      "journal": "Soft Matter",
+      "authors": "Mahmoudabadbozchelou M., Karniadakis G.E., Jamali S.",
+      "abstract": "Time- and rate-dependent material functions in non-Newtonian fluids in response to different deformation fields pose a challenge in integrating different constitutive models into conventional computational fluid dynamic platforms. Considering their relevance in many industrial and natural settings alike, robust data-driven frameworks that enable accurate modeling of these complex fluids are of gre"
+    },
+    {
+      "title": "Diagnostic accuracy of a deep learning approach to calculate FFR from coronary CT angiography",
+      "doi": "",
+      "cited": 92,
+      "year": "2019",
+      "journal": "Journal of Geriatric Cardiology",
+      "authors": "Wang Z., Zhou Y., Zhao Y., Shi D.",
+      "abstract": "Objectives The goal of this study was to determine the DEEPVESSEL-FFR platform using the emerging deep learning technique to calculate the FFR value from computed tomography angiography (CTA) images as a rapid method . .Background The computational fluid dynamics (CFD) approach has been frequently applied to compute the fractional flow reserve (FFR) from computed tomography angiography (CTA). This"
+    },
+    {
+      "title": "Use of Parallel ResNet for High-Performance Pavement Crack Detection and Measurement",
+      "doi": "10.3390/su14031825",
+      "cited": 88,
+      "year": "2022",
+      "journal": "Sustainability Switzerland",
+      "authors": "Fan Z., Lin H., Li C., Su J.",
+      "abstract": "In the process of road pavement health and safety assessment, crack detection plays a pivotal role in a preventive maintenance strategy. Recently, Convolutional Neural Networks (CNNs) have been applied to automatically identify the cracks on concrete pavements. The effectiveness of a CNN-based road crack detection and measurement method depends on several factors, including the image segmentation "
+    },
+    {
+      "title": "An attention residual u-net with differential preprocessing and geometric postprocessing: Learning how to segment vasculature including intracranial aneurysms",
+      "doi": "10.1016/j.media.2022.102697",
+      "cited": 86,
+      "year": "2023",
+      "journal": "Medical Image Analysis",
+      "authors": "Mu N., Lyu Z., Rezaeitaleshmahalleh M., Tang J.",
+      "abstract": "Objective: Intracranial aneurysms (IA) are lethal, with high morbidity and mortality rates. Reliable, rapid, and accurate segmentation of IAs and their adjacent vasculature from medical imaging data is important to improve the clinical management of patients with IAs. However, due to the blurred boundaries and complex structure of IAs and overlapping with brain tissue or other cerebral arteries, i"
+    },
+    {
+      "title": "Feature-based and goal-oriented anisotropic mesh adaptation for RANS applications in aeronautics and aerospace",
+      "doi": "10.1016/j.jcp.2021.110340",
+      "cited": 71,
+      "year": "2021",
+      "journal": "Journal of Computational Physics",
+      "authors": "Alauzet F., Frazza L.",
+      "abstract": "The scope of this paper is to demonstrate the viability of unstructured anisotropic mesh adaptation for commercial aircraft drag and high-lift prediction studies. The main achievement of this work is to demonstrate that mesh-independent certified numerical solutions can be achievable thanks to anisotropic mesh adaptation and that it is possible to run high-fidelity CFD on unstructured adapted mesh"
+    },
+    {
+      "title": "Geometry and airflow dynamics analysis in the nasal cavity during inhalation",
+      "doi": "10.1016/j.clinbiomech.2017.10.006",
+      "cited": 68,
+      "year": "2019",
+      "journal": "Clinical Biomechanics",
+      "authors": "Inthavong K., Ma J., Shang Y., Dong J.",
+      "abstract": "Background: A major issue among computational respiratory studies is the wide variety of nasal morphologies being studied, caused by both inter-population and inter-subject variations. Method: Six nasal cavity geometries exhibiting diverse geometry variations were subjected to steady inhalation flow rate of 15 L/min. to determine if any consistent flow behaviour could be found. Findings: Despite v"
+    },
+    {
+      "title": "A GAN-Based Surrogate Model for Instantaneous Urban Wind Flow Prediction",
+      "doi": "10.1016/j.buildenv.2023.110384",
+      "cited": 67,
+      "year": "2023",
+      "journal": "Building and Environment",
+      "authors": "Kastner P., Dogan T.",
+      "abstract": "Urban form impacts the airflow patterns in cities and the resulting urban microclimate. This has significant implications for ventilation, overheating, wind chill, and safety concerns such as down drafts from skyscrapers. While Computational Fluid Dynamics (CFD) simulations are the best practice for analyzing urban airflow patterns in design, they are computationally expensive and require a high l"
+    },
+    {
+      "title": "Developing a new mesh quality evaluation method based on convolutional neural network",
+      "doi": "10.1080/19942060.2020.1720820",
+      "cited": 64,
+      "year": "2020",
+      "journal": "Engineering Applications of Computational Fluid Mechanics",
+      "authors": "Chen X., Liu J., Pang Y., Chen J.",
+      "abstract": "One of the difficult requirements imposed on high-quality CFD mesh generation has been the ability to evaluate the mesh quality efficiently. Due to the lack of a general and effective evaluating criterion, the current mesh quality evaluation task mainly relies on various quality metrics for the shape of mesh elements, such as angle, radius, edge and contextual information collected by pre-processi"
+    },
+    {
+      "title": "Sketch-to-solution: An exploration of viscous cfd with automatic grids",
+      "doi": "10.2514/6.2019-2948",
+      "cited": 59,
+      "year": "2019",
+      "journal": "AIAA Aviation 2019 Forum",
+      "authors": "Kleb B., Park M.A., Wood W.A., Bibb K.L.",
+      "abstract": "Numerical simulation of the Reynolds-averaged Navier–Stokes (RANS) equations has become a critical tool for the design of aerospace vehicles. However, the issues that a ect the grid convergence of three dimensional RANS solutions are not completely understood, as documented in the AIAA Drag Prediction Workshop series. Grid adaption methods have the potential for increasing the automation and discr"
+    },
+    {
+      "title": "Experimental quantification of inward Marangoni convection and its impact on keyhole threshold in laser powder bed fusion of stainless steel",
+      "doi": "10.1016/j.addma.2024.104092",
+      "cited": 58,
+      "year": "2024",
+      "journal": "Additive Manufacturing",
+      "authors": "Yang J., Schlenger L.M., Nasab M.H., Van Petegem S.",
+      "abstract": "Laser metal additive manufacturing has the potential to revolutionize the production of complex geometries with high precision across various industrial applications. To optimize the reliability of the process, a detailed understanding of the melt pool dynamics during the process is essential, particularly in the nearly pore-free regimes. In this study, the melt pool dynamics across conduction mod"
+    },
+    {
+      "title": "Deep learning-based surrogate model for three-dimensional patient-specific computational fluid dynamics",
+      "doi": "10.1063/5.0101128",
+      "cited": 57,
+      "year": "2022",
+      "journal": "Physics of Fluids",
+      "authors": "Du P., Zhu X., Wang J.X.",
+      "abstract": "Optimization and uncertainty quantification have been playing an increasingly important role in computational hemodynamics. However, existing methods based on principled modeling and classic numerical techniques have faced significant challenges, particularly when it comes to complex three-dimensional (3D) patient-specific shapes in the real world. First, it is notoriously challenging to parameter"
+    },
+    {
+      "title": "Deep reinforcement learning for heat exchanger shape optimization",
+      "doi": "10.1016/j.ijheatmasstransfer.2022.123112",
+      "cited": 56,
+      "year": "2022",
+      "journal": "International Journal of Heat and Mass Transfer",
+      "authors": "Keramati H., Hamdullahpur F., Barzegari M.",
+      "abstract": "We present a parametric approach for heat exchanger shape optimization utilizing Deep Reinforcement Learning (Deep RL) and Boundary Representation (BREP). In this study, we show that continuous geometric representation of the fluid and solid domain facilitates the implementation of boundary conditions and design space exploration in contrast to traditional Topology Optimization such as density-bas"
+    },
+    {
+      "title": "Multi-objective optimisation of short nacelles for high bypass ratio engines",
+      "doi": "10.1016/j.ast.2019.02.014",
+      "cited": 54,
+      "year": "2019",
+      "journal": "Aerospace Science and Technology",
+      "authors": "Tejero F., Robinson M., MacManus D.G., Sheaf C.",
+      "abstract": "Future turbo-fan engines are expected to operate at low specific thrust with high bypass ratios to improve propulsive efficiency. Typically, this can result in an increase in fan diameter and nacelle size with the associated drag and weight penalties. Therefore, relative to current designs, there is a need to develop more compact, shorter nacelles to reduce drag and weight. These designs are inher"
+    },
+    {
+      "title": "Aerodynamic design and multi-dimensional performance optimization of supercritical CO2 centrifugal compressor",
+      "doi": "10.1016/j.enconman.2021.114810",
+      "cited": 54,
+      "year": "2021",
+      "journal": "Energy Conversion and Management",
+      "authors": "Xia W., Zhang Y., Yu H., Han Z.",
+      "abstract": "This paper dedicates to develop a systematic approach of design and multi-dimensional performance optimization of the Supercritical carbon dioxide (SCO<inf>2</inf>) compressor. A 5 MW SCO<inf>2</inf> simple regenerative cycle used in small scale lead-cooled fast reactor (SLFR) was firstly proposed and simulated to define the operation condition of SCO<inf>2</inf> compressor. Under the inlet and ou"
+    },
+    {
+      "title": "A CFD based automatic method for compartment model development",
+      "doi": "10.1016/j.compchemeng.2018.12.015",
+      "cited": 54,
+      "year": "2019",
+      "journal": "Computers and Chemical Engineering",
+      "authors": "Tajsoleiman T., Spann R., Bach C., Gernaey K.V.",
+      "abstract": "Computational fluid dynamics (CFD) is a powerful tool for quantitative prediction of fluid dependent properties in a finite volume. However, the complexity of solving the momentum balances and the continuity equations at each element of the discretized geometry can easily lead to an expensive computational task. Compartment modelling is a potential alternative to speed up the calculation, which is"
+    },
+    {
+      "title": "OpenFPM: A scalable open framework for particle and particle-mesh codes on parallel computers",
+      "doi": "10.1016/j.cpc.2019.03.007",
+      "cited": 52,
+      "year": "2019",
+      "journal": "Computer Physics Communications",
+      "authors": "Incardona P., Leo A., Zaluzhnyi Y., Ramaswamy R.",
+      "abstract": "Scalable and efficient numerical simulations continue to gain importance, as computation is firmly established as the third pillar of discovery, alongside theory and experiment. Meanwhile, the performance of computing hardware grows through increasingly heterogeneous parallelism, enabling simulations of ever more complex models. However, efficiently implementing scalable codes on heterogeneous, di"
+    },
+    {
+      "title": "Multi-objective optimization of cyclone separators in series based on computational fluid dynamics",
+      "doi": "10.1016/j.powtec.2017.11.043",
+      "cited": 52,
+      "year": "2018",
+      "journal": "Powder Technology",
+      "authors": "Luciano R., Silva B., Rosa L., Meier H.",
+      "abstract": "The pressure drop and collection efficiency are generally the most relevant parameters when evaluating the performance of gas-solid cyclone separators. In optimization procedures, mathematical cyclone models are used to find the best possible compromise between the pressure drop and the collection efficiency, based on the design preferences. Although several geometry optimization studies on single"
+    }
+  ],
+  "industrial_energy_cfd": [
+    {
+      "title": "Flexible solar cells based on foldable silicon wafers with blunted edges",
+      "doi": "10.1038/s41586-023-05921-z",
+      "cited": 233,
+      "year": "2023",
+      "journal": "Nature",
+      "authors": "Liu W., Liu Y., Yang Z., Xu C.",
+      "abstract": "Flexible solar cells have a lot of market potential for application in photovoltaics integrated into buildings and wearable electronics because they are lightweight, shockproof and self-powered. Silicon solar cells have been successfully used in large power plants. However, despite the efforts made for more than 50 years, there has been no notable progress in the development of flexible silicon so"
+    },
+    {
+      "title": "Forced Convection Computational Fluid Dynamics Analysis of Architected and Three-Dimensional Printable Heat Sinks Based on Triply Periodic Minimal Surfaces",
+      "doi": "10.1115/1.4047385",
+      "cited": 177,
+      "year": "2021",
+      "journal": "Journal of Thermal Science and Engineering Applications",
+      "authors": "Al-Ketan O., Ali M., Khalil M., Rowshan R.",
+      "abstract": "The drive for small and compact electronic components with higher processing capabilities is limited by their ability to dissipate the associated heat generated during operations, and hence, more advanced heat sink designs are required. Recently, the emergence of additive manufacturing techniques facilitated the fabrication of complex structures and overcame the limitation of traditional technique"
+    },
+    {
+      "title": "Building Information Modelling for analysis of energy efficient industrial buildings – A case study",
+      "doi": "10.1016/j.rser.2016.02.009",
+      "cited": 153,
+      "year": "2017",
+      "journal": "Renewable and Sustainable Energy Reviews",
+      "authors": "Gourlis G., Kovacic I.",
+      "abstract": "Industrial buildings demand higher amount of energy than other building typologies, thus powerful modelling and simulation tools for energy-optimisation and identification of synergies-potentials between the building envelope, building services and production systems are needed. Building Information Modelling (BIM), as emerging technology, bears promise to support processes integration thus enabli"
+    },
+    {
+      "title": "3D-Printed Cactus-Inspired Spine Structures for Highly Efficient Water Collection",
+      "doi": "10.1002/admi.201901752",
+      "cited": 147,
+      "year": "2020",
+      "journal": "Advanced Materials Interfaces",
+      "authors": "Li X., Yang Y., Liu L., Chen Y.",
+      "abstract": "The inherent fog collection mechanism used by the cactus gives inspirations for constructing energy-efficient and environmentally friendly water collection devices. However, the related studies meet the bottleneck on improving the collection efficiency because it is hard to replicate real natural clusters of branched spines by traditional manufacturing methods. The immersed surface accumulation ba"
+    },
+    {
+      "title": "Potential reduction of carbon emissions by performance improvement: A cement industry case study",
+      "doi": "10.1016/j.jclepro.2016.06.155",
+      "cited": 146,
+      "year": "2016",
+      "journal": "Journal of Cleaner Production",
+      "authors": "Summerbell D., Barlow C., Cullen J.",
+      "abstract": "The cement industry is generally considered responsible for upwards of 5% of anthropogenic greenhouse gas emissions. This is a result of the high energy intensity of the process, significant CO<inf>2</inf> release from the raw materials used, and large global consumption. It is also a high growth sector as emerging economies develop their infrastructure. This paper outlines an investigation into d"
+    },
+    {
+      "title": "Optimal shape of thick blades for a hydraulic Savonius turbine",
+      "doi": "10.1016/j.renene.2018.11.037",
+      "cited": 130,
+      "year": "2019",
+      "journal": "Renewable Energy",
+      "authors": "Kerikous E., Thévenin D.",
+      "abstract": "Ever-growing energy demands and unacceptable emissions from fossil fuel combustion are major driving forces for expanding alternative, green energy sources. Hydro-power is one promising ecological alternative to meet these energy requirements. Such systems do not require any weir or dam and, thus, can be employed with minimum ecological impact. However, available designs are not yet suitable as ef"
+    },
+    {
+      "title": "Industrial reheating furnaces: A review of energy efficiency assessments, waste heat recovery potentials, heating process characteristics and perspectives for steel industry",
+      "doi": "10.1016/j.psep.2021.01.045",
+      "cited": 125,
+      "year": "2021",
+      "journal": "Process Safety and Environmental Protection",
+      "authors": "Zhao J., Ma L., Zayed M.E., Elsheikh A.H.",
+      "abstract": "In the world's competitive industrial market, the development of existing manufacturing equipment's such as industrial reheating furnaces (IRFs) increases profitability in terms of higher production, higher quality, and better energy efficiency. In this review, recent progress and current status in IRFs technology have been presented. A special focus has been highlighted on the recent applications"
+    },
+    {
+      "title": "Numerical modeling of the power losses in geared transmissions: Windage, churning and cavitation simulations with a new integrated approach that drastically reduces the computational effort",
+      "doi": "10.1016/j.triboint.2016.06.046",
+      "cited": 113,
+      "year": "2016",
+      "journal": "Tribology International",
+      "authors": "Concli F., Gorla C.",
+      "abstract": "Energy savings and efficient design are the new global trends. Gears are the main components in many applications like vehicle transmissions, industrial gearboxes etc. and although they are already highly efficient, there is still margin for improvement. Depending on the sector of application, energy saving produces also additional benefits such as a reduction of the pollutant emission in the auto"
+    },
+    {
+      "title": "Numerical analysis of magnetic field effects on the heat transfer enhancement in ferrofluids for a parabolic trough solar collector",
+      "doi": "10.1016/j.renene.2018.11.015",
+      "cited": 110,
+      "year": "2019",
+      "journal": "Renewable Energy",
+      "authors": "Khosravi A., Malekan M., Assad M.E.H.",
+      "abstract": "A parabolic trough is defined as a type of solar thermal collector that is straight in one dimension and curved as a parabola in the other two, lined with a polished metal mirror. Enhancing the thermal efficiency of this collectors is one of the major challenges of developing and growing of parabolic trough solar thermal power plants. Ferrofluids were proposed as a novel working fluid for industri"
+    },
+    {
+      "title": "The role of horticultural carton vent hole design on cooling efficiency and compression strength: A multi-parameter approach",
+      "doi": "10.1016/j.postharvbio.2016.10.005",
+      "cited": 89,
+      "year": "2017",
+      "journal": "Postharvest Biology and Technology",
+      "authors": "Berry T.M., Fadiji T.S., Defraeye T., Opara U.L.",
+      "abstract": "Forced-air cooling (FAC) is used to rapidly remove the field heat of horticultural produce to better preserve quality. Cartons are ventilated to promote uniform cooling of the packed produce and to minimise energy used by precooler fans. The resulting cooling efficiency is influenced by the area and configuration of carton vent holes. However, placing vent holes also reduces the carton compression"
+    },
+    {
+      "title": "Non-thermal Plasma as an Innovative Option for the Abatement of Volatile Organic Compounds: a Review",
+      "doi": "10.1007/s11270-017-3574-3",
+      "cited": 86,
+      "year": "2017",
+      "journal": "Water Air and Soil Pollution",
+      "authors": "Schiavon M., Torretta V., Casazza A., Ragazzi M.",
+      "abstract": "Volatile organic compounds (VOCs) cause global and local impacts, resulting in environmental, health, and economic adverse effects. Industrial and waste management activities are the main anthropogenic stationary sources of VOCs in the atmosphere. The traditional technologies for the treatment of VOC-contaminated air present several limitations when treating effluents with low VOC concentrations, "
+    },
+    {
+      "title": "Application of porous metal foam heat exchangers and the implications of particulate fouling for energy-intensive industries",
+      "doi": "10.1016/j.ces.2020.115968",
+      "cited": 84,
+      "year": "2020",
+      "journal": "Chemical Engineering Science",
+      "authors": "Kuruneru S.T.W., Vafai K., Sauret E., Gu Y.T.",
+      "abstract": "Curtailing the ever-increasing global energy demand remains an arduous challenge. The U.S. Energy Information Administration emphasized that the deployment of new heat exchanger technologies could revolutionize how industry uses energy. In this review, we highlight the significance of metal foam heat exchangers as an attractive alternative to traditional heat exchanger technologies. Research on me"
+    },
+    {
+      "title": "Experimental study of pin finned receiver tubes for a parabolic trough solar air collector",
+      "doi": "10.1016/j.solener.2020.06.070",
+      "cited": 83,
+      "year": "2020",
+      "journal": "Solar Energy",
+      "authors": "Zhao Z., Bai F., Zhang X., Wang Z.",
+      "abstract": "Industrial process air heat applications ranging from 70 to 250 ℃ are crucial for the widespread availability of the solar energy. This study evaluated the overall performance of parabolic trough solar air collector with three different receiver tubes for median temperature heat requirements. A smooth receiver tube and two receiver tubes with internally pin fins were tested in the on-site experime"
+    },
+    {
+      "title": "Heat transfer modeling of a parabolic trough solar collector with working fluid of Fe3O4 and CuO/Therminol 66 nanofluids under magnetic field",
+      "doi": "10.1016/j.applthermaleng.2019.114435",
+      "cited": 82,
+      "year": "2019",
+      "journal": "Applied Thermal Engineering",
+      "authors": "Malekan M., Khosravi A., Syri S.",
+      "abstract": "Solar energy is among the cleanest and most adaptable compared to other renewable energy sources. The major challenge is how to get this energy in efficient way to make it available for industrial applications such as electricity generation. One of the most efficient techniques to harvest solar energy and transform it into electrical energy is parabolic trough solar collector (PTSC), which is a ty"
+    },
+    {
+      "title": "CPU Overclocking: A Performance Assessment of Air, Cold Plates, and Two-Phase Immersion Cooling",
+      "doi": "10.1109/TCPMT.2021.3106026",
+      "cited": 82,
+      "year": "2021",
+      "journal": "IEEE Transactions on Components Packaging and Manufacturing Technology",
+      "authors": "Ramakrishnan B., Alissa H., Manousakis I., Lankston R.",
+      "abstract": "Computing capacity has always been on the upward climb due to the constant technological improvements in semiconductor manufacturing and packaging industry. This growth in computing capability is usually accompanied by a steep rise in heat flux density associated with the electronic component (CPUs or GPUs, for example). High-performance computing (HPC) data centers often employ several of these h"
+    },
+    {
+      "title": "Oil distribution and churning losses of gearboxes: Experimental and numerical analysis",
+      "doi": "10.1016/j.triboint.2020.106496",
+      "cited": 80,
+      "year": "2020",
+      "journal": "Tribology International",
+      "authors": "Mastrone M.N., Hartono E.A., Chernoray V., Concli F.",
+      "abstract": "Currently, energy efficiency represents one of the main requisites in mechanical design. Gearboxes play an important role in several industrial applications and, even if they are already characterized by high efficiency, their performance can still be improved, leading to energy saving and the reduction of pollutant emissions. The possibility to investigate different gearbox geometries and operati"
+    },
+    {
+      "title": "Numerical modeling and analysis of hydrogen blast furnace ironmaking process",
+      "doi": "10.1016/j.fuel.2022.124368",
+      "cited": 72,
+      "year": "2022",
+      "journal": "Fuel",
+      "authors": "Li J., Kuang S., Jiao L., Liu L.",
+      "abstract": "Hydrogen use in the blast furnace (BF) ironmaking process promises to mitigate the carbon footprint substantially. This paper presents a numerical study on the effects of hydrogen enrichment on the inner states and overall performance of a 380-m<sup>3</sup> industrial BF. This is done using a recently developed three-dimensional process BF model. The model is validated under different conditions. "
+    },
+    {
+      "title": "Numerical simulation of urea based selective non-catalytic reduction deNOx process for industrial applications",
+      "doi": "10.1016/j.enconman.2016.01.062",
+      "cited": 72,
+      "year": "2016",
+      "journal": "Energy Conversion and Management",
+      "authors": "Baleta J., Mikulčić H., Vujanović M., Petranović Z.",
+      "abstract": "Industrial processes emit large amounts of diverse pollutants into the atmosphere, among which NOx takes a significant portion. Selective non-catalytic reduction (SNCR) is a relatively simple method for the NOx reduction in large industrial facilities such as power plants, cement plants and waste incinerator plants. It consists of injecting the urea-water solution in the hot flue gas stream and it"
+    },
+    {
+      "title": "A Performance Prediction Method for Pumps as Turbines (PAT) Using a Computational Fluid Dynamics (CFD) Modeling Approach",
+      "doi": "10.3390/en10010103",
+      "cited": 72,
+      "year": "2017",
+      "journal": "Energies",
+      "authors": "Frosina E., Buono D., Senatore A.",
+      "abstract": "Small and micro hydropower systems represent an attractive solution for generatingelectricity at low cost and with low environmental impact. The pump-as-turbine (PAT) approachhas promise in this application due to its low purchase and maintenance costs. In this paper, a newmethod to predict the inverse characteristic of industrial centrifugal pumps is presented. This methodis based on results of s"
+    },
+    {
+      "title": "Theoretical and numerical analysis on phase change materials (PCM): A case study of the solidification process of erythritol in spheres",
+      "doi": "10.1016/j.ijheatmasstransfer.2017.11.124",
+      "cited": 71,
+      "year": "2018",
+      "journal": "International Journal of Heat and Mass Transfer",
+      "authors": "Nazzi Ehms J.H., De Césaro Oliveski R., Oliveira Rocha L.A., Biserni C.",
+      "abstract": "Phase change materials (PCM) present great potential for energy efficiency gains in thermal systems by storing solar energy or waste heat in industrial processes. This is due to the great amount of energy stored per mass unit within a small temperature range. In this paper we focus, by means of the numerical investigation, on the solidification process of the PCM erythritol in spheres, having 10, "
+    }
+  ],
+  "floor_plan": [
+    {
+      "title": "Indoor 3D reconstruction from point clouds for optimal routing in complex buildings to support disaster management",
+      "doi": "10.1016/j.autcon.2020.103109",
+      "cited": 161,
+      "year": "2020",
+      "journal": "Automation in Construction",
+      "authors": "Nikoohemat S., Diakité A.A., Zlatanova S., Vosselman G.",
+      "abstract": "During an emergency inside large buildings such as hospitals and shopping malls, the availability of up-to-date information is critical. One common source of information is the 2D layout of buildings and emergency exits. For most buildings, this information is represented as tangled floor plans, which in most cases are outdated. One solution to update the data of buildings after each renovation is"
+    },
+    {
+      "title": "Semi-automatic geometric digital twinning for existing buildings based on images and CAD drawings",
+      "doi": "10.1016/j.autcon.2020.103183",
+      "cited": 159,
+      "year": "2020",
+      "journal": "Automation in Construction",
+      "authors": "Lu Q., Chen L., Li S., Pitt M.",
+      "abstract": "Despite the emerging new data capturing technologies and advanced modelling systems, the process of geometric digital twin modelling for existing buildings still lacks a systematic and completed framework to streamline. As-is Building Information Model (BIM) is one of the commonly used geometric digital twin modelling approaches. However, the process of as-is BIM construction is time-consuming and"
+    },
+    {
+      "title": "Deep floor plan recognition using a multi-task network with room-boundary-guided attention",
+      "doi": "10.1109/ICCV.2019.00919",
+      "cited": 122,
+      "year": "2019",
+      "journal": "Proceedings of the IEEE International Conference on Computer Vision",
+      "authors": "Zeng Z., Li X., Yu Y.K., Fu C.W.",
+      "abstract": "This paper presents a new approach to recognize elements in floor plan layouts. Besides walls and rooms, we aim to recognize diverse floor plan elements, such as doors, windows and different types of rooms, in the floor layouts. To this end, we model a hierarchy of floor plan elements and design a deep multi-task neural network with two tasks: One to learn to predict room-boundary elements, and th"
+    },
+    {
+      "title": "Automatic floor plan analysis and recognition",
+      "doi": "10.1016/j.autcon.2022.104348",
+      "cited": 95,
+      "year": "2022",
+      "journal": "Automation in Construction",
+      "authors": "Pizarro P.N., Hitschfeld N., Sipiran I., Saavedra J.M.",
+      "abstract": "Due to recent advances in machine learning, there has been an explosive development of multiple methodologies that automatically extract information from architectural floor plans. Nevertheless, the lack of a standard notation and the high variability in style and composition make it urgent to devise reliable and effective approaches to analyze and recognize objects like walls, doors, and rooms fr"
+    },
+    {
+      "title": "BIM generation from 3D point clouds by combining 3D deep learning and improved morphological approach",
+      "doi": "10.1016/j.autcon.2022.104422",
+      "cited": 94,
+      "year": "2022",
+      "journal": "Automation in Construction",
+      "authors": "Tang S., Li X., Zheng X., Wu B.",
+      "abstract": "The demand for the models of BIM has increased due to the numerous applications in emergency response and location-based services. Creating a semantically rich 3D interior model has traditionally been a very manual process. Although the latest LiDAR scanning and photogrammetry techniques efficiently capture the existing building, the automatic reconstruction of complete volumetric and functional i"
+    },
+    {
+      "title": "Automatic Indoor Construction Process Monitoring for Tiles Based on BIM and Computer Vision",
+      "doi": "10.1061/(ASCE)CO.1943-7862.0001744",
+      "cited": 88,
+      "year": "2020",
+      "journal": "Journal of Construction Engineering and Management",
+      "authors": "Deng H., Hong H., Luo D., Deng Y.",
+      "abstract": "For project managers, accurate, timely, and intuitive information is the key to successful decision-making during progress control at a construction site. This paper presents a method that combines computer vision with building information modeling (BIM) for automated progress monitoring of tiles. This method can automatically and accurately measure the in-built progress information of a construct"
+    },
+    {
+      "title": "Residential floor plan recognition and reconstruction",
+      "doi": "10.1109/CVPR46437.2021.01644",
+      "cited": 86,
+      "year": "2021",
+      "journal": "Proceedings of the IEEE Computer Society Conference on Computer Vision and Pattern Recognition",
+      "authors": "Lv X., Zhao S., Yu X., Zhao B.",
+      "abstract": "Recognition and reconstruction of residential floor plan drawings are important and challenging in design, decoration, and architectural remodeling fields. An automatic framework is provided that accurately recognizes the structure, type, and size of the room, and outputs vectorized 3D reconstruction results. Deep segmentation and detection neural networks are utilized to extract room structural i"
+    },
+    {
+      "title": "Wayfinding in Interior Environments: An Integrative Review",
+      "doi": "10.3389/fpsyg.2020.549628",
+      "cited": 73,
+      "year": "2020",
+      "journal": "Frontiers in Psychology",
+      "authors": "Jamshidi S., Ensafi M., Pati D.",
+      "abstract": "Wayfinding is an issue in complex facilities—including hospitals, airports, and office buildings—and wayfinding difficulties are associated with negative psychological and physiological consequences. In addition, since finding one’s way in a building is a prerequisite for successfully using that building, wayfinding has attracted the attention of scholars and decision makers. The goal of this arti"
+    },
+    {
+      "title": "CRCLoc: A Crowdsourcing-Based Radio Map Construction Method for WiFi Fingerprinting Localization",
+      "doi": "10.1109/JIOT.2021.3135700",
+      "cited": 60,
+      "year": "2022",
+      "journal": "IEEE Internet of Things Journal",
+      "authors": "Du X., Liao X., Liu M., Gao Z.",
+      "abstract": "The WiFi-based fingerprint indoor-positioning system has attracted increasing interest from industry and academia, benefiting from the widespread deployment of the wireless local area network (WLAN) infrastructure. However, with the expansion of application scenarios, this system suffers from labor-intensive work for received signal strength (RSS) fingerprint construction. In this article, we prop"
+    },
+    {
+      "title": "Data-driven floor plan understanding in rural residential buildings via deep recognition",
+      "doi": "10.1016/j.ins.2021.03.032",
+      "cited": 58,
+      "year": "2021",
+      "journal": "Information Sciences",
+      "authors": "Lu Z., Wang T., Guo J., Meng W.",
+      "abstract": "Automatic understanding of floor plan images is a key component of various applications. Due to the style diversity of rural housing design, the latest learning-based approaches cannot achieve satisfactory recognition results. In this paper, we present a new framework for parsing floor plans of rural residence that combines semantic neural networks with a post-processed room segmentation. First, w"
+    },
+    {
+      "title": "Adaptable housing? A quantitative study of contemporary apartment layouts that have been rearranged by end-users",
+      "doi": "10.1007/s10901-019-09693-9",
+      "cited": 53,
+      "year": "2020",
+      "journal": "Journal of Housing and the Built Environment",
+      "authors": "Femenias P., Geromel F.",
+      "abstract": "Adaptability, that is, the capacity to accommodate future changes, is described as an intrinsic aspect of sustainable housing. Nevertheless, few studies have provided empirical evidence of what makes housing adaptable for end-users. Based on a sample of 313 modern apartments that have been rearranged by their owner-occupiers, two aspects of adaptability are subjected to a quantitative analysis bas"
+    },
+    {
+      "title": "Enhancing human indoor cognitive map development and wayfinding performance with immersive augmented reality-based navigation systems",
+      "doi": "10.1016/j.aei.2021.101432",
+      "cited": 52,
+      "year": "2021",
+      "journal": "Advanced Engineering Informatics",
+      "authors": "Zhang J., Xia X., Liu R., Li N.",
+      "abstract": "Augmented reality (AR) is an interactive experience where computer-generated perceptual information is superimposed into the real-world environment. Most existing research in AR-based wayfinding has focused on the technological aspects of developing AR-based software or devices to realize navigation. No previous investigations have focused on understanding the impact of immersive augmented reality"
+    },
+    {
+      "title": "Incentivizing Crowdsensing-Based Noise Monitoring with Differentially-Private Locations",
+      "doi": "10.1109/TMC.2019.2946800",
+      "cited": 51,
+      "year": "2021",
+      "journal": "IEEE Transactions on Mobile Computing",
+      "authors": "Huang P., Zhang X., Guo L., Li M.",
+      "abstract": "Mobile crowd sensing is a technique where a crowd sensing server outsources sensing tasks to the crowd for mobile data collection. In mobile crowd sensing, some tasks require location information to achieve their objectives, such as road monitoring, indoor floor plan reconstruction, and smart transportation. This required information incurs severe concerns on location privacy leakage and threatens"
+    },
+    {
+      "title": "Deep Floor Plan Analysis for Complicated Drawings Based on Style Transfer",
+      "doi": "10.1061/(ASCE)CP.1943-5487.0000942",
+      "cited": 51,
+      "year": "2021",
+      "journal": "Journal of Computing in Civil Engineering",
+      "authors": "Kim S., Park S., Kim H., Yu K.",
+      "abstract": "This paper presents a novel approach to retrieve indoor structures from raster images of complicated floor plans. We extract the building elements in the floor plan and process them into a vectorized form to provide indoor layout information. Unlike conventional approaches, the proposed model is robust when recognizing rooms and openings surrounded by obscuring patterns, including superimposed gra"
+    },
+    {
+      "title": "Connecting the Dots: Floorplan Reconstruction Using Two-Level Queries",
+      "doi": "10.1109/CVPR52729.2023.00088",
+      "cited": 50,
+      "year": "2023",
+      "journal": "Proceedings of the IEEE Computer Society Conference on Computer Vision and Pattern Recognition",
+      "authors": "Yue Y., Kontogianni T., Schindler K., Engelmann F.",
+      "abstract": "We address 2D floorplan reconstruction from 3D scans. Existing approaches typically employ heuristically designed multi-stage pipelines. Instead, we formulate floor-plan reconstruction as a single-stage structured prediction task: find a variablesize set of polygons, which in turn are variable-length sequences of ordered vertices. To solve it we develop a novel Transformer architecture that genera"
+    },
+    {
+      "title": "Automatic layer classification method-based elevation recognition in architectural drawings for reconstruction of 3D BIM models",
+      "doi": "10.1016/j.autcon.2020.103082",
+      "cited": 49,
+      "year": "2020",
+      "journal": "Automation in Construction",
+      "authors": "Yin M., Tang L., Zhou T., Wen Y.",
+      "abstract": "Automatic interpretation of computer aided design drawings into a Building Information Model (BIM) would reduce the time and labor costs involved in the modeling process for construction parties. However, the offset and height of building objects cannot be automatically extracted by current algorithms and products since they mostly focus on floor plan detection whilst such information conventional"
+    },
+    {
+      "title": "AtlantaNet: Inferring the 3D Indoor Layout from a Single 360 ∘ Image Beyond the Manhattan World Assumption",
+      "doi": "10.1007/978-3-030-58598-3_26",
+      "cited": 48,
+      "year": "2020",
+      "journal": "Lecture Notes in Computer Science Including Subseries Lecture Notes in Artificial Intelligence and Lecture Notes in Bioinformatics",
+      "authors": "Pintore G., Agus M., Gobbetti E.",
+      "abstract": "We introduce a novel end-to-end approach to predict a 3D room layout from a single panoramic image. Compared to recent state-of-the-art works, our method is not limited to Manhattan World environments, and can reconstruct rooms bounded by vertical walls that do not form right angles or are curved – i.e., Atlanta World models. In our approach, we project the original gravity-aligned panoramic image"
+    },
+    {
+      "title": "Generating BIM model from structural and architectural plans using Artificial Intelligence",
+      "doi": "10.1016/j.jobe.2023.107672",
+      "cited": 47,
+      "year": "2023",
+      "journal": "Journal of Building Engineering",
+      "authors": "Urbieta M., Urbieta M., Laborde T., Villarreal G.",
+      "abstract": "Over the last few decades, building development has been recorded using hand-made blueprints before CAD tools appeared and later with digital building plans. As a consequence, there is a large amount of information in millions of assets that are hard to process because of their analog nature. Since adopting the Building Information Model (BIM) approach, any new building plan can be subject to soph"
+    },
+    {
+      "title": "Deep learning-based text detection and recognition on architectural floor plans",
+      "doi": "10.1016/j.autcon.2023.105156",
+      "cited": 46,
+      "year": "2024",
+      "journal": "Automation in Construction",
+      "authors": "Schönfelder P., Stebel F., Andreou N., König M.",
+      "abstract": "An important aspect of automatic floor plan analysis is the extraction of textual information, as it is essential for a thorough understanding of the drawing. This paper presents a text extraction approach utilizing a deep learning-based object detection model and state-of-the-art Optical Character Recognition (OCR) methods. The paper contributes to the research community in three ways: First, it "
+    },
+    {
+      "title": "Symbol spotting on digital architectural floor plans using a deep learning-based framework",
+      "doi": "10.1109/CVPRW50498.2020.00292",
+      "cited": 43,
+      "year": "2020",
+      "journal": "IEEE Computer Society Conference on Computer Vision and Pattern Recognition Workshops",
+      "authors": "Rezvanifar A., Cote M., Albu A.B.",
+      "abstract": "This papers focuses on symbol spotting on real-world digital architectural floor plans with a deep learning (DL)-based framework. Traditional on-the-fly symbol spotting methods are unable to address the semantic challenge of graphical notation variability, i.e. low intra-class symbol similarity, an issue that is particularly important in architectural floor plan analysis. The presence of occlusion"
+    }
+  ],
+  "image_3d_building": [
+    {
+      "title": "pixelNeRF: Neural Radiance Fields from One or Few Images",
+      "doi": "10.1109/CVPR46437.2021.00455",
+      "cited": 1423,
+      "year": "2021",
+      "journal": "Proceedings of the IEEE Computer Society Conference on Computer Vision and Pattern Recognition",
+      "authors": "Yu A., Ye V., Tancik M., Kanazawa A.",
+      "abstract": "We propose pixelNeRF, a learning framework that predicts a continuous neural scene representation conditioned on one or few input images. The existing approach for constructing neural radiance fields [27] involves optimizing the representation to every scene independently, requiring many calibrated views and significant compute time. We take a step towards resolving these shortcomings by introduci"
+    },
+    {
+      "title": "D2-net: A trainable CNN for joint description and detection of local features",
+      "doi": "10.1109/CVPR.2019.00828",
+      "cited": 1053,
+      "year": "2019",
+      "journal": "Proceedings of the IEEE Computer Society Conference on Computer Vision and Pattern Recognition",
+      "authors": "Dusmanu M., Rocco I., Pajdla T., Pollefeys M.",
+      "abstract": "In this work we address the problem of finding reliable pixel-level correspondences under difficult imaging conditions. We propose an approach where a single convolutional neural network plays a dual role: It is simultaneously a dense feature descriptor and a feature detector. By postponing the detection to a later stage, the obtained keypoints are more stable than their traditional counterparts b"
+    },
+    {
+      "title": "MVSNeRF: Fast Generalizable Radiance Field Reconstruction from Multi-View Stereo",
+      "doi": "10.1109/ICCV48922.2021.01386",
+      "cited": 721,
+      "year": "2021",
+      "journal": "Proceedings of the IEEE International Conference on Computer Vision",
+      "authors": "Chen A., Xu Z., Zhao F., Zhang X.",
+      "abstract": "We present MVSNeRF, a novel neural rendering approach that can efficiently reconstruct neural radiance fields for view synthesis. Unlike prior works on neural radiance fields that consider per-scene optimization on densely captured images, we propose a generic deep neural network that can reconstruct radiance fields from only three nearby input views via fast network inference. Our approach levera"
+    },
+    {
+      "title": "iMAP: Implicit Mapping and Positioning in Real-Time",
+      "doi": "10.1109/ICCV48922.2021.00617",
+      "cited": 629,
+      "year": "2021",
+      "journal": "Proceedings of the IEEE International Conference on Computer Vision",
+      "authors": "Sucar E., Liu S., Ortiz J., Davison A.J.",
+      "abstract": "We show for the first time that a multilayer perceptron (MLP) can serve as the only scene representation in a real-time SLAM system for a handheld RGB-D camera. Our network is trained in live operation without prior data, building a dense, scene-specific implicit 3D model of occupancy and colour which is also immediately used for tracking. Achieving real-time SLAM via continual training of a neura"
+    },
+    {
+      "title": "Convolutional Occupancy Networks",
+      "doi": "10.1007/978-3-030-58580-8_31",
+      "cited": 624,
+      "year": "2020",
+      "journal": "Lecture Notes in Computer Science Including Subseries Lecture Notes in Artificial Intelligence and Lecture Notes in Bioinformatics",
+      "authors": "Peng S., Niemeyer M., Mescheder L., Pollefeys M.",
+      "abstract": "Recently, implicit neural representations have gained popularity for learning-based 3D reconstruction. While demonstrating promising results, most implicit approaches are limited to comparably simple geometry of single objects and do not scale to more complicated or large-scale scenes. The key limiting factor of implicit methods is their simple fully-connected network architecture which does not a"
+    },
+    {
+      "title": "AI in Medical Imaging Informatics: Current Challenges and Future Directions",
+      "doi": "10.1109/JBHI.2020.2991043",
+      "cited": 577,
+      "year": "2020",
+      "journal": "IEEE Journal of Biomedical and Health Informatics",
+      "authors": "Panayides A.S., Amini A., Filipovic N.D., Sharma A.",
+      "abstract": "This paper reviews state-of-the-art research solutions across the spectrum of medical imaging informatics, discusses clinical translation, and provides future directions for advancing clinical practice. More specifically, it summarizes advances in medical imaging acquisition technologies for different modalities, highlighting the necessity for efficient medical data management strategies in the co"
+    },
+    {
+      "title": "DREAMFUSION: TEXT-TO-3D USING 2D DIFFUSION",
+      "doi": "",
+      "cited": 517,
+      "year": "2023",
+      "journal": "11th International Conference on Learning Representations Iclr 2023",
+      "authors": "Poole B., Jain A., Barron J.T., Mildenhall B.",
+      "abstract": "Recent breakthroughs in text-to-image synthesis have been driven by diffusion models trained on billions of image-text pairs. Adapting this approach to 3D synthesis would require large-scale datasets of labeled 3D data and efficient architectures for denoising 3D data, neither of which currently exist. In this work, we circumvent these limitations by using a pretrained 2D text-to-image diffusion m"
+    },
+    {
+      "title": "Pix2pose: Pixel-wise coordinate regression of objects for 6D pose estimation",
+      "doi": "10.1109/ICCV.2019.00776",
+      "cited": 498,
+      "year": "2019",
+      "journal": "Proceedings of the IEEE International Conference on Computer Vision",
+      "authors": "Park K., Patten T., Vincze M.",
+      "abstract": "Estimating the 6D pose of objects using only RGB images remains challenging because of problems such as occlusion and symmetries. It is also difficult to construct 3D models with precise texture without expert knowledge or specialized scanning devices. To address these problems, we propose a novel pose estimation method, Pix2Pose, that predicts the 3D coordinates of each object pixel without textu"
+    },
+    {
+      "title": "Neural Fields in Visual Computing and Beyond",
+      "doi": "10.1111/cgf.14505",
+      "cited": 489,
+      "year": "2022",
+      "journal": "Computer Graphics Forum",
+      "authors": "Xie Y., Takikawa T., Saito S., Litany O.",
+      "abstract": "Recent advances in machine learning have led to increased interest in solving visual computing problems using methods that employ coordinate-based neural networks. These methods, which we call neural fields, parameterize physical properties of scenes or objects across space and time. They have seen widespread success in problems such as 3D shape and image synthesis, animation of human bodies, 3D r"
+    },
+    {
+      "title": "BlendedMVS: A large-scale dataset for generalized multi-view stereo networks",
+      "doi": "10.1109/CVPR42600.2020.00186",
+      "cited": 468,
+      "year": "2020",
+      "journal": "Proceedings of the IEEE Computer Society Conference on Computer Vision and Pattern Recognition",
+      "authors": "Yao Y., Luo Z., Li S., Zhang J.",
+      "abstract": "While deep learning has recently achieved great success on multi-view stereo (MVS), limited training data makes the trained model hard to be generalized to unseen scenarios. Compared with other computer vision tasks, it is rather difficult to collect a large-scale MVS dataset as it requires expensive active scanners and labor-intensive process to obtain ground truth 3D structures. In this paper, w"
+    },
+    {
+      "title": "3D-SIS: 3D semantic instance segmentation of RGB-D scans",
+      "doi": "10.1109/CVPR.2019.00455",
+      "cited": 456,
+      "year": "2019",
+      "journal": "Proceedings of the IEEE Computer Society Conference on Computer Vision and Pattern Recognition",
+      "authors": "Hou J., Dai A., Niebner M.",
+      "abstract": "We introduce 3D-SIS, a novel neural network architecture for 3D semantic instance segmentation in commodity RGB-D scans. The core idea of our method to jointly learn from both geometric and color signal, thus enabling accurate instance predictions. Rather than operate solely on 2D frames, we observe that most computer vision applications have multi-view RGB-D input available, which we leverage to "
+    },
+    {
+      "title": "Gaze360: Physically unconstrained gaze estimation in the wild",
+      "doi": "10.1109/ICCV.2019.00701",
+      "cited": 401,
+      "year": "2019",
+      "journal": "Proceedings of the IEEE International Conference on Computer Vision",
+      "authors": "Kellnhofer P., Recasens A., Stent S., Matusik W.",
+      "abstract": "Understanding where people are looking is an informative social cue. In this work, we present Gaze360, a large-scale remote gaze-tracking dataset and method for robust 3D gaze estimation in unconstrained images. Our dataset consists of 238 subjects in indoor and outdoor environments with labelled 3D gaze across a wide range of head poses and distances. It is the largest publicly available dataset "
+    },
+    {
+      "title": "GET3D: A Generative Model of High Quality 3D Textured Shapes Learned from Images",
+      "doi": "",
+      "cited": 357,
+      "year": "2022",
+      "journal": "Advances in Neural Information Processing Systems",
+      "authors": "Gao J., Shen T., Wang Z., Chen W.",
+      "abstract": "As several industries are moving towards modeling massive 3D virtual worlds, the need for content creation tools that can scale in terms of the quantity, quality, and diversity of 3D content is becoming evident. In our work, we aim to train performant 3D generative models that synthesize textured meshes that can be directly consumed by 3D rendering engines, thus immediately usable in downstream ap"
+    },
+    {
+      "title": "Image-based 3d object reconstruction: State-of-the-art and trends in the deep learning era",
+      "doi": "10.1109/TPAMI.2019.2954885",
+      "cited": 355,
+      "year": "2021",
+      "journal": "IEEE Transactions on Pattern Analysis and Machine Intelligence",
+      "authors": "Han X.F., Laga H., Bennamoun M.",
+      "abstract": "3D reconstruction is a longstanding ill-posed problem, which has been explored for decades by the computer vision, computer graphics, and machine learning communities. Since 2015, image-based 3D reconstruction using convolutional neural networks (CNN) has attracted increasing interest and demonstrated an impressive performance. Given this new era of rapid evolution, this article provides a compreh"
+    },
+    {
+      "title": "DUSt3R: Geometric 3D Vision Made Easy",
+      "doi": "10.1109/CVPR52733.2024.01956",
+      "cited": 285,
+      "year": "2024",
+      "journal": "Proceedings of the IEEE Computer Society Conference on Computer Vision and Pattern Recognition",
+      "authors": "Wang S., Leroy V., Cabon Y., Chidlovskii B.",
+      "abstract": "Multi-view stereo reconstruction (MVS) in the wild re-quires to first estimate the camera intrinsic and extrinsic parameters. These are usually tedious and cumbersome to obtain, yet they are mandatory to triangulate corresponding pixels in 3D space, which is at the core of all best performing MVS algorithms. In this work, we take an opposite stance and introduce DUSt3R, a radically novel paradigm "
+    },
+    {
+      "title": "An Efficient Sampling-Based Method for Online Informative Path Planning in Unknown Environments",
+      "doi": "10.1109/LRA.2020.2969191",
+      "cited": 285,
+      "year": "2020",
+      "journal": "IEEE Robotics and Automation Letters",
+      "authors": "Schmid L., Pantic M., Khanna R., Ott L.",
+      "abstract": "The ability to plan informative paths online is essential to robot autonomy. In particular, sampling-based approaches are often used as they are capable of using arbitrary information gain formulations. However, they are prone to local minima, resulting in sub-optimal trajectories, and sometimes do not reach global coverage. In this letter, we present a new RRT*-inspired online informative path pl"
+    },
+    {
+      "title": "Texture fields: Learning texture representations in function space",
+      "doi": "10.1109/ICCV.2019.00463",
+      "cited": 257,
+      "year": "2019",
+      "journal": "Proceedings of the IEEE International Conference on Computer Vision",
+      "authors": "Oechsle M., Mescheder L., Niemeyer M., Strauss T.",
+      "abstract": "In recent years, substantial progress has been achieved in learning-based reconstruction of 3D objects. At the same time, generative models were proposed that can generate highly realistic images. However, despite this success in these closely related tasks, texture reconstruction of 3D objects has received little attention from the research community and state-of-the-art methods are either limite"
+    },
+    {
+      "title": "Pixel2Mesh++: Multi-view 3D mesh generation via deformation",
+      "doi": "10.1109/ICCV.2019.00113",
+      "cited": 251,
+      "year": "2019",
+      "journal": "Proceedings of the IEEE International Conference on Computer Vision",
+      "authors": "Wen C., Zhang Y., Li Z., Fu Y.",
+      "abstract": "We study the problem of shape generation in 3D mesh representation from a few color images with known camera poses. While many previous works learn to hallucinate the shape directly from priors, we resort to further improving the shape quality by leveraging cross-view information with a graph convolutional network. Instead of building a direct mapping function from images to 3D shape, our model le"
+    },
+    {
+      "title": "Building realistic structure models to train convolutional neural networks for seismic structural interpretation",
+      "doi": "10.1190/GEO2019-0375.1",
+      "cited": 241,
+      "year": "2020",
+      "journal": "Geophysics",
+      "authors": "Wu X., Geng Z., Shi Y., Pham N.",
+      "abstract": "Seismic structural interpretation involves highlighting and extracting faults and horizons that are apparent as geometric features in a seismic image. Although seismic image processing methods have been proposed to automate fault and horizon interpretation, each of which today still requires significant human effort.We improve automatic structural interpretation in seismic images by using convolut"
+    },
+    {
+      "title": "3D-FRONT: 3D Furnished Rooms with layOuts and semaNTics",
+      "doi": "10.1109/ICCV48922.2021.01075",
+      "cited": 197,
+      "year": "2021",
+      "journal": "Proceedings of the IEEE International Conference on Computer Vision",
+      "authors": "Fu H., Cai B., Gao L., Zhang L.X.",
+      "abstract": "We introduce 3D-FRONT (3D Furnished Rooms with layOuts and semaNTics), a new, large-scale, and comprehensive repository of synthetic indoor scenes highlighted by professionally designed layouts and a large number of rooms populated by high-quality textured 3D models with style compatibility. From layout semantics down to texture details of individual objects, our dataset is freely available to the"
+    }
+  ],
+  "nerf_scene": [
+    {
+      "title": "NeRF",
+      "doi": "10.1145/3503250",
+      "cited": 5430,
+      "year": "2022",
+      "journal": "Communications of the ACM",
+      "authors": "Mildenhall B., Srinivasan P.P., Tancik M., Barron J.T.",
+      "abstract": "We present a method that achieves state-of-the-art results for synthesizing novel views of complex scenes by optimizing an underlying continuous volumetric scene function using a sparse set of input views. Our algorithm represents a scene using a fully connected (nonconvolutional) deep network, whose input is a single continuous 5D coordinate (spatial location (x, y, z) and viewing direction (θ, φ"
+    },
+    {
+      "title": "NeRF: Representing Scenes as Neural Radiance Fields for View Synthesis",
+      "doi": "10.1007/978-3-030-58452-8_24",
+      "cited": 2415,
+      "year": "2020",
+      "journal": "Lecture Notes in Computer Science Including Subseries Lecture Notes in Artificial Intelligence and Lecture Notes in Bioinformatics",
+      "authors": "Mildenhall B., Srinivasan P.P., Tancik M., Barron J.T.",
+      "abstract": "We present a method that achieves state-of-the-art results for synthesizing novel views of complex scenes by optimizing an underlying continuous volumetric scene function using a sparse set of input views. Our algorithm represents a scene using a fully-connected (non-convolutional) deep network, whose input is a single continuous 5D coordinate (spatial location (x, y, z) and viewing direction (For"
+    },
+    {
+      "title": "Mip-NeRF 360: Unbounded Anti-Aliased Neural Radiance Fields",
+      "doi": "10.1109/CVPR52688.2022.00539",
+      "cited": 1715,
+      "year": "2022",
+      "journal": "Proceedings of the IEEE Computer Society Conference on Computer Vision and Pattern Recognition",
+      "authors": "Barron J.T., Mildenhall B., Verbin D., Srinivasan P.P.",
+      "abstract": "Though neural radiance fields (NeRF) have demon-strated impressive view synthesis results on objects and small bounded regions of space, they struggle on 'un-bounded' scenes, where the camera may point in any di-rection and content may exist at any distance. In this set-ting, existing NeRF-like models often produce blurry or low-resolution renderings (due to the unbalanced detail and scale of near"
+    },
+    {
+      "title": "Mip-NeRF: A Multiscale Representation for Anti-Aliasing Neural Radiance Fields",
+      "doi": "10.1109/ICCV48922.2021.00580",
+      "cited": 1698,
+      "year": "2021",
+      "journal": "Proceedings of the IEEE International Conference on Computer Vision",
+      "authors": "Barron J.T., Mildenhall B., Tancik M., Hedman P.",
+      "abstract": "The rendering procedure used by neural radiance fields (NeRF) samples a scene with a single ray per pixel and may therefore produce renderings that are excessively blurred or aliased when training or testing images observe scene content at different resolutions. The straightforward solution of supersampling by rendering with multiple rays per pixel is impractical for NeRF, because rendering each r"
+    },
+    {
+      "title": "pixelNeRF: Neural Radiance Fields from One or Few Images",
+      "doi": "10.1109/CVPR46437.2021.00455",
+      "cited": 1423,
+      "year": "2021",
+      "journal": "Proceedings of the IEEE Computer Society Conference on Computer Vision and Pattern Recognition",
+      "authors": "Yu A., Ye V., Tancik M., Kanazawa A.",
+      "abstract": "We propose pixelNeRF, a learning framework that predicts a continuous neural scene representation conditioned on one or few input images. The existing approach for constructing neural radiance fields [27] involves optimizing the representation to every scene independently, requiring many calibrated views and significant compute time. We take a step towards resolving these shortcomings by introduci"
+    },
+    {
+      "title": "NeRF in the Wild: Neural Radiance Fields for Unconstrained Photo Collections",
+      "doi": "10.1109/CVPR46437.2021.00713",
+      "cited": 1262,
+      "year": "2021",
+      "journal": "Proceedings of the IEEE Computer Society Conference on Computer Vision and Pattern Recognition",
+      "authors": "Martin-Brualla R., Radwan N., Sajjadi M.S.M., Barron J.T.",
+      "abstract": "We present a learning-based method for synthesizing novel views of complex scenes using only unstructured collections of in-the-wild photographs. We build on Neural Radiance Fields (NeRF), which uses the weights of a multilayer perceptron to model the density and color of a scene as a function of 3D coordinates. While NeRF works well on images of static subjects captured under controlled settings,"
+    },
+    {
+      "title": "D-NeRF: Neural Radiance Fields for Dynamic Scenes",
+      "doi": "10.1109/CVPR46437.2021.01018",
+      "cited": 1173,
+      "year": "2021",
+      "journal": "Proceedings of the IEEE Computer Society Conference on Computer Vision and Pattern Recognition",
+      "authors": "Pumarola A., Corona E., Pons-Moll G., Moreno-Noguer F.",
+      "abstract": "Neural rendering techniques combining machine learning with geometric reasoning have arisen as one of the most promising approaches for synthesizing novel views of a scene from a sparse set of images. Among these, stands out the Neural radiance fields (NeRF) [31], which trains a deep network to map 5D input coordinates (representing spatial location and viewing direction) into a volume density and"
+    },
+    {
+      "title": "Nerfies: Deformable Neural Radiance Fields",
+      "doi": "10.1109/ICCV48922.2021.00581",
+      "cited": 1017,
+      "year": "2021",
+      "journal": "Proceedings of the IEEE International Conference on Computer Vision",
+      "authors": "Park K., Sinha U., Barron J.T., Bouaziz S.",
+      "abstract": "We present the first method capable of photorealistically reconstructing deformable scenes using photos/videos captured casually from mobile phones. Our approach augments neural radiance fields (NeRF) by optimizing an additional continuous volumetric deformation field that warps each observed point into a canonical 5D NeRF. We observe that these NeRF-like deformation fields are prone to local mini"
+    },
+    {
+      "title": "PlenOctrees for Real-time Rendering of Neural Radiance Fields",
+      "doi": "10.1109/ICCV48922.2021.00570",
+      "cited": 878,
+      "year": "2021",
+      "journal": "Proceedings of the IEEE International Conference on Computer Vision",
+      "authors": "Yu A., Li R., Tancik M., Li H.",
+      "abstract": "We introduce a method to render Neural Radiance Fields (NeRFs) in real time using PlenOctrees, an octree-based 3D representation which supports view-dependent effects. Our method can render 800×800 images at more than 150 FPS, which is over 3000 times faster than conventional NeRFs. We do so without sacrificing quality while preserving the ability of NeRFs to perform free-viewpoint rendering of sc"
+    },
+    {
+      "title": "Depth-supervised NeRF: Fewer Views and Faster Training for Free",
+      "doi": "10.1109/CVPR52688.2022.01254",
+      "cited": 784,
+      "year": "2022",
+      "journal": "Proceedings of the IEEE Computer Society Conference on Computer Vision and Pattern Recognition",
+      "authors": "Deng K., Liu A., Zhu J.Y., Ramanan D.",
+      "abstract": "A commonly observed failure mode of Neural Radiance Field (NeRF) is fitting incorrect geometries when given an insufficient number of input views. One potential reason is that standard volumetric rendering does not enforce the constraint that most of a scene's geometry consist of empty space and opaque surfaces. We formalize the above assumption through DS-NeRF (Depth-supervised Neural Radiance Fi"
+    },
+    {
+      "title": "Block-NeRF: Scalable Large Scene Neural View Synthesis",
+      "doi": "10.1109/CVPR52688.2022.00807",
+      "cited": 712,
+      "year": "2022",
+      "journal": "Proceedings of the IEEE Computer Society Conference on Computer Vision and Pattern Recognition",
+      "authors": "Tancik M., Casser V., Yan X., Pradhan S.",
+      "abstract": "We present Block-NeRF, a variant of Neural Radiance Fields that can represent large-scale environments. Specifically, we demonstrate that when scaling NeRF to render city-scale scenes spanning multiple blocks, it is vital to de-compose the scene into individually trained NeRFs. This decomposition decouples rendering time from scene size, enables rendering to scale to arbitrarily large environments"
+    },
+    {
+      "title": "KiloNeRF: Speeding up Neural Radiance Fields with Thousands of Tiny MLPs",
+      "doi": "10.1109/ICCV48922.2021.01407",
+      "cited": 636,
+      "year": "2021",
+      "journal": "Proceedings of the IEEE International Conference on Computer Vision",
+      "authors": "Reiser C., Peng S., Liao Y., Geiger A.",
+      "abstract": "NeRF synthesizes novel views of a scene with unprecedented quality by fitting a neural radiance field to RGB images. However, NeRF requires querying a deep MultiLayer Perceptron (MLP) millions of times, leading to slow rendering times, even on modern GPUs. In this paper, we demonstrate that real-time rendering is possible by utilizing thousands of tiny MLPs instead of one single large MLP. In our "
+    },
+    {
+      "title": "BARF: Bundle-Adjusting Neural Radiance Fields",
+      "doi": "10.1109/ICCV48922.2021.00569",
+      "cited": 590,
+      "year": "2021",
+      "journal": "Proceedings of the IEEE International Conference on Computer Vision",
+      "authors": "Lin C.H., Ma W.C., Torralba A., Lucey S.",
+      "abstract": "Neural Radiance Fields (NeRF) [31] have recently gained a surge of interest within the computer vision community for its power to synthesize photorealistic novel views of real-world scenes. One limitation of NeRF, however, is its requirement of accurate camera poses to learn the scene representations. In this paper, we propose Bundle-Adjusting Neural Radiance Fields (BARF) for training NeRF from i"
+    },
+    {
+      "title": "Point-NeRF: Point-based Neural Radiance Fields",
+      "doi": "10.1109/CVPR52688.2022.00536",
+      "cited": 588,
+      "year": "2022",
+      "journal": "Proceedings of the IEEE Computer Society Conference on Computer Vision and Pattern Recognition",
+      "authors": "Xu Q., Xu Z., Philip J., Bi S.",
+      "abstract": "Volumetric neural rendering methods like NeRF [34] generate high-quality view synthesis results but are optimized per-scene leading to prohibitive reconstruction time. On the other hand, deep multi-view stereo methods can quickly reconstruct scene geometry via direct network inference. Point-NeRF combines the advantages of these two approaches by using neural 3D point clouds, with associated neura"
+    },
+    {
+      "title": "RegNeRF: Regularizing Neural Radiance Fields for View Synthesis from Sparse Inputs",
+      "doi": "10.1109/CVPR52688.2022.00540",
+      "cited": 580,
+      "year": "2022",
+      "journal": "Proceedings of the IEEE Computer Society Conference on Computer Vision and Pattern Recognition",
+      "authors": "Niemeyer M., Barron J.T., Mildenhall B., Sajjadi M.S.M.",
+      "abstract": "Neural Radiance Fields (NeRF) have emerged as a powerful representation for the task of novel view synthesis due to their simplicity and state-of-the-art performance. Though NeRF can produce photorealistic renderings of unseen viewpoints when many input views are available, its performance drops significantly when this number is reduced. We observe that the majority of artifacts in sparse input sc"
+    },
+    {
+      "title": "Ref-NeRF: Structured View-Dependent Appearance for Neural Radiance Fields",
+      "doi": "10.1109/CVPR52688.2022.00541",
+      "cited": 559,
+      "year": "2022",
+      "journal": "Proceedings of the IEEE Computer Society Conference on Computer Vision and Pattern Recognition",
+      "authors": "Verbin D., Hedman P., Mildenhall B., Zickler T.",
+      "abstract": "Neural Radiance Fields (NeRF) is a popular view synthesis technique that represents a scene as a continuous volumetric function, parameterized by multilayer perceptrons that provide the volume density and view-dependent emitted radiance at each location. While NeRF-based techniques excel at representing fine geometric structures with smoothly varying view-dependent appearance, they often fail to a"
+    },
+    {
+      "title": "Nerfstudio: A Modular Framework for Neural Radiance Field Development",
+      "doi": "10.1145/3588432.3591516",
+      "cited": 508,
+      "year": "2023",
+      "journal": "Proceedings SIGGRAPH 2023 Conference Papers",
+      "authors": "Tancik M., Weber E., Ng E., Li R.",
+      "abstract": "Neural Radiance Fields (NeRF) are a rapidly growing area of research with wide-ranging applications in computer vision, graphics, robotics, and more. In order to streamline the development and deployment of NeRF research, we propose a modular PyTorch framework, Nerfstudio. Our framework includes plug-and-play components for implementing NeRF-based methods, which make it easy for researchers and pr"
+    },
+    {
+      "title": "Baking Neural Radiance Fields for Real-Time View Synthesis",
+      "doi": "10.1109/ICCV48922.2021.00582",
+      "cited": 467,
+      "year": "2021",
+      "journal": "Proceedings of the IEEE International Conference on Computer Vision",
+      "authors": "Hedman P., Srinivasan P.P., Mildenhall B., Barron J.T.",
+      "abstract": "Neural volumetric representations such as Neural Radiance Fields (NeRF) have emerged as a compelling technique for learning to represent 3D scenes from images with the goal of rendering photorealistic images of the scene from unobserved viewpoints. However, NeRF's computational requirements are prohibitive for real-time applications: rendering views from a trained NeRF requires querying a multilay"
+    },
+    {
+      "title": "Putting NeRF on a Diet: Semantically Consistent Few-Shot View Synthesis",
+      "doi": "10.1109/ICCV48922.2021.00583",
+      "cited": 441,
+      "year": "2021",
+      "journal": "Proceedings of the IEEE International Conference on Computer Vision",
+      "authors": "Jain A., Tancik M., Abbeel P.",
+      "abstract": "We present DietNeRF, a 3D neural scene representation estimated from a few images. Neural Radiance Fields (NeRF) learn a continuous volumetric representation of a scene through multi-view consistency, and can be rendered from novel viewpoints by ray casting. While NeRF has an impressive ability to reconstruct geometry and fine details given many images, up to 100 for challenging 360<sup>◦</sup> sc"
+    },
+    {
+      "title": "Dynamic Neural Radiance Fields for Monocular 4D Facial Avatar Reconstruction",
+      "doi": "10.1109/CVPR46437.2021.00854",
+      "cited": 440,
+      "year": "2021",
+      "journal": "Proceedings of the IEEE Computer Society Conference on Computer Vision and Pattern Recognition",
+      "authors": "Gafni G., Thies J., Zollhöfer M., Nießner M.",
+      "abstract": "We present dynamic neural radiance fields for modeling the appearance and dynamics of a human face. Digitally modeling and reconstructing a talking human is a key building-block for a variety of applications. Especially, for telepresence applications in AR or VR, a faithful reproduction of the appearance including novel viewpoint or head-poses is required. In contrast to state-of-the-art approache"
+    }
+  ]
+}
