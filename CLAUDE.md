@@ -166,6 +166,33 @@ python -m grid_study run cases/heatsink_water_cht_steady --adaptive -t 1.0
 - **핵심 접근**: rule-based 벤치마크 데이터셋 (형상 난이도 × 뷰 타입) + reference CFD 정답 확보 → 프레임워크 정량 평가
 - **데이터셋 위치**: `benchmark/` — rule-based 형상 생성, reference CFD, 2D 렌더링, 평가 결과 일체
 
+### Paper Data Convention (Critical — 반드시 준수)
+
+논문 결과는 **preset-matched** 데이터만 사용한다. Solver robustness preset마다 inlet velocity가 다르므로, reference와 predicted 케이스가 동일한 preset(=동일 inlet velocity)으로 수렴한 pair만 비교해야 한다.
+
+**⚠️ 사용 금지:**
+- `cfd_metrics.json` — preset 미매칭 상태의 CFD 비교 결과 (inlet velocity 불일치)
+- `evaluation_aggregate_summary_posthoc_scaled_longest_span.json`의 원본 CFD score (구 버전)
+
+**✅ 사용해야 하는 파일:**
+- `cfd_metrics_matched.json` — 각 eval dir 내, preset-matched reference 기준 CFD 비교
+- `benchmark/manifests/evaluation_aggregate_summary_phase2.json` — 매칭된 집계 (최신)
+- `benchmark/manifests/evaluation_statistics_phase2.json` — 매칭된 통계 (최신)
+- `benchmark/manifests/evaluation_statistics_matched.json` — 매칭 전용 통계
+
+**Reference 케이스 경로:**
+- Preset-matched: `cases/phase2_ref_{scene}_preset_{preset}/` (논문용)
+- 원본 Phase 2: `cases/phase2_ref_{scene}/` (참고용만, 논문에 사용 금지)
+
+**Predicted 케이스 경로:**
+- `cases/phase2_pred_bench_{case}_{view}/`
+
+**최종 수치 (2026-03-23):**
+- Structural: 0.781 ± 0.151, CFD agreement: 0.477 ± 0.158 (n=97)
+- Best view: floorplan (struct 0.884, CFD 0.572)
+
+**배경:** Solver preset별 inlet velocity가 다름 (robust=0.02, ultra_robust=0.005, laminar=0.01 m/s). Phase 2 초기에는 ref/pred가 다른 preset으로 수렴하여 velocity magnitude similarity ≈ 0이었음. `--force-preset` 플래그 도입 + 26개 reference 재해석으로 해결 (2026-03-23).
+
 ## Paper Writing Convention (Markdown → LaTeX → PDF)
 
 ### Figure

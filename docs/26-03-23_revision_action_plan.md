@@ -3,128 +3,64 @@
 > Date: 2026-03-23
 > Review verdict: Minor Revision
 > Target: Building and Environment (Q1, IF ~7.1)
+> Last updated: 2026-03-23 (preset matching 반영)
 
 ---
 
 ## Major Issues (3건)
 
 ### M1. Reference CFD 검증 — 문헌 실험 케이스 대비 검증
-- **지적**: CFD-to-CFD 비교만 있고, reference CFD 자체의 타당성이 미검증
-- **작업**:
-  1. 문헌에서 검증된 실내 환기 실험 케이스 1개 선정 (Nielsen room / IEA Annex 20 등)
-  2. 동일 솔버 설정(simpleFoam, k-ω SST, 0.18m mesh)으로 시뮬레이션
-  3. 실측 데이터 대비 Hit Rate, FAC2, NMSE, FB 보고
-  4. Section 2.2에 validation subsection 추가
-- **난이도**: 중 (실험 데이터 확보 + 시뮬레이션 + 메트릭 산출)
-- **코드 작업**: 필요 (validation 케이스 셋업 + 메트릭 계산)
-- **논문 작업**: Section 2.2에 ~300 단어 + Table 1개 추가
+- **상태**: 🔧 **진행 중** — Nielsen (1990) 케이스 셋업 + 해석 완료, 메트릭 산출 완료
+- **결과**: q=0.083, R=0.837 — profile shape는 잘 맞으나 absolute magnitude 차이 있음
+- **남은 작업**: 논문 Section 2.2에 validation subsection 작성 (~300 단어 + Table)
+- **참고**: `cases/validation_nielsen_1990/`, `validation_results.json`
 
-### M2. VLM 일반화 — scope 제한 명시 또는 추가 VLM 비교
-- **지적**: Gemini 3.1 Pro만 테스트, 다른 VLM 비교 없음
-- **선택지**:
-  - **A (추천)**: Limitations에 model-specific scope 명시 + framework가 VLM-agnostic한 이유 설명 (~200 단어)
-  - **B (이상적)**: GPT-4o로 대표 케이스 4-8개 추가 실행 → 비교 표 추가 (API 비용 + 시간 필요)
-- **난이도**: A는 낮 (텍스트만), B는 중-높 (API 비용 + 프롬프트 적응 + 실행)
-- **논문 작업**: A는 Section 5.6에 문단 추가, B는 추가 Table + Discussion
+### M2. VLM 일반화 — scope 제한 명시
+- **상태**: 🔧 **M2-A 선택, 미반영** — Limitations에 model-specific scope 문단 추가 필요
+- **남은 작업**: Section 5.7 Limitations에 ~200 단어 추가
 
 ### M3. Velocity magnitude ≈ 0 원인 분석
-- **지적**: 전체 CFD agreement를 끌어내리는 핵심 컴포넌트인데 분석이 1문장
-- **작업**:
-  1. 차원 오차 → 단면적 변화 → inlet velocity 변화 back-of-envelope 계산
-  2. 대표 케이스 2-3개에서 ref vs pred의 Umag 분포 비교 (histogram 또는 profile)
-  3. Section 4.1 또는 5.3에 dedicated paragraph 추가 (~400 단어)
-  4. "screening에서 속도 크기보다 유동 패턴(방향)이 중요한 경우" 실용적 의미 논의
-- **난이도**: 낮-중 (계산은 간단, 추가 figure 1개 가능)
-- **코드 작업**: 간단한 분석 스크립트
-- **논문 작업**: ~400 단어 + 선택적 figure 1개
+- **상태**: ✅ **해결** — inlet velocity mismatch 발견 + preset matching으로 수정
+- **경과**:
+  1. Scientist agent가 근본 원인 진단: solver preset별 inlet velocity 불일치 (85/97 케이스)
+  2. `--force-preset` 플래그 추가 + 26개 reference 재해석
+  3. vel_mag: 0.023 → 0.117, CFD agreement: 0.454 → 0.477
+  4. 논문 수치 전체 업데이트 + Section 5.5 "Reference solver preset matching" 추가
+- **문서**: `docs/26-03-23_inlet_velocity_mismatch_issue.md`
 
 ---
 
 ## Minor Issues (7건)
 
-### m1. VLM 반복성 테스트 한계 명시
-- **작업**: Section 4.5에 "The small sample size (3 cases × 3 runs) limits the statistical power of this analysis" 1문장 추가
-- **난이도**: 매우 낮
-
-### m2. "Second" 중복 수정 (Section 5.6)
-- **작업**: 두 번째 "Second"를 "Third"로 변경, 이후 넘버링 조정
-- **난이도**: 매우 낮
-
-### m3. SD 보고 일관성 (Section 4.2)
-- **작업**: 모든 뷰의 structural + CFD score에 SD 표기 통일
-- **난이도**: 매우 낮
-
-### m4. Grid independence 비단조 수렴 설명
-- **작업**: A3-03의 score 감소가 "finer reference가 prediction의 오차를 더 드러내기 때문"이라는 설명 1-2문장 추가
-- **난이도**: 매우 낮
-
-### m5. Naive baseline opening match rate 오해 방지
-- **작업**: Table 1에 footnote 또는 inline 설명 강화 ("the naive baseline's higher rate is due to chance alignment")
-- **난이도**: 매우 낮
-
-### m6. 등온 해석 vs 에너지 진단 동기 gap 논의
-- **작업**: Section 5.6 Limitations에 "The isothermal assumption excludes thermal stratification..." 문단 추가
-- **난이도**: 낮 (~100 단어)
-
-### m7. "Photograph" 주장 vs 실제 테스트 불일치
-- **작업**: Abstract의 "photograph or architectural drawing" → "architectural drawing or rendered image"로 수정, 또는 실제 사진 1장 테스트 추가
-- **난이도**: 텍스트 수정만이면 매우 낮, 사진 테스트면 중
+| # | 항목 | 상태 |
+|---|------|------|
+| m1 | VLM 반복성 테스트 한계 명시 | ✅ 완료 |
+| m2 | "Second" 중복 수정 | ✅ 완료 |
+| m3 | SD 보고 일관성 | ✅ 완료 |
+| m4 | Grid independence 비단조 수렴 설명 | ✅ 완료 |
+| m5 | Naive baseline opening match footnote | ✅ 완료 |
+| m6 | 등온 해석 vs 에너지 진단 gap | ✅ 완료 |
+| m7 | "Photograph" → "architectural drawing" | ✅ 완료 |
 
 ---
 
-## 추가 개선 (리뷰에서 직접 지적은 아니나 품질 향상)
+## 추가 개선 (E1-E4)
 
-### E1. 표준 메트릭 값 본문 보고
-- **작업**: 현재 supplementary에만 있는 Hit Rate, FAC2 값을 본문 Results에 1-2줄 추가
-- **난이도**: 낮
-
-### E2. "Screening-level"의 정량적 정의
-- **작업**: "sufficient to identify the dominant recirculation zone location and primary jet path" 등 구체적 기술
-- **난이도**: 낮
-
-### E3. VLM API 접근 날짜 및 모델 버전 명시
-- **작업**: Section 2.1에 "accessed via API on [date], model version gemini-3.1-pro-preview" 1문장
-- **난이도**: 매우 낮
-
-### E4. 고정 유량 가정 명시적 논의
-- **작업**: Section 2.2에 "The fixed volume flow rate is a deliberate simplification..." 2-3문장
-- **난이도**: 매우 낮
+| # | 항목 | 상태 |
+|---|------|------|
+| E1 | 표준 메트릭 값 본문 보고 (q, FAC2, R) | ✅ 완료 |
+| E2 | "Screening-level" 정량적 정의 | ✅ 완료 |
+| E3 | VLM API 접근 날짜/버전 명시 | ✅ 완료 |
+| E4 | 고정 유량 가정 논의 | ✅ 완료 |
 
 ---
 
-## 우선순위 및 의존성
+## 남은 작업 요약
 
-```
-[즉시 실행 가능 — 텍스트 수정만]
-├─ m1 VLM 반복성 한계 명시
-├─ m2 "Second" 중복 수정
-├─ m3 SD 보고 일관성
-├─ m4 Grid independence 설명
-├─ m5 Naive baseline footnote
-├─ m6 등온 해석 gap 논의
-├─ m7 "Photograph" 수정
-├─ E1 표준 메트릭 본문 보고
-├─ E2 Screening-level 정의
-├─ E3 API 접근 정보
-└─ E4 고정 유량 논의
+| 작업 | 내용 | 예상 시간 |
+|------|------|----------|
+| **M1 논문 반영** | Nielsen validation subsection 작성 + Table | 1시간 |
+| **M2-A 논문 반영** | VLM scope 제한 문단 작성 | 30분 |
+| **커밋/푸시** | 위 2건 반영 후 | 5분 |
 
-[분석 작업 필요]
-├─ M3 Vel. magnitude 원인 분석 (back-of-envelope + optional figure)
-└─ M2-A VLM scope 제한 명시 (텍스트)
-
-[시뮬레이션 필요]
-├─ M1 Reference CFD 검증 (문헌 실험 케이스)
-└─ M2-B GPT-4o 비교 (선택적)
-```
-
----
-
-## 예상 소요
-
-| 작업 그룹 | 항목 수 | 예상 시간 |
-|----------|---------|----------|
-| 텍스트 수정 (m1-m7, E1-E4) | 11 | 30분 |
-| M3 분석 + 본문 | 1 | 1-2시간 |
-| M2-A scope 명시 | 1 | 30분 |
-| M1 검증 시뮬레이션 | 1 | 반나절 (데이터 확보 + 실행 + 분석) |
-| M2-B GPT-4o 비교 (선택) | 1 | 수시간 (API 비용) |
+완료율: **17/19 항목 완료 (89%)**
