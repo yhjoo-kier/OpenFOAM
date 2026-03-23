@@ -322,12 +322,13 @@ def render_panel_b(scene: dict, room: dict, mesh: pv.DataSet,
     if sl_hz.n_cells > 0:
         pl.add_mesh(sl_hz, scalars="Umag", cmap="turbo", clim=clim,
                     opacity=0.70, show_edges=False,
-                    scalar_bar_args={"title": "|U| [m/s]", "n_labels": 5,
-                                     "position_x": 0.82, "position_y": 0.12,
-                                     "width": 0.10, "height": 0.70,
-                                     "title_font_size": 20, "label_font_size": 16,
+                    scalar_bar_args={"title": "|U| [m/s]", "n_labels": 3,
+                                     "position_x": 0.83, "position_y": 0.22,
+                                     "width": 0.10, "height": 0.40,
+                                     "title_font_size": 34, "label_font_size": 26,
                                      "color": "black", "bold": True,
-                                     "fmt": "%.2f"})
+                                     "vertical": True,
+                                     "fmt": "%.3f"})
     else:
         print("  Warning: horizontal slice has 0 cells")
 

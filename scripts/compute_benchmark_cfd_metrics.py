@@ -25,6 +25,7 @@ pv.OFF_SCREEN = True
 
 DEFAULT_GRID = (18, 18, 10)
 DEFAULT_EPSILON = (0.05, 0.05, 0.08)
+RMS_FLOOR = 1e-6  # Floor for reference RMS to avoid division instability
 
 
 def load_json(path: Path) -> Any:
@@ -136,10 +137,15 @@ def vector_metrics(ref: np.ndarray, pred: np.ndarray) -> dict[str, float | None]
 
     ref_mag = np.linalg.norm(ref, axis=1)
     pred_mag = np.linalg.norm(pred, axis=1)
-    denom = ref_mag * pred_mag
-    direction_mask = denom > 1e-12
-    cosines = np.sum(ref[direction_mask] * pred[direction_mask], axis=1) / denom[direction_mask] if np.any(direction_mask) else np.array([])
+    # Exclude points where either vector is near-zero (cosine undefined)
+    direction_mask = (ref_mag > 1e-8) & (pred_mag > 1e-8)
+    denom = ref_mag[direction_mask] * pred_mag[direction_mask]
+    cosines = np.sum(ref[direction_mask] * pred[direction_mask], axis=1) / denom if np.any(direction_mask) else np.array([])
     ref_rms = math.sqrt(float(np.mean(ref_mag ** 2))) if len(ref_mag) else None
+    rms_floored = False
+    if ref_rms is not None and ref_rms < RMS_FLOOR:
+        ref_rms = RMS_FLOOR
+        rms_floored = True
 
     return {
         "mae_l2": round_or_none(mae),
@@ -148,6 +154,7 @@ def vector_metrics(ref: np.ndarray, pred: np.ndarray) -> dict[str, float | None]
         "relative_rmse": round_or_none((rmse / ref_rms) if (rmse is not None and ref_rms and ref_rms > 0) else None),
         "mean_direction_cosine": round_or_none(float(np.mean(cosines)) if len(cosines) else None),
         "direction_comparable_count": int(direction_mask.sum()),
+        "rms_floored": rms_floored,
     }
 
 
@@ -156,6 +163,10 @@ def scalar_metrics(ref: np.ndarray, pred: np.ndarray) -> dict[str, float | None]
     mae = float(np.mean(np.abs(diff))) if len(diff) else None
     rmse = math.sqrt(float(np.mean(diff ** 2))) if len(diff) else None
     ref_rms = math.sqrt(float(np.mean(ref ** 2))) if len(ref) else None
+    rms_floored = False
+    if ref_rms is not None and ref_rms < RMS_FLOOR:
+        ref_rms = RMS_FLOOR
+        rms_floored = True
     return {
         "mae": round_or_none(mae),
         "rmse": round_or_none(rmse),
@@ -163,6 +174,73 @@ def scalar_metrics(ref: np.ndarray, pred: np.ndarray) -> dict[str, float | None]
         "relative_rmse": round_or_none((rmse / ref_rms) if (rmse is not None and ref_rms and ref_rms > 0) else None),
         "reference_mean": round_or_none(float(np.mean(ref)) if len(ref) else None),
         "predicted_mean": round_or_none(float(np.mean(pred)) if len(pred) else None),
+        "rms_floored": rms_floored,
+    }
+
+
+def hit_rate(ref: np.ndarray, pred: np.ndarray, D: float = 0.25, W: float = 0.0) -> float | None:
+    """COST 732 hit rate: fraction of points within threshold of reference."""
+    if len(ref) == 0:
+        return None
+    diff = np.abs(pred - ref)
+    threshold = np.maximum(W, D * np.abs(ref))
+    return round_or_none(float(np.mean(diff < threshold)))
+
+
+def fac2(ref: np.ndarray, pred: np.ndarray) -> float | None:
+    """Fraction of predictions within factor of 2 of reference."""
+    if len(ref) == 0:
+        return None
+    valid = np.abs(ref) > 1e-10
+    if not np.any(valid):
+        return None
+    ratio = pred[valid] / ref[valid]
+    return round_or_none(float(np.mean((ratio >= 0.5) & (ratio <= 2.0))))
+
+
+def nmse(ref: np.ndarray, pred: np.ndarray) -> float | None:
+    """Normalized Mean Square Error: mean((pred-ref)^2) / (mean(pred)*mean(ref))."""
+    if len(ref) == 0:
+        return None
+    ref_mean = float(np.mean(ref))
+    pred_mean = float(np.mean(pred))
+    denom = ref_mean * pred_mean
+    if abs(denom) < 1e-20:
+        return None
+    return round_or_none(float(np.mean((pred - ref) ** 2)) / denom)
+
+
+def fractional_bias(ref: np.ndarray, pred: np.ndarray) -> float | None:
+    """Fractional Bias: 2*(mean(ref)-mean(pred))/(mean(ref)+mean(pred))."""
+    if len(ref) == 0:
+        return None
+    ref_mean = float(np.mean(ref))
+    pred_mean = float(np.mean(pred))
+    denom = ref_mean + pred_mean
+    if abs(denom) < 1e-20:
+        return None
+    return round_or_none(2.0 * (ref_mean - pred_mean) / denom)
+
+
+def correlation_r(ref: np.ndarray, pred: np.ndarray) -> float | None:
+    """Pearson correlation coefficient between reference and prediction."""
+    if len(ref) < 2:
+        return None
+    ref_std = float(np.std(ref))
+    pred_std = float(np.std(pred))
+    if ref_std < 1e-20 or pred_std < 1e-20:
+        return None
+    return round_or_none(float(np.corrcoef(ref, pred)[0, 1]))
+
+
+def standard_field_metrics(ref: np.ndarray, pred: np.ndarray) -> dict[str, float | None]:
+    """Compute COST 732 / ASME V&V standard metrics for a scalar field."""
+    return {
+        "hit_rate_D025": hit_rate(ref, pred, D=0.25),
+        "fac2": fac2(ref, pred),
+        "nmse": nmse(ref, pred),
+        "fb": fractional_bias(ref, pred),
+        "correlation_R": correlation_r(ref, pred),
     }
 
 
@@ -240,7 +318,16 @@ def compare_cases(
         }
         summary["aggregate_score"] = {
             "cfd_score": 0.0,
-            "notes": ["No overlapping valid sampled points between reference and prediction."],
+            "cfd_agreement_score": 0.0,
+            "scoring_note": "No overlapping valid sampled points between reference and prediction.",
+            "component_count": 4,
+            "components": {
+                "overlap_ratio_vs_union": 0.0,
+                "velocity_magnitude_similarity": 0.0,
+                "velocity_direction_similarity": 0.0,
+                "pressure_similarity": 0.0,
+            },
+            "components_floored": ["All components: no overlap"],
         }
         return summary
 
@@ -252,46 +339,78 @@ def compare_cases(
         ref_umag = ref_sample["Umag"][overlap]
         pred_umag = pred_sample["Umag"][overlap]
         field_metrics["velocity_vector"] = vector_metrics(ref_u, pred_u)
-        field_metrics["velocity_magnitude"] = scalar_metrics(ref_umag, pred_umag)
+        vel_mag_metrics = scalar_metrics(ref_umag, pred_umag)
+        vel_mag_metrics["standard"] = standard_field_metrics(ref_umag, pred_umag)
+        field_metrics["velocity_magnitude"] = vel_mag_metrics
     else:
         field_metrics["velocity_vector"] = None
         field_metrics["velocity_magnitude"] = None
 
     if "p" in ref_sample and "p" in pred_sample:
-        field_metrics["pressure"] = scalar_metrics(ref_sample["p"][overlap], pred_sample["p"][overlap])
+        ref_p = ref_sample["p"][overlap]
+        pred_p = pred_sample["p"][overlap]
+        # Gauge correction: subtract overlap-domain mean pressure from each field
+        # (incompressible solvers define pressure up to an additive constant)
+        ref_p_mean = float(np.mean(ref_p))
+        pred_p_mean = float(np.mean(pred_p))
+        ref_p_corrected = ref_p - ref_p_mean
+        pred_p_corrected = pred_p - pred_p_mean
+        pressure_metrics = scalar_metrics(ref_p_corrected, pred_p_corrected)
+        pressure_metrics["gauge_corrected"] = True
+        pressure_metrics["reference_mean_removed"] = round_or_none(ref_p_mean)
+        pressure_metrics["predicted_mean_removed"] = round_or_none(pred_p_mean)
+        pressure_metrics["standard"] = standard_field_metrics(ref_p_corrected, pred_p_corrected)
+        field_metrics["pressure"] = pressure_metrics
     else:
         field_metrics["pressure"] = None
 
     overlap_ratio = overlap_count / union_count if union_count else 1.0
-    components = [overlap_ratio]
+    notes: list[str] = []
 
+    # Always 4 components; score 0.0 + note when unavailable
     umag_rel_rmse = None
     if field_metrics["velocity_magnitude"]:
         umag_rel_rmse = field_metrics["velocity_magnitude"].get("relative_rmse")
-        if umag_rel_rmse is not None:
-            components.append(max(0.0, 1.0 - min(1.0, umag_rel_rmse)))
+    if umag_rel_rmse is not None:
+        umag_sim = max(0.0, 1.0 - min(1.0, umag_rel_rmse))
+    else:
+        umag_sim = 0.0
+        notes.append("velocity_magnitude: ref_RMS unavailable or zero, scored as 0.0")
 
     dir_cos = None
     if field_metrics["velocity_vector"]:
         dir_cos = field_metrics["velocity_vector"].get("mean_direction_cosine")
-        if dir_cos is not None:
-            components.append(max(0.0, min(1.0, 0.5 * (dir_cos + 1.0))))
+    if dir_cos is not None:
+        dir_sim = max(0.0, min(1.0, 0.5 * (dir_cos + 1.0)))
+    else:
+        dir_sim = 0.0
+        notes.append("velocity_direction: direction cosine unavailable, scored as 0.0")
 
     p_rel_rmse = None
     if field_metrics["pressure"]:
         p_rel_rmse = field_metrics["pressure"].get("relative_rmse")
-        if p_rel_rmse is not None:
-            components.append(max(0.0, 1.0 - min(1.0, p_rel_rmse)))
+    if p_rel_rmse is not None:
+        p_sim = max(0.0, 1.0 - min(1.0, p_rel_rmse))
+    else:
+        p_sim = 0.0
+        notes.append("pressure: ref_RMS unavailable or zero, scored as 0.0")
+
+    components = [overlap_ratio, umag_sim, dir_sim, p_sim]
+    cfd_agreement = sum(components) / len(components)
 
     summary["field_metrics"] = field_metrics
     summary["aggregate_score"] = {
-        "cfd_score": round_or_none(sum(components) / len(components) if components else None),
+        "cfd_score": round_or_none(cfd_agreement),  # backward compat
+        "cfd_agreement_score": round_or_none(cfd_agreement),
+        "scoring_note": "Unweighted mean of 4 components. Report components individually for detailed analysis.",
+        "component_count": 4,
         "components": {
             "overlap_ratio_vs_union": round_or_none(overlap_ratio),
-            "velocity_magnitude_similarity": round_or_none(max(0.0, 1.0 - min(1.0, umag_rel_rmse)) if umag_rel_rmse is not None else None),
-            "velocity_direction_similarity": round_or_none(max(0.0, min(1.0, 0.5 * (dir_cos + 1.0))) if dir_cos is not None else None),
-            "pressure_similarity": round_or_none(max(0.0, 1.0 - min(1.0, p_rel_rmse)) if p_rel_rmse is not None else None),
+            "velocity_magnitude_similarity": round_or_none(umag_sim),
+            "velocity_direction_similarity": round_or_none(dir_sim),
+            "pressure_similarity": round_or_none(p_sim),
         },
+        "components_floored": notes,
     }
     return summary
 

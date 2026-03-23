@@ -63,7 +63,7 @@ def infer_evaluation_root(task_path: Path) -> Path:
     return task_path.parent.parent.parent
 
 
-def compute_cfd_metrics(reference_scene_path: Path, reference_case_path: Path, predicted_scene_path: Path, predicted_case_path: Path, cfd_summary_path: Path) -> dict[str, Any] | None:
+def compute_cfd_metrics(reference_scene_path: Path, reference_case_path: Path, predicted_scene_path: Path, predicted_case_path: Path, cfd_summary_path: Path, timeout_seconds: int = 300) -> dict[str, Any] | None:
     cmd = [
         "docker", "run", "--rm",
         "-v", f"{PROJECT_ROOT}:{PROJECT_ROOT}",
@@ -76,8 +76,36 @@ def compute_cfd_metrics(reference_scene_path: Path, reference_case_path: Path, p
         "--predicted-case", str(predicted_case_path),
         "--output", str(cfd_summary_path),
     ]
-    proc = subprocess.run(cmd, cwd=PROJECT_ROOT, text=True, capture_output=True)
-    if proc.returncode != 0 or not cfd_summary_path.exists():
+    timed_out = False
+    try:
+        proc = subprocess.run(cmd, cwd=PROJECT_ROOT, text=True, capture_output=True, timeout=timeout_seconds)
+    except subprocess.TimeoutExpired as exc:
+        timed_out = True
+        proc = exc
+    if cfd_summary_path.exists():
+        payload = load_json(cfd_summary_path)
+        payload.setdefault("runner", {})
+        payload["runner"].update({
+            "command": cmd,
+            "returncode": None if timed_out else proc.returncode,
+            "timed_out": timed_out,
+            "timeout_seconds": timeout_seconds,
+            "stdout_tail": "\n".join(((proc.stdout or "") if hasattr(proc, "stdout") else "").splitlines()[-30:]),
+            "stderr_tail": "\n".join(((proc.stderr or "") if hasattr(proc, "stderr") else "").splitlines()[-30:]),
+        })
+        write_json(cfd_summary_path, payload)
+        return payload
+    if timed_out:
+        return {
+            "ok": False,
+            "command": cmd,
+            "returncode": None,
+            "timed_out": True,
+            "timeout_seconds": timeout_seconds,
+            "stdout_tail": "\n".join(((proc.stdout or "") if hasattr(proc, "stdout") else "").splitlines()[-30:]),
+            "stderr_tail": "\n".join(((proc.stderr or "") if hasattr(proc, "stderr") else "").splitlines()[-30:]),
+        }
+    if proc.returncode != 0:
         return {
             "ok": False,
             "command": cmd,
@@ -85,16 +113,7 @@ def compute_cfd_metrics(reference_scene_path: Path, reference_case_path: Path, p
             "stdout_tail": "\n".join((proc.stdout or "").splitlines()[-30:]),
             "stderr_tail": "\n".join((proc.stderr or "").splitlines()[-30:]),
         }
-    payload = load_json(cfd_summary_path)
-    payload.setdefault("runner", {})
-    payload["runner"].update({
-        "command": cmd,
-        "returncode": proc.returncode,
-        "stdout_tail": "\n".join((proc.stdout or "").splitlines()[-30:]),
-        "stderr_tail": "\n".join((proc.stderr or "").splitlines()[-30:]),
-    })
-    write_json(cfd_summary_path, payload)
-    return payload
+    return None
 
 
 def main() -> int:
@@ -205,7 +224,12 @@ def main() -> int:
         "--solver-timeout", str(args.solver_timeout),
         "--disable-repair",
     ]
-    proc = subprocess.run(run_cmd, cwd=PROJECT_ROOT, text=True, capture_output=True)
+    run_timed_out = False
+    try:
+        proc = subprocess.run(run_cmd, cwd=PROJECT_ROOT, text=True, capture_output=True, timeout=args.solver_timeout + 300)
+    except subprocess.TimeoutExpired as exc:
+        run_timed_out = True
+        proc = exc
     results_dir = PROJECT_ROOT / "results" / run_name
     case_dir = PROJECT_ROOT / "cases" / run_name
     stabilization_summary_path = results_dir / "stabilization_summary.json"
@@ -267,7 +291,8 @@ def main() -> int:
         "run": {
             "name": run_name,
             "command": run_cmd,
-            "returncode": proc.returncode,
+            "returncode": None if run_timed_out else proc.returncode,
+            "timed_out": run_timed_out,
             "started_at": task.get("last_started_at"),
             "finished_at": utc_now(),
         },
@@ -283,8 +308,8 @@ def main() -> int:
         "prediction_summary": comparison,
         "cfd_summary": cfd_summary,
         "pipeline_summary": stabilization_summary,
-        "stdout_tail": "\n".join((proc.stdout or "").splitlines()[-40:]),
-        "stderr_tail": "\n".join((proc.stderr or "").splitlines()[-40:]),
+        "stdout_tail": "\n".join(((proc.stdout or "") if hasattr(proc, "stdout") else "").splitlines()[-40:]),
+        "stderr_tail": "\n".join(((proc.stderr or "") if hasattr(proc, "stderr") else "").splitlines()[-40:]),
     }
     write_json(evaluation_summary_path, evaluation_summary)
 

@@ -1,0 +1,70 @@
+{
+  "structural_components": {
+    "room_block_f1": {
+      "mean": 0.988,
+      "sd": 0.0691,
+      "n": 97
+    },
+    "obstacle_f1": {
+      "mean": 0.4001,
+      "sd": 0.399,
+      "n": 97
+    },
+    "opening_type_f1": {
+      "mean": 1.0,
+      "sd": 0.0,
+      "n": 97
+    },
+    "opening_wall_ratio": {
+      "mean": 0.7371,
+      "sd": 0.3756,
+      "n": 97
+    }
+  },
+  "cfd_components": {
+    "overlap_ratio": {
+      "mean": 0.8884,
+      "sd": 0.0893,
+      "n": 97
+    },
+    "velocity_magnitude_similarity": {
+      "mean": 0.0225,
+      "sd": 0.0973,
+      "n": 97
+    },
+    "velocity_direction_similarity": {
+      "mean": 0.6357,
+      "sd": 0.1797,
+      "n": 97
+    },
+    "pressure_similarity": {
+      "mean": 0.2682,
+      "sd": 0.4105,
+      "n": 97
+    }
+  },
+  "dimension_dependent": {
+    "room_block_f1": {
+      "mean": 0.988,
+      "sd": 0.0691,
+      "n": 97
+    },
+    "obstacle_f1": {
+      "mean": 0.4001,
+      "sd": 0.399,
+      "n": 97
+    }
+  },
+  "topology": {
+    "opening_type_f1": {
+      "mean": 1.0,
+      "sd": 0.0,
+      "n": 97
+    },
+    "opening_wall_ratio": {
+      "mean": 0.7371,
+      "sd": 0.3756,
+      "n": 97
+    }
+  }
+}

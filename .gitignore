@@ -87,6 +87,7 @@ CLAUDE.local.md
 # Results folder - ignore contents but keep the folder for devcontainer mount
 results/*
 !results/.gitkeep
+!results/paper_figures_phase2/
 
 # Legacy results folders (to be deleted)
 results_new/

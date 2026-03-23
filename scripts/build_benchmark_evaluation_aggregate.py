@@ -80,7 +80,8 @@ def collect_rows(evaluation_root: Path) -> list[dict[str, Any]]:
         data = load_json(summary_path)
         task = data.get("task", {})
         prediction = data.get("prediction_summary") or {}
-        cfd_summary = (data.get("cfd_summary") or {}).get("aggregate_score") or {}
+        cfd_agg = (data.get("cfd_summary") or {}).get("aggregate_score") or {}
+        cfd_summary = cfd_agg  # alias for backward compat
         pipeline = data.get("pipeline_summary") or {}
         attempts = list(pipeline.get("attempts") or [])
         opening_metrics = prediction.get("opening_metrics") or {}
@@ -113,6 +114,8 @@ def collect_rows(evaluation_root: Path) -> list[dict[str, Any]]:
                 "opening_center_error": opening_metrics.get("mean_center_error_l2"),
                 "structural_score": prediction.get("structural_score"),
                 "cfd_score": cfd_summary.get("cfd_score"),
+                "cfd_agreement_score": cfd_summary.get("cfd_agreement_score"),
+                "cfd_components": cfd_summary.get("components"),
                 "room_bbox_relative_error": prediction.get("room_bbox_relative_error") or {},
                 "room_volume_relative_error": prediction.get("room_volume_relative_error"),
                 "reference_obstacle_count": prediction.get("reference_obstacle_count"),
@@ -143,6 +146,11 @@ def summarize_rows(rows: list[dict[str, Any]]) -> dict[str, Any]:
         "n": n,
         "mean_structural_score": round_or_none(mean([row["structural_score"] for row in rows])),
         "mean_cfd_score": round_or_none(mean([row["cfd_score"] for row in rows])),
+        "mean_cfd_agreement_score": round_or_none(mean([row.get("cfd_agreement_score") for row in rows])),
+        "mean_cfd_overlap": round_or_none(mean([(row.get("cfd_components") or {}).get("overlap_ratio_vs_union") for row in rows])),
+        "mean_cfd_vel_mag": round_or_none(mean([(row.get("cfd_components") or {}).get("velocity_magnitude_similarity") for row in rows])),
+        "mean_cfd_vel_dir": round_or_none(mean([(row.get("cfd_components") or {}).get("velocity_direction_similarity") for row in rows])),
+        "mean_cfd_pressure": round_or_none(mean([(row.get("cfd_components") or {}).get("pressure_similarity") for row in rows])),
         "mean_room_bbox_rel_error_Lx": round_or_none(mean([(row["room_bbox_relative_error"] or {}).get("Lx") for row in rows])),
         "mean_room_bbox_rel_error_Ly": round_or_none(mean([(row["room_bbox_relative_error"] or {}).get("Ly") for row in rows])),
         "mean_room_bbox_rel_error_Lz": round_or_none(mean([(row["room_bbox_relative_error"] or {}).get("Lz") for row in rows])),
