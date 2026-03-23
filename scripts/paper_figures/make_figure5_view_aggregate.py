@@ -4,14 +4,17 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
+import matplotlib.font_manager as fm
 import matplotlib.pyplot as plt
 import numpy as np
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
-AGG_PATH = PROJECT_ROOT / "benchmark/manifests/evaluation_aggregate_summary.json"
-OUT_DIR = PROJECT_ROOT / "results/paper_figures"
-PDF_OUT = OUT_DIR / "figure5_view_aggregate_performance.pdf"
-PNG_OUT = OUT_DIR / "figure5_view_aggregate_performance.png"
+AGG_PATH = PROJECT_ROOT / "benchmark/manifests/evaluation_aggregate_summary_phase2.json"
+STATS_PATH = PROJECT_ROOT / "benchmark/manifests/evaluation_statistics_phase2.json"
+OUT_DIR = PROJECT_ROOT / "results/paper_figures_phase2"
+PDF_OUT = OUT_DIR / "fig_result_view_aggregate.pdf"
+PNG_OUT = OUT_DIR / "fig_result_view_aggregate.png"
+META_OUT = OUT_DIR / "fig_result_view_aggregate_meta.json"
 
 VIEW_ORDER = ["perspective", "birdseye", "floorplan", "wireframe", "section"]
 VIEW_LABELS = {
@@ -28,83 +31,140 @@ COLORS = {
     "room": "#3B7A57",
     "opening": "#A23E48",
     "grid": "#D9E2EC",
+    "panel": "#34495E",
 }
+
+FONT_CANDIDATES = ["Arial", "Liberation Sans", "DejaVu Sans"]
+
+
+def pick_font() -> str:
+    available = {f.name for f in fm.fontManager.ttflist}
+    for candidate in FONT_CANDIDATES:
+        if candidate in available:
+            return candidate
+    return "sans-serif"
+
+
+def add_panel_label(ax: plt.Axes, label: str) -> None:
+    ax.text(
+        -0.18,
+        1.05,
+        label,
+        transform=ax.transAxes,
+        ha="left",
+        va="bottom",
+        fontsize=11.0,
+        fontweight="bold",
+        color=COLORS["panel"],
+    )
 
 
 def main() -> None:
     payload = json.loads(AGG_PATH.read_text(encoding="utf-8"))
+    stats = json.loads(STATS_PATH.read_text(encoding="utf-8"))
     by_view = payload["by_view"]
+    stats_view = stats["by_view"]
 
     structural = np.array([by_view[v]["mean_structural_score"] for v in VIEW_ORDER], dtype=float)
     cfd = np.array([by_view[v]["mean_cfd_score"] for v in VIEW_ORDER], dtype=float)
+    structural_sd = np.array([stats_view[v]["structural"]["sd"] for v in VIEW_ORDER], dtype=float)
+    cfd_sd = np.array([stats_view[v]["cfd"]["sd"] for v in VIEW_ORDER], dtype=float)
     room = np.array([by_view[v]["room_kind_match_rate"] for v in VIEW_ORDER], dtype=float)
     opening = np.array([by_view[v]["opening_wall_match_rate"] for v in VIEW_ORDER], dtype=float)
     labels = [VIEW_LABELS[v] for v in VIEW_ORDER]
 
+    selected_font = pick_font()
     plt.rcParams.update(
         {
-            "font.family": "DejaVu Sans",
-            "font.size": 10.8,
-            "axes.titlesize": 12.2,
-            "axes.labelsize": 10.8,
-            "xtick.labelsize": 10.2,
-            "ytick.labelsize": 10.8,
+            "font.family": selected_font,
+            "font.size": 10.2,
+            "axes.titlesize": 10.8,
+            "axes.labelsize": 10.2,
+            "xtick.labelsize": 9.6,
+            "ytick.labelsize": 10.0,
             "pdf.fonttype": 42,
             "ps.fonttype": 42,
         }
     )
 
-    fig = plt.figure(figsize=(7.65, 4.70), constrained_layout=False)
-    gs = fig.add_gridspec(1, 2, width_ratios=[1.12, 1.0], wspace=0.34)
+    fig = plt.figure(figsize=(7.20, 3.95), constrained_layout=False)
+    gs = fig.add_gridspec(1, 2, width_ratios=[1.0, 1.0], wspace=0.34)
     ax0 = fig.add_subplot(gs[0, 0])
     ax1 = fig.add_subplot(gs[0, 1])
 
     y = np.arange(len(VIEW_ORDER))
-    bar_h = 0.34
+    bar_h = 0.32
 
-    ax0.barh(y - bar_h / 2, structural, height=bar_h, color=COLORS["structural"], zorder=3)
-    ax0.barh(y + bar_h / 2, cfd, height=bar_h, color=COLORS["cfd"], zorder=3)
+    err_kw = dict(ecolor="#4B5563", elinewidth=0.8, capsize=2.5, capthick=0.8)
+    structural_bars = ax0.barh(y - bar_h / 2, structural, height=bar_h, color=COLORS["structural"], zorder=3, label="Structural", xerr=structural_sd, error_kw=err_kw)
+    cfd_bars = ax0.barh(y + bar_h / 2, cfd, height=bar_h, color=COLORS["cfd"], zorder=3, label="CFD agreement", xerr=cfd_sd, error_kw=err_kw)
 
-    ax1.barh(y - bar_h / 2, room, height=bar_h, color=COLORS["room"], zorder=3)
-    ax1.barh(y + bar_h / 2, opening, height=bar_h, color=COLORS["opening"], zorder=3)
+    room_bars = ax1.barh(y - bar_h / 2, room, height=bar_h, color=COLORS["room"], zorder=3, label="Room kind")
+    opening_bars = ax1.barh(y + bar_h / 2, opening, height=bar_h, color=COLORS["opening"], zorder=3, label="Opening wall")
 
     for ax in (ax0, ax1):
         ax.set_yticks(y, labels)
         ax.invert_yaxis()
+        ax.margins(y=0.20)
         ax.grid(axis="x", color=COLORS["grid"], linewidth=0.8, zorder=0)
         ax.set_axisbelow(True)
         ax.spines["top"].set_visible(False)
         ax.spines["right"].set_visible(False)
+        ax.spines["left"].set_color("#6B7280")
+        ax.spines["bottom"].set_color("#6B7280")
 
-    ax0.set_xlim(0, 0.90)
-    ax1.set_xlim(0, 1.12)
+    ax0.set_xlim(0, 0.94)
+    ax1.set_xlim(0, 1.18)
     ax0.set_xlabel("Mean score")
     ax1.set_xlabel("Match rate")
-    ax0.set_title("Performance fidelity\n(blue: structural, orange: CFD)", pad=10)
-    ax1.set_title("Topology / opening agreement\n(green: room-kind, red: opening-wall)", pad=10)
-
-    for i, (s, c) in enumerate(zip(structural, cfd)):
-        ax0.text(s + 0.010, i - bar_h / 2, f"{s:.3f}", va="center", ha="left", color=COLORS["structural"], fontsize=9.2, fontweight="medium")
-        ax0.text(c + 0.010, i + bar_h / 2, f"{c:.3f}", va="center", ha="left", color=COLORS["cfd"], fontsize=9.2, fontweight="medium")
-
-    for i, (r, o) in enumerate(zip(room, opening)):
-        ax1.text(r + 0.015, i - bar_h / 2, f"{r * 100:.0f}%", va="center", ha="left", color=COLORS["room"], fontsize=9.2, fontweight="medium")
-        ax1.text(max(o - 0.020, 0.06), i + bar_h / 2, f"{o * 100:.0f}%", va="center", ha="right", color="white", fontsize=9.2, fontweight="bold")
-
-    fig.suptitle(
-        "Figure 5. Aggregate performance across input views (frozen-20 benchmark, 100 tasks)",
-        x=0.5,
-        y=0.955,
-        fontsize=11.6,
-        fontweight="bold",
+    ax0.set_title("Score metrics", pad=18)
+    ax1.set_title("Agreement rates", pad=18)
+    ax0.legend(
+        loc="lower center",
+        bbox_to_anchor=(0.5, 1.01),
+        ncol=2,
+        frameon=False,
+        fontsize=9.4,
+        handlelength=1.5,
+        columnspacing=1.0,
+        borderaxespad=0.0,
     )
+    ax1.legend(
+        loc="lower center",
+        bbox_to_anchor=(0.5, 1.01),
+        ncol=2,
+        frameon=False,
+        fontsize=9.4,
+        handlelength=1.5,
+        columnspacing=1.0,
+        borderaxespad=0.0,
+    )
+    add_panel_label(ax0, "(a)")
+    add_panel_label(ax1, "(b)")
 
-    fig.subplots_adjust(left=0.21, right=0.985, top=0.78, bottom=0.12, wspace=0.34)
+    fig.subplots_adjust(left=0.15, right=0.985, top=0.82, bottom=0.16, wspace=0.38)
     OUT_DIR.mkdir(parents=True, exist_ok=True)
-    fig.savefig(PDF_OUT, bbox_inches="tight")
-    fig.savefig(PNG_OUT, dpi=300, bbox_inches="tight")
+    fig.savefig(PDF_OUT, pad_inches=0.02)
+    fig.savefig(PNG_OUT, dpi=600, pad_inches=0.02)
+
+    meta = {
+        "source_artifact": str(AGG_PATH),
+        "setting": payload.get("setting"),
+        "font_family_requested": FONT_CANDIDATES,
+        "font_family_selected": selected_font,
+        "intended_width": "double-column",
+        "panel_layout": "1x2",
+        "subfigure_labels": ["(a)", "(b)"],
+        "png_dpi": 600,
+        "pdf_vector": True,
+        "internal_caption_text": False,
+    }
+    META_OUT.write_text(json.dumps(meta, indent=2), encoding="utf-8")
+
+    print(f"Selected font: {selected_font}")
     print(f"Wrote {PDF_OUT}")
     print(f"Wrote {PNG_OUT}")
+    print(f"Wrote {META_OUT}")
 
 
 if __name__ == "__main__":

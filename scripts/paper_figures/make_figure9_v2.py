@@ -32,9 +32,9 @@ from matplotlib.patches import FancyBboxPatch, Patch, Rectangle
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 EVAL_ROOT = PROJECT_ROOT / "benchmark" / "evaluations_posthoc_scaled_longest_span"
-OUT_DIR = PROJECT_ROOT / "results" / "paper_figures"
-PDF_OUT = OUT_DIR / "figure9_obstacle_hallucination_limited_cfd_penalty.pdf"
-PNG_OUT = OUT_DIR / "figure9_obstacle_hallucination_limited_cfd_penalty.png"
+OUT_DIR = PROJECT_ROOT / "results" / "paper_figures_phase2"
+PDF_OUT = OUT_DIR / "fig_discuss_obstacle_hallucination.pdf"
+PNG_OUT = OUT_DIR / "fig_discuss_obstacle_hallucination.png"
 
 FONT_CANDIDATES = ["Arial", "Liberation Sans", "DejaVu Sans"]
 
@@ -349,9 +349,8 @@ def main() -> None:
                 room_extent(room_blocks(pred_scene)),
             )
         )
-        cfd_score = float(
-            summary["cfd_summary"]["aggregate_score"]["cfd_score"]
-        )
+        agg_score = summary["cfd_summary"]["aggregate_score"]
+        cfd_score = float(agg_score.get("cfd_agreement_score", agg_score.get("cfd_score", 0.0)))
 
         # Extra padding for row 2 (A3-03) to avoid E/S crowding
         pad = 0.18 if row == 1 else 0.09

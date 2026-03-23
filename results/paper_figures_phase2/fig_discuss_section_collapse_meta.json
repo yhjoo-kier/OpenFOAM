@@ -1,0 +1,41 @@
+{
+  "source_artifacts": {
+    "scaled_manifest": "/home/yhjoo/projects/OpenFOAM/benchmark/manifests/evaluation_aggregate_summary_phase2.json",
+    "task_summaries": [
+      "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_04/section/evaluation_summary.json",
+      "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_05/section/evaluation_summary.json"
+    ],
+    "reference_scenes": [
+      "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_04/section/reference_scene.json",
+      "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_05/section/reference_scene.json"
+    ],
+    "predicted_scenes": [
+      "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a3_04/section/predicted_scene.json",
+      "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_05/section/predicted_scene.json"
+    ]
+  },
+  "font_family_requested": [
+    "Arial",
+    "Liberation Sans",
+    "DejaVu Sans"
+  ],
+  "font_family_selected": "DejaVu Sans",
+  "intended_width": "double-column",
+  "panel_layout": "2x2",
+  "subfigure_labels": [
+    "(a)",
+    "(b)",
+    "(c)",
+    "(d)"
+  ],
+  "png_dpi": 600,
+  "pdf_vector": true,
+  "internal_caption_text": false,
+  "notes": {
+    "metric_setting": "posthoc_scaled_longest_span",
+    "cases_locked": [
+      "bench_a3_04/section",
+      "bench_a4_05/section"
+    ]
+  }
+}

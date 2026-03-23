@@ -55,8 +55,8 @@ COLORS = {
     "room_edge": "#334155",
     "ref_obstacle_fill": "#D2D8E1",
     "ref_obstacle_edge": "#667085",
-    "matched_fill": "#F5E6CC",
-    "matched_edge": "#8B5A1F",
+    "matched_fill": "#F2E4C8",
+    "matched_edge": "#6B3F14",
     "extra_fill": "#C45A20",
     "extra_edge": "#7C2D12",
     "gt_outline": "#7C3AED",
@@ -212,22 +212,24 @@ def draw_panel(
         extras = find_extra_obstacles(scene, ref_scene) if ref_scene else set()
 
         # GT obstacle outlines (from reference)
+        gt_boxes: list[tuple[float, float, float, float]] = []
         if ref_scene:
             for o in ref_scene.get("obstacles", []):
                 x0 = float(o["min"]["x"])
                 y0 = float(o["min"]["y"])
                 dx = float(o["size"]["dx"])
                 dy = float(o["size"]["dy"])
+                gt_boxes.append((x0, y0, dx, dy))
                 p = Rectangle(
                     (x0, y0), dx, dy,
-                    facecolor=(0.93, 0.88, 1.0, 0.12),
+                    facecolor=(0.93, 0.88, 1.0, 0.10),
                     edgecolor=COLORS["gt_outline"],
-                    linewidth=3.0,
-                    linestyle=(0, (5.5, 2.0)),
+                    linewidth=3.2,
+                    linestyle=(0, (6.0, 2.2)),
                     zorder=7,
                 )
                 p.set_path_effects(
-                    [pe.Stroke(linewidth=4.5, foreground="white"), pe.Normal()]
+                    [pe.Stroke(linewidth=4.8, foreground="white"), pe.Normal()]
                 )
                 ax.add_patch(p)
 
@@ -243,9 +245,9 @@ def draw_panel(
                     (x0, y0), dx, dy,
                     facecolor=COLORS["extra_fill"] if is_extra else COLORS["matched_fill"],
                     edgecolor=COLORS["extra_edge"] if is_extra else COLORS["matched_edge"],
-                    linewidth=2.4 if is_extra else 1.4,
-                    alpha=0.92 if is_extra else 0.45,
-                    hatch="xx" if is_extra else None,
+                    linewidth=2.6 if is_extra else 2.0,
+                    alpha=0.96 if is_extra else 0.90,
+                    hatch="xx" if is_extra else "..",
                     zorder=5 if is_extra else 4,
                 )
             )
@@ -256,7 +258,29 @@ def draw_panel(
         u = float(op["center"]["u"])
         du = float(op["size"]["du"])
         color = COLORS["inlet"] if op["type"] == "inlet" else COLORS["outlet"]
-        draw_opening(ax, wall, u, du, x_max, y_max, color, lw=6.5)
+        draw_opening(ax, wall, u, du, x_max, y_max, color, lw=7.8)
+
+    # Minimal local GT cue to reduce legend dependence.
+    if style == "prediction" and ref_scene:
+        gt_obs = list(ref_scene.get("obstacles", []))
+        if gt_obs:
+            anchor = gt_obs[0]
+            gx = float(anchor["min"]["x"]) + float(anchor["size"]["dx"]) / 2
+            gy = float(anchor["min"]["y"]) + float(anchor["size"]["dy"]) + 0.30
+            gt_text = ax.text(
+                gx,
+                gy,
+                "GT",
+                fontsize=11.5,
+                fontweight="bold",
+                color=COLORS["gt_outline"],
+                ha="center",
+                va="bottom",
+                zorder=13,
+            )
+            gt_text.set_path_effects(
+                [pe.Stroke(linewidth=3.5, foreground="white"), pe.Normal()]
+            )
 
     # Panel styling — generous padding
     pad = 0.07
@@ -296,50 +320,72 @@ def draw_summary_box(
         sp.set_linewidth(1.1)
         sp.set_color(COLORS["summary_edge"])
 
-    # Case label (left edge)
+    # Case label in a separate top band
     ax.text(
-        0.03, 0.50, label, fontsize=16.5, fontweight="bold",
-        color=COLORS["subtitle"], va="center", rotation=90,
+        0.04, 0.88, label, fontsize=16.5, fontweight="bold",
+        color=COLORS["subtitle"], va="center", ha="left",
     )
 
-    # Three metric blocks evenly spaced
-    col_xs = [0.18, 0.50, 0.82]
+    # Three metric blocks with more breathing room
+    col_xs = [0.19, 0.50, 0.82]
+    header_y = 0.73
+    value_y = 0.36
 
     # Obstacle count
     ax.text(
-        col_xs[0], 0.76, "obstacles", fontsize=12.0, fontweight="bold",
+        col_xs[0], header_y, "obs. count", fontsize=12.6, fontweight="bold",
         color=COLORS["subtitle"], va="center", ha="center",
     )
     ax.text(
-        col_xs[0], 0.34, f"{obstacle_gt} \u2192 {obstacle_pred}",
-        fontsize=18.5, fontweight="bold", color=COLORS["extra_edge"],
+        col_xs[0], value_y, f"{obstacle_gt} \u2192 {obstacle_pred}",
+        fontsize=22.0, fontweight="bold", color=COLORS["extra_edge"],
         va="center", ha="center",
     )
 
     # Opening topology
-    topo_value = topology_note.replace(" / ", "/").replace(" preserved", "\npreserved")
+    topo_value = topology_note.replace(" / ", "/").replace(" preserved", "\nmatch")
     ax.text(
-        col_xs[1], 0.76, "openings", fontsize=12.0, fontweight="bold",
+        col_xs[1], header_y, "opening walls", fontsize=12.6, fontweight="bold",
         color=COLORS["subtitle"], va="center", ha="center",
     )
     ax.text(
-        col_xs[1], 0.34, topo_value,
-        fontsize=13.0, fontweight="bold", color=COLORS["ok_green"],
-        va="center", ha="center", linespacing=1.0,
+        col_xs[1], value_y, topo_value,
+        fontsize=15.5, fontweight="bold", color=COLORS["ok_green"],
+        va="center", ha="center", linespacing=0.95,
     )
 
-    # CFD cue with explicit interpretation
+    # CFD cue: more visual, less sentence-like
     ax.text(
-        col_xs[2], 0.76, "CFD response", fontsize=12.0, fontweight="bold",
+        col_xs[2], header_y, "CFD penalty", fontsize=12.6, fontweight="bold",
         color=COLORS["subtitle"], va="center", ha="center",
     )
     ax.text(
-        col_xs[2], 0.38, "moderate", fontsize=16.5, fontweight="bold",
+        col_xs[2], 0.54, "limited", fontsize=20.8, fontweight="bold",
         color=COLORS["subtitle"], va="center", ha="center",
     )
+    bar_w = 0.22
+    bar_h = 0.060
+    bar_x = col_xs[2] - bar_w / 2
+    bar_y = 0.25
+    ax.add_patch(
+        Rectangle(
+            (bar_x, bar_y), bar_w, bar_h,
+            facecolor="#E2E8F0", edgecolor=COLORS["summary_edge"],
+            linewidth=1.0, zorder=2,
+        )
+    )
+    fill_w = bar_w * max(0.0, min(1.0, cfd_score))
+    ax.add_patch(
+        Rectangle(
+            (bar_x, bar_y), fill_w, bar_h,
+            facecolor="#475569", edgecolor="none", zorder=3,
+        )
+    )
+    tick_x = bar_x + fill_w
+    ax.plot([tick_x, tick_x], [bar_y - 0.025, bar_y + bar_h + 0.025], color="#0F172A", lw=1.3, zorder=4)
     ax.text(
-        col_xs[2], 0.15, f"score {cfd_score:.2f}",
-        fontsize=11.2, color=COLORS["subtitle"], va="center", ha="center",
+        col_xs[2], 0.11, f"{cfd_score:.2f}",
+        fontsize=13.8, fontweight="bold", color=COLORS["subtitle"], va="center", ha="center",
     )
 
 
@@ -358,7 +404,7 @@ def main() -> None:
         "ps.fonttype": 42,
     })
 
-    fig = plt.figure(figsize=(11.6, 9.3), constrained_layout=False)
+    fig = plt.figure(figsize=(12.2, 9.4), constrained_layout=False)
 
     # --- Main 2x2 geometry grid ---
     gs_main = fig.add_gridspec(
@@ -403,7 +449,7 @@ def main() -> None:
         ax_ref = fig.add_subplot(gs_main[row, 0])
         draw_panel(
             ax_ref, ref_scene,
-            title=f"{panel_labels[row * 2]}  {cfg['label']}",
+            title=f"{panel_labels[row * 2]}",
             panel_extent=pe_val,
             style="reference",
         )
@@ -412,7 +458,7 @@ def main() -> None:
         ax_pred = fig.add_subplot(gs_main[row, 1])
         draw_panel(
             ax_pred, pred_scene,
-            title=f"{panel_labels[row * 2 + 1]}  {cfg['label']}",
+            title=f"{panel_labels[row * 2 + 1]}",
             panel_extent=pe_val,
             ref_scene=ref_scene,
             style="prediction",
@@ -421,7 +467,7 @@ def main() -> None:
     # --- Bottom summary strip ---
     gs_summary = fig.add_gridspec(
         1, 2,
-        left=0.05, right=0.95, top=0.275, bottom=0.125,
+        left=0.05, right=0.95, top=0.305, bottom=0.110,
         wspace=0.14,
     )
 
@@ -446,18 +492,12 @@ def main() -> None:
         Patch(
             facecolor=COLORS["matched_fill"],
             edgecolor=COLORS["matched_edge"],
-            label="matched pred.",
+            hatch="..", label="matched pred.",
         ),
         Patch(
             facecolor=COLORS["extra_fill"],
             edgecolor=COLORS["extra_edge"],
             hatch="xx", label="extra pred. (hallucinated)",
-        ),
-        Rectangle(
-            (0, 0), 1, 1,
-            facecolor="none", edgecolor=COLORS["gt_outline"],
-            linewidth=3.0, linestyle=(0, (8, 3)),
-            label="GT obstacle outline",
         ),
         Line2D([0], [0], color=COLORS["inlet"], lw=5.5, label="inlet"),
         Line2D([0], [0], color=COLORS["outlet"], lw=5.5, label="outlet"),
@@ -466,13 +506,13 @@ def main() -> None:
         handles=legend_handles,
         loc="lower center",
         ncol=3,
-        bbox_to_anchor=(0.50, 0.020),
+        bbox_to_anchor=(0.50, 0.018),
         frameon=False,
-        fontsize=13.8,
-        handlelength=3.2,
-        handletextpad=1.0,
-        columnspacing=2.1,
-        borderaxespad=0.8,
+        fontsize=14.8,
+        handlelength=3.5,
+        handletextpad=1.1,
+        columnspacing=2.4,
+        borderaxespad=0.9,
     )
 
     OUT_DIR.mkdir(parents=True, exist_ok=True)

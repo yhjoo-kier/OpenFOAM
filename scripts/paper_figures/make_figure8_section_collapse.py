@@ -5,17 +5,23 @@ import json
 from pathlib import Path
 from typing import Any
 
+import matplotlib.font_manager as fm
 import matplotlib.pyplot as plt
 from matplotlib.patches import Rectangle
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
-OUT_DIR = PROJECT_ROOT / "results/paper_figures"
-PDF_OUT = OUT_DIR / "figure8_section_view_composite_collapse.pdf"
-PNG_OUT = OUT_DIR / "figure8_section_view_composite_collapse.png"
+OUT_DIR = PROJECT_ROOT / "results/paper_figures_phase2"
+PDF_OUT = OUT_DIR / "fig_discuss_section_collapse.pdf"
+PNG_OUT = OUT_DIR / "fig_discuss_section_collapse.png"
+META_OUT = OUT_DIR / "fig_discuss_section_collapse_meta.json"
+AGG_PATH = PROJECT_ROOT / "benchmark/manifests/evaluation_aggregate_summary_phase2.json"
+
+FONT_CANDIDATES = ["Arial", "Liberation Sans", "DejaVu Sans"]
 
 CASES = [
     {
         "case": "bench_a3_04",
+        "view": "section",
         "row_title": "A3-04 sparse composite",
         "summary": PROJECT_ROOT / "benchmark/evaluations/bench_a3_04/section/evaluation_summary.json",
         "reference": PROJECT_ROOT / "benchmark/evaluations/bench_a3_04/section/reference_scene.json",
@@ -23,6 +29,7 @@ CASES = [
     },
     {
         "case": "bench_a4_05",
+        "view": "section",
         "row_title": "A4-05 dense composite",
         "summary": PROJECT_ROOT / "benchmark/evaluations/bench_a4_05/section/evaluation_summary.json",
         "reference": PROJECT_ROOT / "benchmark/evaluations/bench_a4_05/section/reference_scene.json",
@@ -38,22 +45,40 @@ COLORS = {
     "inlet": "#2C7FB8",
     "outlet": "#CB3A31",
     "reference_overlay": "#C0392B",
-    "missing_fill": "#FDECEC",
     "title": "#111827",
     "subtitle": "#334155",
     "metric_box": "#F8FAFC",
     "grid": "#E5E7EB",
+    "panel": "#34495E",
 }
+
+
+def pick_font() -> str:
+    available = {f.name for f in fm.fontManager.ttflist}
+    for candidate in FONT_CANDIDATES:
+        if candidate in available:
+            return candidate
+    return "sans-serif"
 
 
 def load_json(path: Path) -> Any:
     return json.loads(path.read_text(encoding="utf-8"))
 
 
+def build_scaled_metric_lookup() -> dict[tuple[str, str], dict[str, float]]:
+    payload = load_json(AGG_PATH)
+    lookup: dict[tuple[str, str], dict[str, float]] = {}
+    for entry in payload["derived_tags"]["task_examples"]["section_room_kind_collapse"]:
+        lookup[(entry["case"], entry["view"])] = {
+            "structural_score": float(entry["structural_score"]),
+            "cfd_score": float(entry["cfd_score"]),
+        }
+    return lookup
+
+
 def room_blocks(scene: dict[str, Any]) -> list[dict[str, float]]:
     room = scene["room"]
     if "blocks" in room:
-        blocks = room["blocks"]
         return [
             {
                 "x": float(block["origin"]["x"]),
@@ -61,7 +86,7 @@ def room_blocks(scene: dict[str, Any]) -> list[dict[str, float]]:
                 "dx": float(block["size"]["dx"]),
                 "dy": float(block["size"]["dy"]),
             }
-            for block in blocks
+            for block in room["blocks"]
         ]
     size = room["size"]
     return [{"x": 0.0, "y": 0.0, "dx": float(size["Lx"]), "dy": float(size["Ly"])}]
@@ -73,7 +98,7 @@ def room_extent(blocks: list[dict[str, float]]) -> tuple[float, float]:
     return max_x, max_y
 
 
-def draw_opening(ax: plt.Axes, wall: str, center: dict[str, float], size: dict[str, float], color: str, lw: float = 2.6) -> None:
+def draw_opening(ax: plt.Axes, wall: str, center: dict[str, float], size: dict[str, float], color: str, lw: float = 2.5) -> None:
     if wall in {"north", "south"}:
         x0 = center["u"] - size["du"] / 2.0
         x1 = center["u"] + size["du"] / 2.0
@@ -88,16 +113,40 @@ def draw_opening(ax: plt.Axes, wall: str, center: dict[str, float], size: dict[s
 
 def prepare_opening_geometry(opening: dict[str, Any], x_max: float, y_max: float) -> tuple[str, dict[str, float], dict[str, float]]:
     wall = opening["wall"]
-    center = {"u": float(opening["center"]["u"]), "v": float(opening["center"]["v"]), "wall_x_max": x_max, "wall_y_max": y_max}
+    center = {
+        "u": float(opening["center"]["u"]),
+        "v": float(opening["center"]["v"]),
+        "wall_x_max": x_max,
+        "wall_y_max": y_max,
+    }
     size = {"du": float(opening["size"]["du"]), "dv": float(opening["size"]["dv"])}
     return wall, center, size
 
 
 def add_panel_label(ax: plt.Axes, label: str) -> None:
-    ax.text(-0.12, 1.05, label, transform=ax.transAxes, fontsize=9.8, fontweight="bold", color=COLORS["title"], ha="left", va="bottom")
+    ax.text(
+        -0.12,
+        1.04,
+        label,
+        transform=ax.transAxes,
+        fontsize=10.4,
+        fontweight="bold",
+        color=COLORS["panel"],
+        ha="left",
+        va="bottom",
+    )
 
 
-def draw_scene(ax: plt.Axes, scene: dict[str, Any], *, title: str, overlay_scene: dict[str, Any] | None = None, annotate_collapse: bool = False, metric_text: str | None = None, panel_extent: tuple[float, float] | None = None) -> None:
+def draw_scene(
+    ax: plt.Axes,
+    scene: dict[str, Any],
+    *,
+    title: str,
+    overlay_scene: dict[str, Any] | None = None,
+    collapse_note: str | None = None,
+    metric_text: str | None = None,
+    panel_extent: tuple[float, float] | None = None,
+) -> None:
     blocks = room_blocks(scene)
     x_max, y_max = room_extent(blocks)
     if panel_extent is not None:
@@ -134,8 +183,7 @@ def draw_scene(ax: plt.Axes, scene: dict[str, Any], *, title: str, overlay_scene
         )
 
     if overlay_scene is not None:
-        overlay_blocks = room_blocks(overlay_scene)
-        for block in overlay_blocks:
+        for block in room_blocks(overlay_scene):
             ax.add_patch(
                 Rectangle(
                     (block["x"], block["y"]),
@@ -155,8 +203,8 @@ def draw_scene(ax: plt.Axes, scene: dict[str, Any], *, title: str, overlay_scene
         color = COLORS["inlet"] if opening["type"] == "inlet" else COLORS["outlet"]
         draw_opening(ax, wall, center, size, color=color)
 
-    ax.set_xlim(-0.18 * x_max, x_max * 1.05)
-    ax.set_ylim(-0.10 * y_max, y_max * 1.10)
+    ax.set_xlim(-0.16 * x_max, x_max * 1.04)
+    ax.set_ylim(-0.09 * y_max, y_max * 1.09)
     ax.set_aspect("equal")
     ax.set_facecolor("white")
     ax.grid(True, color=COLORS["grid"], linewidth=0.7, zorder=0)
@@ -165,27 +213,28 @@ def draw_scene(ax: plt.Axes, scene: dict[str, Any], *, title: str, overlay_scene
     ax.spines["right"].set_visible(False)
     ax.set_xlabel("x [m]")
     ax.set_ylabel("y [m]")
-    ax.set_title(title, loc="left", fontsize=9.5, fontweight="bold", color=COLORS["subtitle"], pad=6)
-    ax.tick_params(labelsize=8.0)
+    ax.set_title(title, loc="left", fontsize=9.8, fontweight="bold", color=COLORS["subtitle"], pad=6)
+    ax.tick_params(labelsize=8.4)
 
-    if annotate_collapse:
+    if collapse_note:
         ax.text(
-            0.02,
-            0.98,
-            "section-view prediction\ncomposite → rectangular",
+            0.03,
+            0.97,
+            collapse_note,
             transform=ax.transAxes,
             ha="left",
             va="top",
-            fontsize=8.3,
+            fontsize=8.4,
             color=COLORS["reference_overlay"],
             fontweight="bold",
-            bbox={"boxstyle": "round,pad=0.28", "facecolor": "white", "edgecolor": COLORS["reference_overlay"], "linewidth": 0.9},
+            bbox={"boxstyle": "round,pad=0.26", "facecolor": "white", "edgecolor": COLORS["reference_overlay"], "linewidth": 0.9},
             zorder=10,
         )
+
     if metric_text:
         ax.text(
             0.98,
-            0.08,
+            0.09,
             metric_text,
             transform=ax.transAxes,
             ha="right",
@@ -197,26 +246,26 @@ def draw_scene(ax: plt.Axes, scene: dict[str, Any], *, title: str, overlay_scene
         )
 
 
-def collapse_metric_text(summary: dict[str, Any]) -> str:
+def collapse_metric_text(summary: dict[str, Any], scaled_metrics: dict[str, float]) -> str:
     pred = summary["prediction_summary"]
-    cfd = summary["cfd_summary"]["aggregate_score"]["cfd_score"]
     ref_open = "/".join(w[0].upper() for w in pred["reference_opening_walls"])
     pred_open = "/".join(w[0].upper() for w in pred["predicted_opening_walls"])
     return (
-        f"S = {pred['structural_score']:.3f}\n"
-        f"CFD = {cfd:.3f}\n"
+        f"S = {scaled_metrics['structural_score']:.3f}\n"
+        f"CFD agr. = {scaled_metrics['cfd_score']:.3f}\n"
         f"blocks {pred['reference_room_block_count']} → {pred['predicted_room_block_count']}\n"
         f"openings {ref_open} → {pred_open}"
     )
 
 
 def main() -> None:
+    selected_font = pick_font()
     plt.rcParams.update(
         {
-            "font.family": "DejaVu Sans",
-            "font.size": 9.6,
+            "font.family": selected_font,
+            "font.size": 9.8,
             "axes.titlesize": 9.8,
-            "axes.labelsize": 9.1,
+            "axes.labelsize": 9.2,
             "xtick.labelsize": 8.4,
             "ytick.labelsize": 8.4,
             "pdf.fonttype": 42,
@@ -224,64 +273,78 @@ def main() -> None:
         }
     )
 
-    fig = plt.figure(figsize=(7.30, 5.65), constrained_layout=False)
-    gs = fig.add_gridspec(2, 2, left=0.08, right=0.985, bottom=0.10, top=0.88, wspace=0.18, hspace=0.32)
-
+    scaled_lookup = build_scaled_metric_lookup()
+    fig = plt.figure(figsize=(7.25, 5.20), constrained_layout=False)
+    gs = fig.add_gridspec(2, 2, left=0.08, right=0.985, bottom=0.10, top=0.94, wspace=0.19, hspace=0.40)
     panel_labels = ["(a)", "(b)", "(c)", "(d)"]
 
     for row_idx, case in enumerate(CASES):
         summary = load_json(case["summary"])
         reference_scene = load_json(case["reference"])
         predicted_scene = load_json(case["predicted"])
+        scaled_metrics = scaled_lookup[(case["case"], case["view"])]
+
         ref_extent = room_extent(room_blocks(reference_scene))
         pred_extent = room_extent(room_blocks(predicted_scene))
         panel_extent = (max(ref_extent[0], pred_extent[0]), max(ref_extent[1], pred_extent[1]))
 
         ax_ref = fig.add_subplot(gs[row_idx, 0])
-        draw_scene(
-            ax_ref,
-            reference_scene,
-            title="Reference composite geometry",
-            panel_extent=panel_extent,
+        draw_scene(ax_ref, reference_scene, title="Reference", panel_extent=panel_extent)
+        ax_ref.text(
+            0.0,
+            1.11,
+            case["row_title"],
+            transform=ax_ref.transAxes,
+            ha="left",
+            va="bottom",
+            fontsize=10.0,
+            fontweight="bold",
+            color=COLORS["title"],
         )
-        ax_ref.text(0.0, 1.11, case["row_title"], transform=ax_ref.transAxes, ha="left", va="bottom", fontsize=9.8, fontweight="bold", color=COLORS["title"])
         add_panel_label(ax_ref, panel_labels[row_idx * 2])
 
         ax_pred = fig.add_subplot(gs[row_idx, 1])
         draw_scene(
             ax_pred,
             predicted_scene,
-            title="Prediction from section view",
+            title="Prediction + GT outline",
             overlay_scene=reference_scene,
-            annotate_collapse=True,
-            metric_text=collapse_metric_text(summary),
+            collapse_note="Composite → rectangular",
+            metric_text=collapse_metric_text(summary, scaled_metrics),
             panel_extent=panel_extent,
         )
         add_panel_label(ax_pred, panel_labels[row_idx * 2 + 1])
 
-    fig.suptitle(
-        "Figure 8. Section-view input caused the only composite→rectangular room collapses",
-        x=0.5,
-        y=0.965,
-        fontsize=10.9,
-        fontweight="bold",
-        color=COLORS["title"],
-    )
-    fig.text(
-        0.5,
-        0.925,
-        "Dashed red outlines mark the missing composite arm in the predicted top-view abstraction.",
-        ha="center",
-        va="center",
-        fontsize=8.6,
-        color=COLORS["subtitle"],
-    )
-
     OUT_DIR.mkdir(parents=True, exist_ok=True)
-    fig.savefig(PDF_OUT, bbox_inches="tight")
-    fig.savefig(PNG_OUT, dpi=600, bbox_inches="tight")
+    fig.savefig(PDF_OUT, pad_inches=0.02)
+    fig.savefig(PNG_OUT, dpi=600, pad_inches=0.02)
+
+    meta = {
+        "source_artifacts": {
+            "scaled_manifest": str(AGG_PATH),
+            "task_summaries": [str(case["summary"]) for case in CASES],
+            "reference_scenes": [str(case["reference"]) for case in CASES],
+            "predicted_scenes": [str(case["predicted"]) for case in CASES],
+        },
+        "font_family_requested": FONT_CANDIDATES,
+        "font_family_selected": selected_font,
+        "intended_width": "double-column",
+        "panel_layout": "2x2",
+        "subfigure_labels": panel_labels,
+        "png_dpi": 600,
+        "pdf_vector": True,
+        "internal_caption_text": False,
+        "notes": {
+            "metric_setting": "posthoc_scaled_longest_span",
+            "cases_locked": [f"{case['case']}/{case['view']}" for case in CASES],
+        },
+    }
+    META_OUT.write_text(json.dumps(meta, indent=2), encoding="utf-8")
+
+    print(f"Selected font: {selected_font}")
     print(f"Wrote {PDF_OUT}")
     print(f"Wrote {PNG_OUT}")
+    print(f"Wrote {META_OUT}")
 
 
 if __name__ == "__main__":

@@ -1,0 +1,29 @@
+{
+  "source_artifact": "/home/yhjoo/projects/OpenFOAM/benchmark/manifests/evaluation_aggregate_summary_phase2.json",
+  "setting": "posthoc_uniform_longest_span_v1",
+  "font_family_requested": [
+    "Arial",
+    "Liberation Sans",
+    "DejaVu Sans"
+  ],
+  "font_family_selected": "DejaVu Sans",
+  "intended_width": "double-column",
+  "panel_layout": "1x2",
+  "subfigure_labels": [
+    "(a)",
+    "(b)"
+  ],
+  "png_dpi": 600,
+  "pdf_vector": true,
+  "internal_caption_text": false,
+  "metrics": {
+    "panel_a": [
+      "mean_structural_score",
+      "mean_cfd_score"
+    ],
+    "panel_b": [
+      "room_kind_match_rate",
+      "opening_wall_match_rate"
+    ]
+  }
+}

@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import json
+import subprocess
 from pathlib import Path
 from typing import Any
 
@@ -11,7 +12,8 @@ import pyvista as pv
 from matplotlib.cm import ScalarMappable
 from matplotlib.colors import Normalize
 from matplotlib.lines import Line2D
-from matplotlib.patches import Patch, Rectangle
+from matplotlib.patches import Rectangle
+from matplotlib.ticker import FormatStrFormatter
 import matplotlib.patheffects as pe
 
 pv.OFF_SCREEN = True
@@ -88,7 +90,7 @@ def prepare_opening_geometry(opening: dict[str, Any], x_max: float, y_max: float
     return wall, center, size
 
 
-def draw_opening(ax: plt.Axes, wall: str, center: dict[str, float], size: dict[str, float], color: str, lw: float = 3.1) -> None:
+def draw_opening(ax: plt.Axes, wall: str, center: dict[str, float], size: dict[str, float], color: str, lw: float = 3.3) -> None:
     if wall in {"north", "south"}:
         x0 = center["u"] - size["du"] / 2.0
         x1 = center["u"] + size["du"] / 2.0
@@ -144,8 +146,13 @@ def extract_midplane_slice(scene: dict[str, Any], case_dir: Path) -> tuple[np.nd
     return points[:, 0], points[:, 1], np.asarray(sl["Umag"])
 
 
-def draw_geometry_panel(ax: plt.Axes, predicted_scene: dict[str, Any]) -> None:
-    blocks = room_blocks(predicted_scene)
+def draw_geometry_panel(
+    ax: plt.Axes,
+    scene: dict[str, Any],
+    panel_xlim: tuple[float, float] | None = None,
+    panel_ylim: tuple[float, float] | None = None,
+) -> None:
+    blocks = room_blocks(scene)
     x_max, y_max = room_extent(blocks)
 
     for block in blocks:
@@ -154,14 +161,14 @@ def draw_geometry_panel(ax: plt.Axes, predicted_scene: dict[str, Any]) -> None:
                 (block["x"], block["y"]),
                 block["dx"],
                 block["dy"],
-                facecolor=COLORS["room_fill"],
+                facecolor="#E8EEF5",
                 edgecolor=COLORS["room_edge"],
-                linewidth=1.7,
+                linewidth=2.3,
                 zorder=2,
             )
         )
 
-    for obstacle in predicted_scene.get("obstacles", []):
+    for obstacle in scene.get("obstacles", []):
         ax.add_patch(
             Rectangle(
                 (float(obstacle["min"]["x"]), float(obstacle["min"]["y"])),
@@ -169,18 +176,24 @@ def draw_geometry_panel(ax: plt.Axes, predicted_scene: dict[str, Any]) -> None:
                 float(obstacle["size"]["dy"]),
                 facecolor=COLORS["obstacle_fill"],
                 edgecolor=COLORS["obstacle_edge"],
-                linewidth=1.1,
+                linewidth=1.65,
                 zorder=4,
             )
         )
 
-    for opening in predicted_scene.get("openings", []):
+    for opening in scene.get("openings", []):
         wall, center, size = prepare_opening_geometry(opening, x_max, y_max)
         color = COLORS["inlet"] if opening["type"] == "inlet" else COLORS["outlet"]
         draw_opening(ax, wall, center, size, color=color)
 
-    ax.set_xlim(-0.03 * x_max, x_max * 1.02)
-    ax.set_ylim(-0.03 * y_max, y_max * 1.03)
+    if panel_xlim is None:
+        ax.set_xlim(-0.03 * x_max, x_max * 1.02)
+    else:
+        ax.set_xlim(*panel_xlim)
+    if panel_ylim is None:
+        ax.set_ylim(-0.03 * y_max, y_max * 1.03)
+    else:
+        ax.set_ylim(*panel_ylim)
     ax.set_aspect("equal")
     ax.set_xticks([])
     ax.set_yticks([])
@@ -196,30 +209,38 @@ def draw_cfd_panel(
     scene: dict[str, Any],
     case_dir: Path,
     norm: Normalize,
+    panel_xlim: tuple[float, float] | None = None,
+    panel_ylim: tuple[float, float] | None = None,
 ) -> None:
     x, y, umag = extract_midplane_slice(scene, case_dir)
     tric = ax.tricontourf(x, y, umag, levels=np.linspace(norm.vmin, norm.vmax, 18), cmap="viridis", norm=norm)
-    ax.tricontour(x, y, umag, levels=np.linspace(norm.vmin, norm.vmax, 6), colors="white", linewidths=0.34, alpha=0.22)
+    ax.tricontour(x, y, umag, levels=np.linspace(norm.vmin, norm.vmax, 6), colors="white", linewidths=0.48, alpha=0.28)
 
     for obstacle in scene.get("obstacles", []):
         patch = Rectangle(
             (float(obstacle["min"]["x"]), float(obstacle["min"]["y"])),
             float(obstacle["size"]["dx"]),
             float(obstacle["size"]["dy"]),
-            fill=False,
+            facecolor=COLORS["obstacle_fill"],
             edgecolor="white",
-            linewidth=1.25,
-            linestyle=(0, (3.0, 1.8)),
-            alpha=0.98,
+            linewidth=0.95,
+            linestyle="solid",
+            alpha=0.04,
             zorder=4,
         )
-        patch.set_path_effects([pe.Stroke(linewidth=2.2, foreground="#0F172A", alpha=0.55), pe.Normal()])
+        patch.set_path_effects([pe.Stroke(linewidth=1.45, foreground="#0F172A", alpha=0.34), pe.Normal()])
         ax.add_patch(patch)
 
     blocks = room_blocks(scene)
     x_max, y_max = room_extent(blocks)
-    ax.set_xlim(0.0, x_max)
-    ax.set_ylim(0.0, y_max)
+    if panel_xlim is None:
+        ax.set_xlim(0.0, x_max)
+    else:
+        ax.set_xlim(*panel_xlim)
+    if panel_ylim is None:
+        ax.set_ylim(0.0, y_max)
+    else:
+        ax.set_ylim(*panel_ylim)
     ax.set_aspect("equal")
     ax.set_xticks([])
     ax.set_yticks([])
@@ -229,25 +250,6 @@ def draw_cfd_panel(
         spine.set_edgecolor(COLORS["frame"])
 
     return tric
-
-
-def metric_line(summary: dict[str, Any]) -> str:
-    pred = summary["prediction_summary"]
-    struct = float(pred["structural_score"])
-    cfd = float(summary["cfd_summary"]["aggregate_score"]["cfd_score"])
-    obstacle_f1 = float(pred["obstacle_match"]["f1"])
-    return f"struct. {struct:.3f} · obs. {obstacle_f1:.2f} · CFD {cfd:.3f}"
-
-
-def opening_state(summary: dict[str, Any]) -> str:
-    pred = summary["prediction_summary"]
-    opening_f1 = float(pred["opening_metrics"]["type_f1"])
-    wall_ratio = float(pred["opening_metrics"].get("wall_match_ratio", 0.0))
-    if opening_f1 >= 0.99 and wall_ratio >= 0.99:
-        return "openings kept"
-    if opening_f1 >= 0.66:
-        return "openings shifted"
-    return "openings degraded"
 
 
 def main() -> None:
@@ -291,103 +293,113 @@ def main() -> None:
     vmax = max(float(np.percentile(values, 99.0)) for values in all_umag)
     norm = Normalize(vmin=0.0, vmax=vmax)
 
-    fig = plt.figure(figsize=(7.35, 5.6), constrained_layout=False)
+    fig = plt.figure(figsize=(7.35, 5.56), constrained_layout=False)
     gs = fig.add_gridspec(
-        2,
         3,
-        left=0.06,
-        right=0.925,
-        bottom=0.105,
-        top=0.865,
-        hspace=0.18,
-        wspace=0.05,
-        width_ratios=[1.18, 1.52, 1.52],
+        4,
+        left=0.053,
+        right=0.983,
+        bottom=0.116,
+        top=0.895,
+        hspace=0.115,
+        wspace=0.036,
+        height_ratios=[1.0, 1.0, 0.22],
+        width_ratios=[1.28, 1.28, 1.08, 1.08],
     )
 
-    fig.text(0.205, 0.905, "predicted geometry", ha="center", va="center", fontsize=11.8, fontweight="bold", color=COLORS["title"])
-    fig.text(0.535, 0.905, "reference CFD", ha="center", va="center", fontsize=11.8, fontweight="bold", color=COLORS["title"])
-    fig.text(0.80, 0.905, "predicted CFD", ha="center", va="center", fontsize=11.8, fontweight="bold", color=COLORS["title"])
-    fig.text(0.5, 0.948, "dense composite: strong structure, weaker flow fidelity", ha="center", va="center", fontsize=11.0, fontweight="semibold", color=COLORS["subtitle"])
+    col_centers: list[float] = []
+    row_meta: list[tuple[float, float, str]] = []
 
-    legend_handles = [
-        Patch(facecolor=COLORS["obstacle_fill"], edgecolor=COLORS["obstacle_edge"], label="obstacle"),
-        Line2D([0], [0], color=COLORS["inlet"], lw=3.0, label="inlet"),
-        Line2D([0], [0], color=COLORS["outlet"], lw=3.0, label="outlet"),
-        Line2D([0], [0], color="white", lw=1.3, linestyle=(0, (3.0, 1.8)), label="pred. obstacle"),
-    ]
-
-    first_geo_ax = None
     for row_idx, row in enumerate(rows):
-        summary = row["summary"]
         predicted_scene = row["predicted_scene"]
         reference_scene = row["reference_scene"]
 
-        ax_geo = fig.add_subplot(gs[row_idx, 0])
-        if first_geo_ax is None:
-            first_geo_ax = ax_geo
-        draw_geometry_panel(ax_geo, predicted_scene)
+        pred_blocks = room_blocks(predicted_scene)
+        ref_blocks = room_blocks(reference_scene)
+        pred_x_max, pred_y_max = room_extent(pred_blocks)
+        ref_x_max, ref_y_max = room_extent(ref_blocks)
+        row_x_max = max(pred_x_max, ref_x_max)
+        row_y_max = max(pred_y_max, ref_y_max)
+        geometry_xlim = (-0.03 * row_x_max, row_x_max * 1.02)
+        geometry_ylim = (-0.03 * row_y_max, row_y_max * 1.03)
+        cfd_xlim = (0.0, row_x_max)
+        cfd_ylim = (0.0, row_y_max)
 
-        ax_ref = fig.add_subplot(gs[row_idx, 1])
-        draw_cfd_panel(ax_ref, reference_scene, row["ref_case_dir"], norm)
-
-        ax_pred = fig.add_subplot(gs[row_idx, 2])
-        draw_cfd_panel(ax_pred, predicted_scene, row["pred_case_dir"], norm)
-
-        geo_pos = ax_geo.get_position()
-        row_y = max(ax_geo.get_position().y1, ax_ref.get_position().y1) + 0.006
-        fig.text(
-            geo_pos.x0,
-            row_y,
-            row["cfg"]["row_label"],
-            ha="left",
-            va="bottom",
-            fontsize=11.7,
-            fontweight="bold",
-            color=COLORS["title"],
-        )
-        fig.text(
-            geo_pos.x0 + 0.16,
-            row_y,
-            f"{metric_line(summary)} · {opening_state(summary)}",
-            ha="left",
-            va="bottom",
-            fontsize=9.9,
-            fontweight="semibold",
-            color=COLORS["subtitle"],
+        ax_ref_geo = fig.add_subplot(gs[row_idx, 0])
+        draw_geometry_panel(
+            ax_ref_geo,
+            reference_scene,
+            panel_xlim=geometry_xlim,
+            panel_ylim=geometry_ylim,
         )
 
-    if first_geo_ax is not None:
-        first_geo_ax.legend(
-            handles=legend_handles,
-            loc="upper left",
-            bbox_to_anchor=(0.01, 0.995),
-            ncol=2,
-            frameon=True,
-            framealpha=0.94,
-            facecolor="white",
-            edgecolor=COLORS["metric_edge"],
-            handlelength=1.8,
-            columnspacing=0.9,
-            fontsize=8.2,
-            borderpad=0.35,
-            labelspacing=0.4,
+        ax_pred_geo = fig.add_subplot(gs[row_idx, 1])
+        draw_geometry_panel(
+            ax_pred_geo,
+            predicted_scene,
+            panel_xlim=geometry_xlim,
+            panel_ylim=geometry_ylim,
         )
 
-    cax = fig.add_axes([0.935, 0.18, 0.018, 0.59])
+        ax_ref = fig.add_subplot(gs[row_idx, 2])
+        draw_cfd_panel(ax_ref, reference_scene, row["ref_case_dir"], norm, panel_xlim=cfd_xlim, panel_ylim=cfd_ylim)
+
+        ax_pred = fig.add_subplot(gs[row_idx, 3])
+        draw_cfd_panel(ax_pred, predicted_scene, row["pred_case_dir"], norm, panel_xlim=cfd_xlim, panel_ylim=cfd_ylim)
+
+        if row_idx == 0:
+            for ax in (ax_ref_geo, ax_pred_geo, ax_ref, ax_pred):
+                bbox = ax.get_position()
+                col_centers.append(0.5 * (bbox.x0 + bbox.x1))
+
+        row_bbox = ax_ref_geo.get_position()
+        row_meta.append((row_bbox.x0, row_bbox.y1, row["cfg"]["row_label"]))
+
+    for x, header in zip(col_centers, ["ref. geometry", "pred. geometry", "reference |U|", "predicted |U|"]):
+        fig.text(x, 0.900, header, ha="center", va="bottom", fontsize=10.9, fontweight="semibold", color=COLORS["title"])
+
+    for x0, y1, label in row_meta:
+        fig.text(x0, y1 + 0.0042, label, ha="left", va="bottom", fontsize=10.2, fontweight="bold", color=COLORS["title"])
+
+    cax = fig.add_subplot(gs[2, 2:])
     sm = ScalarMappable(norm=norm, cmap="viridis")
     sm.set_array([])
-    cbar = fig.colorbar(sm, cax=cax, orientation="vertical")
-    cbar.set_label("shared |U| [m/s]", fontsize=9.8)
-    ticks = np.linspace(norm.vmin, norm.vmax, 4)
+    cbar = fig.colorbar(sm, cax=cax, orientation="horizontal")
+    cbar.set_label("shared |U| [m/s]", fontsize=11.9, labelpad=3.6)
+    if norm.vmax <= 0.03:
+        ticks = np.linspace(norm.vmin, norm.vmax, 3)
+        tick_fmt = "%.3f"
+    elif norm.vmax <= 0.12:
+        ticks = np.linspace(norm.vmin, norm.vmax, 4)
+        tick_fmt = "%.2f"
+    else:
+        ticks = np.linspace(norm.vmin, norm.vmax, 4)
+        tick_fmt = "%.1f"
     cbar.set_ticks(ticks)
-    cbar.ax.set_yticklabels([f"{tick:.3f}" for tick in ticks])
-    cbar.ax.tick_params(labelsize=8.6, length=2.5)
+    cbar.ax.xaxis.set_major_formatter(FormatStrFormatter(tick_fmt))
+    cbar.ax.tick_params(labelsize=11.1, length=2.8, pad=2.5)
+    ticklabels = cbar.ax.get_xticklabels()
+    if len(ticklabels) >= 2:
+        ticklabels[0].set_ha("left")
+        ticklabels[-1].set_ha("right")
+    cbar.outline.set_linewidth(0.5)
 
     OUT_DIR.mkdir(parents=True, exist_ok=True)
     fig.savefig(PDF_OUT)
     fig.savefig(PNG_OUT, dpi=600)
+    subprocess.run(
+        [
+            "pdftoppm",
+            "-png",
+            "-singlefile",
+            str(PDF_OUT),
+            str(PDF_RENDER_OUT.with_suffix("")),
+        ],
+        check=True,
+    )
     print(f"Wrote {PDF_OUT}")
     print(f"Wrote {PNG_OUT}")
+    print(f"Wrote {PDF_RENDER_OUT}")
 
 
 if __name__ == "__main__":
