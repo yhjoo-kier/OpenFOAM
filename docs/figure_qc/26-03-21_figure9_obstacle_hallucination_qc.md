@@ -37,11 +37,12 @@ Rationale:
 
 ## Current outputs
 
-- script: `/home/yhjoo/projects/OpenFOAM/scripts/paper_figures/make_figure9_obstacle_hallucination.py`
+- legacy script: `/home/yhjoo/projects/OpenFOAM/scripts/paper_figures/make_figure9_obstacle_hallucination.py`
+- current v2 script: `/home/yhjoo/projects/OpenFOAM/scripts/paper_figures/make_figure9_v2.py`
 - PDF: `/home/yhjoo/projects/OpenFOAM/results/paper_figures/figure9_obstacle_hallucination_limited_cfd_penalty.pdf`
 - PNG: `/home/yhjoo/projects/OpenFOAM/results/paper_figures/figure9_obstacle_hallucination_limited_cfd_penalty.png`
 - staged PNG for external QC: `/home/yhjoo/projects/OpenFOAM/docs/figure_qc/assets/figure9_obstacle_hallucination_limited_cfd_penalty.png`
-- Gemini artifact: `/home/yhjoo/projects/OpenFOAM/.omx/artifacts/gemini-fig9-visual-qc-r3-20260321-0112.md`
+- earlier Gemini artifact on legacy branch: `/home/yhjoo/projects/OpenFOAM/.omx/artifacts/gemini-fig9-visual-qc-r3-20260321-0112.md`
 
 ## Revision summary for this turn
 
@@ -600,6 +601,48 @@ For the next Figure 9 iteration:
 
 Until a single rebuilt revision passes self + subagent + Gemini together, Figure 9 remains **incomplete**.
 
+## 2026-03-21 10:5x KST v2 candidate handoff (for cron continuation)
+
+A parallel coding-agent exploration produced a new working branch:
+- script: `/home/yhjoo/projects/OpenFOAM/scripts/paper_figures/make_figure9_v2.py`
+- outputs: `/home/yhjoo/projects/OpenFOAM/results/paper_figures/figure9_obstacle_hallucination_limited_cfd_penalty.pdf` and `.png`
+
+### Architectural direction of the v2 branch
+
+- this branch replaces the older cue-lane / evidence-column-heavy attempts with a cleaner **2x2 main comparison + bottom summary-strip** structure,
+- the representative-case lock is unchanged:
+  - `bench_a3_01 / wireframe`
+  - `bench_a3_03 / wireframe`
+- the branch is currently the best manuscript-direction candidate and should be treated as the default Figure 9 working branch for later cron turns unless a better same-rule rebuild clearly supersedes it.
+
+### QC state on the exact current v2 revision
+
+Self visual QC: **PASS**
+- structural simplification is materially better than the earlier cue-lane and detail-heavy branches,
+- the main comparison is more direct and the previous right-side explanation overload is gone,
+- the figure now looks salvageable rather than trapped in the earlier local-polish loop.
+
+Independent subagent QC: **REVISE**
+- `limited` / `0.60` is still not fully self-explanatory without caption help,
+- the lower prediction panel still has borderline cue density at conservative print scale,
+- summary-strip + legend semantics remain somewhat dense.
+
+Multimodal external QC: **FAIL / REVISE**
+- GT cue / legend grammar is not fully closed yet,
+- the `limited CFD penalty` cue still needs clearer on-figure meaning rather than a bare value,
+- conservative print reduction still threatens summary-strip / legend readability.
+
+### Immediate carry-over tasks for cron
+
+1. keep using `make_figure9_v2.py` as the active Figure 9 branch,
+2. do **not** change the representative-case lock unless a same-rule replacement is explicitly documented,
+3. next repair pass should focus only on:
+   - explicit GT cue ↔ legend matching,
+   - meaning-first redesign of the `limited CFD penalty` cue,
+   - larger / cleaner summary-strip and legend typography for print reduction,
+   - local decluttering of the lower prediction panel,
+4. rerun self QC first on the exact rerendered revision, then subagent QC, then multimodal QC.
+
 ## 2026-03-21 08:1x KST split-asset-informed rebalance (tighter prediction crop + shorter cue cards)
 
 A further local repair pass was completed after the split-asset pivot was recorded:
@@ -1024,3 +1067,240 @@ Blocking findings from the newest exact local/image gate:
 2. simplify/enlarge the legend and reduce dependence on subtle hatch/color distinctions for grayscale safety,
 3. either enlarge or simplify the per-case summary grammar so opening preservation and CFD interpretation survive conservative print reduction,
 4. keep Figure 9 **incomplete** and do **not** copy it to Drive until one exact revision passes self + subagent + Gemini together.
+
+## 2026-03-21 10:2x KST follow-up revision (local GT cue + CFD gauge)
+
+A further same-morning repair pass was applied on top of the 2x2 architecture:
+- the prediction panels gained a minimal local `GT` text cue so the dashed GT obstacle no longer depends entirely on the bottom legend,
+- the summary-strip `CFD response` block gained a compact horizontal gauge below `moderate` to make the `limited CFD penalty` cue less text-only,
+- the GT-outline stroke was strengthened slightly and the legend was shortened by removing the separate GT-outline legend item.
+
+### Self visual QC on this exact revision
+
+Verdict: **PASS**
+
+Self-check notes:
+- the row-2 prediction panel reads faster because the GT role is now locally identified,
+- the CFD cue is more visual than the prior text-only strip,
+- panel density remains acceptable on the local screen-scale inspection,
+- no Drive copy or completion marking was attempted because external QC still decides the gate.
+
+### Independent subagent QC on this exact revision
+
+Verdict: **FAIL**
+
+Blocking findings:
+- conservative print readability is still not comfortably closed because the bottom summary strips and bottom legend remain somewhat information-dense,
+- grayscale robustness is still considered borderline because matched prediction vs room background and opening semantics still lean on subtle color/lightness differences,
+- the main message is still judged somewhat legend-dependent rather than fully self-evident from the panels alone,
+- the in-panel titles `(a) A3-01`, `(b) A3-01`, `(c) A3-03`, `(d) A3-03` are now being read as avoidable embedded panel text under the current figure rules.
+
+### Gemini multimodal QC on this exact revision
+
+Verdict: **PASS**
+
+Artifact:
+- `/home/yhjoo/projects/OpenFOAM/.omx/artifacts/gemini-fig9-visual-qc-radical2x2-20260321-102224.md`
+
+Gemini notes (non-blocking):
+- suggested enlarging `score 0.60` slightly relative to `moderate`,
+- did not raise any blocking issue on the current exact revision.
+
+### Current gate state after the local-GT / CFD-gauge revision
+
+- self QC: **PASS**
+- subagent QC: **FAIL**
+- Gemini QC: **PASS**
+
+Figure 9 remains **incomplete**, must **not** be marked done in the checklist, and must **not** be copied to Drive yet.
+
+## 2026-03-21 10:3x KST follow-up revision (panel-title minimization + stronger summary/legend grammar)
+
+A further same-morning cleanup pass was applied to the same 2x2 architecture before any new external QC rerun:
+- panel titles were reduced from `(a) A3-01` / `(b) A3-01` / ... to bare panel labels only, to remove avoidable embedded case text inside the figure area,
+- the bottom summary strip was rewritten to read more directly as `extra obstacles / opening walls / CFD penalty`, with larger values and a stronger `limited` cue,
+- case identifiers (`A3-01`, `A3-03`) were moved into the summary cards instead of the panel titles,
+- matched-prediction encoding was strengthened for grayscale robustness (darker edge, higher opacity, dotted hatch),
+- inlet/outlet markers and legend typography were enlarged again,
+- refreshed exact outputs were written to:
+  - `/home/yhjoo/projects/OpenFOAM/results/paper_figures/figure9_obstacle_hallucination_limited_cfd_penalty.pdf`
+  - `/home/yhjoo/projects/OpenFOAM/results/paper_figures/figure9_obstacle_hallucination_limited_cfd_penalty.png`
+  - staged QC asset: `/home/yhjoo/projects/OpenFOAM/docs/figure_qc/assets/figure9_obstacle_hallucination_limited_cfd_penalty.png`
+
+### Self visual QC on this exact revision
+
+Verdict: **FAIL**
+
+Blocking findings from the strict local/image re-check:
+- the figure is cleaner than the previous exact revision, but the main claim is still not fully self-evident without decoding the bottom summary strip; the `limited CFD penalty` cue still lands too much through text,
+- legend and summary-strip text remain borderline-small for conservative double-column print reduction,
+- grayscale robustness improved, but the symbol grammar is still somewhat dense because matched/ref/extra obstacle roles depend on subtle fill+hatch differences,
+- the local `GT` cue in the prediction panel is still a bit awkward under the current no-caption / minimal-text constraints.
+
+### External QC rerun status on this exact revision
+
+- Independent subagent QC: **NOT RUN** on this revision (withheld because the newest self gate failed)
+- Gemini multimodal QC: **NOT RUN** on this revision (withheld because the newest self gate failed)
+
+### Updated carry-over repair targets after the panel-title minimization revision
+
+1. make the `limited CFD penalty` cue land more visually and less through the summary-strip text alone,
+2. simplify/enlarge the legend and summary-strip grammar further for conservative print reduction,
+3. improve grayscale separation among reference / matched prediction / extra prediction without adding more in-panel explanatory text,
+4. keep Figure 9 **incomplete** and do **not** copy it to Drive until one exact revision passes self + subagent + Gemini together.
+
+## 2026-03-21 10:4x KST latest revision update (summary-strip cleanup + CFD tick-bar pass)
+
+A further same-morning cleanup pass was applied to the current 2x2 architecture:
+- the overall canvas was widened slightly and the summary strip was given a bit more vertical room,
+- the summary cards were reflowed to remove the visible header run-together issue by increasing horizontal separation and shortening the left header to `extra obs.`,
+- the CFD block was simplified from `limited + score 0.60` text into a more visual cue: `limited` + compact horizontal bar + tick mark + bare `0.60`,
+- the exact outputs were regenerated at:
+  - `/home/yhjoo/projects/OpenFOAM/results/paper_figures/figure9_obstacle_hallucination_limited_cfd_penalty.pdf`
+  - `/home/yhjoo/projects/OpenFOAM/results/paper_figures/figure9_obstacle_hallucination_limited_cfd_penalty.png`
+
+### Self visual QC on this exact revision
+
+Verdict: **PASS**
+
+Self-check notes:
+- the prior summary-strip header collision is resolved on the exact current render,
+- the bottom cards read faster and feel less sentence-like than the previous branch,
+- the CFD cue is more visual and slightly less dependent on the literal `score ...` wording,
+- PDF/PNG remain layout-matched on local inspection.
+
+### Independent subagent QC on this exact revision
+
+Verdict: **FAIL**
+
+Blocking findings from the fresh independent rerun:
+- bottom legend readability is still too weak for conservative double-column reduction,
+- grayscale robustness is still not safely closed because reference / matched / extra roles lean too much on color differences,
+- the core message is improved but still not fully self-evident without caption support because `limited CFD penalty` still depends on reading the summary-strip cue,
+- the large values survive, but supporting summary-strip labels and the CFD bar/value remain marginal at print scale.
+
+### Gemini multimodal QC on this exact revision
+
+Verdict: **NOT RUN**
+
+- Gemini was intentionally withheld after the independent rerun came back `FAIL` on the exact same revision,
+- Drive copy remains forbidden.
+
+## 2026-03-21 11:1x KST follow-up revision (script-path alignment + typography / grayscale polish)
+
+A further cleanup pass was applied on the active 2x2 branch:
+- confirmed that the exact current render comes from `/home/yhjoo/projects/OpenFOAM/scripts/paper_figures/make_figure9_obstacle_hallucination.py` (not the older `make_figure9_v2.py` handoff branch),
+- strengthened grayscale separation by making `matched pred.` less background-like and giving it a stronger visible hatch / edge treatment,
+- enlarged the summary-strip headers / values / CFD cue typography,
+- increased summary-strip vertical room and converted the bottom legend to a roomier 2-column layout for safer print reduction,
+- regenerated the exact outputs and refreshed the staged QC PNG at `/home/yhjoo/projects/OpenFOAM/docs/figure_qc/assets/figure9_obstacle_hallucination_limited_cfd_penalty.png`.
+
+### Self visual QC on this exact revision
+
+Verdict: **PASS**
+
+Self-check notes:
+- the current exact revision keeps the cleaner 2x2 architecture,
+- summary-strip text and the bottom legend are more readable than the previous 10:4x branch,
+- matched-vs-extra encoding is slightly safer in grayscale,
+- panel `(d)` remains dense but is still locally readable on the current self gate,
+- PDF/PNG remain layout-matched.
+
+### External QC rerun status on this exact revision
+
+- Independent subagent QC: **NOT CLEARED YET** on this exact revision
+- Gemini multimodal QC: **NOT RUN** on this exact revision
+
+Reason:
+- a strict subagent rerun was started, but the run attempted a disallowed local-image tool path instead of completing a usable verdict for the exact staged asset,
+- therefore this turn does **not** count as an external-QC pass on the new revision.
+
+### Carry-over after this revision
+
+1. rerun independent subagent QC on the staged asset path / exact current revision without the local-image-path tool failure,
+2. rerun Gemini multimodal QC on the same exact revision only after the independent check is recovered,
+3. keep Figure 9 **incomplete** and do **not** copy it to Drive until one exact revision passes self + subagent + Gemini together.
+
+## 2026-03-21 late-morning exact external-QC recovery on the current 2x2 revision
+
+The missing external QC pass on the exact current render was recovered using the staged asset:
+- staged image: `/home/yhjoo/projects/OpenFOAM/docs/figure_qc/assets/figure9_obstacle_hallucination_limited_cfd_penalty.png`
+- active script: `/home/yhjoo/projects/OpenFOAM/scripts/paper_figures/make_figure9_obstacle_hallucination.py`
+
+### Independent subagent QC on this exact revision
+
+Verdict: **FAIL**
+
+Blocking findings:
+- the main claim is still not fully self-evident without caption help because the `limited CFD penalty` part still lands mainly through the bottom summary strip,
+- conservative double-column print readability is still not comfortably closed for the summary-strip and bottom legend,
+- grayscale robustness remains borderline because `ref.` / `matched pred.` / room background separation is still subtle,
+- lower-right prediction panel `(d)` is much improved but still locally crowded around the GT cue / openings / nearby obstacle region.
+
+### Gemini multimodal QC on this exact revision
+
+Verdict: **FAIL**
+
+Blocking findings:
+- the legend is not representation-consistent yet because `matched pred.` in the legend omits the dotted hatch used in the panels,
+- the summary-strip header `extra obs.` is semantically misleading for `0 → 3` and `1 → 3`; these values are total obstacle counts rather than extra-obstacle counts,
+- `matched pred.` remains slightly too light / subtle for grayscale robustness,
+- panel `(d)` `GT` label is still close to the upper room boundary and should gain a bit more clearance.
+
+### Updated carry-over after exact external-QC recovery
+
+1. rename the summary-strip header from `extra obs.` to a count-accurate label such as `obs. count` or `total obstacles`,
+2. make the legend patch for `matched pred.` exactly match the panel encoding (including dotted hatch),
+3. strengthen grayscale separation for `matched pred.` a little further,
+4. make the `limited CFD penalty` cue less dependent on the summary-strip text,
+5. give panel `(d)` GT cue slightly more breathing room,
+6. keep Figure 9 **incomplete** and do **not** copy it to Drive until one exact revision passes self + subagent + Gemini together.
+
+## 2026-03-21 11:3x KST follow-up revision update (representation-match + semantics fix pass)
+
+A narrow repair pass was applied on top of the same 2x2 architecture to close the exact blockers from the prior external FAIL:
+- the left summary-strip header was renamed from `extra obs.` to `obs. count` so `0 → 3` / `1 → 3` are count-accurate,
+- the legend patch for `matched pred.` was made representation-consistent with the in-panel encoding by adding the same dotted hatch,
+- `matched pred.` grayscale visibility was strengthened slightly (darker fill/edge + higher opacity),
+- the panel `(d)` local `GT` cue was raised to create more clearance from the nearby room boundary.
+
+### Self visual QC on this exact revision
+
+Verdict: **PASS**
+
+Self-check notes:
+- the previous semantic mismatch in the left summary header is resolved,
+- legend-vs-panel consistency for `matched pred.` is now closed,
+- the `GT` cue in panel `(d)` has more breathing room than the prior exact revision,
+- PDF/PNG remain layout-matched on local inspection.
+
+### Independent subagent QC on this exact revision
+
+Verdict: **FAIL**
+
+Blocking findings:
+- the main claim is still not fully self-evident without caption help because the `limited CFD penalty` component still depends on reading the summary-strip annotations,
+- conservative double-column print safety is still not comfortably closed for the small summary/legend/CFD-scale text,
+- grayscale robustness remains borderline because multiple obstacle roles still depend on fine pattern decoding,
+- panel `(d)` is improved but remains locally crowded around the GT cue / small matched-prediction patch / nearby opening markers.
+
+### Gemini multimodal QC on this exact revision
+
+Verdict: **FAIL**
+
+Artifact:
+- `/home/yhjoo/projects/OpenFOAM/.omx/artifacts/gemini-fig9-visual-qc-rerun3-20260321-113718.md`
+
+Blocking findings:
+- Gemini still treats the purple `GT` cue as under-explained because it is used in-panel without a matching explicit legend entry,
+- the `GT` label, `0.60` value, and mini CFD bar remain too small for conservative double-column print reduction,
+- the CFD mini-bar still reads as scale-ambiguous,
+- panel `(d)` remains visibly crowded in the small right chamber.
+
+### Updated carry-over after the 11:3x revision
+
+1. either add an explicit legend/key treatment for the purple `GT` cue or simplify/remove the local cue so legend grammar becomes fully closed,
+2. enlarge or simplify the summary-strip / CFD-scale typography again rather than micro-tuning,
+3. make the `limited CFD penalty` meaning more visual and less dependent on tiny text,
+4. continue decluttering panel `(d)` before another external rerun,
+5. keep Figure 9 **incomplete** and do **not** copy it to Drive until one exact revision passes self + subagent + Gemini together.

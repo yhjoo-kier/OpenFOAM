@@ -21,7 +21,8 @@
 - [x] baseline과 post-hoc scaling 비교 시 사용할 evaluation subset 정의
   - smoke subset: `bench_a1_01`, `bench_a2_03`, `bench_a3_03`, `bench_a4_03` × 5 views = 20 tasks
 - [x] characteristic length 정의 1안 고정
-  - 채택: reconstructed room/domain의 **longest horizontal span** = `max(Lx, Ly)`
+  - **최종 채택**: reconstructed room/domain의 **longest horizontal span** = `max(Lx, Ly)`
+  - 사용자 결정(2026-03-20): **uniform single factor 방식**을 메인 방침으로 고정
 - [x] GT characteristic length 추출 경로 확인
   - `reference_scene.json`의 room overall bbox에서 동일 기준으로 추출
 - [x] uniform scaling만 허용하고 topology 변경 금지 원칙 명문화
@@ -78,7 +79,36 @@
   - 다만 task별 mixed result: `10 improved / 9 worsened / 1 unchanged`
   - worst case: `bench_a3_03/birdseye -0.0636`
 - [x] 개선 또는 harmless 여부가 보이면 subset 확대 여부 판단
-  - 결과는 확보했으므로 우선 사용자와 논의 후 full benchmark 확대 여부 결정
+  - 사용자 결정(2026-03-20): **uniform single factor 유지 + full benchmark 확대 진행**
+- [x] full benchmark 전체 task로 post-hoc scaling evaluation 확장 실행
+  - 운영 방식(2026-03-20 업데이트): **턴마다 일부 batch/chunk만 처리하며 누적 집계**
+  - 최종 상태: **100/100 task 완료, 97 success / 3 failed**
+  - post-hoc solver hard-failure 3건: `bench_a3_04/perspective`, `bench_a4_02/perspective`, `bench_a4_02/wireframe`
+- [x] full benchmark no-scale vs post-hoc scaling aggregate 비교표 작성
+  - 비교 산출물:
+    - `benchmark/manifests/evaluation_aggregate_summary_posthoc_scaled_longest_span.json`
+    - `benchmark/manifests/posthoc_scaled_vs_baseline_comparison.json`
+    - `docs/26-03-20_posthoc_scaled_full_aggregate.md`
+    - `docs/26-03-20_posthoc_scaled_full_comparison.md`
+- [x] category/view별 gain/loss 패턴 정리
+  - overall mean CFD: `0.4934 -> 0.4909` (`-0.0025`)
+  - overall mean structural score: `0.7067 -> 0.7813` (`+0.0746`)
+  - view별 CFD delta:
+    - perspective `+0.0123`
+    - birdseye `-0.0135`
+    - floorplan `-0.0386`
+    - wireframe `+0.0227`
+    - section `+0.0032`
+  - category별 CFD delta:
+    - A1 `-0.0115`
+    - A2 `-0.0178`
+    - A3 `-0.0130` (1 fail 포함)
+    - A4 `+0.0314` (2 fail 포함)
+  - task-level CFD delta: `53 improved / 43 worsened / 1 unchanged`, severe worsen (`<= -0.05`) `9 tasks`
+- [x] full benchmark 결과 기준으로 논문 메인 방법 후보성 재판단
+  - 판단: **uniform post-hoc single-factor scaling은 main method로 채택하기 어렵다.**
+  - 이유: `Lx` 정합은 거의 완전 복구되지만(`0.2487 -> 0.0039`), `Ly/Lz`가 동반 왜곡되어 aggregate CFD는 소폭 악화(`-0.0025`)했고, solver failure 3건과 severe loss 9건이 존재함.
+  - 해석: framework-side calibration의 보조 레이어/analysis 결과로는 가치가 있으나, 현재 고정 방침(uniform single factor only) 하에서는 "성능 개선" 주장보다 **"Lx calibration succeeds but CFD is mixed"** 쪽이 더 정직한 메시지임.
 
 ## 5. 해석 / 논문화 포인트 정리
 
@@ -90,7 +120,7 @@
 - [ ] 논문 메인 방법 후보로서의 명분 정리
   - 현재 판단: 보조 calibration layer 후보는 가능하나, full benchmark 확장 전 축 제한/anchor 범위 논의 필요
 - [x] post-hoc scaling layer 성능 비교 결과 확보 시 사용자와 논의 후 다음 단계 결정
-  - smoke subset 결과 확보 완료. 이 cron 종료 후 사용자와 논의 필요.
+  - full benchmark 결과 확보 완료. 사용자에게 짧게 보고 후 이 cron을 비활성화하고 논의 대기.
 
 ---
 

@@ -305,3 +305,351 @@ Decision on this latest rerender:
 - Do **not** copy to Google Drive.
 - External QC was intentionally not advanced on this exact asset because the new rerender did not clear the self-gate.
 - Highest-leverage next fix is likely to move the legend completely outside the data region, compress the per-row metrics into a smaller dedicated strip or footer, and give the colorbar/headers one cleaner typography lane instead of stacking them around the panel grid.
+
+## 15. 2026-03-21 late-night rerender — outside legend + bottom horizontal colorbar
+
+A new declutter pass was applied on the same representative pair and the same scale-calibrated source, still only for Figure 10.
+
+Exact changes on this latest asset:
+- kept the same representative pair (`bench_a4_02/floorplan`, `bench_a4_04/floorplan`) and same scale-calibrated evaluation root
+- moved the legend out of the data region into a dedicated bottom-left lane and moved the shared colorbar to a dedicated bottom horizontal lane under the CFD columns
+- changed the per-row metric line from one long strip to a shorter multi-line block in the left-panel title area to reduce horizontal crowding
+- slightly increased row-title / metric / colorbar tick typography and increased bottom-lane height for print safety
+- retained direct VTK slice rendering with shared `viridis` normalization; Arial-first was requested again, but the host still fell back to `DejaVu Sans`
+
+Exact current self-QC state on this latest rerender:
+- verdict: `FAIL`
+- main blockers on the exact current asset:
+  - top-left header stack still collides with the upper row title area, and the collision shifts slightly between PNG and PDF renderings
+  - bottom legend + horizontal colorbar no longer occlude panel interiors, but the combined bottom lane is still too tight for conservative print and remains visually busy
+  - legend text (`dashed obstacle mask`) and per-row metric text are still borderline small at strict double-column print scale
+  - the structure-vs-CFD message is cleaner than before, but the weaker CFD fidelity is still not sufficiently self-evident without reading the metric text and colorbar carefully
+  - PDF vs PNG still show small typography placement/weight differences, so exact cross-format stability is not fully closed yet
+
+Decision on this latest rerender:
+- Figure 10 remains incomplete.
+- Do **not** mark the checklist complete.
+- Do **not** copy to Google Drive.
+- External multimodal QC was not advanced on this exact asset because it still failed the self-gate.
+- Highest-leverage next fix is now to simplify the top lane (remove or relocate the top-left header entirely), shorten the legend vocabulary, and either demote the metric text into a cleaner side/bottom strip or make the visual CFD mismatch itself more explicit with one stronger cue.
+
+## 16. 2026-03-21 latest rerender — legend-free CFD overlay simplification
+
+A new simplification pass targeted only the exact blockers from section 15 while staying on the same representative pair and same scale-calibrated source.
+
+Exact changes on this latest asset:
+- removed the separate bottom legend lane entirely, so the bottom row is now only a shared horizontal colorbar
+- removed the top-left aggregate header (`A4 dense composite`) to free the top lane for panel content only
+- changed the CFD obstacle cue from dashed white outlines to semi-transparent obstacle-colored overlays with white edges, so the geometry-to-flow correspondence is more intuitive and less legend-dependent
+- kept the direct VTK mid-plane slice rendering and shared `viridis` normalization
+- rewrote the row metadata into a lighter two-line header (`(a) A4-02`, metrics line below) placed above each geometry panel instead of using the old crowded title stack
+- Arial was still requested first, but the host again fell back to `DejaVu Sans` because `Arial` / `Liberation Sans` remain unavailable
+
+Exact current self-QC state on this latest rerender:
+- verdict: `FAIL`
+- main blockers on the exact current asset:
+  - the top lane is materially cleaner, but the per-row metric line is still too small / too long for strict conservative double-column print
+  - the figure is less legend-dependent than before, yet the structure-vs-CFD gap is still not fully self-evident without reading the `CFD` numbers in the row header
+  - semi-transparent obstacle overlays are more intuitive than dashed masks, but they still partially veil the flow field in the predicted panels
+  - overall panel sizing is improved, but publication-grade message hierarchy is not fully closed yet, so this exact asset should not advance to external QC
+
+Decision on this exact latest rerender:
+- Figure 10 remains incomplete.
+- Do **not** mark the checklist complete.
+- Do **not** copy to Google Drive.
+- External multimodal QC was intentionally not advanced because the exact current asset still fails the self-gate.
+- Highest-leverage next fix is now to shorten or relocate the row metrics and to make the CFD mismatch read more directly from the panel bodies rather than from header text.
+
+## 17. 2026-03-21 final afternoon pass — message-first header simplification
+
+A new self-only rerender tested a more message-first hierarchy on the same locked representative pair and same scale-calibrated source.
+
+Exact changes on this newest asset:
+- rewrote the top lane from neutral column names into a direct contrast pair: `high structural match` vs `weaker CFD fidelity`
+- shortened the old long row-metric sentence into two compact badges only (`struct. ...`, `CFD ...`)
+- removed the separate `openings kept` line from the latest exported asset after it proved non-essential and clutter-prone during self review
+- slightly widened the geometry column and reduced CFD obstacle overlay opacity so the predicted flow is less veiled
+- regenerated PNG, PDF, and PDF-render check on the exact same script/output paths
+
+Exact current self-QC state on this newest asset:
+- verdict: `FAIL`
+- main blockers on the exact current asset:
+  - the figure-level message is clearer than the prior legend-free revision, but the row label / badge lane above the geometry panels is still cramped and currently collides with the case-label area
+  - the structure-vs-CFD gap is more legible at first glance, yet it still depends too much on the explicit `CFD` score badges rather than reading decisively enough from the panel bodies alone
+  - PDF and PNG remain broadly consistent, but the remaining top-lane crowding is still too risky for conservative manuscript print
+
+Decision on this newest asset:
+- Figure 10 remains incomplete.
+- Do **not** mark the checklist complete.
+- Do **not** copy to Google Drive.
+- External multimodal QC was intentionally not advanced because the exact newest rerender still fails the self-gate.
+- Highest-leverage next fix is now to redesign the row-identification lane itself (for example, move case identity fully into caption/panel labels and reserve the top-of-row strip only for short score badges), or to switch to a layout where the CFD mismatch reads without any score badges.
+
+## 18. 2026-03-21 late-afternoon simplification pass — neutral headers + left-margin row IDs
+
+A cleaner exact-asset rerender was built by removing the entire message/badge lane and letting the panels carry the contrast more directly.
+
+Exact changes on this newest asset:
+- removed the figure-level `high structural match` / `weaker CFD fidelity` headline and the two row score badges entirely
+- switched to three plain column headers only: `predicted geometry`, `reference |U|`, `predicted |U|`
+- moved row identifiers (`(a) A4-02`, `(b) A4-04`) into the left margin so the top of each row is no longer stacked with badges
+- kept the shared bottom colorbar and verified PNG/PDF consistency by rendering the PDF back to `figure10_dense_composite_structure_vs_cfd_gap_pdf_render.png`
+- reduced predicted-panel obstacle overlay opacity further (`alpha=0.14`) so the CFD field stays more legible
+- exact review copies for Gemini were staged at:
+  - `/home/yhjoo/projects/OpenFOAM/docs/figure_qc/fig10_exact_asset_20260321.png`
+  - `/home/yhjoo/projects/OpenFOAM/docs/figure_qc/fig10_exact_asset_20260321_pdf_render.png`
+
+Exact current QC split on this newest asset:
+- self visual QC: `PASS`
+  - the top lane is materially calmer and no longer competes with the panel bodies
+  - the structure-vs-CFD contrast now reads mainly from the panel stack rather than from score badges
+  - PNG/PDF layout consistency is acceptable on the exact rendered pair, with no new clipping or bottom-lane collisions
+- independent subagent multimodal QC: `NOT RECOVERED`
+  - an in-turn subagent QC attempt was made, but the verdict could not be recovered under the current cron-session visibility limits, so this gate remains open
+- Gemini multimodal QC: `FAIL`
+  - exact artifact: `/home/yhjoo/projects/OpenFOAM/.omx/artifacts/gemini-fig10-visual-qc-exact-20260321-150355.md`
+  - Gemini accepted that the core message is visible and PNG/PDF are consistent, but still flagged two blockers on the exact asset: perceived row-label overlap near the left geometry panels and a row-alignment / panel-size mismatch between `reference |U|` and `predicted |U|`
+
+Decision on this newest asset:
+- Figure 10 remains incomplete.
+- Do **not** mark the checklist complete.
+- Do **not** copy to Google Drive.
+- Next pass should target only the two surviving external concerns: make the left-margin row IDs even less invasive, and verify/normalize the apparent row-wise panel height alignment between the middle and right CFD columns before re-running external QC.
+
+## 19. 2026-03-21 evening exact-asset rerender — row labels moved above panels + shared row extents
+
+A narrow follow-up pass targeted only the two surviving blockers from section 18 on the same locked representative pair and same scale-calibrated source.
+
+Exact changes on this newest asset:
+- moved the row identifiers from the left margin into a small above-panel position over each geometry panel (`(a) A4-02`, `(b) A4-04`) so they no longer visually intrude into the data region
+- unified the row-wise plotting extents across predicted geometry / reference `|U|` / predicted `|U|` by using the same max `(x, y)` room bounds within each row for all three panels
+- reduced the left outer margin and regenerated PNG / PDF / PDF-render check on the exact same output paths
+- font request remained Arial-first, but the host still fell back to `DejaVu Sans`
+
+Exact current QC split on this newest asset:
+- self visual QC: `PASS`
+  - row identifiers are now cleanly separated from the geometry panels
+  - PNG and PDF-render remain visually consistent on the exact exported pair
+  - the previous apparent middle/right panel-size mismatch is materially reduced by forcing shared row extents
+- independent subagent multimodal QC: `FAIL`
+  - exact verdict: row labels no longer interfere and PNG/PDF consistency is good, but the figure still does not make the `structure vs CFD gap` sufficiently self-evident without caption help; the left geometry column still feels underweighted relative to the two CFD panels
+  - session: `agent:main:subagent:30224e04-f13a-44c6-bb30-22b12f4b295f`
+- Gemini multimodal QC: `NO VALID EXACT-ASSET VERDICT YET`
+  - a local Gemini CLI rerun was attempted and artifact was captured at `/home/yhjoo/projects/OpenFOAM/.omx/artifacts/gemini-fig10-visual-qc-exact-20260321-152259.md`
+  - however, the returned critique referenced stale/removed elements (`global legend`, `aggregate metrics`) that are not present in the exact current asset, so this output is not reliable enough to count as the required exact-asset Gemini gate
+
+Decision on this newest asset:
+- Figure 10 remains incomplete.
+- Do **not** mark the checklist complete.
+- Do **not** copy to Google Drive.
+- Highest-leverage next fix is no longer label placement; it is now message strength: make the structure-vs-CFD contrast read more directly from the panel bodies (or rebalance geometry vs CFD visual weight) before re-running both external QC gates.
+
+## 20. 2026-03-21 late-evening exact-asset rerender — geometry reweight + lighter CFD overlays
+
+A narrow, exact-asset rerender targeted the remaining message-strength blockers while preserving the same overall concept and the same locked representative pair.
+
+Exact changes on this newest asset:
+- kept the same representative pair (`bench_a4_02/floorplan`, `bench_a4_04/floorplan`) and the same scale-calibrated evaluation root / manifest
+- increased the geometry column share (`width_ratios=[1.24, 1.34, 1.34]`) so the left structure evidence no longer reads as a visibly minor side lane
+- thickened/darkened the geometry room + obstacle strokes slightly for better print-scale salience
+- reduced predicted-CFD obstacle overlay opacity further (`alpha=0.04`) and softened the halo so flow peaks remain more readable under the obstacle cue
+- enlarged column-header / row-label / colorbar typography slightly and thinned the colorbar outline for cleaner PNG/PDF export
+- regenerated the exact current outputs at the same paths:
+  - `/home/yhjoo/projects/OpenFOAM/results/paper_figures/figure10_dense_composite_structure_vs_cfd_gap.pdf`
+  - `/home/yhjoo/projects/OpenFOAM/results/paper_figures/figure10_dense_composite_structure_vs_cfd_gap.png`
+  - `/home/yhjoo/projects/OpenFOAM/results/paper_figures/figure10_dense_composite_structure_vs_cfd_gap_pdf_render.png`
+
+Exact current QC split on this newest asset:
+- self visual QC: `PASS`
+  - after the geometry-column reweight and lighter obstacle overlays, the three-column stack reads more directly as `structure evidence` vs `reference/predicted CFD evidence`
+  - no new label collisions or trim issues were observed on the exact PNG/PDF-render pair
+  - remaining self note is minor only: the left geometry column could still carry slightly more salience, but it is no longer the main blocking issue
+- independent subagent multimodal QC: `FAIL`
+  - exact session: `agent:main:subagent:51ba40cb-a052-48c8-a06d-7d2e553bf3f7`
+  - main blockers on the exact current asset:
+    - the intended causal read (`dense composite with high structural match yet weaker CFD fidelity`) is still not fully self-evident without caption help; first glance still reads more generically as `prediction differs`
+    - geometry column remains somewhat underweighted relative to the two CFD panels, even after the latest rebalance
+    - colorbar max tick looked too close to the right edge / borderline clipped in the external reading
+    - colorbar typography remains near the lower bound for conservative double-column print
+- Gemini multimodal QC: `PENDING / NO VALID EXACT-ASSET VERDICT YET`
+  - one Gemini rerun inside an external workspace produced a stale-path critique referencing removed elements and therefore does **not** count as a valid gate (`/home/yhjoo/projects/OpenFOAM/.omx/artifacts/gemini-fig10-visual-qc-exact-20260321-153818.md`)
+  - a corrected repo-local exact-asset Gemini rerun was launched against the current outputs, but no usable verdict was recovered within this turn
+
+Decision on this newest asset:
+- Figure 10 remains incomplete.
+- Do **not** mark the checklist complete.
+- Do **not** copy to Google Drive.
+- Highest-leverage next fix is now message explicitness rather than generic cleanup: either strengthen the geometry-side cue that the structure is close to reference, or add one very small caption-safe in-panel cue that makes the `structure ok / CFD still off` contrast more self-evident without reintroducing clutter.
+
+## 21. 2026-03-21 final exact-asset rerender — reference-outline revival pass
+
+A narrow, self-only rerender was applied on the same locked representative pair and same scale-calibrated source to make the structural-match side more self-evident without reintroducing the old score-badge lane.
+
+Exact changes on this newest asset:
+- kept the same representative pair (`bench_a4_02/floorplan`, `bench_a4_04/floorplan`) and the same scale-calibrated evaluation root / manifest
+- revived the geometry-side reference cue by adding short `gray dashed` reference room/obstacle outlines directly into the predicted-geometry panels
+- rebalanced the three columns slightly toward parity (`width_ratios=[1.30, 1.29, 1.29]`) so the left geometry lane no longer grows relative to the CFD evidence
+- reduced geometry stroke heaviness modestly and simplified the shared colorbar ticks to the two endpoints only to lower bottom-lane crowding
+- regenerated the exact current outputs at the same paths:
+  - `/home/yhjoo/projects/OpenFOAM/results/paper_figures/figure10_dense_composite_structure_vs_cfd_gap.pdf`
+  - `/home/yhjoo/projects/OpenFOAM/results/paper_figures/figure10_dense_composite_structure_vs_cfd_gap.png`
+  - `/home/yhjoo/projects/OpenFOAM/results/paper_figures/figure10_dense_composite_structure_vs_cfd_gap_pdf_render.png`
+
+Exact current self-QC state on this newest asset:
+- verdict: `FAIL`
+- basis on the exact PNG/PDF-render pair:
+  - the revived dashed reference outline is directionally helpful, but it is still not consistently strong enough to make `structure is close to reference` read immediately at print scale
+  - a new cross-format issue appeared in the top lane: PNG and PDF-render do not match cleanly enough around the left column header / top spacing, so exact export stability is not closed
+  - the bottom colorbar is cleaner than before, but the endpoint tick labels still sit too close to the bar edges in the PDF-rendered check
+  - the overall message remains only partly self-evident; without caption help the figure still reads too much like a generic prediction comparison rather than a decisive `structure plausible / CFD weaker` contrast
+
+Decision on this newest asset:
+- Figure 10 remains incomplete.
+- Do **not** mark the checklist complete.
+- Do **not** copy to Google Drive.
+- External QC was intentionally **not** advanced on this exact asset because the rerender still fails the self-gate.
+- Highest-leverage next fix is now a more structural redesign rather than another micro-pass: likely either (a) add a caption-safe direct CFD mismatch cue (difference map or tightly targeted mismatch annotation), or (b) switch the left column to a more explicit predicted-vs-reference structural comparison panel so the `structure close` claim stops relying on faint dashed outlines.
+
+## 22. 2026-03-21 late-night exact-asset rerender — direct message headers + exact external QC refresh
+
+A narrow rerender targeted the two remaining themes from the prior pass: message explicitness and colorbar / header print safety, while staying on the same locked representative pair and the same scale-calibrated source.
+
+Exact changes on this newest asset:
+- kept the same representative pair (`bench_a4_02/floorplan`, `bench_a4_04/floorplan`) and the same scale-calibrated evaluation root / manifest
+- increased the geometry-column share again (`width_ratios=[1.38, 1.24, 1.24]`) so the left structural evidence reads less like a side lane
+- replaced the neutral top labels with a more direct, caption-safe contrast pair: `close geometry` / `reference |U|` / `shifted |U|`
+- rewrote the left subtitle from `gray dashed = ref. outline` to the shorter legend-safe cue `solid pred. · dashed ref.`
+- strengthened the dashed reference outlines slightly and pushed the colorbar end tick alignment inward by adjusting tick-label anchoring
+- regenerated PNG / PDF / PDF-render check on the exact same output paths; host font fallback remains `DejaVu Sans` because `Arial` / `Liberation Sans` were unavailable
+
+Exact current QC split on this newest asset:
+- self visual QC: `PASS`
+  - the intended read is more direct than the prior neutral-header version, and the endpoint colorbar labels no longer crowd the bar edges
+  - PNG and PDF-render remain materially consistent on the exact exported pair
+  - no new clipping was observed on the exact current asset
+- independent subagent multimodal QC: `FAIL`
+  - exact latest verdict: the figure still does not make `close geometry but shifted CFD` sufficiently self-evident without caption help; the smallest header / legend / colorbar text remains weak for conservative double-column print; and the top header/subtitle lane still feels cramped against the geometry panels
+- Gemini multimodal QC: `FAIL`
+  - valid exact-current artifact: `/home/yhjoo/projects/OpenFOAM/.omx/artifacts/gemini-fig10-visual-qc-exact-20260321-161354.md`
+  - exact latest blockers recovered from the usable terminal verdict on the exact-root review copies: left header / subtitle spacing is still too tight, the first-column header block is vertically misaligned against the other two column titles, and Gemini still does not accept the current geometry-to-reference comparison as publication-safe
+
+Decision on this newest asset:
+- Figure 10 remains incomplete.
+- Do **not** mark the checklist complete.
+- Do **not** copy to Google Drive.
+- Highest-leverage next fix is now no longer micro-typography; it is a column-1 redesign that makes the structural comparison explicit without a cramped subtitle (for example, a more direct predicted-vs-reference structural comparison panel or a different header architecture with the first-column cue moved out of the title lane).
+
+## 23. 2026-03-21 16:23 exact-current rerender — explicit reference/predicted geometry pair
+
+A new exact-current rerender replaced the old single geometry-overlay column with an explicit side-by-side geometry comparison, while keeping the same locked representative pair and the same scale-calibrated source.
+
+Exact changes on this newest asset:
+- kept the same representative pair (`bench_a4_02/floorplan`, `bench_a4_04/floorplan`) and the same scale-calibrated evaluation root / manifest
+- rewrote the layout from `2 x 3` into `2 x 4`: `ref. geometry` / `pred. geometry` / `reference |U|` / `predicted |U|`
+- removed the cramped first-column subtitle lane entirely; structural similarity is now shown directly by the two left panels rather than by dashed overlays
+- kept the shared bottom colorbar only under the two CFD columns and rechecked exact PNG/PDF consistency with `pdftoppm`
+- Arial was still requested first, but the host again fell back to `DejaVu Sans` because `Arial` / `Liberation Sans` were unavailable
+- exact review copies used for external QC:
+  - `/home/yhjoo/projects/OpenFOAM/docs/figure_qc/fig10_exact_asset_20260321_v2.png`
+  - `/home/yhjoo/projects/OpenFOAM/docs/figure_qc/fig10_exact_asset_20260321_v2_pdf_render.png`
+
+Exact current QC split on this newest asset:
+- self visual QC: `FAIL`
+  - the figure message is more direct than the prior overlay-based version because geometry closeness is now read from a literal `ref.` vs `pred.` pair
+  - PNG/PDF layout consistency is good and no clipping/collision was observed on the exact exported pair
+  - however, for conservative double-column print the top column headers and colorbar endpoint ticks remain too small, and the geometry panels are still visually underweighted relative to the CFD panels; the message is clearer but not yet manuscript-safe enough
+- independent subagent multimodal QC: `FAIL`
+  - exact session: `agent:main:subagent:ab76e513-1b83-4949-8179-bac472c212e1`
+  - exact verdict: the message is only partly immediate at print scale; the geometry panels and headers are too small relative to the CFD panels; and the colorbar ticks / fine contour detail remain below a conservative publication-safe threshold
+- Gemini multimodal QC: `PASS`
+  - exact artifact: `/home/yhjoo/projects/OpenFOAM/.omx/artifacts/gemini-fig10-visual-qc-exact-20260321-162350.md`
+  - Gemini accepted the new 2x4 structure as caption-free readable, well-aligned, and PNG/PDF-consistent
+
+Decision on this newest asset:
+- Figure 10 remains incomplete.
+- Do **not** mark the checklist complete.
+- Do **not** copy to Google Drive.
+- Highest-leverage next fix is now a print-scale rebalance rather than concept selection: enlarge the two geometry panels and the top/colorbar typography without sacrificing the explicit four-column comparison.
+
+## 24. 2026-03-21 16:34 exact-current rerender — print-scale rebalance pass
+
+A narrow follow-up pass stayed on the same explicit `2 x 4` concept and the same locked representative pair, but targeted only conservative print readability.
+
+Exact changes on this newest asset:
+- kept the same representative pair (`bench_a4_02/floorplan`, `bench_a4_04/floorplan`) and the same scale-calibrated evaluation root / manifest
+- increased overall figure height slightly and rebalanced the four columns closer to parity (`width_ratios=[1.16, 1.16, 1.18, 1.18]`) so the two geometry panels no longer lag as much behind the CFD pair
+- enlarged the top column headers / row labels / shared colorbar typography and thickened geometry room + obstacle strokes for better print survival
+- lowered the top header lane and added a bit more bottom space for the shared colorbar while preserving the same output paths
+- Arial was still requested first, but the host again fell back to `DejaVu Sans` because `Arial` / `Liberation Sans` remain unavailable
+
+Exact current self-QC state on this newest asset:
+- verdict: `FAIL`
+- basis on the exact PNG/PDF-render pair:
+  - the concept remains the right one, but the geometry pair is still visually weaker than the CFD pair, so `structure close / CFD shifted` is not yet self-evident enough at first glance
+  - top/header and colorbar readability improved, but PNG vs PDF-render still show small vertical placement drift, especially in the header-to-panel gap and bottom colorbar position
+  - overall vertical whitespace remains slightly uneven, with too much empty space above the bottom colorbar lane relative to the panel stack
+  - a temporary colorbar-end spacing experiment produced an incorrect endpoint-tick read during self review and was reverted; the figure remains in FAIL state and external QC was intentionally not advanced on this exact asset
+
+Decision on this newest asset:
+- Figure 10 remains incomplete.
+- Do **not** mark the checklist complete.
+- Do **not** copy to Google Drive.
+- Highest-leverage next fix is now still concept-preserving but more structural: either further strengthen the geometry-side contrast (stronger edge/fill hierarchy or less dominant CFD rendering) or redesign the bottom colorbar lane so PDF/PNG export stability closes before external QC rerun.
+
+## 25. 2026-03-21 16:56 exact-current rerender — geometry-up / colorbar-fix print-safety pass
+
+A narrow print-safety rerender stayed on the same explicit `2 x 4` concept and the same locked representative pair, and targeted the two most obvious remaining issues from the prior exact asset: the underweighted geometry pair and the misleading/too-coarse shared colorbar ticks.
+
+Exact changes on this newest asset:
+- kept the same representative pair (`bench_a4_02/floorplan`, `bench_a4_04/floorplan`) and the same scale-calibrated evaluation root / manifest
+- increased overall figure height slightly and shifted column balance toward the two geometry panels (`width_ratios=[1.26, 1.26, 1.10, 1.10]`) so the left structural comparison reads less like a side lane
+- tightened outer margins / gutters slightly while giving the bottom shared colorbar lane a bit more height for print safety
+- enlarged top headers / row labels / colorbar label modestly and replaced the old endpoint-only `%.1f` colorbar ticks with small-range-aware ticks (`0.000`, midpoint, `vmax`) so the scale no longer collapses to visually duplicated `0.0` endpoints on low-velocity slices
+- regenerated the exact current outputs at the same paths and restaged exact-review copies at:
+  - `/home/yhjoo/projects/OpenFOAM/docs/figure_qc/fig10_exact_asset_20260321_v3.png`
+  - `/home/yhjoo/projects/OpenFOAM/docs/figure_qc/fig10_exact_asset_20260321_v3_pdf_render.png`
+- Arial was still requested first, but the host again fell back to `DejaVu Sans` because `Arial` / `Liberation Sans` were unavailable
+
+Exact current QC split on this newest asset:
+- self visual QC: `FAIL`
+  - the colorbar-value bug is fixed and the geometry pair is stronger than in the prior exact asset
+  - however, on strict double-column review the shared colorbar numbers / label still feel borderline small, and the PNG vs PDF-render pair still shows slight top-lane / colorbar-lane spacing drift that keeps the exact self-gate conservative
+  - the figure message is now clearer, but I still do not want to over-call it manuscript-safe on self review
+- independent subagent multimodal QC: `PASS`
+  - exact session: `agent:main:subagent:cf70134f-8bdb-4c63-9280-12092455abac`
+  - returned verdict: `PASS`; row/column message was judged immediately readable and PNG/PDF consistency acceptable on the exact asset
+- Gemini multimodal QC: `PASS`
+  - exact artifact: `/home/yhjoo/projects/OpenFOAM/.omx/artifacts/gemini-fig10-visual-qc-exact-20260321-165608.md`
+  - returned verdict: `PASS`; exact-current prompt referenced only the repo-local v3 review copies and Gemini accepted both layout consistency and caption-free message readability
+
+Decision on this newest asset:
+- Figure 10 remains incomplete.
+- Do **not** mark the checklist complete.
+- Do **not** copy to Google Drive.
+- Highest-leverage next fix is now very narrow: either make the shared colorbar typography decisively print-safe or simplify/remove it if the panel-to-panel contrast already carries the message.
+
+## 26. 2026-03-21 17:xx exact-current rerender — spacing/colorbar print-safety micro-pass
+
+A final narrow micro-pass stayed on the same explicit `2 x 4` concept and the same locked representative pair, and touched only print-safety details that were still bothering the self gate.
+
+Exact changes on this newest asset:
+- kept the same representative pair (`bench_a4_02/floorplan`, `bench_a4_04/floorplan`) and the same scale-calibrated evaluation root / manifest
+- slightly increased the geometry-column share again (`width_ratios=[1.28, 1.28, 1.08, 1.08]`) and strengthened the geometry room/obstacle strokes plus inlet/outlet markers
+- tightened the top lane by lowering the column headers and row labels, while slightly increasing the shared colorbar label/tick typography
+- increased the bottom colorbar lane height a bit and regenerated the exact PNG / PDF / PDF-render check directly from the script (the script now also refreshes `figure10_dense_composite_structure_vs_cfd_gap_pdf_render.png` automatically via `pdftoppm`)
+- Arial was still requested first, but the host again fell back to `DejaVu Sans` because `Arial` / `Liberation Sans` were unavailable
+
+Exact current QC state on this newest asset:
+- self visual QC: `FAIL`
+  - the PDF-render exact check looks materially stable and the shared colorbar is safer than before, but I am keeping the self gate conservative because the geometry pair still reads weaker than the CFD pair at strict journal print review
+  - top/header spacing no longer looks broken, yet the overall top lane still feels a bit heavy for the amount of evidence it carries
+  - the figure is close, but not clearly enough above the manuscript-safe line to over-call it complete
+- external multimodal QC on this exact asset: `NOT ADVANCED`
+  - I intentionally did **not** advance subagent/Gemini exact-current QC on this rerender because the self gate did not close cleanly
+  - quick local visual review of the PDF-rendered exact asset suggests the remaining blocker is no longer PNG/PDF drift, but rather geometry-vs-CFD visual balance under conservative print assumptions
+
+Decision on this newest asset:
+- Figure 10 remains incomplete.
+- Do **not** mark the checklist complete.
+- Do **not** copy to Google Drive.
+- Highest-leverage next fix is now to rebalance evidence rather than typography: either enlarge/salience-boost the geometry pair one more step, or demote/simplify the shared colorbar so the left-side structural comparison carries more weight without needing header support.

@@ -170,7 +170,9 @@ Structural score의 obstacle matching IoU threshold를 0.1, 0.2, 0.3, 0.5로 변
 | 8 | ~~Prompt 공개 (5.2)~~ | ~~낮음~~ | **완료 (2026-03-21)** — docs/appendix_vlm_prompt.md 생성, Appendix A에 참조 추가 |
 | 9 | ~~IoU sensitivity (5.3)~~ | ~~중간~~ | **완료 (2026-03-21)** — IoU 0.05~0.50 범위 sensitivity table, Appendix B에 추가, 결론 강건성 확인 |
 | 10 | VLM 반복 일관성 (5.4) | 중간 (API 비용) | 방법론 강건성 — 대기 (API 필요) |
-| 11 | Grid independence (5.5) | 높음 (재실행) | CFD 신뢰성 — 대기 (계산 필요) |
+| 11 | ~~Grid independence (5.5)~~ | ~~높음~~ | **완료 (2026-03-22)** — Phase 2 전면 재실행 (0.18m mesh, timeout 3600s). REF 20/20, PRED 97/100 성공. 3건 솔버 발산은 실패로 유지하고 논문에서 기술. |
+| 14 | ~~Phase 2 메트릭 개선~~ | ~~중간~~ | **완료 (2026-03-22)** — 압력 gauge 보정, RMS floor, direction cosine 임계값, 고정 4-component, 표준 메트릭(Hit Rate/FAC2/NMSE/FB/R) 추가, cfd_agreement_score 병행 출력 |
+| 15 | ~~Phase 2 재평가 + 논문 수치 업데이트~~ | ~~중간~~ | **완료 (2026-03-22)** — 97건 재평가, structural 0.781, CFD agreement 0.454. Section 3.2 메트릭 정의 대폭 확장 (물리적 의미, 0-1 해석 포함). 전체 논문 수치 업데이트. |
 | 12 | ~~Null 케이스 공개 (2.3)~~ | ~~낮음~~ | **완료 (2026-03-21)** — Table 2에 3건 파싱 실패 명시 |
 | 13 | ~~Component-level breakdown~~ | ~~중간~~ | **완료 (2026-03-21)** — Table 3 추가, dimension-dependent vs topology component 분리 해석 |
 
