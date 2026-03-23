@@ -12,38 +12,11 @@ internalField   uniform 0;
 
 boundaryField
 {
-    inlet
-    {
-        type            calculated;
-        value           uniform 0;
-    }
-    outlet
-    {
-        type            calculated;
-        value           uniform 0;
-    }
-    topWall
-    {
-        type            nutkWallFunction;
-        value           uniform 0;
-    }
-    bottomWall
-    {
-        type            nutkWallFunction;
-        value           uniform 0;
-    }
-    leftWall
-    {
-        type            nutkWallFunction;
-        value           uniform 0;
-    }
-    rightWall
-    {
-        type            nutkWallFunction;
-        value           uniform 0;
-    }
-    frontAndBack
-    {
-        type            empty;
-    }
+    inlet       { type calculated; value uniform 0; }
+    outlet      { type calculated; value uniform 0; }
+    topWall     { type nutkWallFunction; value uniform 0; }
+    bottomWall  { type nutkWallFunction; value uniform 0; }
+    leftWall    { type nutkWallFunction; value uniform 0; }
+    rightWall   { type nutkWallFunction; value uniform 0; }
+    frontAndBack { type empty; }
 }

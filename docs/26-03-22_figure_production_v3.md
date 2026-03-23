@@ -300,4 +300,18 @@ QC 실패 시: 실패 원인 + 수정 계획을 체크리스트에 기록, 다�
 | 14 | Fig 1 framework | **done** | self PASS |
 | 15 | Fig 8 section collapse | **done** | self PASS, Phase 2 auto |
 
-Completed: 15/15
+### Fig 17 — Nielsen solver validation (신규)
+- Label: `method-validation-nielsen`
+- Layout: single-column (or double-column), 1×3
+- Data: `cases/validation_nielsen_1990/validation_results_refined.json` + VTK
+- Content: CFD vs experimental velocity profiles at 3 vertical locations
+- Output: `fig_method_validation_nielsen.pdf/.png`
+- [x] 스크립트 작성
+- [x] PDF/PNG 생성
+- [x] 자체 QC
+- [ ] 서브에이전트 QC
+- [ ] 완료
+
+---
+
+Completed: 15/17 (+ 2 CFD showcase, validation)
