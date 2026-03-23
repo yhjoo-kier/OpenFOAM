@@ -1,6 +1,6 @@
 {
   "source_artifact": "/home/yhjoo/projects/OpenFOAM/benchmark/manifests/evaluation_aggregate_summary_phase2.json",
-  "setting": "posthoc_uniform_longest_span_v1",
+  "setting": null,
   "font_family_requested": [
     "Arial",
     "Liberation Sans",

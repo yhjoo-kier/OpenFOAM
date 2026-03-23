@@ -549,6 +549,9 @@ def main() -> int:
     parser.add_argument("--checkmesh-timeout", type=int, default=180, help="Timeout in seconds for checkMesh")
     parser.add_argument("--no-fallback", action="store_true")
     parser.add_argument("--disable-repair", action="store_true", help="Disable repaired-scene retry")
+    parser.add_argument("--force-preset", type=str, default=None,
+                        help="Force a specific solver preset (bypass mesh-risk-based selection). "
+                             "Options: baseline, conservative, robust, ultra_robust, laminar_fallback")
     args = parser.parse_args()
 
     generated_dir = PROJECT_ROOT / "generated"
@@ -697,7 +700,14 @@ def main() -> int:
             default_faces = extract_default_faces(import_log)
             mesh_metrics = parse_checkmesh_metrics(checkmesh_log)
             mesh_risk = classify_mesh_risk(default_faces, mesh_metrics)
-            preset_sequence = preset_order_for_risk(mesh_risk["level"])
+            if args.force_preset:
+                # Force a specific preset — skip risk-based ordering
+                forced = [p for p in PRESETS if p["name"] == args.force_preset]
+                if not forced:
+                    raise ValueError(f"Unknown preset: {args.force_preset}. Options: {[p['name'] for p in PRESETS]}")
+                preset_sequence = forced
+            else:
+                preset_sequence = preset_order_for_risk(mesh_risk["level"])
 
             for preset in preset_sequence:
                 apply_preset(case_dir, preset)
