@@ -1,0 +1,33 @@
+{
+  "case": "Nielsen 1990",
+  "solver": "simpleFoam kOmegaSST",
+  "cells": 10800,
+  "profiles": {
+    "x_over_L_0.33": {
+      "x_over_L": 0.33,
+      "n": 16,
+      "q": 0.125,
+      "fac2": 0.154,
+      "rmse": 0.2486,
+      "R": 0.805
+    },
+    "x_over_L_0.50": {
+      "x_over_L": 0.5,
+      "n": 16,
+      "q": 0.125,
+      "fac2": null,
+      "rmse": 0.2314,
+      "R": 0.777
+    },
+    "x_over_L_0.67": {
+      "x_over_L": 0.67,
+      "n": 16,
+      "q": 0.0,
+      "fac2": null,
+      "rmse": 0.3435,
+      "R": 0.928
+    }
+  },
+  "overall_q": 0.083,
+  "overall_R": 0.837
+}

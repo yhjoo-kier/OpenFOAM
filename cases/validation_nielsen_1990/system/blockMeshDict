@@ -1,0 +1,117 @@
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      blockMeshDict;
+}
+
+scale 1;
+
+vertices
+(
+    // Bottom layer z=0
+    (0     0     0)       // 0
+    (9.0   0     0)       // 1
+    (9.0   0.1   0)       // 2
+    (0     0.1   0)       // 3
+
+    // Mid-left z=Hz (top of left wall, bottom of inlet)
+    (0     0     2.832)    // 4
+    (9.0   0     2.832)    // 5  (same height on right side)
+    (9.0   0.1   2.832)    // 6
+    (0     0.1   2.832)    // 7
+
+    // Mid-right z=h (top of outlet, bottom of right wall)
+    (0     0     0.168)     // 8
+    (9.0   0     0.168)     // 9
+    (9.0   0.1   0.168)     // 10
+    (0     0.1   0.168)     // 11
+
+    // Top z=H
+    (0     0     3.0)     // 12
+    (9.0   0     3.0)     // 13
+    (9.0   0.1   3.0)     // 14
+    (0     0.1   3.0)     // 15
+);
+
+blocks
+(
+    // Block 0: main room below inlet slot height (0 to Hz)
+    hex (0 1 2 3 8 9 10 11) (180 1 4) simpleGrading (1 1 1)
+    // Block 1: middle band (h to Hz) — only exists if h < Hz
+    hex (8 9 10 11 4 5 6 7) (180 1 52) simpleGrading (1 1 1)
+    // Block 2: top band (Hz to H) — inlet slot height
+    hex (4 5 6 7 12 13 14 15) (180 1 4) simpleGrading (1 1 1)
+);
+
+edges ();
+
+boundary
+(
+    inlet
+    {
+        type patch;
+        faces
+        (
+            (4 7 15 12)   // left wall, top slot (z=Hz to z=H)
+        );
+    }
+    outlet
+    {
+        type patch;
+        faces
+        (
+            (1 9 10 2)    // right wall, bottom slot (z=0 to z=h)
+        );
+    }
+    leftWall
+    {
+        type wall;
+        faces
+        (
+            (0 3 11 8)    // left wall below outlet height
+            (8 11 7 4)    // left wall middle
+        );
+    }
+    rightWall
+    {
+        type wall;
+        faces
+        (
+            (9 5 6 10)    // right wall middle
+            (5 13 14 6)   // right wall above inlet height
+        );
+    }
+    topWall
+    {
+        type wall;
+        faces
+        (
+            (12 15 14 13) // ceiling
+        );
+    }
+    bottomWall
+    {
+        type wall;
+        faces
+        (
+            (0 1 2 3)     // floor
+        );
+    }
+    frontAndBack
+    {
+        type empty;
+        faces
+        (
+            (0 1 9 8)
+            (8 9 5 4)
+            (4 5 13 12)
+            (3 11 10 2)
+            (7 11 10 6)
+            (7 15 14 6)
+        );
+    }
+);
+
+mergePatchPairs ();
