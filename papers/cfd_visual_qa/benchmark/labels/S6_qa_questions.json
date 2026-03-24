@@ -1,0 +1,42 @@
+{
+  "scenario": "S6",
+  "scenario_name": "natural_convection_cavity",
+  "generated": "2026-03-25",
+  "total_questions": 28,
+  "questions": [
+    {"qid": "Q094", "case": "S6_correct_Ra1e4", "image": "S6_correct_Ra1e4_V2.png", "viz": "V2", "level": "L1", "question": "좌측 벽면(x=0)의 온도는 대략 몇 K인가?", "answer": null},
+    {"qid": "Q095", "case": "S6_correct_Ra1e4", "image": "S6_correct_Ra1e4_V2.png", "viz": "V2", "level": "L2", "question": "등온선(isotherms)이 수직 직선인가, S자형 곡선인가?", "answer": null},
+    {"qid": "Q096", "case": "S6_correct_Ra1e4", "image": "S6_correct_Ra1e4_V6.png", "viz": "V6", "level": "L2", "question": "대류 순환의 방향은? (고온벽 상승 → 상부 이동 → 저온벽 하강)", "answer_type": "free_text", "answer": null},
+    {"qid": "Q097", "case": "S6_correct_Ra1e4", "image": "S6_correct_Ra1e4_V6.png", "viz": "V6", "level": "L3", "question": "이 유동장은 Ra=10^4 자연대류 캐비티에 대해 물리적으로 타당한가?", "answer_type": "free_text", "answer": null},
+    {"qid": "Q098", "case": "S6_correct_Ra1e4", "image": "S6_correct_Ra1e4_V1.png", "viz": "V1", "level": "L2", "question": "최대 속도 영역은 벽면 근처인가, 캐비티 중앙인가?", "answer": null},
+
+    {"qid": "Q099", "case": "S6_correct_Ra1e5", "image": "S6_correct_Ra1e5_V2.png", "viz": "V2", "level": "L5", "question": "Ra=10^4 케이스와 비교하여 등온선 형태에 어떤 차이가 있는가?", "answer_type": "free_text", "answer": null},
+    {"qid": "Q100", "case": "S6_correct_Ra1e5", "image": "S6_correct_Ra1e5_V6.png", "viz": "V6", "level": "L3", "question": "Ra 증가에 따라 경계층이 더 얇아지고 중앙부 온도 성층화가 강해지는가?", "answer_type": "free_text", "answer": null},
+    {"qid": "Q101", "case": "S6_correct_Ra1e5", "image": "S6_correct_Ra1e5_V1.png", "viz": "V1", "level": "L4", "question": "최대 속도 크기는 Ra=10^4 대비 대략 몇 배인가?", "answer": null},
+
+    {"qid": "Q102", "case": "S6_E1_underconverged", "image": "S6_E1_underconverged_V2.png", "viz": "V2", "level": "L3", "question": "온도 분포에 물리적으로 비합리적인 패턴이 있는가?", "answer_type": "free_text", "answer": null},
+    {"qid": "Q103", "case": "S6_E1_underconverged", "image": "S6_E1_underconverged_V6.png", "viz": "V6", "level": "L5", "question": "올바른 Ra=10^4 케이스와 비교하여 유동/온도 패턴에 어떤 차이가 보이는가?", "answer_type": "free_text", "answer": null},
+    {"qid": "Q104", "case": "S6_E1_underconverged", "image": "S6_E1_underconverged_V5.png", "viz": "V5", "level": "L2", "question": "순환 와류가 완전히 발달해 있는가?", "answer_type": "boolean", "answer": null},
+
+    {"qid": "Q105", "case": "S6_E2_bc_swap", "image": "S6_E2_bc_swap_V2.png", "viz": "V2", "level": "L2", "question": "고온 영역이 좌측인가 우측인가?", "answer": null},
+    {"qid": "Q106", "case": "S6_E2_bc_swap", "image": "S6_E2_bc_swap_V6.png", "viz": "V6", "level": "L3", "question": "순환 방향이 정상 케이스와 반대인가?", "answer_type": "free_text", "answer": null},
+    {"qid": "Q107", "case": "S6_E2_bc_swap", "image": "S6_E2_bc_swap_V2.png", "viz": "V2", "level": "L5", "question": "올바른 케이스의 온도 분포와 비교하여 좌우 대칭이 바뀌었는가?", "answer_type": "free_text", "answer": null},
+
+    {"qid": "Q108", "case": "S6_E5_coarse_mesh", "image": "S6_E5_coarse_mesh_V2.png", "viz": "V2", "level": "L3", "question": "12×12 메시로 인해 온도 등온선에 비물리적 계단형 패턴이 보이는가?", "answer_type": "free_text", "answer": null},
+    {"qid": "Q109", "case": "S6_E5_coarse_mesh", "image": "S6_E5_coarse_mesh_V6.png", "viz": "V6", "level": "L5", "question": "올바른 Ra=10^5 케이스와 비교하여 와류 구조에 어떤 차이가 있는가?", "answer_type": "free_text", "answer": null},
+    {"qid": "Q110", "case": "S6_E5_coarse_mesh", "image": "S6_E5_coarse_mesh_V1.png", "viz": "V1", "level": "L2", "question": "속도 contour에 뚜렷한 메시 아티팩트가 보이는가?", "answer_type": "boolean", "answer": null},
+
+    {"qid": "Q111", "case": "S6_E8_gravity_flipped", "image": "S6_E8_gravity_flipped_V2.png", "viz": "V2", "level": "L3", "question": "이 온도 분포는 중력이 아래 방향인 자연대류와 일치하는가?", "answer_type": "free_text", "answer": null},
+    {"qid": "Q112", "case": "S6_E8_gravity_flipped", "image": "S6_E8_gravity_flipped_V6.png", "viz": "V6", "level": "L3", "question": "순환 방향이 물리적으로 타당한가? (고온 유체는 중력 반대 방향으로 이동해야 함)", "answer_type": "free_text", "answer": null},
+    {"qid": "Q113", "case": "S6_E8_gravity_flipped", "image": "S6_E8_gravity_flipped_V5.png", "viz": "V5", "level": "L5", "question": "올바른 케이스와 비교하여 streamline 패턴의 차이점은?", "answer_type": "free_text", "answer": null},
+
+    {"qid": "Q114", "case": "S6_correct_Ra1e4", "image": "S6_correct_Ra1e4_V5.png", "viz": "V5", "level": "L4", "question": "순환 와류 중심의 대략적인 (x, y) 좌표를 추정하시오.", "answer": null},
+    {"qid": "Q115", "case": "S6_correct_Ra1e5", "image": "S6_correct_Ra1e5_V5.png", "viz": "V5", "level": "L2", "question": "코너에 2차 와류가 관찰되는가?", "answer_type": "boolean", "answer": null},
+    {"qid": "Q116", "case": "S6_E1_underconverged", "image": "S6_E1_underconverged_V1.png", "viz": "V1", "level": "L1", "question": "최대 속도 크기는 대략 얼마인가?", "answer": null},
+    {"qid": "Q117", "case": "S6_E2_bc_swap", "image": "S6_E2_bc_swap_V1.png", "viz": "V1", "level": "L1", "question": "고속 영역은 캐비티의 어느 벽면 근처에 있는가?", "answer": null},
+    {"qid": "Q118", "case": "S6_E5_coarse_mesh", "image": "S6_E5_coarse_mesh_V5.png", "viz": "V5", "level": "L2", "question": "streamline이 매끄러운가, 각진(blocky) 패턴인가?", "answer": null},
+    {"qid": "Q119", "case": "S6_E8_gravity_flipped", "image": "S6_E8_gravity_flipped_V1.png", "viz": "V1", "level": "L5", "question": "올바른 케이스와 비교하여 고속 영역의 위치가 상하 반전되었는가?", "answer_type": "free_text", "answer": null},
+    {"qid": "Q120", "case": "S6_correct_Ra1e4", "image": "S6_correct_Ra1e4_V2.png", "viz": "V2", "level": "L4", "question": "캐비티 중앙(x=0.5)에서의 수직 온도 분포가 선형에 가까운가, 비선형인가?", "answer_type": "free_text", "answer": null},
+    {"qid": "Q121", "case": "S6_correct_Ra1e5", "image": "S6_correct_Ra1e5_V2.png", "viz": "V2", "level": "L4", "question": "열 경계층 두께는 캐비티 폭의 대략 몇 %인가?", "answer": null}
+  ]
+}
