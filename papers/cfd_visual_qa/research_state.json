@@ -1,7 +1,7 @@
 {
   "version": "1.0",
   "created": "2026-03-24",
-  "last_updated": "2026-03-25T04:37",
+  "last_updated": "2026-03-25T05:00",
   "current_phase": "P1_pilot",
   "current_day": 1,
   "start_date": "2026-03-24",
@@ -46,8 +46,51 @@
   "scenarios": {
     "S1": {
       "name": "heated_vertical_plate",
-      "status": "not_started",
-      "cases": []
+      "status": "cfd_complete",
+      "cases": [
+        {
+          "name": "S1_correct_lam",
+          "cfd": "done",
+          "vtk": "done",
+          "images": "done",
+          "qa": "pending"
+        },
+        {
+          "name": "S1_correct_fine",
+          "cfd": "done",
+          "vtk": "done",
+          "images": "done",
+          "qa": "pending"
+        },
+        {
+          "name": "S1_E1_underconverged",
+          "cfd": "done",
+          "vtk": "done",
+          "images": "done",
+          "qa": "pending"
+        },
+        {
+          "name": "S1_E3_wrong_viscosity",
+          "cfd": "done",
+          "vtk": "done",
+          "images": "done",
+          "qa": "pending"
+        },
+        {
+          "name": "S1_E5_coarse_mesh",
+          "cfd": "done",
+          "vtk": "done",
+          "images": "done",
+          "qa": "pending"
+        },
+        {
+          "name": "S1_E8_gravity_flipped",
+          "cfd": "done",
+          "vtk": "done",
+          "images": "done",
+          "qa": "pending"
+        }
+      ]
     },
     "S2": {
       "name": "channel_flow_laminar",
@@ -268,8 +311,8 @@
     }
   },
   "totals": {
-    "cfd_cases_created": 24,
-    "images_generated": 114,
+    "cfd_cases_created": 30,
+    "images_generated": 138,
     "questions_generated": 121,
     "labels_requested": 0,
     "labels_completed": 0
