@@ -1,7 +1,7 @@
 {
   "version": "1.0",
   "created": "2026-03-24",
-  "last_updated": "2026-03-25T02:37",
+  "last_updated": "2026-03-25T03:30",
   "current_phase": "P1_pilot",
   "current_day": 1,
   "start_date": "2026-03-24",
@@ -200,8 +200,51 @@
     },
     "S6": {
       "name": "natural_convection_cavity",
-      "status": "not_started",
-      "cases": []
+      "status": "cfd_complete",
+      "cases": [
+        {
+          "name": "S6_correct_Ra1e4",
+          "cfd": "done",
+          "vtk": "done",
+          "images": "done",
+          "qa": "pending"
+        },
+        {
+          "name": "S6_correct_Ra1e5",
+          "cfd": "done",
+          "vtk": "done",
+          "images": "done",
+          "qa": "pending"
+        },
+        {
+          "name": "S6_E1_underconverged",
+          "cfd": "done",
+          "vtk": "done",
+          "images": "done",
+          "qa": "pending"
+        },
+        {
+          "name": "S6_E2_bc_swap",
+          "cfd": "done",
+          "vtk": "done",
+          "images": "done",
+          "qa": "pending"
+        },
+        {
+          "name": "S6_E5_coarse_mesh",
+          "cfd": "done",
+          "vtk": "done",
+          "images": "done",
+          "qa": "pending"
+        },
+        {
+          "name": "S6_E8_gravity_flipped",
+          "cfd": "done",
+          "vtk": "done",
+          "images": "done",
+          "qa": "pending"
+        }
+      ]
     },
     "S7": {
       "name": "mixed_convection_channel",
@@ -225,8 +268,8 @@
     }
   },
   "totals": {
-    "cfd_cases_created": 18,
-    "images_generated": 90,
+    "cfd_cases_created": 24,
+    "images_generated": 114,
     "questions_generated": 93,
     "labels_requested": 0,
     "labels_completed": 0
