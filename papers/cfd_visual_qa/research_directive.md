@@ -63,19 +63,15 @@
 
 ## Labeling Protocol
 
-### 라벨링 요청 형식 (텔레그램)
-```
-🏷️ Day N 라벨링 요청 (20개)
+### 라벨링 요청 형식 (텔레그램 간소화 — 방안 A)
+- 이미지를 5개씩 4묶음으로 나눠 전송
+- 각 이미지에 번호 + 핵심 질문 1개 (L3 물리 판단 위주)
+- 답변 형식: "1:OK 2:이상 3:OK 4:이상-recirculation없음 5:OK" 식으로 한 줄
+- L1/L2/L4 상세 질문은 AI가 자동 라벨링 후, 의심스러운 것만 추가 확인 요청
+- 예상 소요: 10-15분
 
-이미지 1-20이 labeling_queue/pending/day_NN/ 에 준비되어 있습니다.
-각 이미지의 JSON 파일에 answer 필드를 채워주세요.
-
-예상 소요: 20-30분
-기한: 오늘 중
-```
-
-### 라벨링 응답 형식
-유저가 JSON의 answer 필드를 채워 `labeling_queue/completed/day_NN/` 으로 이동하거나 커밋.
+### 라벨링 응답 처리
+유저 텔레그램 답변을 AI가 파싱하여 `labeling_queue/completed/day_NN/` 에 JSON으로 저장.
 
 ## Figure QC Standards
 
