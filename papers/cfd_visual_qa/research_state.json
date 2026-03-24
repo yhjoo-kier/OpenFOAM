@@ -1,7 +1,7 @@
 {
   "version": "1.0",
   "created": "2026-03-24",
-  "last_updated": "2026-03-25T06:03",
+  "last_updated": "2026-03-25T07:00",
   "current_phase": "P3_full_expansion",
   "current_day": 1,
   "start_date": "2026-03-24",
@@ -142,8 +142,51 @@
     },
     "S3": {
       "name": "channel_flow_turbulent",
-      "status": "not_started",
-      "cases": []
+      "status": "cfd_complete",
+      "cases": [
+        {
+          "name": "S3_correct_turb",
+          "cfd": "done",
+          "vtk": "done",
+          "images": "done",
+          "qa": "pending"
+        },
+        {
+          "name": "S3_correct_fine",
+          "cfd": "done",
+          "vtk": "done",
+          "images": "done",
+          "qa": "pending"
+        },
+        {
+          "name": "S3_E1_underconverged",
+          "cfd": "done",
+          "vtk": "done",
+          "images": "done",
+          "qa": "pending"
+        },
+        {
+          "name": "S3_E3_wrong_viscosity",
+          "cfd": "done",
+          "vtk": "done",
+          "images": "done",
+          "qa": "pending"
+        },
+        {
+          "name": "S3_E4_wrong_turb_model",
+          "cfd": "done",
+          "vtk": "done",
+          "images": "done",
+          "qa": "pending"
+        },
+        {
+          "name": "S3_E5_coarse_mesh",
+          "cfd": "done",
+          "vtk": "done",
+          "images": "done",
+          "qa": "pending"
+        }
+      ]
     },
     "S4": {
       "name": "backward_facing_step",
@@ -311,8 +354,8 @@
     }
   },
   "totals": {
-    "cfd_cases_created": 30,
-    "images_generated": 138,
+    "cfd_cases_created": 36,
+    "images_generated": 162,
     "questions_generated": 147,
     "labels_requested": 0,
     "labels_completed": 0
