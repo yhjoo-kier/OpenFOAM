@@ -1,0 +1,203 @@
+{
+  "batch_id": "day_01",
+  "date": "2026-03-25",
+  "total_items": 20,
+  "instructions": "각 항목의 image_path 이미지를 보고 questions의 answer 필드를 채워주세요. boolean은 true/false, free_text는 한국어 또는 영문 자유 서술.",
+  "items": [
+    {
+      "id": 1,
+      "image_path": "benchmark/images/S4_correct_turb/S4_correct_turb_V1.png",
+      "case": "S4_correct_turb",
+      "viz_type": "V1_velocity_contour",
+      "questions": [
+        {"qid": "Q001", "level": "L1", "question": "이 이미지에서 최대 속도 크기(|U|)는 대략 얼마인가? 컬러바를 참고하여 답하시오.", "answer": null},
+        {"qid": "Q002", "level": "L2", "question": "스텝 직후(x=0~5m) 하부 영역에 recirculation zone이 존재하는가?", "answer_type": "boolean", "answer": null},
+        {"qid": "Q003", "level": "L3", "question": "이 유동장은 backward-facing step에 대해 물리적으로 타당한가? 타당하지 않다면 어떤 부분이 비물리적인지 설명하시오.", "answer_type": "free_text", "answer": null}
+      ]
+    },
+    {
+      "id": 2,
+      "image_path": "benchmark/images/S4_correct_turb/S4_correct_turb_V6.png",
+      "case": "S4_correct_turb",
+      "viz_type": "V6_composite",
+      "questions": [
+        {"qid": "Q004", "level": "L2", "question": "streamline으로부터 recirculation zone의 대략적인 재부착 위치(x 좌표)를 추정하시오.", "answer": null},
+        {"qid": "Q005", "level": "L4", "question": "Re=36000 난류 backward-facing step의 이론적 재부착 길이는 약 6-7h이다. 이 유동장의 재부착 길이가 이론값과 비교하여 합리적인가?", "answer_type": "free_text", "answer": null}
+      ]
+    },
+    {
+      "id": 3,
+      "image_path": "benchmark/images/S4_correct_lam/S4_correct_lam_V1.png",
+      "case": "S4_correct_lam",
+      "viz_type": "V1_velocity_contour",
+      "questions": [
+        {"qid": "Q006", "level": "L1", "question": "최대 속도 영역은 도메인의 어느 부분에 위치하는가?", "answer": null},
+        {"qid": "Q007", "level": "L2", "question": "난류 케이스(S4_correct_turb_V1)와 비교하여 recirculation zone의 길이가 더 긴가, 짧은가?", "answer_type": "free_text", "answer": null},
+        {"qid": "Q008", "level": "L3", "question": "이 유동장은 물리적으로 타당한가?", "answer_type": "free_text", "answer": null}
+      ]
+    },
+    {
+      "id": 4,
+      "image_path": "benchmark/images/S4_correct_lam/S4_correct_lam_V5.png",
+      "case": "S4_correct_lam",
+      "viz_type": "V5_streamlines",
+      "questions": [
+        {"qid": "Q009", "level": "L2", "question": "스텝 뒤에 와류(vortex)가 관찰되는가?", "answer_type": "boolean", "answer": null},
+        {"qid": "Q010", "level": "L2", "question": "하류 먼 지점(x>20m)에서 유동이 fully developed 상태에 근접해 보이는가?", "answer_type": "boolean", "answer": null}
+      ]
+    },
+    {
+      "id": 5,
+      "image_path": "benchmark/images/S4_E1_underconverged/S4_E1_underconverged_V1.png",
+      "case": "S4_E1_underconverged",
+      "viz_type": "V1_velocity_contour",
+      "questions": [
+        {"qid": "Q011", "level": "L1", "question": "최대 속도 크기는 대략 얼마인가?", "answer": null},
+        {"qid": "Q012", "level": "L3", "question": "이 유동장에 물리적으로 비합리적인 패턴이 있는가? 있다면 어디에, 어떤 양상인가?", "answer_type": "free_text", "answer": null},
+        {"qid": "Q013", "level": "L5", "question": "올바른 난류 케이스(S4_correct_turb_V1)와 비교하여 가장 눈에 띄는 차이점은 무엇인가?", "answer_type": "free_text", "answer": null}
+      ]
+    },
+    {
+      "id": 6,
+      "image_path": "benchmark/images/S4_E1_underconverged/S4_E1_underconverged_V6.png",
+      "case": "S4_E1_underconverged",
+      "viz_type": "V6_composite",
+      "questions": [
+        {"qid": "Q014", "level": "L3", "question": "streamline 패턴에서 물리적으로 비정상적인 부분이 있는가?", "answer_type": "free_text", "answer": null}
+      ]
+    },
+    {
+      "id": 7,
+      "image_path": "benchmark/images/S4_E2_bc_swap/S4_E2_bc_swap_V1.png",
+      "case": "S4_E2_bc_swap",
+      "viz_type": "V1_velocity_contour",
+      "questions": [
+        {"qid": "Q015", "level": "L1", "question": "최대 속도 크기는 대략 얼마인가?", "answer": null},
+        {"qid": "Q016", "level": "L3", "question": "이 유동장은 backward-facing step에 대해 물리적으로 타당한가?", "answer_type": "free_text", "answer": null},
+        {"qid": "Q017", "level": "L5", "question": "올바른 난류 케이스와 비교하여 유동 방향이나 패턴에 이상이 있는가?", "answer_type": "free_text", "answer": null}
+      ]
+    },
+    {
+      "id": 8,
+      "image_path": "benchmark/images/S4_E2_bc_swap/S4_E2_bc_swap_V5.png",
+      "case": "S4_E2_bc_swap",
+      "viz_type": "V5_streamlines",
+      "questions": [
+        {"qid": "Q018", "level": "L2", "question": "유동의 주 방향은 좌→우인가, 우→좌인가?", "answer": null},
+        {"qid": "Q019", "level": "L3", "question": "streamline 패턴이 inlet/outlet이 정상적으로 설정된 경우와 일치하는가?", "answer_type": "free_text", "answer": null}
+      ]
+    },
+    {
+      "id": 9,
+      "image_path": "benchmark/images/S4_E5_coarse_mesh/S4_E5_coarse_mesh_V1.png",
+      "case": "S4_E5_coarse_mesh",
+      "viz_type": "V1_velocity_contour",
+      "questions": [
+        {"qid": "Q020", "level": "L3", "question": "이 유동장에 메시 해상도 부족으로 인한 비물리적 패턴이 있는가?", "answer_type": "free_text", "answer": null},
+        {"qid": "Q021", "level": "L5", "question": "올바른 난류 케이스(S4_correct_turb_V1)와 비교하여 벽면 근처 속도 분포에 차이가 있는가?", "answer_type": "free_text", "answer": null}
+      ]
+    },
+    {
+      "id": 10,
+      "image_path": "benchmark/images/S4_E5_coarse_mesh/S4_E5_coarse_mesh_V4.png",
+      "case": "S4_E5_coarse_mesh",
+      "viz_type": "V4_vector",
+      "questions": [
+        {"qid": "Q022", "level": "L2", "question": "벡터 필드에서 recirculation zone이 관찰되는가?", "answer_type": "boolean", "answer": null}
+      ]
+    },
+    {
+      "id": 11,
+      "image_path": "benchmark/images/S4_E6_modified/S4_E6_modified_V1.png",
+      "case": "S4_E6_modified",
+      "viz_type": "V1_velocity_contour",
+      "questions": [
+        {"qid": "Q023", "level": "L3", "question": "이 유동장에 물리적으로 비합리적인 부분이 있는가?", "answer_type": "free_text", "answer": null},
+        {"qid": "Q024", "level": "L5", "question": "올바른 난류 케이스와 비교하여 어떤 차이점이 보이는가?", "answer_type": "free_text", "answer": null}
+      ]
+    },
+    {
+      "id": 12,
+      "image_path": "benchmark/images/S4_correct_turb/S4_correct_turb_V3.png",
+      "case": "S4_correct_turb",
+      "viz_type": "V3_pressure_contour",
+      "questions": [
+        {"qid": "Q025", "level": "L1", "question": "스텝 직후(x=0) 영역의 압력은 양수인가 음수인가?", "answer": null},
+        {"qid": "Q026", "level": "L3", "question": "압력 분포가 backward-facing step 유동에 대해 물리적으로 타당한가? (스텝 후 저압 → 하류 압력 회복)", "answer_type": "free_text", "answer": null}
+      ]
+    },
+    {
+      "id": 13,
+      "image_path": "benchmark/images/S4_correct_turb/S4_correct_turb_V4.png",
+      "case": "S4_correct_turb",
+      "viz_type": "V4_vector",
+      "questions": [
+        {"qid": "Q027", "level": "L2", "question": "스텝 직후 하부에서 벡터 방향이 역방향(우→좌)인 영역이 있는가?", "answer_type": "boolean", "answer": null}
+      ]
+    },
+    {
+      "id": 14,
+      "image_path": "benchmark/images/S4_E1_underconverged/S4_E1_underconverged_V3.png",
+      "case": "S4_E1_underconverged",
+      "viz_type": "V3_pressure_contour",
+      "questions": [
+        {"qid": "Q028", "level": "L3", "question": "압력 분포에 물리적으로 비합리적인 패턴(불연속, 진동 등)이 있는가?", "answer_type": "free_text", "answer": null}
+      ]
+    },
+    {
+      "id": 15,
+      "image_path": "benchmark/images/S4_correct_lam/S4_correct_lam_V3.png",
+      "case": "S4_correct_lam",
+      "viz_type": "V3_pressure_contour",
+      "questions": [
+        {"qid": "Q029", "level": "L5", "question": "난류 케이스(S4_correct_turb_V3)와 비교하여 압력 회복 패턴에 차이가 있는가?", "answer_type": "free_text", "answer": null}
+      ]
+    },
+    {
+      "id": 16,
+      "image_path": "benchmark/images/S4_E2_bc_swap/S4_E2_bc_swap_V3.png",
+      "case": "S4_E2_bc_swap",
+      "viz_type": "V3_pressure_contour",
+      "questions": [
+        {"qid": "Q030", "level": "L3", "question": "압력의 고압/저압 위치가 정상적인 backward-facing step과 일치하는가?", "answer_type": "free_text", "answer": null}
+      ]
+    },
+    {
+      "id": 17,
+      "image_path": "benchmark/images/S4_correct_lam/S4_correct_lam_V4.png",
+      "case": "S4_correct_lam",
+      "viz_type": "V4_vector",
+      "questions": [
+        {"qid": "Q031", "level": "L2", "question": "벡터 필드에서 inlet 부근의 속도 프로파일 형태는? (균일/포물선/비대칭)", "answer": null}
+      ]
+    },
+    {
+      "id": 18,
+      "image_path": "benchmark/images/S4_E5_coarse_mesh/S4_E5_coarse_mesh_V6.png",
+      "case": "S4_E5_coarse_mesh",
+      "viz_type": "V6_composite",
+      "questions": [
+        {"qid": "Q032", "level": "L3", "question": "contour와 streamline을 함께 볼 때, 메시 해상도 문제가 보이는가?", "answer_type": "free_text", "answer": null}
+      ]
+    },
+    {
+      "id": 19,
+      "image_path": "benchmark/images/S4_E6_modified/S4_E6_modified_V5.png",
+      "case": "S4_E6_modified",
+      "viz_type": "V5_streamlines",
+      "questions": [
+        {"qid": "Q033", "level": "L2", "question": "스텝 직후에 recirculation이 관찰되는가?", "answer_type": "boolean", "answer": null},
+        {"qid": "Q034", "level": "L3", "question": "streamline 패턴이 backward-facing step에 대해 물리적으로 자연스러운가?", "answer_type": "free_text", "answer": null}
+      ]
+    },
+    {
+      "id": 20,
+      "image_path": "benchmark/images/S4_E6_modified/S4_E6_modified_V3.png",
+      "case": "S4_E6_modified",
+      "viz_type": "V3_pressure_contour",
+      "questions": [
+        {"qid": "Q035", "level": "L5", "question": "올바른 난류 케이스의 압력 분포와 비교하여 이상한 점이 있는가?", "answer_type": "free_text", "answer": null}
+      ]
+    }
+  ]
+}
