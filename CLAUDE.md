@@ -216,10 +216,50 @@ python -m grid_study run cases/heatsink_water_cht_steady --adaptive -t 1.0
 - algorithm2e 또는 algorithmicx 패키지 사용
 
 ### Citation
-- 초안 작성 시: `[저자 연도 키워드]` 형식 (의미론적 임시 인용)
-- 확정 시: Zotero BibTeX → `[@citekey]`
-- LaTeX 변환: `[@citekey]` → `\cite{citekey}`
-- 참고문헌 등장순 정렬 (elsarticle-num 스타일)
+
+#### 전체 워크플로우
+```
+1. PaperSearch로 논문 검색 (Scopus API)
+   ↓
+2. DOI content negotiation으로 publisher 정식 RIS 다운로드
+   ↓
+3. RIS 파일로 Zotero에 문헌 등록
+   ↓
+4. Zotero → BetterBibTeX → Zotero_YHJoo.bib 자동 내보내기
+   ↓
+5. Markdown 본문에서 [@citekey] 형식으로 인용
+   ↓
+6. LaTeX 변환 시 [@citekey] → \cite{citekey}
+```
+
+#### BibTeX 파일
+- **경로**: `C:\Vaults\Research\Zotero_YHJoo.bib`
+- Zotero BetterBibTeX 자동 내보내기로 동기화됨
+- citekey 검증: DOI 기반 매칭으로 .bib 내 존재 여부 확인
+
+#### 초안 작성 시
+- `[저자 연도 키워드]` 형식 (의미론적 임시 인용)
+- 예: `[Menter 1994 kOmegaSST]`, `[Calzolari 2021 DL replace CFD]`
+
+#### 인용 확정 단계 (초안 → 정식 인용)
+1. 초안의 의미론적 인용 `[저자 연도 키워드]` 목록 확인
+2. `Zotero_YHJoo.bib`에서 DOI 또는 저자/연도/제목으로 citekey 검색
+3. 찾으면 → `[@citekey]` 형식으로 변환
+4. 못 찾으면 → Zotero 등록 필요 (RIS import 또는 DOI/ISBN으로 추가)
+
+#### PaperSearch 사용법
+```bash
+cd ~/Projects/PaperSearch
+export SCOPUS_API_KEY=<key>  # .env 파일에 설정되어 있음
+python search_papers.py --query 'TITLE-ABS-KEY("indoor CFD")' --count 25
+```
+- RIS 다운로드는 DOI content negotiation 활용:
+  `curl -LH "Accept: application/x-research-info-systems" https://doi.org/<DOI>`
+
+#### 참고문헌 등장순 정렬
+- `elsarticle-num` 스타일: 본문에서 `\cite`가 처음 등장하는 순서대로 번호 자동 배정
+- `\usepackage[sort&compress]{natbib}` → `[3,1,2]` → `[1-3]` 자동 정렬/압축
+- 수동 번호 지정(`\bibitem`) 금지
 
 ### LaTeX 빌드
 - 빌드 순서: pdflatex → bibtex → pdflatex → pdflatex

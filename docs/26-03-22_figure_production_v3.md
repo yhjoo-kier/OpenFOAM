@@ -315,3 +315,20 @@ QC 실패 시: 실패 원인 + 수정 계획을 체크리스트에 기록, 다�
 ---
 
 Completed: 15/17 (+ 2 CFD showcase, validation)
+
+---
+
+## PaperBanana Generated Figures (2026-03-24)
+
+### Selected Candidates
+| Figure | Source | File |
+|--------|--------|------|
+| Fig 1 (method-framework) | PaperBanana candidate_0 | `results/paperbanana_fig1/candidate_0_20260324_130118.png` |
+| Fig 3 (method-eval-pathway) | PaperBanana v2 candidate_1 | `results/paperbanana_fig3_v2/candidate_1_20260324_134459.png` |
+
+### Resolution Limitation (TODO)
+- PaperBanana (Gemini image generation API) 출력 해상도: **1376×768 px** (고정)
+- `image_size` 파라미터를 `"4k"`로 변경해도 동일 해상도 출력 — Gemini API 측 제한으로 추정
+- 170mm 폭 기준 effective DPI: **~206 DPI** (논문 요구 600 DPI 미달)
+- **향후 조치**: AI upscaling (Real-ESRGAN 등) 또는 SVG trace로 해상도 향상 필요
+- 대안: 다이어그램이므로 TikZ/LaTeX native로 재작성하면 벡터 출력 가능

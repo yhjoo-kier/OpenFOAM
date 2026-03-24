@@ -79,9 +79,11 @@ The boundary conditions are summarised as follows:
 
 | Boundary | $\mathbf{U}$ | $p$ | $k$ | $\omega$ |
 |----------|-------------|-----|-----|----------|
-| Inlet | Fixed volume flow rate $\dot{V} = 0.05$ m³/s | Zero gradient | $k_\text{in} = \frac{3}{2}(I \cdot U_\text{in})^2$, $I = 0.05$ | $\omega_\text{in} = \frac{k_\text{in}^{1/2}}{C_\mu^{1/4} \cdot l}$, $l = 0.07 D_h$ |
-| Outlet | Zero gradient | Fixed value ($p = 0$) | Zero gradient | Zero gradient |
-| Walls | No-slip ($\mathbf{U} = 0$) | Zero gradient | Wall function [@launder.spalding1974NumericalComputation] | Wall function |
+| Inlet | $\dot{V} = 0.05$ m³/s | Zero gradient | Eq. below | Eq. below |
+| Outlet | Zero gradient | $p = 0$ | Zero gradient | Zero gradient |
+| Walls | No-slip | Zero gradient | Wall function | Wall function |
+
+where the inlet turbulence quantities are specified as $k_\text{in} = \frac{3}{2}(I \cdot U_\text{in})^2$ with turbulence intensity $I = 0.05$, and $\omega_\text{in} = k_\text{in}^{1/2} / (C_\mu^{1/4} \cdot l)$ with mixing length $l = 0.07 D_h$. Wall functions follow [@launder.spalding1974NumericalComputation].
 
 where $I$ is the turbulence intensity, $D_h$ is the hydraulic diameter of the inlet, and $C_\mu = 0.09$. The fixed volume flow rate at the inlet ensures that the flow forcing is identical between predicted and reference cases regardless of differences in opening size.
 
@@ -157,11 +159,11 @@ where $q$ is the hit rate with relative tolerance $D$ and absolute tolerance $W$
 
 ### 2.4 Solver validation against experimental data
 
-To establish the credibility of the reference CFD solutions independently of the VLM evaluation, the solver configuration (simpleFoam with k-$\omega$ SST, wall functions, SIMPLE algorithm) was validated against the widely used Nielsen (1990) ventilated room benchmark [@nielsen1990SpecificationTwodimensional]. This benchmark consists of a 9.0 m × 3.0 m two-dimensional room with a ceiling-mounted slot inlet (height $h$ = 0.168 m, $U_0$ = 0.455 m/s, Re $\approx$ 5,000) and a floor-level slot outlet of equal dimensions. Laser Doppler Anemometry (LDA) measurements of the normalised streamwise velocity $u/U_0$ are available at three vertical profiles ($x/L$ = 1/3, 1/2, 2/3).
+To establish the credibility of the reference CFD solutions independently of the VLM evaluation, the solver configuration (simpleFoam with k-$\omega$ SST, wall functions, SIMPLE algorithm) was validated against the widely used Nielsen et al. (1978) ventilated room benchmark [@nielsen.etal1978VelocityCharacteristics]. This benchmark consists of a 9.0 m × 3.0 m two-dimensional room with a ceiling-mounted slot inlet (height $h$ = 0.168 m, $U_0$ = 0.455 m/s, Re $\approx$ 5,000) and a floor-level slot outlet of equal dimensions. Laser Doppler Anemometry (LDA) measurements of the normalised streamwise velocity $u/U_0$ are available at three vertical profiles ($x/L$ = 1/3, 1/2, 2/3).
 
 The case was solved on a structured mesh of 43,200 cells (360 × 120 × 1 in the streamwise, vertical, and spanwise directions, with symmetry boundary conditions to enforce 2D flow). [Table:method-validation-nielsen] compares the CFD predictions against the experimental measurements, and [Fig:method-validation-contour] shows the velocity profile comparison at each measurement station.
 
-[Table:method-validation-nielsen] Solver validation: simpleFoam k-$\omega$ SST against Nielsen (1990) LDA measurements at three vertical profiles (43,200 cells).
+[Table:method-validation-nielsen] Solver validation: simpleFoam k-$\omega$ SST against Nielsen et al. (1978) LDA measurements at three vertical profiles (43,200 cells).
 
 | Profile | $x/L$ | Points | Hit rate ($D$ = 0.25) | RMSE ($u/U_0$) | Pearson $R$ |
 |---------|--------|--------|----------------------|-----------------|-------------|
@@ -291,7 +293,7 @@ The VLM frequently predicts obstacles absent from the reference, particularly in
 
 ### 5.3 Failure mode III: structure-versus-fidelity gap in dense composites
 
-Structural and CFD scores are only weakly correlated across all 97 valid cases [Fig:discuss-scatter-structural-cfd]. The decoupling is most pronounced in A4: case A4-02 achieves a structural score of 0.813 yet a CFD score of only 0.346; case A4-04 scores 0.917 structurally yet 0.302 in CFD [Fig:discuss-structure-cfd-gap]. The cause is flow-field sensitivity to small geometric perturbations in dense obstacle configurations — residual misalignments of a few centimetres, even within the IoU matching threshold, redirect jets, create or eliminate recirculation zones, and shift stagnation points. For dense configurations, bounding-box structural matching is necessary but not sufficient for CFD fidelity.
+Structural and CFD scores are only weakly correlated across all 97 valid cases [Fig:discuss-scatter-struct-cfd]. The decoupling is most pronounced in A4: case A4-02 achieves a structural score of 0.813 yet a CFD score of only 0.346; case A4-04 scores 0.917 structurally yet 0.302 in CFD [Fig:discuss-structure-cfd-gap]. The cause is flow-field sensitivity to small geometric perturbations in dense obstacle configurations — residual misalignments of a few centimetres, even within the IoU matching threshold, redirect jets, create or eliminate recirculation zones, and shift stagnation points. For dense configurations, bounding-box structural matching is necessary but not sufficient for CFD fidelity.
 
 ### 5.4 Scale calibration and its limitations
 
@@ -390,7 +392,7 @@ The score degrades monotonically from 0.803 at the most lenient threshold to 0.6
 
 [Fig:result-robustness] Robustness and convergence summary.
 
-[Fig:discuss-scatter-structural-cfd] Structural score versus CFD agreement score for all 97 valid cases.
+[Fig:discuss-scatter-struct-cfd] Structural score versus CFD agreement score for all 97 valid cases.
 
 [Fig:result-heatmap-category-view] Category × view interaction heatmaps.
 
@@ -398,6 +400,6 @@ The score degrades monotonically from 0.803 at the most lenient threshold to 0.6
 
 [Fig:bench-cfd-showcase] Representative reference cases from each complexity category: 3D geometry (left) and steady-state CFD velocity field with streamlines (right). (a) A1, (b) A2, (c) A3, (d) A4.
 
-[Fig:method-validation-contour] Solver validation against Nielsen (1990) benchmark (9 m × 3 m, Re ≈ 5,000). Colour contours show velocity magnitude; white streamlines show the ceiling jet, recirculation zone, and corner vortex. Red markers (A, B, C) indicate the three LDA measurement stations compared in [Table:method-validation-nielsen].
+[Fig:method-validation-contour] Solver validation against Nielsen et al. (1978) benchmark (9 m × 3 m, Re ≈ 5,000). Colour contours show velocity magnitude; white streamlines show the ceiling jet, recirculation zone, and corner vortex. Red markers (A, B, C) indicate the three LDA measurement stations compared in [Table:method-validation-nielsen].
 
 [Fig:result-cfd-component-breakdown] CFD agreement score decomposed into four components (overlap ratio, velocity magnitude similarity, direction similarity, pressure similarity) by view type, with standard-deviation error bars. Velocity magnitude is near zero across all views, driving the low overall score despite moderate overlap and directional agreement.
