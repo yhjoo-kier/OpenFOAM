@@ -1,14 +1,14 @@
 {
   "version": "1.0",
   "created": "2026-03-24",
-  "last_updated": "2026-03-25T05:00",
-  "current_phase": "P1_pilot",
+  "last_updated": "2026-03-25T06:03",
+  "current_phase": "P3_full_expansion",
   "current_day": 1,
   "start_date": "2026-03-24",
   "status": "in_progress",
   "phases": {
     "P1_pilot": {
-      "status": "in_progress",
+      "status": "complete",
       "target_days": [
         1,
         3
@@ -22,7 +22,7 @@
       ]
     },
     "P3_full_expansion": {
-      "status": "not_started",
+      "status": "in_progress",
       "target_days": [
         6,
         10
@@ -53,42 +53,42 @@
           "cfd": "done",
           "vtk": "done",
           "images": "done",
-          "qa": "pending"
+          "qa": "done"
         },
         {
           "name": "S1_correct_fine",
           "cfd": "done",
           "vtk": "done",
           "images": "done",
-          "qa": "pending"
+          "qa": "done"
         },
         {
           "name": "S1_E1_underconverged",
           "cfd": "done",
           "vtk": "done",
           "images": "done",
-          "qa": "pending"
+          "qa": "done"
         },
         {
           "name": "S1_E3_wrong_viscosity",
           "cfd": "done",
           "vtk": "done",
           "images": "done",
-          "qa": "pending"
+          "qa": "done"
         },
         {
           "name": "S1_E5_coarse_mesh",
           "cfd": "done",
           "vtk": "done",
           "images": "done",
-          "qa": "pending"
+          "qa": "done"
         },
         {
           "name": "S1_E8_gravity_flipped",
           "cfd": "done",
           "vtk": "done",
           "images": "done",
-          "qa": "pending"
+          "qa": "done"
         }
       ]
     },
@@ -313,7 +313,7 @@
   "totals": {
     "cfd_cases_created": 30,
     "images_generated": 138,
-    "questions_generated": 121,
+    "questions_generated": 147,
     "labels_requested": 0,
     "labels_completed": 0
   },

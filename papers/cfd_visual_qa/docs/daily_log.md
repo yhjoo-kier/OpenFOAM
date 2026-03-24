@@ -38,3 +38,33 @@
 - S4_E6 인위적 변형 적용 (recirculation zone 제거 후 재렌더링)
 - 라벨 수거 후 benchmark/labels/ 통합 시작
 - S1 또는 S5 다음 시나리오 케이스 설계 시작
+
+---
+
+## Day 1 (2026-03-25) — Full Expansion
+
+### 완료 (자율 탐색 cron + 메인 세션)
+- S2 channel flow: 6 CFD + 30 images + 28 QA (자율 탐색 00:37)
+- S6 natural convection: 6 CFD + 24 images + 28 QA (자율 탐색 02:37)
+- S1 heated plate: 6 CFD + 24 images + 26 QA (자율 탐색 04:37 + 메인 06:03)
+- S4_E6 인위적 변형 완료 (recirculation 1794 points 제거)
+- Phase 상태: P1_pilot → P3_full_expansion 전환
+- S3 turbulent channel CFD 실행 중
+
+### 누적
+- CFD 케이스: 30 (목표 50-70의 50%)
+- 이미지: 138 (목표 250-300의 50%)
+- QA 질문: 147
+- 시나리오: 5/10 (S1, S2, S4, S5, S6)
+
+### 이슈
+- S4_E6 에이전트가 cell_data만 수정 → point_data도 직접 수정하여 해결
+- S6 buoyantBoussinesqSimpleFoam: alphat BC, p_rgh 차원 문제 → 에이전트가 자체 해결
+
+### 진행 중
+- S3 turbulent channel CFD 백그라운드 실행
+
+### 남은 작업 (Day 1 내)
+- S3 렌더링 + QA
+- 라벨링 배치 방안 A 형식으로 업데이트 (09:02 발송용)
+- S7 mixed convection 또는 S10 ventilated room 시작

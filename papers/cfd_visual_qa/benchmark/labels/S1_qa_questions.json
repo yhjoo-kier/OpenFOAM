@@ -1,0 +1,40 @@
+{
+  "scenario": "S1",
+  "scenario_name": "heated_vertical_plate",
+  "generated": "2026-03-25",
+  "total_questions": 26,
+  "questions": [
+    {"qid": "Q122", "case": "S1_correct_lam", "image": "S1_correct_lam_V2.png", "viz": "V2", "level": "L1", "question": "가열벽(x=0) 표면의 온도는 대략 몇 K인가?", "answer": null},
+    {"qid": "Q123", "case": "S1_correct_lam", "image": "S1_correct_lam_V2.png", "viz": "V2", "level": "L2", "question": "열 경계층이 가열벽을 따라 상부로 갈수록 두꺼워지는가?", "answer_type": "boolean", "answer": null},
+    {"qid": "Q124", "case": "S1_correct_lam", "image": "S1_correct_lam_V6.png", "viz": "V6", "level": "L3", "question": "이 유동장은 가열 수직 평판의 자연대류에 대해 물리적으로 타당한가?", "answer_type": "free_text", "answer": null},
+    {"qid": "Q125", "case": "S1_correct_lam", "image": "S1_correct_lam_V1.png", "viz": "V1", "level": "L2", "question": "최대 속도 영역은 가열벽 근처인가, 도메인 중앙인가?", "answer": null},
+    {"qid": "Q126", "case": "S1_correct_lam", "image": "S1_correct_lam_V5.png", "viz": "V5", "level": "L2", "question": "가열벽 근처에서 유동의 주 방향은 상승인가 하강인가?", "answer": null},
+
+    {"qid": "Q127", "case": "S1_correct_fine", "image": "S1_correct_fine_V2.png", "viz": "V2", "level": "L5", "question": "표준 메시(60×120)와 비교하여 열 경계층의 해상도에 차이가 보이는가?", "answer_type": "free_text", "answer": null},
+    {"qid": "Q128", "case": "S1_correct_fine", "image": "S1_correct_fine_V6.png", "viz": "V6", "level": "L4", "question": "가열벽 경계층의 대략적인 두께(y=2m 높이에서)를 추정하시오.", "answer": null},
+
+    {"qid": "Q129", "case": "S1_E1_underconverged", "image": "S1_E1_underconverged_V2.png", "viz": "V2", "level": "L3", "question": "온도 분포에 물리적으로 비합리적인 패턴이 있는가?", "answer_type": "free_text", "answer": null},
+    {"qid": "Q130", "case": "S1_E1_underconverged", "image": "S1_E1_underconverged_V6.png", "viz": "V6", "level": "L5", "question": "올바른 케이스와 비교하여 어떤 차이가 보이는가?", "answer_type": "free_text", "answer": null},
+
+    {"qid": "Q131", "case": "S1_E8_gravity_flipped", "image": "S1_E8_gravity_flipped_V2.png", "viz": "V2", "level": "L3", "question": "이 온도 분포는 가열 수직 평판 자연대류로 물리적으로 타당한가?", "answer_type": "free_text", "answer": null},
+    {"qid": "Q132", "case": "S1_E8_gravity_flipped", "image": "S1_E8_gravity_flipped_V6.png", "viz": "V6", "level": "L3", "question": "유동 방향이 정상 자연대류(고온→상승)와 일치하는가?", "answer_type": "free_text", "answer": null},
+    {"qid": "Q133", "case": "S1_E8_gravity_flipped", "image": "S1_E8_gravity_flipped_V2.png", "viz": "V2", "level": "L5", "question": "올바른 케이스와 비교하여 열 플룸의 방향이 어떻게 다른가?", "answer_type": "free_text", "answer": null},
+
+    {"qid": "Q134", "case": "S1_E5_coarse_mesh", "image": "S1_E5_coarse_mesh_V2.png", "viz": "V2", "level": "L3", "question": "10×20 메시로 인해 온도 분포에 비물리적 패턴이 있는가?", "answer_type": "free_text", "answer": null},
+    {"qid": "Q135", "case": "S1_E5_coarse_mesh", "image": "S1_E5_coarse_mesh_V6.png", "viz": "V6", "level": "L5", "question": "올바른 케이스와 비교하여 경계층 해상도에 차이가 있는가?", "answer_type": "free_text", "answer": null},
+
+    {"qid": "Q136", "case": "S1_E3_wrong_viscosity", "image": "S1_E3_wrong_viscosity_V2.png", "viz": "V2", "level": "L3", "question": "온도 분포가 자연대류 경계층 유동과 일치하는가?", "answer_type": "free_text", "answer": null},
+    {"qid": "Q137", "case": "S1_E3_wrong_viscosity", "image": "S1_E3_wrong_viscosity_V6.png", "viz": "V6", "level": "L5", "question": "올바른 케이스와 비교하여 유동 패턴에 어떤 차이가 있는가? (과도한 확산 여부)", "answer_type": "free_text", "answer": null},
+    {"qid": "Q138", "case": "S1_E3_wrong_viscosity", "image": "S1_E3_wrong_viscosity_V1.png", "viz": "V1", "level": "L4", "question": "최대 속도 크기가 올바른 케이스 대비 대략 몇 배 작은가?", "answer": null},
+
+    {"qid": "Q139", "case": "S1_correct_lam", "image": "S1_correct_lam_V2.png", "viz": "V2", "level": "L4", "question": "도메인 상부(y=3.5m)에서 열 플룸의 수평 확산 범위는 대략 x= 몇 m까지인가?", "answer": null},
+    {"qid": "Q140", "case": "S1_correct_lam", "image": "S1_correct_lam_V1.png", "viz": "V1", "level": "L1", "question": "최대 속도 크기는 대략 얼마인가?", "answer": null},
+    {"qid": "Q141", "case": "S1_E1_underconverged", "image": "S1_E1_underconverged_V1.png", "viz": "V1", "level": "L1", "question": "유동장에 움직임이 발달해 있는가, 거의 정체 상태인가?", "answer": null},
+    {"qid": "Q142", "case": "S1_E8_gravity_flipped", "image": "S1_E8_gravity_flipped_V5.png", "viz": "V5", "level": "L2", "question": "가열벽 근처 streamline 방향이 상승인가 하강인가?", "answer": null},
+    {"qid": "Q143", "case": "S1_E5_coarse_mesh", "image": "S1_E5_coarse_mesh_V1.png", "viz": "V1", "level": "L2", "question": "속도 contour에 뚜렷한 메시 아티팩트가 보이는가?", "answer_type": "boolean", "answer": null},
+    {"qid": "Q144", "case": "S1_correct_fine", "image": "S1_correct_fine_V5.png", "viz": "V5", "level": "L2", "question": "도메인 상부에서 유동이 어느 방향으로 빠져나가는가?", "answer": null},
+    {"qid": "Q145", "case": "S1_E3_wrong_viscosity", "image": "S1_E3_wrong_viscosity_V5.png", "viz": "V5", "level": "L2", "question": "자연대류 경계층이 관찰되는가, 거의 정체인가?", "answer": null},
+    {"qid": "Q146", "case": "S1_correct_lam", "image": "S1_correct_lam_V6.png", "viz": "V6", "level": "L2", "question": "도메인 내에 대류 순환 구조(recirculation)가 관찰되는가?", "answer_type": "boolean", "answer": null},
+    {"qid": "Q147", "case": "S1_E2_bc_swap", "image": "S1_correct_lam_V2.png", "viz": "V2", "level": "L4", "question": "y=2m 높이에서 수평 온도 프로파일의 형태는? (지수적 감쇠/선형/S자형)", "answer": null}
+  ]
+}
