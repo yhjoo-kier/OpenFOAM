@@ -1,7 +1,7 @@
 {
   "version": "1.0",
   "created": "2026-03-24",
-  "last_updated": "2026-03-25T00:37",
+  "last_updated": "2026-03-25T01:15",
   "current_phase": "P1_pilot",
   "current_day": 1,
   "start_date": "2026-03-24",
@@ -51,8 +51,51 @@
     },
     "S2": {
       "name": "channel_flow_laminar",
-      "status": "not_started",
-      "cases": []
+      "status": "cfd_complete",
+      "cases": [
+        {
+          "name": "S2_correct_lam",
+          "cfd": "done",
+          "vtk": "done",
+          "images": "done",
+          "qa": "pending"
+        },
+        {
+          "name": "S2_correct_developed",
+          "cfd": "done",
+          "vtk": "done",
+          "images": "done",
+          "qa": "pending"
+        },
+        {
+          "name": "S2_E1_underconverged",
+          "cfd": "done",
+          "vtk": "done",
+          "images": "done",
+          "qa": "pending"
+        },
+        {
+          "name": "S2_E2_bc_swap",
+          "cfd": "done",
+          "vtk": "done",
+          "images": "done",
+          "qa": "pending"
+        },
+        {
+          "name": "S2_E3_wrong_viscosity",
+          "cfd": "done",
+          "vtk": "done",
+          "images": "done",
+          "qa": "pending"
+        },
+        {
+          "name": "S2_E5_coarse_mesh",
+          "cfd": "done",
+          "vtk": "done",
+          "images": "done",
+          "qa": "pending"
+        }
+      ]
     },
     "S3": {
       "name": "channel_flow_turbulent",
@@ -182,8 +225,8 @@
     }
   },
   "totals": {
-    "cfd_cases_created": 12,
-    "images_generated": 60,
+    "cfd_cases_created": 18,
+    "images_generated": 90,
     "questions_generated": 65,
     "labels_requested": 0,
     "labels_completed": 0
