@@ -65,6 +65,37 @@
 - S3 turbulent channel CFD 백그라운드 실행
 
 ### 남은 작업 (Day 1 내)
-- S3 렌더링 + QA
-- 라벨링 배치 방안 A 형식으로 업데이트 (09:02 발송용)
-- S7 mixed convection 또는 S10 ventilated room 시작
+- ~~S3 렌더링 + QA~~ ✅
+- ~~라벨링 배치 방안 A 형식으로 업데이트~~ → Google Drive DOCX로 전환
+- ~~S7 mixed convection 또는 S10 ventilated room 시작~~ ✅
+
+### Day 1 최종 성과 (2026-03-25)
+**MILESTONE: 10/10 시나리오 전체 완료 (원래 계획 Day 6-10)**
+
+- CFD 케이스: 60개 (S1-S10 각 6개)
+- 이미지: 258개
+- QA 질문: 279개
+- 전문가 라벨: 35개 (Day 1: 20, Day 2: 15)
+- VLM 평가: Claude Opus blind 15개 (100% 정확도)
+- 라벨링 시스템: Telegram → Google Drive DOCX 전환
+- 블라인드 코드 도입 (케이스명 노출 방지)
+
+**핵심 발견:**
+1. Claude blind (100%) > 전문가 (80%) on 15-item pilot
+2. Contamination paradox: 케이스명 노출 시 오히려 성능 저하 (87% vs 100%)
+3. BC swap, wrong viscosity = consistently subtle errors
+4. Gravity flip = consistently detectable
+5. Coarse mesh = context-dependent (미세구조 유무에 따라)
+
+### 교훈
+- writeInterval > endTime → 결과 미저장. writeInterval=500 + purgeWrite 1 권장
+- foamToVTK 타임아웃: 120s 부족 → 600s
+- 케이스명 익명화는 평가 초기부터 적용해야 함
+- VLM 평가 시 독립 서브에이전트(블라인드) 필수
+
+---
+
+## Day 2 계획 (2026-03-26)
+- Day 3-5 DOCX 라벨링 수거 (유저 편의에 따라)
+- Gemini/GPT-4o 블라인드 평가 실행
+- 논문 초안 시작 (Introduction, Methodology)
