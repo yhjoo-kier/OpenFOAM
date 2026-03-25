@@ -63,15 +63,17 @@
 
 ## Labeling Protocol
 
-### 라벨링 요청 형식 (텔레그램 간소화 — 방안 A)
-- 이미지를 5개씩 4묶음으로 나눠 전송
-- 각 이미지에 번호 + 핵심 질문 1개 (L3 물리 판단 위주)
-- 답변 형식: "1:OK 2:이상 3:OK 4:이상-recirculation없음 5:OK" 식으로 한 줄
-- L1/L2/L4 상세 질문은 AI가 자동 라벨링 후, 의심스러운 것만 추가 확인 요청
+### 라벨링 요청 형식 (Google Drive DOCX)
+- 매일 `/mnt/c/Users/User/GoogleDrive/CFD_Visual_QA_Labeling/dayNN_labeling.docx` 생성
+- 이미지 임베딩 + 바로 아래 핵심 질문 1개 (L3 물리 판단 위주)
+- 답변란: "답변: [여기에 입력]" → 유저가 직접 타이핑
+- 하루 15-20개 항목, OK / 이상-설명 형식
 - 예상 소요: 10-15분
 
 ### 라벨링 응답 처리
-유저 텔레그램 답변을 AI가 파싱하여 `labeling_queue/completed/day_NN/` 에 JSON으로 저장.
+- AI가 DOCX를 읽어 답변을 파싱 → `benchmark/labels/` 에 JSON으로 저장
+- 수거 경로: `/mnt/c/Users/User/GoogleDrive/CFD_Visual_QA_Labeling/dayNN_labeling.docx`
+- 텔레그램은 진행 알림/긴급 소통용으로만 사용
 
 ## Figure QC Standards
 
