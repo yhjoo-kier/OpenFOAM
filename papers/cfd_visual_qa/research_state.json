@@ -1,8 +1,8 @@
 {
   "version": "1.0",
   "created": "2026-03-24",
-  "last_updated": "2026-03-25T17:00",
-  "current_phase": "P3_full_expansion",
+  "last_updated": "2026-03-25T18:23",
+  "current_phase": "P2_preliminary_eval",
   "current_day": 1,
   "start_date": "2026-03-24",
   "status": "in_progress",
@@ -22,7 +22,7 @@
       ]
     },
     "P3_full_expansion": {
-      "status": "in_progress",
+      "status": "complete",
       "target_days": [
         6,
         10
@@ -573,6 +573,39 @@
         "S2_render",
         "S2_qa",
         "S1_or_S3_setup"
+      ]
+    },
+    {
+      "day": 1,
+      "date": "2026-03-25",
+      "phase": "P3\u2192P2",
+      "completed": [
+        "S1_cfd+images+qa",
+        "S2_cfd+images+qa",
+        "S3_cfd+images+qa",
+        "S6_cfd+images+qa",
+        "S7_cfd+images+qa",
+        "S8_cfd+images+qa",
+        "S9_cfd+images+qa",
+        "S10_cfd+images+qa",
+        "day1_expert_labeling_20items",
+        "day2_expert_labeling_15items",
+        "claude_blind_eval_15items_100pct",
+        "vlm_eval_pipeline_script",
+        "blind_code_system",
+        "gdrive_docx_labeling",
+        "day3-5_docx_pregenerated"
+      ],
+      "issues": [
+        "writeInterval_bug_S10_fixed",
+        "contaminated_eval_replaced_with_blind",
+        "telegram_instability_switched_to_gdrive"
+      ],
+      "next": [
+        "gemini_blind_eval",
+        "gpt5_blind_eval",
+        "more_labeling",
+        "paper_outline"
       ]
     }
   ]
