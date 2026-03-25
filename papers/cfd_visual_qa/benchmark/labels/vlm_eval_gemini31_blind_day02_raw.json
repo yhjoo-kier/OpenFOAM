@@ -1,0 +1,107 @@
+[
+  {
+    "id": 1,
+    "case": "S7_correct_Ri1",
+    "viz": "V6",
+    "verdict": "unclear",
+    "response": "I will read the image file to evaluate the CFD visualization."
+  },
+  {
+    "id": 2,
+    "case": "S7_correct_Ri1",
+    "viz": "V2",
+    "verdict": "unclear",
+    "response": "I will start by checking if the image file exists at the specified path."
+  },
+  {
+    "id": 3,
+    "case": "S7_correct_Ri01",
+    "viz": "V6",
+    "verdict": "unclear",
+    "response": ""
+  },
+  {
+    "id": 4,
+    "case": "S7_E8_gravity_flipped",
+    "viz": "V6",
+    "verdict": "Anomaly",
+    "response": "I will check for the existence of the image file and then read it to evaluate the physical plausibility of the buoyancy effect.\nI will read the image to evaluate the buoyancy effect.\nAnomaly: Buoyancy effect appears reversed as the high-velocity core shifts toward the heated bottom boundary instead of rising."
+  },
+  {
+    "id": 5,
+    "case": "S7_E8_gravity_flipped",
+    "viz": "V2",
+    "verdict": "OK",
+    "response": "I will read the image `papers/cfd_visual_qa/benchmark/images/S7_E8_gravity_flipped/S7_E8_gravity_flipped_V2.png` to evaluate the temperature distribution for bottom-heated mixed convection with flipped gravity.\nOK if physically plausible"
+  },
+  {
+    "id": 6,
+    "case": "S1_correct_lam",
+    "viz": "V6",
+    "verdict": "error",
+    "error": "Command '['gemini', '-p', 'Read the image file at papers/cfd_visual_qa/benchmark/images/S1_correct_lam/S1_correct_lam_V6.png and evaluate this CFD visualization.\\n\\nProblem Setup: Heated vertical plate (2m×4m). Left wall 320K, right/top open (300K). Ra≈3e7. Velocity contour + streamlines.\\n\\nQuestion: Is rising natural convection boundary layer observed? Plausible?\\n\\nAnswer ONLY with one of:\\n- \"OK\" if physically plausible\\n- \"Anomaly: [brief explanation]\" if something appears non-physical\\n\\nBe concise (1-2 sentences max).', '-y', '-o', 'text']' timed out after 120 seconds"
+  },
+  {
+    "id": 7,
+    "case": "S1_correct_lam",
+    "viz": "V2",
+    "verdict": "error",
+    "error": "Command '['gemini', '-p', 'Read the image file at papers/cfd_visual_qa/benchmark/images/S1_correct_lam/S1_correct_lam_V2.png and evaluate this CFD visualization.\\n\\nProblem Setup: Same as above. Temperature contour.\\n\\nQuestion: Is thermal BL growth along heated left wall visible, thickening upward?\\n\\nAnswer ONLY with one of:\\n- \"OK\" if physically plausible\\n- \"Anomaly: [brief explanation]\" if something appears non-physical\\n\\nBe concise (1-2 sentences max).', '-y', '-o', 'text']' timed out after 120 seconds"
+  },
+  {
+    "id": 8,
+    "case": "S1_E8_gravity_flipped",
+    "viz": "V2",
+    "verdict": "error",
+    "error": "Command '['gemini', '-p', 'Read the image file at papers/cfd_visual_qa/benchmark/images/S1_E8_gravity_flipped/S1_E8_gravity_flipped_V2.png and evaluate this CFD visualization.\\n\\nProblem Setup: Heated vertical plate (2m×4m). Left wall 320K. Ra≈3e7. Temperature contour.\\n\\nQuestion: Is this temperature distribution plausible for heated vertical plate natural convection?\\n\\nAnswer ONLY with one of:\\n- \"OK\" if physically plausible\\n- \"Anomaly: [brief explanation]\" if something appears non-physical\\n\\nBe concise (1-2 sentences max).', '-y', '-o', 'text']' timed out after 120 seconds"
+  },
+  {
+    "id": 9,
+    "case": "S1_E3_wrong_viscosity",
+    "viz": "V2",
+    "verdict": "error",
+    "error": "Command '['gemini', '-p', 'Read the image file at papers/cfd_visual_qa/benchmark/images/S1_E3_wrong_viscosity/S1_E3_wrong_viscosity_V2.png and evaluate this CFD visualization.\\n\\nProblem Setup: Heated vertical plate (2m×4m). Left wall 320K. Laminar. Temperature contour.\\n\\nQuestion: Does natural convection BL look normal? Any BL thickness anomaly?\\n\\nAnswer ONLY with one of:\\n- \"OK\" if physically plausible\\n- \"Anomaly: [brief explanation]\" if something appears non-physical\\n\\nBe concise (1-2 sentences max).', '-y', '-o', 'text']' timed out after 120 seconds"
+  },
+  {
+    "id": 10,
+    "case": "S1_E5_coarse_mesh",
+    "viz": "V6",
+    "verdict": "Anomaly",
+    "response": "I will read the image file at `papers/cfd_visual_qa/benchmark/images/S1_E5_coarse_mesh/S1_E5_coarse_mesh_V6.png` to evaluate the CFD visualization.\nAnomaly: Jagged streamlines and stepped velocity contour transitions indicate significant numerical artifacts due to insufficient mesh resolution."
+  },
+  {
+    "id": 11,
+    "case": "S3_correct_turb",
+    "viz": "V6",
+    "verdict": "OK",
+    "response": "I will check if the image file exists and then examine its content to evaluate the turbulent channel velocity profile.\nI'll read the image file to evaluate the velocity profile for physical plausibility.\nOK. The velocity profile shows a broad uniform core with steep gradients near the walls, which is physically consistent with a turbulent channel flow at Re=10,000."
+  },
+  {
+    "id": 12,
+    "case": "S3_E4_wrong_turb_model",
+    "viz": "V6",
+    "verdict": "Anomaly",
+    "response": "I will now read the image file at `papers/cfd_visual_qa/benchmark/images/S3_E4_wrong_turb_model/S3_E4_wrong_turb_model_V6.png` and evaluate the CFD visualization.\nAnomaly: At Re=10,000, channel flow is turbulent, but the visualization shows a steady laminar pattern with a non-physical streamline discontinuity at x=5m."
+  },
+  {
+    "id": 13,
+    "case": "S3_E3_wrong_viscosity",
+    "viz": "V6",
+    "verdict": "Anomaly",
+    "response": "I will read the image file at `papers/cfd_visual_qa/benchmark/images/S3_E3_wrong_viscosity/S3_E3_wrong_viscosity_V6.png` and evaluate the velocity profile.\nAnomaly: The velocity profile is parabolic/rounded, which is characteristic of laminar flow rather than the expected blunt profile of a turbulent channel flow."
+  },
+  {
+    "id": 14,
+    "case": "S5_E8_reversed_lid",
+    "viz": "V6",
+    "verdict": "error",
+    "error": "Command '['gemini', '-p', 'Read the image file at papers/cfd_visual_qa/benchmark/images/S5_E8_reversed_lid/S5_E8_reversed_lid_V6.png and evaluate this CFD visualization.\\n\\nProblem Setup: Lid-driven cavity (1m×1m). Re=100 laminar. Top wall moves at U=1m/s (lid). Velocity contour + streamlines.\\n\\nQuestion: Does vortex rotation match lid movement direction?\\n\\nAnswer ONLY with one of:\\n- \"OK\" if physically plausible\\n- \"Anomaly: [brief explanation]\" if something appears non-physical\\n\\nBe concise (1-2 sentences max).', '-y', '-o', 'text']' timed out after 120 seconds"
+  },
+  {
+    "id": 15,
+    "case": "S5_correct_turb",
+    "viz": "V6",
+    "verdict": "error",
+    "error": "Command '['gemini', '-p', 'Read the image file at papers/cfd_visual_qa/benchmark/images/S5_correct_turb/S5_correct_turb_V6.png and evaluate this CFD visualization.\\n\\nProblem Setup: Lid-driven cavity (1m×1m). Re=10,000 turbulent. Top lid moves right U=1m/s. k-ω SST. Velocity contour + streamlines.\\n\\nQuestion: Are vortex structures different from Re=100? Plausible?\\n\\nAnswer ONLY with one of:\\n- \"OK\" if physically plausible\\n- \"Anomaly: [brief explanation]\" if something appears non-physical\\n\\nBe concise (1-2 sentences max).', '-y', '-o', 'text']' timed out after 120 seconds"
+  }
+]
