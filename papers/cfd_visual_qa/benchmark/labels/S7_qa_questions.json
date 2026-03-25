@@ -1,0 +1,40 @@
+{
+  "scenario": "S7",
+  "scenario_name": "mixed_convection_channel",
+  "generated": "2026-03-25",
+  "total_questions": 26,
+  "questions": [
+    {"qid": "Q228", "case": "S7_correct_Ri1", "image": "S7_correct_Ri1_V2.png", "viz": "V2", "level": "L1", "question": "하부 벽면의 온도는 대략 몇 K인가?", "answer": null},
+    {"qid": "Q229", "case": "S7_correct_Ri1", "image": "S7_correct_Ri1_V6.png", "viz": "V6", "level": "L2", "question": "하부 가열에 의한 부력 효과가 유동 패턴에 보이는가? (상승 플룸 등)", "answer_type": "free_text", "answer": null},
+    {"qid": "Q230", "case": "S7_correct_Ri1", "image": "S7_correct_Ri1_V6.png", "viz": "V6", "level": "L3", "question": "Ri≈1 혼합대류(강제+자연)에 대해 이 유동장이 물리적으로 타당한가?", "answer_type": "free_text", "answer": null},
+    {"qid": "Q231", "case": "S7_correct_Ri1", "image": "S7_correct_Ri1_V2.png", "viz": "V2", "level": "L2", "question": "열 경계층이 하류로 갈수록 두꺼워지는가?", "answer_type": "boolean", "answer": null},
+    {"qid": "Q232", "case": "S7_correct_Ri1", "image": "S7_correct_Ri1_V1.png", "viz": "V1", "level": "L2", "question": "하부 벽면 근처에 부력에 의한 상승 유동 영역이 보이는가?", "answer_type": "boolean", "answer": null},
+
+    {"qid": "Q233", "case": "S7_correct_Ri01", "image": "S7_correct_Ri01_V6.png", "viz": "V6", "level": "L5", "question": "Ri≈1과 비교하여 부력 효과가 약해졌는가? (더 직선적인 streamline)", "answer_type": "free_text", "answer": null},
+    {"qid": "Q234", "case": "S7_correct_Ri01", "image": "S7_correct_Ri01_V2.png", "viz": "V2", "level": "L5", "question": "Ri≈1 대비 온도 경계층 두께와 형태에 차이가 있는가?", "answer_type": "free_text", "answer": null},
+
+    {"qid": "Q235", "case": "S7_E1_underconverged", "image": "S7_E1_underconverged_V6.png", "viz": "V6", "level": "L3", "question": "유동 패턴에 비합리적인 부분이 있는가?", "answer_type": "free_text", "answer": null},
+    {"qid": "Q236", "case": "S7_E1_underconverged", "image": "S7_E1_underconverged_V2.png", "viz": "V2", "level": "L5", "question": "올바른 Ri≈1과 비교하여 온도 분포에 어떤 차이가 있는가?", "answer_type": "free_text", "answer": null},
+
+    {"qid": "Q237", "case": "S7_E8_gravity_flipped", "image": "S7_E8_gravity_flipped_V6.png", "viz": "V6", "level": "L3", "question": "하부 가열 채널에서 이 유동 패턴이 물리적으로 타당한가?", "answer_type": "free_text", "answer": null},
+    {"qid": "Q238", "case": "S7_E8_gravity_flipped", "image": "S7_E8_gravity_flipped_V2.png", "viz": "V2", "level": "L3", "question": "온도 분포가 하부 가열 혼합대류와 일치하는가?", "answer_type": "free_text", "answer": null},
+    {"qid": "Q239", "case": "S7_E8_gravity_flipped", "image": "S7_E8_gravity_flipped_V5.png", "viz": "V5", "level": "L5", "question": "올바른 Ri≈1과 비교하여 streamline 패턴의 차이점은?", "answer_type": "free_text", "answer": null},
+
+    {"qid": "Q240", "case": "S7_E5_coarse_mesh", "image": "S7_E5_coarse_mesh_V6.png", "viz": "V6", "level": "L3", "question": "유동 패턴에 메시 해상도 문제가 보이는가?", "answer_type": "free_text", "answer": null},
+    {"qid": "Q241", "case": "S7_E5_coarse_mesh", "image": "S7_E5_coarse_mesh_V2.png", "viz": "V2", "level": "L5", "question": "올바른 케이스와 비교하여 온도 분포 해상도에 차이가 있는가?", "answer_type": "free_text", "answer": null},
+
+    {"qid": "Q242", "case": "S7_E3_wrong_viscosity", "image": "S7_E3_wrong_viscosity_V6.png", "viz": "V6", "level": "L3", "question": "혼합대류 채널 유동에 대해 이 유동 패턴이 합리적인가?", "answer_type": "free_text", "answer": null},
+    {"qid": "Q243", "case": "S7_E3_wrong_viscosity", "image": "S7_E3_wrong_viscosity_V2.png", "viz": "V2", "level": "L5", "question": "올바른 Ri≈1과 비교하여 부력 효과의 강도에 차이가 있는가?", "answer_type": "free_text", "answer": null},
+
+    {"qid": "Q244", "case": "S7_correct_Ri1", "image": "S7_correct_Ri1_V5.png", "viz": "V5", "level": "L4", "question": "streamline에서 부력에 의한 상승 플룸의 시작 위치(x좌표)를 추정하시오.", "answer": null},
+    {"qid": "Q245", "case": "S7_correct_Ri1", "image": "S7_correct_Ri1_V1.png", "viz": "V1", "level": "L1", "question": "최대 속도 크기는 대략 얼마인가?", "answer": null},
+    {"qid": "Q246", "case": "S7_correct_Ri01", "image": "S7_correct_Ri01_V1.png", "viz": "V1", "level": "L1", "question": "최대 속도 크기는 Ri≈1 대비 어떠한가?", "answer": null},
+    {"qid": "Q247", "case": "S7_E1_underconverged", "image": "S7_E1_underconverged_V1.png", "viz": "V1", "level": "L2", "question": "유동이 채널 전체에 발달해 있는가?", "answer_type": "boolean", "answer": null},
+    {"qid": "Q248", "case": "S7_E8_gravity_flipped", "image": "S7_E8_gravity_flipped_V1.png", "viz": "V1", "level": "L2", "question": "하부 벽면 근처에 상승 유동이 보이는가?", "answer_type": "boolean", "answer": null},
+    {"qid": "Q249", "case": "S7_E5_coarse_mesh", "image": "S7_E5_coarse_mesh_V1.png", "viz": "V1", "level": "L2", "question": "속도 contour에 뚜렷한 메시 아티팩트가 보이는가?", "answer_type": "boolean", "answer": null},
+    {"qid": "Q250", "case": "S7_E3_wrong_viscosity", "image": "S7_E3_wrong_viscosity_V1.png", "viz": "V1", "level": "L1", "question": "최대 속도 크기는 대략 얼마인가?", "answer": null},
+    {"qid": "Q251", "case": "S7_correct_Ri1", "image": "S7_correct_Ri1_V2.png", "viz": "V2", "level": "L4", "question": "출구(x=10m)에서 벽면 근처 온도 경계층의 대략적 두께는?", "answer": null},
+    {"qid": "Q252", "case": "S7_E3_wrong_viscosity", "image": "S7_E3_wrong_viscosity_V5.png", "viz": "V5", "level": "L2", "question": "streamline에서 부력 효과(상승 플룸)가 관찰되는가?", "answer_type": "boolean", "answer": null},
+    {"qid": "Q253", "case": "S7_correct_Ri01", "image": "S7_correct_Ri01_V5.png", "viz": "V5", "level": "L2", "question": "streamline이 거의 수평인가, 부력에 의한 곡률이 보이는가?", "answer_type": "free_text", "answer": null}
+  ]
+}
