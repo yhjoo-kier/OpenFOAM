@@ -210,12 +210,11 @@
 
 ## 6. 평가 프로토콜
 
-### 6.1 평가 대상 VLM
-- GPT-4o / GPT-4.1
-- Claude 3.5 Sonnet / Claude Opus
-- Gemini 2.5 Pro / Gemini 2.5 Flash
-- Qwen2.5-VL (MDPI 선행연구와 비교)
-- LLaVA / InternVL (오픈소스 대표)
+### 6.1 평가 대상 VLM (확정)
+- **Claude Opus 4.6** — 블라인드 서브에이전트로 평가 ✅ 완료
+- **Gemini 3.1** — `/ask gemini` CLI로 평가
+- **GPT-5.4 (Codex)** — `/ask codex` CLI로 평가
+- (추가 가능: Qwen2.5-VL, LLaVA 등 오픈소스)
 
 ### 6.2 평가 메트릭
 
