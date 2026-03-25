@@ -1,8 +1,8 @@
 # CFD Visual QA — Autonomous Research Directive
 
-> Version: 1.0
+> Version: 1.1
 > Created: 2026-03-24
-> Last updated: 2026-03-24
+> Last updated: 2026-03-25
 > Authority: User may edit this file at any time. Autonomous sessions may propose edits but MUST NOT change sections marked [USER-ONLY].
 
 ---
@@ -84,6 +84,55 @@
 - 배경: 흰색
 - 폰트: Arial 우선 → Liberation Sans → DejaVu Sans
 - 자동 QC: Gemini CLI로 시각화 품질 확인 (가능 시)
+
+## Task Definition (확정, 2026-03-25 Supervisor Review 반영)
+
+### 메인 태스크: Setup-Conditioned Visual QA
+- VLM에게 **Problem Setup 텍스트 + 이미지**를 함께 제공
+- "주어진 물리 조건에서 이 유동장이 타당한가?" 판단
+- Setup에는 최소 필수 정보 포함: 형상, Re/Ra, BC(가열벽 위치, lid 방향, inlet/outlet), 솔버 유형
+
+### 보조 태스크: Image-Only Visual QA (harder variant)
+- Setup 텍스트 없이 이미지만 제공
+- "이 유동장에 비물리적 패턴이 있는가?" 판단
+- 동일 이미지에 대해 setup-conditioned와 성능 비교 가능
+
+### 프롬프트 표준화 규칙
+모든 평가 항목에 반드시 포함:
+- 도메인 형상 및 크기
+- Reynolds/Rayleigh number
+- 경계조건 (가열벽 위치, lid 방향, inlet/outlet 위치)
+- 솔버 유형 (층류/난류 모델명)
+- 시각화 유형
+
+## Evaluation Protocol (확정)
+
+### 블라인드 평가 필수
+- 케이스명 노출 금지 → 블라인드 코드(CFD-XXXX) 사용
+- Ground truth를 평가 컨텍스트에 포함 금지
+- 독립 서브에이전트 또는 별도 CLI 세션에서 실행
+
+### 보고 메트릭
+- 전체 정확도 (accuracy)
+- 오류유형별 recall (E1-E8 각각)
+- 시나리오별 정확도 (S1-S10)
+- 무응답률 (no_response rate)
+- False positive rate (correct를 error로 오판)
+- False negative rate (error를 correct로 오판)
+
+### 주장 수준 규칙 (Claim Discipline)
+- 15개 파일럿: "preliminary observation" 수준만 허용
+- 50개 이상: "initial finding" 수준
+- 100개 이상 + 다중 모델: "benchmark result" 수준
+- 과장 금지: "VLM이 전문가를 능가" → "VLM이 특정 subtle 오류에서 전문가와 다른 감지 패턴을 보임"
+
+## Supervisor Review Protocol
+
+- **리뷰 로그**: `docs/supervisor_review_log.md`
+- **리뷰 주기**: 매일 20:30 KST (외부 AI 에이전트)
+- **확인 주기**: 매일 ~21:00 KST (자율 세션이 리뷰 확인)
+- **반영 원칙**: 현재 자원(연산, 인력)으로 실현 가능하면 반영. 불가능하면 사유 기록 후 유저에게 보고.
+- **directive 수정**: 리뷰 지적사항 중 실현 가능한 것은 자율 세션이 directive에 반영 가능 ([USER-ONLY] 영역 제외)
 
 ## Direction Change Policy
 
