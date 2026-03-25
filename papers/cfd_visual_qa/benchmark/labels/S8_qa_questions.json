@@ -1,0 +1,40 @@
+{
+  "scenario": "S8",
+  "scenario_name": "flow_over_heated_obstacle",
+  "generated": "2026-03-25",
+  "total_questions": 26,
+  "questions": [
+    {"qid": "Q254", "case": "S8_correct_lam", "image": "S8_correct_lam_V1.png", "viz": "V1", "level": "L1", "question": "범프 상부에서 가속된 유동의 최대 속도 크기는 대략 얼마인가?", "answer": null},
+    {"qid": "Q255", "case": "S8_correct_lam", "image": "S8_correct_lam_V6.png", "viz": "V6", "level": "L2", "question": "범프 뒤에 recirculation zone이 관찰되는가?", "answer_type": "boolean", "answer": null},
+    {"qid": "Q256", "case": "S8_correct_lam", "image": "S8_correct_lam_V6.png", "viz": "V6", "level": "L3", "question": "가열된 범프 위의 유동 패턴(박리, 후류, 열 플룸)이 물리적으로 타당한가?", "answer_type": "free_text", "answer": null},
+    {"qid": "Q257", "case": "S8_correct_lam", "image": "S8_correct_lam_V2.png", "viz": "V2", "level": "L2", "question": "범프 표면에서 열 경계층이 관찰되는가? 후류 방향으로 열 플룸이 확산되는가?", "answer_type": "free_text", "answer": null},
+    {"qid": "Q258", "case": "S8_correct_lam", "image": "S8_correct_lam_V5.png", "viz": "V5", "level": "L4", "question": "범프 뒤 재부착 위치(x좌표)를 추정하시오.", "answer": null},
+
+    {"qid": "Q259", "case": "S8_correct_fine", "image": "S8_correct_fine_V6.png", "viz": "V6", "level": "L5", "question": "표준 메시와 비교하여 후류 와류 해상도에 차이가 있는가?", "answer_type": "free_text", "answer": null},
+    {"qid": "Q260", "case": "S8_correct_fine", "image": "S8_correct_fine_V2.png", "viz": "V2", "level": "L5", "question": "온도 분포의 해상도에 차이가 있는가?", "answer_type": "free_text", "answer": null},
+
+    {"qid": "Q261", "case": "S8_E1_underconverged", "image": "S8_E1_underconverged_V6.png", "viz": "V6", "level": "L3", "question": "유동 패턴에 비합리적인 부분이 있는가?", "answer_type": "free_text", "answer": null},
+    {"qid": "Q262", "case": "S8_E1_underconverged", "image": "S8_E1_underconverged_V2.png", "viz": "V2", "level": "L5", "question": "올바른 케이스와 비교하여 온도 분포에 어떤 차이가 있는가?", "answer_type": "free_text", "answer": null},
+
+    {"qid": "Q263", "case": "S8_E8_gravity_flipped", "image": "S8_E8_gravity_flipped_V6.png", "viz": "V6", "level": "L3", "question": "가열 범프 위 유동에서 부력 효과의 방향이 물리적으로 타당한가?", "answer_type": "free_text", "answer": null},
+    {"qid": "Q264", "case": "S8_E8_gravity_flipped", "image": "S8_E8_gravity_flipped_V2.png", "viz": "V2", "level": "L5", "question": "올바른 케이스와 비교하여 열 플룸 방향에 차이가 있는가?", "answer_type": "free_text", "answer": null},
+
+    {"qid": "Q265", "case": "S8_E5_coarse_mesh", "image": "S8_E5_coarse_mesh_V6.png", "viz": "V6", "level": "L3", "question": "메시 해상도 문제로 후류 와류 구조에 이상이 있는가?", "answer_type": "free_text", "answer": null},
+    {"qid": "Q266", "case": "S8_E5_coarse_mesh", "image": "S8_E5_coarse_mesh_V2.png", "viz": "V2", "level": "L5", "question": "올바른 케이스와 비교하여 온도 분포 해상도에 차이가 있는가?", "answer_type": "free_text", "answer": null},
+
+    {"qid": "Q267", "case": "S8_E3_wrong_viscosity", "image": "S8_E3_wrong_viscosity_V6.png", "viz": "V6", "level": "L3", "question": "Re=500 채널에서 이 유동 패턴이 합리적인가?", "answer_type": "free_text", "answer": null},
+    {"qid": "Q268", "case": "S8_E3_wrong_viscosity", "image": "S8_E3_wrong_viscosity_V2.png", "viz": "V2", "level": "L5", "question": "올바른 케이스와 비교하여 열 확산 패턴에 차이가 있는가?", "answer_type": "free_text", "answer": null},
+
+    {"qid": "Q269", "case": "S8_correct_lam", "image": "S8_correct_lam_V1.png", "viz": "V1", "level": "L2", "question": "범프 상부에서 유동 가속이 보이는가?", "answer_type": "boolean", "answer": null},
+    {"qid": "Q270", "case": "S8_E1_underconverged", "image": "S8_E1_underconverged_V1.png", "viz": "V1", "level": "L1", "question": "유동이 범프를 지나 발달해 있는가?", "answer": null},
+    {"qid": "Q271", "case": "S8_E8_gravity_flipped", "image": "S8_E8_gravity_flipped_V5.png", "viz": "V5", "level": "L2", "question": "범프 뒤 후류에서 열 플룸이 상승하는가 하강하는가?", "answer": null},
+    {"qid": "Q272", "case": "S8_E5_coarse_mesh", "image": "S8_E5_coarse_mesh_V5.png", "viz": "V5", "level": "L2", "question": "streamline에서 후류 와류가 해상되는가?", "answer_type": "boolean", "answer": null},
+    {"qid": "Q273", "case": "S8_E3_wrong_viscosity", "image": "S8_E3_wrong_viscosity_V5.png", "viz": "V5", "level": "L2", "question": "streamline에서 범프 뒤 박리가 관찰되는가?", "answer_type": "boolean", "answer": null},
+    {"qid": "Q274", "case": "S8_correct_lam", "image": "S8_correct_lam_V2.png", "viz": "V2", "level": "L4", "question": "범프 하류 x=5m 지점에서 온도 경계층의 대략적 두께는?", "answer": null},
+    {"qid": "Q275", "case": "S8_correct_fine", "image": "S8_correct_fine_V5.png", "viz": "V5", "level": "L2", "question": "범프 뒤 후류에서 와류 쌍(vortex pair)이 관찰되는가?", "answer_type": "boolean", "answer": null},
+    {"qid": "Q276", "case": "S8_E8_gravity_flipped", "image": "S8_E8_gravity_flipped_V1.png", "viz": "V1", "level": "L5", "question": "올바른 케이스와 비교하여 범프 뒤 속도 분포에 차이가 있는가?", "answer_type": "free_text", "answer": null},
+    {"qid": "Q277", "case": "S8_E3_wrong_viscosity", "image": "S8_E3_wrong_viscosity_V1.png", "viz": "V1", "level": "L1", "question": "최대 속도 크기는 올바른 케이스 대비 어떠한가?", "answer": null},
+    {"qid": "Q278", "case": "S8_E5_coarse_mesh", "image": "S8_E5_coarse_mesh_V1.png", "viz": "V1", "level": "L2", "question": "속도 contour에 뚜렷한 메시 아티팩트가 보이는가?", "answer_type": "boolean", "answer": null},
+    {"qid": "Q279", "case": "S8_correct_lam", "image": "S8_correct_lam_V6.png", "viz": "V6", "level": "L4", "question": "후류 재순환 영역의 대략적 길이(x 방향)를 추정하시오.", "answer": null}
+  ]
+}
