@@ -1,7 +1,7 @@
 {
   "version": "1.0",
   "created": "2026-03-24",
-  "last_updated": "2026-03-26T04:37",
+  "last_updated": "2026-03-26T08:17",
   "current_phase": "P2_preliminary_eval",
   "current_day": 2,
   "start_date": "2026-03-24",
@@ -15,7 +15,7 @@
       ]
     },
     "P2_preliminary_eval": {
-      "status": "in_progress",
+      "status": "complete",
       "target_days": [
         4,
         5
@@ -36,7 +36,7 @@
       ]
     },
     "P5_paper_draft": {
-      "status": "not_started",
+      "status": "in_progress",
       "target_days": [
         13,
         14
@@ -615,7 +615,10 @@
       "completed": [
         "gemini_day2_blind_eval",
         "claude_day2_blind_30items",
-        "paper_outline"
+        "paper_outline",
+        "paper_intro_related_draft",
+        "paper_results_discussion_conclusion_draft",
+        "all_7_sections_drafted"
       ],
       "issues": [
         "gemini_high_no_response_rate_33pct",
