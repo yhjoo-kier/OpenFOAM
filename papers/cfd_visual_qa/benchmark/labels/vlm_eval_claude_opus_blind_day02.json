@@ -1,0 +1,41 @@
+{
+  "evaluator": "claude-opus-4-6",
+  "evaluation_type": "blind",
+  "date": "2026-03-25",
+  "batch": "day02",
+  "method": "Independent subagent, blind codes, no GT",
+  "accuracy": 1.0,
+  "total": 15,
+  "correct": 15,
+  "items": [
+    {"id": 1, "case": "S7_correct_Ri1", "viz": "V6", "gt": "correct", "verdict": "OK", "match": true},
+    {"id": 2, "case": "S7_correct_Ri1", "viz": "V2", "gt": "correct", "verdict": "OK", "match": true},
+    {"id": 3, "case": "S7_correct_Ri01", "viz": "V6", "gt": "correct", "verdict": "OK", "match": true},
+    {"id": 4, "case": "S7_E8_gravity_flipped", "viz": "V6", "gt": "error_E8", "verdict": "Anomaly", "match": true,
+     "response": "Buoyancy pushes flow upward inconsistent with flipped gravity"},
+    {"id": 5, "case": "S7_E8_gravity_flipped", "viz": "V2", "gt": "error_E8", "verdict": "Anomaly", "match": true,
+     "response": "Temperature nearly identical to normal-gravity; flipped gravity should suppress mixing"},
+    {"id": 6, "case": "S1_correct_lam", "viz": "V6", "gt": "correct", "verdict": "OK", "match": true},
+    {"id": 7, "case": "S1_correct_lam", "viz": "V2", "gt": "correct", "verdict": "OK", "match": true},
+    {"id": 8, "case": "S1_E8_gravity_flipped", "viz": "V2", "gt": "error_E8", "verdict": "Anomaly", "match": true,
+     "response": "Thermal BL abnormally thin/uniform, no upward thickening — reversed buoyancy"},
+    {"id": 9, "case": "S1_E3_wrong_viscosity", "viz": "V2", "gt": "error_E3", "verdict": "Anomaly", "match": true,
+     "response": "Excessively thick thermal penetration filling entire domain — wrong viscosity"},
+    {"id": 10, "case": "S1_E5_coarse_mesh", "viz": "V6", "gt": "error_E5", "verdict": "Anomaly", "match": true,
+     "response": "Non-smooth streamlines, irregular vortex structures — insufficient mesh"},
+    {"id": 11, "case": "S3_correct_turb", "viz": "V6", "gt": "correct", "verdict": "OK", "match": true},
+    {"id": 12, "case": "S3_E4_wrong_turb_model", "viz": "V6", "gt": "error_E4", "verdict": "Anomaly", "match": true,
+     "response": "Laminar solver at Re=10k physically inappropriate — flat profile non-physical"},
+    {"id": 13, "case": "S3_E3_wrong_viscosity", "viz": "V6", "gt": "error_E3", "verdict": "Anomaly", "match": true,
+     "response": "Profile more parabolic than turbulent, thicker BL — wrong viscosity"},
+    {"id": 14, "case": "S5_E8_reversed_lid", "viz": "V6", "gt": "error_E8", "verdict": "Anomaly", "match": true,
+     "response": "CCW rotation with leftward flow — reversed lid direction"},
+    {"id": 15, "case": "S5_correct_turb", "viz": "V6", "gt": "correct", "verdict": "OK", "match": true}
+  ],
+  "combined_with_day01": {
+    "total": 30,
+    "correct": 30,
+    "accuracy": 1.0,
+    "note": "30 consecutive correct judgments across 10 scenarios, 7 error types, 3 viz types"
+  }
+}
