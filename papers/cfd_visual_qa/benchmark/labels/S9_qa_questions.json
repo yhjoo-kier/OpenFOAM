@@ -1,0 +1,40 @@
+{
+  "scenario": "S9",
+  "scenario_name": "rayleigh_benard",
+  "generated": "2026-03-25",
+  "total_questions": 26,
+  "questions": [
+    {"qid": "Q202", "case": "S9_correct_Ra5k", "image": "S9_correct_Ra5k_V2.png", "viz": "V2", "level": "L1", "question": "하부 벽면의 온도는 대략 몇 K인가?", "answer": null},
+    {"qid": "Q203", "case": "S9_correct_Ra5k", "image": "S9_correct_Ra5k_V2.png", "viz": "V2", "level": "L2", "question": "대류 셀(convection cells)이 몇 개 관찰되는가?", "answer": null},
+    {"qid": "Q204", "case": "S9_correct_Ra5k", "image": "S9_correct_Ra5k_V6.png", "viz": "V6", "level": "L3", "question": "이 유동장은 Ra=5000 Rayleigh-Bénard 대류에 대해 물리적으로 타당한가?", "answer_type": "free_text", "answer": null},
+    {"qid": "Q205", "case": "S9_correct_Ra5k", "image": "S9_correct_Ra5k_V5.png", "viz": "V5", "level": "L2", "question": "인접 셀의 회전 방향이 교대하는가? (시계-반시계-시계)", "answer_type": "boolean", "answer": null},
+    {"qid": "Q206", "case": "S9_correct_Ra5k", "image": "S9_correct_Ra5k_V1.png", "viz": "V1", "level": "L2", "question": "최대 속도 영역은 셀 중심인가, 셀 경계(상승/하강 플룸)인가?", "answer": null},
+
+    {"qid": "Q207", "case": "S9_correct_Ra20k", "image": "S9_correct_Ra20k_V2.png", "viz": "V2", "level": "L5", "question": "Ra=5000과 비교하여 대류 셀 수나 형태에 차이가 있는가?", "answer_type": "free_text", "answer": null},
+    {"qid": "Q208", "case": "S9_correct_Ra20k", "image": "S9_correct_Ra20k_V6.png", "viz": "V6", "level": "L4", "question": "열 경계층 두께가 Ra=5000 대비 얇아졌는가?", "answer_type": "free_text", "answer": null},
+
+    {"qid": "Q209", "case": "S9_E1_underconverged", "image": "S9_E1_underconverged_V2.png", "viz": "V2", "level": "L3", "question": "온도 분포에 대류 셀 패턴이 발달해 있는가?", "answer_type": "free_text", "answer": null},
+    {"qid": "Q210", "case": "S9_E1_underconverged", "image": "S9_E1_underconverged_V6.png", "viz": "V6", "level": "L5", "question": "올바른 Ra=5000과 비교하여 어떤 차이가 있는가?", "answer_type": "free_text", "answer": null},
+
+    {"qid": "Q211", "case": "S9_E8_gravity_flipped", "image": "S9_E8_gravity_flipped_V2.png", "viz": "V2", "level": "L3", "question": "이 온도 분포는 하부 가열 Rayleigh-Bénard 대류로 타당한가?", "answer_type": "free_text", "answer": null},
+    {"qid": "Q212", "case": "S9_E8_gravity_flipped", "image": "S9_E8_gravity_flipped_V2.png", "viz": "V2", "level": "L2", "question": "등온선이 수평 직선인가, 곡선(대류 셀)인가?", "answer": null},
+    {"qid": "Q213", "case": "S9_E8_gravity_flipped", "image": "S9_E8_gravity_flipped_V5.png", "viz": "V5", "level": "L5", "question": "올바른 케이스와 비교하여 streamline 패턴에 어떤 차이가 있는가?", "answer_type": "free_text", "answer": null},
+
+    {"qid": "Q214", "case": "S9_E2_bc_swap", "image": "S9_E2_bc_swap_V2.png", "viz": "V2", "level": "L3", "question": "상부 가열/하부 냉각인 경우 대류 셀이 형성되는가?", "answer_type": "free_text", "answer": null},
+    {"qid": "Q215", "case": "S9_E2_bc_swap", "image": "S9_E2_bc_swap_V6.png", "viz": "V6", "level": "L5", "question": "올바른 케이스와 비교하여 유동 패턴에 어떤 차이가 있는가?", "answer_type": "free_text", "answer": null},
+
+    {"qid": "Q216", "case": "S9_E5_coarse_mesh", "image": "S9_E5_coarse_mesh_V2.png", "viz": "V2", "level": "L3", "question": "16×4 메시에서 대류 셀이 해상되는가?", "answer_type": "free_text", "answer": null},
+    {"qid": "Q217", "case": "S9_E5_coarse_mesh", "image": "S9_E5_coarse_mesh_V6.png", "viz": "V6", "level": "L5", "question": "올바른 Ra=20000과 비교하여 와류 구조에 차이가 있는가?", "answer_type": "free_text", "answer": null},
+
+    {"qid": "Q218", "case": "S9_correct_Ra5k", "image": "S9_correct_Ra5k_V2.png", "viz": "V2", "level": "L4", "question": "캐비티 중앙(y=0.5m)에서 수평 온도 프로파일의 형태는?", "answer_type": "free_text", "answer": null},
+    {"qid": "Q219", "case": "S9_correct_Ra20k", "image": "S9_correct_Ra20k_V1.png", "viz": "V1", "level": "L1", "question": "최대 속도 크기는 대략 얼마인가?", "answer": null},
+    {"qid": "Q220", "case": "S9_E1_underconverged", "image": "S9_E1_underconverged_V1.png", "viz": "V1", "level": "L1", "question": "유동이 발달해 있는가, 거의 정체 상태인가?", "answer": null},
+    {"qid": "Q221", "case": "S9_E8_gravity_flipped", "image": "S9_E8_gravity_flipped_V1.png", "viz": "V1", "level": "L2", "question": "유동이 존재하는가, 거의 정지 상태인가?", "answer": null},
+    {"qid": "Q222", "case": "S9_E2_bc_swap", "image": "S9_E2_bc_swap_V1.png", "viz": "V1", "level": "L2", "question": "유동이 존재하는가?", "answer_type": "boolean", "answer": null},
+    {"qid": "Q223", "case": "S9_E5_coarse_mesh", "image": "S9_E5_coarse_mesh_V1.png", "viz": "V1", "level": "L2", "question": "속도 contour에 뚜렷한 메시 아티팩트가 보이는가?", "answer_type": "boolean", "answer": null},
+    {"qid": "Q224", "case": "S9_correct_Ra5k", "image": "S9_correct_Ra5k_V6.png", "viz": "V6", "level": "L4", "question": "각 대류 셀의 대략적 폭(m)을 추정하시오.", "answer": null},
+    {"qid": "Q225", "case": "S9_correct_Ra20k", "image": "S9_correct_Ra20k_V5.png", "viz": "V5", "level": "L2", "question": "코너에 2차 와류가 관찰되는가?", "answer_type": "boolean", "answer": null},
+    {"qid": "Q226", "case": "S9_E5_coarse_mesh", "image": "S9_E5_coarse_mesh_V5.png", "viz": "V5", "level": "L2", "question": "streamline에서 대류 셀 구조가 보이는가?", "answer_type": "boolean", "answer": null},
+    {"qid": "Q227", "case": "S9_correct_Ra5k", "image": "S9_correct_Ra5k_V1.png", "viz": "V1", "level": "L1", "question": "최대 속도 크기는 대략 얼마인가?", "answer": null}
+  ]
+}
