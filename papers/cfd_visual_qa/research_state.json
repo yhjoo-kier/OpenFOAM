@@ -1,7 +1,7 @@
 {
   "version": "1.0",
   "created": "2026-03-24",
-  "last_updated": "2026-03-25T16:00",
+  "last_updated": "2026-03-25T17:00",
   "current_phase": "P3_full_expansion",
   "current_day": 1,
   "start_date": "2026-03-24",
@@ -15,7 +15,7 @@
       ]
     },
     "P2_preliminary_eval": {
-      "status": "not_started",
+      "status": "in_progress",
       "target_days": [
         4,
         5
@@ -530,7 +530,7 @@
     "images_generated": 258,
     "questions_generated": 279,
     "labels_requested": 0,
-    "labels_completed": 20
+    "labels_completed": 35
   },
   "labeling": {
     "next_batch_day": 1,
