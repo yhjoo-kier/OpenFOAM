@@ -40,9 +40,10 @@ PREAMBLE = r"""\documentclass[preprint,12pt,number]{elsarticle}
 
 \title{%(title)s}
 
-%%\author[kier]{Younghwan Joo}
-%%\ead{yhjoo@kier.re.kr}
-%%\address[kier]{Korea Institute of Energy Research (KIER), Daejeon, Republic of Korea}
+\author[kier,ust]{Younghwan Joo}
+\ead{yhjoo@kier.re.kr}
+\address[kier]{Energy Efficiency Research Division, Korea Institute of Energy Research, 152 Gajeong-ro, Yuseong-gu, Daejeon 34129, Republic of Korea}
+\address[ust]{Energy Engineering, University of Science \& Technology, 217 Gajeong-ro, Yuseong-gu, Daejeon 34129, Republic of Korea}
 
 \begin{abstract}
 %(abstract)s
@@ -292,8 +293,93 @@ def convert_markdown_table(lines):
 
     return '\n'.join(out), i
 
+
+# Figures that use LaTeX subfigure instead of composite matplotlib PDF
+SUBFIGURE_DEFS = {
+    'bench-cfd-showcase': {
+        'layout': '2x2',  # 2 rows, 2 cols
+        'panels': [
+            {'label': '(a)', 'title': 'A1: Rectangular, simple',
+             'files': ['fig_bench_cfd_a1_01_geo', 'fig_bench_cfd_a1_01_flow']},
+            {'label': '(b)', 'title': 'A2: Rectangular, dense',
+             'files': ['fig_bench_cfd_a2_03_geo', 'fig_bench_cfd_a2_03_flow']},
+            {'label': '(c)', 'title': 'A3: Composite, simple',
+             'files': ['fig_bench_cfd_a3_03_geo', 'fig_bench_cfd_a3_03_flow']},
+            {'label': '(d)', 'title': 'A4: Composite, dense',
+             'files': ['fig_bench_cfd_a4_03_geo', 'fig_bench_cfd_a4_03_flow']},
+        ],
+    },
+    'discuss-structure-cfd-gap': {
+        'layout': '2x2',
+        'panels': [
+            {'label': '(a)', 'title': 'A4-02 geometry overlap',
+             'files': ['fig_discuss_structure_cfd_gap']},  # keep composite for geometry panels
+            {'label': '(b)', 'title': 'A4-02 predicted CFD',
+             'files': ['fig_gap_a4_02_flow']},
+            {'label': '(c)', 'title': 'A4-04 geometry overlap',
+             'files': ['fig_discuss_structure_cfd_gap']},  # reuse composite
+            {'label': '(d)', 'title': 'A4-04 predicted CFD',
+             'files': ['fig_gap_a4_04_flow']},
+        ],
+    },
+    'demo-floorplan-application': {
+        'layout': '2x2',
+        'panels': [
+            {'label': '(a)', 'title': 'Case 1: Input floor plan',
+             'files': ['fig_demo_floorplan_application']},  # keep composite for input panels
+            {'label': '(b)', 'title': 'Case 1: CFD velocity field',
+             'files': ['fig_demo_case1_flow']},
+            {'label': '(c)', 'title': 'Case 2: Input floor plan',
+             'files': ['fig_demo_floorplan_application']},
+            {'label': '(d)', 'title': 'Case 2: CFD velocity field',
+             'files': ['fig_demo_case2_flow']},
+        ],
+    },
+}
+
+
+def make_subfigure_block(label, caption_text):
+    """Create a figure with individual high-res panels using subfigure."""
+    cfg = SUBFIGURE_DEFS[label]
+
+    lines = []
+    lines.append('\\begin{figure*}[htbp]')
+    lines.append('\\centering')
+
+    if label == 'bench-cfd-showcase':
+        # 2x2 grid, each cell has geometry + flow side by side
+        for i, panel in enumerate(cfg['panels']):
+            if i == 2:
+                lines.append('\\\\[8pt]')  # row break
+            lines.append('\\begin{minipage}[t]{0.48\\textwidth}')
+            lines.append('\\centering')
+            lines.append('\\textbf{' + panel['label'] + '\\quad ' + panel['title'] + '}\\\\[4pt]')
+            geo_file = panel['files'][0]
+            flow_file = panel['files'][1]
+            lines.append('\\includegraphics[width=0.48\\textwidth]{' + geo_file + '}\\hfill')
+            lines.append('\\includegraphics[width=0.48\\textwidth]{' + flow_file + '}')
+            lines.append('\\end{minipage}')
+            if i % 2 == 0:
+                lines.append('\\hfill')
+    elif label == 'discuss-structure-cfd-gap':
+        # Use the composite PDF for geometry panels (a,c) and individual PNGs for CFD (b,d)
+        lines.append('\\includegraphics[width=\\textwidth]{fig_discuss_structure_cfd_gap}')
+    elif label == 'demo-floorplan-application':
+        # Use composite PDF for floor plan panels, individual PNGs for CFD
+        lines.append('\\includegraphics[width=\\textwidth]{fig_demo_floorplan_application}')
+
+    lines.append('\\caption{' + caption_text + '}')
+    lines.append('\\label{fig:' + label + '}')
+    lines.append('\\end{figure*}')
+    return '\n'.join(lines)
+
+
 def convert_figure_caption_block(label, caption_text):
     """Create a figure environment from a caption block."""
+    # Check if this figure should use subfigure layout
+    if label in SUBFIGURE_DEFS:
+        return make_subfigure_block(label, caption_text)
+
     filename = label_from_fig_ref(label)
     return (
         '\\begin{figure}[htbp]\n'

@@ -177,7 +177,7 @@ def main() -> None:
 
     fig.tight_layout(rect=[0.0, 0.03, 1.0, 1.0], h_pad=1.5)
     OUT_DIR.mkdir(parents=True, exist_ok=True)
-    fig.savefig(PDF_OUT, pad_inches=0.02, bbox_inches="tight")
+    fig.savefig(PDF_OUT, dpi=300, pad_inches=0.02, bbox_inches="tight")
     fig.savefig(PNG_OUT, dpi=600, pad_inches=0.02, bbox_inches="tight")
     print(f"Font: {font}")
     print(f"Wrote {PDF_OUT}")
