@@ -1,0 +1,11 @@
+## Item 13: CFD-4684 — V6
+
+**Problem Setup:** Ventilated room (9m×3m). Top-left inlet, bottom-right outlet. Re≈5,000. Laminar solver. Velocity contour + streamlines.
+
+**Question:** Is this flow pattern physically plausible at Re≈5,000?
+
+**Image:** CFD-4684_V6.png
+
+Evaluate whether the flow/temperature field shown in the image is physically plausible given the problem setup. Answer:
+- 'OK' if plausible
+- 'Anomaly: [explanation]' if something appears non-physical

@@ -1,0 +1,11 @@
+## Item 11: CFD-8E1E — V6
+
+**Problem Setup:** Ventilated room (9m×3m). Slot inlet at top-left (0.168m, U=0.455m/s), slot outlet at bottom-right. Re≈5,000. k-ω SST. Velocity contour + streamlines.
+
+**Question:** Is the inlet jet ceiling attachment (Coanda effect) and indoor circulation pattern physically plausible?
+
+**Image:** CFD-8E1E_V6.png
+
+Evaluate whether the flow/temperature field shown in the image is physically plausible given the problem setup. Answer:
+- 'OK' if plausible
+- 'Anomaly: [explanation]' if something appears non-physical

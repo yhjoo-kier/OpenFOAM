@@ -1,0 +1,11 @@
+## Item 01: CFD-C974 — V6
+
+**Problem Setup:** Lid-driven cavity (1m×1m). Re=100 laminar. Top wall moves right at U=1m/s. Other 3 walls stationary. Velocity contour + streamlines.
+
+**Question:** Is the primary vortex location and rotation direction physically plausible for a lid-driven cavity flow?
+
+**Image:** CFD-C974_V6.png
+
+Evaluate whether the flow/temperature field shown in the image is physically plausible given the problem setup. Answer:
+- 'OK' if plausible
+- 'Anomaly: [explanation]' if something appears non-physical

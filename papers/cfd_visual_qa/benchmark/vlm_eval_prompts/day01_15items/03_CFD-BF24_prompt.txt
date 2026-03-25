@@ -1,0 +1,11 @@
+## Item 03: CFD-BF24 — V6
+
+**Problem Setup:** Lid-driven cavity (1m×1m). Re=10,000 turbulent. Moving wall (lid) at U=1m/s. k-ω SST. Velocity contour + streamlines.
+
+**Question:** Does the primary vortex rotation and high-velocity region match the lid movement direction?
+
+**Image:** CFD-BF24_V6.png
+
+Evaluate whether the flow/temperature field shown in the image is physically plausible given the problem setup. Answer:
+- 'OK' if plausible
+- 'Anomaly: [explanation]' if something appears non-physical

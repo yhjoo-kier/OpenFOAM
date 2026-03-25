@@ -1,0 +1,11 @@
+## Item 08: CFD-54D8 — V2
+
+**Problem Setup:** Rayleigh-Bénard convection (4m×1m cavity). Bottom wall heated (310K), top wall cooled (300K), sidewalls adiabatic. Ra=5,000. Temperature contour.
+
+**Question:** Are convection cells observed? Is the cell pattern plausible for Ra=5,000?
+
+**Image:** CFD-54D8_V2.png
+
+Evaluate whether the flow/temperature field shown in the image is physically plausible given the problem setup. Answer:
+- 'OK' if plausible
+- 'Anomaly: [explanation]' if something appears non-physical

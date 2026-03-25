@@ -1,0 +1,11 @@
+## Item 14: CFD-546B — V6
+
+**Problem Setup:** 2D channel flow (10m×1m). Left inlet U=1m/s uniform, right outlet. Re=100 laminar. Top/bottom no-slip walls. Velocity contour + streamlines.
+
+**Question:** Is the velocity profile development (uniform→parabolic) observed? Physically plausible?
+
+**Image:** CFD-546B_V6.png
+
+Evaluate whether the flow/temperature field shown in the image is physically plausible given the problem setup. Answer:
+- 'OK' if plausible
+- 'Anomaly: [explanation]' if something appears non-physical

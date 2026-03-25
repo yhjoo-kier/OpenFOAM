@@ -1,0 +1,11 @@
+## Item 02: CFD-F1B1 — V6
+
+**Problem Setup:** Lid-driven cavity (1m×1m). Re=10,000 turbulent. Top wall moves right at U=1m/s. k-ω SST. Velocity contour + streamlines.
+
+**Question:** Has the flow pattern developed adequately for a lid-driven cavity?
+
+**Image:** CFD-F1B1_V6.png
+
+Evaluate whether the flow/temperature field shown in the image is physically plausible given the problem setup. Answer:
+- 'OK' if plausible
+- 'Anomaly: [explanation]' if something appears non-physical

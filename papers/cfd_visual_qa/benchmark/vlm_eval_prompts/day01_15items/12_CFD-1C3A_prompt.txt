@@ -1,0 +1,11 @@
+## Item 12: CFD-1C3A — V6
+
+**Problem Setup:** Ventilated room (9m×3m). Top-left slot inlet, bottom-right outlet. Re≈5,000. k-ω SST. Velocity contour + streamlines.
+
+**Question:** Has the flow pattern developed adequately for a ventilated room?
+
+**Image:** CFD-1C3A_V6.png
+
+Evaluate whether the flow/temperature field shown in the image is physically plausible given the problem setup. Answer:
+- 'OK' if plausible
+- 'Anomaly: [explanation]' if something appears non-physical
