@@ -122,9 +122,8 @@ def convert_inline_formatting(text):
     """**bold** -> \\textbf{bold}, *italic* -> \\textit{italic}"""
     # Bold first (before italic)
     text = re.sub(r'\*\*([^*]+)\*\*', r'\\textbf{\1}', text)
-    # Italic (but not within math $...$)
-    # Simple approach: only convert *text* that isn't inside $
-    text = re.sub(r'(?<!\$)\*([^*$]+)\*(?!\$)', r'\\textit{\1}', text)
+    # Italic (but not within math $...$ and not \section*{ or \subsection*{)
+    text = re.sub(r'(?<!\$)(?<!\\section)(?<!\\subsection)\*([^*$\n{]+)\*(?!\$)', r'\\textit{\1}', text)
     return text
 
 
@@ -482,7 +481,24 @@ def convert_document(md_path, tex_path):
             heading_text = heading_match.group(2).strip()
             # Generate section label from heading
             sec_label = re.sub(r'[^a-z0-9]+', '-', heading_text.lower()).strip('-')
-            if level == 2:
+
+            # Unnumbered sections (journal backmatter)
+            UNNUMBERED = {'Highlights', 'CRediT authorship contribution statement',
+                          'Declaration of competing interest', 'Data availability',
+                          'Acknowledgements', 'References'}
+            # Skip Highlights entirely (separate submission file for Elsevier)
+            if heading_text == 'Highlights':
+                i += 1
+                # Skip everything until next ## heading
+                while i < len(body_lines) and not re.match(r'^#{2}\s', body_lines[i]):
+                    i += 1
+                continue
+            elif heading_text in UNNUMBERED:
+                if level == 2:
+                    output.append('\\section*{' + heading_text + '}')
+                elif level == 3:
+                    output.append('\\subsection*{' + heading_text + '}')
+            elif level == 2:
                 output.append('\\section{' + heading_text + '}')
                 output.append('\\label{sec:' + sec_label + '}')
             elif level == 3:

@@ -4,7 +4,7 @@
 
 ## Abstract
 
-Computational fluid dynamics (CFD) simulation of indoor environments requires three-dimensional geometric models that are costly and time-consuming to construct manually. This paper presents an automated framework that converts a single two-dimensional image of an indoor space into a fully resolved steady-state CFD solution, using a vision-language model (VLM) as the geometric abstraction engine. The framework accepts an architectural drawing or rendered image, invokes a VLM (Gemini 3.1 Pro, preview) to extract a structured 3D scene description comprising room geometry, internal obstacles, and ventilation openings, applies a single-factor scale calibration that requires one reference dimension (the longest horizontal span) to correct absolute size, and then automatically generates a computational mesh and boundary conditions for OpenFOAM. A rule-based benchmark dataset of 20 indoor geometries spanning four complexity levels and five input view types (100 evaluation cases in total) is constructed with independently computed reference CFD solutions, ensuring that no VLM output contaminates the ground truth. Across 97 of 100 cases (3 cases fail due to solver divergence) the framework achieves a mean structural similarity score of 0.781 and a mean reference CFD agreement score of 0.477, with the floor-plan view yielding the highest performance (structural 0.884, CFD 0.572) and the section view the lowest (structural 0.679, CFD 0.396). Room-kind topology is correctly identified in 95% of cases, and the opening-wall assignment matches the reference in 70% of cases overall, rising to 100% for floor-plan inputs. Systematic failure-mode analysis reveals three characteristic error patterns: composite-room collapse under section views, obstacle hallucination with limited CFD penalty, and a structure-versus-fidelity gap in dense composite geometries. The full pipeline, benchmark dataset, and evaluation code are provided to support reproducibility.
+CFD simulation of indoor environments requires three-dimensional geometric models that take hours to days of manual effort to construct. This paper presents a framework that converts a single 2D image of an indoor space into a steady-state CFD solution by using a vision-language model (VLM) as the geometric abstraction engine. Given an architectural drawing or rendered image, the VLM (Gemini 3.1 Pro) extracts a structured 3D scene description — room geometry, internal obstacles, and ventilation openings — which is then scale-calibrated using one reference dimension and automatically meshed and solved with OpenFOAM. A rule-based benchmark of 20 indoor geometries at four complexity levels and five input view types (100 cases total) provides independently computed reference CFD solutions with no VLM involvement in the ground truth. Of 100 cases, 97 converge; the framework achieves a mean structural score of 0.781 and a mean CFD agreement score of 0.477. Floor-plan inputs perform best (structural 0.884, CFD 0.572); section views perform worst (0.679, 0.396). Room topology is correctly identified in 95% of cases, and opening-wall assignment matches the reference in 70% overall (100% for floor plans). Three failure modes are identified: composite-room collapse under section views, obstacle hallucination with limited CFD penalty, and a structure-versus-fidelity gap in dense configurations. The pipeline, benchmark, and evaluation code are publicly available.
 
 ---
 
@@ -340,6 +340,40 @@ Both cases demonstrate that the framework handles realistic visual noise — hat
 This paper has presented a framework for automated indoor CFD analysis from a single 2D image, using a vision-language model to bridge the gap between visual input and simulation-ready 3D geometry. A systematic benchmark of 100 evaluation cases across four complexity levels and five input view types demonstrates that the framework achieves a mean structural score of 0.781 and a mean reference CFD agreement score of 0.477 under single-factor scale calibration. The floor-plan view yields the best results, achieving a structural score of 0.884, a CFD agreement score of 0.572, and a 100% opening-wall match rate. Three characteristic failure modes have been identified and analysed: composite-room collapse under section views, obstacle hallucination with limited CFD penalty, and a structure-versus-fidelity gap in dense configurations. The framework converges for 97 of 100 cases (3 cases fail due to solver divergence from non-physical predicted geometries) through a multi-level robustness strategy.
 
 VLM-based geometric abstraction is adequate for rapid indoor CFD screening when the goal is qualitative flow pattern identification — locating dominant recirculation zones, jet paths, and stagnation regions — rather than precise local velocity magnitudes. For applications requiring high-fidelity local flow prediction near specific obstacles, the current framework's accuracy is insufficient and should be supplemented with manual geometry refinement or multi-view input fusion. Future work will explore multi-factor scale calibration, multi-view input strategies, and extension to transient thermal simulations.
+
+---
+
+## Highlights
+
+- A single 2D image is converted to a steady-state indoor CFD solution via VLM geometric abstraction
+- A 100-case benchmark (4 complexity levels × 5 view types) with independent reference CFD is provided
+- Floor-plan inputs achieve structural score 0.884 and CFD agreement 0.572 with 100% opening-wall match
+- Three failure modes are identified: composite-room collapse, obstacle hallucination, structure-fidelity gap
+- End-to-end pipeline runs in 3–8 minutes per case, replacing hours of manual geometry preparation
+
+---
+
+## CRediT authorship contribution statement
+
+**Younghwan Joo**: Conceptualization, Methodology, Software, Validation, Formal analysis, Investigation, Data curation, Writing – original draft, Writing – review & editing, Visualization.
+
+---
+
+## Declaration of competing interest
+
+The author declares no known competing financial interests or personal relationships that could have appeared to influence the work reported in this paper.
+
+---
+
+## Data availability
+
+The benchmark dataset, evaluation code, and pipeline source code are available at [repository URL to be inserted upon acceptance].
+
+---
+
+## Acknowledgements
+
+This work was supported by the Korea Institute of Energy Research (KIER) [grant number to be inserted].
 
 ---
 
