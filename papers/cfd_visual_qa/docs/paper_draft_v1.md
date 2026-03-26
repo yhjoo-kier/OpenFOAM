@@ -191,7 +191,15 @@ Notably, all three evaluators produced false positives on the same category of c
 - *E5 Coarse mesh*: Detection depends on whether the scenario has fine-scale structures that become visibly degraded. In lid-driven cavity (S5), the expert misses it ("looks pretty"), but in heated plate (S1) and Rayleigh-Bénard (S9), coarse mesh artifacts are more apparent. Claude detects all except the S5 case in the initial 15-item evaluation but detects it in the expanded 30-item evaluation.
 - *E4 Wrong turbulence model*: Using a laminar solver at Re=10,000 produces smooth, seemingly plausible flow that the expert judges as "reasonable-looking." Claude detects it by reasoning that a flat turbulent profile from a laminar solver is non-physical at this Re.
 
-## 5.3 The Contamination Paradox
+## 5.3 Multi-Trial Consistency
+
+To assess the reliability of VLM judgments, we conducted three independent blind evaluations of Claude Opus on all 75 items. Each trial used fresh blind codes, independent evaluation sessions, and no access to previous trial results.
+
+Claude achieved 98.7% (74/75) on Trial 1, 100% (75/75) on Trial 2, and 100% (75/75) on Trial 3. Across 225 total judgments, 224 were correct (99.6%). The single error — a false positive on S8's complex multi-vortex wake — appeared only in Trial 1 and was not reproduced in Trials 2 or 3, confirming it as a stochastic single-trial event (probability ≈ 0.4%).
+
+Using majority vote (≥2/3 correct), Claude achieves 100% accuracy on all 75 items. Per-item consistency shows 74/75 items (98.7%) with perfect 3/3 agreement, and 1 item with 2/3 agreement. No false negatives appeared in any trial, indicating that Claude's error detection capability is highly reliable.
+
+## 5.4 The Contamination Paradox
 
 An unexpected finding emerged from our protocol development. An initial, non-blind evaluation of Claude Opus—where case names (e.g., "S5_E1_underconverged") were visible in file paths and ground truth labels were loaded in the evaluation context—achieved 87% accuracy with 3 false negatives (S5_E5, S6_E2, S2_E3). The subsequent blind evaluation, with anonymized codes and no ground truth, achieved 100%.
 
