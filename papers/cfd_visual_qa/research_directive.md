@@ -144,6 +144,30 @@
 - **반영 원칙**: 현재 자원(연산, 인력)으로 실현 가능하면 반영. 불가능하면 사유 기록 후 유저에게 보고.
 - **directive 수정**: 리뷰 지적사항 중 실현 가능한 것은 자율 세션이 directive에 반영 가능 ([USER-ONLY] 영역 제외)
 
+## Paper Writing Skills (~/projects/MyClaudeSkills/)
+
+자율 세션이 논문 작성/변환/제출 시 활용할 수 있는 스킬:
+
+### paper-writing (MD→LaTeX→PDF)
+- **Label 컨벤션**: `[Fig:label]`, `[Table:label]`, `[Eq:label]`, `[@citekey]`
+- **Citation 워크플로우**: .bib 파일(`/mnt/c/Vaults/Research/MyZotero_YHJoo.bib`) 매칭 → `[@citekey]` 변환
+- **LaTeX 변환 규칙**: `[Fig:label]` → `Fig.~\ref{fig:label}` 등
+- **빌드 파이프라인**: pdflatex → bibtex → pdflatex × 2
+- **Humanizer**: AI 문체 제거 (em dash 남용, rule of three, "Additionally" 등)
+- **적용 시점**: 논문 초안 완성 → LaTeX 변환 전에 humanizer 적용
+
+### journal-submission (저널 제출)
+- 타겟 저널 확정 후 활성화
+- 저널 템플릿 변환 + Visual QC loop (codex/gemini 페이지 검수)
+- 커버레터 작성 + 제출 체크리스트
+- **적용 시점**: LaTeX PDF 빌드 완료 후
+
+### paperbanana (학술 다이어그램 생성)
+- 텍스트 → 학술 그림 자동 생성 (Gemini API 기반)
+- Fig 1 (benchmark overview), Fig 7 (eval protocol) 등 개선 후보
+- `cd ~/projects/PaperBanana && source .venv/Scripts/activate && python run_single.py --input input.json --num_candidates 3`
+- **적용 시점**: Figure polishing 단계
+
 ## Direction Change Policy
 
 자율 세션이 directive를 수정할 수 있는 경우:
