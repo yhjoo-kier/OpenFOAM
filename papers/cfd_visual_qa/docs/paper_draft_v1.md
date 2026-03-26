@@ -161,22 +161,30 @@ We report the following metrics for each evaluator:
 
 ## 5.1 Overall Performance
 
-[Table:main-results] summarizes the overall accuracy of each evaluator on 30 blind evaluation items spanning all 10 scenarios. The items include 12 correct cases and 18 error cases across 6 error types and 3 visualization modes (V1 velocity contour, V2 temperature contour, V6 composite).
+[Table:main-results] summarizes the overall accuracy of each evaluator. Claude Opus 4.6 was evaluated on 75 blind items, Gemini 3.1 on 29 valid items (from 30 attempted, 1 no-response), and the domain expert on 80 items. All items span the full 10 scenarios, 6 error types, and multiple visualization modes.
 
-Claude Opus 4.6 achieves perfect accuracy (30/30), correctly identifying all correct cases as plausible and all error cases as anomalous. The domain expert achieves 87% accuracy (26/30), missing 4 error cases. Gemini 3.1 achieves 80% accuracy on valid responses (16/20) but exhibits a 33% no-response rate (10/30 items returned empty or unparseable output), yielding an effective accuracy of 53% when counting no-responses as failures.
+Claude Opus 4.6 achieves 98.7% accuracy (74/75), with a single false positive on one correct case (S8 heated obstacle, whose complex multi-vortex wake was judged as non-physical). The domain expert achieves 73.8% accuracy (59/80), with 19 false negatives and 2 false positives. Gemini 3.1 achieves 86.2% accuracy on valid responses (25/29), with 2 false positives and 2 false negatives.
 
-No evaluator produced false positives (marking a correct case as erroneous), indicating that all three are conservative—they only flag anomalies when genuinely suspicious. The critical failure mode for a CFD validator is the false negative: accepting an erroneous flow field as correct. On this metric, Claude achieves 0% false negative rate, the expert 22% (4/18 errors missed), and Gemini 20% of valid responses (but higher when including no-responses on error items).
+The critical failure mode for a CFD validator is the false negative: accepting an erroneous flow field as correct. On this metric, Claude achieves a 0% false negative rate (all errors detected), Gemini 6.9% (2/29), and the expert 23.8% (19/80). Claude's single error is a false positive—flagging a physically correct but visually complex flow as suspicious—which is the *safer* failure mode for a validator.
+
+Notably, all three evaluators produced false positives on the same category of case: complex wake/convection patterns with multiple vortices that appear "excessive" despite being physically correct. This suggests an inherent difficulty boundary in the benchmark where visual complexity triggers false alarms regardless of evaluator type.
 
 ## 5.2 Per-Error-Type Analysis
 
 [Table:per-error-recall] reveals that error detection capability is strongly dependent on error type, and different evaluators have different blind spots.
 
 **Consistently detectable (recall ≥ 80% across all evaluators):**
-- *E1 Under-convergence*: Produces visually obvious artifacts (non-physical velocity peaks, incomplete flow development). All evaluators detect these reliably.
-- *E8 Gravity/direction reversal*: Inverts expected flow patterns (downward plume instead of upward, reversed vortex rotation). Detectable through physics reasoning about buoyancy direction or vortex-lid consistency.
+- *E1 Under-convergence*: Expert 73%, Claude 100%, Gemini ~100%. Produces visually obvious artifacts (non-physical velocity peaks, incomplete flow development), though detectability decreases in complex geometries (e.g., expert missed S8 under-convergence).
+- *E8 Gravity/direction reversal*: Expert 100%, Claude 100%, Gemini ~80%. Inverts expected flow patterns. Detectable through physics reasoning about buoyancy direction.
+- *E6 Artificial modification*: Expert 100%, Claude 100%. Suppressed recirculation behind backward-facing step correctly identified.
 
 **Expert-challenging, VLM-detectable:**
-- *E2 Boundary condition swap*: The expert detects this in severe cases (lid on bottom wall → dramatic flow change) but misses subtle cases (hot/cold wall swap → plausible mirror image). Claude detects all BC swaps by cross-referencing stated wall temperatures against colorbar values in the image.
+- *E2 Boundary condition swap*: Expert 20%, Claude 100%, Gemini ~50%. The most consistent expert blind spot. BC swaps that produce mirror images (hot↔cold wall) appear plausible on visual inspection. Claude detects all BC swaps by cross-referencing stated wall temperatures against colorbar values.
+- *E3 Wrong viscosity*: Expert 29%, Claude 100%, Gemini ~67%. Increased viscosity produces qualitatively correct but quantitatively wrong flows. Claude detects via development length and thermal penetration inconsistencies with stated Re/Ra.
+
+**Context-dependent:**
+- *E5 Coarse mesh*: Expert 44%, Claude 100%, Gemini ~50%. Detection depends on whether fine-scale features (corner vortices, convection cells) are expected. In scenarios without such features, coarse mesh may appear acceptable.
+- *E4 Wrong turbulence model*: Expert 50%, Claude 100%, Gemini ~100%. Laminar solver at turbulent Re produces smooth flows that experts may judge as "reasonable."
 - *E3 Wrong viscosity*: The expert misses this in laminar channel flow (S2) where the flow looks qualitatively correct at a different Re, but detects it in natural convection (S1) where the boundary layer is completely suppressed. Claude detects both by noting quantitative inconsistencies (development length too short for stated Re, thermal penetration too deep).
 
 **Context-dependent detectability:**
