@@ -95,7 +95,33 @@
 
 ---
 
-## Day 2 계획 (2026-03-26)
-- Day 3-5 DOCX 라벨링 수거 (유저 편의에 따라)
-- Gemini/GPT-4o 블라인드 평가 실행
-- 논문 초안 시작 (Introduction, Methodology)
+---
+
+## Day 2 (2026-03-26) — Paper Draft Complete
+
+### 완료
+- Gemini Day 2 블라인드 평가 (62.5% valid, 33% no-response)
+- Claude Day 2 블라인드 평가 (100%, 30/30 종합)
+- GPT-5.4 (Codex) 시도 → CLI 이미지 전달 실패
+- 논문 아웃라인 작성 (7 sections, 7 figures, 5 tables)
+- 논문 전체 초안 완료 (4,066 words, abstract + sections 1-7)
+- Figure 7/7 생성 완료
+- Supervisor review 반영 (directive v1.1)
+- Supervisor review 확인 cron 추가
+
+### 누적
+- CFD: 60 cases, 258 images, 279 QA
+- 라벨: 35/80 (Day 3-5 대기)
+- VLM: Claude 30/30=100%, Gemini 16/20=80% (valid)
+- 논문: 4,066 words + 7 figures
+
+### 이슈
+- Gemini CLI 무응답률 33% (image processing 불안정)
+- Codex CLI 이미지 전달 불가
+- Day 3-5 라벨 아직 수거 안 됨
+
+### Day 3 계획 (2026-03-27)
+- Day 3-5 라벨링 수거 (유저 편의에 따라)
+- 라벨 수거 시: VLM 확대 평가 + 결과 섹션 업데이트
+- 논문 polishing (figure 참조, citation 형식, table 삽입)
+- Supervisor review 확인 (20:30)
