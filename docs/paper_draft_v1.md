@@ -387,7 +387,7 @@ The full prompt template used for Gemini 3.1 Pro scene extraction (~659 words) i
 
 The structural score depends on the IoU thresholds used for room-block matching (default 0.2) and obstacle matching (default 0.1). To assess the sensitivity of the reported results to these thresholds, the structural score was recomputed with a uniform IoU threshold applied to both components, ranging from 0.05 to 0.50. Opening type F1 and opening wall match ratio are unaffected by this variation.
 
-**Table B1.** Mean structural score as a function of uniform IoU matching threshold (n = 97).
+[Table:appendix-iou-sensitivity] Mean structural score as a function of uniform IoU matching threshold (n = 97).
 
 | IoU threshold | Mean structural score |
 |---------------|----------------------|

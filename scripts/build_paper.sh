@@ -37,9 +37,13 @@ if [ -d "$BANANA_FIGS" ]; then
     echo "  PaperBanana figures applied"
 fi
 
-# 4. Copy BibTeX
+# 4. Copy BibTeX and truncate long author lists
 echo "=== Copying BibTeX ==="
 cp "$BIB_SOURCE" "$LATEX_DIR/Zotero_YHJoo.bib"
+
+# Truncate GPT-4 and Gemini author lists (100+ authors -> first 3 + "and others")
+BIB_LOCAL="$LATEX_DIR/Zotero_YHJoo.bib"
+"$PYTHON" "$SCRIPTS_DIR/truncate_bib_authors.py" "$BIB_LOCAL"
 
 # 5. Build PDF
 echo "=== Building PDF (pdflatex -> bibtex -> pdflatex -> pdflatex) ==="
