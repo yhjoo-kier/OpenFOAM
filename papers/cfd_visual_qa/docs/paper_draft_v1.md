@@ -62,7 +62,7 @@ No existing benchmark evaluates VLM capability to assess physical plausibility o
 
 The CFD-VisQA benchmark is built on three principles. First, it must measure a *spectrum* of visual understanding capabilities, from basic colorbar reading to physics-grounded plausibility assessment. Second, it requires both correct and intentionally erroneous flow fields—evaluating only correct cases cannot reveal whether a model detects anomalies or merely describes what it sees. Third, all data must be reproducible: every flow field is generated from OpenFOAM simulations with published scripts, enabling independent verification and extension.
 
-The benchmark is organized along three orthogonal axes: flow scenarios (10 canonical thermal-fluid problems), visualization types (6 rendering modes), and question difficulty levels (5 tiers from visual reading to quantitative estimation). This factored design enables fine-grained analysis of where VLM capabilities break down.
+The benchmark is organized along three orthogonal axes: flow scenarios (10 canonical thermal-fluid problems), visualization types (6 rendering modes), and question difficulty levels (5 tiers from visual reading to quantitative estimation) [Fig:benchmark-overview]. This factored design enables fine-grained analysis of where VLM capabilities break down.
 
 ## 3.2 Flow Scenarios
 
@@ -88,7 +88,7 @@ A key contribution of this benchmark is the systematic generation of physically 
 
 **E8 — Gravity/direction reversal.** The gravity vector is flipped (natural convection) or the lid direction is reversed (cavity flow). This inverts the buoyancy-driven circulation, producing a flow that violates physical expectations for the stated boundary conditions.
 
-Each error type is assigned a severity level based on pilot expert labeling: *severe* (detectable at a glance), *moderate* (requires careful inspection), or *subtle* (requires quantitative comparison with the problem setup). Severity varies by scenario—e.g., E2 (BC swap) is severe in lid-driven cavity but subtle in differentially heated cavity.
+Each error type is assigned a severity level based on pilot expert labeling: *severe* (detectable at a glance), *moderate* (requires careful inspection), or *subtle* (requires quantitative comparison with the problem setup) [Fig:error-examples]. Severity varies by scenario—e.g., E2 (BC swap) is severe in lid-driven cavity but subtle in differentially heated cavity.
 
 ## 3.4 Visualization Pipeline
 
@@ -161,7 +161,7 @@ We report the following metrics for each evaluator:
 
 ## 5.1 Overall Performance
 
-[Table:main-results] summarizes the overall accuracy of each evaluator. Claude Opus 4.6 was evaluated on 75 blind items, Gemini 3.1 on 29 valid items (from 30 attempted, 1 no-response), and the domain expert on 80 items. All items span the full 10 scenarios, 6 error types, and multiple visualization modes.
+[Table:main-results] and [Fig:main-results] summarize the overall accuracy of each evaluator. Claude Opus 4.6 was evaluated on 75 blind items, Gemini 3.1 on 29 valid items (from 30 attempted, 1 no-response), and the domain expert on 80 items. All items span the full 10 scenarios, 6 error types, and multiple visualization modes.
 
 Claude Opus 4.6 achieves 98.7% accuracy (74/75), with a single false positive on one correct case (S8 heated obstacle, whose complex multi-vortex wake was judged as non-physical). The domain expert achieves 73.8% accuracy (59/80), with 19 false negatives and 2 false positives. Gemini 3.1 achieves 86.2% accuracy on valid responses (25/29), with 2 false positives and 2 false negatives.
 
@@ -171,7 +171,7 @@ All three evaluators produced false positives on the same category of case: comp
 
 ## 5.2 Per-Error-Type Analysis
 
-[Table:per-error-recall] reveals that error detection capability is strongly dependent on error type, and different evaluators have different blind spots.
+[Table:per-error-recall] and [Fig:error-heatmap] reveal that error detection capability is strongly dependent on error type, and different evaluators have different blind spots.
 
 **Consistently detectable (recall ≥ 80% across all evaluators):**
 - *E1 Under-convergence*: Expert 73%, Claude 100%, Gemini ~100%. Produces visually obvious artifacts (non-physical velocity peaks, incomplete flow development), though detectability decreases in complex geometries (e.g., expert missed S8 under-convergence).
@@ -193,7 +193,7 @@ All three evaluators produced false positives on the same category of case: comp
 
 ## 5.3 Multi-Trial Consistency
 
-To assess the reliability of VLM judgments, we conducted three independent blind evaluations of Claude Opus on all 75 items. Each trial used fresh blind codes, independent evaluation sessions, and no access to previous trial results.
+To assess the reliability of VLM judgments, we conducted three independent blind evaluations of Claude Opus on all 75 items [Fig:trials-contamination]. Each trial used fresh blind codes, independent evaluation sessions, and no access to previous trial results.
 
 Claude achieved 98.7% (74/75) on Trial 1, 100% (75/75) on Trial 2, and 100% (75/75) on Trial 3. Across 225 total judgments, 224 were correct (99.6%). The single error — a false positive on S8's complex multi-vortex wake — appeared only in Trial 1 and was not reproduced in Trials 2 or 3, confirming it as a stochastic single-trial event (probability ≈ 0.4%).
 
