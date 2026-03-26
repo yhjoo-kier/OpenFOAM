@@ -80,7 +80,7 @@ A key contribution of this benchmark is the systematic generation of physically 
 
 **E2 — Boundary condition swap.** Inlet and outlet (or hot and cold wall) boundary conditions are exchanged. In some scenarios (e.g., backward-facing step), this produces a subtly different but plausible-looking flow; in others (e.g., lid-driven cavity with lid on bottom), the error is visually obvious.
 
-**E3 — Wrong viscosity.** Kinematic viscosity is increased by 10–100×, effectively reducing the Reynolds or Rayleigh number well below the intended value. The resulting flow is physically self-consistent but incorrect for the stated conditions—a "subtle" error detectable only by quantitative comparison with the problem setup.
+**E3 — Wrong viscosity.** Kinematic viscosity is increased by 10–100×, effectively reducing the Reynolds or Rayleigh number well below the intended value. The resulting flow is physically self-consistent but incorrect for the stated conditions, making it a "subtle" error detectable only by quantitative comparison with the problem setup.
 
 **E4 — Wrong turbulence model.** A laminar solver is applied to a turbulent-regime flow (Re = 10,000). The result lacks turbulent mixing, producing unrealistic velocity profiles, but may appear superficially smooth.
 
@@ -135,7 +135,7 @@ To prevent evaluation bias, we implement a strict blind protocol:
 3. **Independent context.** Each VLM evaluation runs in a separate session (subagent or CLI invocation) with no memory of previous items or results.
 4. **Standardized prompts.** All evaluators receive identical problem setup text and the same question format.
 
-We discovered the importance of this protocol empirically: an initial non-blind evaluation of Claude Opus (with case names visible in file paths and ground truth loaded in context) achieved 87% accuracy, while the subsequent blind evaluation achieved 100%—a phenomenon we term the *contamination paradox* (Section 5.3).
+We discovered the importance of this protocol empirically: an initial non-blind evaluation of Claude Opus (with case names visible in file paths and ground truth loaded in context) achieved 87% accuracy, while the subsequent blind evaluation achieved 100%. We term this the *contamination paradox* (Section 5.4).
 
 ## 4.3 Models and Expert
 
@@ -167,7 +167,7 @@ Claude Opus 4.6 achieves 98.7% accuracy (74/75), with a single false positive on
 
 The critical failure mode for a CFD validator is the false negative: accepting an erroneous flow field as correct. On this metric, Claude achieves a 0% false negative rate (all errors detected), Gemini 6.9% (2/29), and the expert 23.8% (19/80). Claude's single error is a false positive—flagging a physically correct but visually complex flow as suspicious—which is the *safer* failure mode for a validator.
 
-Notably, all three evaluators produced false positives on the same category of case: complex wake/convection patterns with multiple vortices that appear "excessive" despite being physically correct. This suggests an inherent difficulty boundary in the benchmark where visual complexity triggers false alarms regardless of evaluator type.
+All three evaluators produced false positives on the same category of case: complex wake/convection patterns with multiple vortices that appear "excessive" despite being physically correct. This points to an inherent difficulty boundary where visual complexity triggers false alarms regardless of evaluator type.
 
 ## 5.2 Per-Error-Type Analysis
 
