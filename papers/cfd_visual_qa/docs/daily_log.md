@@ -125,3 +125,38 @@
 - 라벨 수거 시: VLM 확대 평가 + 결과 섹션 업데이트
 - 논문 polishing (figure 참조, citation 형식, table 삽입)
 - Supervisor review 확인 (20:30)
+
+---
+
+## Day 2 (2026-03-26) — Full Evaluation + Paper Completion
+
+### 완료
+- Day 3 전문가 라벨 수거 (60%, 9/15)
+- Day 4+5 전문가 라벨 수거 (각 66.7%)
+- **전체 80개 전문가 라벨 완료** — 73.8% accuracy, 2 FP, 19 FN
+- Claude Day 3 블라인드 평가: 93.3% (14/15) — 첫 FP (S8_correct_lam)
+- Claude Day 4+5 블라인드 평가: 100% (30/30)
+- **Claude 종합 75항목: 98.7%** (74/75, 1 FP, 0 FN)
+- Gemini 무응답 13건 재시도: 11/11 valid, 86.2% (25/29)
+- VLM 입출력 전체 문서화 (transcripts + review DOCX)
+- 논문 Sections 1-7 초안 완료 (4,066 words)
+- Figure 7/7 생성 완료
+- 논문 아웃라인 작성
+- Supervisor review 반영 (directive v1.1)
+
+### 누적
+- CFD: 60 cases, 258 images, 279 QA
+- 전문가 라벨: 80/80 완료 (73.8%)
+- Claude: 75 items, 98.7%
+- Gemini: 29 valid items, 86.2%
+- 논문: 4,066 words + 7 figures
+
+### 이슈
+- S8_correct_lam: Claude/전문가 모두 FP — 복잡 후류 패턴
+- Gemini: S1_correct_lam에서 2 FP (복잡 자연대류)
+- 3회 독립 시행 여부 유저 논의 중
+
+### Day 3 계획
+- 3회 시행 결정 시 추가 VLM 평가 실행
+- 논문 Results 섹션 최종 수치 업데이트
+- Supervisor review 확인
