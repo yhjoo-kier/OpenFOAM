@@ -112,6 +112,16 @@
 - Ground truth를 평가 컨텍스트에 포함 금지
 - 독립 서브에이전트 또는 별도 CLI 세션에서 실행
 
+### 3회 독립 시행 (Multi-trial Protocol)
+- 모든 VLM 평가는 동일 항목에 대해 **3회 독립 시행**
+- 각 시행은 완전히 독립된 세션 (이전 시행 결과 미노출)
+- 블라인드 코드를 시행마다 다르게 부여 (trial bias 방지)
+- 보고 메트릭:
+  - **Majority vote accuracy**: 3회 중 2회 이상 정답인 항목의 비율
+  - **Per-item consistency**: 3/3 일치 vs 2/3 vs 1/3 비율
+  - **Trial-level accuracy**: 각 시행별 개별 정확도
+- 기존 1회차 결과는 Trial 1으로 활용
+
 ### 보고 메트릭
 - 전체 정확도 (accuracy)
 - 오류유형별 recall (E1-E8 각각)
