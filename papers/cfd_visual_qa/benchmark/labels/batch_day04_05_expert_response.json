@@ -1,0 +1,49 @@
+{
+  "batch_id": "day_04_05",
+  "date": "2026-03-26",
+  "source": "google_drive_docx_blind",
+  "expert": "domain_expert_thermal_fluid",
+  "blind_coded": true,
+  "day4": {
+    "total": 15,
+    "correct": 10,
+    "accuracy": 0.667,
+    "fn": [
+      "S2_E1_underconverged",
+      "S2_E2_bc_swap",
+      "S4_E5_coarse_mesh",
+      "S10_E2_bc_swap",
+      "S10_E5_coarse_mesh"
+    ],
+    "fp": []
+  },
+  "day5": {
+    "total": 15,
+    "correct": 10,
+    "accuracy": 0.667,
+    "fn": [
+      "S7_E5_coarse_mesh",
+      "S7_E3_wrong_viscosity(V6)",
+      "S7_E3_wrong_viscosity(V2)",
+      "S6_E1_underconverged(V6)"
+    ],
+    "fp": [
+      "S8_correct_lam V5 \u2014 same FP as Day 3"
+    ]
+  },
+  "cumulative": {
+    "total": 80,
+    "correct": 59,
+    "accuracy": 0.7375,
+    "total_fp": 2,
+    "error_type_recall_approx": {
+      "E1_underconverged": "73% (8/11)",
+      "E2_bc_swap": "20% (1/5)",
+      "E3_wrong_viscosity": "29% (2/7)",
+      "E4_wrong_turb_model": "50% (1/2)",
+      "E5_coarse_mesh": "44% (4/9)",
+      "E6_modified": "100% (1/1)",
+      "E8_gravity_flip": "100% (8/8)"
+    }
+  }
+}
