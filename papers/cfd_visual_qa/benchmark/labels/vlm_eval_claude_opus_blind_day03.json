@@ -1,0 +1,19 @@
+{
+  "evaluator": "claude-opus-4-6",
+  "type": "blind",
+  "date": "2026-03-26",
+  "batch": "day03",
+  "accuracy": 0.9333333333333333,
+  "total": 15,
+  "correct": 14,
+  "false_positives": [
+    "S8_correct_lam V6 \u2014 same FP as expert, complex wake pattern"
+  ],
+  "false_negatives": [],
+  "combined": {
+    "total": 45,
+    "correct": 44,
+    "accuracy": 0.9777777777777777,
+    "note": "First error at item 45. Same FP as expert on S8_correct_lam."
+  }
+}
