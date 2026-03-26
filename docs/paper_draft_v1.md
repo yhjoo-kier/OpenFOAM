@@ -367,7 +367,7 @@ The author declares no known competing financial interests or personal relations
 
 ## Data availability
 
-The benchmark dataset, evaluation code, and pipeline source code are available at [repository URL to be inserted upon acceptance].
+The benchmark dataset (scene definitions, multi-view renderings, evaluation results), pipeline source code, and evaluation scripts are publicly available on figshare at [DOI to be inserted upon acceptance].
 
 ---
 
