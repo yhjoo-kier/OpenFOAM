@@ -1,7 +1,7 @@
 {
   "version": "1.0",
   "created": "2026-03-24",
-  "last_updated": "2026-03-26T08:17",
+  "last_updated": "2026-03-26T16:00",
   "current_phase": "P2_preliminary_eval",
   "current_day": 2,
   "start_date": "2026-03-24",
@@ -530,7 +530,7 @@
     "images_generated": 258,
     "questions_generated": 279,
     "labels_requested": 0,
-    "labels_completed": 35
+    "labels_completed": 50
   },
   "labeling": {
     "next_batch_day": 1,
