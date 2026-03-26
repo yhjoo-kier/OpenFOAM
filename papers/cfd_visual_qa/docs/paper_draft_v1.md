@@ -188,7 +188,7 @@ Notably, all three evaluators produced false positives on the same category of c
 - *E3 Wrong viscosity*: The expert misses this in laminar channel flow (S2) where the flow looks qualitatively correct at a different Re, but detects it in natural convection (S1) where the boundary layer is completely suppressed. Claude detects both by noting quantitative inconsistencies (development length too short for stated Re, thermal penetration too deep).
 
 **Context-dependent detectability:**
-- *E5 Coarse mesh*: Detection depends on whether the scenario has fine-scale structures that become visibly degraded. In lid-driven cavity (S5), the expert misses it ("looks pretty"), but in heated plate (S1) and Rayleigh-Bénard (S9), coarse mesh artifacts are more apparent. Claude detects all except the S5 case in the initial 15-item evaluation but detects it in the expanded 30-item evaluation.
+- *E5 Coarse mesh*: Detection depends on whether the scenario has fine-scale structures that become visibly degraded. In lid-driven cavity (S5), the expert misses it ("looks pretty"), but in heated plate (S1) and Rayleigh-Bénard (S9), coarse mesh artifacts are more apparent. Claude detects all coarse mesh cases across 75 items (3 trials), with the S5 case correctly flagged in all trials.
 - *E4 Wrong turbulence model*: Using a laminar solver at Re=10,000 produces smooth, seemingly plausible flow that the expert judges as "reasonable-looking." Claude detects it by reasoning that a flat turbulent profile from a laminar solver is non-physical at this Re.
 
 ## 5.3 Multi-Trial Consistency
@@ -231,11 +231,11 @@ This finding suggests that VLMs and domain experts have *complementary* capabili
 
 ## 6.2 Limitations
 
-**Sample size.** The current evaluation comprises 30 items, which we classify as an "initial finding" per our claim discipline framework. Statistical power analysis suggests approximately 100+ items would be needed to establish significant differences between evaluators at the per-error-type level.
+**Sample size.** Claude was evaluated on 75 items (225 judgments across 3 trials) and the expert on 80 items, placing the study at the "initial finding" level. Gemini's 30-item evaluation is smaller. Per-error-type analysis for low-sample categories (E4: 2 items, E6: 1 item) should be interpreted with caution. Approximately 100+ items per evaluator would be needed to establish statistically significant differences at the per-error-type level.
 
 **Single expert.** Our comparison involves one domain expert. Expert performance varies with experience level, sub-domain specialization, and fatigue. A multi-expert study would strengthen the baseline.
 
-**Two VLMs.** We evaluate Claude Opus and Gemini 3.1. GPT-5.4 evaluation was attempted but failed due to CLI image-passing limitations. Open-source VLMs (LLaVA, InternVL, Qwen2.5-VL) remain to be tested.
+**Two VLMs.** We evaluate Claude Opus 4.6 (75 items, 3 trials) and Gemini 3.1 (30 items, 3 trials). GPT-5.4 evaluation was attempted but failed due to CLI image-passing limitations. Open-source VLMs (LLaVA, InternVL, Qwen2.5-VL) remain to be tested, and would strengthen the generalizability of findings.
 
 **2D steady-state only.** All scenarios are 2D steady-state RANS simulations. 3D visualizations (isosurfaces, cut planes), transient flows (vortex shedding, turbulent fluctuations), and multi-physics problems (combustion, multiphase) present additional challenges not covered by this benchmark.
 
@@ -257,7 +257,7 @@ These results support the feasibility of VLM-based automated CFD validation, wit
 
 We introduced CFD-VisQA, the first benchmark for evaluating vision-language model capabilities in assessing physical plausibility of CFD flow field visualizations. The benchmark comprises 10 canonical thermal-fluid scenarios with 60 OpenFOAM cases, 258 flow field images, and 279 physics-grounded questions spanning 5 difficulty levels and 6 systematically generated error types.
 
-Blind evaluation of Claude Opus 4.6 and Gemini 3.1 against a domain expert on 30 items reveals that frontier VLMs can detect subtle CFD errors—including boundary condition mismatches, incorrect viscosity, and mesh inadequacy—that domain experts miss during visual inspection. Claude Opus achieves 100% accuracy through systematic cross-referencing of problem setup text against visual features, while the domain expert achieves 87%, primarily missing errors that produce qualitatively plausible flow patterns.
+Blind evaluation using a multi-trial protocol reveals that frontier VLMs can detect subtle CFD errors that domain experts miss during visual inspection. Claude Opus 4.6 achieves 99.6% accuracy across 225 judgments (75 items × 3 trials, majority vote 100%), detecting all error types including boundary condition swaps (expert recall: 20%) and wrong viscosity (expert recall: 29%). The domain expert achieves 73.8% on 80 items, primarily missing errors that produce qualitatively plausible flow patterns. Gemini 3.1 achieves 87.5% mean accuracy on 30 items with different failure modes.
 
 Our key findings—the contamination paradox, differential blind spots between VLMs and experts, and the critical role of setup-conditioned evaluation—provide practical guidance for deploying VLMs as automated CFD validators. The benchmark dataset and evaluation pipeline are publicly available to support further research in scientific visualization understanding.
 
