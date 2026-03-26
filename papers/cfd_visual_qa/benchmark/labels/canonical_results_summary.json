@@ -1,0 +1,108 @@
+{
+  "generated": "2026-03-27",
+  "benchmark": {
+    "scenarios": 10,
+    "cases": 60,
+    "images": 258,
+    "qa_questions": 279,
+    "error_types": 7,
+    "visualization_types": 6
+  },
+  "evaluators": {
+    "claude_opus_46": {
+      "items": 75,
+      "trials": 3,
+      "total_judgments": 225,
+      "trial_accuracy": [
+        98.7,
+        100.0,
+        100.0
+      ],
+      "mean_accuracy": 99.6,
+      "majority_vote_accuracy": 100.0,
+      "per_item_consistency_3of3": 74,
+      "per_item_consistency_2of3": 1,
+      "total_fp": 1,
+      "total_fn": 0,
+      "fp_details": [
+        "S8_correct_lam V6 (Trial 1 only, stochastic)"
+      ]
+    },
+    "gemini_31": {
+      "items": 30,
+      "trials": 3,
+      "total_judgments": 90,
+      "trial_accuracy": [
+        86.2,
+        86.2,
+        90.0
+      ],
+      "mean_accuracy": 87.5,
+      "total_fp": 3,
+      "total_fn": 8,
+      "consistent_fn": [
+        "S7_E8_gravity_flipped (3/3 missed)"
+      ],
+      "consistent_fp": [
+        "S1_correct_lam (2/3 flagged)"
+      ]
+    },
+    "domain_expert": {
+      "items": 80,
+      "trials": 1,
+      "accuracy": 73.8,
+      "total_fp": 2,
+      "total_fn": 19,
+      "fp_details": [
+        "S8_correct_lam V6",
+        "S8_correct_lam V5"
+      ]
+    }
+  },
+  "per_error_type_recall": {
+    "E1_underconverged": {
+      "claude": 100,
+      "gemini": 100,
+      "expert": 73
+    },
+    "E2_bc_swap": {
+      "claude": 100,
+      "gemini": 50,
+      "expert": 20
+    },
+    "E3_wrong_viscosity": {
+      "claude": 100,
+      "gemini": 67,
+      "expert": 29
+    },
+    "E4_wrong_turb_model": {
+      "claude": 100,
+      "gemini": 100,
+      "expert": 50
+    },
+    "E5_coarse_mesh": {
+      "claude": 100,
+      "gemini": 50,
+      "expert": 44
+    },
+    "E6_modified": {
+      "claude": 100,
+      "gemini": "N/A",
+      "expert": 100
+    },
+    "E8_gravity_flip": {
+      "claude": 100,
+      "gemini": 80,
+      "expert": 100
+    }
+  },
+  "key_findings": [
+    "Claude Opus achieves near-perfect setup-conditioned CFD validation (99.6%, majority vote 100%)",
+    "Expert blind spot: BC swap (20% recall) and wrong viscosity (29% recall)",
+    "Gemini blind spot: S7 gravity flip consistently missed (3/3 trials)",
+    "Contamination paradox: blind evaluation outperforms non-blind (100% vs 87%)",
+    "Multi-trial consistency: 98.7% per-item 3/3 agreement for Claude",
+    "Shared FP on S8_correct_lam: complex wake fools both human and VLM",
+    "VLM strategy: systematic setup-image cross-referencing vs expert gestalt assessment"
+  ]
+}
