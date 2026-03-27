@@ -160,3 +160,37 @@
 - 3회 시행 결정 시 추가 VLM 평가 실행
 - 논문 Results 섹션 최종 수치 업데이트
 - Supervisor review 확인
+
+---
+
+## Day 3 (2026-03-27) — Paper Finalization
+
+### 완료
+- Figure 1-3 최종 업데이트 (75/80/30, 3-trial data)
+- Discussion/Conclusion 수치 동기화 (30→75/80)
+- Humanizer 1차 적용 (AI 문체 제거)
+- Figure/Table 참조 추가 (paper-writing 컨벤션)
+- Citation 확인 → 13개 중 대부분 .bib 미등록
+- canonical_results_summary.json 생성 (단일 진실 소스)
+- Paper writing skills 평가 + directive 반영
+
+### 누적 (전체 프로젝트)
+- CFD: 60 cases, 258 images, 279 QA
+- 전문가 라벨: 80/80 (73.8%)
+- Claude: 225 judgments (99.6%), majority vote 100%
+- Gemini: 90 judgments (87.5%)
+- 논문: 4,425 words + 7 figures, MD 초안 완성
+
+### 상태: Markdown 초안 완성
+논문은 LaTeX 변환 직전 상태. 유저 작업 대기:
+1. Zotero에 13개 참고문헌 추가
+2. 타겟 저널 확정
+3. 논문 내용 리뷰
+
+### 자율 연구 프레임워크 평가
+- Day 0: 프로젝트 설계 + 파일럿 시작
+- Day 1: 10/10 시나리오 완료 (원래 2주 계획)
+- Day 2: 3-trial VLM 평가 + 전체 라벨링 + 논문 초안
+- Day 3: 논문 polishing + 수치 동기화
+- 총 소요: 3.5일 (예상 14일의 25%)
+- 인간 개입: 라벨링 (~2시간) + 방향 결정 (~30분)
