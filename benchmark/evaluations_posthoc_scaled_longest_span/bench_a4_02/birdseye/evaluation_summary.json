@@ -1,0 +1,524 @@
+{
+  "ok": true,
+  "setting": "posthoc_uniform_longest_span_v1",
+  "task": {
+    "case_name": "bench_a4_02",
+    "view": "birdseye",
+    "task_json": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations_posthoc_scaled_longest_span/bench_a4_02/birdseye/task.json",
+    "reference_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations_posthoc_scaled_longest_span/bench_a4_02/birdseye/reference_scene.json",
+    "evaluation_root": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations_posthoc_scaled_longest_span"
+  },
+  "baseline": {
+    "predicted_scene_json": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations_posthoc_scaled_longest_span/bench_a4_02/birdseye/baseline_predicted_scene.json",
+    "evaluation_summary_json": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations_posthoc_scaled_longest_span/bench_a4_02/birdseye/baseline_evaluation_summary.json"
+  },
+  "run": {
+    "name": "eval_posthoc_uniform_longest_span_v1_bench_a4_02_birdseye",
+    "command": [
+      "python3",
+      "/home/yhjoo/projects/OpenFOAM/scripts/run_indoor_stabilized.py",
+      "--scenario",
+      "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations_posthoc_scaled_longest_span/bench_a4_02/birdseye/scaled_scene.json",
+      "--name",
+      "eval_posthoc_uniform_longest_span_v1_bench_a4_02_birdseye",
+      "--mesh-size",
+      "0.35",
+      "--end-time",
+      "250",
+      "--solver-timeout",
+      "600",
+      "--disable-repair"
+    ],
+    "returncode": 0,
+    "timed_out": false,
+    "started_at": "2026-03-20T07:57:29Z",
+    "finished_at": "2026-03-20T07:58:05Z"
+  },
+  "outputs": {
+    "scaled_scene_json": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations_posthoc_scaled_longest_span/bench_a4_02/birdseye/scaled_scene.json",
+    "predicted_scene_json": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations_posthoc_scaled_longest_span/bench_a4_02/birdseye/predicted_scene.json",
+    "predicted_case_dir": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations_posthoc_scaled_longest_span/bench_a4_02/birdseye/predicted_case",
+    "predicted_results_dir": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations_posthoc_scaled_longest_span/bench_a4_02/birdseye/predicted_results",
+    "stabilization_summary": "/home/yhjoo/projects/OpenFOAM/results/eval_posthoc_uniform_longest_span_v1_bench_a4_02_birdseye/stabilization_summary.json",
+    "cfd_metrics_json": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations_posthoc_scaled_longest_span/bench_a4_02/birdseye/cfd_metrics.json"
+  },
+  "scale_summary": {
+    "ok": true,
+    "reference_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/scenes/a4_02.json",
+    "predicted_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_02/birdseye/predicted_scene.json",
+    "output": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations_posthoc_scaled_longest_span/bench_a4_02/birdseye/scaled_scene.json",
+    "characteristic": "longest_horizontal_span",
+    "reference_value_m": 7.492,
+    "predicted_value_before_m": 8.0,
+    "factor": 0.9365
+  },
+  "prediction_summary": {
+    "reference_room_kind": "composite",
+    "predicted_room_kind": "composite",
+    "room_kind_match": true,
+    "reference_room_block_count": 2,
+    "predicted_room_block_count": 2,
+    "reference_room_bbox": {
+      "Lx": 7.492000000000001,
+      "Ly": 4.178,
+      "Lz": 3.102
+    },
+    "predicted_room_bbox": {
+      "Lx": 7.492,
+      "Ly": 2.8095,
+      "Lz": 2.34125
+    },
+    "room_bbox_absolute_error": {
+      "Lx": 0.0,
+      "Ly": 1.3685,
+      "Lz": 0.7607
+    },
+    "room_bbox_relative_error": {
+      "Lx": 0.0,
+      "Ly": 0.3275,
+      "Lz": 0.2452
+    },
+    "reference_room_volume": 88.8379,
+    "predicted_room_volume": 45.1737,
+    "room_volume_relative_error": 0.4915,
+    "room_block_match": {
+      "label": "room_blocks",
+      "iou_match_threshold": 0.2,
+      "matched_pairs": [
+        {
+          "reference_index": 0,
+          "predicted_index": 0,
+          "iou": 0.5018,
+          "center_error_l2": 0.7853,
+          "size_error_l2": 1.5706,
+          "matched_above_threshold": true
+        },
+        {
+          "reference_index": 1,
+          "predicted_index": 1,
+          "iou": 0.4664,
+          "center_error_l2": 0.3857,
+          "size_error_l2": 1.2396,
+          "matched_above_threshold": true
+        }
+      ],
+      "mean_iou": 0.4841,
+      "mean_center_error_l2": 0.5855,
+      "mean_size_error_l2": 1.4051,
+      "matched_above_threshold_count": 2,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "unmatched_reference_count": 0,
+      "unmatched_predicted_count": 0
+    },
+    "reference_obstacle_count": 4,
+    "predicted_obstacle_count": 4,
+    "obstacle_count_delta": 0,
+    "obstacle_match": {
+      "label": "obstacles",
+      "iou_match_threshold": 0.1,
+      "matched_pairs": [
+        {
+          "reference_index": 0,
+          "predicted_index": 3,
+          "iou": 0.1087,
+          "center_error_l2": 0.7687,
+          "size_error_l2": 1.3432,
+          "matched_above_threshold": true
+        },
+        {
+          "reference_index": 1,
+          "predicted_index": 0,
+          "iou": 0.0609,
+          "center_error_l2": 0.8202,
+          "size_error_l2": 1.1683,
+          "matched_above_threshold": false
+        },
+        {
+          "reference_index": 2,
+          "predicted_index": 2,
+          "iou": 0.0476,
+          "center_error_l2": 1.1502,
+          "size_error_l2": 1.0632,
+          "matched_above_threshold": false
+        },
+        {
+          "reference_index": 3,
+          "predicted_index": 1,
+          "iou": 0.0,
+          "center_error_l2": 1.0572,
+          "size_error_l2": 1.2748,
+          "matched_above_threshold": false
+        }
+      ],
+      "mean_iou": 0.0543,
+      "mean_center_error_l2": 0.7687,
+      "mean_size_error_l2": 1.3432,
+      "matched_above_threshold_count": 1,
+      "precision": 0.25,
+      "recall": 0.25,
+      "f1": 0.25,
+      "unmatched_reference_count": 3,
+      "unmatched_predicted_count": 3
+    },
+    "reference_opening_walls": [
+      "east",
+      "west"
+    ],
+    "predicted_opening_walls": [
+      "east",
+      "west"
+    ],
+    "opening_wall_match": true,
+    "opening_metrics": {
+      "reference_count": 2,
+      "predicted_count": 2,
+      "matched_type_count": 2,
+      "type_precision": 1.0,
+      "type_recall": 1.0,
+      "type_f1": 1.0,
+      "wall_match_ratio": 1.0,
+      "mean_center_error_l2": 0.9489,
+      "mean_size_error_l2": 0.3941,
+      "per_opening": {
+        "inlet": {
+          "present_in_reference": true,
+          "present_in_prediction": true,
+          "wall_match": true,
+          "center_error_l2": 1.1277,
+          "size_error_l2": 0.3014
+        },
+        "outlet": {
+          "present_in_reference": true,
+          "present_in_prediction": true,
+          "wall_match": true,
+          "center_error_l2": 0.7701,
+          "size_error_l2": 0.4867
+        }
+      }
+    },
+    "structural_score": 0.8125,
+    "baseline_comparison": {
+      "baseline_prediction_summary": {
+        "reference_room_kind": "composite",
+        "predicted_room_kind": "composite",
+        "room_kind_match": true,
+        "reference_room_block_count": 2,
+        "predicted_room_block_count": 2,
+        "reference_room_bbox": {
+          "Lx": 7.492000000000001,
+          "Ly": 4.178,
+          "Lz": 3.102
+        },
+        "predicted_room_bbox": {
+          "Lx": 8.0,
+          "Ly": 3.0,
+          "Lz": 2.5
+        },
+        "room_bbox_absolute_error": {
+          "Lx": 0.508,
+          "Ly": 1.178,
+          "Lz": 0.602
+        },
+        "room_bbox_relative_error": {
+          "Lx": 0.0678,
+          "Ly": 0.282,
+          "Lz": 0.1941
+        },
+        "reference_room_volume": 88.8379,
+        "predicted_room_volume": 55.0,
+        "room_volume_relative_error": 0.3809,
+        "room_block_match": {
+          "label": "room_blocks",
+          "iou_match_threshold": 0.2,
+          "matched_pairs": [
+            {
+              "reference_index": 0,
+              "predicted_index": 0,
+              "iou": 0.5495,
+              "center_error_l2": 0.7078,
+              "size_error_l2": 1.4157,
+              "matched_above_threshold": true
+            },
+            {
+              "reference_index": 1,
+              "predicted_index": 1,
+              "iou": 0.3702,
+              "center_error_l2": 0.5939,
+              "size_error_l2": 1.0367,
+              "matched_above_threshold": true
+            }
+          ],
+          "mean_iou": 0.4598,
+          "mean_center_error_l2": 0.6508,
+          "mean_size_error_l2": 1.2262,
+          "matched_above_threshold_count": 2,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "unmatched_reference_count": 0,
+          "unmatched_predicted_count": 0
+        },
+        "reference_obstacle_count": 4,
+        "predicted_obstacle_count": 4,
+        "obstacle_count_delta": 0,
+        "obstacle_match": {
+          "label": "obstacles",
+          "iou_match_threshold": 0.1,
+          "matched_pairs": [
+            {
+              "reference_index": 0,
+              "predicted_index": 0,
+              "iou": 0.0,
+              "center_error_l2": 4.2925,
+              "size_error_l2": 0.9934,
+              "matched_above_threshold": false
+            },
+            {
+              "reference_index": 1,
+              "predicted_index": 1,
+              "iou": 0.0,
+              "center_error_l2": 1.511,
+              "size_error_l2": 1.8627,
+              "matched_above_threshold": false
+            },
+            {
+              "reference_index": 2,
+              "predicted_index": 2,
+              "iou": 0.0761,
+              "center_error_l2": 1.0546,
+              "size_error_l2": 0.9821,
+              "matched_above_threshold": false
+            },
+            {
+              "reference_index": 3,
+              "predicted_index": 3,
+              "iou": 0.0,
+              "center_error_l2": 3.0093,
+              "size_error_l2": 0.8085,
+              "matched_above_threshold": false
+            }
+          ],
+          "mean_iou": 0.019,
+          "mean_center_error_l2": null,
+          "mean_size_error_l2": null,
+          "matched_above_threshold_count": 0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "unmatched_reference_count": 4,
+          "unmatched_predicted_count": 4
+        },
+        "reference_opening_walls": [
+          "east",
+          "west"
+        ],
+        "predicted_opening_walls": [
+          "east",
+          "west"
+        ],
+        "opening_wall_match": true,
+        "opening_metrics": {
+          "reference_count": 2,
+          "predicted_count": 2,
+          "matched_type_count": 2,
+          "type_precision": 1.0,
+          "type_recall": 1.0,
+          "type_f1": 1.0,
+          "wall_match_ratio": 1.0,
+          "mean_center_error_l2": 0.8967,
+          "mean_size_error_l2": 0.3753,
+          "per_opening": {
+            "inlet": {
+              "present_in_reference": true,
+              "present_in_prediction": true,
+              "wall_match": true,
+              "center_error_l2": 1.0901,
+              "size_error_l2": 0.2763
+            },
+            "outlet": {
+              "present_in_reference": true,
+              "present_in_prediction": true,
+              "wall_match": true,
+              "center_error_l2": 0.7033,
+              "size_error_l2": 0.4744
+            }
+          }
+        },
+        "structural_score": 0.75
+      },
+      "room_bbox_relative_error_delta": {
+        "Lx": -0.0678,
+        "Ly": 0.0455,
+        "Lz": 0.0511
+      },
+      "opening_wall_match_changed": false,
+      "room_kind_match_changed": false,
+      "obstacle_count_delta_changed": false
+    }
+  },
+  "cfd_summary": {
+    "ok": true,
+    "grid": {
+      "nx": 18,
+      "ny": 18,
+      "nz": 10,
+      "point_count": 3240,
+      "epsilon": {
+        "x": 0.05,
+        "y": 0.05,
+        "z": 0.08
+      }
+    },
+    "reference": {
+      "scene": "/home/yhjoo/projects/OpenFOAM/benchmark/scenes/a4_02.json",
+      "case": "/home/yhjoo/projects/OpenFOAM/cases/phase2_ref_a4_02",
+      "vtk": "/home/yhjoo/projects/OpenFOAM/cases/phase2_ref_a4_02/VTK/phase2_ref_a4_02_1000/internal.vtu",
+      "room_bounds": {
+        "Lx": 7.492000000000001,
+        "Ly": 4.178,
+        "Lz": 3.102
+      },
+      "valid_count": 2661,
+      "valid_ratio": 0.821296
+    },
+    "predicted": {
+      "scene": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations_posthoc_scaled_longest_span/bench_a4_02/birdseye/scaled_scene.json",
+      "case": "/home/yhjoo/projects/OpenFOAM/cases/phase2_pred_bench_a4_02_birdseye",
+      "vtk": "/home/yhjoo/projects/OpenFOAM/cases/phase2_pred_bench_a4_02_birdseye/VTK/phase2_pred_bench_a4_02_birdseye_1000/internal.vtu",
+      "room_bounds": {
+        "Lx": 7.492,
+        "Ly": 2.8095,
+        "Lz": 2.34125
+      },
+      "valid_count": 2794,
+      "valid_ratio": 0.862346
+    },
+    "overlap": {
+      "count": 2407,
+      "ratio_vs_total": 0.742901,
+      "ratio_vs_union": 0.789698,
+      "union_count": 3048
+    },
+    "field_metrics": {
+      "velocity_vector": {
+        "mae_l2": 0.001202,
+        "rmse_l2": 0.001852,
+        "reference_rms": 0.000515,
+        "relative_rmse": 3.594262,
+        "mean_direction_cosine": 0.18892,
+        "direction_comparable_count": 2406,
+        "rms_floored": false
+      },
+      "velocity_magnitude": {
+        "mae": 0.001004,
+        "rmse": 0.001716,
+        "reference_rms": 0.000515,
+        "relative_rmse": 3.329803,
+        "reference_mean": 0.000279,
+        "predicted_mean": 0.001136,
+        "rms_floored": false,
+        "standard": {
+          "hit_rate_D025": 0.058164,
+          "fac2": 0.180723,
+          "nmse": 9.278103,
+          "fb": -1.210639,
+          "correlation_R": -0.051173
+        }
+      },
+      "pressure": {
+        "mae": 1e-06,
+        "rmse": 2e-06,
+        "reference_rms": 1e-06,
+        "relative_rmse": 1.562384,
+        "reference_mean": 0.0,
+        "predicted_mean": -0.0,
+        "rms_floored": true,
+        "gauge_corrected": true,
+        "reference_mean_removed": 1.9e-05,
+        "predicted_mean_removed": 0.00034,
+        "standard": {
+          "hit_rate_D025": 0.006647,
+          "fac2": 0.017069,
+          "nmse": null,
+          "fb": null,
+          "correlation_R": -0.023916
+        }
+      }
+    },
+    "aggregate_score": {
+      "cfd_score": 0.34604,
+      "cfd_agreement_score": 0.34604,
+      "scoring_note": "Unweighted mean of 4 components. Report components individually for detailed analysis.",
+      "component_count": 4,
+      "components": {
+        "overlap_ratio_vs_union": 0.789698,
+        "velocity_magnitude_similarity": 0.0,
+        "velocity_direction_similarity": 0.59446,
+        "pressure_similarity": 0.0
+      },
+      "components_floored": []
+    }
+  },
+  "pipeline_summary": {
+    "name": "eval_posthoc_uniform_longest_span_v1_bench_a4_02_birdseye",
+    "input_source_type": "scene_json",
+    "requested_backend": "api",
+    "requested_model": "gemini-3.1-pro-preview",
+    "input_images": [],
+    "scale_hint": null,
+    "scene_json": "/home/yhjoo/projects/OpenFOAM/generated/eval_posthoc_uniform_longest_span_v1_bench_a4_02_birdseye.json",
+    "repaired_scene_json": null,
+    "used_scene_json": "/home/yhjoo/projects/OpenFOAM/generated/eval_posthoc_uniform_longest_span_v1_bench_a4_02_birdseye.json",
+    "msh": "/home/yhjoo/projects/OpenFOAM/generated/eval_posthoc_uniform_longest_span_v1_bench_a4_02_birdseye.msh",
+    "case_dir": "/home/yhjoo/projects/OpenFOAM/cases/eval_posthoc_uniform_longest_span_v1_bench_a4_02_birdseye",
+    "generation_summary": null,
+    "repair_info": {
+      "repair_attempted": false,
+      "repair_available": false,
+      "repair_error": null
+    },
+    "attempts": [
+      {
+        "scene_variant": "original",
+        "scene_json": "/home/yhjoo/projects/OpenFOAM/generated/eval_posthoc_uniform_longest_span_v1_bench_a4_02_birdseye.json",
+        "mesh_size": 0.35,
+        "preset": "robust",
+        "mode": "RAS",
+        "returncode": 0,
+        "reason": "completed",
+        "failure_family": null,
+        "failure_hints": [],
+        "mesh_risk_level": "high",
+        "mesh_risk_score": 9,
+        "mesh_risk_reasons": [
+          "defaultFaces=2754",
+          "maxNonOrtho=85.42>85",
+          "severeNonOrthoFaces=13",
+          "aspectRatio=31.18>20",
+          "skewness=0.853>0.85"
+        ],
+        "default_faces": 2754,
+        "checkmesh": {
+          "max_non_ortho": 85.422398,
+          "avg_non_ortho": 22.238298,
+          "severe_non_ortho_faces": 13,
+          "max_aspect_ratio": 31.175907,
+          "max_skewness": 0.85300705,
+          "mesh_ok": true
+        },
+        "log": "/home/yhjoo/projects/OpenFOAM/results/eval_posthoc_uniform_longest_span_v1_bench_a4_02_birdseye/log.simpleFoam_original_mesh0p35_robust.txt"
+      }
+    ],
+    "success": true,
+    "successful_preset": "robust",
+    "successful_mode": "RAS",
+    "successful_mesh_size": 0.35,
+    "successful_scene_variant": "original",
+    "compass_version": "2026-03-15_openfoam_solver_stabilization_compass",
+    "cfd_score": 0.34604
+  },
+  "stdout_tail": "  },\n  \"attempts\": [\n    {\n      \"scene_variant\": \"original\",\n      \"scene_json\": \"/home/yhjoo/projects/OpenFOAM/generated/eval_posthoc_uniform_longest_span_v1_bench_a4_02_birdseye.json\",\n      \"mesh_size\": 0.35,\n      \"preset\": \"robust\",\n      \"mode\": \"RAS\",\n      \"returncode\": 0,\n      \"reason\": \"completed\",\n      \"failure_family\": null,\n      \"failure_hints\": [],\n      \"mesh_risk_level\": \"high\",\n      \"mesh_risk_score\": 9,\n      \"mesh_risk_reasons\": [\n        \"defaultFaces=2754\",\n        \"maxNonOrtho=85.42>85\",\n        \"severeNonOrthoFaces=13\",\n        \"aspectRatio=31.18>20\",\n        \"skewness=0.853>0.85\"\n      ],\n      \"default_faces\": 2754,\n      \"checkmesh\": {\n        \"max_non_ortho\": 85.422398,\n        \"avg_non_ortho\": 22.238298,\n        \"severe_non_ortho_faces\": 13,\n        \"max_aspect_ratio\": 31.175907,\n        \"max_skewness\": 0.85300705,\n        \"mesh_ok\": true\n      },\n      \"log\": \"/home/yhjoo/projects/OpenFOAM/results/eval_posthoc_uniform_longest_span_v1_bench_a4_02_birdseye/log.simpleFoam_original_mesh0p35_robust.txt\"\n    }\n  ],\n  \"success\": true,\n  \"successful_preset\": \"robust\",\n  \"successful_mode\": \"RAS\",\n  \"successful_mesh_size\": 0.35,\n  \"successful_scene_variant\": \"original\",\n  \"compass_version\": \"2026-03-15_openfoam_solver_stabilization_compass\"\n}",
+  "stderr_tail": ""
+}

@@ -1,0 +1,128 @@
+{
+  "schema_version": "indoor_cfd_scene_v1",
+  "units": "m",
+  "coordinate_system": {
+    "origin": "room_min_corner",
+    "x": "west_to_east",
+    "y": "south_to_north",
+    "z": "floor_to_ceiling"
+  },
+  "room": {
+    "blocks": [
+      {
+        "origin": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "size": {
+          "dx": 5.850316,
+          "dy": 2.925158,
+          "dz": 2.437632
+        }
+      },
+      {
+        "origin": {
+          "x": 5.850316,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "size": {
+          "dx": 3.412684,
+          "dy": 1.950105,
+          "dz": 1.462579
+        }
+      }
+    ]
+  },
+  "obstacles": [
+    {
+      "id": "obs_001",
+      "type": "box",
+      "min": {
+        "x": 1.170063,
+        "y": 0.487526,
+        "z": 0.0
+      },
+      "size": {
+        "dx": 1.462579,
+        "dy": 1.170063,
+        "dz": 0.975053
+      },
+      "origin": {}
+    },
+    {
+      "id": "obs_002",
+      "type": "box",
+      "min": {
+        "x": 3.7052,
+        "y": 0.390021,
+        "z": 0.0
+      },
+      "size": {
+        "dx": 1.170063,
+        "dy": 0.780042,
+        "dz": 0.682537
+      },
+      "origin": {}
+    },
+    {
+      "id": "obs_003",
+      "type": "box",
+      "min": {
+        "x": 7.020379,
+        "y": 0.585032,
+        "z": 0.0
+      },
+      "size": {
+        "dx": 0.975053,
+        "dy": 0.975053,
+        "dz": 0.780042
+      },
+      "origin": {}
+    }
+  ],
+  "openings": [
+    {
+      "id": "inlet_001",
+      "type": "inlet",
+      "wall": "west",
+      "center": {
+        "u": 1.462579,
+        "v": 1.218816
+      },
+      "size": {
+        "du": 0.195011,
+        "dv": 0.585032
+      }
+    },
+    {
+      "id": "outlet_001",
+      "type": "outlet",
+      "wall": "north",
+      "center": {
+        "u": 4.680253,
+        "v": 1.218816
+      },
+      "size": {
+        "du": 0.585032,
+        "dv": 0.195011
+      }
+    }
+  ],
+  "meta": {
+    "scene_type": "stepped_ventilation_room",
+    "description": "Stepped room layout with two joined blocks of different height and width. The larger main section contains an inlet and outlet with two internal obstacles, while the narrower extension contains one additional obstacle.",
+    "posthoc_scaling": {
+      "applied": true,
+      "kind": "uniform_scaling",
+      "characteristic": "longest_horizontal_span",
+      "reference_value_m": 9.263,
+      "predicted_value_before_m": 9.5,
+      "factor": 0.975053,
+      "reference_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/scenes/a4_04.json",
+      "source_predicted_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_04/birdseye/predicted_scene.json",
+      "applied_at": "2026-03-20T08:26:04Z"
+    }
+  }
+}

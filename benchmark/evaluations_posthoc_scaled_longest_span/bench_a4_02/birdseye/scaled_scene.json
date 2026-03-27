@@ -1,0 +1,143 @@
+{
+  "schema_version": "indoor_cfd_scene_v1",
+  "units": "m",
+  "coordinate_system": {
+    "origin": "room_min_corner",
+    "x": "west_to_east",
+    "y": "south_to_north",
+    "z": "floor_to_ceiling"
+  },
+  "room": {
+    "blocks": [
+      {
+        "origin": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "size": {
+          "dx": 5.619,
+          "dy": 2.8095,
+          "dz": 2.34125
+        }
+      },
+      {
+        "origin": {
+          "x": 5.619,
+          "y": 0.46825,
+          "z": 0.0
+        },
+        "size": {
+          "dx": 1.873,
+          "dy": 1.873,
+          "dz": 2.34125
+        }
+      }
+    ]
+  },
+  "obstacles": [
+    {
+      "id": "obs_001",
+      "type": "box",
+      "min": {
+        "x": 1.40475,
+        "y": 0.7492,
+        "z": 0.0
+      },
+      "size": {
+        "dx": 0.9365,
+        "dy": 0.9365,
+        "dz": 1.1238
+      },
+      "origin": {}
+    },
+    {
+      "id": "obs_002",
+      "type": "box",
+      "min": {
+        "x": 2.9968,
+        "y": 0.28095,
+        "z": 0.0
+      },
+      "size": {
+        "dx": 0.7492,
+        "dy": 0.5619,
+        "dz": 0.46825
+      },
+      "origin": {}
+    },
+    {
+      "id": "obs_003",
+      "type": "box",
+      "min": {
+        "x": 3.9333,
+        "y": 1.40475,
+        "z": 0.0
+      },
+      "size": {
+        "dx": 0.9365,
+        "dy": 0.9365,
+        "dz": 1.21745
+      },
+      "origin": {}
+    },
+    {
+      "id": "obs_004",
+      "type": "box",
+      "min": {
+        "x": 6.27455,
+        "y": 0.9365,
+        "z": 0.0
+      },
+      "size": {
+        "dx": 0.7492,
+        "dy": 0.7492,
+        "dz": 0.84285
+      },
+      "origin": {}
+    }
+  ],
+  "openings": [
+    {
+      "id": "inlet_001",
+      "type": "inlet",
+      "wall": "west",
+      "center": {
+        "u": 1.40475,
+        "v": 1.40475
+      },
+      "size": {
+        "du": 0.3746,
+        "dv": 0.1873
+      }
+    },
+    {
+      "id": "outlet_001",
+      "type": "outlet",
+      "wall": "east",
+      "center": {
+        "u": 1.40475,
+        "v": 0.9365
+      },
+      "size": {
+        "du": 0.3746,
+        "dv": 0.1873
+      }
+    }
+  ],
+  "meta": {
+    "scene_type": "composite_room_ventilation",
+    "description": "A two-block rectangular room with an extension, containing four box obstacles and a straight-through west-to-east ventilation path.",
+    "posthoc_scaling": {
+      "applied": true,
+      "kind": "uniform_scaling",
+      "characteristic": "longest_horizontal_span",
+      "reference_value_m": 7.492,
+      "predicted_value_before_m": 8.0,
+      "factor": 0.9365,
+      "reference_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/scenes/a4_02.json",
+      "source_predicted_scene": "/home/yhjoo/projects/OpenFOAM/benchmark/evaluations/bench_a4_02/birdseye/predicted_scene.json",
+      "applied_at": "2026-03-20T07:57:29Z"
+    }
+  }
+}
