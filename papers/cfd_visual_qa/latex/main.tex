@@ -5,7 +5,7 @@
 \usepackage{booktabs}
 \usepackage{siunitx}
 \usepackage{hyperref}
-\usepackage[sort&compress]{natbib}
+% natbib loaded by elsarticle
 
 \graphicspath{{../results/}{../benchmark/images/}}
 
@@ -185,6 +185,10 @@ An initial non-blind evaluation achieved 87\%, while blind evaluation achieved 1
 \caption{(a) Per-trial accuracy for Claude and Gemini across 3 independent trials. (b) Contamination paradox: blind evaluation outperforms non-blind for Claude Opus.}
 \label{fig:trials-contamination}
 \end{figure}
+
+\subsection{Setup-Conditioned vs.\ Image-Only Evaluation}
+
+To quantify the importance of problem setup information, we evaluated Claude Opus and Gemini 3.1 on 30 items under two conditions: setup-conditioned (with problem description) and image-only (no setup text). Claude drops from 98.7\% to 83.3\% ($-$15.4\,pp) and Gemini from 87.5\% to 79.2\% ($-$8.3\,pp). In image-only mode, Claude misses 5 errors it detects with setup: wrong viscosity (2 cases), wrong turbulence model, reversed lid direction, and coarse mesh --- precisely the error types where the image alone appears physically self-consistent. For example, a boundary condition swap (S6\_E2) produces a valid-looking differentially heated cavity with swapped orientation; only comparison with the stated wall temperatures reveals the error. This confirms that CFD validation is fundamentally setup-conditioned, and VLM-based validators must receive simulation parameters alongside the image.
 
 \section{Discussion}
 
