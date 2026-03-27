@@ -375,7 +375,7 @@ The benchmark dataset (scene definitions, multi-view renderings, evaluation resu
 
 ## Acknowledgements
 
-This work was supported by the Korea Institute of Energy Research (KIER) [grant number to be inserted].
+This work was conducted under the framework of the research and development program of the Korea Institute of Energy Research (C6-2419-63).
 
 ---
 
