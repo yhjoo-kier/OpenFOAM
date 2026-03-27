@@ -207,15 +207,19 @@ We hypothesize two mechanisms: (1) case names containing error type labels ("und
 
 This finding has practical implications: when deploying VLMs as CFD validators, the evaluation prompt should contain only the problem setup and the image, not metadata that could serve as a shortcut.
 
-## 5.4 Setup-Conditioned Advantage
+## 5.5 Setup-Conditioned vs. Image-Only Evaluation
 
-The primary benchmark task provides both problem setup text and the flow field image. Several of Claude's successful detections critically depend on information in the setup text:
+To quantify the importance of problem setup information, we evaluated Claude Opus and Gemini 3.1 on the same 30 items under two conditions: setup-conditioned (with problem description) and image-only (no setup text, visual judgment only).
 
-- **S6_E2 (BC swap)**: The setup states "left wall 305K, right wall 295K," but the image shows left=cold, right=hot. Without the setup text, this is simply a normal differentially heated cavity with swapped labeling.
-- **S2_E3 (wrong viscosity)**: The setup states "Re=100," but the flow develops too quickly for this Re. Without knowing the intended Re, the flow looks like a valid lower-Re channel.
-- **S5_E8 (reversed lid)**: The setup states "top wall moves right," but the vortex rotates counter-clockwise (consistent with leftward lid). Without the lid direction, the flow is a valid lid-driven cavity.
+The results reveal a substantial performance gap. Claude drops from 98.7% (setup-conditioned) to 83.3% (image-only), a 15.4 percentage point decrease. Gemini drops from 87.5% to 79.2% (8.3pp). In image-only mode, Claude misses 5 errors that it detects with setup: wrong viscosity (2 cases), wrong turbulence model, reversed lid direction, and coarse mesh. These are precisely the error types where the image alone appears physically self-consistent, and only comparison with the stated parameters reveals the inconsistency.
 
-This suggests that the task of CFD validation is fundamentally *setup-conditioned*: the same flow field can be correct or erroneous depending on the intended simulation parameters. This aligns with real-world CFD practice, where validators always have access to the simulation setup.
+Specific examples illustrate why setup information is critical:
+
+- **S6_E2 (BC swap)**: The setup states "left wall 305K, right wall 295K," but the image shows left=cold, right=hot. Without setup text, this is simply a valid differentially heated cavity with a different orientation.
+- **S2_E3 (wrong viscosity)**: The setup states "Re=100," but the flow develops too quickly. Without knowing the intended Re, the flow looks like a valid lower-Re channel.
+- **S5_E8 (reversed lid)**: The setup states "top wall moves right," but the vortex rotates counter-clockwise. Without the lid direction, the flow is a valid lid-driven cavity.
+
+This confirms that CFD validation is fundamentally setup-conditioned: the same flow field can be correct or erroneous depending on the intended simulation parameters. For deploying VLMs as automated CFD validators, simulation setup must be included in the evaluation prompt.
 
 # 6. Discussion
 
