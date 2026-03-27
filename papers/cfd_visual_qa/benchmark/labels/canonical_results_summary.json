@@ -1,5 +1,5 @@
 {
-  "generated": "2026-03-27",
+  "generated": "2026-03-28",
   "benchmark": {
     "scenarios": 10,
     "cases": 60,
@@ -26,7 +26,21 @@
       "total_fn": 0,
       "fp_details": [
         "S8_correct_lam V6 (Trial 1 only, stochastic)"
-      ]
+      ],
+      "image_only": {
+        "items": 30,
+        "accuracy": 83.3,
+        "fp": 0,
+        "fn": 5,
+        "fn_cases": [
+          "S2_E3_wrong_viscosity",
+          "S1_E3_wrong_viscosity",
+          "S3_E4_wrong_turb_model",
+          "S5_E8_reversed_lid",
+          "S9_E5_coarse_mesh"
+        ],
+        "gap_from_setup_conditioned": -15.4
+      }
     },
     "gemini_31": {
       "items": 30,
@@ -45,7 +59,14 @@
       ],
       "consistent_fp": [
         "S1_correct_lam (2/3 flagged)"
-      ]
+      ],
+      "image_only": {
+        "items": 24,
+        "accuracy_valid": 79.2,
+        "fp": 3,
+        "fn": 2,
+        "gap_from_setup_conditioned": -8.3
+      }
     },
     "domain_expert": {
       "items": 80,
@@ -103,6 +124,8 @@
     "Contamination paradox: blind evaluation outperforms non-blind (100% vs 87%)",
     "Multi-trial consistency: 98.7% per-item 3/3 agreement for Claude",
     "Shared FP on S8_correct_lam: complex wake fools both human and VLM",
-    "VLM strategy: systematic setup-image cross-referencing vs expert gestalt assessment"
+    "VLM strategy: systematic setup-image cross-referencing vs expert gestalt assessment",
+    "Setup-conditioned evaluation critical: Claude drops 15.4pp, Gemini 8.3pp without setup text",
+    "Image-only mode confirms original hypothesis: VLMs miss parameter-mismatch errors without setup"
   ]
 }
