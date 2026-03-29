@@ -1,0 +1,264 @@
+{
+  "evaluator": "gpt-5.4",
+  "trial": 1,
+  "task": "setup_conditioned",
+  "date": "2026-03-29",
+  "total": 30,
+  "correct": 24,
+  "accuracy": 0.8,
+  "fp": 2,
+  "fn": 4,
+  "fn_cases": [
+    "S5_E1_underconverged",
+    "S5_E5_coarse_mesh",
+    "S6_E2_bc_swap",
+    "S5_E8_reversed_lid"
+  ],
+  "fp_cases": [
+    "S1_correct_lam",
+    "S3_correct_turb"
+  ],
+  "items": [
+    {
+      "id": 1,
+      "case": "S5_correct_lam",
+      "gt": "correct",
+      "verdict": "OK",
+      "match": true,
+      "reasoning": "For a 2D laminar lid-driven cavity at Re = 100, this looks physically reasonable:\n\n- The flow is dominated by one primary clockwise recirculation cell, as expected.\n- The vortex center is slightly right of center and in the upper half of the cavity, which is typical for Re \u2248 100.\n- Highest speeds occur near the moving top lid, with low speeds near the stationary walls and corners, consistent with no-slip boundaries.\n- Small secondary corner eddies, especially in the bottom corners, can begin to appear at this Reynolds number and are not obviously unphysical here.\n- The streamlines are smooth and coherent, with no visible spurious oscillations or checkerboarding that would suggest numerical instability on a 60\u00d760 mesh.\n\nMinor note: the top boundary layer and corner structures may be somewhat smeared due to the moderate grid resolution, but that is a resolution issue, not a physical inconsistency."
+    },
+    {
+      "id": 2,
+      "case": "S5_E1_underconverged",
+      "gt": "error_E1",
+      "verdict": "OK",
+      "match": false,
+      "reasoning": "This looks physically consistent with a lid-driven cavity flow. The top wall drives a strong rightward shear layer, the interior shows one dominant clockwise recirculation cell, and there is a small secondary corner vortex near the upper-right corner\u2014both are expected features for this setup. The speed is highest along the moving lid and much lower in the core and near no-slip walls, which is also reasonable.\n\nThe main caution is that it is under-converged at only 30 iterations, so details like vortex size/location and streamline smoothness may still shift. But nothing in the field appears blatantly non-physical."
+    },
+    {
+      "id": 3,
+      "case": "S5_E2_bc_swap",
+      "gt": "error_E2",
+      "verdict": "Anomaly",
+      "match": true,
+      "reasoning": "For a lid-driven cavity with the moving lid intended at the top, applying the lid velocity to the bottom wall is a boundary-condition mistake, so the result is not physically plausible for the stated setup.\n\nBrief reasons:\n- The strongest shear/velocity boundary layer appears near the top wall, while you state the moving wall was actually applied at the bottom. That is inconsistent with the imposed BCs as described.\n- The streamlines are almost perfectly horizontal across the cavity, which is unlike a standard lid-driven cavity flow that should show a dominant recirculating vortex.\n- The vertical centerline feature and near-uniform interior speed suggest a plotting/BC implementation issue rather than a realistic cavity solution.\n- If the bottom wall were truly moving and the top stationary, the vortex structure should reorganize accordingly; this field does not look like that."
+    },
+    {
+      "id": 4,
+      "case": "S5_E5_coarse_mesh",
+      "gt": "error_E5",
+      "verdict": "OK",
+      "match": false,
+      "reasoning": "This looks like a physically reasonable lid-driven cavity flow for a very coarse 10\u00d710 uniform mesh:\n\n- The top lid drives flow to the right, and the streamlines show a dominant primary recirculation in the cavity, which is expected.\n- The vortex center is slightly below the cavity center, also typical for moderate-Re lid-driven cavity flow.\n- Highest speed is concentrated near the moving top wall, which is physically consistent.\n- No obvious signs of non-physical behavior appear, such as reversed lid motion, strong checkerboarding, spurious oscillations, or broken/diverging streamlines.\n\nCaveat: with such a coarse ungraded mesh, the solution is only qualitatively trustworthy. Near-wall layers, corner eddies, and vortex location/magnitude will be poorly resolved, but the overall pattern is still plausible."
+    },
+    {
+      "id": 5,
+      "case": "S6_correct_Ra1e4",
+      "gt": "correct",
+      "verdict": "OK",
+      "match": true,
+      "reasoning": "For a square cavity with laminar natural convection at \\(Ra=10^4\\), this temperature field looks physically reasonable:\n\n- Hot left wall and cold right wall are clearly reflected by the red-to-blue horizontal gradient.\n- Isotherms are more vertical near the sidewalls and more distorted in the interior, consistent with buoyancy-driven recirculation.\n- The warmer upper region and cooler lower region match the expected clockwise circulation for a differentially heated cavity.\n- At \\(Ra=10^4\\), flow should still be steady and laminar, with moderate boundary-layer development rather than very thin layers or turbulent structure.\n- The smooth contours and absence of oscillatory/noisy artifacts are consistent with an 80\u00d780 mesh being adequate for this regime.\n\nSo nothing in the plot appears non-physical for the stated conditions."
+    },
+    {
+      "id": 6,
+      "case": "S6_E8_gravity_flipped",
+      "gt": "error_E8",
+      "verdict": "Anomaly",
+      "match": true,
+      "reasoning": "With gravity flipped upward, buoyancy would also act in the wrong direction for the stated setup. A natural-convection temperature field should show warm fluid rising and cool fluid sinking under \\(g=(0,-9.81,0)\\); reversing \\(g\\) inverts the circulation and produces a stratification/flow pattern inconsistent with the physical conditions. So this result is not physically plausible for the stated problem, even if the temperature contours appear smooth."
+    },
+    {
+      "id": 7,
+      "case": "S6_E2_bc_swap",
+      "gt": "error_E2",
+      "verdict": "OK",
+      "match": false,
+      "reasoning": "The temperature field is physically consistent with the stated swapped boundary conditions: the left wall is cold (~295 K, blue) and the right wall is hot (~305 K, red), with a smooth monotonic increase from left to right. The top region is warmer than the bottom over much of the cavity, which is also plausible for natural convection because hot fluid near the right wall rises and cold fluid near the left wall sinks, creating a clockwise circulation. No obvious non-physical features appear, such as temperature overshoot beyond boundary values or sharp discontinuities."
+    },
+    {
+      "id": 8,
+      "case": "S9_correct_Ra5k",
+      "gt": "correct",
+      "verdict": "OK",
+      "match": true,
+      "reasoning": "For laminar Rayleigh\u2013B\u00e9nard convection at \\(Ra=5000\\), a steady cellular pattern with only a few broad rolls is physically reasonable. The temperature field shown has the expected features:\n\n- hot bottom and cold top boundaries,\n- mostly vertical stratification overall,\n- lateral undulations indicating convection cells,\n- thin thermal boundary layers near the plates,\n- warmer rising regions and cooler sinking regions arranged periodically in \\(x\\).\n\nAt this Rayleigh number, flow should be well below turbulent transition, so a smooth, symmetric, steady contour field like this is consistent with the stated conditions and a 160\u00d740 mesh is adequate for a basic laminar solution."
+    },
+    {
+      "id": 9,
+      "case": "S9_E8_gravity_flipped",
+      "gt": "error_E8",
+      "verdict": "Anomaly",
+      "match": true,
+      "reasoning": "With the hot boundary at the bottom and cold at the top, buoyancy should make warm fluid rise and generate natural-convection cells. Setting gravity to \\(g=(0,+9.81,0)\\) flips buoyancy so hot fluid is forced downward and cold fluid upward, which suppresses the expected instability and leaves a nearly pure conduction profile. That behavior is not physically plausible for the stated conditions; it indicates the gravity sign is wrong."
+    },
+    {
+      "id": 10,
+      "case": "S9_E5_coarse_mesh",
+      "gt": "error_E5",
+      "verdict": "Anomaly",
+      "match": true,
+      "reasoning": "For \\(Ra=2\\times 10^4\\), a cavity-type natural-convection field should usually show clearer buoyancy-driven circulation signatures, not mainly a smooth bottom-hot/top-cold stratification with broad, repeated \\(x\\)-periodic warm plumes. The pattern here looks dominated by coarse-grid interpolation artifacts from the very low \\(16\\times4\\) mesh:\n\n- Only 4 cells in \\(y\\) cannot resolve boundary layers or circulation structure at this \\(Ra\\).\n- The contour field is overly blocky/symmetric in \\(x\\), suggesting mesh imprinting rather than resolved physics.\n- The strong heating confined near the bottom with little resolved overturning is suspicious for \\(Ra=20000\\), where convective transport should be more evident.\n\nSo this result is not reliable as a physical flow field for the stated conditions."
+    },
+    {
+      "id": 11,
+      "case": "S10_correct_turb",
+      "gt": "correct",
+      "verdict": "OK",
+      "match": true,
+      "reasoning": "The pattern is consistent with a 2D ventilated-room flow at moderate Reynolds number:\n\n- A high-speed wall jet runs along the ceiling from left to right, which is typical of a supply opening near the upper left.\n- The jet separates/turns down near the right wall, forming a large primary clockwise recirculation occupying much of the room.\n- A secondary recirculation on the left/lower side is also common in enclosed-room cavity-like ventilation flows.\n- Peak speed is localized near inlet/outlet regions and along the jet path, while most of the room has much lower velocity, which is physically reasonable.\n- No obvious signs of non-physical behavior are visible: no spurious checkerboarding, no impossible symmetry, no abrupt disconnected streamlines, and no extreme velocity overshoots relative to the shown scale.\n\nMinor caveat: for Re = 5000, a steady RANS solution is plausible, but details of recirculation-center locations and corner eddies can be somewhat mesh- and BC-sensitive, especially on a 180\u00d760 grid."
+    },
+    {
+      "id": 12,
+      "case": "S10_E1_underconverged",
+      "gt": "error_E1",
+      "verdict": "Anomaly",
+      "match": true,
+      "reasoning": "Stopped at only 30 iterations, so this is likely not converged enough to trust. The field shows a dominant clockwise recirculation under a fast lid-driven/top-wall flow, which can be qualitatively plausible, but there are warning signs: the broad interior appears overly diffused, the corner/outlet-like acceleration at the bottom-right is suspicious for a closed cavity, and the streamline topology near the upper-left vortex/near-wall region looks inconsistent with a settled steady solution. This looks more like an under-converged intermediate state than a physically reliable flow field."
+    },
+    {
+      "id": 13,
+      "case": "S10_E4_wrong_turb_model",
+      "gt": "error_E4",
+      "verdict": "Anomaly",
+      "match": true,
+      "reasoning": "At \\(Re \\approx 5000\\), an internal flow like this is generally transitional to turbulent, not steady laminar. Using a laminar solver with no turbulence model will typically produce an over-organized, smooth recirculating field with coherent vortices that are not physically representative of the stated conditions.\n\nBriefly:\n- \\(Re=5000\\) is too high for a purely laminar assumption in most channel/cavity-like flows.\n- The shown streamlines look overly smooth and steady, whereas the real flow would likely have strong unsteadiness and turbulent mixing.\n- A laminar solution here may be only a numerical artifact or an unstable/forced steady state, not a physically plausible realization for the stated Reynolds number.\n\nSo the field may be a mathematically computed solution, but it is not physically credible for the claimed physics."
+    },
+    {
+      "id": 14,
+      "case": "S2_correct_lam",
+      "gt": "correct",
+      "verdict": "OK",
+      "match": true,
+      "reasoning": "For laminar channel flow at Re = 100, a uniform inlet evolving into a fully developed Poiseuille profile is exactly what you expect. The plot shows:\n\n- A developing entrance region near the inlet.\n- Streamlines becoming parallel downstream.\n- A symmetric parabolic speed profile about the channel centerline.\n- Near-wall velocity approaching zero, consistent with no-slip.\n\nThe centerline speed being about 1.5\u00d7 the mean is also consistent with fully developed planar Poiseuille flow. The only visually odd feature is the short vertical cluster of arrows near \\(x \\approx 5\\), which looks more like a plotting/artifact issue than a physical flow feature, since the streamlines and contours remain smooth and symmetric."
+    },
+    {
+      "id": 15,
+      "case": "S2_E3_wrong_viscosity",
+      "gt": "error_E3",
+      "verdict": "Anomaly",
+      "match": true,
+      "reasoning": "With \u03bd = 0.1, the effective Reynolds number is only about 10, not the intended higher-Re channel flow. That makes the solution far too diffusive: disturbances from the obstacle smear out quickly, the wake/separation is overly damped, and the profile appears unrealistically smooth for the stated conditions. So while it may be mathematically consistent for Re \u2248 10, it is not physically plausible for the intended setup."
+    },
+    {
+      "id": 16,
+      "case": "S7_correct_Ri1",
+      "gt": "correct",
+      "verdict": "OK",
+      "match": true,
+      "reasoning": "For \\(Ri \\approx 1\\), buoyancy and inertia are of comparable strength, so a mixed-convection channel flow should show a noticeably distorted but still predominantly streamwise velocity field. This plot is consistent with that:\n\n- Flow remains mostly left-to-right, as expected at \\(Re=500\\).\n- Velocity is low near both walls and highest in the core, which is physically correct for a no-slip channel.\n- The profile is not symmetric, indicating buoyancy is influencing the momentum balance, which is exactly what \\(Ri\\sim 1\\) should do.\n- The gradual streamwise variation and mild redistribution of high-speed regions look reasonable for balanced mixed convection rather than purely forced Poiseuille flow.\n- No obvious non-physical signs appear, such as checkerboarding, spurious recirculation, wall slip, or severe mesh-induced oscillations.\n\nThe sharp local disturbance around \\(x\\approx 5\\) looks more like plotting/vector-seeding clutter than a clear physical inconsistency. Overall, the field looks physically plausible for the stated conditions."
+    },
+    {
+      "id": 17,
+      "case": "S7_E8_gravity_flipped",
+      "gt": "error_E8",
+      "verdict": "Anomaly",
+      "match": true,
+      "reasoning": "With gravity flipped to \\(g=(0,+9.81,0)\\), the buoyancy force reverses direction: hotter, lighter fluid near the bottom is driven downward instead of rising. For the stated heated-bottom configuration, physically plausible buoyant motion should show upward movement of warm fluid and downward movement of cooler fluid. The shown field is therefore inconsistent with the intended thermally driven physics and represents a sign error in gravity/buoyancy."
+    },
+    {
+      "id": 18,
+      "case": "S1_correct_lam",
+      "gt": "correct",
+      "verdict": "Anomaly",
+      "match": false,
+      "reasoning": "For a differentially heated cavity at \\(Ra \\approx 3\\times10^6\\) with laminar natural convection, the expected structure is a single dominant circulation with thin thermal boundary layers on the hot and cold vertical walls and stratification across the core. Your temperature field does show hot left-wall and cooler interior features, but several aspects look non-physical for these conditions:\n\n- The interior is almost uniformly at the minimum temperature over too much of the cavity, rather than showing a smoother left-to-right thermal gradient.\n- The lower-right region contains a pronounced spiral/closed-isotherm \u201cblob,\u201d which is not typical of steady laminar natural convection in this regime; it suggests numerical oscillation or under-resolved advection.\n- The upper-right/mid-right wavy tongue-like structures also look more like discretization artifacts than a clean laminar boundary-layer-driven recirculation.\n- At \\(Ra\\sim 10^6\\), a \\(60\\times120\\) mesh can be marginal unless strongly clustered near both vertical walls; with \\(\\nu=10^{-3}\\), the implied thermal diffusivity may also need checking through \\(Ra = g\\beta \\Delta T L^3/(\\nu\\alpha)\\).\n\nLikely causes: insufficient resolution for the thermal/velocity boundary layers, too-diffusive/inconsistent pressure-velocity coupling, or spurious oscillations from the convection scheme/time stepping."
+    },
+    {
+      "id": 19,
+      "case": "S1_E8_gravity_flipped",
+      "gt": "error_E8",
+      "verdict": "Anomaly",
+      "match": true,
+      "reasoning": "For buoyancy-driven natural convection, gravity must point downward. With hot walls near the lower-left and \\(g=(0,+9.81,0)\\), the buoyancy term is effectively reversed, so warmer/lighter fluid is driven downward instead of upward. That inverts the natural-convection circulation and is not physically plausible for the stated setup.\n\nThe temperature field shown is also suspiciously conduction-dominated near the heated boundaries, with no sign of the expected upward thermal plume/rising boundary layer along a hot vertical wall. This is consistent with a flipped-gravity implementation rather than a real flow."
+    },
+    {
+      "id": 20,
+      "case": "S1_E3_wrong_viscosity",
+      "gt": "error_E3",
+      "verdict": "Anomaly",
+      "match": true,
+      "reasoning": "With \u03bd = 0.1, the Rayleigh number drops to about \\(3\\times 10^1\\), far below the regime needed for a buoyancy-driven boundary layer under the stated conditions. That means convection is essentially suppressed and the field should look mostly diffusion-dominated, not like the intended natural-convection solution. The overly smooth, weakly distorted temperature contours are consistent with excessive viscosity damping the flow, so this is not physically plausible for the original setup."
+    },
+    {
+      "id": 21,
+      "case": "S3_correct_turb",
+      "gt": "correct",
+      "verdict": "Anomaly",
+      "match": false,
+      "reasoning": "For a turbulent channel at \\(Re=10000\\), the mean streamwise velocity should be fully developed and essentially independent of \\(x\\) after the inlet region, with no internal vertical feature. This plot shows:\n\n- a clear streamwise acceleration from left to right, suggesting the flow is not fully developed or is being driven inconsistently,\n- an abrupt vertical stripe near \\(x \\approx 5\\) m where the field is discontinuous,\n- nearly perfectly horizontal streamlines everywhere, while the color field changes strongly in \\(x\\), which is inconsistent with a smooth developed channel solution.\n\nA physically plausible turbulent channel should show a wall-bounded profile varying mainly in \\(y\\), symmetric about the centerline, and only weakly varying in \\(x\\) unless you are intentionally plotting an entrance region. The sharp mid-domain discontinuity is the strongest sign of a setup/numerical/post-processing issue."
+    },
+    {
+      "id": 22,
+      "case": "S3_E4_wrong_turb_model",
+      "gt": "error_E4",
+      "verdict": "Anomaly",
+      "match": true,
+      "reasoning": "For \\(Re=10{,}000\\), an internal channel flow is typically turbulent, so solving it as laminar removes turbulent momentum diffusion and yields an unrealistic field for the stated conditions.\n\nBriefly:\n- **Missing turbulent mixing:** At this Reynolds number, turbulence should strongly flatten the velocity profile and enhance wall-normal transport.\n- **Laminar-only diffusion is too weak:** The flow stays overly stratified/smooth compared with what a turbulent channel should show.\n- **Developing behavior is inconsistent:** A true turbulent flow would develop differently and generally faster toward a fuller profile.\n- **So:** The field may be a mathematically valid **laminar** solution, but it is **not physically plausible for the stated turbulent \\(Re=10000\\) conditions**."
+    },
+    {
+      "id": 23,
+      "case": "S3_E3_wrong_viscosity",
+      "gt": "error_E3",
+      "verdict": "Anomaly",
+      "match": true,
+      "reasoning": "With \u03bd = 0.01, the effective Reynolds number is only about 100, so the flow should be laminar and strongly diffusive, not treated as turbulent. Activating a turbulence model at such low Re is inconsistent with the stated physics and can produce an artificially flattened/profiled field. The shown smooth, nearly fully developed channel profile may look qualitatively reasonable for laminar duct flow, but it is not physically plausible for the stated setup because the viscosity is wrong by 100\u00d7 and the turbulence closure is inappropriate."
+    },
+    {
+      "id": 24,
+      "case": "S5_E8_reversed_lid",
+      "gt": "error_E8",
+      "verdict": "OK",
+      "match": false,
+      "reasoning": "Reversing the lid velocity from \\(U=+1\\) to \\(U=-1\\) should produce a mirror-image cavity flow with the primary recirculation reversed in direction. The plot shows exactly that: strong shear at the top wall, a dominant vortex shifted appropriately, and small corner eddies consistent with lid-driven cavity behavior. The speed magnitude remains highest near the moving lid and lower in the core/corners, which is physically consistent. No obvious non-physical features are apparent for the stated laminar conditions."
+    },
+    {
+      "id": 25,
+      "case": "S8_correct_lam",
+      "gt": "correct",
+      "verdict": "OK",
+      "match": true,
+      "reasoning": "The field looks physically consistent with 2D laminar forced convection at moderate Reynolds number over a heated surface-mounted obstacle/bump:\n\n- The inlet profile is mostly streamwise and smooth, as expected.\n- There is acceleration over/around the obstacle, with higher-speed regions above the bump and in the shear layer.\n- A separated wake and recirculation bubble immediately downstream of the bump are visible, which is plausible at Re \u2248 500.\n- The thermal/velocity plume is convected downstream and upward by the main flow, rather than behaving symmetrically or diffusing unrealistically.\n- Wall effects are reasonable: low speed near the bottom and top walls from no-slip boundaries.\n- Additional downstream vortical structures can occur in a long laminar channel wake at this Reynolds number, especially with confinement.\n\nMinor note: the multiple downstream eddies suggest the solution is near a transitional/unsteady regime, so if this was intended to be strictly steady laminar, time dependence might be expected. But the snapshot itself is still physically plausible."
+    },
+    {
+      "id": 26,
+      "case": "S8_E8_gravity_flipped",
+      "gt": "error_E8",
+      "verdict": "Anomaly",
+      "match": true,
+      "reasoning": "With gravity set to \\(g=(0,+9.81,0)\\), buoyancy acts in the wrong direction, so a hot/thermal plume would sink instead of rise. For the stated setup, that is unphysical. The shown field also suggests downward trapping/descending low-speed structure over the bump rather than an upward buoyant plume, consistent with flipped gravity rather than a plausible thermal flow."
+    },
+    {
+      "id": 27,
+      "case": "S8_E3_wrong_viscosity",
+      "gt": "error_E3",
+      "verdict": "Anomaly",
+      "match": true,
+      "reasoning": "With \u03bd = 0.05 m\u00b2/s, the effective Reynolds number is only about 5, so the flow should be strongly diffusion-dominated and creeping-like. For such conditions, you would expect a very smooth, highly damped velocity field with little or no separation, recirculation, or pronounced wake/plume structure behind the obstacle. The shown field still has a visible downstream low-speed wake/recirculation region and substantial channel-scale variation, which is inconsistent with such an excessively viscous case. So for the stated \u201cwrong viscosity\u201d setup, this flow is not physically plausible."
+    },
+    {
+      "id": 28,
+      "case": "S8_E5_coarse_mesh",
+      "gt": "error_E5",
+      "verdict": "Anomaly",
+      "match": true,
+      "reasoning": "The field is not physically plausible for the stated setup because the mesh is far too coarse to resolve the key physics around the block:\n\n- The obstacle wake is essentially unresolved, so the large recirculation cells behind the block are likely numerical artifacts rather than trustworthy flow structures.\n- The near-wall and top-wall boundary layers are under-resolved, giving unrealistically smeared velocity gradients and distorted shear.\n- The separated shear layer from the block top/edge is not captured properly, yet it controls the wake development.\n- The strong downstream acceleration and broad smooth high-speed region are consistent with excessive numerical diffusion from the coarse grid.\n- With the wake and thermal boundary layer \u201ccompletely unresolved,\u201d this solution cannot be considered physically reliable even if the overall left-to-right flow direction looks qualitatively reasonable."
+    },
+    {
+      "id": 29,
+      "case": "S4_E6_modified",
+      "gt": "error_E6",
+      "verdict": "Anomaly",
+      "match": true,
+      "reasoning": "A backward-facing-step flow at these conditions should exhibit a recirculation bubble immediately downstream of the step, with reversed streamwise velocity near the lower wall and a reattachment point farther downstream. If the recirculation zone was \u201cremoved post-solve,\u201d the displayed field no longer satisfies the expected momentum balance and wall-shear/pressure-gradient response for this geometry. The smooth attached streamlines over the low-speed near-wall region are therefore not physically credible for the stated setup."
+    },
+    {
+      "id": 30,
+      "case": "S4_E1_underconverged",
+      "gt": "error_E1",
+      "verdict": "Anomaly",
+      "match": true,
+      "reasoning": "For a sudden expansion like this, a separation bubble just downstream of the step is plausible, but the field shown has signs of an under-converged/non-physical solution:\n\n- The streamlines show multiple large recirculation cells persisting far downstream, whereas for steady channel flow after a step you\u2019d expect one main lower-wall recirculation zone followed by gradual reattachment and redevelopment.\n- The strong wavy/closed-cell pattern across much of the duct suggests residual imbalance rather than a settled steady solution.\n- The outlet profile still looks highly distorted with lingering vortical structure, inconsistent with a sufficiently developed solution over this length for typical stated conditions.\n- Since the run stopped at only 50 iterations and is explicitly under-converged, these artifacts are likely numerical rather than physical.\n\nSo while the near-step separation is qualitatively reasonable, the overall flow field is not reliable as a physical steady solution."
+    }
+  ],
+  "partial": false
+}

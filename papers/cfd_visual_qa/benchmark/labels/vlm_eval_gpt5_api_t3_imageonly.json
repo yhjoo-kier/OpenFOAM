@@ -1,0 +1,274 @@
+{
+  "evaluator": "gpt-5.4-codex",
+  "trial": 3,
+  "task": "image_only",
+  "date": "2026-03-29",
+  "total": 30,
+  "correct": 14,
+  "accuracy": 0.4666666666666667,
+  "fp": 1,
+  "fn": 15,
+  "fn_cases": [
+    "S5_E1_underconverged",
+    "S5_E5_coarse_mesh",
+    "S6_E8_gravity_flipped",
+    "S6_E2_bc_swap",
+    "S9_E8_gravity_flipped",
+    "S9_E5_coarse_mesh",
+    "S10_E4_wrong_turb_model",
+    "S1_E8_gravity_flipped",
+    "S1_E3_wrong_viscosity",
+    "S5_E8_reversed_lid",
+    "S8_E8_gravity_flipped",
+    "S8_E3_wrong_viscosity",
+    "S8_E5_coarse_mesh",
+    "S4_E6_modified",
+    "S4_E1_underconverged"
+  ],
+  "fp_cases": [
+    "S3_correct_turb"
+  ],
+  "items": [
+    {
+      "id": 1,
+      "case": "S5_correct_lam",
+      "gt": "correct",
+      "verdict": "OK",
+      "match": true,
+      "reasoning": "Visually this looks physically plausible. The field resembles a classic lid-driven cavity type pattern: one dominant recirculation cell, peak speed concentrated near the top boundary, low velocity near walls and corners, and a small corner eddy near the lower right. The streamlines are smooth and coherent, with no obvious discontinuities, checkerboarding, or nonphysical hot spots."
+    },
+    {
+      "id": 2,
+      "case": "S5_E1_underconverged",
+      "gt": "error_E1",
+      "verdict": "OK",
+      "match": false,
+      "reasoning": "The field looks physically plausible from visual appearance alone. The streamlines are smooth and form a coherent dominant recirculation with a small corner vortex near the upper-right, and the speed magnitude varies continuously with stronger motion confined near the top/right boundary layers. I do not see obvious nonphysical artifacts such as checkerboarding, jagged discontinuities, spurious isolated hotspots, or broken streamline topology."
+    },
+    {
+      "id": 3,
+      "case": "S5_E2_bc_swap",
+      "gt": "error_E2",
+      "verdict": "Anomaly",
+      "match": true,
+      "reasoning": "Based on visual appearance alone, this does not look fully physically plausible. The velocity field is almost perfectly plug-like across the whole square, yet it shows a pronounced low-speed layer only along the top wall and not a comparable response elsewhere; that asymmetry is hard to justify without a very specific setup. There are also broad faint interior patches in the magnitude contours that do not correspond to a clear obstacle, shear layer, or recirculation structure, which makes the field look more like a plotting/numerical artifact than a clean physical flow."
+    },
+    {
+      "id": 4,
+      "case": "S5_E5_coarse_mesh",
+      "gt": "error_E5",
+      "verdict": "OK",
+      "match": false,
+      "reasoning": "The field looks physically plausible from appearance alone: it shows a smooth single recirculating cell, peak speed concentrated along the moving top boundary, and velocity decaying into the cavity interior. The streamlines are continuous and coherent, with no obvious checkerboarding, broken topology, or nonphysical hotspots. The lack of strong secondary corner vortices is not by itself suspicious for a coarse mesh or lower-Re regime."
+    },
+    {
+      "id": 5,
+      "case": "S6_correct_Ra1e4",
+      "gt": "correct",
+      "verdict": "OK",
+      "match": true,
+      "reasoning": "The field looks physically plausible. It is smooth, bounded, and dominated by a left-hot/right-cold horizontal gradient, with a gentle upward bowing of warm contours on the left and cooler contours lower on the right, which is consistent with a buoyancy-driven recirculation pattern. There are no obvious visual red flags such as oscillatory bands, checkerboarding, discontinuities, corner spikes, or nonphysical isolated extrema."
+    },
+    {
+      "id": 6,
+      "case": "S6_E8_gravity_flipped",
+      "gt": "error_E8",
+      "verdict": "OK",
+      "match": false,
+      "reasoning": "The field looks physically plausible from appearance alone: it is smooth, bounded, and shows coherent large-scale structure with no obvious numerical artifacts such as oscillations, checkerboarding, discontinuities, or isolated hot/cold spots. The gradients steepen near the side walls and corners in a way that is consistent with a diffusion- or convection-dominated temperature field in an enclosed cavity. Without the actual problem setup, nothing in the image stands out as intrinsically unphysical."
+    },
+    {
+      "id": 7,
+      "case": "S6_E2_bc_swap",
+      "gt": "error_E2",
+      "verdict": "OK",
+      "match": false,
+      "reasoning": "The field looks physically plausible from appearance alone: the contours are smooth, continuous, and free of obvious numerical artifacts such as checkerboarding, ringing, isolated hot/cold spots, or broken gradients. The temperature varies monotonically in a way that suggests diffusion/advection with stronger gradients near the side boundaries, which is visually reasonable. Without the problem setup, I can only judge plausibility, not correctness."
+    },
+    {
+      "id": 8,
+      "case": "S9_correct_Ra5k",
+      "gt": "correct",
+      "verdict": "OK",
+      "match": true,
+      "reasoning": "The field looks physically plausible from visual appearance alone: it is smooth, bounded, and shows a consistent hot-bottom/cold-top stratification with gently undulating isotherms. There are no obvious numerical artifacts such as checkerboarding, jagged discontinuities, isolated hot/cold spots, or overshoot near the boundaries."
+    },
+    {
+      "id": 9,
+      "case": "S9_E8_gravity_flipped",
+      "gt": "error_E8",
+      "verdict": "OK",
+      "match": false,
+      "reasoning": "The field looks physically plausible from appearance alone: it is smooth, monotonic in `y`, and nearly uniform in `x`, with no checkerboarding, spurious oscillations, sharp nonphysical discontinuities, or asymmetric artifacts. Visually this is consistent with a simple stratified or conduction-dominated temperature field; by itself, nothing in the plot suggests an obvious numerical or physical anomaly."
+    },
+    {
+      "id": 10,
+      "case": "S9_E5_coarse_mesh",
+      "gt": "error_E5",
+      "verdict": "OK",
+      "match": false,
+      "reasoning": "Based on visual appearance alone, this looks physically plausible. The temperature field is smooth and bounded, with a hot lower boundary, cooler upper region, and two broad warm upwellings around `x \u2248 1` and `x \u2248 3` that look consistent with buoyant thermal plumes or localized bottom heating. I do not see obvious nonphysical artifacts such as checkerboarding, spurious oscillations, sharp isolated extrema, or broken symmetry; the faceted contours are consistent with a coarse mesh rather than a clear anomaly."
+    },
+    {
+      "id": 11,
+      "case": "S10_correct_turb",
+      "gt": "correct",
+      "verdict": "OK",
+      "match": true,
+      "reasoning": "The field looks physically plausible from appearance alone: the streamlines are smooth and form coherent recirculation zones, the velocity magnitude varies continuously, and the strongest speeds are concentrated along walls/corners and in shear layers rather than appearing as isolated noisy hot spots. I do not see obvious nonphysical signs such as checkerboarding, spurious oscillations, broken streamline topology, or abrupt interior discontinuities."
+    },
+    {
+      "id": 12,
+      "case": "S10_E1_underconverged",
+      "gt": "error_E1",
+      "verdict": "Anomaly",
+      "match": true,
+      "reasoning": "The streamline pattern is broadly coherent, but the scalar field does not look physically smooth. It has large faceted/patchy regions with sharp diagonal transitions across the domain, rather than gradual variation tied to the recirculation and boundary layers. That kind of blocky, piecewise appearance is more consistent with numerical artifact or an under-converged field than a fully plausible physical solution."
+    },
+    {
+      "id": 13,
+      "case": "S10_E4_wrong_turb_model",
+      "gt": "error_E4",
+      "verdict": "OK",
+      "match": false,
+      "reasoning": "The field looks physically plausible from appearance alone. The streamlines are smooth and continuous, the recirculation zones are coherent, and the high-speed regions form structured shear layers/boundary-layer-like bands rather than noisy or checkerboard artifacts. There is a strong localized high-speed patch near the upper-middle/right, but it still blends smoothly into the surrounding flow instead of looking like a numerical instability or nonphysical discontinuity."
+    },
+    {
+      "id": 14,
+      "case": "S2_correct_lam",
+      "gt": "correct",
+      "verdict": "OK",
+      "match": true,
+      "reasoning": "The field looks physically plausible for a steady laminar channel-type flow: it is smooth, symmetric about the centerline, shows low velocity near both walls and a centerline maximum, and the contours/streamlines do not show nonphysical wiggles, checkerboarding, or abrupt jumps. The only questionable feature is the vertical white band near `x\u22485`; visually it reads more like a masked/overlay artifact than a flow feature. If that band is actually part of the solution, then it would be suspicious."
+    },
+    {
+      "id": 15,
+      "case": "S2_E3_wrong_viscosity",
+      "gt": "error_E3",
+      "verdict": "Anomaly",
+      "match": true,
+      "reasoning": "The field looks too undisturbed around the white mid-domain features: they appear obstacle-like or discontinuous, but the streamlines and speed contours stay almost perfectly straight and symmetric, with no clear deflection, wake, or local acceleration pattern. That visual inconsistency makes the plot look physically self-inconsistent, even though the far-field channel profile itself is smooth."
+    },
+    {
+      "id": 16,
+      "case": "S7_correct_Ri1",
+      "gt": "correct",
+      "verdict": "OK",
+      "match": true,
+      "reasoning": "The field looks physically plausible from appearance alone: the contours are smooth, wall-adjacent low-speed layers are consistent with no-slip boundaries, and the streamlines remain coherent without obvious spurious recirculation, checkerboarding, or sharp nonphysical jumps. There is a gradual downstream acceleration/skewing of the core flow, which could be reasonable depending on forcing/heating, and nothing in the image stands out as a clear visual artifact."
+    },
+    {
+      "id": 17,
+      "case": "S7_E8_gravity_flipped",
+      "gt": "error_E8",
+      "verdict": "Anomaly",
+      "match": true,
+      "reasoning": "The field is mostly smooth, but the narrow vertical disruption near `x \u2248 5 m` looks suspicious: streamlines appear to break/collapse there, yet the downstream flow immediately returns to a smooth channel-like profile with little visible wake or deflection. Without any known internal geometry or source term, that kind of sharp, localized discontinuity is not convincing as a physically natural flow/temperature pattern and looks more like a setup or visualization artifact."
+    },
+    {
+      "id": 18,
+      "case": "S1_correct_lam",
+      "gt": "correct",
+      "verdict": "OK",
+      "match": true,
+      "reasoning": "Based on visual appearance alone, this looks physically plausible. The field is smooth, with thin thermal boundary layers near the walls, stronger heating concentrated along the left side and upper-left corner, and broad interior recirculation-shaped temperature structures rather than noisy or grid-aligned artifacts. I do not see obvious signs of numerical instability such as oscillations, checkerboarding, discontinuities, or isolated hot/cold spots."
+    },
+    {
+      "id": 19,
+      "case": "S1_E8_gravity_flipped",
+      "gt": "error_E8",
+      "verdict": "OK",
+      "match": false,
+      "reasoning": "The field looks physically plausible from appearance alone: it is smooth, bounded, and monotonic, with the hottest region concentrated near the lower-left corner and thin thermal boundary layers along the left and bottom walls. There are no obvious nonphysical signs such as checkerboarding, overshoot/undershoot, sharp discontinuities, or isolated hot/cold patches. Visually it resembles a diffusion-dominated or weak-flow temperature field; only if strong buoyant circulation were expected would the lack of plume-like structure become suspicious."
+    },
+    {
+      "id": 20,
+      "case": "S1_E3_wrong_viscosity",
+      "gt": "error_E3",
+      "verdict": "OK",
+      "match": false,
+      "reasoning": "The temperature field looks broadly physically plausible from appearance alone: it is smooth, continuous, and bounded, with no obvious nonphysical oscillations, checkerboarding, isolated hot/cold speckles, or overshoot near boundaries. The pattern is consistent with a hot left side and cooler right side under convection/diffusion, with gently curved isotherms that could come from a recirculating flow.\n\nMinor caution: there is a faint thin cool strip along part of the top boundary that could be a boundary-condition or plotting artifact, but by itself it is not strong enough to call this anomalous without the problem setup."
+    },
+    {
+      "id": 21,
+      "case": "S3_correct_turb",
+      "gt": "correct",
+      "verdict": "Anomaly",
+      "match": false,
+      "reasoning": "The field is mostly channel-flow-like, with lower speed near the walls and nearly parallel streamlines, but the full-height vertical discontinuity around `x \u2248 5 m` is hard to justify physically from the image alone. It looks like an internal barrier or a stitched/blanked interface, yet the flow shows almost no corresponding upstream or downstream disturbance, which makes the visualization appear nonphysical or at least suspicious."
+    },
+    {
+      "id": 22,
+      "case": "S3_E4_wrong_turb_model",
+      "gt": "error_E4",
+      "verdict": "Anomaly",
+      "match": true,
+      "reasoning": "The field is mostly consistent with internal channel flow: low speed at the walls, higher speed in the core, and a developing profile from left to right. But the sharp full-height vertical white band/discontinuity near `x \u2248 5 m` is not physically plausible as a smooth flow-field feature on its own. Without any visible geometry or interface explaining it, it looks more like a numerical/plotting artifact or an unphysical jump than real flow behavior."
+    },
+    {
+      "id": 23,
+      "case": "S3_E3_wrong_viscosity",
+      "gt": "error_E3",
+      "verdict": "Anomaly",
+      "match": true,
+      "reasoning": "The field looks mostly like a developing laminar channel flow, but the full-height vertical discontinuity near `x \u2248 5 m` is not physically convincing. It appears to split the domain while the downstream profile remains almost unchanged, with no visible disturbance, recirculation, or redevelopment that a real internal blockage/interface would usually create. Based on visual appearance alone, that sharp break suggests a plotting/data artifact or an unphysical solution."
+    },
+    {
+      "id": 24,
+      "case": "S5_E8_reversed_lid",
+      "gt": "error_E8",
+      "verdict": "OK",
+      "match": false,
+      "reasoning": "Visually this looks physically plausible. The field is smooth, the highest speed is concentrated along the moving top boundary, and the interior shows a dominant recirculating vortex with a small secondary corner eddy near the lower left, which is a common cavity-flow pattern. I do not see obvious red flags like broken contours, nonphysical oscillations, abrupt jumps, or isolated hot spots inconsistent with the surrounding streamlines."
+    },
+    {
+      "id": 25,
+      "case": "S8_correct_lam",
+      "gt": "correct",
+      "verdict": "OK",
+      "match": true,
+      "reasoning": "Visually this looks physically plausible. The field shows expected no-slip low-speed layers along the walls and around the obstacle, acceleration over and around the block, separated flow with a downstream recirculation bubble, and gradual recovery farther downstream. The streamline curvature and localized vortices appear smooth and coherent rather than noisy, discontinuous, or symmetry-breaking in an obviously nonphysical way."
+    },
+    {
+      "id": 26,
+      "case": "S8_E8_gravity_flipped",
+      "gt": "error_E8",
+      "verdict": "OK",
+      "match": false,
+      "reasoning": "The field looks visually plausible: streamlines are smooth and mostly consistent with left-to-right channel flow past a bluff body, with a separated low-speed recirculation zone in the wake near the floor and accelerated flow over the obstacle. The contours are coherent and continuous, with no obvious checkerboarding, spurious spikes, or broken symmetry/artifacts that would immediately suggest a nonphysical solution. The weak reverse-flow pocket near the top right is somewhat unusual, but not inherently implausible from appearance alone."
+    },
+    {
+      "id": 27,
+      "case": "S8_E3_wrong_viscosity",
+      "gt": "error_E3",
+      "verdict": "OK",
+      "match": false,
+      "reasoning": "The field looks physically plausible on visual appearance alone. The contours are smooth, velocity drops near the walls and obstacle, the flow accelerates over the block, and there is a coherent low-speed recirculation/wake region immediately downstream. I do not see obvious nonphysical artifacts such as checkerboarding, sharp discontinuities, broken streamlines, or impossible asymmetries."
+    },
+    {
+      "id": 28,
+      "case": "S8_E5_coarse_mesh",
+      "gt": "error_E5",
+      "verdict": "OK",
+      "match": false,
+      "reasoning": "The field looks physically plausible from visual appearance alone. A bluff body near the lower wall creates a separated shear layer, a low-speed recirculating wake downstream, and gradual recovery farther downstream; those are all expected patterns. The velocity contours are smooth, wall-adjacent speeds are low, and there are no obvious nonphysical signs like checkerboard noise, sharp contour breaks, or isolated hot spots disconnected from the flow structure."
+    },
+    {
+      "id": 29,
+      "case": "S4_E6_modified",
+      "gt": "error_E6",
+      "verdict": "OK",
+      "match": false,
+      "reasoning": "Based on appearance alone, this looks physically plausible for flow over a sudden expansion/backward-facing step. The field shows a low-speed recirculation zone immediately downstream of the step near the lower wall, higher-speed flow in the upper core, and gradual downstream recovery with smooth streamlines and no obvious nonphysical oscillations, discontinuities, or checkerboard artifacts."
+    },
+    {
+      "id": 30,
+      "case": "S4_E1_underconverged",
+      "gt": "error_E1",
+      "verdict": "OK",
+      "match": false,
+      "reasoning": "Visually, this looks broadly physically plausible for a channel flow with a sudden expansion or obstacle: there is a fast upper stream, a low-speed recirculation zone immediately downstream of the step, and gradual downstream recovery. I do not see obvious nonphysical signs such as strong checkerboarding, isolated hot spots, sharp discontinuities, or impossible flow reversal patterns. Some streamline waviness suggests it may not be perfectly converged, but from appearance alone it is still plausible."
+    }
+  ],
+  "partial": false
+}

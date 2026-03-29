@@ -68,6 +68,24 @@
         "gap_from_setup_conditioned": -8.3
       }
     },
+    "gpt5_codex": {
+      "items": 30,
+      "trials": 1,
+      "model": "gpt-5.4 (via Codex CLI)",
+      "setup_conditioned": {
+        "accuracy": 56.7,
+        "fp": 1,
+        "fn": 12,
+        "fp_cases": ["S3_correct_turb"],
+        "fn_cases": ["S5_E1_underconverged", "S5_E5_coarse_mesh", "S6_E8_gravity_flipped", "S6_E2_bc_swap", "S9_E5_coarse_mesh", "S10_E1_underconverged", "S2_E3_wrong_viscosity", "S1_E3_wrong_viscosity", "S3_E3_wrong_viscosity", "S5_E8_reversed_lid", "S8_E3_wrong_viscosity", "S4_E1_underconverged"]
+      },
+      "image_only": {
+        "accuracy": 43.3,
+        "fp": 1,
+        "fn": 16,
+        "gap_from_setup_conditioned": -13.4
+      }
+    },
     "domain_expert": {
       "items": 80,
       "trials": 1,
@@ -77,7 +95,25 @@
       "fp_details": [
         "S8_correct_lam V6",
         "S8_correct_lam V5"
-      ]
+      ],
+      "image_only": {
+        "items": 30,
+        "accuracy": 66.7,
+        "fp": 2,
+        "fn": 8,
+        "fp_cases": ["S7_correct_Ri1", "S8_correct_lam"],
+        "fn_cases": [
+          "S5_E1_underconverged",
+          "S5_E5_coarse_mesh",
+          "S6_E2_bc_swap",
+          "S2_E3_wrong_viscosity",
+          "S3_E4_wrong_turb_model",
+          "S3_E3_wrong_viscosity",
+          "S5_E8_reversed_lid",
+          "S8_E3_wrong_viscosity"
+        ],
+        "gap_from_setup_conditioned": -7.1
+      }
     }
   },
   "per_error_type_recall": {
@@ -125,7 +161,10 @@
     "Multi-trial consistency: 98.7% per-item 3/3 agreement for Claude",
     "Shared FP on S8_correct_lam: complex wake fools both human and VLM",
     "VLM strategy: systematic setup-image cross-referencing vs expert gestalt assessment",
-    "Setup-conditioned evaluation critical: Claude drops 15.4pp, Gemini 8.3pp without setup text",
-    "Image-only mode confirms original hypothesis: VLMs miss parameter-mismatch errors without setup"
+    "Setup-conditioned evaluation critical: Claude drops 15.4pp, Gemini 8.3pp, Expert 7.1pp without setup text",
+    "Image-only mode confirms original hypothesis: VLMs miss parameter-mismatch errors without setup",
+    "GPT-5.4 via Codex: 56.7% setup-conditioned, 43.3% image-only — strong OK bias, misses 12/20 errors",
+    "Not all frontier VLMs can do CFD validation: GPT-5.4 vs Claude reveals model-specific capability gap",
+    "Expert image-only: 66.7% (FP=2, FN=8) — expert drops least (-7.1pp) because gestalt strategy barely uses setup text"
   ]
 }

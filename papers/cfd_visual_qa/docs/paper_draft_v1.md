@@ -209,9 +209,19 @@ This finding has practical implications: when deploying VLMs as CFD validators, 
 
 ## 5.5 Setup-Conditioned vs. Image-Only Evaluation
 
-To quantify the importance of problem setup information, we evaluated Claude Opus and Gemini 3.1 on the same 30 items under two conditions: setup-conditioned (with problem description) and image-only (no setup text, visual judgment only).
+To quantify the importance of problem setup information, we evaluated all three evaluators on the same 30 items under two conditions: setup-conditioned (with problem description) and image-only (no setup text, visual judgment only).
 
-The results reveal a substantial performance gap. Claude drops from 98.7% (setup-conditioned) to 83.3% (image-only), a 15.4 percentage point decrease. Gemini drops from 87.5% to 79.2% (8.3pp). In image-only mode, Claude misses 5 errors that it detects with setup: wrong viscosity (2 cases), wrong turbulence model, reversed lid direction, and coarse mesh. These are precisely the error types where the image alone appears physically self-consistent, and only comparison with the stated parameters reveals the inconsistency.
+[Table:image-only-comparison]
+
+| Evaluator | Setup-cond. | Image-only | Δ (pp) | FN (image-only) |
+|-----------|------------|------------|--------|-----------------|
+| Claude Opus 4.6 | 98.7% | 83.3% | −15.4 | 5 |
+| Gemini 3.1 | 87.5% | 79.2% | −8.3 | 2 |
+| Domain Expert | 73.8% | 66.7% | −7.1 | 8 |
+
+Claude suffers the largest drop (−15.4 pp), followed by Gemini (−8.3 pp) and the expert (−7.1 pp). The expert's small drop is revealing: it suggests that the expert's gestalt assessment strategy already relies minimally on setup text, whereas the VLMs actively cross-reference stated parameters against visual features — a strategy that collapses without setup information.
+
+In image-only mode, Claude misses 5 errors it detects with setup: wrong viscosity (2 cases), wrong turbulence model, reversed lid direction, and coarse mesh. The expert misses 8 errors, including 3 wrong-viscosity cases and errors across 5 different types. All missed errors share a common trait: the image alone appears physically self-consistent, and only comparison with the stated parameters reveals the inconsistency.
 
 Specific examples illustrate why setup information is critical:
 
@@ -219,7 +229,7 @@ Specific examples illustrate why setup information is critical:
 - **S2_E3 (wrong viscosity)**: The setup states "Re=100," but the flow develops too quickly. Without knowing the intended Re, the flow looks like a valid lower-Re channel.
 - **S5_E8 (reversed lid)**: The setup states "top wall moves right," but the vortex rotates counter-clockwise. Without the lid direction, the flow is a valid lid-driven cavity.
 
-This confirms that CFD validation is fundamentally setup-conditioned: the same flow field can be correct or erroneous depending on the intended simulation parameters. For deploying VLMs as automated CFD validators, simulation setup must be included in the evaluation prompt.
+The expert produces 2 false positives in image-only mode (S7 mixed convection, S8 heated obstacle), flagging visually complex but correct flows — the same pattern seen in setup-conditioned evaluation. This confirms that CFD validation is fundamentally setup-conditioned, and that VLM-based validators benefit disproportionately from receiving simulation parameters alongside the image.
 
 # 6. Discussion
 
@@ -227,9 +237,11 @@ This confirms that CFD validation is fundamentally setup-conditioned: the same f
 
 The most striking result is that Claude Opus detects three error types that the domain expert consistently misses: boundary condition swaps, wrong viscosity, and certain coarse mesh cases. We attribute this to a difference in evaluation strategy:
 
-**Expert strategy — gestalt assessment.** The domain expert evaluates flow fields holistically, asking "does this look like the expected flow pattern?" This is highly effective for detecting gross anomalies (under-convergence, gravity reversal) but vulnerable to errors that produce plausible-looking flows. When a BC swap creates a mirror image of the correct solution, the gestalt impression is "normal cavity flow," and the subtle left-right inconsistency with the setup text is overlooked.
+The expert reads the setup text but cannot readily translate dimensionless parameters into quantitative visual expectations. An expert knows that higher Re produces flatter velocity profiles, but does not mentally compute the hydrodynamic entry length ($L_e \approx 0.05 \cdot Re \cdot D$) and check it against the image scale. The evaluation remains qualitative: "does this flow pattern look reasonable for a moderate-Re channel?" This gestalt strategy is effective for detecting gross anomalies (gravity reversal, under-convergence) but vulnerable to errors where the flow is qualitatively correct yet quantitatively inconsistent with the stated parameters.
 
-**VLM strategy — systematic cross-referencing.** The VLM appears to compare stated boundary conditions against observable features in the image methodically: checking which wall is hot by reading the colorbar, measuring whether the development length matches the stated Re, verifying that the vortex rotation matches the stated lid direction. This systematic approach catches quantitative inconsistencies that escape gestalt assessment.
+**VLM strategy — systematic cross-referencing.** The VLM, by contrast, appears to perform explicit parameter-image cross-referencing: checking which wall is hot by reading the colorbar against the stated boundary temperatures, estimating whether the development length is consistent with the stated Re, and verifying vortex rotation against the stated lid direction. This systematic approach catches quantitative inconsistencies that escape gestalt assessment.
+
+The image-only comparison (Section 5.5) provides direct evidence for this interpretation: the expert's accuracy drops only 7.1 pp without setup text, confirming that the qualitative gestalt strategy derives limited benefit from the provided parameters, while Claude drops 15.4 pp, confirming heavy reliance on setup-image cross-referencing.
 
 This finding suggests that VLMs and domain experts have *complementary* capabilities for CFD validation. An ensemble approach—VLM for systematic parameter checking, expert for holistic physical judgment—could achieve higher coverage than either alone.
 

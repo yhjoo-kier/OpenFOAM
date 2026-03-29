@@ -1,0 +1,270 @@
+{
+  "evaluator": "gemini-3.1-pro-preview",
+  "task": "image_only",
+  "date": "2026-03-29",
+  "total": 30,
+  "evaluated": 30,
+  "correct": 19,
+  "accuracy": 0.6333333333333333,
+  "fp": 3,
+  "fp_cases": [
+    "S10_correct_turb",
+    "S7_correct_Ri1",
+    "S3_correct_turb"
+  ],
+  "fn": 8,
+  "fn_cases": [
+    "S5_E5_coarse_mesh",
+    "S6_E2_bc_swap",
+    "S9_E8_gravity_flipped",
+    "S9_E5_coarse_mesh",
+    "S10_E4_wrong_turb_model",
+    "S5_E8_reversed_lid",
+    "S8_E3_wrong_viscosity",
+    "S4_E6_modified"
+  ],
+  "errors": 0,
+  "error_cases": [],
+  "items": [
+    {
+      "id": 1,
+      "case": "S5_correct_lam",
+      "gt": "correct",
+      "verdict": "OK",
+      "match": true,
+      "reasoning": "Reasoning: The image depicts a classic, physically plausible lid-driven cavity flow. Key features that confirm this include: *   A region of high velocity (yellow) along the top boundary, which is driving the flow. *   A large, central primary vortex rotating clockwise. *   Velocity magnitude approaching zero (dark purple) at the left, right, and bottom boundaries, consistent with the no-slip condition on stationary walls. *   Velocity magnitude is correctly shown as near zero at the center o..."
+    },
+    {
+      "id": 2,
+      "case": "S5_E1_underconverged",
+      "gt": "error_E1",
+      "verdict": "Anomaly",
+      "match": true,
+      "reasoning": "The flow field appears to be a simulation of a top-lid-driven cavity (high velocity at the top wall moving right). However, it exhibits a distinct, highly non-physical, clockwise-rotating vortex isolated in the top-right corner. In a standard lid-driven cavity flow, the fluid moving along the top wall impinges on the right wall and is forced downwards, forming the primary central clockwise circulation. The top-right corner should not contain a separate, co-rotating eddy. While secondary corne..."
+    },
+    {
+      "id": 3,
+      "case": "S5_E2_bc_swap",
+      "gt": "error_E2",
+      "verdict": "Anomaly",
+      "match": true,
+      "reasoning": "The image presents two major inconsistencies. First, the uniformly horizontal, parallel white lines indicate flow purely in the $x$-direction everywhere ($v=0$). However, the underlying color contours show the velocity magnitude ($|U|$) varies significantly in the $x$-direction. In a typical fluid flow, accelerating or decelerating in the flow direction requires streamline curvature or divergence/convergence to satisfy mass conservation; they cannot remain perfectly parallel. Second, there is..."
+    },
+    {
+      "id": 4,
+      "case": "S5_E5_coarse_mesh",
+      "gt": "error_E5",
+      "verdict": "OK",
+      "match": false,
+      "reasoning": "This looks like a textbook example of a 2D lid-driven cavity flow. The visual features are completely consistent with the expected physics for this standard benchmark: a thin layer of high velocity at the top boundary drives the flow to the right, creating a large, continuous, clockwise-rotating primary vortex in the center of the domain. The low velocity (dark purple) near the left, right, and bottom edges is consistent with stationary, no-slip walls. The fields are smooth and show no obviou..."
+    },
+    {
+      "id": 5,
+      "case": "S6_correct_Ra1e4",
+      "gt": "correct",
+      "verdict": "OK",
+      "match": true,
+      "reasoning": "The image displays a classic, physically plausible temperature field typical of natural convection in a square cavity (the \"buoyancy-driven cavity\" benchmark). *   **Boundary Conditions:** The uniform colors on the left and right edges suggest isothermal vertical walls (hot on the left, cold on the right). The contour lines being perpendicular to the top and bottom edges indicate zero temperature gradient normal to those walls, implying adiabatic horizontal boundaries. *   **Physical Mechanis..."
+    },
+    {
+      "id": 6,
+      "case": "S6_E8_gravity_flipped",
+      "gt": "error_E8",
+      "verdict": "Anomaly",
+      "match": true,
+      "reasoning": "The temperature field shows a hot left wall and a cold right wall. The curvature of the isotherms (hot fluid extending towards the right at the bottom, and cold fluid extending towards the left at the top) indicates advection from a counter-clockwise flow field. However, in standard natural convection with downward gravity, the hot fluid on the left should rise and the cold fluid on the right should fall, creating a *clockwise* circulation. This expected clockwise flow would carry hot fluid t..."
+    },
+    {
+      "id": 7,
+      "case": "S6_E2_bc_swap",
+      "gt": "error_E2",
+      "verdict": "OK",
+      "match": false,
+      "reasoning": "This temperature field exhibits the classic signature of natural convection in a differentially heated square cavity. The isotherms are distorted by a buoyancy-driven circulation cell: fluid heated by the hot right wall rises and advects heat to the left along the top, while fluid cooled by the cold left wall sinks and advects cooler temperatures to the right along the bottom. This perfectly explains the \"S\" shape of the temperature contours, making it highly physically plausible."
+    },
+    {
+      "id": 8,
+      "case": "S9_correct_Ra5k",
+      "gt": "correct",
+      "verdict": "OK",
+      "match": true,
+      "reasoning": "The image displays a classic, physically realistic pattern of Rayleigh-B\u00e9nard convection. The temperature field shows a fluid layer heated from the bottom (red) and cooled from the top (blue), leading to buoyancy-driven instability. This results in the clear formation of alternating rising hot plumes and sinking cold plumes, creating well-defined, regular convection cells. The smooth contours and the presence of thermal boundary layers (steeper temperature gradients near the top and bottom wa..."
+    },
+    {
+      "id": 9,
+      "case": "S9_E8_gravity_flipped",
+      "gt": "error_E8",
+      "verdict": "OK",
+      "match": false,
+      "reasoning": "The image displays a purely one-dimensional temperature gradient varying only in the vertical ($y$) direction, with perfectly horizontal and parallel isotherms. This is the classic, physically expected result for steady-state heat conduction through a medium (solid or stagnant fluid) between two parallel plates maintained at different constant temperatures, assuming insulated boundaries on the sides. The field is smooth and contains no non-physical artifacts."
+    },
+    {
+      "id": 10,
+      "case": "S9_E5_coarse_mesh",
+      "gt": "error_E5",
+      "verdict": "OK",
+      "match": false,
+      "reasoning": "The temperature field displays a classic pattern characteristic of Rayleigh-B\u00e9nard convection. The fluid appears to be heated from below (red region) and cooled from above (blue region). This unstable density stratification leads to buoyancy-driven flow, visibly manifesting as two distinct, upward-rising thermal plumes (around $x \\approx 1$ and $x \\approx 3$) with cooler fluid sinking between them and at the edges. This cellular convection structure is a physically standard and expected resul..."
+    },
+    {
+      "id": 11,
+      "case": "S10_correct_turb",
+      "gt": "correct",
+      "verdict": "Anomaly",
+      "match": false,
+      "reasoning": "The overall large-scale flow structure, which resembles a shear-driven cavity flow with distinct primary vortices, looks generally plausible, and the velocity magnitude largely correlates well with streamline density. However, there is a severe anomaly in the bottom-right corner ($x=9, y=0$). The contour plot shows an isolated, extreme spike in velocity (bright yellow, the maximum value in the domain) situated exactly at the corner point. In any typical bounded physical flow, a solid corner i..."
+    },
+    {
+      "id": 12,
+      "case": "S10_E1_underconverged",
+      "gt": "error_E1",
+      "verdict": "Anomaly",
+      "match": true,
+      "reasoning": "The flow field contains an unnatural feature at the bottom right corner ($x=9, y=0$). Streamlines from a large region of the domain converge to a single mathematical point, acting as an ideal point sink and creating a sharp, localized spike in velocity magnitude right at the corner. In physical reality, fluid must exit a domain through an area of finite size. This singular behavior strongly suggests a numerical artifact or an improperly defined boundary condition (such as forcing outflow thro..."
+    },
+    {
+      "id": 13,
+      "case": "S10_E4_wrong_turb_model",
+      "gt": "error_E4",
+      "verdict": "OK",
+      "match": false,
+      "reasoning": "The image displays a complex flow field with numerous vortices and varying velocity structures that appear physically realistic. The streamline patterns are smooth, continuous, and consistent with the overlaid contours of velocity magnitude. Notably, the centers of the vortices correctly correspond to local minima in velocity (dark purple regions), while higher velocities are observed in shear regions between counter-rotating structures or in jet-like flows. There are no visible numerical art..."
+    },
+    {
+      "id": 14,
+      "case": "S2_correct_lam",
+      "gt": "correct",
+      "verdict": "OK",
+      "match": true,
+      "reasoning": "The visual representation is highly consistent with fully developed laminar channel flow (Poiseuille flow). The perfectly horizontal streamlines and velocity magnitude contours indicate steady, unidirectional flow. The color gradient shows a maximum velocity at the centerline that smoothly approaches zero at the top and bottom boundaries, which matches the expected parabolic velocity profile and no-slip conditions. While the specific \"C\"-shaped arrangement of some directional arrows is an unu..."
+    },
+    {
+      "id": 15,
+      "case": "S2_E3_wrong_viscosity",
+      "gt": "error_E3",
+      "verdict": "Anomaly",
+      "match": true,
+      "reasoning": "There are glaring rendering artifacts in the streamlines around $x \\approx 5$, where marker arrows are incorrectly clumped together into broken vertical lines. Additionally, there is an unnatural, abrupt discontinuity in the velocity field near the inlet (around $x \\approx 0.8$), where a lower-velocity region abruptly ends in a sharp, non-physical boundary, suggesting an error in the simulation setup (like poor initialization or improper domain stitching)."
+    },
+    {
+      "id": 16,
+      "case": "S7_correct_Ri1",
+      "gt": "correct",
+      "verdict": "Anomaly",
+      "match": false,
+      "reasoning": "The overall velocity profile resembles a standard channel flow with higher velocities in the center and near-zero velocities at the boundaries (consistent with a no-slip condition). However, there is a clear, unphysical artifact in the streamlines around $x = 5$ m. The streamlines appear broken, jagged, and artificially clustered in a vertical-ish line, which is not characteristic of a real fluid flow and suggests a numerical discontinuity, grid interface issue, or plotting error."
+    },
+    {
+      "id": 17,
+      "case": "S7_E8_gravity_flipped",
+      "gt": "error_E8",
+      "verdict": "Anomaly",
+      "match": true,
+      "reasoning": "There is a sharp, unphysical discontinuity in the streamlines near x = 5 m. The streamlines appear to abruptly stop, merge, or jump, forming a jagged vertical line across the flow domain. In a continuous channel flow without internal obstacles, streamlines should be smooth and continuous. This feature looks like a numerical or post-processing artifact, possibly occurring at a mesh interface."
+    },
+    {
+      "id": 18,
+      "case": "S1_correct_lam",
+      "gt": "correct",
+      "verdict": "OK",
+      "match": true,
+      "reasoning": "The temperature field displays classic, realistic features of buoyancy-driven natural convection. There is a clear hot boundary layer rising along the left wall, and the flow exhibits coherent, complex vortex structures (swirling patterns) indicative of unsteady fluid mixing. The contours are smooth and continuous, showing no obvious numerical artifacts."
+    },
+    {
+      "id": 19,
+      "case": "S1_E8_gravity_flipped",
+      "gt": "error_E8",
+      "verdict": "Anomaly",
+      "match": true,
+      "reasoning": "The thermal boundary layers along the heated left ($x=0$) and bottom ($y=0$) walls are thickest at the corner origin $(0,0)$ and thin out as they extend outward along the axes. In physically realistic forced or natural convection, boundary layers typically grow in thickness in the downstream direction. This temperature field implies an unphysical flow that either strongly accelerates outwards in both directions simultaneously from the corner, or converges into a solid corner without a mass sink."
+    },
+    {
+      "id": 20,
+      "case": "S1_E3_wrong_viscosity",
+      "gt": "error_E3",
+      "verdict": "Anomaly",
+      "match": true,
+      "reasoning": "Reasoning: While the macroscopic bowing of the isotherms is consistent with a natural convection circulation cell (hot left wall, cold right wall), the top boundary ($y=4.0$) exhibits unnatural \"scalloping\" or small-scale periodic wiggles. These localized, discontinuous irregularities along an otherwise smooth flow field are unphysical and strongly indicate numerical artifacts or boundary condition instabilities in the simulation."
+    },
+    {
+      "id": 21,
+      "case": "S3_correct_turb",
+      "gt": "correct",
+      "verdict": "Anomaly",
+      "match": false,
+      "reasoning": "There is an unphysical vertical discontinuity in the streamlines at roughly x = 5 m. The flow paths break completely across the entire width of the channel, violating the principle of continuity. This visual artifact strongly suggests the simulation domain consists of two uncoupled blocks or disjointed regions."
+    },
+    {
+      "id": 22,
+      "case": "S3_E4_wrong_turb_model",
+      "gt": "error_E4",
+      "verdict": "Anomaly",
+      "match": true,
+      "reasoning": "The flow field exhibits a distinct, unphysical vertical discontinuity (white gap) at $x = 5$ m. The streamlines abruptly break across this gap without curving, and there appear to be erratic vector arrows right at the interface, indicating a plotting artifact or a numerical error at a domain boundary rather than continuous physical fluid flow."
+    },
+    {
+      "id": 23,
+      "case": "S3_E3_wrong_viscosity",
+      "gt": "error_E3",
+      "verdict": "Anomaly",
+      "match": true,
+      "reasoning": "The background color contour depicts a smooth, continuous, and fully developed channel flow (velocity is zero at the walls and maximum in the center). However, the superimposed velocity vectors (white arrows) show an abrupt, unphysical vertical discontinuity at $x=5$ and chaotic or reversed flow immediately downstream. The vector field contradicts the undisturbed velocity magnitude field, indicating a likely plotting error or numerical glitch."
+    },
+    {
+      "id": 24,
+      "case": "S5_E8_reversed_lid",
+      "gt": "error_E8",
+      "verdict": "OK",
+      "match": false,
+      "reasoning": "The image displays a physically plausible flow field that perfectly matches the classic \"lid-driven cavity\" problem. The reasoning is based on several consistent features: *   **Driving Force:** The highest velocity magnitude (yellow) is strictly along the top boundary, indicating a moving wall. The streamline arrows show the flow moving leftwards at the top. *   **Primary Circulation:** This leftward moving \"lid\" correctly shears the fluid to create the large, counter-clockwise primary vorte..."
+    },
+    {
+      "id": 25,
+      "case": "S8_correct_lam",
+      "gt": "correct",
+      "verdict": "OK",
+      "match": true,
+      "reasoning": "The image displays a highly plausible flow field, characteristic of fluid moving past a surface-mounted bluff body. It exhibits expected physical phenomena such as flow separation over the obstacle, a distinct low-velocity recirculation zone immediately behind it, and a von K\u00e1rm\u00e1n-like vortex street forming further downstream. The alignment between the streamline patterns (showing flow direction and recirculation) and the velocity magnitude contours (showing high speeds where flow is constric..."
+    },
+    {
+      "id": 26,
+      "case": "S8_E8_gravity_flipped",
+      "gt": "error_E8",
+      "verdict": "Anomaly",
+      "match": true,
+      "reasoning": "The streamlines and velocity contour lines exhibit widespread, unphysical \"wiggles\" or high-frequency oscillations throughout the main flow region (particularly visible downstream of the obstacle). These jagged, grid-scale patterns are classic visual indicators of numerical artifacts\u2014such as dispersion errors, lack of stabilization in the numerical scheme, or a poorly converged solution\u2014rather than genuine, physically smooth fluid behavior. The irregular recirculation zones on the straight to..."
+    },
+    {
+      "id": 27,
+      "case": "S8_E3_wrong_viscosity",
+      "gt": "error_E3",
+      "verdict": "OK",
+      "match": false,
+      "reasoning": "The flow field exhibits several physically realistic features for fluid flow over a surface-mounted obstacle: - **Flow Acceleration:** The velocity increases (yellow region) as the flow is forced through the narrowed passage above the obstacle, consistent with conservation of mass. - **Separation and Recirculation:** A clear wake region with a recirculation bubble forms immediately downstream of the obstacle due to flow separation at the sharp corner, characterized by low velocity and closed,..."
+    },
+    {
+      "id": 28,
+      "case": "S8_E5_coarse_mesh",
+      "gt": "error_E5",
+      "verdict": "Anomaly",
+      "match": true,
+      "reasoning": "The arrows on the streamlines near the inlet (around $x=1$) are aligned in a curved pattern that implies an inverted velocity profile, suggesting the fluid near the top and bottom walls has traveled further downstream and is moving faster than the fluid in the center. This directly contradicts the underlying color contour for velocity magnitude, which correctly shows the highest velocity in the center of the channel and lower velocities near the walls."
+    },
+    {
+      "id": 29,
+      "case": "S4_E6_modified",
+      "gt": "error_E6",
+      "verdict": "OK",
+      "match": false,
+      "reasoning": "This shows a classic backward-facing step flow. The velocity field and streamlines exhibit physically expected features: flow separation at the corner, a distinct recirculation zone (low velocity, curling streamlines) immediately downstream of the step, a shear layer, and subsequent flow reattachment and development further downstream. There are no obvious unphysical artifacts."
+    },
+    {
+      "id": 30,
+      "case": "S4_E1_underconverged",
+      "gt": "error_E1",
+      "verdict": "Anomaly",
+      "match": true,
+      "reasoning": "The streamlines in the lower half of the channel behind the step (roughly between $x=0$ and $x=15$, $y<1$) are highly erratic, chaotic, and unphysical. They exhibit sharp, unnatural kinks and appear to cross or form disorganized tangles. In a valid fluid flow field, streamlines must be smooth, continuous, and cannot cross one another (except at stagnation points, which is not the case here). This chaotic behavior indicates a broken, noisy, or unconverged underlying velocity vector field."
+    }
+  ]
+}

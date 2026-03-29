@@ -1,0 +1,274 @@
+{
+  "evaluator": "gpt-5.4",
+  "trial": 3,
+  "task": "image_only",
+  "date": "2026-03-29",
+  "total": 30,
+  "correct": 14,
+  "accuracy": 0.4666666666666667,
+  "fp": 2,
+  "fn": 14,
+  "fn_cases": [
+    "S5_E1_underconverged",
+    "S5_E5_coarse_mesh",
+    "S6_E8_gravity_flipped",
+    "S6_E2_bc_swap",
+    "S9_E8_gravity_flipped",
+    "S9_E5_coarse_mesh",
+    "S10_E1_underconverged",
+    "S10_E4_wrong_turb_model",
+    "S1_E8_gravity_flipped",
+    "S1_E3_wrong_viscosity",
+    "S5_E8_reversed_lid",
+    "S8_E3_wrong_viscosity",
+    "S8_E5_coarse_mesh",
+    "S4_E6_modified"
+  ],
+  "fp_cases": [
+    "S7_correct_Ri1",
+    "S3_correct_turb"
+  ],
+  "items": [
+    {
+      "id": 1,
+      "case": "S5_correct_lam",
+      "gt": "correct",
+      "verdict": "OK",
+      "match": true,
+      "reasoning": "Visually this looks physically plausible for a lid-driven cavity\u2013type flow. The main features are consistent:\n\n- Strongest velocity along the top boundary, decaying into the cavity interior.\n- One dominant recirculating vortex filling most of the domain.\n- Small corner eddies near the bottom corners, which are common in cavity flows.\n- Streamlines are smooth and mostly closed, with no obvious discontinuities or nonphysical kinks.\n- The speed field stays low near walls/corners except at the moving top wall, which is reasonable.\n\nMinor note: without setup details, the scalar field cannot be fully validated as \u201ctemperature,\u201d but as a generic contour over a cavity flow it does not show anything obviously unphysical."
+    },
+    {
+      "id": 2,
+      "case": "S5_E1_underconverged",
+      "gt": "error_E1",
+      "verdict": "OK",
+      "match": false,
+      "reasoning": "Visually, this looks physically plausible for a lid-driven cavity\u2013type flow:\n\n- Streamlines show one dominant recirculating cell filling most of the square, which is a classic pattern.\n- There is a small secondary vortex near the top-right corner, also commonly seen in cavity flows at moderate Reynolds number.\n- Speed magnitude is highest along the moving top boundary and near the top-right corner, with low speeds in the core and near no-slip walls, which is reasonable.\n- The field appears smooth, with no obvious checkerboarding, discontinuities, or spurious oscillations.\n- Boundary-layer-like gradients near the top wall and right wall look qualitatively consistent with wall-driven shear flow.\n\nMinor note: the strongest corner activity being concentrated near the top-right is asymmetric compared with some canonical cavity cases, but without setup details that is not enough to call it unphysical."
+    },
+    {
+      "id": 3,
+      "case": "S5_E2_bc_swap",
+      "gt": "error_E2",
+      "verdict": "Anomaly",
+      "match": true,
+      "reasoning": "Visually, several features look suspicious for a physically realistic flow field:\n\n- The streamlines are almost perfectly horizontal everywhere, yet the scalar field shows large 2D structures and boundary-layer-like variation. If the flow is truly nearly uniform and horizontal, the interior contours would usually be much more x-uniform.\n- There is a sharp vertical discontinuity at about x \u2248 0.48 where streamlines appear to \u201cjump\u201d and form repeated arrow/chevron shapes. That looks more like a stitching/plotting artifact or nonphysical interface than a real flow feature.\n- Near the top wall, the field has a very thin low-value strip across the whole domain, but there is no comparably clear dynamical response in the streamlines.\n- The bright high-value concentration near the top-right corner and abrupt contour bends there suggest numerical or boundary-condition artifacts.\n- Overall symmetry/consistency is poor: the left and right halves have different large-scale contour patterns without a clear flow-feature explanation visible in the velocity lines.\n\nSo based on appearance alone, I would flag this as likely nonphysical or at least strongly contaminated by numerical/visualization artifacts."
+    },
+    {
+      "id": 4,
+      "case": "S5_E5_coarse_mesh",
+      "gt": "error_E5",
+      "verdict": "OK",
+      "match": false,
+      "reasoning": "Visually this looks physically plausible for a lid-driven cavity\u2013type flow with a hot/fast moving top boundary:\n\n- The streamlines show one dominant recirculating vortex filling the cavity, which is a classic pattern.\n- Velocity magnitude is highest near the top wall and especially near the top corners, consistent with a moving lid and strong wall shear.\n- Most of the interior has lower speed, which is also expected.\n- The streamline directions appear smooth and continuous, with no obvious breaks, spurious oscillations, or nonphysical discontinuities.\n- The scalar field forms a thin high-value layer near the top and diffuses downward smoothly, which is qualitatively reasonable for a top-driven/top-heated configuration.\n\nMinor note: without setup details, the nearly uniform bright band right at the top could be either perfectly fine as a boundary condition or slightly suggest under-resolved near-wall transport, but nothing here clearly looks unphysical."
+    },
+    {
+      "id": 5,
+      "case": "S6_correct_Ra1e4",
+      "gt": "correct",
+      "verdict": "OK",
+      "match": true,
+      "reasoning": "Based on appearance alone, this looks physically plausible for a smooth steady temperature field:\n\n- The field is smooth, continuous, and bounded with no obvious numerical noise, checkerboarding, or spurious oscillations.\n- Temperature varies monotonically in a broadly sensible way: hottest near the left/top-left region and coolest near the right/bottom-right region.\n- Isotherms curve smoothly, suggesting advection/diffusion or conduction with nonuniform boundary influence, which is common.\n- Gradients are stronger near the left and right boundaries and weaker in the interior, also plausible.\n- I do not see unphysical discontinuities, isolated hot/cold spots, or contour kinks that would immediately suggest a problem.\n\nMinor note: the very narrow hot strip at the left boundary and cool strip at the right boundary could indicate strong imposed boundary conditions or thin boundary layers, but that is not inherently suspicious."
+    },
+    {
+      "id": 6,
+      "case": "S6_E8_gravity_flipped",
+      "gt": "error_E8",
+      "verdict": "OK",
+      "match": false,
+      "reasoning": "Visually, this looks physically plausible for a steady 2D temperature field.\n\n- The field is smooth, with no checkerboarding, oscillations, or sharp nonphysical spikes.\n- Temperature varies monotonically from a hot left side to a cold right side overall, which is a common and reasonable pattern.\n- Isotherms bend smoothly, suggesting combined conduction/advection or mixed boundary effects rather than numerical noise.\n- Gradients are stronger near the left and right boundaries, which is also believable if those walls are imposed at different temperatures.\n- The interior shows gentle curvature and a broad warm-lower / cool-upper tendency, consistent with a plausible recirculating flow or asymmetric heat transport.\n\nNothing in the contours immediately suggests an obvious artifact or unphysical behavior from appearance alone."
+    },
+    {
+      "id": 7,
+      "case": "S6_E2_bc_swap",
+      "gt": "error_E2",
+      "verdict": "OK",
+      "match": false,
+      "reasoning": "The temperature field looks physically plausible based on appearance alone.\n\n- It is smooth everywhere, with no obvious checkerboarding, oscillations, or discontinuities.\n- The hottest region is along the right boundary and the coldest along the left boundary, which is consistent with lateral heating/cooling.\n- The top is generally warmer than the bottom, suggesting an additional vertical influence that still blends smoothly with the side-driven gradient.\n- Isotherms bend in a way that suggests advection/recirculation or mixed boundary effects, but not in an unphysical way.\n- Gradients are strongest near the left and right walls, which is common for boundary-driven heat transfer.\n- No obvious symmetry violations or numerical artifacts stand out.\n\nOnly mild caution: the strong warm strip near the right wall and cooler left wall imply specific boundary conditions, but nothing in the plot itself looks nonphysical."
+    },
+    {
+      "id": 8,
+      "case": "S9_correct_Ra5k",
+      "gt": "correct",
+      "verdict": "OK",
+      "match": true,
+      "reasoning": "Visually, this looks physically plausible for a 2D heat/advection-diffusion field:\n\n- Temperature stays smooth and bounded, with no obvious checkerboarding, spurious oscillations, or discontinuous jumps.\n- The field is hottest at the bottom and coolest at the top, suggesting a reasonable imposed vertical thermal gradient.\n- The x-periodic warm/cool undulations are smooth and coherent, consistent with convection cells or a spatially varying boundary/flow pattern.\n- Isotherms flatten near the horizontal boundaries and vary more in the interior, which is qualitatively reasonable.\n- The magnitude range is modest and the pattern appears symmetric/repeating rather than noisy or numerically unstable.\n\nMinor caveat: without the governing equations or boundary conditions, one cannot verify whether the very thin cold layer at the top and warm layer at the bottom are quantitatively correct, but nothing looks obviously unphysical from appearance alone."
+    },
+    {
+      "id": 9,
+      "case": "S9_E8_gravity_flipped",
+      "gt": "error_E8",
+      "verdict": "OK",
+      "match": false,
+      "reasoning": "The field looks physically plausible based on appearance alone:\n\n- Temperature varies almost only with \\(y\\), not with \\(x\\), giving nearly horizontal isotherms.\n- The profile is smooth and monotonic from hot at the bottom to cold at the top, which is consistent with steady 1D conduction or fully developed thermally uniform conditions.\n- No visible oscillations, checkerboarding, edge artifacts, or nonphysical hot/cold spots.\n- The slight curvature/steepening near the boundaries could be acceptable depending on boundary conditions and plotting/interpolation.\n\nSo visually, this does not show obvious numerical or physical pathology."
+    },
+    {
+      "id": 10,
+      "case": "S9_E5_coarse_mesh",
+      "gt": "error_E5",
+      "verdict": "OK",
+      "match": false,
+      "reasoning": "Visually, this looks physically plausible for a 2D temperature field with:\n- a hot lower boundary and a cooler upper boundary,\n- smooth diffusion-dominated variation in \\(y\\),\n- mild periodic/nonuniform forcing or flow structure in \\(x\\).\n\nWhy it seems reasonable:\n- Temperature is highest near the bottom and lowest near the top, which is a common stable pattern.\n- The field is smooth everywhere, with no jagged discontinuities or checkerboard artifacts.\n- Warm \u201cbulges\u201d around \\(x\\approx 1\\) and \\(x\\approx 3\\) broaden upward in a believable way, as if heat is being advected upward and diffused laterally.\n- Contours remain bounded and gradual near walls and corners; nothing obviously violates qualitative heat-transport behavior.\n\nMinor note:\n- The nearly piecewise/angular shape of some contour bands suggests coarse resolution or a low-order/interpolated field, but that is not necessarily unphysical."
+    },
+    {
+      "id": 11,
+      "case": "S10_correct_turb",
+      "gt": "correct",
+      "verdict": "OK",
+      "match": true,
+      "reasoning": "Visually this looks physically plausible for a 2D recirculating cavity/channel-type flow:\n\n- Streamlines are smooth and mostly divergence-free-looking, with several coherent recirculation cells and no obvious discontinuities or spurious wiggles.\n- Speed magnitude is highest in thin boundary/shear layers near the top wall and right wall/corner, which is consistent with wall-driven or strong turning flow.\n- The interior is slower and organized into large vortices, a common pattern in enclosed laminar recirculating flows.\n- Corner behavior shows intensified gradients and small corner eddies, also physically reasonable.\n\nMinor caveat:\n- The bright hotspot near the lower-right corner is strong and very localized; it could be real from corner acceleration/singularity-like behavior, but it is the one feature I\u2019d check for mesh or boundary-condition artifacts if this were a simulation result."
+    },
+    {
+      "id": 12,
+      "case": "S10_E1_underconverged",
+      "gt": "error_E1",
+      "verdict": "OK",
+      "match": false,
+      "reasoning": "Visually this looks physically plausible for a 2D cavity/channel-like flow with a strong top-wall jet moving left-to-right, a large recirculation cell in the left half, weaker return flow near the bottom, and low-speed interior regions. The streamline pattern is smooth, mostly divergence-free-looking, and consistent with no-penetration at walls.\n\nMinor caveats:\n- The strongest speeds are concentrated near the top-left and bottom-right corners, which could be physical but also may reflect boundary-condition or corner-singularity effects.\n- The scalar field appears broadly smooth and advected by the flow, without obvious oscillations or checkerboarding.\n- Nothing visually suggests a blatant nonphysical feature like broken streamlines, impossible wall crossing, or noisy/unresolved gradients."
+    },
+    {
+      "id": 13,
+      "case": "S10_E4_wrong_turb_model",
+      "gt": "error_E4",
+      "verdict": "OK",
+      "match": false,
+      "reasoning": "Visually this looks physically plausible for a 2D recirculating flow with localized high-speed jets/shear layers:\n\n- Streamlines are smooth and mostly continuous, with coherent vortices/recirculation cells rather than random noise.\n- High-|U| regions align with narrow bands and turning zones, which is typical of accelerated flow near constrictions/shear layers.\n- The field is bounded by near-wall low-speed regions, also reasonable.\n- There are several stagnation/eddy centers with low speed surrounded by circulating paths, which is expected.\n\nMinor caveats based on appearance alone:\n- The bright hotspot near the upper-left wall and the diagonal high-speed patch around x\u22486, y\u22481.7 are strong/localized; they could be physical, but would merit checking against boundary conditions or forcing.\n- The streamlines do not show obvious discontinuities or impossible behavior.\n\nSo, absent setup info, nothing looks clearly unphysical."
+    },
+    {
+      "id": 14,
+      "case": "S2_correct_lam",
+      "gt": "correct",
+      "verdict": "OK",
+      "match": true,
+      "reasoning": "Visually, this looks physically plausible for internal channel flow.\n\n- The field is symmetric about the centerline, which is expected in a straight 2D channel with symmetric boundary conditions.\n- Magnitude is lowest near the walls and highest in the middle, consistent with a no-slip wall effect and a developing-to-developed duct/Poiseuille-like profile.\n- The profile appears to develop from the inlet and then become nearly fully developed downstream, which is reasonable.\n- Streamlines are smooth and mostly parallel, with no obvious unphysical recirculation or checkerboard noise.\n\nMinor caveat:\n- The thin vertical white streak around x \u2248 5 and a few small white gaps/arrows look more like plotting/masking artifacts than a physical feature. If that stripe is intended as part of the solution, it would be suspicious; if just visualization artifact, the field looks fine overall."
+    },
+    {
+      "id": 15,
+      "case": "S2_E3_wrong_viscosity",
+      "gt": "error_E3",
+      "verdict": "Anomaly",
+      "match": true,
+      "reasoning": "Visually, this looks suspicious rather than physically plausible.\n\n- The field is almost perfectly fully developed everywhere downstream, but there is a strong disturbance/obstruction-like feature near \\(x\\approx 5\\) that should create a clear wake, recirculation, contour bending, or thermal/velocity recovery region. Instead, the contours/streamlines remain nearly unchanged immediately downstream.\n- The white streamline pattern around \\(x\\approx 5\\) looks broken/discontinuous, with sharp triangular gaps and abrupt starts/stops, which is not a natural flow feature.\n- Near the inlet, the development from the left boundary into a channel profile looks somewhat plausible, but the transition into the downstream field is too smooth given the apparent internal blockage/mixing structure later on.\n- If this is a temperature field, the same concern applies: an internal perturbation should distort isotherms more strongly.\n\nSo based on appearance alone, this is more consistent with a plotting/masking/numerical artifact than a believable physical field."
+    },
+    {
+      "id": 16,
+      "case": "S7_correct_Ri1",
+      "gt": "correct",
+      "verdict": "Anomaly",
+      "match": false,
+      "reasoning": "Visually, it looks suspicious for a simple channel flow/temperature field:\n\n- The streamline pattern is mostly reasonable for left-to-right duct flow, but there are abrupt, short white segments near the center around \\(x\\approx 5\\) that look like broken or nearly vertical streamlines/vectors, which is not physically consistent with a smooth incompressible channel flow unless a strong localized jet/source/obstacle exists.\n- The speed field increases downstream and becomes largest near the outlet/right side while the channel width stays essentially constant. For standard fully developed internal flow, centerline speed should not keep ramping up like this without changing geometry, mass addition, or strong property changes.\n- The near-wall low-speed bands are plausible from no-slip, but the overall field appears too \u201cpatchy\u201d in the middle due to those central discontinuity-like features.\n\nSo parts look plausible, but the central artifacts and downstream acceleration suggest either plotting/interpolation issues or an unusual setup not evident from the image alone."
+    },
+    {
+      "id": 17,
+      "case": "S7_E8_gravity_flipped",
+      "gt": "error_E8",
+      "verdict": "Anomaly",
+      "match": true,
+      "reasoning": "The streamlines and speed field look mostly channel-flow-like, but the narrow vertical white streak around \\(x \\approx 5\\) is suspicious. Based on appearance alone:\n\n- In a simple 2D channel, streamlines should vary smoothly; a thin vertical discontinuity suggests a plotting artifact, masked/invalid data column, or numerical issue.\n- The velocity magnitude otherwise looks plausible for internal flow: low near walls, higher in the core, and gradual streamwise development.\n- If that white band is meant to represent a physical feature, the streamlines do not show a correspondingly convincing flow response around it.\n\nSo the overall field is mostly plausible, but the visible discontinuity makes the plot look anomalous."
+    },
+    {
+      "id": 18,
+      "case": "S1_correct_lam",
+      "gt": "correct",
+      "verdict": "OK",
+      "match": true,
+      "reasoning": "Visually this looks physically plausible for a buoyancy-driven cavity/convection-type temperature field:\n\n- Strong hot boundary layer along the left wall and especially near the top-left corner is consistent with a heated wall driving upward motion.\n- Cooler core with relatively thin thermal layers near boundaries is reasonable at moderate/high Rayleigh number.\n- The smooth spiral/recirculating thermal structures in the lower-right and mid-right suggest coherent convection cells rather than random numerical noise.\n- Contours are mostly smooth and continuous, with no obvious checkerboarding, oscillatory overshoots, or discontinuous patches.\n- The warm top boundary and cool interior/right side pattern could arise from advection of hot fluid across the top and descending cooler fluid elsewhere.\n\nMinor caveat:\n- The top boundary appears nonuniform, so without setup it\u2019s hard to judge boundary-condition consistency. But from appearance alone, nothing looks clearly unphysical."
+    },
+    {
+      "id": 19,
+      "case": "S1_E8_gravity_flipped",
+      "gt": "error_E8",
+      "verdict": "OK",
+      "match": false,
+      "reasoning": "Visually, this looks physically plausible for a steady 2D heat-transfer field with hot left and bottom boundaries and a cooler interior/right/top region.\n\nWhy it looks reasonable:\n- Temperature is highest near the bottom-left corner, where two hot boundaries meet.\n- There are thin thermal boundary layers along the left wall and bottom wall, with temperature decaying smoothly into the interior.\n- The interior is nearly uniform and cool, which is consistent with weak penetration of heat away from the heated walls.\n- Isotherms are smooth, monotonic, and show no obvious oscillations, checkerboarding, or nonphysical extrema.\n- The corner behavior is sensible: strongest gradients appear where boundary effects interact.\n\nMinor visual note:\n- The field appears almost entirely conduction-dominated or very weakly convective; if strong recirculating flow were expected, this would look too simple. But from appearance alone, nothing is clearly unphysical."
+    },
+    {
+      "id": 20,
+      "case": "S1_E3_wrong_viscosity",
+      "gt": "error_E3",
+      "verdict": "OK",
+      "match": false,
+      "reasoning": "Based on appearance alone, this looks physically plausible for a 2D temperature field.\n\n- The field is smooth, with no obvious checkerboarding, spurious oscillations, or discontinuous jumps.\n- Temperature decreases mainly from left (hot, red) to right (cold, blue), which is a common conductive/convective pattern.\n- Isotherms are gently curved, suggesting a reasonable influence of advection or nonuniform boundary effects rather than pure 1D conduction.\n- The corners and boundaries do not show glaring nonphysical spikes, except possibly a very small cool pocket near the top-left edge, but it is minor and could arise from boundary conditions or flow recirculation.\n- The overall extrema and gradients look consistent and well-behaved.\n\nMinor note: the slight local cool indentation near the top-left/top edge could be worth checking, but by itself it is not enough to call this anomalous."
+    },
+    {
+      "id": 21,
+      "case": "S3_correct_turb",
+      "gt": "correct",
+      "verdict": "Anomaly",
+      "match": false,
+      "reasoning": "The field does not look physically plausible based on appearance alone:\n\n- The velocity vectors/streamlines are almost perfectly horizontal everywhere, yet there is a sharp vertical white feature near \\(x \\approx 5\\) spanning the full channel height. That looks like a plotting artifact, discontinuity, or an internal blockage/interface that is not reflected in the surrounding flow.\n- The speed contours are very banded and nearly only vary with \\(y\\), while the color field also changes downstream in a way that seems inconsistent with the nearly uniform streamline pattern.\n- If that vertical line were a real solid obstacle or inlet, you would expect strong local deflection/recirculation around it, which is not visible.\n- Near-wall behavior looks somewhat reasonable for channel flow, but the abrupt center-domain vertical feature makes the overall plot suspicious."
+    },
+    {
+      "id": 22,
+      "case": "S3_E4_wrong_turb_model",
+      "gt": "error_E4",
+      "verdict": "Anomaly",
+      "match": true,
+      "reasoning": "The field looks suspicious on visual grounds:\n\n- There is a very sharp vertical discontinuity at about \\(x \\approx 5\\) spanning almost the full height. In a normal fluid/temperature solution, such a domain-wide jump is unusual unless there is an internal boundary, source, interface, or plotting artifact.\n- The streamlines appear almost perfectly horizontal everywhere, yet the scalar field changes abruptly across that vertical line. Pure advection/diffusion would usually smear such a feature unless something special exists there.\n- Near the walls the thin low-value bands are plausible for boundary layers, but the abrupt centerline-wide break is much more suggestive of stitching between two solutions, a mesh/block interface artifact, or bad masking than a physical structure.\n- The small white arrow/marker artifacts and the saturated coloring make the plot look somewhat post-processing limited as well.\n\nIf there is in fact an internal plate, jump condition, or two-region coupling at \\(x=5\\), then it could be fine; without setup info, though, this looks more like a numerical/plotting artifact than a naturally plausible field."
+    },
+    {
+      "id": 23,
+      "case": "S3_E3_wrong_viscosity",
+      "gt": "error_E3",
+      "verdict": "Anomaly",
+      "match": true,
+      "reasoning": "Visually, the field looks inconsistent with a smooth internal-flow solution:\n\n- The streamlines are nearly fully developed and smooth, but there is a sharp vertical disturbance/discontinuity around \\(x \\approx 5\\) that looks numerical or plotting-related rather than physical.\n- Several white arrows/markers near that location appear misaligned and clustered, suggesting a visualization artifact or nonphysical local velocity behavior.\n- Upstream development from the inlet looks plausible, and the downstream profile is qualitatively channel-like, but the abrupt column at mid-domain is not consistent with a simple uninterrupted duct flow/temperature field unless there is some internal boundary, source, or obstruction\u2014which is not evident from the image alone.\n- If this is meant to be a continuous flow domain, the field should vary smoothly in \\(x\\); this one does not."
+    },
+    {
+      "id": 24,
+      "case": "S5_E8_reversed_lid",
+      "gt": "error_E8",
+      "verdict": "OK",
+      "match": false,
+      "reasoning": "This looks physically plausible for a lid-driven cavity\u2013type flow with a heated/advected top region:\n\n- The streamline pattern shows one dominant recirculation cell filling most of the cavity, which is a standard cavity-flow structure.\n- Peak speed occurs along the top boundary and decays into the interior, consistent with a moving top wall or strong shear layer there.\n- Velocity goes to very low values near corners and walls except in the lid shear region, which is expected from no-slip boundaries.\n- The scalar/temperature-like field is smooth, bounded, and shows strong gradients near the top and upper corners, consistent with advection-diffusion in a recirculating cavity.\n- A small secondary vortex near the lower-left corner is also a common physical feature at moderate Reynolds number.\n\nMinor note: the field is somewhat asymmetric, but that can be physical if the driving or thermal boundary conditions are asymmetric, or due to coupled buoyancy/advection effects. Nothing visually looks obviously nonphysical."
+    },
+    {
+      "id": 25,
+      "case": "S8_correct_lam",
+      "gt": "correct",
+      "verdict": "OK",
+      "match": true,
+      "reasoning": "Visually this looks physically plausible for 2D channel flow past a wall-mounted obstacle with separation and reattachment:\n\n- Streamlines are smooth and mostly left-to-right, with local recirculation zones behind/above the block and farther downstream, which is expected after bluff-body separation.\n- Low-speed regions appear near the walls and in vortex cores, consistent with no-slip boundaries and recirculating eddies.\n- Accelerated bands over/around the obstacle and in shear layers are reasonable.\n- The field is continuous with no obvious checkerboarding, spurious oscillations, or discontinuous jumps.\n- The downstream vortical structures are a bit strong/organized, but still believable for an unsteady or moderately separated flow snapshot.\n\nMinor caveat: if this were meant to be a steady low-Re laminar solution, the multiple large downstream eddies might be somewhat suspicious; but from appearance alone, nothing clearly unphysical stands out."
+    },
+    {
+      "id": 26,
+      "case": "S8_E8_gravity_flipped",
+      "gt": "error_E8",
+      "verdict": "Anomaly",
+      "match": true,
+      "reasoning": "Visually, several features look suspicious for a simple confined flow over a block:\n\n- The top-wall region shows a long low-speed band with local closed/recirculating streamlines right against the wall, while most arrows indicate left-to-right bulk flow. That implies near-wall flow reversal at the top over a large distance, which is unusual unless there is a strong adverse pressure gradient or moving-lid effect.\n- There is a narrow nearly vertical streamline/feature around \\(x \\approx 4.8\\) extending through much of the height, suggesting a separatrix or stitching artifact rather than a smooth wake development.\n- The wake behind the obstacle contains many small closed cells/blobs that look noisy and fragmented instead of forming a more coherent recirculation bubble and shear-layer roll-up.\n- The scalar/contour field is patchy in places, especially near the wake and upper wall, which can indicate numerical artifacts or under-resolved interpolation.\n\nSome parts do look qualitatively reasonable\u2014acceleration over the obstacle and a downstream wake\u2014but overall the top-wall reversal and the vertical discontinuity-like feature make the field look not fully physically plausible from appearance alone."
+    },
+    {
+      "id": 27,
+      "case": "S8_E3_wrong_viscosity",
+      "gt": "error_E3",
+      "verdict": "OK",
+      "match": false,
+      "reasoning": "Visually this looks physically plausible for channel flow past a bottom-mounted obstacle:\n\n- Velocity goes to near zero at the walls and obstacle surfaces, consistent with no-slip.\n- Streamlines accelerate over the obstacle and in the narrowed passage, which is expected.\n- There is a separated recirculation bubble just downstream of the block near the lower wall, also expected.\n- The wake gradually recovers downstream, with streamlines re-straightening.\n- The contour field is smooth, bounded, and shows no obvious checkerboarding, spurious oscillations, or discontinuities.\n\nMinor caveat:\n- The broad high-speed/temperature lobe above and downstream of the obstacle is somewhat pronounced, but still not obviously unphysical without setup details."
+    },
+    {
+      "id": 28,
+      "case": "S8_E5_coarse_mesh",
+      "gt": "error_E5",
+      "verdict": "OK",
+      "match": false,
+      "reasoning": "Visually this looks physically plausible for channel flow over a wall-mounted block with separation and recirculation behind the obstacle.\n\n- The low-speed boundary layers at the top and bottom walls are consistent with no-slip walls.\n- Flow accelerates over the obstacle, which is expected from local constriction.\n- A separated shear layer forms from the block top edge, with a long wake and multiple downstream recirculation zones/eddies near the lower wall; that is qualitatively reasonable.\n- The core flow remains mostly left-to-right while the near-wake shows reverse flow, also expected.\n- Streamlines are smooth and generally do not show obvious discontinuities or impossible features.\n\nMinor caveat:\n- The sequence of several similarly sized vortices in the lower wake could be real in an unsteady snapshot, but if this is meant to be a steady 2D solution, the repeated eddies look a bit stylized/numerically smeared. Still, nothing obviously unphysical from appearance alone."
+    },
+    {
+      "id": 29,
+      "case": "S4_E6_modified",
+      "gt": "error_E6",
+      "verdict": "OK",
+      "match": false,
+      "reasoning": "Visually this looks physically plausible for flow entering a taller channel and passing a backward-facing step/expansion at \\(x=0\\):\n\n- There is a low-speed recirculation bubble just downstream of the step near the lower wall, which is the expected feature after a sudden expansion.\n- Streamlines bend over the separated region and then gradually reattach farther downstream, also expected.\n- The velocity magnitude is highest in the upper/main throughflow and reduced near walls, consistent with no-slip boundaries and boundary-layer development.\n- Downstream, the profile appears to recover gradually toward a developed channel flow.\n\nMinor caveat: without setup details, I can\u2019t judge quantitative realism, but qualitatively nothing obvious looks unphysical."
+    },
+    {
+      "id": 30,
+      "case": "S4_E1_underconverged",
+      "gt": "error_E1",
+      "verdict": "Anomaly",
+      "match": true,
+      "reasoning": "Based on appearance alone, this looks questionable for a channel flow over a backward-facing step:\n\n- The streamlines show multiple large recirculation cells extending very far downstream, with another strong interior vortex around \\(x\\sim 10\\!-\\!12\\). A backward-facing-step flow usually has one main separation bubble after the step and then reattachment, unless the flow is strongly unsteady/turbulent or otherwise specially forced.\n- The upper-wall high-speed band remains very strong while the lower half stays abnormally slow over most of the domain, suggesting poor recovery toward a more developed channel profile.\n- The velocity contours appear excessively stratified and wavy along the whole length, which can indicate numerical artifacts, under-resolution, or a nonphysical transient snapshot.\n- There are visible localized swirl structures near the top wall downstream that are not obviously consistent with a simple steady internal flow.\n\nIf this was intended to be an instantaneous turbulent/transient field, it could be possible; for a nominal steady laminar/channel-step case, it looks suspicious."
+    }
+  ],
+  "partial": false
+}

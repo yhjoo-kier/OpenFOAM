@@ -1,0 +1,264 @@
+{
+  "evaluator": "gpt-5.4-codex",
+  "trial": 3,
+  "task": "setup_conditioned",
+  "date": "2026-03-29",
+  "total": 30,
+  "correct": 23,
+  "accuracy": 0.7666666666666667,
+  "fp": 0,
+  "fn": 7,
+  "fn_cases": [
+    "S5_E5_coarse_mesh",
+    "S6_E2_bc_swap",
+    "S9_E8_gravity_flipped",
+    "S9_E5_coarse_mesh",
+    "S2_E3_wrong_viscosity",
+    "S3_E3_wrong_viscosity",
+    "S5_E8_reversed_lid"
+  ],
+  "fp_cases": [],
+  "items": [
+    {
+      "id": 1,
+      "case": "S5_correct_lam",
+      "gt": "correct",
+      "verdict": "OK",
+      "match": true,
+      "reasoning": "The field matches the expected laminar lid-driven cavity pattern at `Re=100`: one dominant clockwise recirculation with its vortex center shifted slightly toward the upper-right, highest speeds concentrated near the moving lid, and much lower speeds through the core and bottom region. The small corner recirculation near the lower-right is also consistent with this regime; any missing or very weak opposite corner eddy can reasonably be attributed to the coarse `60x60` mesh and plotting resolution rather than non-physical behavior."
+    },
+    {
+      "id": 2,
+      "case": "S5_E1_underconverged",
+      "gt": "error_E1",
+      "verdict": "Anomaly",
+      "match": true,
+      "reasoning": "For a steady lid-driven cavity at `Re=10,000` with the **top wall moving right**, the flow should show a well-developed primary clockwise vortex plus resolved secondary corner vortices, especially in the lower corners. This image instead shows an incompletely developed circulation with an unusual small vortex near the **top-right** corner and missing/weak expected corner structures, which is more consistent with an early under-converged state than a physically settled solution."
+    },
+    {
+      "id": 3,
+      "case": "S5_E2_bc_swap",
+      "gt": "error_E2",
+      "verdict": "Anomaly",
+      "match": true,
+      "reasoning": "The field looks like near-uniform plug flow to the right across almost the entire cavity, with `|U|` staying close to the lid speed everywhere. For a closed cavity with the lid mistakenly moving on the bottom wall, a physically plausible solution should show a mirrored lid-driven-cavity recirculation cell, strong shear near the bottom, and substantial velocity variation through the interior, not this nearly uniform horizontal flow."
+    },
+    {
+      "id": 4,
+      "case": "S5_E5_coarse_mesh",
+      "gt": "error_E5",
+      "verdict": "OK",
+      "match": false,
+      "reasoning": "The field is consistent with an extremely coarse `10x10` ungraded cavity-type solution: one dominant primary recirculation cell, strongest velocity along the moving top boundary, and heavily smeared gradients elsewhere. The missing or very weak corner eddies and the diffuse boundary layer are expected under this level of under-resolution; nothing in the plot suggests a clearly non-physical artifact such as broken continuity, spurious oscillations, or impossible flow directions."
+    },
+    {
+      "id": 5,
+      "case": "S6_correct_Ra1e4",
+      "gt": "correct",
+      "verdict": "OK",
+      "match": true,
+      "reasoning": "The temperature field is consistent with a square differentially heated cavity at `Ra = 1e4` in the laminar regime: hot left wall, cold right wall, upward heat transport along the hot side, downward cooling along the cold side, and smooth tilted core isotherms indicating a single natural-convection recirculation. The contours are smooth and monotonic, with no obvious non-physical oscillations, symmetry violations, or turbulent-looking structures for an `80x80` mesh at this Rayleigh number."
+    },
+    {
+      "id": 6,
+      "case": "S6_E8_gravity_flipped",
+      "gt": "error_E8",
+      "verdict": "Anomaly",
+      "match": true,
+      "reasoning": "The temperature field is vertically inverted relative to a differentially heated cavity with gravity acting downward: the hot left wall\u2019s influence is strongest in the lower half, while the upper region is too cool. For the stated physical setup, buoyancy should lift warm fluid upward along the hot wall and keep the upper-left region warmer, so this pattern indicates reversed buoyancy from flipped gravity rather than a physically consistent solution."
+    },
+    {
+      "id": 7,
+      "case": "S6_E2_bc_swap",
+      "gt": "error_E2",
+      "verdict": "OK",
+      "match": false,
+      "reasoning": "The contour is consistent with a square-cavity natural convection case where the left wall is cold and the right wall is hot: hot fluid rises along the right wall, cold fluid sinks along the left wall, giving a warmer upper region and cooler lower region with smoothly curved interior isotherms. Nothing in the field suggests the BCs are reversed or otherwise non-physical."
+    },
+    {
+      "id": 8,
+      "case": "S9_correct_Ra5k",
+      "gt": "correct",
+      "verdict": "OK",
+      "match": true,
+      "reasoning": "The field is consistent with laminar Rayleigh-Benard convection at `Ra = 5000`: a hot lower boundary, cold upper boundary, thin thermal boundary layers, and smooth large-scale overturning structure with rising warm plume(s) and descending cool plume(s) across the aspect-ratio-4 domain. The contours are steady-looking and symmetric/smooth rather than turbulent or numerically noisy, which is physically reasonable for a `160x40` mesh at this moderate Rayleigh number."
+    },
+    {
+      "id": 9,
+      "case": "S9_E8_gravity_flipped",
+      "gt": "error_E8",
+      "verdict": "OK",
+      "match": false,
+      "reasoning": "The image shows a nearly pure conductive state: horizontal isotherms, hot at geometric bottom and cold at geometric top, with no recirculation signature. For the stated error case `g = (0, +9.81, 0)`, that stratification is stable relative to the flipped gravity direction, so convection can be suppressed and a layered temperature field like this is physically plausible."
+    },
+    {
+      "id": 10,
+      "case": "S9_E5_coarse_mesh",
+      "gt": "error_E5",
+      "verdict": "OK",
+      "match": false,
+      "reasoning": "The field looks physically consistent with a coarse natural-convection solution: hot fluid stays near the bottom, cooler fluid accumulates near the top, and the pattern shows broad symmetric convection cells with rising warm regions and a cooler central/top return flow. The contours are clearly under-resolved and faceted, which is expected for a `16x4` mesh, but I do not see obvious non-physical features such as inverted stratification, spurious hot/cold islands, or unstable checkerboard oscillations."
+    },
+    {
+      "id": 11,
+      "case": "S10_correct_turb",
+      "gt": "correct",
+      "verdict": "OK",
+      "match": true,
+      "reasoning": "The field is consistent with a ventilated-room flow at `Re=5000` using `k-\u03c9 SST`: a strong near-ceiling supply jet travels across the room, turns downward near the far wall, and drives large recirculation cells in the interior. The streamline topology is smooth and wall-bounded, with no obvious non-physical artifacts such as broken streamlines, spurious oscillations, checkerboarding, or impossible acceleration patterns away from the jet/opening regions. The magnitude range also looks reasonable for a moderate-Re indoor jet with coarse-to-moderate `180\u00d760` resolution."
+    },
+    {
+      "id": 12,
+      "case": "S10_E1_underconverged",
+      "gt": "error_E1",
+      "verdict": "Anomaly",
+      "match": true,
+      "reasoning": "For a 9 m x 3 m ventilated room with a top-left slot inlet and bottom-right slot outlet at Re about 5000, this does not look physically plausible as the stated solution. The inlet jet remains too undeveloped, most of the room is unrealistically stagnant, and the flow is dominated by one oversized left-side recirculation instead of the more distributed room-scale circulation expected from a developed wall jet. The sharp outlet-corner acceleration and incomplete propagation of momentum across the room are consistent with an under-converged intermediate field, not a settled physical solution."
+    },
+    {
+      "id": 13,
+      "case": "S10_E4_wrong_turb_model",
+      "gt": "error_E4",
+      "verdict": "Anomaly",
+      "match": true,
+      "reasoning": "For `Re = 5000`, a purely laminar solution is generally not credible: the field here is too smooth, steady, and organized into a few clean large recirculation cells, with little sign of turbulent mixing or smaller-scale unsteadiness. That pattern is consistent with an under-modeled laminar solver rather than the expected transitional/turbulent flow for the stated conditions."
+    },
+    {
+      "id": 14,
+      "case": "S2_correct_lam",
+      "gt": "correct",
+      "verdict": "OK",
+      "match": true,
+      "reasoning": "The field is consistent with low-Re laminar channel flow: the profile develops smoothly downstream toward a symmetric parabolic shape, with maximum velocity on the centerline and low velocity at the walls. There is no obvious recirculation, asymmetry, or instability; the white vertical streak and scattered arrow markers near `x \u2248 5` look like visualization artifacts rather than a physical flow feature."
+    },
+    {
+      "id": 15,
+      "case": "S2_E3_wrong_viscosity",
+      "gt": "error_E3",
+      "verdict": "OK",
+      "match": false,
+      "reasoning": "For an effective `Re \u2248 10`, a smooth, strongly diffused, symmetric laminar channel flow is physically reasonable. The field shows rapid entrance-region development into a nearly fully developed Poiseuille-like profile with no sharp shear layers or recirculation, which is consistent with viscosity being 10x too high and the flow being over-damped."
+    },
+    {
+      "id": 16,
+      "case": "S7_correct_Ri1",
+      "gt": "correct",
+      "verdict": "OK",
+      "match": true,
+      "reasoning": "The field looks consistent with a balanced mixed-convection regime at `Ri\u22481` and moderate `Re=500`: flow remains predominantly streamwise, wall-adjacent low-speed bands satisfy no-slip, and the core shows only mild buoyancy-induced redistribution rather than large recirculation or unstable separation. The contours and streamlines are smooth overall, so there is no clear sign of non-physical oscillation, checkerboarding, or impossible velocity reversal."
+    },
+    {
+      "id": 17,
+      "case": "S7_E8_gravity_flipped",
+      "gt": "error_E8",
+      "verdict": "Anomaly",
+      "match": true,
+      "reasoning": "The field looks like a mostly symmetric, streamwise channel flow with little sign of hot fluid rising from the bottom. For a bottom-heated buoyant case, the lower hot layer should drive upward motion and break that symmetry; flipped gravity reverses that effect and makes the buoyancy response unphysical for the intended setup."
+    },
+    {
+      "id": 18,
+      "case": "S1_correct_lam",
+      "gt": "correct",
+      "verdict": "OK",
+      "match": true,
+      "reasoning": "The field looks physically plausible for laminar natural convection at `Ra \u2248 3e6`. It shows a thin hot rising boundary layer along the heated left wall, warmer fluid accumulating near the top, and a cooler core/return region away from the wall. The contours are smooth and coherent, with no obvious oscillatory, checkerboard, or symmetry-breaking artifacts that would suggest a non-physical solution on a `60\u00d7120` wall-graded mesh."
+    },
+    {
+      "id": 19,
+      "case": "S1_E8_gravity_flipped",
+      "gt": "error_E8",
+      "verdict": "Anomaly",
+      "match": true,
+      "reasoning": "The field is not plausible for normal buoyant heating. The warm fluid is concentrated near the lower left and spreads along the floor, while the rest of the cavity stays cold, which indicates the heated fluid is sinking instead of rising. For the stated setup, a hot boundary layer/plume should rise upward, not descend."
+    },
+    {
+      "id": 20,
+      "case": "S1_E3_wrong_viscosity",
+      "gt": "error_E3",
+      "verdict": "Anomaly",
+      "match": true,
+      "reasoning": "The field is too diffusion-dominated for the stated buoyancy-driven case. It shows a smooth left-to-right temperature gradient with weak curvature and no clear thin thermal boundary layers or convective plume/recirculation structure; that is consistent with an over-damped, very low-Rayleigh cavity from `nu = 0.1`, not the intended conditions."
+    },
+    {
+      "id": 21,
+      "case": "S3_correct_turb",
+      "gt": "correct",
+      "verdict": "OK",
+      "match": true,
+      "reasoning": "The field is broadly consistent with turbulent channel flow: velocity is highest in the channel core, reduced near both walls, the pattern is smooth and roughly symmetric about the centerline, and there is no obvious separation or backflow. The narrow vertical white streak near `x\u22485 m` looks more like a visualization/streamline artifact than a physical feature; if it were an actual flow discontinuity, that would be non-physical for this case."
+    },
+    {
+      "id": 22,
+      "case": "S3_E4_wrong_turb_model",
+      "gt": "error_E4",
+      "verdict": "Anomaly",
+      "match": true,
+      "reasoning": "For `Re = 10000`, this should be a turbulent internal flow with strong turbulent mixing and a fuller cross-stream velocity profile. The image instead shows an overly smooth, ordered, laminar-like field with weak cross-stream diffusion and persistent stratification, which is not physically plausible for the stated turbulent conditions."
+    },
+    {
+      "id": 23,
+      "case": "S3_E3_wrong_viscosity",
+      "gt": "error_E3",
+      "verdict": "OK",
+      "match": false,
+      "reasoning": "The field is consistent with a low-Re laminar channel flow: the velocity profile is smooth and close to parabolic, with thick viscous layers and no clear turbulent, blunt-core structure. For `nu=0.01` and effective `Re\u2248100`, that behavior is physically plausible even if a turbulence model is enabled, since turbulence production would be largely suppressed."
+    },
+    {
+      "id": 24,
+      "case": "S5_E8_reversed_lid",
+      "gt": "error_E8",
+      "verdict": "OK",
+      "match": false,
+      "reasoning": "The field is consistent with a lid-driven cavity whose top wall moves left at `U = -1`: the top-layer flow goes left, the primary recirculation is clockwise, and the main vortex is shifted into the upper-left region as the mirror image of the usual right-moving-lid laminar case. The speed distribution also looks reasonable, with the largest `|U|` near the moving lid and weaker interior/corner motion, and no obvious non-physical artifacts such as broken streamlines or incompatible circulation."
+    },
+    {
+      "id": 25,
+      "case": "S8_correct_lam",
+      "gt": "correct",
+      "verdict": "OK",
+      "match": true,
+      "reasoning": "The field is broadly consistent with forced laminar channel flow over a heated bump at `Re=500`: the flow accelerates over the bump, separates at the trailing edge, and forms a compact downstream recirculation region. The wake is deflected upward, which is reasonable for a heated obstacle generating a buoyant thermal plume in a confined channel. There are some strong downstream vortical structures near the upper wall/outlet, but they are not obviously non-physical for this geometry and confinement."
+    },
+    {
+      "id": 26,
+      "case": "S8_E8_gravity_flipped",
+      "gt": "error_E8",
+      "verdict": "Anomaly",
+      "match": true,
+      "reasoning": "With `g = (0, +9.81, 0)`, a hot plume from the bump should be negatively buoyant and sink toward the floor rather than form an elevated, rising lobe. In this image, the dominant disturbed region above the bump expands upward into the mid/upper channel, which is more consistent with normal upward buoyancy than a gravity-flipped descending plume."
+    },
+    {
+      "id": 27,
+      "case": "S8_E3_wrong_viscosity",
+      "gt": "error_E3",
+      "verdict": "Anomaly",
+      "match": true,
+      "reasoning": "The field is not plausible for `nu = 0.05` and `Re_eff \u2248 5`. The image shows a distinct separated wake with a recirculating vortex behind the block and a pronounced high-speed/plume-like structure above it; at this viscosity and low effective Reynolds number, the flow should be much more creeping and diffusion-dominated, with little to no wake separation and no strong thermal-plume-like downstream structure."
+    },
+    {
+      "id": 28,
+      "case": "S8_E5_coarse_mesh",
+      "gt": "error_E5",
+      "verdict": "Anomaly",
+      "match": true,
+      "reasoning": "The wake topology looks numerically contaminated: instead of a dominant separated recirculation zone with gradual recovery, the field shows several large closed vortices persisting almost to the outlet and an artificial high-speed jet in the upper-right corner. With such an extremely coarse mesh, the wall and shear layers are effectively unresolved, so this pattern is more consistent with mesh-induced artifacts than a physically credible flow field."
+    },
+    {
+      "id": 29,
+      "case": "S4_E6_modified",
+      "gt": "error_E6",
+      "verdict": "Anomaly",
+      "match": true,
+      "reasoning": "For a sudden expansion/backward-facing-step flow like this, a separated recirculation bubble should form immediately downstream along the lower wall. Here that region has been replaced by a smooth forward-flow/near-stagnant patch without clear flow reversal or reattachment structure, which is not physically consistent with the stated conditions."
+    },
+    {
+      "id": 30,
+      "case": "S4_E1_underconverged",
+      "gt": "error_E1",
+      "verdict": "Anomaly",
+      "match": true,
+      "reasoning": "For a turbulent backward-facing step at `Re = 36000`, the field shows an unrealistically long, domain-filling low-speed/recirculating region instead of a primary separation bubble followed by clear reattachment and recovery. The multiple large downstream eddies and poor velocity recovery indicate the solution is still in an early under-converged state rather than a physically settled flow."
+    }
+  ],
+  "partial": false
+}
