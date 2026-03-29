@@ -19,8 +19,8 @@ plt.rcParams['font.size'] = 7
 OUT = Path(__file__).resolve().parent.parent / 'results'
 
 evaluators = ['Claude Opus 4.6', 'GPT-5.4', 'Expert', 'Gemini 3.1']
-setup =      [88.9,               80.0,      73.8,     57.8]
-imageonly =   [33.3,               43.3,      66.7,     53.3]
+setup =      [88.9,               67.8,      73.8,     57.8]
+imageonly =   [33.3,               48.9,      66.7,     53.3]
 colors =     ['#D4770C',          '#10A37F',  '#4A7FC1', '#4285F4']
 markers =    ['o',                's',        '^',      'D']
 

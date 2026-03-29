@@ -20,7 +20,7 @@ OUT = Path(__file__).resolve().parent.parent / 'results'
 
 # 3-trial data
 claude_s = [90.0, 90.0, 86.7]; claude_io = [33.3, 33.3, 33.3]
-gpt_s = [80.0, 80.0, 80.0]; gpt_io = [43.3, 40.0, 46.7]
+gpt_s = [56.7, 70.0, 76.7]; gpt_io = [43.3, 56.7, 46.7]
 gemini_s = [56.7, 53.3, 63.3]; gemini_io = [63.3, 56.7, 40.0]
 expert_s = [73.8]; expert_io = [66.7]
 

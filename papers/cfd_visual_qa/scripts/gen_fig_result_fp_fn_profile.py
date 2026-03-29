@@ -20,8 +20,8 @@ OUT = Path(__file__).resolve().parent.parent / 'results'
 
 # Mean FP/FN from 3 trials (setup-conditioned)
 names = ['Claude', 'GPT-5.4', 'Expert', 'Gemini']
-fp_mean = [3.3, 1.7, 2.0, 5.3]
-fn_mean = [0.0, 4.3, 19.0, 7.3]
+fp_mean = [3.3, 0.7, 2.0, 5.3]
+fn_mean = [0.0, 9.0, 19.0, 7.3]
 colors = ['#D4770C', '#10A37F', '#4A7FC1', '#4285F4']
 markers = ['o', 's', '^', 'D']
 

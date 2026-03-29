@@ -1,0 +1,102 @@
+{
+  "generated": "2026-03-29",
+  "description": "Canonical paper-safe numbers from API-isolated evaluation. Single source of truth.",
+  "note_gpt5_correction": "Previous paper draft reported GPT-5.4 setup mean as 80.0%. Actual verified mean from API-isolated trials is 67.8% (t1=56.7, t2=70.0, t3=76.7). The 80.0% was likely a transcription error from the non-isolated Codex CLI evaluation.",
+  "evaluation_set": {
+    "items_per_evaluator": 30,
+    "conditions": ["setup_conditioned", "image_only"],
+    "trials_per_vlm": 3,
+    "expert_trials": 1,
+    "expert_setup_items": 80,
+    "expert_setup_source": "batch_day01-05 cumulative (blind-coded, setup-conditioned)"
+  },
+  "results": {
+    "claude_opus_46": {
+      "setup": {
+        "t1": {"accuracy": 90.0, "correct": 27, "total": 30, "fp": 3, "fn": 0},
+        "t2": {"accuracy": 90.0, "correct": 27, "total": 30, "fp": 3, "fn": 0},
+        "t3": {"accuracy": 86.7, "correct": 26, "total": 30, "fp": 4, "fn": 0},
+        "mean": 88.9,
+        "fp_mean": 3.3,
+        "fn_mean": 0.0
+      },
+      "imageonly": {
+        "t1": {"accuracy": 33.3, "correct": 10, "total": 30, "fp": 0, "fn": 20},
+        "t2": {"accuracy": 33.3, "correct": 10, "total": 30, "fp": 0, "fn": 20},
+        "t3": {"accuracy": 33.3, "correct": 10, "total": 30, "fp": 0, "fn": 20},
+        "mean": 33.3,
+        "fp_mean": 0.0,
+        "fn_mean": 20.0
+      },
+      "delta_pp": -55.6
+    },
+    "gpt5_4": {
+      "setup": {
+        "t1": {"accuracy": 56.7, "correct": 17, "total": 30, "fp": 1, "fn": 12},
+        "t2": {"accuracy": 70.0, "correct": 21, "total": 30, "fp": 1, "fn": 8},
+        "t3": {"accuracy": 76.7, "correct": 23, "total": 30, "fp": 0, "fn": 7},
+        "mean": 67.8,
+        "fp_mean": 0.7,
+        "fn_mean": 9.0
+      },
+      "imageonly": {
+        "t1": {"accuracy": 43.3, "correct": 13, "total": 30, "fp": 1, "fn": 16},
+        "t2": {"accuracy": 56.7, "correct": 17, "total": 30, "fp": 0, "fn": 13},
+        "t3": {"accuracy": 46.7, "correct": 14, "total": 30, "fp": 1, "fn": 15},
+        "mean": 48.9,
+        "fp_mean": 0.7,
+        "fn_mean": 14.7
+      },
+      "delta_pp": -18.9
+    },
+    "gemini_31_pro": {
+      "setup": {
+        "t1": {"accuracy": 56.7, "correct": 17, "total": 30, "fp": 6, "fn": 7},
+        "t2": {"accuracy": 53.3, "correct": 16, "total": 30, "fp": 6, "fn": 8},
+        "t3": {"accuracy": 63.3, "correct": 19, "total": 30, "fp": 4, "fn": 7},
+        "mean": 57.8,
+        "fp_mean": 5.3,
+        "fn_mean": 7.3
+      },
+      "imageonly": {
+        "t1": {"accuracy": 63.3, "correct": 19, "total": 30, "fp": 3, "fn": 8},
+        "t2": {"accuracy": 56.7, "correct": 17, "total": 30, "fp": 4, "fn": 9},
+        "t3": {"accuracy": 40.0, "correct": 12, "total": 30, "fp": 6, "fn": 12},
+        "mean": 53.3,
+        "fp_mean": 4.3,
+        "fn_mean": 9.7
+      },
+      "delta_pp": -4.4
+    },
+    "expert": {
+      "setup": {
+        "t1": {"accuracy": 73.8, "correct": 59, "total": 80, "fp": 2, "fn": 19},
+        "mean": 73.8,
+        "fp_mean": 2.0,
+        "fn_mean": 19.0,
+        "note": "Expert evaluated 80 setup-conditioned items across 5 batch days (not 30). Single trial only."
+      },
+      "imageonly": {
+        "t1": {"accuracy": 66.7, "correct": 20, "total": 30, "fp": 2, "fn": 8},
+        "mean": 66.7,
+        "fp_mean": 2.0,
+        "fn_mean": 8.0
+      },
+      "delta_pp": -7.1
+    }
+  },
+  "ranking": {
+    "setup_conditioned": ["claude_opus_46 (88.9%)", "expert (73.8%)", "gpt5_4 (67.8%)", "gemini_31_pro (57.8%)"],
+    "image_only": ["expert (66.7%)", "gemini_31_pro (53.3%)", "gpt5_4 (48.9%)", "claude_opus_46 (33.3%)"],
+    "rank_reversal": true,
+    "note": "With setup text: Claude > Expert > GPT-5.4 > Gemini. Without: Expert > Gemini > GPT-5.4 > Claude."
+  },
+  "errata": {
+    "gpt5_setup_mean": {
+      "wrong_value_in_paper": 80.0,
+      "correct_value": 67.8,
+      "source_of_error": "Paper draft used non-isolated Codex CLI single-trial result or transcription error. API-isolated 3-trial mean is 67.8%.",
+      "impact": "GPT-5.4 drops from 2nd to 3rd in setup ranking (below Expert). Rank reversal finding still holds but with different magnitudes."
+    }
+  }
+}
