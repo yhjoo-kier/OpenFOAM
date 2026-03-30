@@ -1,0 +1,121 @@
+{
+  "schema_version": "indoor_cfd_scene_v1",
+  "units": "m",
+  "coordinate_system": {
+    "origin": "room_min_corner",
+    "x": "west_to_east",
+    "y": "south_to_north",
+    "z": "floor_to_ceiling"
+  },
+  "room": {
+    "blocks": [
+      {
+        "origin": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "size": {
+          "dx": 4.749,
+          "dy": 4.514,
+          "dz": 3.103
+        }
+      },
+      {
+        "origin": {
+          "x": 4.749,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "size": {
+          "dx": 2.55,
+          "dy": 3.312,
+          "dz": 3.103
+        }
+      }
+    ]
+  },
+  "obstacles": [
+    {
+      "id": "obs_01",
+      "type": "box",
+      "min": {
+        "x": 2.694,
+        "y": 0.929,
+        "z": 0.0
+      },
+      "size": {
+        "dx": 1.052,
+        "dy": 1.273,
+        "dz": 1.926
+      }
+    },
+    {
+      "id": "obs_02",
+      "type": "box",
+      "min": {
+        "x": 5.168,
+        "y": 1.028,
+        "z": 0.0
+      },
+      "size": {
+        "dx": 0.941,
+        "dy": 1.203,
+        "dz": 2.128
+      }
+    },
+    {
+      "id": "obs_03",
+      "type": "box",
+      "min": {
+        "x": 1.341,
+        "y": 3.033,
+        "z": 0.0
+      },
+      "size": {
+        "dx": 1.345,
+        "dy": 1.045,
+        "dz": 2.002
+      }
+    }
+  ],
+  "openings": [
+    {
+      "id": "inlet",
+      "type": "inlet",
+      "wall": "west",
+      "center": {
+        "u": 1.18,
+        "v": 2.609
+      },
+      "size": {
+        "du": 0.407,
+        "dv": 0.456
+      }
+    },
+    {
+      "id": "outlet",
+      "type": "outlet",
+      "wall": "east",
+      "center": {
+        "u": 2.331,
+        "v": 2.521
+      },
+      "size": {
+        "du": 0.479,
+        "dv": 0.443
+      }
+    }
+  ],
+  "meta": {
+    "scene_type": "benchmark_a4",
+    "description": "Rule-based benchmark scene A4-03 (composite, seed=1302, obstacles=3)",
+    "benchmark": {
+      "category": "A4",
+      "room_kind": "composite",
+      "variant_index": 3,
+      "seed": 1302,
+      "requested_min_simple_obstacles": null
+    }
+  }
+}

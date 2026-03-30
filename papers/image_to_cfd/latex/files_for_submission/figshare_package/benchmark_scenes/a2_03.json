@@ -1,0 +1,100 @@
+{
+  "schema_version": "indoor_cfd_scene_v1",
+  "units": "m",
+  "coordinate_system": {
+    "origin": "room_min_corner",
+    "x": "west_to_east",
+    "y": "south_to_north",
+    "z": "floor_to_ceiling"
+  },
+  "room": {
+    "size": {
+      "Lx": 6.553,
+      "Ly": 4.064,
+      "Lz": 3.014
+    }
+  },
+  "obstacles": [
+    {
+      "id": "obs_01",
+      "type": "box",
+      "min": {
+        "x": 3.785,
+        "y": 0.822,
+        "z": 0.0
+      },
+      "size": {
+        "dx": 0.728,
+        "dy": 1.588,
+        "dz": 1.344
+      }
+    },
+    {
+      "id": "obs_02",
+      "type": "box",
+      "min": {
+        "x": 1.202,
+        "y": 1.601,
+        "z": 0.0
+      },
+      "size": {
+        "dx": 0.605,
+        "dy": 0.896,
+        "dz": 1.95
+      }
+    },
+    {
+      "id": "obs_03",
+      "type": "box",
+      "min": {
+        "x": 5.236,
+        "y": 2.07,
+        "z": 0.0
+      },
+      "size": {
+        "dx": 0.779,
+        "dy": 0.853,
+        "dz": 1.655
+      }
+    }
+  ],
+  "openings": [
+    {
+      "id": "inlet",
+      "type": "inlet",
+      "wall": "south",
+      "center": {
+        "u": 0.8,
+        "v": 1.293
+      },
+      "size": {
+        "du": 0.406,
+        "dv": 0.466
+      }
+    },
+    {
+      "id": "outlet",
+      "type": "outlet",
+      "wall": "east",
+      "center": {
+        "u": 1.795,
+        "v": 1.482
+      },
+      "size": {
+        "du": 0.462,
+        "dv": 0.755
+      }
+    }
+  ],
+  "meta": {
+    "scene_type": "benchmark_a2",
+    "description": "Rule-based benchmark scene A2-03 (rectangular, seed=1102, obstacles=3)",
+    "benchmark": {
+      "category": "A2",
+      "room_kind": "rectangular",
+      "variant_index": 3,
+      "seed": 1102,
+      "requested_min_simple_obstacles": null
+    }
+  }
+}
