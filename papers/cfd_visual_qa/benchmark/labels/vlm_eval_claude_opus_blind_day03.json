@@ -1,0 +1,182 @@
+{
+  "evaluator": "claude-opus-4-6",
+  "type": "blind",
+  "date": "2026-03-26",
+  "batch": "day03",
+  "method": "Independent subagent, blind codes (CFD-BB), no GT",
+  "accuracy": 0.9333333333333333,
+  "total": 15,
+  "correct": 14,
+  "items": [
+    {
+      "id": 1,
+      "code": "CFD-BB01",
+      "case": "S8_correct_lam",
+      "viz": "V6",
+      "gt": "correct",
+      "verdict": "Anomaly",
+      "match": false,
+      "vlm_verdict_full": "Anomaly: Large-scale recirculation structures filling the entire channel downstream of the bump appear excessive for Re=500 laminar flow",
+      "vlm_reasoning": "At Re=500 based on bump height, the wake should feature a modest recirculation zone immediately behind the bump that reattaches within a few bump heights downstream. The image shows multiple large vortical structures spanning nearly the full channel height and extending far downstream (x=4 to x=10), with peak velocities exceeding 1 m/s (more than double the inlet 0.5 m/s). This level of unsteady large-scale mixing is more characteristic of turbulent or transitional flow, not steady laminar Re=500. The buoyancy-driven plume rising from the heated bump could add some complexity, but the extent and intensity of recirculation appears disproportionate."
+    },
+    {
+      "id": 2,
+      "code": "CFD-BB02",
+      "case": "S8_correct_lam",
+      "viz": "V2",
+      "gt": "correct",
+      "verdict": "OK",
+      "match": true,
+      "vlm_verdict_full": "OK",
+      "vlm_reasoning": "The temperature field shows the heated bump surface at ~317K with a thermal boundary layer developing on the bump and a warm thermal plume/wake convected downstream. The plume shows slight upward drift consistent with buoyancy from the heated surface, and thermal diffusion into the wake region. The bulk flow remains near 300K inlet temperature. This is physically plausible for a heated obstacle in forced convection with mild buoyancy effects."
+    },
+    {
+      "id": 3,
+      "code": "CFD-BB03",
+      "case": "S8_E1_underconverged",
+      "viz": "V6",
+      "gt": "error_E1",
+      "verdict": "Anomaly",
+      "match": true,
+      "vlm_verdict_full": "Anomaly: Flow appears under-converged with an overly compact wake",
+      "vlm_reasoning": "The wake behind the bump is confined to a very small region immediately downstream, with streamlines recovering to near-parallel almost at x=5. For Re=500, a more developed recirculation zone with a longer reattachment length is expected. The velocity field shows a smooth, almost undisturbed channel flow profile that has not yet developed the characteristic separation and reattachment pattern. The peak velocity (~0.98 m/s) is close to double the inlet suggesting the profile is developing, but the wake structure appears truncated as if the simulation was stopped before reaching steady state."
+    },
+    {
+      "id": 4,
+      "code": "CFD-BB04",
+      "case": "S8_E8_gravity_flipped",
+      "viz": "V6",
+      "gt": "error_E8",
+      "verdict": "Anomaly",
+      "match": true,
+      "vlm_verdict_full": "Anomaly: Buoyancy effect appears to push heated fluid downward instead of upward",
+      "vlm_reasoning": "For a heated bump on the floor (320K surface, 300K ambient), buoyancy should cause warm fluid to rise. However, the streamlines show the wake deflecting downward and hugging the floor rather than lifting. The high-velocity region is concentrated near the top wall with a large low-velocity zone along the bottom extending far downstream. This pattern is consistent with gravity being flipped (pointing upward), which would push buoyant heated fluid downward. The thermal plume should rise from the bump, not be suppressed against the floor."
+    },
+    {
+      "id": 5,
+      "code": "CFD-BB05",
+      "case": "S8_E8_gravity_flipped",
+      "viz": "V2",
+      "gt": "error_E8",
+      "verdict": "Anomaly",
+      "match": true,
+      "vlm_verdict_full": "Anomaly: Thermal plume spreads downward/horizontally along the floor instead of rising",
+      "vlm_reasoning": "The temperature contour shows the heated region (up to ~318K) spreading along the bottom wall and beneath the bump rather than rising above it. For a heated bump on the floor with gravity pointing down, buoyancy should lift the warm plume upward. Here the warm fluid accumulates at the floor level and spreads downstream along the bottom, which is consistent with inverted gravity causing warm fluid to sink. The upper portion of the channel remains uniformly at inlet temperature."
+    },
+    {
+      "id": 6,
+      "code": "CFD-BB06",
+      "case": "S8_E5_coarse_mesh",
+      "viz": "V6",
+      "gt": "error_E5",
+      "verdict": "Anomaly",
+      "match": true,
+      "vlm_verdict_full": "Anomaly: Wake vortex structure is poorly resolved with insufficient detail",
+      "vlm_reasoning": "The streamlines behind the bump show a very simplified wake with minimal recirculation structure. The velocity contours appear overly smooth with gradual transitions and lack the sharper gradients expected near the bump corners and in the separation/reattachment region. The wake vortex structure is under-resolved compared to what Re=500 flow over a bump should produce. This is consistent with a coarse mesh that cannot adequately capture the flow features in the near-wake region."
+    },
+    {
+      "id": 7,
+      "code": "CFD-BB07",
+      "case": "S8_E3_wrong_viscosity",
+      "viz": "V6",
+      "gt": "error_E3",
+      "verdict": "Anomaly",
+      "match": true,
+      "vlm_verdict_full": "Anomaly: Flow pattern suggests much higher effective Re than the stated Re=500",
+      "vlm_reasoning": "The streamlines show a very elongated wake with the flow remaining attached or showing very weak separation behind the bump. The velocity field is highly smooth with the high-speed region extending well above the bump and a long, thin low-velocity trailing region. This pattern is more consistent with a highly viscous (very low Re) or conversely a high-Re flow where the wrong viscosity has fundamentally altered the momentum balance. For Re=500, a more pronounced separation bubble with clear recirculation is expected. The flow looks over-diffused as if viscosity is too high."
+    },
+    {
+      "id": 8,
+      "code": "CFD-BB08",
+      "case": "S8_E3_wrong_viscosity",
+      "viz": "V2",
+      "gt": "error_E3",
+      "verdict": "Anomaly",
+      "match": true,
+      "vlm_verdict_full": "Anomaly: Thermal diffusion is excessively broad, suggesting wrong fluid properties",
+      "vlm_reasoning": "The temperature field shows heat spreading very broadly from the bump, with the warm region (above 302K) extending nearly 3m upstream and filling much of the lower channel. For forced convection at the stated conditions, thermal diffusion upstream should be minimal due to advection dominating. This extreme upstream and lateral diffusion suggests either thermal diffusivity is far too high (consistent with wrong viscosity/Prandtl number) or the simulation has non-physical property values. The thermal plume also lacks the sharper gradients expected at Re=500."
+    },
+    {
+      "id": 9,
+      "code": "CFD-BB09",
+      "case": "S9_correct_Ra20k",
+      "viz": "V6",
+      "gt": "correct",
+      "verdict": "OK",
+      "match": true,
+      "vlm_verdict_full": "OK",
+      "vlm_reasoning": "The image shows approximately 8 well-formed convection cells in a 4:1 aspect ratio cavity, which is plausible for Ra=20,000. The cells are roughly circular with alternating rotation directions, peak velocities around 0.24 m/s at cell boundaries, and near-zero velocity at cell centers. The pattern is symmetric and regular, consistent with developed Rayleigh-Benard convection above the critical Ra. The number of cells (aspect ratio ~0.5 per cell) is physically reasonable."
+    },
+    {
+      "id": 10,
+      "code": "CFD-BB10",
+      "case": "S9_correct_Ra20k",
+      "viz": "V2",
+      "gt": "correct",
+      "verdict": "OK",
+      "match": true,
+      "vlm_verdict_full": "OK",
+      "vlm_reasoning": "The temperature contour shows 4 prominent thermal plume structures with thin boundary layers at the top and bottom walls. The hot fluid (310K) rises in narrow plumes from the bottom and cold fluid (300K) descends from the top, with a well-mixed interior. Compared to Ra=5,000, the thinner thermal boundary layers and stronger vertical temperature gradients near the walls are consistent with increased convective vigor at Ra=20,000. The stratification pattern with mushroom-shaped plumes is physically plausible."
+    },
+    {
+      "id": 11,
+      "code": "CFD-BB11",
+      "case": "S9_E2_bc_swap",
+      "viz": "V2",
+      "gt": "error_E2",
+      "verdict": "Anomaly",
+      "match": true,
+      "vlm_verdict_full": "Anomaly: Temperature field shows stable stratification with no convection, inconsistent with bottom-heated Rayleigh-Benard",
+      "vlm_reasoning": "The temperature distribution shows a smooth, nearly linear vertical gradient from hot at the top (~309K) to cold at the bottom (~300K). This is a pure conduction profile with no convective cells or plumes visible. For bottom-heated (310K) and top-cooled (300K) Rayleigh-Benard at Ra=5,000 (above critical Ra~1708), convection cells should be present. The observed pattern -- hot on top, cold on bottom -- is consistent with the boundary conditions being swapped (top heated, bottom cooled), which produces stable stratification and suppresses convection entirely."
+    },
+    {
+      "id": 12,
+      "code": "CFD-BB12",
+      "case": "S9_E1_underconverged",
+      "viz": "V6",
+      "gt": "error_E1",
+      "verdict": "Anomaly",
+      "match": true,
+      "vlm_verdict_full": "Anomaly: Convection cells have not developed; velocity magnitudes are negligibly small",
+      "vlm_reasoning": "The velocity magnitudes are on the order of 10^-4 m/s (peak ~1.9e-4 m/s), which is extremely small for Ra=5,000 Rayleigh-Benard convection. The streamlines show disorganized, weak circulation with no well-defined convection cells. At Ra=5,000 (well above critical Ra~1708), fully developed rolls with significantly higher velocities should be present. The pattern suggests the simulation was stopped very early before convective instabilities had time to grow from the initial perturbations, indicating severe under-convergence."
+    },
+    {
+      "id": 13,
+      "code": "CFD-BB13",
+      "case": "S8_correct_fine",
+      "viz": "V6",
+      "gt": "correct",
+      "verdict": "OK",
+      "match": true,
+      "vlm_verdict_full": "OK",
+      "vlm_reasoning": "The fine-mesh velocity field shows well-resolved wake structures behind the bump with clear separation and multiple recirculation zones. The streamlines reveal detailed vortex structures in the wake region with sharper velocity gradients near the bump corners. The peak velocity (~1.18 m/s) and overall flow topology are consistent with Re=500 flow over a bump with buoyancy effects. Compared to the coarse mesh (CFD-BB06), the wake vortices are more crisply resolved with finer-scale features captured, which is the expected benefit of mesh refinement."
+    },
+    {
+      "id": 14,
+      "code": "CFD-BB14",
+      "case": "S6_correct_Ra1e5",
+      "viz": "V6",
+      "gt": "correct",
+      "verdict": "OK",
+      "match": true,
+      "vlm_verdict_full": "OK",
+      "vlm_reasoning": "The velocity field shows a single primary circulation cell with flow rising along the hot left wall and descending along the cold right wall, which is the classic differentially heated cavity pattern. The boundary layers along the vertical walls are thin and the core shows a slower, broader return flow. Peak velocity is ~0.14 m/s. The streamline pattern with tighter spacing near the walls and a stratified core is consistent with Ra=10^5, where convection is strong but still laminar with well-defined boundary layers."
+    },
+    {
+      "id": 15,
+      "code": "CFD-BB15",
+      "case": "S6_E5_coarse_mesh",
+      "viz": "V2",
+      "gt": "error_E5",
+      "verdict": "Anomaly",
+      "match": true,
+      "vlm_verdict_full": "Anomaly: Temperature contours show visible staircase-like artifacts indicating insufficient mesh resolution",
+      "vlm_reasoning": "The temperature field shows the expected qualitative pattern for a differentially heated cavity (hot left, cold right, thermal stratification in the core). However, the isotherms display noticeable staircase/stepped artifacts rather than smooth curves, particularly visible in the boundary layer regions along the vertical walls and in the stratified core. The thermal boundary layers appear thicker and less sharply defined than expected for Ra=10^5. These are characteristic signatures of a mesh that is too coarse to adequately resolve the temperature gradients, leading to numerical diffusion and discretization artifacts."
+    }
+  ],
+  "combined": {
+    "total": 45,
+    "correct": 44,
+    "accuracy": 0.9777777777777777
+  }
+}

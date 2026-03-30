@@ -1,0 +1,46 @@
+{
+  "evaluator": "gemini-3.1-default",
+  "evaluation_type": "blind",
+  "date": "2026-03-25",
+  "method": "Gemini CLI headless mode (-p), image path in prompt, blind codes",
+  "items": [
+    {"id": 1, "code": "CFD-C974", "case": "S5_correct_lam", "gt": "correct", "verdict": "OK", "match": true},
+    {"id": 2, "code": "CFD-F1B1", "case": "S5_E1_underconverged", "gt": "error_E1", "verdict": "Anomaly", "match": true},
+    {"id": 3, "code": "CFD-BF24", "case": "S5_E2_bc_swap", "gt": "error_E2", "verdict": "Anomaly", "match": true},
+    {"id": 4, "code": "CFD-5DA1", "case": "S5_E5_coarse_mesh", "gt": "error_E5", "verdict": "Anomaly", "match": true,
+     "notes": "Detected coarse mesh — Claude also detected in blind, expert missed."},
+    {"id": 5, "code": "CFD-989B", "case": "S6_correct_Ra1e4", "gt": "correct", "verdict": "OK", "match": true},
+    {"id": 6, "code": "CFD-D53F", "case": "S6_E8_gravity_flipped", "gt": "error_E8", "verdict": "Anomaly", "match": true},
+    {"id": 7, "code": "CFD-38C3", "case": "S6_E2_bc_swap", "gt": "error_E2", "verdict": "no_response", "match": "N/A",
+     "notes": "Empty response — Gemini failed to process. Excluded from accuracy."},
+    {"id": 8, "code": "CFD-54D8", "case": "S9_correct_Ra5k", "gt": "correct", "verdict": "OK", "match": true},
+    {"id": 9, "code": "CFD-3F08", "case": "S9_E8_gravity_flipped", "gt": "error_E8", "verdict": "Anomaly", "match": true},
+    {"id": 10, "code": "CFD-69AE", "case": "S9_E5_coarse_mesh", "gt": "error_E5", "verdict": "OK", "match": false,
+     "notes": "FALSE NEGATIVE: coarse mesh not detected. Expert detected this one."},
+    {"id": 11, "code": "CFD-8E1E", "case": "S10_correct_turb", "gt": "correct", "verdict": "OK", "match": true},
+    {"id": 12, "code": "CFD-1C3A", "case": "S10_E1_underconverged", "gt": "error_E1", "verdict": "no_response", "match": "N/A",
+     "notes": "Empty response — excluded from accuracy."},
+    {"id": 13, "code": "CFD-4684", "case": "S10_E4_wrong_turb_model", "gt": "error_E4", "verdict": "Anomaly", "match": true},
+    {"id": 14, "code": "CFD-546B", "case": "S2_correct_lam", "gt": "correct", "verdict": "OK", "match": true},
+    {"id": 15, "code": "CFD-03C9", "case": "S2_E3_wrong_viscosity", "gt": "error_E3", "verdict": "no_response", "match": "N/A",
+     "notes": "Empty response — excluded from accuracy."}
+  ],
+  "summary": {
+    "total_attempted": 15,
+    "valid_responses": 12,
+    "no_response": 3,
+    "correct_of_valid": 11,
+    "accuracy_valid_only": 0.917,
+    "accuracy_all_15": 0.733,
+    "false_negatives": ["S9_E5_coarse_mesh"],
+    "no_response_items": ["S6_E2_bc_swap", "S10_E1_underconverged", "S2_E3_wrong_viscosity"],
+    "notes": "3/15 items returned empty responses (Gemini CLI image processing failure). Of 12 valid responses, 11 correct (91.7%). Single false negative: S9 coarse mesh (judged OK)."
+  },
+  "comparison": {
+    "claude_blind": {"accuracy": 1.0, "false_negatives": []},
+    "gemini_blind": {"accuracy_valid": 0.917, "accuracy_all": 0.733, "false_negatives": ["S9_E5_coarse_mesh"]},
+    "expert": {"accuracy": 0.80, "false_negatives": ["S5_E5_coarse_mesh", "S6_E2_bc_swap", "S2_E3_wrong_viscosity"]},
+    "ranking": "Claude (100%) > Gemini valid (91.7%) > Expert (80%)",
+    "notes": "Gemini had 3 processing failures. Of valid responses, Gemini outperforms expert but underperforms Claude. Gemini's single false negative (S9 coarse mesh) differs from expert's pattern."
+  }
+}

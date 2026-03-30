@@ -1,0 +1,40 @@
+{
+  "scenario": "S10",
+  "scenario_name": "ventilated_room",
+  "generated": "2026-03-25",
+  "total_questions": 26,
+  "questions": [
+    {"qid": "Q176", "case": "S10_correct_turb", "image": "S10_correct_turb_V1.png", "viz": "V1", "level": "L1", "question": "입구 제트의 최대 속도 크기는 대략 얼마인가?", "answer": null},
+    {"qid": "Q177", "case": "S10_correct_turb", "image": "S10_correct_turb_V6.png", "viz": "V6", "level": "L2", "question": "입구 제트가 천장을 따라 부착(Coanda effect)되어 흐르는가?", "answer_type": "boolean", "answer": null},
+    {"qid": "Q178", "case": "S10_correct_turb", "image": "S10_correct_turb_V6.png", "viz": "V6", "level": "L3", "question": "이 유동장은 환기 실내 공간에 대해 물리적으로 타당한가?", "answer_type": "free_text", "answer": null},
+    {"qid": "Q179", "case": "S10_correct_turb", "image": "S10_correct_turb_V5.png", "viz": "V5", "level": "L2", "question": "실내에 대규모 순환(recirculation)이 관찰되는가?", "answer_type": "boolean", "answer": null},
+    {"qid": "Q180", "case": "S10_correct_turb", "image": "S10_correct_turb_V3.png", "viz": "V3", "level": "L2", "question": "입구 근처와 출구 근처의 압력 차이가 보이는가?", "answer_type": "boolean", "answer": null},
+
+    {"qid": "Q181", "case": "S10_correct_fine", "image": "S10_correct_fine_V6.png", "viz": "V6", "level": "L5", "question": "표준 메시와 비교하여 유동 패턴에 유의미한 차이가 있는가?", "answer_type": "free_text", "answer": null},
+
+    {"qid": "Q182", "case": "S10_E1_underconverged", "image": "S10_E1_underconverged_V1.png", "viz": "V1", "level": "L3", "question": "이 유동장에 물리적으로 비합리적인 패턴이 있는가?", "answer_type": "free_text", "answer": null},
+    {"qid": "Q183", "case": "S10_E1_underconverged", "image": "S10_E1_underconverged_V6.png", "viz": "V6", "level": "L5", "question": "올바른 케이스와 비교하여 제트 발달과 실내 순환에 어떤 차이가 있는가?", "answer_type": "free_text", "answer": null},
+
+    {"qid": "Q184", "case": "S10_E2_bc_swap", "image": "S10_E2_bc_swap_V1.png", "viz": "V1", "level": "L3", "question": "유동 패턴이 정상적인 환기 실내와 일치하는가?", "answer_type": "free_text", "answer": null},
+    {"qid": "Q185", "case": "S10_E2_bc_swap", "image": "S10_E2_bc_swap_V6.png", "viz": "V6", "level": "L2", "question": "공기 유입 위치가 상부 좌측(정상)인가, 하부 우측(비정상)인가?", "answer": null},
+    {"qid": "Q186", "case": "S10_E2_bc_swap", "image": "S10_E2_bc_swap_V5.png", "viz": "V5", "level": "L5", "question": "올바른 케이스와 비교하여 순환 방향이 반대인가?", "answer_type": "free_text", "answer": null},
+
+    {"qid": "Q187", "case": "S10_E4_wrong_turb_model", "image": "S10_E4_wrong_turb_model_V1.png", "viz": "V1", "level": "L3", "question": "Re≈5000에서 층류 솔버 사용 시 유동 패턴이 타당한가?", "answer_type": "free_text", "answer": null},
+    {"qid": "Q188", "case": "S10_E4_wrong_turb_model", "image": "S10_E4_wrong_turb_model_V6.png", "viz": "V6", "level": "L5", "question": "난류 케이스와 비교하여 제트 확산과 혼합에 어떤 차이가 있는가?", "answer_type": "free_text", "answer": null},
+
+    {"qid": "Q189", "case": "S10_E5_coarse_mesh", "image": "S10_E5_coarse_mesh_V1.png", "viz": "V1", "level": "L3", "question": "30×10 메시로 인한 비물리적 패턴이 보이는가?", "answer_type": "free_text", "answer": null},
+    {"qid": "Q190", "case": "S10_E5_coarse_mesh", "image": "S10_E5_coarse_mesh_V6.png", "viz": "V6", "level": "L5", "question": "올바른 케이스와 비교하여 제트 해상도와 실내 순환에 차이가 있는가?", "answer_type": "free_text", "answer": null},
+
+    {"qid": "Q191", "case": "S10_correct_turb", "image": "S10_correct_turb_V6.png", "viz": "V6", "level": "L4", "question": "제트 부착 길이(천장을 따라 흐르는 거리)는 대략 몇 m인가?", "answer": null},
+    {"qid": "Q192", "case": "S10_correct_turb", "image": "S10_correct_turb_V1.png", "viz": "V1", "level": "L2", "question": "실내 하부(y<1m) 영역은 상부 대비 저속인가?", "answer_type": "boolean", "answer": null},
+    {"qid": "Q193", "case": "S10_E1_underconverged", "image": "S10_E1_underconverged_V3.png", "viz": "V3", "level": "L3", "question": "압력 분포에 비물리적 패턴이 있는가?", "answer_type": "free_text", "answer": null},
+    {"qid": "Q194", "case": "S10_E4_wrong_turb_model", "image": "S10_E4_wrong_turb_model_V5.png", "viz": "V5", "level": "L2", "question": "제트가 천장에 부착되어 있는가, 중간에서 박리하는가?", "answer_type": "free_text", "answer": null},
+    {"qid": "Q195", "case": "S10_E5_coarse_mesh", "image": "S10_E5_coarse_mesh_V5.png", "viz": "V5", "level": "L2", "question": "streamline에서 입구 제트가 해상되는가?", "answer_type": "boolean", "answer": null},
+    {"qid": "Q196", "case": "S10_E2_bc_swap", "image": "S10_E2_bc_swap_V3.png", "viz": "V3", "level": "L3", "question": "압력 분포가 정상적인 환기 실내와 일치하는가?", "answer_type": "free_text", "answer": null},
+    {"qid": "Q197", "case": "S10_correct_fine", "image": "S10_correct_fine_V1.png", "viz": "V1", "level": "L1", "question": "최대 속도 크기는 대략 얼마인가?", "answer": null},
+    {"qid": "Q198", "case": "S10_correct_turb", "image": "S10_correct_turb_V6.png", "viz": "V6", "level": "L4", "question": "출구 부근에서 유동 속도가 입구 대비 어느 정도인가?", "answer": null},
+    {"qid": "Q199", "case": "S10_E1_underconverged", "image": "S10_E1_underconverged_V5.png", "viz": "V5", "level": "L2", "question": "30 iteration만에 실내 전체에 순환이 발달했는가?", "answer_type": "boolean", "answer": null},
+    {"qid": "Q200", "case": "S10_E4_wrong_turb_model", "image": "S10_E4_wrong_turb_model_V3.png", "viz": "V3", "level": "L5", "question": "난류 케이스 대비 압력 분포에 차이가 있는가?", "answer_type": "free_text", "answer": null},
+    {"qid": "Q201", "case": "S10_E5_coarse_mesh", "image": "S10_E5_coarse_mesh_V3.png", "viz": "V3", "level": "L2", "question": "압력 contour에 메시 아티팩트가 보이는가?", "answer_type": "boolean", "answer": null}
+  ]
+}

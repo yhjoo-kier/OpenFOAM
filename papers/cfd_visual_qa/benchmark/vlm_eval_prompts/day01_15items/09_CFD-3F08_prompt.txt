@@ -1,0 +1,11 @@
+## Item 09: CFD-3F08 — V2
+
+**Problem Setup:** Rayleigh-Bénard (4m×1m). Bottom heated (310K), top cooled (300K). Ra=5,000. Temperature contour.
+
+**Question:** Is this temperature distribution physically plausible for bottom-heated + top-cooled conditions?
+
+**Image:** CFD-3F08_V2.png
+
+Evaluate whether the flow/temperature field shown in the image is physically plausible given the problem setup. Answer:
+- 'OK' if plausible
+- 'Anomaly: [explanation]' if something appears non-physical

@@ -1,0 +1,634 @@
+{
+  "version": "1.0",
+  "created": "2026-03-24",
+  "last_updated": "2026-03-27T08:37",
+  "current_phase": "P5_paper_draft",
+  "current_day": 3,
+  "start_date": "2026-03-24",
+  "status": "in_progress",
+  "phases": {
+    "P1_pilot": {
+      "status": "complete",
+      "target_days": [
+        1,
+        3
+      ]
+    },
+    "P2_preliminary_eval": {
+      "status": "complete",
+      "target_days": [
+        4,
+        5
+      ]
+    },
+    "P3_full_expansion": {
+      "status": "complete",
+      "target_days": [
+        6,
+        10
+      ]
+    },
+    "P4_full_eval": {
+      "status": "not_started",
+      "target_days": [
+        11,
+        12
+      ]
+    },
+    "P5_paper_draft": {
+      "status": "in_progress",
+      "target_days": [
+        13,
+        14
+      ]
+    }
+  },
+  "scenarios": {
+    "S1": {
+      "name": "heated_vertical_plate",
+      "status": "cfd_complete",
+      "cases": [
+        {
+          "name": "S1_correct_lam",
+          "cfd": "done",
+          "vtk": "done",
+          "images": "done",
+          "qa": "done"
+        },
+        {
+          "name": "S1_correct_fine",
+          "cfd": "done",
+          "vtk": "done",
+          "images": "done",
+          "qa": "done"
+        },
+        {
+          "name": "S1_E1_underconverged",
+          "cfd": "done",
+          "vtk": "done",
+          "images": "done",
+          "qa": "done"
+        },
+        {
+          "name": "S1_E3_wrong_viscosity",
+          "cfd": "done",
+          "vtk": "done",
+          "images": "done",
+          "qa": "done"
+        },
+        {
+          "name": "S1_E5_coarse_mesh",
+          "cfd": "done",
+          "vtk": "done",
+          "images": "done",
+          "qa": "done"
+        },
+        {
+          "name": "S1_E8_gravity_flipped",
+          "cfd": "done",
+          "vtk": "done",
+          "images": "done",
+          "qa": "done"
+        }
+      ]
+    },
+    "S2": {
+      "name": "channel_flow_laminar",
+      "status": "cfd_complete",
+      "cases": [
+        {
+          "name": "S2_correct_lam",
+          "cfd": "done",
+          "vtk": "done",
+          "images": "done",
+          "qa": "done"
+        },
+        {
+          "name": "S2_correct_developed",
+          "cfd": "done",
+          "vtk": "done",
+          "images": "done",
+          "qa": "done"
+        },
+        {
+          "name": "S2_E1_underconverged",
+          "cfd": "done",
+          "vtk": "done",
+          "images": "done",
+          "qa": "done"
+        },
+        {
+          "name": "S2_E2_bc_swap",
+          "cfd": "done",
+          "vtk": "done",
+          "images": "done",
+          "qa": "done"
+        },
+        {
+          "name": "S2_E3_wrong_viscosity",
+          "cfd": "done",
+          "vtk": "done",
+          "images": "done",
+          "qa": "done"
+        },
+        {
+          "name": "S2_E5_coarse_mesh",
+          "cfd": "done",
+          "vtk": "done",
+          "images": "done",
+          "qa": "done"
+        }
+      ]
+    },
+    "S3": {
+      "name": "channel_flow_turbulent",
+      "status": "cfd_complete",
+      "cases": [
+        {
+          "name": "S3_correct_turb",
+          "cfd": "done",
+          "vtk": "done",
+          "images": "done",
+          "qa": "done"
+        },
+        {
+          "name": "S3_correct_fine",
+          "cfd": "done",
+          "vtk": "done",
+          "images": "done",
+          "qa": "done"
+        },
+        {
+          "name": "S3_E1_underconverged",
+          "cfd": "done",
+          "vtk": "done",
+          "images": "done",
+          "qa": "done"
+        },
+        {
+          "name": "S3_E3_wrong_viscosity",
+          "cfd": "done",
+          "vtk": "done",
+          "images": "done",
+          "qa": "done"
+        },
+        {
+          "name": "S3_E4_wrong_turb_model",
+          "cfd": "done",
+          "vtk": "done",
+          "images": "done",
+          "qa": "done"
+        },
+        {
+          "name": "S3_E5_coarse_mesh",
+          "cfd": "done",
+          "vtk": "done",
+          "images": "done",
+          "qa": "done"
+        }
+      ]
+    },
+    "S4": {
+      "name": "backward_facing_step",
+      "status": "cfd_complete",
+      "cases": [
+        {
+          "name": "S4_correct_lam",
+          "cfd": "done",
+          "vtk": "done",
+          "images": "done",
+          "qa": "pending"
+        },
+        {
+          "name": "S4_correct_turb",
+          "cfd": "done",
+          "vtk": "done",
+          "images": "done",
+          "qa": "pending"
+        },
+        {
+          "name": "S4_E1_underconverged",
+          "cfd": "done",
+          "vtk": "done",
+          "images": "done",
+          "qa": "pending"
+        },
+        {
+          "name": "S4_E2_bc_swap",
+          "cfd": "done",
+          "vtk": "done",
+          "images": "done",
+          "qa": "pending"
+        },
+        {
+          "name": "S4_E5_coarse_mesh",
+          "cfd": "done",
+          "vtk": "done",
+          "images": "done",
+          "qa": "pending"
+        },
+        {
+          "name": "S4_E6_modified",
+          "cfd": "done",
+          "vtk": "done",
+          "images": "done",
+          "qa": "pending"
+        }
+      ]
+    },
+    "S5": {
+      "name": "lid_driven_cavity",
+      "status": "cfd_complete",
+      "cases": [
+        {
+          "name": "S5_correct_lam",
+          "cfd": "done",
+          "vtk": "done",
+          "images": "done",
+          "qa": "done"
+        },
+        {
+          "name": "S5_correct_turb",
+          "cfd": "done",
+          "vtk": "done",
+          "images": "done",
+          "qa": "done"
+        },
+        {
+          "name": "S5_E1_underconverged",
+          "cfd": "done",
+          "vtk": "done",
+          "images": "done",
+          "qa": "done"
+        },
+        {
+          "name": "S5_E2_bc_swap",
+          "cfd": "done",
+          "vtk": "done",
+          "images": "done",
+          "qa": "done"
+        },
+        {
+          "name": "S5_E5_coarse_mesh",
+          "cfd": "done",
+          "vtk": "done",
+          "images": "done",
+          "qa": "done"
+        },
+        {
+          "name": "S5_E8_reversed_lid",
+          "cfd": "done",
+          "vtk": "done",
+          "images": "done",
+          "qa": "done"
+        }
+      ]
+    },
+    "S6": {
+      "name": "natural_convection_cavity",
+      "status": "cfd_complete",
+      "cases": [
+        {
+          "name": "S6_correct_Ra1e4",
+          "cfd": "done",
+          "vtk": "done",
+          "images": "done",
+          "qa": "done"
+        },
+        {
+          "name": "S6_correct_Ra1e5",
+          "cfd": "done",
+          "vtk": "done",
+          "images": "done",
+          "qa": "done"
+        },
+        {
+          "name": "S6_E1_underconverged",
+          "cfd": "done",
+          "vtk": "done",
+          "images": "done",
+          "qa": "done"
+        },
+        {
+          "name": "S6_E2_bc_swap",
+          "cfd": "done",
+          "vtk": "done",
+          "images": "done",
+          "qa": "done"
+        },
+        {
+          "name": "S6_E5_coarse_mesh",
+          "cfd": "done",
+          "vtk": "done",
+          "images": "done",
+          "qa": "done"
+        },
+        {
+          "name": "S6_E8_gravity_flipped",
+          "cfd": "done",
+          "vtk": "done",
+          "images": "done",
+          "qa": "done"
+        }
+      ]
+    },
+    "S7": {
+      "name": "mixed_convection_channel",
+      "status": "cfd_complete",
+      "cases": [
+        {
+          "name": "S7_correct_Ri1",
+          "cfd": "done",
+          "vtk": "done",
+          "images": "done",
+          "qa": "done"
+        },
+        {
+          "name": "S7_correct_Ri01",
+          "cfd": "done",
+          "vtk": "done",
+          "images": "done",
+          "qa": "done"
+        },
+        {
+          "name": "S7_E1_underconverged",
+          "cfd": "done",
+          "vtk": "done",
+          "images": "done",
+          "qa": "done"
+        },
+        {
+          "name": "S7_E3_wrong_viscosity",
+          "cfd": "done",
+          "vtk": "done",
+          "images": "done",
+          "qa": "done"
+        },
+        {
+          "name": "S7_E5_coarse_mesh",
+          "cfd": "done",
+          "vtk": "done",
+          "images": "done",
+          "qa": "done"
+        },
+        {
+          "name": "S7_E8_gravity_flipped",
+          "cfd": "done",
+          "vtk": "done",
+          "images": "done",
+          "qa": "done"
+        }
+      ]
+    },
+    "S8": {
+      "name": "flow_over_heated_obstacle",
+      "status": "cfd_complete",
+      "cases": [
+        {
+          "name": "S8_correct_lam",
+          "cfd": "done",
+          "vtk": "done",
+          "images": "done",
+          "qa": "done"
+        },
+        {
+          "name": "S8_correct_fine",
+          "cfd": "done",
+          "vtk": "done",
+          "images": "done",
+          "qa": "done"
+        },
+        {
+          "name": "S8_E1_underconverged",
+          "cfd": "done",
+          "vtk": "done",
+          "images": "done",
+          "qa": "done"
+        },
+        {
+          "name": "S8_E3_wrong_viscosity",
+          "cfd": "done",
+          "vtk": "done",
+          "images": "done",
+          "qa": "done"
+        },
+        {
+          "name": "S8_E5_coarse_mesh",
+          "cfd": "done",
+          "vtk": "done",
+          "images": "done",
+          "qa": "done"
+        },
+        {
+          "name": "S8_E8_gravity_flipped",
+          "cfd": "done",
+          "vtk": "done",
+          "images": "done",
+          "qa": "done"
+        }
+      ]
+    },
+    "S9": {
+      "name": "rayleigh_benard",
+      "status": "cfd_complete",
+      "cases": [
+        {
+          "name": "S9_correct_Ra5k",
+          "cfd": "done",
+          "vtk": "done",
+          "images": "done",
+          "qa": "done"
+        },
+        {
+          "name": "S9_correct_Ra20k",
+          "cfd": "done",
+          "vtk": "done",
+          "images": "done",
+          "qa": "done"
+        },
+        {
+          "name": "S9_E1_underconverged",
+          "cfd": "done",
+          "vtk": "done",
+          "images": "done",
+          "qa": "done"
+        },
+        {
+          "name": "S9_E2_bc_swap",
+          "cfd": "done",
+          "vtk": "done",
+          "images": "done",
+          "qa": "done"
+        },
+        {
+          "name": "S9_E5_coarse_mesh",
+          "cfd": "done",
+          "vtk": "done",
+          "images": "done",
+          "qa": "done"
+        },
+        {
+          "name": "S9_E8_gravity_flipped",
+          "cfd": "done",
+          "vtk": "done",
+          "images": "done",
+          "qa": "done"
+        }
+      ]
+    },
+    "S10": {
+      "name": "ventilated_room",
+      "status": "cfd_complete",
+      "cases": [
+        {
+          "name": "S10_correct_turb",
+          "cfd": "done",
+          "vtk": "done",
+          "images": "done",
+          "qa": "done"
+        },
+        {
+          "name": "S10_correct_fine",
+          "cfd": "done",
+          "vtk": "done",
+          "images": "done",
+          "qa": "done"
+        },
+        {
+          "name": "S10_E1_underconverged",
+          "cfd": "done",
+          "vtk": "done",
+          "images": "done",
+          "qa": "done"
+        },
+        {
+          "name": "S10_E2_bc_swap",
+          "cfd": "done",
+          "vtk": "done",
+          "images": "done",
+          "qa": "done"
+        },
+        {
+          "name": "S10_E4_wrong_turb_model",
+          "cfd": "done",
+          "vtk": "done",
+          "images": "done",
+          "qa": "done"
+        },
+        {
+          "name": "S10_E5_coarse_mesh",
+          "cfd": "done",
+          "vtk": "done",
+          "images": "done",
+          "qa": "done"
+        }
+      ]
+    }
+  },
+  "totals": {
+    "cfd_cases_created": 60,
+    "images_generated": 258,
+    "questions_generated": 279,
+    "labels_requested": 0,
+    "labels_completed": 80
+  },
+  "labeling": {
+    "next_batch_day": 1,
+    "batches": []
+  },
+  "daily_log": [
+    {
+      "day": 0,
+      "date": "2026-03-24",
+      "phase": "P1_pilot",
+      "completed": [
+        "project_setup",
+        "literature_review",
+        "benchmark_design_v1",
+        "cron_setup",
+        "S4_cfd_6cases",
+        "S4_images_30"
+      ],
+      "issues": [
+        "foamToVTK_timeout_120s_to_600s",
+        "hung_docker_containers_cleaned"
+      ],
+      "next": [
+        "generate_QA_questions",
+        "prepare_labeling_batch_day1"
+      ]
+    },
+    {
+      "day": 1,
+      "date": "2026-03-25",
+      "phase": "P1_pilot",
+      "completed": [
+        "S5_qa_30questions"
+      ],
+      "in_progress": [
+        "S2_channel_flow_cfd"
+      ],
+      "issues": [],
+      "next": [
+        "S2_render",
+        "S2_qa",
+        "S1_or_S3_setup"
+      ]
+    },
+    {
+      "day": 1,
+      "date": "2026-03-25",
+      "phase": "P3\u2192P2",
+      "completed": [
+        "S1_cfd+images+qa",
+        "S2_cfd+images+qa",
+        "S3_cfd+images+qa",
+        "S6_cfd+images+qa",
+        "S7_cfd+images+qa",
+        "S8_cfd+images+qa",
+        "S9_cfd+images+qa",
+        "S10_cfd+images+qa",
+        "day1_expert_labeling_20items",
+        "day2_expert_labeling_15items",
+        "claude_blind_eval_15items_100pct",
+        "vlm_eval_pipeline_script",
+        "blind_code_system",
+        "gdrive_docx_labeling",
+        "day3-5_docx_pregenerated"
+      ],
+      "issues": [
+        "writeInterval_bug_S10_fixed",
+        "contaminated_eval_replaced_with_blind",
+        "telegram_instability_switched_to_gdrive"
+      ],
+      "next": [
+        "gemini_blind_eval",
+        "gpt5_blind_eval",
+        "more_labeling",
+        "paper_outline"
+      ]
+    },
+    {
+      "day": 2,
+      "date": "2026-03-26",
+      "phase": "P2_eval",
+      "completed": [
+        "gemini_day2_blind_eval",
+        "claude_day2_blind_30items",
+        "paper_outline",
+        "paper_intro_related_draft",
+        "paper_results_discussion_conclusion_draft",
+        "all_7_sections_drafted"
+      ],
+      "issues": [
+        "gemini_high_no_response_rate_33pct",
+        "codex_cli_image_failure"
+      ],
+      "next": [
+        "day3_labeling_harvest",
+        "paper_methodology_draft",
+        "supervisor_review_check"
+      ]
+    }
+  ]
+}

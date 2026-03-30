@@ -1,0 +1,305 @@
+{
+  "evaluator": "gpt-5-codex-cli",
+  "task": "image_only",
+  "date": "2026-03-28",
+  "total": 30,
+  "correct": 13,
+  "accuracy": 0.43333333333333335,
+  "fp": 1,
+  "fp_cases": [
+    "S2_correct_lam"
+  ],
+  "fn": 16,
+  "fn_cases": [
+    "S5_E1_underconverged",
+    "S5_E2_bc_swap",
+    "S5_E5_coarse_mesh",
+    "S6_E8_gravity_flipped",
+    "S6_E2_bc_swap",
+    "S9_E8_gravity_flipped",
+    "S9_E5_coarse_mesh",
+    "S10_E1_underconverged",
+    "S1_E8_gravity_flipped",
+    "S1_E3_wrong_viscosity",
+    "S5_E8_reversed_lid",
+    "S8_E8_gravity_flipped",
+    "S8_E3_wrong_viscosity",
+    "S8_E5_coarse_mesh",
+    "S4_E6_modified",
+    "S4_E1_underconverged"
+  ],
+  "errors": 0,
+  "error_cases": [],
+  "items": [
+    {
+      "id": 1,
+      "code": "CFD-6273",
+      "case": "S5_correct_lam",
+      "gt": "correct",
+      "verdict": "OK",
+      "match": true,
+      "reasoning": "OK\n\nThe field looks visually plausible: the streamlines are smooth and consistent with a cavity-type recirculating flow, with one dominant primary vortex, a small corner eddy near the bottom-right, and highest speed along the top wall that decays toward the no-slip boundaries. Nothing stands out as obviously unphysical such as broken streamline topology, noisy patchiness, or impossible boundary behavior."
+    },
+    {
+      "id": 2,
+      "code": "CFD-876F",
+      "case": "S5_E1_underconverged",
+      "gt": "error_E1",
+      "verdict": "OK",
+      "match": false,
+      "reasoning": "OK\n\nThe field looks visually plausible: a smooth, cavity-like recirculating flow with continuous streamlines, a strong shear layer near the top boundary, and localized higher speed near the top-right corner. I do not see obvious nonphysical signs such as broken/discontinuous streamlines, checkerboard noise, spurious isolated extrema, or strong asymmetry artifacts."
+    },
+    {
+      "id": 3,
+      "code": "CFD-C285",
+      "case": "S5_E2_bc_swap",
+      "gt": "error_E2",
+      "verdict": "OK",
+      "match": false,
+      "reasoning": "OK\n\nVisually this looks physically plausible: the field is smooth, mostly uniform left-to-right, with thin low-speed boundary layers near the walls and symmetric disturbance around the central vertical blockage/opening. I do not see obvious artifacts like checkerboarding, spurious oscillations, nonphysical hot spots, or abrupt discontinuities in the visible contours."
+    },
+    {
+      "id": 4,
+      "code": "CFD-E825",
+      "case": "S5_E5_coarse_mesh",
+      "gt": "error_E5",
+      "verdict": "OK",
+      "match": false,
+      "reasoning": "OK\n\nVisually plausible. The field shows a smooth, coherent single recirculation cell with highest speed concentrated near the top boundary and lower speeds in the core and corners, which is a physically reasonable pattern for a cavity-type flow. I do not see obvious nonphysical artifacts such as checkerboarding, sharp discontinuous patches, broken streamlines, or asymmetric noise."
+    },
+    {
+      "id": 5,
+      "code": "CFD-C29F",
+      "case": "S6_correct_Ra1e4",
+      "gt": "correct",
+      "verdict": "OK",
+      "match": true,
+      "reasoning": "OK\n\nThe field looks visually plausible: it is smooth, bounded, and shows a coherent hot-left/cold-right gradient with gentle vertical distortion consistent with buoyancy-driven recirculation. There are no obvious nonphysical artifacts such as spurious oscillations, checkerboarding, discontinuities, or isolated extrema."
+    },
+    {
+      "id": 6,
+      "code": "CFD-5347",
+      "case": "S6_E8_gravity_flipped",
+      "gt": "error_E8",
+      "verdict": "OK",
+      "match": false,
+      "reasoning": "OK\n\nThe field looks visually plausible: it is smooth, bounded, and free of obvious nonphysical artifacts like checkerboarding, overshoot, sharp kinks, or isolated hot/cold spots. The temperature transitions coherently from a hot left side to a cold right side with gentle contour bending, which is consistent with a physically reasonable convection-diffusion pattern."
+    },
+    {
+      "id": 7,
+      "code": "CFD-961B",
+      "case": "S6_E2_bc_swap",
+      "gt": "error_E2",
+      "verdict": "OK",
+      "match": false,
+      "reasoning": "OK\n\nThe temperature field looks smooth, bounded, and monotonic between a cool left side and hot right side, with no obvious nonphysical artifacts like spurious oscillations, checkerboarding, sharp discontinuous patches, or overshoot near boundaries. The curved isotherms and stronger gradient near the right wall are visually plausible for coupled advection/diffusion or recirculating heat transport."
+    },
+    {
+      "id": 8,
+      "code": "CFD-BACB",
+      "case": "S9_correct_Ra5k",
+      "gt": "correct",
+      "verdict": "OK",
+      "match": true,
+      "reasoning": "OK\n\nThe field looks visually plausible: smooth temperature contours, clear hot-bottom/cold-top stratification, and gently undulating isotherms consistent with weak-to-moderate convective rolls. There are no obvious artifacts such as discontinuities, checkerboarding, boundary spikes, or asymmetries that would immediately suggest a nonphysical solution."
+    },
+    {
+      "id": 9,
+      "code": "CFD-1776",
+      "case": "S9_E8_gravity_flipped",
+      "gt": "error_E8",
+      "verdict": "OK",
+      "match": false,
+      "reasoning": "OK\n\nThe field is smooth, monotonic, and free of obvious numerical artifacts. Visually it looks like a physically plausible, conduction-dominated vertical temperature stratification: hotter near the bottom, colder near the top, with little to no lateral variation."
+    },
+    {
+      "id": 10,
+      "code": "CFD-3184",
+      "case": "S9_E5_coarse_mesh",
+      "gt": "error_E5",
+      "verdict": "OK",
+      "match": false,
+      "reasoning": "OK\n\nThe field looks visually plausible: temperature varies smoothly, with a hot lower boundary, cooler upper region, and two broad rising warm plumes that are symmetric and continuous. I do not see obvious nonphysical artifacts such as checkerboarding, spurious oscillations, discontinuities, or isolated hot/cold spots; the polygonal contours suggest coarse resolution, but not an apparent physics failure."
+    },
+    {
+      "id": 11,
+      "code": "CFD-B5E6",
+      "case": "S10_correct_turb",
+      "gt": "correct",
+      "verdict": "OK",
+      "match": true,
+      "reasoning": "OK\n\nVisually plausible. The field shows smooth, coherent recirculation cells, higher speeds concentrated near the apparent driving boundary and corners, and no obvious unphysical artifacts like checkerboard noise, sharp discontinuities, or isolated spikes. Based on appearance alone, this looks like a reasonable CFD flow field."
+    },
+    {
+      "id": 12,
+      "code": "CFD-B01A",
+      "case": "S10_E1_underconverged",
+      "gt": "error_E1",
+      "verdict": "OK",
+      "match": false,
+      "reasoning": "OK\n\nThe field looks qualitatively plausible: streamlines are smooth and mostly consistent with a driven inflow plus a large recirculation cell, and the velocity magnitude varies continuously without obvious checkerboard noise, spurious oscillations, or unphysical isolated hot spots. There are sharp gradients near boundaries and corners, but nothing visually inconsistent enough on its own to call an anomaly."
+    },
+    {
+      "id": 13,
+      "code": "CFD-2858",
+      "case": "S10_E4_wrong_turb_model",
+      "gt": "error_E4",
+      "verdict": "Anomaly",
+      "match": true,
+      "reasoning": "Anomaly\n\nThe field looks visually suspicious: it has abrupt, highly localized high-speed patches near the top wall and around `x≈6, y≈1.7`, plus several tight, fragmented recirculation cells and small isolated extrema. For a smooth buoyant/recirculating flow, I would expect more coherent large-scale structure and smoother gradients, so this does not look physically convincing from appearance alone."
+    },
+    {
+      "id": 14,
+      "code": "CFD-BD88",
+      "case": "S2_correct_lam",
+      "gt": "correct",
+      "verdict": "Anomaly",
+      "match": false,
+      "reasoning": "Anomaly\n\nThe channel profile itself looks like a plausible laminar developing flow, but the full-height white vertical band near `x ≈ 5 m` is visually suspicious. Without any setup information, it reads more like missing/occluded data or a plotting artifact than a physical feature, because the surrounding velocity field stays almost perfectly smooth with no clear blockage, wake, or deflection pattern."
+    },
+    {
+      "id": 15,
+      "code": "CFD-239C",
+      "case": "S2_E3_wrong_viscosity",
+      "gt": "error_E3",
+      "verdict": "Anomaly",
+      "match": true,
+      "reasoning": "Anomaly\n\nThe field is mostly a smooth channel profile, but the white regions near `x ≈ 5 m` look like internal obstructions or broken data, and the surrounding streamlines show almost no deflection, separation, or wake. Based on visual appearance alone, that local structure is not physically plausible."
+    },
+    {
+      "id": 16,
+      "code": "CFD-163F",
+      "case": "S7_correct_Ri1",
+      "gt": "correct",
+      "verdict": "OK",
+      "match": true,
+      "reasoning": "OK\n\nThe field looks visually plausible: velocity is smooth, highest in the channel core, drops toward both walls, and varies gradually downstream without obvious checkerboarding, blow-up, or nonphysical discontinuities. The streamline pattern is coherent and mostly unidirectional, consistent with a stable internal-flow solution."
+    },
+    {
+      "id": 17,
+      "code": "CFD-28DA",
+      "case": "S7_E8_gravity_flipped",
+      "gt": "error_E8",
+      "verdict": "Anomaly",
+      "match": true,
+      "reasoning": "Anomaly\n\nThe overall channel-like profile is smooth, but the narrow white vertical band near `x ≈ 5 m` looks nonphysical as a flow/temperature feature. If it were a real internal obstacle or sharp interface, you would expect clear deflection, separation, or a wake; instead the field remains almost unchanged across it, which suggests a plotting/masking artifact rather than a physically plausible solution."
+    },
+    {
+      "id": 18,
+      "code": "CFD-942A",
+      "case": "S1_correct_lam",
+      "gt": "correct",
+      "verdict": "OK",
+      "match": true,
+      "reasoning": "OK\n\nThe field looks visually plausible: contours are smooth, boundary layers are coherent, and the warm region near the left wall with interior recirculation is consistent with a buoyancy-driven laminar cavity flow. I do not see obvious nonphysical artifacts like checkerboard noise, sharp discontinuous jumps, or isolated hot/cold spots."
+    },
+    {
+      "id": 19,
+      "code": "CFD-B7CC",
+      "case": "S1_E8_gravity_flipped",
+      "gt": "error_E8",
+      "verdict": "OK",
+      "match": false,
+      "reasoning": "OK\n\nThe field looks visually plausible: temperature is smooth, bounded, and monotonic, with strong gradients confined near the heated boundaries and a colder, nearly uniform core. There are no obvious nonphysical artifacts such as checkerboarding, discontinuous patches, overshoots, or asymmetric hot spots that would immediately suggest a bad solution."
+    },
+    {
+      "id": 20,
+      "code": "CFD-B928",
+      "case": "S1_E3_wrong_viscosity",
+      "gt": "error_E3",
+      "verdict": "OK",
+      "match": false,
+      "reasoning": "OK\n\nThe field looks visually plausible: it is smooth, bounded, and shows a consistent hot-to-cold gradient from left to right with gentle curvature in the isotherms. There are no obvious nonphysical signs like checkerboarding, spurious oscillations, sharp interior discontinuities, or isolated hot/cold spots."
+    },
+    {
+      "id": 21,
+      "code": "CFD-8E52",
+      "case": "S3_correct_turb",
+      "gt": "correct",
+      "verdict": "OK",
+      "match": true,
+      "reasoning": "OK\n\nVisually this looks physically plausible: the field is smooth, largely symmetric about the channel centerline, highest in the core and lower near the walls, with gradual downstream variation and no obvious checkerboarding, spurious oscillations, or impossible sharp jumps in the colored field. The thin vertical white feature near `x≈5 m` looks more like a geometry/masking or streamline plotting artifact than a clear physical anomaly in the scalar field itself."
+    },
+    {
+      "id": 22,
+      "code": "CFD-88B1",
+      "case": "S3_E4_wrong_turb_model",
+      "gt": "error_E4",
+      "verdict": "Anomaly",
+      "match": true,
+      "reasoning": "Anomaly\n\nThe field shows a sharp vertical discontinuity around `x ≈ 5 m` spanning the full channel height, with an apparent blank/white stripe and abrupt change in contours/streamlines. Based on visual appearance alone, that kind of domain-wide jump looks more like a modeling/numerical artifact than a smooth physically plausible flow or temperature field."
+    },
+    {
+      "id": 23,
+      "code": "CFD-7730",
+      "case": "S3_E3_wrong_viscosity",
+      "gt": "error_E3",
+      "verdict": "Anomaly",
+      "match": true,
+      "reasoning": "Anomaly\n\nThe field is mostly smooth and channel-like, but the full-height vertical discontinuity near `x ≈ 5 m` is not physically consistent on visual inspection alone. It looks like the flow/contours are abruptly broken and restarted across the entire channel without a clear geometric reason, which suggests a nonphysical artifact or inconsistent solution region."
+    },
+    {
+      "id": 24,
+      "code": "CFD-74AF",
+      "case": "S5_E8_reversed_lid",
+      "gt": "error_E8",
+      "verdict": "OK",
+      "match": false,
+      "reasoning": "OK\n\nThe field looks visually plausible: there is a dominant cavity vortex, thin high-speed layer along the moving top wall, low-speed core, and small corner eddies near the bottom corners. The streamlines and speed contours are smooth and consistent, with no obvious nonphysical spikes, breaks, or checkerboard artifacts."
+    },
+    {
+      "id": 25,
+      "code": "CFD-EB39",
+      "case": "S8_correct_lam",
+      "gt": "correct",
+      "verdict": "OK",
+      "match": true,
+      "reasoning": "OK\n\nThe field looks visually plausible for channel flow past a bluff obstacle: there is a clear low-speed wake and recirculation zone behind the block, smooth acceleration around/over it, downstream shear-layer structures, and no obvious nonphysical checkerboarding, broken symmetry, or abrupt discontinuities in the contours/streamlines."
+    },
+    {
+      "id": 26,
+      "code": "CFD-33B6",
+      "case": "S8_E8_gravity_flipped",
+      "gt": "error_E8",
+      "verdict": "OK",
+      "match": false,
+      "reasoning": "OK\n\nThe field looks visually self-consistent: flow accelerates over the obstacle, separates into a low-speed recirculating wake, and the streamlines remain smooth without obvious numerical noise, spikes, or broken contour structure. The long reverse-flow layer near the top wall is unusual, but by appearance alone it can still be explained as a coherent recirculation/stratification feature rather than a clear physical impossibility."
+    },
+    {
+      "id": 27,
+      "code": "CFD-248E",
+      "case": "S8_E3_wrong_viscosity",
+      "gt": "error_E3",
+      "verdict": "OK",
+      "match": false,
+      "reasoning": "OK\n\nVisually this looks physically plausible: the field is smooth, shows expected wall slowing, acceleration over the obstacle, and a reasonable downstream recirculation/wake behind the block. There are no obvious nonphysical oscillations, discontinuities, or asymmetric artifacts that would clearly indicate a problem from appearance alone."
+    },
+    {
+      "id": 28,
+      "code": "CFD-6B44",
+      "case": "S8_E5_coarse_mesh",
+      "gt": "error_E5",
+      "verdict": "OK",
+      "match": false,
+      "reasoning": "OK\n\nThe field looks physically plausible on visual inspection: smooth boundary layers at the walls, acceleration over the block, a separated low-speed wake with coherent recirculation behind the obstacle, and gradual downstream recovery. I do not see obvious nonphysical artifacts like checkerboarding, spurious oscillations, broken streamlines, or abrupt isolated hot/cold spots."
+    },
+    {
+      "id": 29,
+      "code": "CFD-3FE9",
+      "case": "S4_E6_modified",
+      "gt": "error_E6",
+      "verdict": "OK",
+      "match": false,
+      "reasoning": "OK\n\nVisually this looks physically plausible for separated channel flow past a step: there is a low-speed recirculation bubble immediately downstream of the expansion, a shear layer growing from the step edge, and gradual downstream recovery toward a more developed profile. The field is smooth, coherent, and does not show obvious nonphysical discontinuities, checkerboarding, or isolated hot/cold or high/low spots."
+    },
+    {
+      "id": 30,
+      "code": "CFD-C1CF",
+      "case": "S4_E1_underconverged",
+      "gt": "error_E1",
+      "verdict": "OK",
+      "match": false,
+      "reasoning": "OK\n\nVisually this looks physically plausible: it resembles a backward-facing-step flow with a separated recirculation zone immediately after the step, a shear layer growing downstream, and generally smooth magnitude contours/streamlines without obvious checkerboarding, nonphysical spikes, or broken discontinuities."
+    }
+  ]
+}

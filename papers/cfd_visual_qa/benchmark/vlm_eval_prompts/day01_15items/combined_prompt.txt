@@ -1,0 +1,219 @@
+# CFD Visual QA — Blind VLM Evaluation
+
+Evaluate each flow/temperature field image. For each item:
+- Read the Problem Setup
+- Examine the image
+- Judge if physically plausible: 'OK' or 'Anomaly: [explanation]'
+
+---
+
+## Item 01: CFD-C974 — V6
+
+**Problem Setup:** Lid-driven cavity (1m×1m). Re=100 laminar. Top wall moves right at U=1m/s. Other 3 walls stationary. Velocity contour + streamlines.
+
+**Question:** Is the primary vortex location and rotation direction physically plausible for a lid-driven cavity flow?
+
+**Image:** CFD-C974_V6.png
+
+Evaluate whether the flow/temperature field shown in the image is physically plausible given the problem setup. Answer:
+- 'OK' if plausible
+- 'Anomaly: [explanation]' if something appears non-physical
+
+---
+
+## Item 02: CFD-F1B1 — V6
+
+**Problem Setup:** Lid-driven cavity (1m×1m). Re=10,000 turbulent. Top wall moves right at U=1m/s. k-ω SST. Velocity contour + streamlines.
+
+**Question:** Has the flow pattern developed adequately for a lid-driven cavity?
+
+**Image:** CFD-F1B1_V6.png
+
+Evaluate whether the flow/temperature field shown in the image is physically plausible given the problem setup. Answer:
+- 'OK' if plausible
+- 'Anomaly: [explanation]' if something appears non-physical
+
+---
+
+## Item 03: CFD-BF24 — V6
+
+**Problem Setup:** Lid-driven cavity (1m×1m). Re=10,000 turbulent. Moving wall (lid) at U=1m/s. k-ω SST. Velocity contour + streamlines.
+
+**Question:** Does the primary vortex rotation and high-velocity region match the lid movement direction?
+
+**Image:** CFD-BF24_V6.png
+
+Evaluate whether the flow/temperature field shown in the image is physically plausible given the problem setup. Answer:
+- 'OK' if plausible
+- 'Anomaly: [explanation]' if something appears non-physical
+
+---
+
+## Item 04: CFD-5DA1 — V6
+
+**Problem Setup:** Lid-driven cavity (1m×1m). Re=10,000 turbulent. Top lid moves right. k-ω SST. Velocity contour + streamlines.
+
+**Question:** Is the vortex structure resolution adequate? Are corner secondary vortices resolved?
+
+**Image:** CFD-5DA1_V6.png
+
+Evaluate whether the flow/temperature field shown in the image is physically plausible given the problem setup. Answer:
+- 'OK' if plausible
+- 'Anomaly: [explanation]' if something appears non-physical
+
+---
+
+## Item 05: CFD-989B — V2
+
+**Problem Setup:** Differentially heated cavity (1m×1m). Left wall hot (305K), right wall cold (295K), top/bottom adiabatic. Ra=10^4. Temperature contour.
+
+**Question:** Is the temperature distribution and isotherm shape physically plausible for natural convection?
+
+**Image:** CFD-989B_V2.png
+
+Evaluate whether the flow/temperature field shown in the image is physically plausible given the problem setup. Answer:
+- 'OK' if plausible
+- 'Anomaly: [explanation]' if something appears non-physical
+
+---
+
+## Item 06: CFD-D53F — V2
+
+**Problem Setup:** Differentially heated cavity (1m×1m). Left 305K, right 295K, top/bottom adiabatic. Ra=10^4. Temperature contour.
+
+**Question:** Does the temperature distribution match the expected natural convection heat transfer pattern?
+
+**Image:** CFD-D53F_V2.png
+
+Evaluate whether the flow/temperature field shown in the image is physically plausible given the problem setup. Answer:
+- 'OK' if plausible
+- 'Anomaly: [explanation]' if something appears non-physical
+
+---
+
+## Item 07: CFD-38C3 — V2
+
+**Problem Setup:** Differentially heated cavity (1m×1m). Wall temperature BCs applied for natural convection. Ra=10^4. Temperature contour.
+
+**Question:** Are the hot/cold wall positions and convection circulation direction physically consistent?
+
+**Image:** CFD-38C3_V2.png
+
+Evaluate whether the flow/temperature field shown in the image is physically plausible given the problem setup. Answer:
+- 'OK' if plausible
+- 'Anomaly: [explanation]' if something appears non-physical
+
+---
+
+## Item 08: CFD-54D8 — V2
+
+**Problem Setup:** Rayleigh-Bénard convection (4m×1m cavity). Bottom wall heated (310K), top wall cooled (300K), sidewalls adiabatic. Ra=5,000. Temperature contour.
+
+**Question:** Are convection cells observed? Is the cell pattern plausible for Ra=5,000?
+
+**Image:** CFD-54D8_V2.png
+
+Evaluate whether the flow/temperature field shown in the image is physically plausible given the problem setup. Answer:
+- 'OK' if plausible
+- 'Anomaly: [explanation]' if something appears non-physical
+
+---
+
+## Item 09: CFD-3F08 — V2
+
+**Problem Setup:** Rayleigh-Bénard (4m×1m). Bottom heated (310K), top cooled (300K). Ra=5,000. Temperature contour.
+
+**Question:** Is this temperature distribution physically plausible for bottom-heated + top-cooled conditions?
+
+**Image:** CFD-3F08_V2.png
+
+Evaluate whether the flow/temperature field shown in the image is physically plausible given the problem setup. Answer:
+- 'OK' if plausible
+- 'Anomaly: [explanation]' if something appears non-physical
+
+---
+
+## Item 10: CFD-69AE — V2
+
+**Problem Setup:** Rayleigh-Bénard (4m×1m). Bottom 310K, top 300K. Ra=20,000. Temperature contour.
+
+**Question:** Is the convection cell structure well-resolved? Any anomalies in the temperature distribution?
+
+**Image:** CFD-69AE_V2.png
+
+Evaluate whether the flow/temperature field shown in the image is physically plausible given the problem setup. Answer:
+- 'OK' if plausible
+- 'Anomaly: [explanation]' if something appears non-physical
+
+---
+
+## Item 11: CFD-8E1E — V6
+
+**Problem Setup:** Ventilated room (9m×3m). Slot inlet at top-left (0.168m, U=0.455m/s), slot outlet at bottom-right. Re≈5,000. k-ω SST. Velocity contour + streamlines.
+
+**Question:** Is the inlet jet ceiling attachment (Coanda effect) and indoor circulation pattern physically plausible?
+
+**Image:** CFD-8E1E_V6.png
+
+Evaluate whether the flow/temperature field shown in the image is physically plausible given the problem setup. Answer:
+- 'OK' if plausible
+- 'Anomaly: [explanation]' if something appears non-physical
+
+---
+
+## Item 12: CFD-1C3A — V6
+
+**Problem Setup:** Ventilated room (9m×3m). Top-left slot inlet, bottom-right outlet. Re≈5,000. k-ω SST. Velocity contour + streamlines.
+
+**Question:** Has the flow pattern developed adequately for a ventilated room?
+
+**Image:** CFD-1C3A_V6.png
+
+Evaluate whether the flow/temperature field shown in the image is physically plausible given the problem setup. Answer:
+- 'OK' if plausible
+- 'Anomaly: [explanation]' if something appears non-physical
+
+---
+
+## Item 13: CFD-4684 — V6
+
+**Problem Setup:** Ventilated room (9m×3m). Top-left inlet, bottom-right outlet. Re≈5,000. Laminar solver. Velocity contour + streamlines.
+
+**Question:** Is this flow pattern physically plausible at Re≈5,000?
+
+**Image:** CFD-4684_V6.png
+
+Evaluate whether the flow/temperature field shown in the image is physically plausible given the problem setup. Answer:
+- 'OK' if plausible
+- 'Anomaly: [explanation]' if something appears non-physical
+
+---
+
+## Item 14: CFD-546B — V6
+
+**Problem Setup:** 2D channel flow (10m×1m). Left inlet U=1m/s uniform, right outlet. Re=100 laminar. Top/bottom no-slip walls. Velocity contour + streamlines.
+
+**Question:** Is the velocity profile development (uniform→parabolic) observed? Physically plausible?
+
+**Image:** CFD-546B_V6.png
+
+Evaluate whether the flow/temperature field shown in the image is physically plausible given the problem setup. Answer:
+- 'OK' if plausible
+- 'Anomaly: [explanation]' if something appears non-physical
+
+---
+
+## Item 15: CFD-03C9 — V6
+
+**Problem Setup:** 2D channel flow (10m×1m). Left inlet U=1m/s, right outlet. Laminar. Top/bottom no-slip. Velocity contour + streamlines.
+
+**Question:** Is the velocity profile development rate and shape plausible for channel flow?
+
+**Image:** CFD-03C9_V6.png
+
+Evaluate whether the flow/temperature field shown in the image is physically plausible given the problem setup. Answer:
+- 'OK' if plausible
+- 'Anomaly: [explanation]' if something appears non-physical
+
+---
+

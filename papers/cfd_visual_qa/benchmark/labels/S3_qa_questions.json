@@ -1,0 +1,42 @@
+{
+  "scenario": "S3",
+  "scenario_name": "channel_flow_turbulent",
+  "generated": "2026-03-25",
+  "total_questions": 28,
+  "questions": [
+    {"qid": "Q148", "case": "S3_correct_turb", "image": "S3_correct_turb_V1.png", "viz": "V1", "level": "L1", "question": "채널 중심부의 최대 속도 크기는 대략 얼마인가?", "answer": null},
+    {"qid": "Q149", "case": "S3_correct_turb", "image": "S3_correct_turb_V6.png", "viz": "V6", "level": "L2", "question": "난류 채널 유동의 속도 프로파일이 포물선형(laminar)과 다른가? (더 평탄한 중심부)", "answer_type": "free_text", "answer": null},
+    {"qid": "Q150", "case": "S3_correct_turb", "image": "S3_correct_turb_V6.png", "viz": "V6", "level": "L3", "question": "이 유동장은 Re=10000 난류 채널 유동에 대해 물리적으로 타당한가?", "answer_type": "free_text", "answer": null},
+    {"qid": "Q151", "case": "S3_correct_turb", "image": "S3_correct_turb_V3.png", "viz": "V3", "level": "L2", "question": "압력이 입구에서 출구로 선형 감소하는가?", "answer_type": "boolean", "answer": null},
+
+    {"qid": "Q152", "case": "S3_correct_fine", "image": "S3_correct_fine_V1.png", "viz": "V1", "level": "L5", "question": "표준 메시(200×60)와 비교하여 벽면 근처 속도 해상도에 차이가 있는가?", "answer_type": "free_text", "answer": null},
+
+    {"qid": "Q153", "case": "S3_E1_underconverged", "image": "S3_E1_underconverged_V1.png", "viz": "V1", "level": "L3", "question": "이 유동장에 물리적으로 비합리적인 패턴이 있는가?", "answer_type": "free_text", "answer": null},
+    {"qid": "Q154", "case": "S3_E1_underconverged", "image": "S3_E1_underconverged_V6.png", "viz": "V6", "level": "L5", "question": "올바른 난류 케이스와 비교하여 가장 눈에 띄는 차이점은?", "answer_type": "free_text", "answer": null},
+
+    {"qid": "Q155", "case": "S3_E4_wrong_turb_model", "image": "S3_E4_wrong_turb_model_V1.png", "viz": "V1", "level": "L3", "question": "Re=10000에서 층류 솔버를 사용했을 때 유동 패턴이 타당한가?", "answer_type": "free_text", "answer": null},
+    {"qid": "Q156", "case": "S3_E4_wrong_turb_model", "image": "S3_E4_wrong_turb_model_V6.png", "viz": "V6", "level": "L5", "question": "올바른 난류 케이스와 비교하여 속도 프로파일 형태에 차이가 있는가? (포물선 vs 평탄)", "answer_type": "free_text", "answer": null},
+    {"qid": "Q157", "case": "S3_E4_wrong_turb_model", "image": "S3_E4_wrong_turb_model_V5.png", "viz": "V5", "level": "L2", "question": "streamline이 벽면과 평행하고 매끄러운가?", "answer_type": "boolean", "answer": null},
+
+    {"qid": "Q158", "case": "S3_E5_coarse_mesh", "image": "S3_E5_coarse_mesh_V1.png", "viz": "V1", "level": "L3", "question": "20×6 메시로 인한 비물리적 패턴이 보이는가?", "answer_type": "free_text", "answer": null},
+    {"qid": "Q159", "case": "S3_E5_coarse_mesh", "image": "S3_E5_coarse_mesh_V6.png", "viz": "V6", "level": "L5", "question": "올바른 케이스와 비교하여 벽면 경계층 해상도에 차이가 있는가?", "answer_type": "free_text", "answer": null},
+
+    {"qid": "Q160", "case": "S3_E3_wrong_viscosity", "image": "S3_E3_wrong_viscosity_V1.png", "viz": "V1", "level": "L3", "question": "유동 패턴이 Re=10000 난류 채널과 일치하는가?", "answer_type": "free_text", "answer": null},
+    {"qid": "Q161", "case": "S3_E3_wrong_viscosity", "image": "S3_E3_wrong_viscosity_V6.png", "viz": "V6", "level": "L5", "question": "속도 프로파일이 난류(평탄)보다 층류(포물선)에 가까운가?", "answer_type": "free_text", "answer": null},
+    {"qid": "Q162", "case": "S3_E3_wrong_viscosity", "image": "S3_E3_wrong_viscosity_V3.png", "viz": "V3", "level": "L4", "question": "압력 구배가 올바른 케이스 대비 어떻게 다른가?", "answer_type": "free_text", "answer": null},
+
+    {"qid": "Q163", "case": "S3_correct_turb", "image": "S3_correct_turb_V5.png", "viz": "V5", "level": "L2", "question": "입구 발달 영역이 관찰되는가? 대략 어디까지인가?", "answer_type": "free_text", "answer": null},
+    {"qid": "Q164", "case": "S3_correct_turb", "image": "S3_correct_turb_V1.png", "viz": "V1", "level": "L4", "question": "난류 채널의 중심선 속도는 평균 속도의 약 1.2배이다. 이 유동장이 이와 일치하는가?", "answer_type": "free_text", "answer": null},
+    {"qid": "Q165", "case": "S3_E1_underconverged", "image": "S3_E1_underconverged_V3.png", "viz": "V3", "level": "L3", "question": "압력 분포에 비물리적 패턴이 있는가?", "answer_type": "free_text", "answer": null},
+    {"qid": "Q166", "case": "S3_E4_wrong_turb_model", "image": "S3_E4_wrong_turb_model_V3.png", "viz": "V3", "level": "L5", "question": "올바른 난류 케이스 대비 압력 구배에 차이가 있는가?", "answer_type": "free_text", "answer": null},
+    {"qid": "Q167", "case": "S3_E5_coarse_mesh", "image": "S3_E5_coarse_mesh_V3.png", "viz": "V3", "level": "L2", "question": "압력 contour에 계단형 패턴이 보이는가?", "answer_type": "boolean", "answer": null},
+    {"qid": "Q168", "case": "S3_correct_fine", "image": "S3_correct_fine_V6.png", "viz": "V6", "level": "L3", "question": "이 유동장은 물리적으로 타당한가?", "answer_type": "free_text", "answer": null},
+    {"qid": "Q169", "case": "S3_E3_wrong_viscosity", "image": "S3_E3_wrong_viscosity_V5.png", "viz": "V5", "level": "L2", "question": "입구 발달 영역 길이가 올바른 케이스 대비 짧은가 긴가?", "answer_type": "free_text", "answer": null},
+    {"qid": "Q170", "case": "S3_correct_turb", "image": "S3_correct_turb_V1.png", "viz": "V1", "level": "L2", "question": "벽면 근처에 얇은 저속 경계층이 보이는가?", "answer_type": "boolean", "answer": null},
+    {"qid": "Q171", "case": "S3_E4_wrong_turb_model", "image": "S3_E4_wrong_turb_model_V1.png", "viz": "V1", "level": "L1", "question": "최대 속도 크기는 대략 얼마인가?", "answer": null},
+    {"qid": "Q172", "case": "S3_E1_underconverged", "image": "S3_E1_underconverged_V5.png", "viz": "V5", "level": "L2", "question": "streamline 패턴이 완전 발달 채널 유동과 일치하는가?", "answer_type": "boolean", "answer": null},
+    {"qid": "Q173", "case": "S3_correct_fine", "image": "S3_correct_fine_V3.png", "viz": "V3", "level": "L2", "question": "압력 분포가 입구에서 출구로 매끄럽게 감소하는가?", "answer_type": "boolean", "answer": null},
+    {"qid": "Q174", "case": "S3_E5_coarse_mesh", "image": "S3_E5_coarse_mesh_V5.png", "viz": "V5", "level": "L2", "question": "streamline에서 벽면 근처 속도 구배가 해상도 부족으로 보이는가?", "answer_type": "free_text", "answer": null},
+    {"qid": "Q175", "case": "S3_E3_wrong_viscosity", "image": "S3_E3_wrong_viscosity_V1.png", "viz": "V1", "level": "L1", "question": "최대 속도 크기는 올바른 케이스 대비 어떠한가?", "answer": null}
+  ]
+}

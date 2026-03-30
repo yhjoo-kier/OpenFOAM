@@ -1,0 +1,48 @@
+{
+  "batch_id": "day_03",
+  "date": "2026-03-26",
+  "source": "google_drive_docx_blind",
+  "expert": "domain_expert_thermal_fluid",
+  "blind_coded": true,
+  "total_items": 15,
+  "items": [
+    {"id": 1, "code": "CFD-7924", "case": "S8_correct_lam", "viz": "V6", "gt": "correct", "verdict": "error_flagged", "match": false, "response": "이상 - 범프 직후단의 유동 박리 및 와류는 양호하나 더 후류 쪽에 물리적으로 어색한 추가 후류가 존재.", "notes": "FALSE POSITIVE: Expert flagged correct case as anomalous. S8 has complex multi-vortex wake that expert found suspicious. First FP in entire study."},
+    {"id": 2, "code": "CFD-7924", "case": "S8_correct_lam", "viz": "V2", "gt": "correct", "verdict": "conditional_ok", "match": true, "response": "범프 표면의 열 경계층이 관찰됨. 후류로 열이 일부 전달되는 양상도 보이긴 함. 그러나 어색한 유동장이 온도장에도 영향.", "notes": "Temperature view: expert notes artifacts but doesn't flag as clear anomaly."},
+    {"id": 3, "code": "CFD-4F9A", "case": "S8_E1_underconverged", "viz": "V6", "gt": "error_E1", "verdict": "correct", "match": false, "response": "OK.", "notes": "FALSE NEGATIVE: Under-converged (30 iters) not detected in S8. Previously detected in S4, S10. Complex geometry may mask under-convergence artifacts."},
+    {"id": 4, "code": "CFD-18A9", "case": "S8_E8_gravity_flipped", "viz": "V6", "gt": "error_E8", "verdict": "error_detected", "match": true, "response": "이상 - 유동이 하강하는 양상. 가열 효과 생각하면 상승해야 맞을 것.", "notes": "Correctly detected gravity flip via buoyancy direction reasoning."},
+    {"id": 5, "code": "CFD-18A9", "case": "S8_E8_gravity_flipped", "viz": "V2", "gt": "error_E8", "verdict": "error_detected", "match": true, "response": "이상 – 열 플룸이 깔리는 느낌."},
+    {"id": 6, "code": "CFD-F7F6", "case": "S8_E5_coarse_mesh", "viz": "V6", "gt": "error_E5", "verdict": "error_detected", "match": true, "response": "이상 – 범프 후방 영역의 와류가 어색"},
+    {"id": 7, "code": "CFD-0069", "case": "S8_E3_wrong_viscosity", "viz": "V6", "gt": "error_E3", "verdict": "correct", "match": false, "response": "OK.", "notes": "FALSE NEGATIVE: Wrong viscosity consistently undetected. Now 3/4 E3 cases missed across all days."},
+    {"id": 8, "code": "CFD-0069", "case": "S8_E3_wrong_viscosity", "viz": "V2", "gt": "error_E3", "verdict": "correct", "match": false, "response": "OK."},
+    {"id": 9, "code": "CFD-5771", "case": "S9_correct_Ra20k", "viz": "V6", "gt": "correct", "verdict": "correct", "match": true, "response": "셀 유동이 잘 관찰됨."},
+    {"id": 10, "code": "CFD-5771", "case": "S9_correct_Ra20k", "viz": "V2", "gt": "correct", "verdict": "correct", "match": true, "response": "온도장 합리적."},
+    {"id": 11, "code": "CFD-E2B4", "case": "S9_E2_bc_swap", "viz": "V2", "gt": "error_E2", "verdict": "correct", "match": false, "response": "OK - 상부 가열 시 대류 셀이 형성되지 않아야 하며 대류 셀이 없는 온도 분포가 얻어짐.", "notes": "FALSE NEGATIVE: Expert reasoning is physically correct for stable stratification but doesn't realize the setup was BOTTOM-heated not TOP-heated. BC swap creates internally consistent physics that expert validates."},
+    {"id": 12, "code": "CFD-A013", "case": "S9_E1_underconverged", "viz": "V6", "gt": "error_E1", "verdict": "error_detected", "match": true, "response": "이상 – 잘못 얻어진 결과로 보임."},
+    {"id": 13, "code": "CFD-3532", "case": "S8_correct_fine", "viz": "V6", "gt": "correct", "verdict": "correct", "match": true, "response": "5개 와류.", "notes": "Descriptive but not flagged as anomaly — counted as correct."},
+    {"id": 14, "code": "CFD-C91B", "case": "S6_correct_Ra1e5", "viz": "V6", "gt": "correct", "verdict": "correct", "match": true, "response": "OK."},
+    {"id": 15, "code": "CFD-0594", "case": "S6_E5_coarse_mesh", "viz": "V2", "gt": "error_E5", "verdict": "correct", "match": false, "response": "해상도 낮으나 물리적 경향 옳음.", "notes": "BORDERLINE FN: Expert noticed low resolution but judged physical trend as correct. Partially detected but not flagged as anomaly."}
+  ],
+  "summary": {
+    "total": 15,
+    "correct": 9,
+    "accuracy": 0.60,
+    "false_positives": 1,
+    "false_negatives": 5,
+    "key_findings": [
+      "First FALSE POSITIVE in study: S8 complex wake pattern flagged on correct case",
+      "E3 wrong viscosity: 3/4 cases missed across all days — most consistent blind spot",
+      "E2 BC swap: S9 missed — expert validates internally consistent stable stratification without checking setup",
+      "E1 under-converged: context-dependent — detected in simple geometries, missed in complex S8",
+      "S11 (S9_E2_bc_swap): fascinating case — expert's reasoning is physically correct for the WRONG problem"
+    ]
+  },
+  "cumulative": {
+    "total_labeled": 50,
+    "day1": {"items": 20, "accuracy": 0.80},
+    "day2": {"items": 15, "accuracy": 0.93},
+    "day3": {"items": 15, "accuracy": 0.60},
+    "overall_accuracy": 0.78,
+    "total_fp": 1,
+    "total_fn": 10
+  }
+}

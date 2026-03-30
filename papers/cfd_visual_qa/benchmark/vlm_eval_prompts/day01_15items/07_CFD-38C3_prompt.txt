@@ -1,0 +1,11 @@
+## Item 07: CFD-38C3 — V2
+
+**Problem Setup:** Differentially heated cavity (1m×1m). Wall temperature BCs applied for natural convection. Ra=10^4. Temperature contour.
+
+**Question:** Are the hot/cold wall positions and convection circulation direction physically consistent?
+
+**Image:** CFD-38C3_V2.png
+
+Evaluate whether the flow/temperature field shown in the image is physically plausible given the problem setup. Answer:
+- 'OK' if plausible
+- 'Anomaly: [explanation]' if something appears non-physical

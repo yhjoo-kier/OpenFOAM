@@ -1,0 +1,88 @@
+{
+  "batch_id": "day_01_full",
+  "date": "2026-03-25",
+  "source": "google_drive_docx",
+  "expert": "domain_expert_thermal_fluid",
+  "total_items": 20,
+  "new_items": 15,
+  "items": [
+    {"id": 1, "case": "S4_correct_turb", "viz": "V1", "gt": "correct", "verdict": "correct", "match": true, "response": "OK"},
+    {"id": 2, "case": "S4_correct_turb", "viz": "V6", "gt": "correct", "verdict": "correct", "match": true, "response": "OK"},
+    {"id": 3, "case": "S4_correct_lam", "viz": "V1", "gt": "correct", "verdict": "correct", "match": true, "response": "OK"},
+    {"id": 4, "case": "S4_E1_underconverged", "viz": "V1", "gt": "error_E1", "verdict": "error_detected", "match": true, "response": "이상-x=10m 상단부 국소 고유속"},
+    {"id": 5, "case": "S4_E2_bc_swap", "viz": "V1", "gt": "error_E2", "verdict": "correct", "match": false, "response": "OK", "notes": "false negative — BC swap undetected"},
+
+    {"id": 6, "case": "S5_correct_lam", "viz": "V6", "gt": "correct", "verdict": "correct", "match": true,
+     "response": "주 와류가 캐비티 중앙의 회전 유동을 말하는 것이라면 잘 나오고 있음. 우측 하단 모서리에 작게 2차 회전 유동도 보임. 문제 없어보임.",
+     "notes": "Expert identified both primary vortex and secondary corner vortex."},
+
+    {"id": 7, "case": "S5_E1_underconverged", "viz": "V6", "gt": "error_E1", "verdict": "suspicious_but_ok", "match": false,
+     "response": "상단에서 lid가 빠르게 이동하여 상단 벽면 근처에 boundary layer가 얇게 형성... 그러나 의문점은 앞선 문제와 lid 속도가 1 m/s로 같은데 왜 여기서는 이렇게 강한 난류가 발생할 수 있는 것인지?",
+     "notes": "Partial detection: expert raised a question about physics (why turbulent at same U?) but did not flag as error. The underlying cause (under-convergence at 30 iters) was not identified. The Re difference (100 vs 10000) explains the turbulence but was not provided in the problem setup — feedback for improving question context."},
+
+    {"id": 8, "case": "S5_E2_bc_swap", "viz": "V6", "gt": "error_E2", "verdict": "error_detected", "match": true,
+     "response": "유동장이 완전히 엉망으로 보임. Streamline도 물리적으로 말이 안됨.",
+     "notes": "Strong detection — severity: severe. Unlike S4 E2 which was subtle, S5 E2 (lid on bottom) produces obviously wrong flow."},
+
+    {"id": 9, "case": "S5_E5_coarse_mesh", "viz": "V6", "gt": "error_E5", "verdict": "correct", "match": false,
+     "response": "와류 구조가 아주 예쁘게 보여짐. 문제 없어 보임... 2차 와류는 보이지 않음. 상단 외 3면에서 streamline이 벽 경계를 뚫고 지나가는 듯한 시각화는 다소 어색함.",
+     "notes": "FALSE NEGATIVE: Coarse mesh (10x10) not detected as error. Expert even noted 'very pretty'. However, correctly observed missing secondary vortices and wall-penetrating streamlines — these ARE mesh artifacts but not interpreted as errors. Confirms E5 coarse mesh is 'subtle' difficulty."},
+
+    {"id": 10, "case": "S6_correct_Ra1e4", "viz": "V2", "gt": "correct", "verdict": "correct", "match": true,
+     "response": "아주 전형적인 자연대류 캐비티 온도장임."},
+
+    {"id": 11, "case": "S6_E8_gravity_flipped", "viz": "V2", "gt": "error_E8", "verdict": "error_detected", "match": true,
+     "response": "좌측이 고온이면 상승 기류에 의해 좌상단에 고온 영역이 형성되어야 하는데 반대로 된 것으로 보임.",
+     "notes": "Excellent detection with correct physics reasoning — expected hot plume direction vs observed."},
+
+    {"id": 12, "case": "S6_E2_bc_swap", "viz": "V2", "gt": "error_E2", "verdict": "correct", "match": false,
+     "response": "우측이 고온 벽면인 전형적인 온도장으로 보임. 문제 없어 보임.",
+     "notes": "FALSE NEGATIVE: BC swap (hot↔cold walls swapped) produced a mirror-image that expert judged as normal 'right-wall heated' cavity. This confirms BC swap is consistently 'subtle' across scenarios (also missed in S4)."},
+
+    {"id": 13, "case": "S9_correct_Ra5k", "viz": "V2", "gt": "correct", "verdict": "correct", "match": true,
+     "response": "대류 셀이 관찰되며 상승 및 하강을 한 세트로 볼 때 4세트의 셀이 보임... 전반적으로는 합리적 온도장으로 보임.",
+     "notes": "Correctly counted 4 convection cell pairs. Honest about knowledge limits."},
+
+    {"id": 14, "case": "S9_E8_gravity_flipped", "viz": "V2", "gt": "error_E8", "verdict": "error_detected", "match": true,
+     "response": "자연대류가 아닌 단순 열 전도에 의한 온도 분포로 보임.",
+     "notes": "Excellent — correctly identified stable stratification (pure conduction, no convection cells)."},
+
+    {"id": 15, "case": "S9_E5_coarse_mesh", "viz": "V2", "gt": "error_E5", "verdict": "error_detected", "match": true,
+     "response": "대류 셀 구조가 보이긴 하나 메쉬 해상도가 부족해보임.",
+     "notes": "Detected mesh resolution issue. Contrast with S5 E5 where coarse mesh was NOT detected — S9's convection cells make mesh artifacts more visible."},
+
+    {"id": 16, "case": "S10_correct_turb", "viz": "V6", "gt": "correct", "verdict": "correct", "match": true,
+     "response": "입구 제트가 천장을 따라 잘 부착되고... 총 4개의 이차 와류 유동이 잘 확인됨. 물리적으로 타당해보임.",
+     "notes": "Detailed observation: jet attachment, main flow path, 4 secondary vortices."},
+
+    {"id": 17, "case": "S10_E1_underconverged", "viz": "V6", "gt": "error_E1", "verdict": "error_detected", "match": true,
+     "response": "층류라고 하기에도 난류라고 하기에도 좀 어색한 유동장... inlet 근처에서 관성을 잃어버린 것의 영향으로 보임.",
+     "notes": "Detected anomaly: jet losing momentum prematurely due to under-convergence."},
+
+    {"id": 18, "case": "S10_E4_wrong_turb_model", "viz": "V6", "gt": "error_E4", "verdict": "error_detected", "match": true,
+     "response": "난류 Re 영역을 층류 솔버로 풀어서 생긴 문제인지 모르겠으나 6개 정도로 크고 작은 와류가 많이 보이지만 불규칙하고 유동장이 어색함.",
+     "notes": "Detected AND correctly hypothesized the cause (laminar solver at turbulent Re)."},
+
+    {"id": 19, "case": "S2_correct_lam", "viz": "V6", "gt": "correct", "verdict": "correct", "match": true,
+     "response": "합리적으로 보임. Streamline 시각화가 너무 line이 얇고 개수가 많아서 잘 보이지 않으나 이는 시각화의 기술적 문제로 보임.",
+     "notes": "Correct + visualization feedback: streamlines too thin/dense. Actionable for rendering improvement."},
+
+    {"id": 20, "case": "S2_E3_wrong_viscosity", "viz": "V6", "gt": "error_E3", "verdict": "correct", "match": false,
+     "response": "특별한 문제는 없어 보임. Streamline이 너무 많아 유동장 파악을 다소 어렵게 함.",
+     "notes": "FALSE NEGATIVE: 10x higher viscosity (effective Re=10 vs intended Re=100) not detected. The flow still looks like a developing channel flow, just develops faster. This is the subtlest error type — wrong physical parameters producing plausible-looking but quantitatively wrong flow."}
+  ],
+  "summary": {
+    "total_labeled": 20,
+    "new_labels": 15,
+    "correct_cases_correct": 5,
+    "error_cases_detected": 7,
+    "error_cases_missed": 3,
+    "suspicious_but_not_flagged": 1,
+    "accuracy_all": 0.80,
+    "accuracy_new_only": 0.80,
+    "false_negatives": ["S5_E5_coarse_mesh", "S6_E2_bc_swap", "S2_E3_wrong_viscosity"],
+    "false_negative_pattern": "All 3 false negatives are 'subtle' errors: coarse mesh (S5), BC swap (S6), wrong viscosity (S2). These produce plausible-looking flows that require quantitative comparison to detect.",
+    "visualization_feedback": "Streamline rendering too dense/thin in channel flow cases (S2). Consider reducing density parameter.",
+    "question_feedback": "Expert noted Re difference not provided for S5 E1 — problem setup should include Re to enable proper judgment."
+  }
+}

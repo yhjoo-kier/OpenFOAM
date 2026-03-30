@@ -1,0 +1,11 @@
+## Item 15: CFD-03C9 — V6
+
+**Problem Setup:** 2D channel flow (10m×1m). Left inlet U=1m/s, right outlet. Laminar. Top/bottom no-slip. Velocity contour + streamlines.
+
+**Question:** Is the velocity profile development rate and shape plausible for channel flow?
+
+**Image:** CFD-03C9_V6.png
+
+Evaluate whether the flow/temperature field shown in the image is physically plausible given the problem setup. Answer:
+- 'OK' if plausible
+- 'Anomaly: [explanation]' if something appears non-physical

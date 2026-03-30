@@ -1,0 +1,261 @@
+{
+  "evaluator": "claude-opus-4-6",
+  "trial": 3,
+  "task": "setup_conditioned",
+  "date": "2026-03-29",
+  "total": 30,
+  "correct": 26,
+  "accuracy": 0.8666666666666667,
+  "fp": 4,
+  "fn": 0,
+  "fn_cases": [],
+  "fp_cases": [
+    "S2_correct_lam",
+    "S7_correct_Ri1",
+    "S1_correct_lam",
+    "S3_correct_turb"
+  ],
+  "items": [
+    {
+      "id": 1,
+      "case": "S5_correct_lam",
+      "gt": "correct",
+      "verdict": "OK",
+      "match": true,
+      "reasoning": "The flow field is physically plausible for a lid-driven cavity at Re=100. Key observations supporting this:\n\n1. **Primary vortex location**: The main recirculation vortex is centered slightly above and to the right of the geometric center (approximately x\u22480.6, y\u22480.75), which is consistent with the lid moving left-to-right at Re=100. At low Re the vortex center migrates toward the geometric center, and this position is appropriate.\n\n2. **Velocity magnitude distribution**: The maximum velocity (~0.87 m/s) occurs near the top lid, which is expected since the lid motion drives the flow. Velocities decay toward the walls and toward the lower corners, consistent with viscous dissipation.\n\n3. **Streamline pattern**: The single dominant primary vortex filling most of the cavity is characteristic of Re=100. The flow circulates clockwise (lid moves right, fluid descends along the right wall, moves left along the bottom, and rises along the left wall).\n\n4. **Corner behavior**: Small secondary eddies are visible in the bottom corners (particularly bottom-left and bottom-right), which are well-documented features of lid-driven cavity flows at this Reynolds number (Moffatt eddies).\n\n5. **No-slip conditions**: Velocities approach zero at the stationary"
+    },
+    {
+      "id": 2,
+      "case": "S5_E1_underconverged",
+      "gt": "error_E1",
+      "verdict": "Anomaly",
+      "match": true,
+      "reasoning": "The flow field shows characteristics of a lid-driven cavity flow (top wall moving to the right), and the overall topology \u2014 a primary vortex with streamlines circulating \u2014 is qualitatively correct. However, with only 30 iterations, the solution is severely under-converged. Key indicators of non-physical behavior include:\n\n1. **Asymmetric primary vortex placement**: The main vortex center appears shifted toward the upper-right corner in a way inconsistent with well-resolved lid-driven cavity solutions at typical Reynolds numbers, suggesting the velocity field hasn't relaxed to a proper steady state.\n\n2. **Secondary corner vortices are absent or malformed**: A converged solution should show well-defined secondary vortices in the bottom corners, which are not properly developed here.\n\n3. **Velocity magnitude distribution**: The maximum velocity (~0.59 m/s) near the top wall and the rapid decay into the interior suggest the momentum from the lid hasn't fully diffused/convected into the domain, which is a hallmark of an under-converged iterative solution rather than a physically realized flow.\n\n4. **Streamline irregularities**: Some streamlines in the interior show inconsistent curvature and spacing that reflect incomplete convergence of the pressure-velocity coupling rather than genuine flow physics."
+    },
+    {
+      "id": 3,
+      "case": "S5_E2_bc_swap",
+      "gt": "error_E2",
+      "verdict": "Anomaly",
+      "match": true,
+      "reasoning": "The flow field shown is not consistent with a lid-driven cavity where the bottom wall is moving. If the lid velocity were applied to the bottom wall, we would expect the highest velocity gradients and shear-driven recirculation near y = 0, with the primary vortex displaced toward the bottom of the cavity. Instead, the plot shows the highest velocity magnitudes and flow activity concentrated near the top wall (y \u2248 1.0), with streamlines indicating horizontal flow driven from the top \u2014 characteristic of a standard top-lid-driven cavity. The bulk of the cavity shows nearly uniform horizontal flow with boundary layers at the top, not the bottom. This is inconsistent with the stated boundary condition of the lid being at the bottom wall, indicating either the BC was not actually applied to the bottom wall or the result is non-physical for the described setup."
+    },
+    {
+      "id": 4,
+      "case": "S5_E5_coarse_mesh",
+      "gt": "error_E5",
+      "verdict": "Anomaly",
+      "match": true,
+      "reasoning": "The flow field shows a single large vortex centered around (0.5, 0.5) with the lid-driven cavity's characteristic top-wall motion, but there are clear non-physical artifacts due to the extremely coarse 10\u00d710 mesh with no wall grading:\n\n1. **Vortex center position**: The primary vortex center appears near (0.5, 0.5), which is too centrally/symmetrically located. For lid-driven cavity flows at moderate Reynolds numbers, the vortex center should be displaced toward the upper-right region, and only approaches the geometric center at very low Re.\n\n2. **Lack of corner features**: A physical lid-driven cavity should exhibit secondary corner vortices (particularly at the bottom corners), which are entirely absent here \u2014 a direct consequence of the 10\u00d710 mesh being far too coarse to resolve them.\n\n3. **Near-wall velocity gradients**: With no wall grading on a 10\u00d710 mesh, the boundary layers are grossly under-resolved. The velocity near the top wall transitions too abruptly, and the no-slip condition on the side and bottom walls is poorly captured, as evidenced by non-negligible velocities appearing right at the walls (visible near corners).\n\n4. **Maximum velocity exceeding lid velocity**: The color bar shows |U| up"
+    },
+    {
+      "id": 5,
+      "case": "S6_correct_Ra1e4",
+      "gt": "correct",
+      "verdict": "OK",
+      "match": true,
+      "reasoning": "The temperature field is physically plausible for Ra = 10\u2074 laminar natural convection in a differentially heated square cavity. The left wall is hot and the right wall is cold, consistent with the classical benchmark problem. The isotherms show the expected features: a stratified core with nearly horizontal isotherms in the center, thermal boundary layers along the vertical walls, and the characteristic S-shaped distortion of isotherms due to the clockwise convective circulation. The hot fluid rises along the left wall and travels across the top, while cold fluid descends along the right wall and moves across the bottom \u2014 visible from the warm upper-left corner and cool lower-right corner. The temperature range (~295\u2013304 K) and the moderate distortion of isotherms from pure conduction are consistent with Ra = 10\u2074, where convection is present but not dominant. The smooth, symmetric (with respect to the center point) contours are also characteristic of this well-known laminar regime."
+    },
+    {
+      "id": 6,
+      "case": "S6_E8_gravity_flipped",
+      "gt": "error_E8",
+      "verdict": "Anomaly",
+      "match": true,
+      "reasoning": "With gravity flipped to g = (0, +9.81, 0), buoyancy forces act upward for denser (cooler) fluid and downward for lighter (warmer) fluid \u2014 the opposite of normal natural convection. In this configuration, the hot left wall would produce fluid that sinks rather than rises, and the cold right wall would produce fluid that rises rather than sinks. The resulting flow pattern and temperature distribution would be fundamentally different from what is shown.\n\nThe image shows a classical natural convection pattern in a differentially heated cavity: hot fluid rises along the left (hot) wall and cold fluid descends along the right (cold) wall, with thermal stratification increasing with height (note the hottest region at the top-left corner and coldest at the bottom-right). This temperature field is consistent with **normal** gravity g = (0, \u22129.81, 0), not with the flipped gravity stated. With upward-pointing gravity, the stable stratification pattern would invert, and the flow structure would differ markedly from what is displayed. Therefore, the shown field is non-physical for the stated (erroneous) condition."
+    },
+    {
+      "id": 7,
+      "case": "S6_E2_bc_swap",
+      "gt": "error_E2",
+      "verdict": "Anomaly",
+      "match": true,
+      "reasoning": "The temperature field shown is inconsistent with the stated boundary conditions of a cold left wall (295 K) and hot right wall (305 K). While the left side is indeed cold and the right side is generally hot, the temperature distribution reveals several non-physical features for simple left-cold/right-hot conditions:\n\n1. **The hottest region is in the upper-right corner (~304.3 K), and the coldest is in the lower-left corner (~295 K).** This diagonal asymmetry is characteristic of natural convection in a differentially heated cavity, but the pattern suggests the **top wall is hot and the bottom wall is cold** (or at minimum, the top and right boundaries are warm while the bottom and left are cool).\n\n2. **The temperature field suggests boundary conditions on all four walls**, not just left (cold) and right (hot). With only left-cold/right-hot BCs and insulated top/bottom, the isotherms should be roughly vertical (or vertically tilted by buoyancy-driven convection). Instead, the strong vertical temperature gradient \u2014 warm at top, cold at bottom \u2014 indicates the top and bottom walls also have imposed temperatures.\n\n3. The overall pattern is consistent with a classic lid-driven or buoyancy-driven cavity where the **top wall is heated and bottom wall is cooled** in addition to (or instead of"
+    },
+    {
+      "id": 8,
+      "case": "S9_correct_Ra5k",
+      "gt": "correct",
+      "verdict": "OK",
+      "match": true,
+      "reasoning": "The temperature field is physically plausible for Rayleigh-B\u00e9nard convection at Ra=5000 in a 4:1 aspect ratio cavity. The key features are consistent with expectations: (1) hot fluid rises from the bottom and cold fluid descends from the top, forming convection rolls; (2) the pattern shows approximately 4 counter-rotating convection cells across the domain, which is reasonable for an aspect ratio of 4:1 \u2014 roughly one roll per unit aspect ratio; (3) the temperature stratification shows thermal boundary layers near the top (cold) and bottom (hot) walls; (4) the temperature range (~300\u2013309 K) indicates a modest \u0394T consistent with a low Ra=5000 (modestly supercritical, since Ra_c\u22481708); (5) the flow exhibits the expected symmetry, with warm plumes rising at cell boundaries and cool plumes descending, producing the characteristic mushroom-shaped isotherms; (6) the smooth, steady-state appearance is appropriate for this mildly supercritical laminar regime."
+    },
+    {
+      "id": 9,
+      "case": "S9_E8_gravity_flipped",
+      "gt": "error_E8",
+      "verdict": "Anomaly",
+      "match": true,
+      "reasoning": "With gravity flipped to g = (0, +9.81, 0), the gravitational acceleration points upward (in the +y direction). The temperature field shows hot fluid (\u2248309 K) at the bottom and cold fluid (\u2248300 K) at the top, with a smooth, purely stratified (conductive) gradient and no convection cells. However, with upward-pointing gravity, hot (less dense) fluid at the bottom is effectively in an unstable configuration \u2014 the buoyancy force would drive the warm fluid upward and cold fluid downward, analogous to classical Rayleigh-B\u00e9nard instability. This should produce convection cells (assuming a sufficiently high Rayleigh number, which the ~9 K temperature difference over 1 m suggests). The purely stratified, motionless conductive solution shown here is non-physical under these conditions; convective instability should break the symmetry and produce cellular or plume-like structures."
+    },
+    {
+      "id": 10,
+      "case": "S9_E5_coarse_mesh",
+      "gt": "error_E5",
+      "verdict": "Anomaly",
+      "match": true,
+      "reasoning": "The flow field shows two convection cells in a 4:1 cavity, which is qualitatively reasonable for natural convection at Ra=20,000. However, the stated mesh of only 16\u00d74 is far too coarse to adequately resolve the thermal and velocity boundary layers at this Rayleigh number. The temperature field appears suspiciously smooth and symmetric, lacking the fine-scale features expected at Ra=20,000. With only 4 cells in the y-direction, the boundary layers (which scale as ~Ra^(-1/4) \u2248 0.08 of the cavity height) cannot be properly captured \u2014 each cell spans 0.25 of the domain height. This severe under-resolution leads to significant numerical diffusion, artificially smearing temperature gradients and producing a non-physical solution: the Nusselt number, flow structure details, and thermal stratification will all be quantitatively incorrect. The result is a numerical artifact of the coarse discretization rather than a physically plausible representation of the actual flow."
+    },
+    {
+      "id": 11,
+      "case": "S10_correct_turb",
+      "gt": "correct",
+      "verdict": "OK",
+      "match": true,
+      "reasoning": "**Reasoning:** The flow field is physically plausible for a ventilated room at Re=5000 using k-\u03c9 SST on a 180\u00d760 mesh. Key observations supporting this:\n\n1. **Inlet/outlet configuration:** A high-velocity jet enters along the top boundary (y\u22483.0 m), consistent with a ceiling-mounted supply vent, with velocity magnitudes reaching ~0.55 m/s (yellow/green region). The flow exits near the bottom-right corner.\n\n2. **Recirculation zones:** Multiple large-scale recirculating vortices fill the room interior, which is the expected behavior for a confined jet in an enclosed space at moderate Reynolds number. The two primary counter-rotating vortices (one centered near x\u22481.5, y\u22481.5 and another near x\u22486.5, y\u22481.0) are characteristic of lid-driven or jet-driven cavity flows.\n\n3. **Velocity distribution:** The interior recirculation zones have low velocities (dark purple, near 0.0001\u20130.07 m/s), while the highest speeds are confined to the jet region near the ceiling. This velocity gradient is physically consistent with momentum diffusion from the jet into the room.\n\n4. **RANS behavior:** The smooth, steady-state stream"
+    },
+    {
+      "id": 12,
+      "case": "S10_E1_underconverged",
+      "gt": "error_E1",
+      "verdict": "Anomaly",
+      "match": true,
+      "reasoning": "The flow field shows clear signs of being under-converged after only 30 iterations. Key non-physical indicators include:\n\n1. **Large recirculation zone dominates the left side** (x \u2248 0.5\u20133, y \u2248 0.5\u20132.5): While recirculation can be physical, the size and strength of this vortex relative to the domain suggests an intermediate, non-converged state rather than a steady-state solution.\n\n2. **Multiple competing flow structures**: The streamlines show disorganized, competing circulation patterns (e.g., the large left vortex, smaller structures in the right half, and contradictory flow directions in the lower-right region) that are characteristic of an iterative solution that hasn't yet settled.\n\n3. **Near-zero velocities dominating most of the domain**: The vast majority of the domain is deep purple (|U| \u2248 0), with flow activity concentrated only near the top-left inlet jet and the bottom-right corner. In a physically converged solution, momentum would have diffused/convected more consistently throughout.\n\n4. **Inlet jet behavior**: The high-velocity jet entering at the top-left appears to abruptly lose energy and curl into the large vortex without proper momentum transport downstream, suggesting the pressure-velocity coupling hasn't conver"
+    },
+    {
+      "id": 13,
+      "case": "S10_E4_wrong_turb_model",
+      "gt": "error_E4",
+      "verdict": "Anomaly",
+      "match": true,
+      "reasoning": "At Re = 5000, the flow is well above the typical laminar-turbulent transition threshold. A laminar solver at this Reynolds number artificially suppresses turbulent fluctuations and small-scale mixing, producing overly coherent, large-scale vortex structures that persist without breaking down. The flow field shows multiple well-organized, persistent recirculation cells with smooth streamlines and no evidence of turbulent cascade or small-scale eddies. In reality, at Re = 5000, these large vortices would be unstable and break down into smaller turbulent structures. The velocity magnitude distribution also shows unrealistically sharp, localized high-speed regions (near x\u22486, y\u22481.7) without the diffusive spreading expected from turbulent mixing. This is a classic artifact of applying a laminar solver beyond its validity range\u2014the solution may converge numerically but does not represent physically realizable flow."
+    },
+    {
+      "id": 14,
+      "case": "S2_correct_lam",
+      "gt": "correct",
+      "verdict": "Anomaly",
+      "match": false,
+      "reasoning": "The flow field shows a clear vertical disturbance/discontinuity near x \u2248 5 m, visible as a white vertical line with disrupted streamlines and velocity arrows changing direction downstream of it. For a simple laminar developing channel flow at Re = 100 with no obstacles, the velocity field should evolve smoothly and monotonically from a uniform (or specified) inlet profile toward the fully developed parabolic profile. There should be no abrupt vertical disruption mid-channel. This artifact suggests either a mesh discontinuity, an erroneously placed internal boundary/baffle, a domain decomposition interface error, or a numerical issue \u2014 none of which are consistent with the stated physical problem of smooth laminar developing flow."
+    },
+    {
+      "id": 15,
+      "case": "S2_E3_wrong_viscosity",
+      "gt": "error_E3",
+      "verdict": "Anomaly",
+      "match": true,
+      "reasoning": "The flow field shows an over-diffused velocity profile consistent with an effective Reynolds number of ~10 rather than the intended Re=100. At this incorrectly high viscosity (\u03bd=0.1), the flow becomes excessively dominated by viscous effects: the entrance/development length is unrealistically short, the velocity profile reaches a fully-developed parabolic shape almost immediately, and the peak centerline velocity (~1.4 m/s) with broad boundary layers reflects laminar Poiseuille flow at very low Re. While the field is internally self-consistent for Re=10, it is **non-physical for the stated/intended conditions** (which presumably target Re=100 with \u03bd=0.01). The wrong viscosity produces a qualitatively different flow regime \u2014 the streamlines show no evidence of the expected higher-Re features, and the rapid development region near x=0\u20131 m with the bright yellow patch indicates excessive momentum diffusion. Additionally, the white artifacts/gaps near x\u22485 m suggest possible numerical issues or visualization artifacts that further indicate problematic simulation setup."
+    },
+    {
+      "id": 16,
+      "case": "S7_correct_Ri1",
+      "gt": "correct",
+      "verdict": "Anomaly",
+      "match": false,
+      "reasoning": "**Reasoning:** For mixed convection at Ri\u22481 and Re=500 in a heated channel, several features are non-physical:\n\n1. **Velocity magnitude exceeds expected values:** The peak velocity reaches ~1.1 m/s, which is unexpectedly high relative to what a Re=500 flow should produce, suggesting possible numerical divergence or insufficient convergence.\n\n2. **Asymmetric/irregular flow near x\u22485 m:** There is a conspicuous disruption in the streamlines around x\u22484\u20135 m with large white arrows indicating abrupt velocity changes. For steady or developed mixed convection at these moderate parameters, such a localized disturbance is uncharacteristic and suggests a numerical artifact (e.g., poor mesh resolution, instability, or a solver convergence issue).\n\n3. **Monotonic acceleration toward the outlet:** The velocity field shows continuous acceleration from left to right (green\u2192yellow), reaching maximum values at the outlet. In an incompressible channel flow with no area change, bulk velocity must remain constant by mass conservation. This progressive acceleration is non-physical and likely indicates a compressibility error, incorrect boundary conditions (e.g., inappropriate pressure outlet), or the Boussinesq approximation being misapplied.\n\n4. **Boundary layer behavior:** The near-wall regions ("
+    },
+    {
+      "id": 17,
+      "case": "S7_E8_gravity_flipped",
+      "gt": "error_E8",
+      "verdict": "Anomaly",
+      "match": true,
+      "reasoning": "With gravity flipped to g = (0, +9.81, 0), buoyancy forces are reversed: heated fluid near the bottom wall (which should be buoyant) would be pushed downward instead of rising, while cooler fluid near the top would be driven upward. This creates a stable stratification that suppresses convective mixing rather than promoting it. The flow field shown exhibits strong horizontal through-flow with a relatively well-developed velocity profile and streamlines that are mostly parallel and increasing in magnitude downstream \u2014 consistent with a normal buoyancy-assisted or pressure-driven channel flow, not one where buoyancy opposes natural convection. The disturbance visible near x \u2248 5 m and the overall velocity magnitude distribution do not reflect the inverted, physically unstable/suppressed convection pattern that reversed gravity would produce. The field appears to have been computed or visualized under normal conditions, making it non-physical for the stated error condition."
+    },
+    {
+      "id": 18,
+      "case": "S1_correct_lam",
+      "gt": "correct",
+      "verdict": "Anomaly",
+      "match": false,
+      "reasoning": "The flow field shows several non-physical features for laminar natural convection in a differentially heated cavity at Ra\u22483\u00d710\u2076:\n\n1. **Spiral/vortex structures**: The prominent spiral pattern visible near the bottom-right region (around y\u22480.8, x\u22481.5) is not characteristic of steady or even unsteady laminar natural convection at this Rayleigh number. These look like numerical artifacts or indicate the solution has not converged properly.\n\n2. **Asymmetric interior structure**: While the boundary conditions appear to be a hot left wall and cold right wall (or similar), the interior temperature field shows irregular, swirling contour patterns in multiple locations (also around y\u22482.5\u20133.0) that suggest either insufficient temporal convergence, inadequate spatial resolution, or numerical instability.\n\n3. **Mesh resolution concerns**: At Ra\u22483\u00d710\u2076 in a tall cavity (aspect ratio 2), a 60\u00d7120 mesh may be marginally adequate, but the wall-graded mesh should handle boundary layers. The irregular interior structures suggest the coarse interior resolution may be producing spurious oscillations or the time integration hasn't reached a statistically steady state.\n\n4. **Expected behavior**: For this Ra and aspect ratio, one would expect a relatively clean recirculating flow"
+    },
+    {
+      "id": 19,
+      "case": "S1_E8_gravity_flipped",
+      "gt": "error_E8",
+      "verdict": "Anomaly",
+      "match": true,
+      "reasoning": "With gravity flipped to g=(0,+9.81,0), buoyancy forces are reversed: heated fluid near the hot left wall and bottom would be pushed downward rather than rising. In a physically correct buoyancy-driven cavity with a hot left wall, we expect a thermal boundary layer rising along that wall, with warm fluid accumulating near the top. The temperature field shown here\u2014with the hottest region concentrated in the lower-left corner and thermal plume spreading along the bottom\u2014is consistent with what would happen if buoyancy drove hot fluid **downward** instead of upward. This is non-physical for natural convection under normal gravitational conditions. The warm fluid pools at the bottom rather than rising to the top, confirming the inverted gravity error produces an anomalous, non-physical flow field for the stated (presumably standard gravity) conditions."
+    },
+    {
+      "id": 20,
+      "case": "S1_E3_wrong_viscosity",
+      "gt": "error_E3",
+      "verdict": "Anomaly",
+      "match": true,
+      "reasoning": "The temperature field shown is far too smooth and diffusive, consistent with a viscosity that is ~100\u00d7 too large (\u03bd = 0.1 m\u00b2/s instead of ~1e-3 m\u00b2/s). With the effective Rayleigh number reduced to ~O(10), buoyancy-driven convection is essentially suppressed, and the solution resembles pure conduction with only weak advection. A physically correct natural convection cavity at the intended Ra (~10\u00b3\u201310\u2076) would exhibit a distinct boundary-layer structure along the heated (left) and cooled (right) walls, with a stratified core and much steeper thermal gradients near the walls. Instead, the isotherms here are broad, nearly concentric curves with no evidence of a convective boundary layer \u2014 the hallmark of an over-damped, conduction-dominated regime that is non-physical for the intended problem conditions."
+    },
+    {
+      "id": 21,
+      "case": "S3_correct_turb",
+      "gt": "correct",
+      "verdict": "Anomaly",
+      "match": false,
+      "reasoning": "The flow field shows several non-physical features for a fully-developed turbulent channel flow at Re=10,000 with k-\u03c9 SST:\n\n1. **Vertical bright stripe near x \u2248 5 m**: There is a conspicuous vertical discontinuity/artifact spanning the channel height, suggesting a numerical issue (e.g., mesh non-conformity, decomposition boundary error, or incorrect internal boundary condition). Fully-developed channel flow should be homogeneous in the streamwise direction.\n\n2. **Asymmetric near-wall behavior**: The velocity distribution near the bottom wall (y \u2248 0) appears noticeably different from the top wall (y \u2248 1), with irregular yellow/bright patches near the bottom. For a symmetric plane channel, the mean velocity profile should be symmetric about the centerline.\n\n3. **Peak velocity magnitude (~1.04 m/s)**: While not impossible, the near-wall region shows patchy high-velocity zones (yellow spots near the bottom wall) that are inconsistent with the expected no-slip boundary layer behavior where velocity should monotonically decrease toward the wall.\n\n4. **Non-uniform streamlines**: The white arrows/streamlines show irregular patterns near both walls and around the vertical discontinuity, inconsistent with steady fully-developed turbulent channel flow which should exhibit"
+    },
+    {
+      "id": 22,
+      "case": "S3_E4_wrong_turb_model",
+      "gt": "error_E4",
+      "verdict": "Anomaly",
+      "match": true,
+      "reasoning": "The flow field shows a nearly perfect laminar parabolic-like profile with well-ordered, parallel streamlines across a channel at Re = 10,000. At this Reynolds number, the flow should be fully turbulent (well above the critical Re \u2248 2,300 for internal flows). A laminar solver at Re = 10,000 produces an unrealistically thin boundary layer and an exaggerated centerline velocity (peak ~1.04 m/s) with no turbulent mixing or diffusion. In reality, turbulent momentum transport would create a much flatter, fuller velocity profile with significantly more mixing across the cross-section. The absence of any turbulent structures or a blunted velocity profile makes this solution non-physical for the stated conditions."
+    },
+    {
+      "id": 23,
+      "case": "S3_E3_wrong_viscosity",
+      "gt": "error_E3",
+      "verdict": "Anomaly",
+      "match": true,
+      "reasoning": "The flow field shows a largely laminar-looking velocity profile with streamlines that remain organized and parallel over most of the domain, yet there is a conspicuous vertical disturbance/discontinuity near x \u2248 5 m that appears non-physical. At Re = 100 the flow should be fully laminar and steady, making the activation of a turbulence model inappropriate\u2014it introduces spurious eddy viscosity into an already viscosity-dominated flow. The vertical disruption near the midpoint is likely a numerical artifact (possibly from mesh non-conformality, a baffle, or turbulence-model instability), not a genuine physical feature. Additionally, the peak velocity (~1.4 m/s) and the velocity distribution suggest the turbulence model is artificially altering the profile in a flow regime where turbulence modeling is unwarranted. A true Re = 100 channel flow should produce a smooth, fully-developed parabolic profile without any such discontinuities."
+    },
+    {
+      "id": 24,
+      "case": "S5_E8_reversed_lid",
+      "gt": "error_E8",
+      "verdict": "Anomaly",
+      "match": true,
+      "reasoning": "The flow field shows a lid-driven cavity with the top lid moving in the **negative x-direction** (right to left), as evidenced by the streamlines near y = 1.0 pointing leftward and the highest velocity magnitudes (~0.87 m/s) occurring along the top boundary. The primary vortex rotates **counter-clockwise** with its center located in the upper-left quadrant (around x \u2248 0.3, y \u2248 0.7).\n\nThis is a mirror image of the standard lid-driven cavity (where the lid moves left-to-right, producing a clockwise primary vortex centered in the upper-right region). While a reversed lid direction would indeed produce a mirrored flow pattern, the problem states this is the **reversed** configuration being checked against \"correct laminar\" conditions. The anomaly is that the lid velocity direction is **U = \u22121** rather than the conventional **U = +1**. If the stated/intended boundary condition was U = +1 (positive direction), then this result is non-physical \u2014 the vortex rotation sense, vortex center location, and velocity distribution are all mirror-reversed from what the correct boundary condition should produce. The physics is self-consistent for U = \u22121, but it does not match the expected U = +1 condition, indicating"
+    },
+    {
+      "id": 25,
+      "case": "S8_correct_lam",
+      "gt": "correct",
+      "verdict": "OK",
+      "match": true,
+      "reasoning": "The flow field is physically plausible for forced convection over a rectangular bump at Re=500 in a channel. Key features are consistent with expected physics: (1) Flow accelerates over the top of the bump, producing the high-velocity region (yellow, ~0.8\u20131.0 m/s) above and downstream of the obstacle, consistent with area contraction. (2) A recirculation zone forms immediately behind the bump in the wake (visible vortical streamlines near x\u22484\u20135, y\u22480\u20130.5), which is expected for bluff-body flow at Re=500. (3) Additional downstream vortical structures and unsteady wake patterns around x\u22487\u20139 are consistent with vortex shedding at this Reynolds number, which is above the critical Re for 2D wake instability behind a bluff body. (4) The low-velocity (dark) regions behind the bump and near walls are physically correct boundary layer and separation behavior. (5) The upstream flow shows a well-developed channel profile deflecting upward as it approaches the obstacle. The overall velocity magnitude range and flow topology are entirely reasonable for this configuration."
+    },
+    {
+      "id": 26,
+      "case": "S8_E8_gravity_flipped",
+      "gt": "error_E8",
+      "verdict": "Anomaly",
+      "match": true,
+      "reasoning": "With gravity incorrectly set to g = (0, +9.81, 0), buoyant fluid heated by the bump would be forced downward rather than rising. However, the flow field shown depicts streamlines deflecting **upward** above the obstacle (around x = 4\u20136 m), with the highest velocities (yellow, ~0.78 m/s) appearing above and downstream of the bump \u2014 consistent with a **rising** thermal plume. The low-velocity (dark/purple) wake region sits immediately behind and below the obstacle, also consistent with normal upward buoyancy. This flow pattern is physically consistent with g = (0, \u22129.81, 0) (correct gravity), not with the stated flipped gravity. Under flipped gravity, the high-speed plume region should appear below the bump, and the wake structure would be inverted. Therefore, the visualization contradicts the stated erroneous condition."
+    },
+    {
+      "id": 27,
+      "case": "S8_E3_wrong_viscosity",
+      "gt": "error_E3",
+      "verdict": "Anomaly",
+      "match": true,
+      "reasoning": "The flow field shows creeping, highly diffusive flow with no discernible wake or recirculation behind the obstacle, consistent with an effective Reynolds number of ~5 due to the viscosity being 100\u00d7 too high (\u03bd = 0.05). At such low Re, inertial effects are negligible, and the flow essentially wraps smoothly around the obstacle with only a tiny, closed recirculation bubble immediately behind it. This is physically correct **for the incorrectly set viscosity**, but it is non-physical **for the stated/intended conditions**. If the intended scenario (e.g., Re \u2248 500\u20135000 for a typical channel-flow-over-obstacle problem) were correctly modeled, one would expect a well-developed unsteady wake with vortex shedding or at least a substantial separated recirculation zone and, if buoyancy is involved, a visible thermal plume structure. The absence of all these features \u2014 combined with the extremely smooth, nearly symmetric streamlines \u2014 is a direct artifact of the erroneously high viscosity, making the result anomalous for the intended physical setup."
+    },
+    {
+      "id": 28,
+      "case": "S8_E5_coarse_mesh",
+      "gt": "error_E5",
+      "verdict": "Anomaly",
+      "match": true,
+      "reasoning": "The flow field shows several non-physical features consistent with a severely under-resolved simulation. The wake region behind the rectangular obstacle (around x = 3\u20133.5 m) exhibits large, persistent recirculation vortices extending far downstream (to x \u2248 10 m) with near-zero velocity occupying a substantial portion of the lower domain. On a coarse mesh (the error label \"E5\" explicitly states the wake is \"completely unresolved\"), these vortex structures are numerical artifacts rather than physically converged features \u2014 they are too coherent, too symmetric in their spiral patterns, and too spatially extensive for what should be a developing wake behind a small bluff body. Additionally, the streamlines show an abrupt deflection/convergence near x \u2248 5, y \u2248 1.5\u20132.0 that appears as an unphysical jet-like feature, likely a mesh-resolution artifact at a block boundary. The velocity magnitude distribution also shows suspiciously sharp gradients and the recirculation region's extent is exaggerated relative to the obstacle size, both hallmarks of insufficient grid resolution failing to capture the correct flow physics."
+    },
+    {
+      "id": 29,
+      "case": "S4_E6_modified",
+      "gt": "error_E6",
+      "verdict": "Anomaly",
+      "match": true,
+      "reasoning": "The problem statement explicitly notes that the recirculation zone was artificially removed post-solve. Behind a backward-facing step, a recirculation/separation zone is a fundamental physical feature driven by adverse pressure gradient and flow separation at the step edge. The image shows very low velocity (purple) in the region immediately downstream of the step (x \u2248 0\u20138 m, y \u2248 0\u20131 m), but the streamlines appear to flow smoothly without any reversed flow or vortex structure. In a physically correct simulation, there should be a clear recirculation bubble with negative streamwise velocity behind the step. Removing this feature violates conservation of momentum and the Navier-Stokes equations for this geometry, making the flow field non-physical."
+    },
+    {
+      "id": 30,
+      "case": "S4_E1_underconverged",
+      "gt": "error_E1",
+      "verdict": "Anomaly",
+      "match": true,
+      "reasoning": "The flow field shows clear signs of being non-physical due to the under-converged solution (only 50 iterations). Key indicators include:\n\n1. **Persistent large-scale recirculation structures** downstream of the backward-facing step that appear overly coherent and periodic, suggesting the solver hasn't reached a steady state or proper statistical convergence.\n\n2. **Velocity magnitude inconsistencies**: The near-zero velocity regions (dark purple) extend excessively far downstream (beyond x = 25 m), which is unrealistic for a backward-facing step flow where reattachment typically occurs within 5\u201315 step heights downstream.\n\n3. **The recirculation zone appears artificially elongated** and the streamlines show chaotic, unresolved vortical patterns that don't represent a converged physical solution \u2014 they reflect intermediate iteration artifacts rather than genuine turbulent or laminar flow structures.\n\n4. **Sharp velocity gradients near the top wall** (yellow band around y \u2248 2 m) with near-stagnant flow below suggest the flow field hasn't properly redistributed momentum, consistent with insufficient iteration convergence."
+    }
+  ],
+  "partial": false
+}

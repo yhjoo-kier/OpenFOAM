@@ -1,0 +1,383 @@
+{
+  "evaluator": "claude-opus-4-6",
+  "trial": 2,
+  "batch": "B",
+  "date": "2026-03-26",
+  "total": 37,
+  "correct": 37,
+  "accuracy": 1.0,
+  "fp": 0,
+  "fn": 0,
+  "items": [
+    {
+      "id": 1,
+      "code": "QA-T251",
+      "case": "S2_correct_developed",
+      "gt": "correct",
+      "verdict": "OK",
+      "vlm_verdict_full": "OK",
+      "vlm_reasoning": "Velocity contour shows parabolic profile developing from inlet (uniform blue-green) to fully developed (symmetric yellow peak at centerline) by ~5m. Max velocity ~1.4 m/s consistent with 1.5×U_mean for laminar Poiseuille flow. Streamlines are parallel and horizontal. 20m length is sufficient for full development at Re=100.",
+      "match": true
+    },
+    {
+      "id": 2,
+      "code": "QA-T252",
+      "case": "S2_E1_underconverged",
+      "gt": "error_E1",
+      "verdict": "Anomaly",
+      "vlm_verdict_full": "Anomaly: Velocity profile appears nearly fully developed too quickly, but the main issue is the vertical white streaks/artifacts near mid-channel (x~5m) suggesting visualization or convergence artifacts. The max velocity ~1.15 m/s is below the expected ~1.5 m/s for fully developed laminar flow, indicating the solution has not converged.",
+      "vlm_reasoning": "Underconverged: peak velocity too low and visualization artifacts present mid-domain.",
+      "match": true
+    },
+    {
+      "id": 3,
+      "code": "QA-T253",
+      "case": "S2_E2_bc_swap",
+      "gt": "error_E2",
+      "verdict": "Anomaly",
+      "vlm_verdict_full": "Anomaly: Streamlines show chaotic vertical disruptions near x~5m with scattered arrows, and the velocity field shows parabolic profile developing normally from inlet. The disordered streamline region mid-channel is non-physical for steady laminar channel flow -- suggests boundary condition error or convergence issue causing local flow disturbance.",
+      "vlm_reasoning": "Chaotic streamline disruption mid-channel is non-physical for steady laminar pipe flow; likely BC swap causing conflicting pressure/velocity conditions.",
+      "match": true
+    },
+    {
+      "id": 4,
+      "code": "QA-T254",
+      "case": "S2_E5_coarse_mesh",
+      "gt": "error_E5",
+      "verdict": "Anomaly",
+      "vlm_verdict_full": "Anomaly: Velocity profile shows visible step-like contour banding with insufficient gradation near walls, and peak velocity ~1.24 m/s is below theoretical 1.5 m/s. The coarse mesh fails to resolve the wall boundary layer properly, producing a blunter-than-expected profile.",
+      "vlm_reasoning": "Stepped contours, under-resolved wall BL, and reduced peak velocity indicate mesh is too coarse to capture the parabolic profile accurately.",
+      "match": true
+    },
+    {
+      "id": 5,
+      "code": "QA-T255",
+      "case": "S4_correct_turb",
+      "gt": "correct",
+      "verdict": "OK",
+      "vlm_verdict_full": "OK",
+      "vlm_reasoning": "Streamlines show clear recirculation zone behind the step with reattachment ~6-7 step heights downstream, consistent with expected reattachment length for Re=36,000 BFS. Flow accelerates over step, recirculation is well-defined with closed streamlines, and recovery occurs downstream.",
+      "match": true
+    },
+    {
+      "id": 6,
+      "code": "QA-T256",
+      "case": "S4_E5_coarse_mesh",
+      "gt": "error_E5",
+      "verdict": "Anomaly",
+      "vlm_verdict_full": "Anomaly: Velocity contour shows jagged, poorly resolved shear layer downstream of step. The recirculation zone boundary is ragged with visible mesh-scale oscillations. Streamlines show irregular patterns in the reattachment region rather than smooth recirculation. Peak velocity region is fragmented.",
+      "vlm_reasoning": "Coarse mesh produces jagged shear layer, poorly defined recirculation, and mesh-scale artifacts in the velocity field.",
+      "match": true
+    },
+    {
+      "id": 7,
+      "code": "QA-T257",
+      "case": "S4_E6_modified",
+      "gt": "error_E6",
+      "verdict": "Anomaly",
+      "vlm_verdict_full": "Anomaly: The recirculation zone behind the step appears abnormally elongated and the streamlines show an unusually extended recirculation pattern with multiple secondary vortices that stretch far downstream. The flow structure behind the step looks modified compared to a standard BFS -- the primary recirculation extends excessively and the shear layer trajectory is altered.",
+      "vlm_reasoning": "Recirculation pattern is non-standard with excessive downstream extent and modified shear layer, suggesting geometry or turbulence model has been artificially altered.",
+      "match": true
+    },
+    {
+      "id": 8,
+      "code": "QA-T258",
+      "case": "S10_correct_fine",
+      "gt": "correct",
+      "verdict": "OK",
+      "vlm_verdict_full": "OK",
+      "vlm_reasoning": "Ventilated room shows inlet jet from top-left traveling across ceiling, descending on right wall, forming large recirculation patterns in the room interior. Multiple vortex structures visible. Velocity magnitude peaks at inlet (~0.56 m/s) and decays in room interior. Streamlines are smooth with well-resolved flow structures. Fine mesh provides good resolution.",
+      "match": true
+    },
+    {
+      "id": 9,
+      "code": "QA-T259",
+      "case": "S10_E2_bc_swap",
+      "gt": "error_E2",
+      "verdict": "Anomaly",
+      "vlm_verdict_full": "Anomaly: Flow pattern shows inlet jet entering from top-left but the overall circulation structure is altered -- the main recirculation appears shifted and the flow near the outlet region (bottom-right) shows reversed or unusual patterns compared to the correct case. The jet trajectory and room circulation topology differ from expected ventilation patterns.",
+      "vlm_reasoning": "Circulation topology is disrupted with altered jet behavior and anomalous outlet-region flow, consistent with swapped inlet/outlet boundary conditions.",
+      "match": true
+    },
+    {
+      "id": 10,
+      "code": "QA-T260",
+      "case": "S10_E5_coarse_mesh",
+      "gt": "error_E5",
+      "verdict": "Anomaly",
+      "vlm_verdict_full": "Anomaly: Velocity contours show blocky, under-resolved features especially in the room interior. The main recirculation structures are visible but lack smooth gradients. The overall flow topology is roughly correct but contour banding and coarse spatial resolution reduce confidence in the solution accuracy.",
+      "vlm_reasoning": "Coarse mesh artifacts visible as stepped contours and under-resolved vortex structures in the room interior.",
+      "match": true
+    },
+    {
+      "id": 11,
+      "code": "QA-T261",
+      "case": "S3_correct_turb",
+      "gt": "correct",
+      "verdict": "OK",
+      "vlm_verdict_full": "OK",
+      "vlm_reasoning": "Pressure contour shows smooth linear decrease from inlet (red, ~0.145) to outlet (blue, ~0.0). Pressure is uniform across the channel height at any given x-location. This is the expected behavior for fully developed turbulent channel flow -- constant pressure gradient driving the flow.",
+      "match": true
+    },
+    {
+      "id": 12,
+      "code": "QA-T262",
+      "case": "S3_E1_underconverged",
+      "gt": "error_E1",
+      "verdict": "Anomaly",
+      "vlm_verdict_full": "Anomaly: Velocity profile shows non-uniform development with visible artifacts. The peak velocity ~1.72 m/s is unusually high for a turbulent channel at Re=10,000 (expected flatter profile). Streamlines show disruptions/white artifacts near mid-channel. The profile shape suggests the solution has not converged to a proper turbulent state.",
+      "vlm_reasoning": "Excessively peaked velocity profile with mid-channel artifacts indicates underconvergence; turbulent profile should be flatter than laminar.",
+      "match": true
+    },
+    {
+      "id": 13,
+      "code": "QA-T263",
+      "case": "S3_E5_coarse_mesh",
+      "gt": "error_E5",
+      "verdict": "Anomaly",
+      "vlm_verdict_full": "Anomaly: Velocity profile appears nearly uniform (flat) across most of the channel with very thin boundary layers. The max velocity ~0.99 m/s is close to inlet velocity, and the profile lacks the expected turbulent log-law shape. The coarse mesh fails to resolve the turbulent boundary layer, producing an essentially plug-flow profile.",
+      "vlm_reasoning": "Coarse mesh cannot resolve turbulent BL; profile is nearly plug flow instead of proper turbulent profile with log-law region.",
+      "match": true
+    },
+    {
+      "id": 14,
+      "code": "QA-T264",
+      "case": "S5_correct_turb",
+      "gt": "correct",
+      "verdict": "OK",
+      "vlm_verdict_full": "OK",
+      "vlm_reasoning": "Velocity magnitude contour shows primary vortex centered slightly above and to the right of cavity center, driven by the top lid moving right. High velocity near top wall (~0.65 m/s), low velocity in center of primary vortex. Secondary corner vortices visible at bottom corners. Distribution is consistent with turbulent lid-driven cavity at Re=10,000.",
+      "match": true
+    },
+    {
+      "id": 15,
+      "code": "QA-T265",
+      "case": "S1_correct_fine",
+      "gt": "correct",
+      "verdict": "OK",
+      "vlm_verdict_full": "OK",
+      "vlm_reasoning": "Natural convection shows heated left wall with strong upward boundary layer flow (peak ~0.71 m/s at upper portion of hot wall). Multiple recirculation cells visible in the domain. Streamlines show rising flow along heated wall, entrainment from ambient, and complex vortex structures. Fine mesh resolves thin BL near wall. Pattern is physically consistent with Ra~3e7.",
+      "match": true
+    },
+    {
+      "id": 16,
+      "code": "QA-T266",
+      "case": "S4_correct_turb",
+      "gt": "correct",
+      "verdict": "OK",
+      "vlm_verdict_full": "OK",
+      "vlm_reasoning": "Pressure contour shows clear low-pressure zone (blue) immediately behind the step where recirculation occurs, transitioning to higher pressure (red/dark) downstream as flow recovers. The low-pressure region behind the step and gradual downstream pressure recovery is the classic BFS pressure signature.",
+      "match": true
+    },
+    {
+      "id": 17,
+      "code": "QA-T267",
+      "case": "S4_E1_underconverged",
+      "gt": "error_E1",
+      "verdict": "Anomaly",
+      "vlm_verdict_full": "Anomaly: Pressure field shows irregular, patchy distribution with alternating high/low pressure regions downstream of the step. Instead of a smooth low-pressure recirculation zone transitioning to gradual recovery, there are non-physical oscillations and a disorganized pressure pattern, particularly around x=5-10m.",
+      "vlm_reasoning": "Non-physical pressure oscillations and irregular pressure patches indicate the solution has not converged; expected smooth low-pressure zone behind step is absent.",
+      "match": true
+    },
+    {
+      "id": 18,
+      "code": "QA-T268",
+      "case": "S5_correct_lam",
+      "gt": "correct",
+      "verdict": "OK",
+      "vlm_verdict_full": "OK",
+      "vlm_reasoning": "Pressure contour shows low pressure in most of the cavity (light blue) with high pressure at top-right corner (where lid pushes fluid into corner) and slight low pressure at top-left corner (where lid pulls fluid away). This is the expected pressure distribution for lid-driven cavity flow.",
+      "match": true
+    },
+    {
+      "id": 19,
+      "code": "QA-T269",
+      "case": "S6_correct_Ra1e4",
+      "gt": "correct",
+      "verdict": "OK",
+      "vlm_verdict_full": "OK",
+      "vlm_reasoning": "Velocity contour and streamlines show a single large clockwise circulation vortex filling the cavity. Hot fluid rises along left wall (305K), crosses top, descends along cold right wall (295K), and returns along bottom. Peak velocity ~0.126 m/s at boundary layers. Rotation direction (clockwise) is correct for left-hot/right-cold configuration at Ra=1e4.",
+      "match": true
+    },
+    {
+      "id": 20,
+      "code": "QA-T270",
+      "case": "S7_E5_coarse_mesh",
+      "gt": "error_E5",
+      "verdict": "Anomaly",
+      "vlm_verdict_full": "Anomaly: Velocity field shows blocky, poorly resolved features with a single large diagonal streamline artifact cutting across the domain. The buoyancy-driven structures near the heated bottom wall are under-resolved. Flow interaction between forced convection and buoyancy lacks the expected smooth roll structures.",
+      "vlm_reasoning": "Coarse mesh produces a dominant diagonal artifact and under-resolved buoyancy rolls; mixed convection interaction is not properly captured.",
+      "match": true
+    },
+    {
+      "id": 21,
+      "code": "QA-T271",
+      "case": "S7_E3_wrong_viscosity",
+      "gt": "error_E3",
+      "verdict": "Anomaly",
+      "vlm_verdict_full": "Anomaly: The velocity field shows a nearly uniform channel flow with minimal evidence of buoyancy-driven secondary flow. For mixed convection with Ri~1, buoyancy effects should be comparable to inertial forces, producing visible vertical velocity perturbations or roll structures. The flow appears dominated by forced convection with negligible buoyancy interaction.",
+      "vlm_reasoning": "Wrong viscosity likely shifts Re or Ri, suppressing buoyancy effects; flow is essentially forced convection without expected mixed convection features.",
+      "match": true
+    },
+    {
+      "id": 22,
+      "code": "QA-T272",
+      "case": "S7_E3_wrong_viscosity",
+      "gt": "error_E3",
+      "verdict": "Anomaly",
+      "vlm_verdict_full": "Anomaly: Temperature field shows thermal energy penetrating from the heated bottom wall, but the distribution is nearly uniform in the vertical direction with a smooth streamwise gradient. For Ri~1 mixed convection, temperature should show wavy or roll-like structures from buoyancy interaction. The overly smooth, nearly 1D temperature field suggests buoyancy is suppressed.",
+      "vlm_reasoning": "Temperature distribution lacks buoyancy-driven perturbations; nearly 1D gradient from inlet to outlet suggests wrong viscosity has suppressed natural convection effects.",
+      "match": true
+    },
+    {
+      "id": 23,
+      "code": "QA-T273",
+      "case": "S7_E1_underconverged",
+      "gt": "error_E1",
+      "verdict": "Anomaly",
+      "vlm_verdict_full": "Anomaly: Temperature field is nearly uniform at ~300-301K with negligible thermal development from the 320K heated bottom wall. The temperature range is only ~311K max (vs 320K wall), and heat has barely penetrated into the flow. This indicates severe underconvergence -- the energy equation has not reached steady state.",
+      "vlm_reasoning": "Temperature barely departs from initial/inlet condition despite 320K bottom wall; energy equation clearly not converged.",
+      "match": true
+    },
+    {
+      "id": 24,
+      "code": "QA-T274",
+      "case": "S8_correct_lam",
+      "gt": "correct",
+      "verdict": "OK",
+      "vlm_verdict_full": "OK",
+      "vlm_reasoning": "Streamlines show flow approaching the bump, accelerating over it, and forming a recirculation/wake vortex downstream. The wake region shows closed recirculation streamlines behind the bump. Flow reattaches downstream. Pattern is physically plausible for laminar flow over a heated bump at Re=500.",
+      "match": true
+    },
+    {
+      "id": 25,
+      "code": "QA-T275",
+      "case": "S10_correct_turb",
+      "gt": "correct",
+      "verdict": "OK",
+      "vlm_verdict_full": "OK",
+      "vlm_reasoning": "Velocity magnitude contour shows inlet jet from top-left corner with peak velocity ~0.55 m/s. Jet attaches to ceiling (Coanda effect), spreads across room, and velocity decays in the interior. Higher velocities near ceiling and outlet region, low velocities in room center/corners. Distribution is physically plausible for a slot-ventilated room.",
+      "match": true
+    },
+    {
+      "id": 26,
+      "code": "QA-T276",
+      "case": "S10_correct_turb",
+      "gt": "correct",
+      "verdict": "OK",
+      "vlm_verdict_full": "OK",
+      "vlm_reasoning": "Pressure contour shows highest pressure near the inlet region (top-left) and relatively uniform pressure throughout most of the room with slight variations near the outlet. The pressure range is small (~0.017-0.169), consistent with low-speed indoor ventilation. Distribution is plausible.",
+      "match": true
+    },
+    {
+      "id": 27,
+      "code": "QA-T277",
+      "case": "S1_E1_underconverged",
+      "gt": "error_E1",
+      "verdict": "Anomaly",
+      "vlm_verdict_full": "Anomaly: The velocity field shows an extremely strong upward jet along the heated wall with peak velocity ~6.1 m/s, which is an order of magnitude higher than the fine-mesh correct case (~0.71 m/s). The flow structure shows a narrow, intense boundary layer jet with large-scale recirculation, but the magnitude is non-physically high, indicating the solution has not converged properly.",
+      "vlm_reasoning": "Peak velocity ~6 m/s is ~8x higher than converged solution; underconverged buoyancy solution has overshot to non-physical velocity magnitudes.",
+      "match": true
+    },
+    {
+      "id": 28,
+      "code": "QA-T278",
+      "case": "S1_E1_underconverged",
+      "gt": "error_E1",
+      "verdict": "Anomaly",
+      "vlm_verdict_full": "Anomaly: Temperature field shows the heated left wall (320K) but thermal energy has barely diffused into the domain. The bulk of the cavity remains at ~300K with only a very thin heated strip along the left wall and top. Compared to a converged natural convection solution, the thermal field is severely underdeveloped.",
+      "vlm_reasoning": "Thermal boundary layer is extremely thin with negligible heat penetration into domain; energy equation clearly underconverged.",
+      "match": true
+    },
+    {
+      "id": 29,
+      "code": "QA-T279",
+      "case": "S6_E1_underconverged",
+      "gt": "error_E1",
+      "verdict": "Anomaly",
+      "vlm_verdict_full": "Anomaly: Temperature field shows nearly pure conduction -- a linear horizontal gradient from hot left wall (~303.6K) to cold right wall (~295K) with almost no vertical stratification or convective distortion. At Ra=1e4, convection should visibly distort the isotherms (S-shaped or tilted pattern). This indicates the velocity field has not developed.",
+      "vlm_reasoning": "Nearly linear conduction profile without convective distortion of isotherms; at Ra=1e4, convection should significantly alter temperature distribution.",
+      "match": true
+    },
+    {
+      "id": 30,
+      "code": "QA-T280",
+      "case": "S6_E1_underconverged",
+      "gt": "error_E1",
+      "verdict": "Anomaly",
+      "vlm_verdict_full": "Anomaly: Velocity field shows extremely weak velocities (max ~0.0088 m/s, two orders of magnitude below the converged case ~0.126 m/s). Streamlines show a four-cell symmetric pattern that looks like an initial transient or numerical artifact rather than the expected single large circulation cell. The flow has clearly not developed to the converged state.",
+      "vlm_reasoning": "Velocities are ~15x weaker than converged solution with incorrect four-cell topology instead of single circulation; severely underconverged.",
+      "match": true
+    },
+    {
+      "id": 31,
+      "code": "QA-T281",
+      "case": "S9_correct_Ra20k",
+      "gt": "correct",
+      "verdict": "OK",
+      "vlm_verdict_full": "OK",
+      "vlm_reasoning": "Velocity contour and streamlines show 7-8 well-defined counter-rotating convection cells spanning the 4:1 aspect ratio cavity. Cell spacing is approximately equal to cavity height, consistent with Ra=20,000 Rayleigh-Benard convection. Peak velocities ~0.24 m/s at cell boundaries. Pattern is physically plausible.",
+      "match": true
+    },
+    {
+      "id": 32,
+      "code": "QA-T282",
+      "case": "S9_correct_Ra20k",
+      "gt": "correct",
+      "verdict": "OK",
+      "vlm_verdict_full": "OK",
+      "vlm_reasoning": "Temperature contour shows alternating hot plumes rising from bottom and cold plumes descending from top, corresponding to the convection cells. Thin thermal boundary layers are visible at top and bottom walls. The mushroom-shaped thermal plumes and boundary layer thinning are consistent with Ra=20,000.",
+      "match": true
+    },
+    {
+      "id": 33,
+      "code": "QA-T283",
+      "case": "S9_E2_bc_swap",
+      "gt": "error_E2",
+      "verdict": "Anomaly",
+      "vlm_verdict_full": "Anomaly: Temperature field shows a smooth vertical gradient from bottom (~309K) to top (~300K) with no convective cell structure. For bottom-heated Rayleigh-Benard at Ra=5,000 (above critical Ra~1,708), convection cells should form and distort the temperature field. This purely stratified profile suggests boundary conditions may be swapped or the buoyancy direction is inverted, stabilizing the configuration.",
+      "vlm_reasoning": "Purely stratified temperature without convection cells above critical Ra; suggests stable stratification from BC swap (hot on top instead of bottom) or inverted gravity.",
+      "match": true
+    },
+    {
+      "id": 34,
+      "code": "QA-T284",
+      "case": "S9_E1_underconverged",
+      "gt": "error_E1",
+      "verdict": "Anomaly",
+      "vlm_verdict_full": "Anomaly: Velocity field shows extremely weak velocities (max ~1.9e-4 m/s) with small, disorganized vortices near walls rather than developed convection cells. At Ra=5,000 (above critical), well-formed counter-rotating cells should fill the domain. The flow is orders of magnitude weaker than expected and structurally undeveloped.",
+      "vlm_reasoning": "Velocities are negligible with no organized convection cells; severely underconverged for Ra=5,000 which should produce clear Benard cells.",
+      "match": true
+    },
+    {
+      "id": 35,
+      "code": "QA-T285",
+      "case": "S8_correct_fine",
+      "gt": "correct",
+      "verdict": "OK",
+      "vlm_verdict_full": "OK",
+      "vlm_reasoning": "Fine mesh resolves the wake vortex behind the bump with smooth, well-defined recirculation streamlines. Multiple vortex structures visible downstream including primary and secondary recirculation zones. Velocity contours are smooth with no mesh artifacts. The flow acceleration over the bump and wake structure are well-resolved.",
+      "match": true
+    },
+    {
+      "id": 36,
+      "code": "QA-T286",
+      "case": "S6_correct_Ra1e5",
+      "gt": "correct",
+      "verdict": "OK",
+      "vlm_verdict_full": "OK",
+      "vlm_reasoning": "Velocity contour and streamlines show a single large circulation cell with thin boundary layers along hot (left) and cold (right) walls. At Ra=1e5, boundary layers are thinner than Ra=1e4 case, core has weaker but visible secondary structures. Peak velocity ~0.14 m/s. Clockwise rotation is correct. BL thinning with increasing Ra is physically consistent.",
+      "match": true
+    },
+    {
+      "id": 37,
+      "code": "QA-T287",
+      "case": "S6_E5_coarse_mesh",
+      "gt": "error_E5",
+      "verdict": "Anomaly",
+      "vlm_verdict_full": "Anomaly: Temperature contour shows visible stepped/blocky isotherms, especially in the boundary layer regions near the hot and cold walls. The S-shaped convective distortion of isotherms is present (correct topology) but the spatial resolution produces staircase-like contour artifacts rather than smooth curves. The boundary layer thermal gradients are under-resolved.",
+      "vlm_reasoning": "Coarse mesh produces staircase contour artifacts in thermal boundary layers; convective pattern topology is correct but spatial resolution is inadequate.",
+      "match": true
+    }
+  ]
+}

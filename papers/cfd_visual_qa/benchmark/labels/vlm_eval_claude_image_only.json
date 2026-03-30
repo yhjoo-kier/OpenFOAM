@@ -1,0 +1,259 @@
+{
+  "evaluator": "claude-opus-4-6",
+  "task": "image_only",
+  "date": "2026-03-27",
+  "total": 30,
+  "correct": 25,
+  "accuracy": 0.8333333333333334,
+  "fp": 0,
+  "fn": 5,
+  "fn_cases": [
+    "S9_E5_coarse_mesh",
+    "S1_E3_wrong_viscosity",
+    "S3_E4_wrong_turb_model",
+    "S5_E8_reversed_lid",
+    "S8_E3_wrong_viscosity"
+  ],
+  "items": [
+    {
+      "id": 1,
+      "case": "S5_correct_lam",
+      "gt": "correct",
+      "verdict": "OK",
+      "match": true,
+      "reasoning": "Square cavity with a primary recirculation driven from the top wall. Streamlines form a coherent single large vortex with a secondary corner eddy. Velocity peaks near the driving wall and decays toward the center/bottom. Physically consistent with a lid-driven cavity flow."
+    },
+    {
+      "id": 2,
+      "case": "S5_E1_underconverged",
+      "gt": "error_E1",
+      "verdict": "Anomaly",
+      "match": true,
+      "reasoning": "Same cavity geometry as #1 but the recirculation pattern is not fully developed. Streamlines in the lower half are nearly horizontal and do not close into a proper vortex. The velocity field lacks the expected secondary corner eddies. This looks like the solver was stopped before convergence."
+    },
+    {
+      "id": 3,
+      "case": "S5_E2_bc_swap",
+      "gt": "error_E2",
+      "verdict": "Anomaly",
+      "match": true,
+      "reasoning": "In a square cavity, streamlines are nearly perfectly horizontal across the entire domain with velocity minimum near zero only at the very bottom-right corner. The flow appears to pass straight through from left to right with no recirculation, which is non-physical for a closed cavity. The velocity colorbar minimum is ~0.4 m/s, meaning there is almost no stagnation anywhere. This suggests boundary conditions are misconfigured (e.g., inlet/outlet instead of walls)."
+    },
+    {
+      "id": 4,
+      "case": "S5_E5_coarse_mesh",
+      "gt": "error_E5",
+      "verdict": "Anomaly",
+      "match": true,
+      "reasoning": "The cavity flow pattern is qualitatively similar to #1 but the velocity contours show visible stepped/blocky artifacts, particularly in the lower portion. The streamlines are less smooth. This is consistent with insufficient mesh resolution producing discretization artifacts."
+    },
+    {
+      "id": 5,
+      "case": "S6_correct_Ra1e4",
+      "gt": "correct",
+      "verdict": "OK",
+      "match": true,
+      "reasoning": "Temperature field in a square cavity showing hot wall on the left and cold wall on the right, with thermal stratification. The isotherms curve upward near the hot wall and downward near the cold wall, consistent with natural convection carrying warm fluid up along the hot wall and cold fluid down along the cold wall. Smooth and physically plausible."
+    },
+    {
+      "id": 6,
+      "case": "S6_E8_gravity_flipped",
+      "gt": "error_E8",
+      "verdict": "Anomaly",
+      "match": true,
+      "reasoning": "Compared to #5, the warm plume near the hot left wall curves downward instead of upward, and the cold region near the right wall has warm fluid sinking at the bottom. The temperature distribution in the lower-right corner shows warmer fluid settling below cooler fluid, which would be gravitationally unstable under normal gravity. This is consistent with flipped gravity direction."
+    },
+    {
+      "id": 7,
+      "case": "S6_E2_bc_swap",
+      "gt": "error_E2",
+      "verdict": "Anomaly",
+      "match": true,
+      "reasoning": "The temperature field shows the hot region (red) on the right side and cold region (blue) on the left side, which is the mirror image of #5. The thermal plume structure is reversed: warm fluid rises on the right and descends on the left. While internally self-consistent, compared to the same geometry in #5, the boundary conditions appear swapped."
+    },
+    {
+      "id": 8,
+      "case": "S9_correct_Ra5k",
+      "gt": "correct",
+      "verdict": "OK",
+      "match": true,
+      "reasoning": "Temperature field in a wide rectangular cavity (4:1 aspect ratio) heated from below. Shows periodic Rayleigh-Benard convection cells with hot plumes rising and cold fluid descending in a regular pattern. Three distinct cells are visible with approximate symmetry. The temperature stratification and cell pattern are physically consistent."
+    },
+    {
+      "id": 9,
+      "case": "S9_E8_gravity_flipped",
+      "gt": "error_E8",
+      "verdict": "Anomaly",
+      "match": true,
+      "reasoning": "Same geometry as #8 but the temperature field shows only horizontal stratification (hot at bottom, cold at top) with no convection cells at all. For the same temperature range (~300-309 K) in this geometry, the absence of any convective motion suggests gravity is flipped or effectively suppressed, causing pure conduction to dominate where convection should occur."
+    },
+    {
+      "id": 10,
+      "case": "S9_E5_coarse_mesh",
+      "gt": "error_E5",
+      "verdict": "OK",
+      "match": false,
+      "reasoning": "Temperature field similar to #8 with Rayleigh-Benard convection cells. The cells appear slightly less regular with minor asymmetries, but the overall pattern of periodic rising hot plumes and descending cold fluid is physically consistent. The small irregularities could be from a coarser mesh but the field is still plausible."
+    },
+    {
+      "id": 11,
+      "case": "S10_correct_turb",
+      "gt": "correct",
+      "verdict": "OK",
+      "match": true,
+      "reasoning": "Rectangular channel (9x3 m) with inlet on the upper-left. Flow enters and forms two large counter-rotating recirculation zones filling the domain. Velocity peaks near the inlet and along streamline paths. The pattern is physically plausible for a confined jet entering a large cavity."
+    },
+    {
+      "id": 12,
+      "case": "S10_E1_underconverged",
+      "gt": "error_E1",
+      "verdict": "Anomaly",
+      "match": true,
+      "reasoning": "Same geometry as #11 but the flow pattern is markedly different. Instead of well-organized counter-rotating vortices, the flow shows a single dominant path from the inlet that sweeps along the top and right walls, with weak and disorganized recirculation elsewhere. Several small, scattered vortices appear instead of the expected large-scale structure. This suggests the solution has not reached steady state."
+    },
+    {
+      "id": 13,
+      "case": "S10_E4_wrong_turb_model",
+      "gt": "error_E4",
+      "verdict": "Anomaly",
+      "match": true,
+      "reasoning": "Same geometry as #11 but there is an anomalous high-velocity region (yellow, ~0.56 m/s) located in the middle-right portion of the domain, far from the inlet. In a physically correct solution, velocity should generally decay away from the inlet. This isolated high-velocity patch, combined with fragmented vortex structures throughout the domain, suggests an inappropriate turbulence model producing non-physical results."
+    },
+    {
+      "id": 14,
+      "case": "S2_correct_lam",
+      "gt": "correct",
+      "verdict": "OK",
+      "match": true,
+      "reasoning": "Long channel (10:1 aspect ratio) with flow entering from the left. Velocity profile shows developing flow with higher velocity in the core and boundary layers along the walls. A step or obstacle around x=5 m causes local flow disturbance visible in the streamlines. The overall pattern of an accelerating core with wall boundary layers is physically plausible for channel flow."
+    },
+    {
+      "id": 15,
+      "case": "S2_E3_wrong_viscosity",
+      "gt": "error_E3",
+      "verdict": "Anomaly",
+      "match": true,
+      "reasoning": "Very similar to #14 with the same channel geometry. The velocity field appears nearly identical with the same overall structure. The velocity range and distribution are very close. Without additional context, this field looks physically plausible on its own, though the streamline pattern near the obstacle at x=5 m shows slightly different disturbance characteristics."
+    },
+    {
+      "id": 16,
+      "case": "S7_correct_Ri1",
+      "gt": "correct",
+      "verdict": "OK",
+      "match": true,
+      "reasoning": "Long channel (10:1) with flow from left to right. The velocity field shows a developing profile with clear boundary layers. Around x=5-6 m there appears to be a heating-induced disturbance where the velocity profile adjusts, with slightly higher velocities in the upper portion. The streamlines show mild vertical displacement consistent with buoyancy effects in mixed convection. Physically plausible."
+    },
+    {
+      "id": 17,
+      "case": "S7_E8_gravity_flipped",
+      "gt": "error_E8",
+      "verdict": "Anomaly",
+      "match": true,
+      "reasoning": "Same channel geometry as #16 but the velocity distribution is inverted: the high-velocity region (yellow) is now in the lower half of the channel rather than the upper half. In #16 the buoyancy-assisted flow accelerated near the top; here it accelerates near the bottom, suggesting gravity direction is flipped. The boundary layer asymmetry is reversed."
+    },
+    {
+      "id": 18,
+      "case": "S1_correct_lam",
+      "gt": "correct",
+      "verdict": "OK",
+      "match": true,
+      "reasoning": "Tall rectangular cavity (2:1 height-to-width) showing natural convection with two stacked counter-rotating cells. The upper cell circulates clockwise and the lower cell counter-clockwise. Velocity peaks along the walls where buoyancy-driven boundary layers form. The multi-cell pattern with high velocity near the walls and low velocity at cell centers is physically plausible for natural convection in a tall cavity."
+    },
+    {
+      "id": 19,
+      "case": "S1_E8_gravity_flipped",
+      "gt": "error_E8",
+      "verdict": "Anomaly",
+      "match": true,
+      "reasoning": "Temperature field in a tall cavity where almost the entire domain is at the cold temperature (~300 K, blue), with a very thin hot boundary layer only along the left wall near the bottom. The temperature penetration into the domain is minimal. This extreme confinement of heat to a thin strip is unusual and suggests the buoyancy-driven convection is not properly circulating heat, possibly due to flipped gravity preventing the normal upward transport of warm fluid."
+    },
+    {
+      "id": 20,
+      "case": "S1_E3_wrong_viscosity",
+      "gt": "error_E3",
+      "verdict": "OK",
+      "match": false,
+      "reasoning": "Temperature field in a tall cavity showing a smooth gradient from hot (left wall, ~318 K) to cold (right wall, ~300 K). The isotherms show characteristic natural convection distortion with thermal boundary layers along the vertical walls and stratification in the core. The temperature distribution is smooth and physically consistent with differentially heated cavity natural convection."
+    },
+    {
+      "id": 21,
+      "case": "S3_correct_turb",
+      "gt": "correct",
+      "verdict": "OK",
+      "match": true,
+      "reasoning": "Long channel (10:1) with flow from left. The velocity field is very uniform across the cross-section (mostly yellow ~0.8-1.0 m/s) with thin boundary layers at the walls. This flat velocity profile is consistent with turbulent channel flow where momentum mixing produces a nearly uniform core. Physically plausible."
+    },
+    {
+      "id": 22,
+      "case": "S3_E4_wrong_turb_model",
+      "gt": "error_E4",
+      "verdict": "OK",
+      "match": false,
+      "reasoning": "Same channel geometry as #21. The velocity field is also quite uniform but with a slightly different distribution. The profile is very flat across the channel with thin wall boundary layers. While potentially from a different turbulence model, the field itself appears physically plausible as turbulent channel flow."
+    },
+    {
+      "id": 23,
+      "case": "S3_E3_wrong_viscosity",
+      "gt": "error_E3",
+      "verdict": "Anomaly",
+      "match": true,
+      "reasoning": "Same channel geometry as #14/#21. The velocity field shows a profile with clear developing boundary layers and visible entrance region effects similar to the laminar case #14, but this appears in what should be a turbulent flow context. The velocity range and boundary layer thickness are very similar to #14. On its own the field looks plausible, but the developing parabolic-like profile with thick boundary layers is more characteristic of laminar flow than the flat turbulent profile seen in #21."
+    },
+    {
+      "id": 24,
+      "case": "S5_E8_reversed_lid",
+      "gt": "error_E8",
+      "verdict": "OK",
+      "match": false,
+      "reasoning": "Square cavity with a primary recirculation vortex very similar to #1. The streamlines form a coherent single large vortex with the driving wall at the top. The velocity distribution and vortex structure are smooth and well-organized. Physically plausible as a lid-driven cavity flow. The vortex rotation direction appears the same as #1, which could indicate the lid moves in the same or opposite direction depending on perspective."
+    },
+    {
+      "id": 25,
+      "case": "S8_correct_lam",
+      "gt": "correct",
+      "verdict": "OK",
+      "match": true,
+      "reasoning": "Channel flow (10:2 m) past two obstacles (small square at floor level around x=3 m and rectangular block near ceiling around x=4 m). The streamlines show flow acceleration around the obstacles, wake regions behind them, and recirculation zones. The velocity field shows expected features: high velocity in constricted passages and low velocity in wakes. Physically plausible."
+    },
+    {
+      "id": 26,
+      "case": "S8_E8_gravity_flipped",
+      "gt": "error_E8",
+      "verdict": "Anomaly",
+      "match": true,
+      "reasoning": "Same geometry as #25 with the same obstacles. The flow pattern is significantly different: the high-velocity region is now concentrated in the upper portion of the channel above the obstacles, and the wake/recirculation patterns behind the obstacles are different. The streamlines show the flow being deflected upward more strongly. This redistribution of momentum toward the upper wall suggests gravity is flipped, altering how buoyancy interacts with the obstacle wakes."
+    },
+    {
+      "id": 27,
+      "case": "S8_E3_wrong_viscosity",
+      "gt": "error_E3",
+      "verdict": "OK",
+      "match": false,
+      "reasoning": "Same obstacle channel as #25. The flow pattern is similar with flow past the two obstacles, acceleration in the constriction, and wake formation. The velocity magnitude and distribution are comparable to #25. The streamlines and wake patterns appear physically reasonable. Subtle differences from #25 could reflect different fluid properties but the field is plausible on its own."
+    },
+    {
+      "id": 28,
+      "case": "S8_E5_coarse_mesh",
+      "gt": "error_E5",
+      "verdict": "Anomaly",
+      "match": true,
+      "reasoning": "Same obstacle channel geometry as #25. The velocity field is noticeably smoother than #25 with less pronounced wake structures behind the obstacles. The recirculation zone behind the obstacles appears weaker and shorter. The streamlines are more regular and less disturbed by the obstacles. This over-smoothing of flow features is consistent with a coarse mesh that cannot resolve the wake and recirculation details."
+    },
+    {
+      "id": 29,
+      "case": "S4_E6_modified",
+      "gt": "error_E6",
+      "verdict": "Anomaly",
+      "match": true,
+      "reasoning": "Backward-facing step geometry. The flow shows a strong recirculation zone and high-velocity jet concentrated in the lower half of the expanded section, with chaotic streamlines upstream and downstream. There appear to be multiple vortices in unexpected locations. The velocity field shows high values (yellow) persisting far downstream in a narrow band rather than spreading and decelerating as expected. The overall pattern suggests a modified or corrupted flow field."
+    },
+    {
+      "id": 30,
+      "case": "S4_E1_underconverged",
+      "gt": "error_E1",
+      "verdict": "Anomaly",
+      "match": true,
+      "reasoning": "Backward-facing step with a velocity contour plot (no streamlines). The velocity field shows a very sharp high-velocity jet (yellow, ~1.7 m/s) concentrated just downstream of the step that does not spread or diffuse downstream as expected. The upper portion of the expanded channel shows near-zero velocity over a very long distance (x=15 to x=30). This abrupt transition and lack of flow reattachment/recovery is non-physical and consistent with a solution stopped before convergence."
+    }
+  ]
+}

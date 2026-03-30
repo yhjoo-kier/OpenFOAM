@@ -1,0 +1,75 @@
+{
+  "batch_id": "day_01_batch1",
+  "date": "2026-03-25",
+  "source": "direct_session",
+  "expert": "domain_expert_thermal_fluid",
+  "labeling_format": "plan_A",
+  "items": [
+    {
+      "id": 1,
+      "case": "S4_correct_turb",
+      "image": "S4_correct_turb_V1.png",
+      "question": "물리적으로 타당한가?",
+      "ground_truth": "correct",
+      "expert_response": "OK",
+      "expert_verdict": "correct",
+      "match": true
+    },
+    {
+      "id": 2,
+      "case": "S4_correct_turb",
+      "image": "S4_correct_turb_V6.png",
+      "question": "recirculation 재부착 x좌표 추정?",
+      "ground_truth": "correct",
+      "expert_response": "OK",
+      "expert_verdict": "correct",
+      "match": true,
+      "notes": "Expert did not provide specific x-coordinate estimate but confirmed physically plausible"
+    },
+    {
+      "id": 3,
+      "case": "S4_correct_lam",
+      "image": "S4_correct_lam_V1.png",
+      "ground_truth": "correct",
+      "expert_response": "OK",
+      "expert_verdict": "correct",
+      "match": true
+    },
+    {
+      "id": 4,
+      "case": "S4_E1_underconverged",
+      "image": "S4_E1_underconverged_V1.png",
+      "ground_truth": "error_E1_underconverged",
+      "expert_response": "이상해보임, x=10m 위치 상단부에 국소적인 고유속 영역이 보이는데 이게 생길만한 상황이 아닌 것 같음",
+      "expert_verdict": "error_detected",
+      "match": true,
+      "error_localization": "x≈10m, upper region",
+      "error_description": "Localized high-velocity anomaly in upper region at x=10m",
+      "notes": "Expert correctly identified the non-physical pattern caused by under-convergence. Precise localization provided."
+    },
+    {
+      "id": 5,
+      "case": "S4_E2_bc_swap",
+      "image": "S4_E2_bc_swap_V1.png",
+      "ground_truth": "error_E2_bc_swap",
+      "expert_response": "OK",
+      "expert_verdict": "correct",
+      "match": false,
+      "notes": "FALSE NEGATIVE: Expert did not detect BC swap error. This confirms E2 (boundary condition swap) is a 'subtle' difficulty error — the flow pattern appears plausible even though inlet/outlet are reversed. Valuable benchmark data point."
+    }
+  ],
+  "overall_observation": {
+    "text": "1, 5번은 출구 유속 분포가 flat한 느낌이고 3, 4번은 출구 유속 분포가 laminar 유동의 fully developed 같은 포물선 경향처럼 보임",
+    "interpretation": "Expert correctly distinguished turbulent (flat profile, cases 1&5: Re=36000) vs laminar (parabolic profile, cases 3&4: Re=200/36000-underconverged) outlet velocity distributions. This is a Level 4 (quantitative reasoning) observation.",
+    "physics_accuracy": "correct — turbulent profiles are flatter due to enhanced mixing, laminar profiles approach parabolic Poiseuille solution"
+  },
+  "summary": {
+    "total_items": 5,
+    "correct_correct": 2,
+    "correct_error_detected": 1,
+    "false_negative": 1,
+    "not_applicable": 1,
+    "accuracy_binary": 0.75,
+    "notes": "4/5 items correctly classified (2 correct→correct, 1 error→detected, 1 error→missed). The missed item (E2 BC swap) validates the 'subtle' severity rating. Expert also provided unprompted L4-level observation about velocity profile shapes."
+  }
+}

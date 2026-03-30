@@ -1,0 +1,170 @@
+{
+  "generated": "2026-03-28",
+  "benchmark": {
+    "scenarios": 10,
+    "cases": 60,
+    "images": 258,
+    "qa_questions": 279,
+    "error_types": 7,
+    "visualization_types": 6
+  },
+  "evaluators": {
+    "claude_opus_46": {
+      "items": 75,
+      "trials": 3,
+      "total_judgments": 225,
+      "trial_accuracy": [
+        98.7,
+        100.0,
+        100.0
+      ],
+      "mean_accuracy": 99.6,
+      "majority_vote_accuracy": 100.0,
+      "per_item_consistency_3of3": 74,
+      "per_item_consistency_2of3": 1,
+      "total_fp": 1,
+      "total_fn": 0,
+      "fp_details": [
+        "S8_correct_lam V6 (Trial 1 only, stochastic)"
+      ],
+      "image_only": {
+        "items": 30,
+        "accuracy": 83.3,
+        "fp": 0,
+        "fn": 5,
+        "fn_cases": [
+          "S2_E3_wrong_viscosity",
+          "S1_E3_wrong_viscosity",
+          "S3_E4_wrong_turb_model",
+          "S5_E8_reversed_lid",
+          "S9_E5_coarse_mesh"
+        ],
+        "gap_from_setup_conditioned": -15.4
+      }
+    },
+    "gemini_31": {
+      "items": 30,
+      "trials": 3,
+      "total_judgments": 90,
+      "trial_accuracy": [
+        86.2,
+        86.2,
+        90.0
+      ],
+      "mean_accuracy": 87.5,
+      "total_fp": 3,
+      "total_fn": 8,
+      "consistent_fn": [
+        "S7_E8_gravity_flipped (3/3 missed)"
+      ],
+      "consistent_fp": [
+        "S1_correct_lam (2/3 flagged)"
+      ],
+      "image_only": {
+        "items": 24,
+        "accuracy_valid": 79.2,
+        "fp": 3,
+        "fn": 2,
+        "gap_from_setup_conditioned": -8.3
+      }
+    },
+    "gpt5_codex": {
+      "items": 30,
+      "trials": 1,
+      "model": "gpt-5.4 (via Codex CLI)",
+      "setup_conditioned": {
+        "accuracy": 56.7,
+        "fp": 1,
+        "fn": 12,
+        "fp_cases": ["S3_correct_turb"],
+        "fn_cases": ["S5_E1_underconverged", "S5_E5_coarse_mesh", "S6_E8_gravity_flipped", "S6_E2_bc_swap", "S9_E5_coarse_mesh", "S10_E1_underconverged", "S2_E3_wrong_viscosity", "S1_E3_wrong_viscosity", "S3_E3_wrong_viscosity", "S5_E8_reversed_lid", "S8_E3_wrong_viscosity", "S4_E1_underconverged"]
+      },
+      "image_only": {
+        "accuracy": 43.3,
+        "fp": 1,
+        "fn": 16,
+        "gap_from_setup_conditioned": -13.4
+      }
+    },
+    "domain_expert": {
+      "items": 80,
+      "trials": 1,
+      "accuracy": 73.8,
+      "total_fp": 2,
+      "total_fn": 19,
+      "fp_details": [
+        "S8_correct_lam V6",
+        "S8_correct_lam V5"
+      ],
+      "image_only": {
+        "items": 30,
+        "accuracy": 66.7,
+        "fp": 2,
+        "fn": 8,
+        "fp_cases": ["S7_correct_Ri1", "S8_correct_lam"],
+        "fn_cases": [
+          "S5_E1_underconverged",
+          "S5_E5_coarse_mesh",
+          "S6_E2_bc_swap",
+          "S2_E3_wrong_viscosity",
+          "S3_E4_wrong_turb_model",
+          "S3_E3_wrong_viscosity",
+          "S5_E8_reversed_lid",
+          "S8_E3_wrong_viscosity"
+        ],
+        "gap_from_setup_conditioned": -7.1
+      }
+    }
+  },
+  "per_error_type_recall": {
+    "E1_underconverged": {
+      "claude": 100,
+      "gemini": 100,
+      "expert": 73
+    },
+    "E2_bc_swap": {
+      "claude": 100,
+      "gemini": 50,
+      "expert": 20
+    },
+    "E3_wrong_viscosity": {
+      "claude": 100,
+      "gemini": 67,
+      "expert": 29
+    },
+    "E4_wrong_turb_model": {
+      "claude": 100,
+      "gemini": 100,
+      "expert": 50
+    },
+    "E5_coarse_mesh": {
+      "claude": 100,
+      "gemini": 50,
+      "expert": 44
+    },
+    "E6_modified": {
+      "claude": 100,
+      "gemini": "N/A",
+      "expert": 100
+    },
+    "E8_gravity_flip": {
+      "claude": 100,
+      "gemini": 80,
+      "expert": 100
+    }
+  },
+  "key_findings": [
+    "Claude Opus achieves near-perfect setup-conditioned CFD validation (99.6%, majority vote 100%)",
+    "Expert blind spot: BC swap (20% recall) and wrong viscosity (29% recall)",
+    "Gemini blind spot: S7 gravity flip consistently missed (3/3 trials)",
+    "Contamination paradox: blind evaluation outperforms non-blind (100% vs 87%)",
+    "Multi-trial consistency: 98.7% per-item 3/3 agreement for Claude",
+    "Shared FP on S8_correct_lam: complex wake fools both human and VLM",
+    "VLM strategy: systematic setup-image cross-referencing vs expert gestalt assessment",
+    "Setup-conditioned evaluation critical: Claude drops 15.4pp, Gemini 8.3pp, Expert 7.1pp without setup text",
+    "Image-only mode confirms original hypothesis: VLMs miss parameter-mismatch errors without setup",
+    "GPT-5.4 via Codex: 56.7% setup-conditioned, 43.3% image-only — strong OK bias, misses 12/20 errors",
+    "Not all frontier VLMs can do CFD validation: GPT-5.4 vs Claude reveals model-specific capability gap",
+    "Expert image-only: 66.7% (FP=2, FN=8) — expert drops least (-7.1pp) because gestalt strategy barely uses setup text"
+  ]
+}

@@ -1,0 +1,11 @@
+## Item 10: CFD-69AE — V2
+
+**Problem Setup:** Rayleigh-Bénard (4m×1m). Bottom 310K, top 300K. Ra=20,000. Temperature contour.
+
+**Question:** Is the convection cell structure well-resolved? Any anomalies in the temperature distribution?
+
+**Image:** CFD-69AE_V2.png
+
+Evaluate whether the flow/temperature field shown in the image is physically plausible given the problem setup. Answer:
+- 'OK' if plausible
+- 'Anomaly: [explanation]' if something appears non-physical

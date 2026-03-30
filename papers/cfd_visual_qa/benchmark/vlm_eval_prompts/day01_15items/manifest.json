@@ -1,0 +1,137 @@
+[
+  {
+    "id": 1,
+    "code": "CFD-C974",
+    "case": "S5_correct_lam",
+    "viz": "V6",
+    "setup": "Lid-driven cavity (1m\u00d71m). Re=100 laminar. Top wall moves right at U=1m/s. Other 3 walls stationary. Velocity contour + streamlines.",
+    "question": "Is the primary vortex location and rotation direction physically plausible for a lid-driven cavity flow?",
+    "image_file": "CFD-C974_V6.png"
+  },
+  {
+    "id": 2,
+    "code": "CFD-F1B1",
+    "case": "S5_E1_underconverged",
+    "viz": "V6",
+    "setup": "Lid-driven cavity (1m\u00d71m). Re=10,000 turbulent. Top wall moves right at U=1m/s. k-\u03c9 SST. Velocity contour + streamlines.",
+    "question": "Has the flow pattern developed adequately for a lid-driven cavity?",
+    "image_file": "CFD-F1B1_V6.png"
+  },
+  {
+    "id": 3,
+    "code": "CFD-BF24",
+    "case": "S5_E2_bc_swap",
+    "viz": "V6",
+    "setup": "Lid-driven cavity (1m\u00d71m). Re=10,000 turbulent. Moving wall (lid) at U=1m/s. k-\u03c9 SST. Velocity contour + streamlines.",
+    "question": "Does the primary vortex rotation and high-velocity region match the lid movement direction?",
+    "image_file": "CFD-BF24_V6.png"
+  },
+  {
+    "id": 4,
+    "code": "CFD-5DA1",
+    "case": "S5_E5_coarse_mesh",
+    "viz": "V6",
+    "setup": "Lid-driven cavity (1m\u00d71m). Re=10,000 turbulent. Top lid moves right. k-\u03c9 SST. Velocity contour + streamlines.",
+    "question": "Is the vortex structure resolution adequate? Are corner secondary vortices resolved?",
+    "image_file": "CFD-5DA1_V6.png"
+  },
+  {
+    "id": 5,
+    "code": "CFD-989B",
+    "case": "S6_correct_Ra1e4",
+    "viz": "V2",
+    "setup": "Differentially heated cavity (1m\u00d71m). Left wall hot (305K), right wall cold (295K), top/bottom adiabatic. Ra=10^4. Temperature contour.",
+    "question": "Is the temperature distribution and isotherm shape physically plausible for natural convection?",
+    "image_file": "CFD-989B_V2.png"
+  },
+  {
+    "id": 6,
+    "code": "CFD-D53F",
+    "case": "S6_E8_gravity_flipped",
+    "viz": "V2",
+    "setup": "Differentially heated cavity (1m\u00d71m). Left 305K, right 295K, top/bottom adiabatic. Ra=10^4. Temperature contour.",
+    "question": "Does the temperature distribution match the expected natural convection heat transfer pattern?",
+    "image_file": "CFD-D53F_V2.png"
+  },
+  {
+    "id": 7,
+    "code": "CFD-38C3",
+    "case": "S6_E2_bc_swap",
+    "viz": "V2",
+    "setup": "Differentially heated cavity (1m\u00d71m). Wall temperature BCs applied for natural convection. Ra=10^4. Temperature contour.",
+    "question": "Are the hot/cold wall positions and convection circulation direction physically consistent?",
+    "image_file": "CFD-38C3_V2.png"
+  },
+  {
+    "id": 8,
+    "code": "CFD-54D8",
+    "case": "S9_correct_Ra5k",
+    "viz": "V2",
+    "setup": "Rayleigh-B\u00e9nard convection (4m\u00d71m cavity). Bottom wall heated (310K), top wall cooled (300K), sidewalls adiabatic. Ra=5,000. Temperature contour.",
+    "question": "Are convection cells observed? Is the cell pattern plausible for Ra=5,000?",
+    "image_file": "CFD-54D8_V2.png"
+  },
+  {
+    "id": 9,
+    "code": "CFD-3F08",
+    "case": "S9_E8_gravity_flipped",
+    "viz": "V2",
+    "setup": "Rayleigh-B\u00e9nard (4m\u00d71m). Bottom heated (310K), top cooled (300K). Ra=5,000. Temperature contour.",
+    "question": "Is this temperature distribution physically plausible for bottom-heated + top-cooled conditions?",
+    "image_file": "CFD-3F08_V2.png"
+  },
+  {
+    "id": 10,
+    "code": "CFD-69AE",
+    "case": "S9_E5_coarse_mesh",
+    "viz": "V2",
+    "setup": "Rayleigh-B\u00e9nard (4m\u00d71m). Bottom 310K, top 300K. Ra=20,000. Temperature contour.",
+    "question": "Is the convection cell structure well-resolved? Any anomalies in the temperature distribution?",
+    "image_file": "CFD-69AE_V2.png"
+  },
+  {
+    "id": 11,
+    "code": "CFD-8E1E",
+    "case": "S10_correct_turb",
+    "viz": "V6",
+    "setup": "Ventilated room (9m\u00d73m). Slot inlet at top-left (0.168m, U=0.455m/s), slot outlet at bottom-right. Re\u22485,000. k-\u03c9 SST. Velocity contour + streamlines.",
+    "question": "Is the inlet jet ceiling attachment (Coanda effect) and indoor circulation pattern physically plausible?",
+    "image_file": "CFD-8E1E_V6.png"
+  },
+  {
+    "id": 12,
+    "code": "CFD-1C3A",
+    "case": "S10_E1_underconverged",
+    "viz": "V6",
+    "setup": "Ventilated room (9m\u00d73m). Top-left slot inlet, bottom-right outlet. Re\u22485,000. k-\u03c9 SST. Velocity contour + streamlines.",
+    "question": "Has the flow pattern developed adequately for a ventilated room?",
+    "image_file": "CFD-1C3A_V6.png"
+  },
+  {
+    "id": 13,
+    "code": "CFD-4684",
+    "case": "S10_E4_wrong_turb_model",
+    "viz": "V6",
+    "setup": "Ventilated room (9m\u00d73m). Top-left inlet, bottom-right outlet. Re\u22485,000. Laminar solver. Velocity contour + streamlines.",
+    "question": "Is this flow pattern physically plausible at Re\u22485,000?",
+    "image_file": "CFD-4684_V6.png"
+  },
+  {
+    "id": 14,
+    "code": "CFD-546B",
+    "case": "S2_correct_lam",
+    "viz": "V6",
+    "setup": "2D channel flow (10m\u00d71m). Left inlet U=1m/s uniform, right outlet. Re=100 laminar. Top/bottom no-slip walls. Velocity contour + streamlines.",
+    "question": "Is the velocity profile development (uniform\u2192parabolic) observed? Physically plausible?",
+    "image_file": "CFD-546B_V6.png"
+  },
+  {
+    "id": 15,
+    "code": "CFD-03C9",
+    "case": "S2_E3_wrong_viscosity",
+    "viz": "V6",
+    "setup": "2D channel flow (10m\u00d71m). Left inlet U=1m/s, right outlet. Laminar. Top/bottom no-slip. Velocity contour + streamlines.",
+    "question": "Is the velocity profile development rate and shape plausible for channel flow?",
+    "image_file": "CFD-03C9_V6.png"
+  }
+]

@@ -1,0 +1,276 @@
+{
+  "evaluator": "claude-opus-4-6",
+  "task": "image_only",
+  "date": "2026-03-29",
+  "total": 30,
+  "correct": 10,
+  "accuracy": 0.3333333333333333,
+  "fp": 0,
+  "fn": 20,
+  "fn_cases": [
+    "S5_E1_underconverged",
+    "S5_E5_coarse_mesh",
+    "S6_E8_gravity_flipped",
+    "S6_E2_bc_swap",
+    "S9_E8_gravity_flipped",
+    "S9_E5_coarse_mesh",
+    "S10_E1_underconverged",
+    "S10_E4_wrong_turb_model",
+    "S2_E3_wrong_viscosity",
+    "S7_E8_gravity_flipped",
+    "S1_E8_gravity_flipped",
+    "S1_E3_wrong_viscosity",
+    "S3_E4_wrong_turb_model",
+    "S3_E3_wrong_viscosity",
+    "S5_E8_reversed_lid",
+    "S8_E8_gravity_flipped",
+    "S8_E3_wrong_viscosity",
+    "S8_E5_coarse_mesh",
+    "S4_E6_modified",
+    "S4_E1_underconverged"
+  ],
+  "fp_cases": [],
+  "items": [
+    {
+      "id": 1,
+      "case": "S5_correct_lam",
+      "gt": "correct",
+      "verdict": "OK",
+      "match": true,
+      "reasoning": "This is a classic lid-driven cavity flow, which is one of the most well-known benchmark problems in computational fluid dynamics. The visualization is physically plausible for the following reasons:\n\n1. **Top lid motion**: The highest velocities (yellow, ~0.87 m/s) occur along the top wall (y = 1.0), consistent with a moving lid driving the flow from left to right.\n\n2. **Primary vortex**: A large clockwise recirculation occupies most of the cavity, with its center located slightly above and to the right of the geometric center (approximately x \u2248 0.55, y \u2248 0.75), which is characteristic of moderate Reynolds number lid-driven cavity flows.\n\n3. **Velocity distribution**: The velocity magnitude decreases toward the walls (no-slip boundaries) and toward the lower portions of the cavity, which is physically consistent.\n\n4. **Corner behavior**: The lower corners show hints of secondary vortices (small recirculation zones), which are expected features of lid-driven cavity flows at moderate Reynolds numbers.\n\n5. **Streamline pattern**: The streamlines form coherent, smooth curves consistent with a steady-state or well-converged solution. The vortex center shows near-zero velocity (dark purple), as expected.\n\nThe Reynolds number appears to be in the range of approximately 400\u2013"
+    },
+    {
+      "id": 2,
+      "case": "S5_E1_underconverged",
+      "gt": "error_E1",
+      "verdict": "OK",
+      "match": false,
+      "reasoning": "This is a classic lid-driven cavity flow, which is one of the most well-known benchmark problems in computational fluid dynamics. The visualization shows:\n\n1. **Top lid moving to the right**: The highest velocities (yellow/green, ~0.5-0.6 m/s) are along the top wall, consistent with a moving lid boundary condition.\n2. **Primary vortex**: A large clockwise recirculating vortex occupies most of the cavity, centered slightly toward the upper-right region, which is characteristic of lid-driven cavity flows at moderate Reynolds numbers.\n3. **Secondary corner vortices**: Small recirculation regions are visible in the bottom corners, which is physically expected.\n4. **No-slip walls**: Velocity drops to near zero (dark purple) at the three stationary walls (left, right, bottom), consistent with no-slip boundary conditions.\n5. **Streamline pattern**: The streamlines show a smooth, coherent single primary vortex with the flow moving right along the top, down along the right wall, left along the bottom, and up along the left wall.\n6. **Velocity magnitude range**: The maximum velocity (~0.59 m/s) is less than 1 m/s, suggesting the lid speed is around 1 m/s with expected velocity reduction in the interior \u2014 physically reasonable."
+    },
+    {
+      "id": 3,
+      "case": "S5_E2_bc_swap",
+      "gt": "error_E2",
+      "verdict": "Anomaly",
+      "match": true,
+      "reasoning": "The flow field shows several physically implausible features:\n\n1. **Vertical discontinuity at x \u2248 0.5**: There is a sharp, artificial-looking discontinuity running vertically through the middle of the domain, which is not physical for a continuous fluid flow. This suggests a domain decomposition or mesh partitioning error.\n\n2. **Lid-driven cavity expectations**: This appears to be a lid-driven cavity simulation (based on the 1m \u00d7 1m domain with a moving top wall), but the velocity field is almost entirely uniform green (~1 m/s) throughout the bulk, lacking the expected primary vortex structure with significant velocity gradients and recirculation patterns.\n\n3. **Missing vortex structure**: A properly converged lid-driven cavity should show a large primary vortex with clear velocity variations, corner vortices, and a distinct boundary layer structure. Instead, the streamlines are nearly perfectly horizontal and uniform, suggesting the simulation has not converged or is incorrectly set up.\n\n4. **Boundary layer behavior**: The near-wall regions (bottom, left, right) show minimal boundary layer development, and the velocity magnitude remains unrealistically high (close to the lid velocity) nearly everywhere.\n\n5. **The chevron-like artifacts** along the vertical line at x \u2248 0.5 indicate"
+    },
+    {
+      "id": 4,
+      "case": "S5_E5_coarse_mesh",
+      "gt": "error_E5",
+      "verdict": "OK",
+      "match": false,
+      "reasoning": "This is a classic lid-driven cavity flow, which is a well-known benchmark problem in computational fluid dynamics. The visualization shows several physically plausible features:\n\n1. **Top lid motion**: The highest velocities (yellow/green, ~0.85 m/s) occur near the top wall (y \u2248 1.0), consistent with a moving lid driving the flow from left to right.\n\n2. **Primary vortex**: A large clockwise recirculating vortex is centered slightly off-center (approximately x \u2248 0.5, y \u2248 0.5), which is characteristic of lid-driven cavity flows at moderate Reynolds numbers.\n\n3. **No-slip boundaries**: Velocities decay to near zero at the stationary walls (bottom, left, and right), consistent with no-slip boundary conditions.\n\n4. **Velocity magnitude distribution**: The velocity is highest near the driving lid and decreases toward the center and corners, which is physically correct.\n\n5. **Streamline pattern**: The streamlines show a smooth, organized recirculation pattern with the vortex center being a low-velocity region, as expected.\n\n6. **Corner behavior**: The corners show low velocity regions, consistent with the expected flow stagnation in cavity corners.\n\nThe overall pattern, velocity magnitudes, and vortex structure are entirely consistent with"
+    },
+    {
+      "id": 5,
+      "case": "S6_correct_Ra1e4",
+      "gt": "correct",
+      "verdict": "OK",
+      "match": true,
+      "reasoning": "The temperature field appears physically plausible. It shows a steady-state heat conduction pattern in a 2D square domain with what appears to be a hot boundary condition on the left side (and possibly top-left corner being hottest ~304 K) and cooler conditions on the right/bottom regions (~295 K). The isotherms are smooth and continuous, with gradual transitions between temperature levels. The contours show the characteristic curved pattern expected from Laplace's equation (steady heat conduction) with mixed boundary conditions \u2014 likely a heated left wall and/or top wall with cooler right and bottom walls. The temperature gradients are steepest near the hot corner (top-left) and decay smoothly, which is consistent with physical heat diffusion. There are no unphysical oscillations, discontinuities, or artifacts visible."
+    },
+    {
+      "id": 6,
+      "case": "S6_E8_gravity_flipped",
+      "gt": "error_E8",
+      "verdict": "OK",
+      "match": false,
+      "reasoning": "The temperature field appears physically plausible. It shows a steady-state heat conduction pattern in a 2D square domain with what appears to be a hot boundary condition on the left side (higher temperatures ~304 K) and a cold boundary condition on the right side (lower temperatures ~295 K). The isotherms curve smoothly from the left to right, consistent with Laplace's equation solutions for heat conduction. The temperature gradient is smooth and continuous with no unphysical discontinuities or oscillations. The slight curvature of the contours suggests non-uniform boundary conditions (e.g., the corners have different temperatures, with the bottom-left corner being hottest and the top-right being among the coldest), which is consistent with mixed boundary conditions on the top and bottom walls. The overall pattern resembles a classic 2D conduction problem with Dirichlet boundary conditions."
+    },
+    {
+      "id": 7,
+      "case": "S6_E2_bc_swap",
+      "gt": "error_E2",
+      "verdict": "OK",
+      "match": false,
+      "reasoning": "The temperature field appears physically plausible. It shows a smooth, continuous temperature distribution over a 2D square domain (1m \u00d7 1m) with temperatures ranging from ~295 K to ~304 K. The pattern is consistent with steady-state heat conduction with non-uniform boundary conditions \u2014 the upper-right corner is hottest while the lower-left corner is coldest. The isotherms are smooth and show no discontinuities, oscillations, or unphysical artifacts. The gradual transition and the curved contour lines suggest a Laplacian (or diffusion-type) solution, which is characteristic of 2D steady conduction with prescribed temperature boundary conditions (e.g., warmer on the top and right edges, cooler on the bottom and left edges). The solution respects the maximum principle \u2014 extreme temperatures occur on the boundaries, not in the interior."
+    },
+    {
+      "id": 8,
+      "case": "S9_correct_Ra5k",
+      "gt": "correct",
+      "verdict": "OK",
+      "match": true,
+      "reasoning": "The temperature field appears physically plausible. It shows a 2D thermal distribution in a rectangular domain (4m \u00d7 1m) with characteristics consistent with natural convection or a heated bottom wall with cooled top wall. The pattern shows:\n\n1. **Higher temperatures near the bottom** (~309 K) and **cooler temperatures near the top** (~300 K), consistent with bottom heating/top cooling.\n2. **Periodic convection cell structure** \u2014 there appear to be approximately two convection cells along the x-direction, with warm plumes rising and cool fluid descending, creating the alternating warm/cool pattern along x.\n3. **Smooth, continuous temperature gradients** with no unphysical discontinuities or oscillations.\n4. **Symmetry** in the pattern is consistent with Rayleigh-B\u00e9nard-type convection in a 4:1 aspect ratio cavity, where two rolls would be expected.\n5. The temperature range (~300\u2013309 K) is modest and realistic for such configurations.\n\nThe overall structure is consistent with steady-state Rayleigh-B\u00e9nard convection with two counter-rotating cells."
+    },
+    {
+      "id": 9,
+      "case": "S9_E8_gravity_flipped",
+      "gt": "error_E8",
+      "verdict": "OK",
+      "match": false,
+      "reasoning": "The temperature field shows a smooth vertical gradient from approximately 309 K at the bottom (red) to 300 K at the top (blue) in a rectangular domain. This is physically plausible and consistent with several scenarios: natural convection with a heated bottom wall and cooled top wall, or simply steady-state heat conduction between a hot bottom boundary and cold top boundary. The temperature variation is predominantly in the y-direction with near-uniformity in x, which is expected for a domain with uniform thermal boundary conditions on the top and bottom walls and adiabatic (or periodic) side walls. The smooth, monotonic gradient with no spurious oscillations or unphysical artifacts confirms a well-resolved, physically reasonable temperature distribution."
+    },
+    {
+      "id": 10,
+      "case": "S9_E5_coarse_mesh",
+      "gt": "error_E5",
+      "verdict": "OK",
+      "match": false,
+      "reasoning": "The temperature field appears physically plausible. It shows a 2D thermal convection pattern (likely Rayleigh-B\u00e9nard convection) in a rectangular domain with aspect ratio 4:1. The bottom is heated (higher temperatures near y=0) and the top is cooled (lower temperatures near y=1), consistent with the color distribution. Two convection cells are visible, with warm plumes rising at approximately x\u22481 and x\u22483, and cooler fluid descending near x\u22480, x\u22482, and x\u22484. The temperature range (~300\u2013309 K) is modest and realistic. The symmetric two-cell pattern with wavelength equal to twice the domain height is characteristic of natural Rayleigh-B\u00e9nard convection at moderate Rayleigh numbers. The smooth temperature gradients and boundary layer structures along the top and bottom walls are consistent with expected physics."
+    },
+    {
+      "id": 11,
+      "case": "S10_correct_turb",
+      "gt": "correct",
+      "verdict": "OK",
+      "match": true,
+      "reasoning": "The flow field appears physically plausible. It shows a lid-driven cavity flow pattern, which is a classic CFD benchmark problem. The key features supporting plausibility:\n\n1. **High velocity near the top boundary** (y \u2248 3.0 m) with flow moving to the right, consistent with a moving lid boundary condition.\n2. **Multiple recirculation vortices** form in the cavity interior, which is expected for a rectangular cavity with aspect ratio 3:1 (9m \u00d7 3m). The primary and secondary vortices are well-developed.\n3. **Low velocities near vortex centers** (dark purple regions), as expected at the cores of recirculation zones.\n4. **Near-zero velocity at solid walls** (bottom and sides), consistent with no-slip boundary conditions.\n5. **The vortex structure** \u2014 approximately three large counter-rotating cells spanning the cavity length \u2014 is consistent with known solutions for elongated lid-driven cavities at moderate Reynolds numbers.\n6. **Velocity magnitude range** (0\u20130.55 m/s) is reasonable, with the maximum occurring near the driven lid.\n\nThe streamline patterns, velocity distribution, and overall topology are all consistent with well-established lid-driven cavity flow physics."
+    },
+    {
+      "id": 12,
+      "case": "S10_E1_underconverged",
+      "gt": "error_E1",
+      "verdict": "OK",
+      "match": false,
+      "reasoning": "The flow field appears physically plausible. It shows a jet entering from the upper-left corner (near y \u2248 3.0 m) with high velocity (~0.5 m/s), which is consistent with a ventilation inlet or slot jet. The jet entrains surrounding fluid and generates a large recirculation zone (vortex) centered around x \u2248 1.5 m, y \u2248 2.0 m, which is a classic feature of confined jet flows. A secondary, weaker recirculation pattern develops in the right portion of the domain. The velocity magnitudes decay appropriately away from the jet, and there appears to be an outlet near the bottom-right corner (x \u2248 9 m, y \u2248 0 m) where flow accelerates slightly. The streamlines are smooth and continuous, mass conservation appears satisfied (no sources/sinks in the interior), and the overall pattern is consistent with a 2D ventilated room or cavity flow simulation."
+    },
+    {
+      "id": 13,
+      "case": "S10_E4_wrong_turb_model",
+      "gt": "error_E4",
+      "verdict": "OK",
+      "match": false,
+      "reasoning": "The flow field appears physically plausible. The streamlines show a complex but coherent recirculating flow pattern consistent with a confined 2D cavity or channel flow. Key observations supporting plausibility:\n\n1. **Multiple vortex structures**: Several large-scale recirculation zones are visible (around x\u22481, y\u22481.5; x\u22483, y\u22482; x\u22485-6, y\u22481.5; x\u22487.5, y\u22482), which are typical of lid-driven cavity or multi-vortex confined flows.\n\n2. **High-velocity region near top-left**: The yellow/green streak along the upper boundary (y\u22483, x\u22480-2) suggests a driven boundary (like a lid-driven cavity), with velocity decaying downstream \u2014 physically consistent.\n\n3. **Another high-velocity region around x\u22486, y\u22481.5**: This bright spot could indicate a jet-like interaction between counter-rotating vortices, which is physically reasonable.\n\n4. **Near-zero velocity at vortex centers**: The dark regions at vortex cores show near-zero velocity, consistent with expected behavior.\n\n5. **Streamline continuity**: The streamlines are smooth and continuous without unphysical discontinuities or divergence/convergence artifacts.\n\n6"
+    },
+    {
+      "id": 14,
+      "case": "S2_correct_lam",
+      "gt": "correct",
+      "verdict": "OK",
+      "match": true,
+      "reasoning": "The image shows a 2D channel flow with velocity magnitude displayed via streamlines and color mapping. The flow exhibits a classic developing channel flow profile: the velocity is highest along the centerline (yellow, ~1.1-1.4 m/s) and decreases toward the walls (dark/purple, near zero), consistent with no-slip boundary conditions. The parabolic-like velocity profile develops from the inlet (left) as expected. There appears to be a constriction or obstacle near x \u2248 5 m where the streamlines converge and velocity patterns are disturbed, followed by flow recovery downstream. The white arrows indicate flow direction consistently from left to right. The velocity magnitudes and overall flow structure \u2014 boundary layer development, wall effects, and disturbance around an obstruction \u2014 are all physically consistent with incompressible viscous channel flow."
+    },
+    {
+      "id": 15,
+      "case": "S2_E3_wrong_viscosity",
+      "gt": "error_E3",
+      "verdict": "OK",
+      "match": false,
+      "reasoning": "The flow field shows a channel flow with velocity magnitude coloring and streamlines that are generally physically consistent. The flow enters from the left with a developing velocity profile (visible in the entrance region near x=0-1m where the boundary layer grows), transitioning to a fully developed parabolic-like profile with maximum velocity near the centerline (~1.4 m/s) and no-slip conditions at the walls (dark/low velocity). The streamlines are parallel and horizontal in the developed region, which is expected for steady channel flow. The white artifacts near x=5m appear to be visualization/rendering issues (possibly related to a mesh interface, probe location, or post-processing artifact) rather than physical anomalies in the underlying flow field itself. The overall velocity distribution, boundary layer development, and magnitude ratios (max ~1.4 m/s with near-zero at walls) are consistent with laminar or steady channel flow physics."
+    },
+    {
+      "id": 16,
+      "case": "S7_correct_Ri1",
+      "gt": "correct",
+      "verdict": "OK",
+      "match": true,
+      "reasoning": "The flow field shows a channel flow with streamlines generally moving left to right, which is physically consistent. The velocity profile exhibits expected features: lower velocities near the walls (y \u2248 0 and y \u2248 1 m) due to no-slip boundary conditions, and higher velocities in the core region. The velocity magnitude increases downstream (accelerating flow), which could indicate a developing flow or a pressure-driven acceleration. The streamlines are largely parallel and orderly, consistent with laminar or mildly turbulent channel flow. The disturbance near x \u2248 5 m with some angled arrows could indicate a local perturbation or obstacle effect, but overall the flow pattern \u2014 with wall boundary layers, generally unidirectional flow, and reasonable velocity magnitudes (~0\u20131.1 m/s) \u2014 appears physically plausible for a channel flow scenario."
+    },
+    {
+      "id": 17,
+      "case": "S7_E8_gravity_flipped",
+      "gt": "error_E8",
+      "verdict": "OK",
+      "match": false,
+      "reasoning": "The flow field appears to represent a 2D channel flow with a constriction or obstacle near x \u2248 5 m. The velocity magnitude distribution shows expected features: no-slip boundary conditions at the walls (y = 0 and y = 1 m) with near-zero velocity (dark colors), higher velocities in the core region, and acceleration near the constriction at x \u2248 5 m where streamlines converge. The white arrows indicate predominantly streamwise flow with some disturbance near the obstruction. The velocity increases downstream of the constriction (yellow/higher values toward x = 8\u201310 m), which could indicate a narrowing channel or developing flow adjustment. The streamline pattern and boundary layer behavior appear physically consistent with viscous channel flow past an internal feature."
+    },
+    {
+      "id": 18,
+      "case": "S1_correct_lam",
+      "gt": "correct",
+      "verdict": "OK",
+      "match": true,
+      "reasoning": "The temperature field appears physically plausible for a natural convection problem in a rectangular cavity with a heated left wall. Key observations supporting plausibility:\n\n1. **Heated left wall**: The left boundary shows high temperatures (red, ~318 K), consistent with a differentially heated cavity.\n2. **Thermal boundary layer**: There is a thin hot thermal boundary layer along the left wall that thins with height, consistent with buoyancy-driven upward flow along the heated surface.\n3. **Circulation pattern**: Hot fluid rises along the left wall, travels across the top, and descends on the right side, forming the expected natural convection loop. The top-left corner shows the hottest interior temperatures where hot fluid accumulates.\n4. **Vortex structures**: The spiral/swirl patterns visible near the bottom (around y \u2248 0.8 m) and in the middle-right region suggest secondary circulation cells or transient instabilities, which are physically reasonable at moderate-to-high Rayleigh numbers.\n5. **Thermal stratification**: The interior bulk is relatively cool (~300 K) with slight stratification, consistent with the cold fluid occupying most of the cavity.\n6. **Temperature range**: The range (299.64\u2013318.37 K) is reasonable for a buoyancy-driven flow scenario.\n\nThe overall pattern"
+    },
+    {
+      "id": 19,
+      "case": "S1_E8_gravity_flipped",
+      "gt": "error_E8",
+      "verdict": "OK",
+      "match": false,
+      "reasoning": "The temperature field appears physically plausible. It shows a heated left wall and heated bottom wall (or a hot corner at the bottom-left) with temperature diffusing into a cooler fluid domain. The high-temperature region near the left wall and bottom is consistent with natural convection in an enclosure where the left wall is maintained at a higher temperature (~318.5 K) and the bulk fluid is near ~300 K. The thermal boundary layer along the left wall is thin and grows appropriately, with the bottom-left corner showing the highest temperatures where two heated boundaries meet. The temperature gradients are smooth and continuous, with no unphysical oscillations or discontinuities. The asymmetric pattern (heated left/bottom, cooler right/top) is consistent with a differentially heated cavity or a configuration with specified hot boundary conditions on the left and bottom walls."
+    },
+    {
+      "id": 20,
+      "case": "S1_E3_wrong_viscosity",
+      "gt": "error_E3",
+      "verdict": "OK",
+      "match": false,
+      "reasoning": "The temperature field appears physically plausible. It shows a 2D steady-state heat conduction pattern in a rectangular domain (2m \u00d7 4m) with what appears to be a hot boundary condition on the left wall (~318-319 K) and a cold boundary condition on the right wall (~300 K), with the temperature gradient smoothly transitioning between them. The isotherms curve in a manner consistent with the boundary conditions \u2014 the contours show smooth, continuous variation with no unphysical discontinuities or oscillations. The slight curvature of isotherms near the corners suggests mixed boundary conditions on the top and bottom walls (possibly insulated or with specified temperatures). The bottom-right corner being the coldest region and the top-left being the warmest is consistent with the overall pattern. The temperature range (~300\u2013319 K) is reasonable, and the smooth gradient field is characteristic of diffusive (Laplacian) heat conduction."
+    },
+    {
+      "id": 21,
+      "case": "S3_correct_turb",
+      "gt": "correct",
+      "verdict": "OK",
+      "match": true,
+      "reasoning": "The image shows a 2D channel flow velocity field that appears physically plausible. The key features are consistent with expected behavior:\n\n1. **Velocity profile**: The flow exhibits a parabolic-like velocity distribution across the channel height (y-direction), with maximum velocity near the center (~1.04 m/s) and lower velocities near the walls (y=0 and y=1), consistent with no-slip boundary conditions in a developed channel flow.\n\n2. **Streamwise flow**: The white arrows indicate predominantly streamwise (x-direction) flow, which is expected for channel flow.\n\n3. **Wall boundary layers**: The blue/green regions near both walls show reduced velocity magnitudes, consistent with viscous boundary layer effects and no-slip conditions.\n\n4. **Near-uniform downstream development**: The flow appears relatively developed with consistent velocity patterns along the channel length.\n\n5. **Slight perturbation near x\u22485**: There appears to be a thin vertical feature (possibly a baffle or mesh interface), with some local flow adjustment, but the flow recovers downstream, which is physically reasonable.\n\nThe velocity magnitudes and overall flow structure are consistent with a laminar or mildly turbulent channel flow simulation."
+    },
+    {
+      "id": 22,
+      "case": "S3_E4_wrong_turb_model",
+      "gt": "error_E4",
+      "verdict": "OK",
+      "match": false,
+      "reasoning": "The image shows a 2D channel flow velocity field that appears physically plausible. The velocity magnitude distribution shows the expected pattern for developed channel flow: higher velocities (yellow, ~1.0 m/s) in the central region and lower velocities (blue/green) near the top and bottom walls (y=0 and y=1 m), consistent with a no-slip boundary condition producing a boundary layer profile. The streamlines (white arrows) indicate flow moving left to right with generally uniform, parallel flow. There appears to be a vertical partition or baffle near x\u22485 m, which causes a slight local disturbance but the flow otherwise remains well-structured. The velocity range (0.15\u20131.04 m/s) is reasonable, and the overall flow pattern is consistent with a laminar or mildly turbulent channel flow with an internal obstruction."
+    },
+    {
+      "id": 23,
+      "case": "S3_E3_wrong_viscosity",
+      "gt": "error_E3",
+      "verdict": "OK",
+      "match": false,
+      "reasoning": "The flow field appears to represent channel flow with an obstruction or baffle near x \u2248 5 m. The velocity distribution shows typical features of internal flow: boundary layers near the walls (low velocity, dark blue/purple near y = 0 and y = 1), higher velocity in the core region (yellow/green), and a developing flow profile from the inlet (left side). The disturbance near x = 5 m with velocity reduction and flow redirection (visible from the white arrows/streamlines) is consistent with flow encountering a thin obstruction or porous baffle. Downstream, the flow recovers and redevelops, which is physically reasonable. The velocity magnitudes (0.06\u20131.4 m/s) and the no-slip behavior at walls are consistent with expected channel flow physics."
+    },
+    {
+      "id": 24,
+      "case": "S5_E8_reversed_lid",
+      "gt": "error_E8",
+      "verdict": "OK",
+      "match": false,
+      "reasoning": "This is a classic lid-driven cavity flow, which is one of the most well-known benchmark problems in computational fluid dynamics. The key features that confirm physical plausibility:\n\n1. **Top-wall driven flow**: The highest velocities (yellow, ~0.87 m/s) occur along the top boundary, consistent with a moving lid driving the flow from left to right (or right to left \u2014 here the lid appears to move to the right based on the arrow directions near the top).\n\n2. **Primary vortex**: A large recirculating vortex occupies most of the cavity, with its center slightly offset toward the upper-left region (around x\u22480.3, y\u22480.7), which is characteristic of moderate Reynolds number lid-driven cavity flows.\n\n3. **No-slip boundaries**: Velocity magnitude drops to near zero (dark purple) at the bottom, left, and right walls, consistent with no-slip boundary conditions.\n\n4. **Velocity distribution**: The gradual decrease in velocity magnitude from the lid toward the interior and lower walls is physically consistent.\n\n5. **Streamline pattern**: The streamlines show smooth, coherent recirculation without unphysical discontinuities or artifacts. Small secondary corner vortices appear to be present in the bottom corners, which is expected.\n\n6. **Vortex center offset**: The primary v"
+    },
+    {
+      "id": 25,
+      "case": "S8_correct_lam",
+      "gt": "correct",
+      "verdict": "OK",
+      "match": true,
+      "reasoning": "The flow field appears physically plausible for flow past a rectangular obstacle (bluff body) in a channel. Key physically consistent features include:\n\n1. **Flow separation behind the obstacle**: The low-velocity (dark) recirculation zone immediately downstream of the square body is expected, showing classic wake formation.\n2. **Flow acceleration above the obstacle**: The high-velocity (yellow/green) region above and downstream of the block is consistent with flow constriction (continuity/Bernoulli effect).\n3. **Vortex shedding**: The alternating recirculation patterns downstream (visible vortical structures around x=6-9) are consistent with von K\u00e1rm\u00e1n-like vortex shedding behind a bluff body.\n4. **No-slip boundaries**: Velocity is near zero at the top and bottom walls, consistent with viscous wall boundary conditions.\n5. **Upstream flow**: Relatively uniform left-to-right flow upstream of the obstacle, as expected for a developed channel inflow.\n6. **Velocity magnitudes**: The peak velocity (~1.08 m/s) being roughly double the upstream bulk velocity is reasonable given the blockage ratio (obstacle height ~0.5m in a 2m channel).\n\nThe overall topology, velocity magnitudes, and wake structure are all consistent with an unsteady 2D incompressible"
+    },
+    {
+      "id": 26,
+      "case": "S8_E8_gravity_flipped",
+      "gt": "error_E8",
+      "verdict": "OK",
+      "match": false,
+      "reasoning": "The flow field appears physically plausible. It shows flow past a rectangular obstacle (located around x=3-4 m, y=0-0.5 m) in a channel. Key physically consistent features include: (1) flow acceleration above and around the obstacle due to area constriction, with peak velocities (~0.78 m/s) occurring just downstream of the top of the block; (2) a recirculation/wake region immediately behind the obstacle with very low velocities (dark purple), consistent with flow separation; (3) boundary layers along the top and bottom walls with reduced velocity (no-slip conditions); (4) streamlines deflecting upward over the obstacle and gradually recovering downstream; (5) the wake region extends several obstacle-widths downstream before the flow recovers, which is realistic. The velocity magnitude distribution and streamline patterns are consistent with 2D incompressible flow past a bluff body in a confined channel."
+    },
+    {
+      "id": 27,
+      "case": "S8_E3_wrong_viscosity",
+      "gt": "error_E3",
+      "verdict": "OK",
+      "match": false,
+      "reasoning": "The flow field appears physically plausible. It shows a 2D channel flow with a rectangular obstacle (block) on the bottom wall around x \u2248 3.5 m. Key physically consistent features include:\n\n1. **No-slip boundaries**: Velocity approaches zero (dark purple) at the top and bottom walls, consistent with viscous boundary layers.\n2. **Flow acceleration over the obstacle**: The streamlines compress and velocity increases (yellow/green region) above the block as the flow is squeezed through a reduced cross-section \u2014 consistent with continuity/Bernoulli effects.\n3. **Recirculation zone**: A clear wake/recirculation region (dark purple, near-zero velocity with closed streamlines) forms immediately downstream of the block, which is the expected separation bubble behind a bluff body.\n4. **Upstream deceleration**: Flow slows down approaching the block (darker colors upstream of the obstacle), consistent with adverse pressure gradient effects.\n5. **Downstream recovery**: The velocity field gradually recovers toward a developed profile further downstream (x > 7 m), which is physically expected.\n6. **Streamlines are smooth and continuous**, with no unphysical crossings or discontinuities.\n\nAll features are consistent with a steady-state (or time-averaged) laminar or low-Reynolds-number flow past a wall-"
+    },
+    {
+      "id": 28,
+      "case": "S8_E5_coarse_mesh",
+      "gt": "error_E5",
+      "verdict": "OK",
+      "match": false,
+      "reasoning": "The flow field appears physically plausible. It shows channel flow past a rectangular obstacle (located around x=3\u20133.5 m, y=0\u20130.5 m) mounted on the bottom wall. Key physically consistent features include:\n\n1. **Flow acceleration** over the top of the obstacle, with higher velocities (yellow/green) in the upper portion of the channel, consistent with flow constriction.\n2. **Wake region** downstream of the obstacle with low velocity (dark purple), which is expected for bluff body flows.\n3. **Recirculation zones** visible downstream (x\u22487\u201310 m, y<0.5 m) with vortical streamline patterns, consistent with vortex shedding behind a bluff body.\n4. **No-slip conditions** are apparent near the top and bottom walls (low velocity near boundaries).\n5. **Streamlines** are smooth and consistent with the velocity magnitude field \u2014 they don't cross each other and follow expected flow patterns around an obstruction.\n6. The velocity magnitude range (0\u20130.93 m/s) and spatial scales are reasonable for a 2D channel flow simulation with a square obstacle."
+    },
+    {
+      "id": 29,
+      "case": "S4_E6_modified",
+      "gt": "error_E6",
+      "verdict": "OK",
+      "match": false,
+      "reasoning": "The image shows a flow field over a backward-facing step, which is a classic fluid dynamics benchmark problem. The flow features are physically plausible:\n\n1. **Upstream flow**: Uniform, high-velocity flow (yellow, ~0.97 m/s) enters from the left in the upper portion of the channel above the step.\n2. **Recirculation zone**: Behind the step (x \u2248 0\u20138 m), there is a low-velocity recirculation region (purple/dark colors near the bottom wall), which is expected due to flow separation at the step edge.\n3. **Reattachment and recovery**: The flow gradually reattaches downstream and the velocity profile begins to redevelop, with velocities slowly recovering toward a fully-developed channel flow profile further downstream.\n4. **Streamlines**: The white streamlines show the expected behavior \u2014 horizontal flow above the step, recirculating eddies behind it, and gradual straightening downstream.\n5. **Velocity magnitudes**: The color scale shows reasonable values, with near-zero velocity in the recirculation zone and higher velocities in the contracted upper region, consistent with mass conservation through the reduced cross-section above the step.\n\nThe overall flow topology, velocity distribution, and gradual downstream recovery are all consistent with well-known backward-facing step flow physics."
+    },
+    {
+      "id": 30,
+      "case": "S4_E1_underconverged",
+      "gt": "error_E1",
+      "verdict": "OK",
+      "match": false,
+      "reasoning": "The flow field depicts a classic backward-facing step configuration, which is physically plausible. Key features supporting this:\n\n1. **Upstream flow**: Uniform velocity profile in the inlet channel (x < 0) at the correct elevation (y \u2248 1 to 2 m), consistent with a developed channel flow above the step.\n\n2. **Step geometry**: The step is located at x = 0, with the step height spanning from y = 0 to y \u2248 1 m, and the channel expands downward.\n\n3. **Recirculation zone**: Behind the step (x \u2248 0\u201310 m), there is a large low-velocity recirculation region (dark purple, near-zero velocity) with visible swirling streamlines. This is the hallmark of backward-facing step flows.\n\n4. **Flow reattachment**: The flow appears to reattach around x \u2248 10\u201312 m, which gives a reattachment length of roughly 10 step heights \u2014 reasonable for turbulent backward-facing step flow.\n\n5. **Accelerated shear layer**: The high-velocity region (yellow/green, ~1.5\u20131.7 m/s) near y \u2248 2 m downstream of the step is consistent with flow acceleration due to the"
+    }
+  ],
+  "partial": false
+}

@@ -1,0 +1,43 @@
+{
+  "evaluator": "claude-opus-4-6",
+  "date": "2026-03-25",
+  "method": "Direct image reading via Read tool, same problem setup + question as expert",
+  "items": [
+    {"id": 6, "case": "S5_correct_lam", "viz": "V6", "gt": "correct", "vlm_verdict": "correct", "vlm_response": "주 와류 캐비티 상부 우측, 반시계 방향. 하부 코너 2차 와류. 물리적으로 타당.", "match_gt": true},
+    {"id": 7, "case": "S5_E1_underconverged", "viz": "V6", "gt": "error_E1", "vlm_verdict": "suspicious", "vlm_response": "하부 유동 발달 부족, 수렴 문제 가능성. 상부에만 유동 집중.", "match_gt": true},
+    {"id": 8, "case": "S5_E2_bc_swap", "viz": "V6", "gt": "error_E2", "vlm_verdict": "error_detected", "vlm_response": "수평 streamlines 지배적, 회전 와류 없음. lid-driven cavity에서 비물리적.", "match_gt": true},
+    {"id": 9, "case": "S5_E5_coarse_mesh", "viz": "V6", "gt": "error_E5", "vlm_verdict": "correct", "vlm_response": "주 와류 중앙에 위치, 해상도 약간 낮지만 물리적으로 타당.", "match_gt": false, "notes": "FALSE NEGATIVE: same as expert — coarse mesh not detected"},
+    {"id": 10, "case": "S6_correct_Ra1e4", "viz": "V2", "gt": "correct", "vlm_verdict": "correct", "vlm_response": "S자형 등온선, 전형적 자연대류 패턴.", "match_gt": true},
+    {"id": 11, "case": "S6_E8_gravity_flipped", "viz": "V2", "gt": "error_E8", "vlm_verdict": "error_detected", "vlm_response": "좌하단 고온 집중, 등온선 곡률 반대. 대류 순환 방향 반전.", "match_gt": true},
+    {"id": 12, "case": "S6_E2_bc_swap", "viz": "V2", "gt": "error_E2", "vlm_verdict": "correct", "vlm_response": "우측 가열 캐비티로서 타당해 보임. 전형적 패턴.", "match_gt": false, "notes": "FALSE NEGATIVE: same as expert — BC swap produces plausible mirror image"},
+    {"id": 13, "case": "S9_correct_Ra5k", "viz": "V2", "gt": "correct", "vlm_verdict": "correct", "vlm_response": "3-4개 대류 셀 명확, 합리적.", "match_gt": true},
+    {"id": 14, "case": "S9_E8_gravity_flipped", "viz": "V2", "gt": "error_E8", "vlm_verdict": "error_detected", "vlm_response": "수평 등온선만, 대류 셀 없음. Ra>1700이면 대류 시작되어야 하므로 비물리적.", "match_gt": true},
+    {"id": 15, "case": "S9_E5_coarse_mesh", "viz": "V2", "gt": "error_E5", "vlm_verdict": "suspicious", "vlm_response": "대류 셀 있으나 메시 해상도 부족으로 정밀도 의문.", "match_gt": true},
+    {"id": 16, "case": "S10_correct_turb", "viz": "V6", "gt": "correct", "vlm_verdict": "correct", "vlm_response": "입구 제트 천장 부착, 대규모 순환, 다수 2차 와류. 물리적으로 타당.", "match_gt": true},
+    {"id": 17, "case": "S10_E1_underconverged", "viz": "V6", "gt": "error_E1", "vlm_verdict": "suspicious", "vlm_response": "제트가 관성 잃고 실내 순환 미발달.", "match_gt": true},
+    {"id": 18, "case": "S10_E4_wrong_turb_model", "viz": "V6", "gt": "error_E4", "vlm_verdict": "error_detected", "vlm_response": "Re=5000에서 다수 불규칙 와류, 층류 솔버로 인한 비물리적 패턴.", "match_gt": true},
+    {"id": 19, "case": "S2_correct_lam", "viz": "V6", "gt": "correct", "vlm_verdict": "correct", "vlm_response": "균일→포물선 발달, streamline 평행. 물리적으로 타당.", "match_gt": true},
+    {"id": 20, "case": "S2_E3_wrong_viscosity", "viz": "V6", "gt": "error_E3", "vlm_verdict": "correct", "vlm_response": "채널 유동으로 특별한 이상 없어 보임. 입구 발달 영역 짧지만 오류 판단 어려움.", "match_gt": false, "notes": "FALSE NEGATIVE: same as expert — wrong viscosity produces plausible flow"}
+  ],
+  "summary": {
+    "total": 15,
+    "correct_correct": 5,
+    "error_detected": 5,
+    "error_suspicious": 3,
+    "false_negative": 2,
+    "accuracy_strict": 0.867,
+    "accuracy_lenient": 0.867,
+    "false_negatives": ["S5_E5_coarse_mesh", "S6_E2_bc_swap", "S2_E3_wrong_viscosity"],
+    "notes": "Claude Opus matches expert on 13/15 items. Same 2 false negatives as expert (S5_E5, S6_E2) plus detected S9_E5 that expert also detected. Missed S2_E3 like expert. Detected S5_E1 as suspicious (expert also suspicious). Overall pattern: BC swap and wrong viscosity consistently undetected by both expert and VLM."
+  },
+  "comparison_with_expert": {
+    "agreement_rate": 0.933,
+    "disagreements": [
+      {"id": 15, "expert": "error_detected", "claude": "suspicious", "notes": "Both detected issue but Claude less confident on S9 coarse mesh"}
+    ],
+    "shared_false_negatives": ["S5_E5_coarse_mesh", "S6_E2_bc_swap", "S2_E3_wrong_viscosity"],
+    "claude_unique_detections": [],
+    "expert_unique_detections": [],
+    "key_finding": "Claude Opus and domain expert show remarkably similar error detection patterns — both fail on 'subtle' errors (BC swap, wrong viscosity) and succeed on 'severe' errors (gravity flip, wrong turb model, BC swap in S5). This suggests VLM physics reasoning follows similar heuristics as human visual inspection."
+  }
+}

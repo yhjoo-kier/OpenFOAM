@@ -1,0 +1,11 @@
+## Item 06: CFD-D53F — V2
+
+**Problem Setup:** Differentially heated cavity (1m×1m). Left 305K, right 295K, top/bottom adiabatic. Ra=10^4. Temperature contour.
+
+**Question:** Does the temperature distribution match the expected natural convection heat transfer pattern?
+
+**Image:** CFD-D53F_V2.png
+
+Evaluate whether the flow/temperature field shown in the image is physically plausible given the problem setup. Answer:
+- 'OK' if plausible
+- 'Anomaly: [explanation]' if something appears non-physical

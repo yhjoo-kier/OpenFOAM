@@ -1,0 +1,262 @@
+{
+  "evaluator": "claude-opus-4-6-isolated",
+  "task": "image_only",
+  "date": "2026-03-29",
+  "total": 30,
+  "correct": 25,
+  "accuracy": 0.8333333333333334,
+  "fp": 0,
+  "fp_cases": [],
+  "fn": 5,
+  "fn_cases": [
+    "S5_E5_coarse_mesh",
+    "S9_E5_coarse_mesh",
+    "S5_E8_reversed_lid",
+    "S8_E5_coarse_mesh",
+    "S4_E6_modified"
+  ],
+  "errors": 0,
+  "error_cases": [],
+  "items": [
+    {
+      "id": 1,
+      "case": "S5_correct_lam",
+      "gt": "correct",
+      "verdict": "OK",
+      "match": true,
+      "reasoning": "This is a classic **lid-driven cavity flow** at moderate Reynolds number. The field is physically plausible: - **Primary vortex** centered slightly above and to the right of the geometric center, consistent with a top-wall moving left-to-right (or right-to-left) driving the circulation. - **Velocity magnitude distribution** is correct: highest near the moving lid (~0.87 m/s), decaying toward the bottom and corners. - **Corner secondary structures** \u2014 the low-velocity (dark purple) regions in ..."
+    },
+    {
+      "id": 2,
+      "case": "S5_E1_underconverged",
+      "gt": "error_E1",
+      "verdict": "Anomaly",
+      "match": true,
+      "reasoning": "**Reasoning:** The velocity streamline field shows a large-scale recirculation filling most of the cavity, which is broadly consistent with a lid-driven cavity or buoyancy-driven flow. However, several features suggest under-convergence: 1. **Irregular streamline bunching** \u2014 streamlines in the lower-left and mid-left regions are unevenly spaced with abrupt curvature changes, suggesting the velocity field has not yet smoothed to a steady state. 2. **Asymmetric corner vortices** \u2014 a well-conve..."
+    },
+    {
+      "id": 3,
+      "case": "S5_E2_bc_swap",
+      "gt": "error_E2",
+      "verdict": "Anomaly",
+      "match": true,
+      "reasoning": "**Anomaly**\n\nThe velocity magnitude field shows several non-physical features:\n\n1. **Narrow vertical high-velocity strips** at x\u22480 and x\u22480.5m extending the full height of the domain \u2014 these sharp, column-like artifacts are not consistent with any standard internal flow pattern. They suggest boundary condition misplacement or a partition wall with incorrect BC.\n\n2. **Nearly uniform velocity across the bulk** (~0.65\u20130.75 m/s) with virtually no spatial gradient development \u2014 a physically developed "
+    },
+    {
+      "id": 4,
+      "case": "S5_E5_coarse_mesh",
+      "gt": "error_E5",
+      "verdict": "OK",
+      "match": false,
+      "reasoning": "**OK**\n\nLarge single recirculation filling a square cavity driven by a high-velocity inlet along the top wall. This is consistent with a classic **lid-driven cavity** flow pattern:\n\n- Strong flow along the top (yellow, ~0.85 m/s) acting as the driving boundary\n- Single primary vortex centered slightly off-center, with velocity decaying toward the core (~0 m/s) \u2014 expected\n- Streamlines wrap smoothly with no unphysical crossings or discontinuities\n- Corner secondary eddies are not visually resolve"
+    },
+    {
+      "id": 5,
+      "case": "S6_correct_Ra1e4",
+      "gt": "correct",
+      "verdict": "OK",
+      "match": true,
+      "reasoning": "**OK**\n\nThis is a classic differentially heated square cavity (natural convection) temperature field at moderate Rayleigh number (~10\u2074), consistent with the filename. Key observations:\n\n- **Hot left wall, cold right wall** \u2014 smooth horizontal temperature gradient with thermal boundary layers developing along the vertical walls.\n- **Thermal stratification** \u2014 hot fluid accumulates at the top-left, cold fluid at the bottom-right, consistent with buoyancy-driven clockwise circulation.\n- **Smooth, l"
+    },
+    {
+      "id": 6,
+      "case": "S6_E8_gravity_flipped",
+      "gt": "error_E8",
+      "verdict": "Anomaly",
+      "match": true,
+      "reasoning": "The hot region (red, ~304 K) is concentrated at the **upper-left corner** and the cold region (blue, ~295 K) fills the lower-right and bottom. The warm fluid appears to pool at the top while cold fluid sinks \u2014 this is broadly consistent with buoyancy-driven stratification. However, the filename \"gravity_flipped\" is suggestive, and the thermal pattern shows a notable issue: - **The warm plume hugs the top-left wall and ceiling**, but the temperature gradient along the left wall is inverted rel..."
+    },
+    {
+      "id": 7,
+      "case": "S6_E2_bc_swap",
+      "gt": "error_E2",
+      "verdict": "Anomaly",
+      "match": true,
+      "reasoning": "**Anomaly**\n\nThe temperature field shows a hot region (red, ~304 K) in the upper-right corner and a cold region (blue, ~295 K) in the lower-left, with a smooth diagonal gradient between them. This pattern is suspicious for several reasons:\n\n1. **Unphysical symmetry breaking**: The diagonal hot-to-cold gradient with the coldest spot at the bottom-left and hottest at the top-right suggests boundary conditions may be swapped. In a typical heated-wall cavity (e.g., left wall hot, right wall cold), b"
+    },
+    {
+      "id": 8,
+      "case": "S9_correct_Ra5k",
+      "gt": "correct",
+      "verdict": "OK",
+      "match": true,
+      "reasoning": "**OK**\n\nThis is a classic Rayleigh-B\u00e9nard convection temperature field in a 4:1 aspect-ratio cavity, and it looks physically plausible:\n\n- **Hot bottom (red, ~309 K), cold top (blue, ~300 K):** Correct orientation for bottom-heated natural convection \u2014 buoyancy drives warm fluid upward.\n- **Convection cells:** Three well-defined roll cells are visible, with warm plumes rising and cool fluid descending in alternating columns. For Ra \u2248 5000 in a 4:1 cavity, 3\u20134 cells is a reasonable wavelength.\n- "
+    },
+    {
+      "id": 9,
+      "case": "S9_E8_gravity_flipped",
+      "gt": "error_E8",
+      "verdict": "Anomaly",
+      "match": true,
+      "reasoning": "**Anomaly**\n\nHot fluid (red, ~309 K) is pooled at the bottom, while cold fluid (blue, ~300 K) sits on top. In a gravity-driven thermal field, warm fluid is buoyant and should rise \u2014 so the stable stratification would be hot-on-top, cold-on-bottom. This image shows the opposite: a thermally unstable arrangement that has nonetheless reached a smooth, stratified steady state with no convective mixing, which is physically implausible. It strongly suggests gravity is flipped or the boundary condition"
+    },
+    {
+      "id": 10,
+      "case": "S9_E5_coarse_mesh",
+      "gt": "error_E5",
+      "verdict": "OK",
+      "match": false,
+      "reasoning": "**OK**\n\nPhysically plausible temperature field consistent with Rayleigh-B\u00e9nard-like convection in a 2D rectangular enclosure (4m \u00d7 1m). Three convection cells are visible with warm plumes rising from the bottom wall (~309 K) and cooler fluid near the top (~300 K). The cell spacing, smooth gradients, and symmetric thermal structure are consistent with buoyancy-driven convection at moderate Rayleigh number. The \"coarse mesh\" label explains the slightly under-resolved contour boundaries, but no non"
+    },
+    {
+      "id": 11,
+      "case": "S10_correct_turb",
+      "gt": "correct",
+      "verdict": "OK",
+      "match": true,
+      "reasoning": "A rectangular enclosure (~9m \u00d7 3m) with a velocity magnitude field showing two large counter-rotating recirculation cells \u2014 a dominant clockwise cell on the left and a secondary counterclockwise cell on the right. This is a classic pattern for a lid-driven or inlet-driven cavity flow: - **Streamlines** are smooth and continuous with no unphysical discontinuities. - **Velocity range** (0\u20130.55 m/s) is reasonable for a low-speed indoor-scale flow. - **Peak velocity** along the top wall (inlet je..."
+    },
+    {
+      "id": 12,
+      "case": "S10_E1_underconverged",
+      "gt": "error_E1",
+      "verdict": "Anomaly",
+      "match": true,
+      "reasoning": "**Anomaly**\n\nLarge-scale recirculation fills nearly the entire domain with multiple vortex cores (visible near x \u2248 1\u20133 m and x \u2248 6\u20138 m), and the velocity field is dominated by near-zero magnitude (deep purple) over most of the interior. The inlet jet (upper-left, high velocity ~0.54 m/s) decays almost immediately and does not penetrate the room, which \u2014 combined with the chaotic, multi-cell recirculation pattern and a secondary high-velocity streak near the bottom-right corner \u2014 is consistent wi"
+    },
+    {
+      "id": 13,
+      "case": "S10_E4_wrong_turb_model",
+      "gt": "error_E4",
+      "verdict": "Anomaly",
+      "match": true,
+      "reasoning": "**Anomaly**\n\nThe flow field shows several physically suspicious features:\n\n1. **Excessive large-scale recirculation:** The domain is filled with multiple large, well-organized counter-rotating vortex pairs spanning nearly the full height of the room. For a ~9m x 3m enclosed space, this many persistent, room-scale vortices is unusual \u2014 it suggests the turbulence model is over-diffusing or artificially sustaining coherent structures that would normally break down.\n\n2. **Localized high-velocity hot"
+    },
+    {
+      "id": 14,
+      "case": "S2_correct_lam",
+      "gt": "correct",
+      "verdict": "OK",
+      "match": true,
+      "reasoning": "Velocity magnitude field for internal channel flow. Key observations: - **Developing flow profile** near inlet (left) transitioning toward a parabolic-like profile is consistent with laminar channel flow. - **Peak velocity (~1.4 m/s) at channel center** with near-zero velocity at walls matches no-slip boundary conditions. - **Symmetric top-bottom distribution** is expected for a straight rectangular channel. - **Internal partitions/baffles** (vertical white gaps around x\u22485\u20136 m) show local flo..."
+    },
+    {
+      "id": 15,
+      "case": "S2_E3_wrong_viscosity",
+      "gt": "error_E3",
+      "verdict": "Anomaly",
+      "match": true,
+      "reasoning": "**Anomaly**\n\nThe flow field shows a velocity magnitude contour in what appears to be a channel/duct flow. Several issues stand out:\n\n1. **Artifacts near x \u2248 5 m**: There are conspicuous white/blank patches in the mid-section of the domain, suggesting numerical instability, mesh corruption, or non-physical local divergence. Physically plausible solutions do not produce such discontinuities in a simple channel geometry.\n\n2. **Asymmetric velocity profile**: The peak velocity band appears shifted sl"
+    },
+    {
+      "id": 16,
+      "case": "S7_correct_Ri1",
+      "gt": "correct",
+      "verdict": "OK",
+      "match": true,
+      "reasoning": "**OK**\n\nVelocity magnitude field for what appears to be a forced-convection channel flow. Physically consistent features:\n\n- **No-slip walls**: Near-zero velocity (dark purple) at top and bottom boundaries, as expected.\n- **Core acceleration**: Higher velocity in the central region (~0.7\u20131.1 m/s), consistent with a developing/developed channel profile.\n- **Boundary layer development**: Gradual thickening of the low-velocity near-wall region from inlet (left) to downstream.\n- **Velocity vectors**"
+    },
+    {
+      "id": 17,
+      "case": "S7_E8_gravity_flipped",
+      "gt": "error_E8",
+      "verdict": "Anomaly",
+      "match": true,
+      "reasoning": "**Anomaly**\n\nThe flow field shows a sharp, narrow vertical disruption around x \u2248 5.5 m \u2014 a bright white/high-velocity streak cutting vertically across the channel. This is non-physical for a steady internal channel flow. In a real channel, the velocity field should transition smoothly along the streamwise direction; there is no physical mechanism that would produce such an abrupt, thin, wall-to-wall velocity spike at a mid-channel location. This looks like either a numerical artifact (e.g., mesh"
+    },
+    {
+      "id": 18,
+      "case": "S1_correct_lam",
+      "gt": "correct",
+      "verdict": "OK",
+      "match": true,
+      "reasoning": "This is a temperature field of natural convection in a rectangular enclosure (~2m \u00d7 4m). The pattern is physically plausible: - **Hot wall on the left** (red, ~318 K) with a thermal boundary layer that thins upward \u2014 consistent with buoyancy-driven ascending flow along a heated vertical surface. - **Cool core** (~300 K) occupying the bulk of the domain, indicating the interior fluid has not yet been significantly heated \u2014 typical of a laminar regime with moderate Rayleigh number. - **Recircul..."
+    },
+    {
+      "id": 19,
+      "case": "S1_E8_gravity_flipped",
+      "gt": "error_E8",
+      "verdict": "Anomaly",
+      "match": true,
+      "reasoning": "**Anomaly**\n\nThe image shows a temperature field in a rectangular enclosure with heating concentrated along the left wall (thin thermal boundary layer visible). The hot fluid rises along the heated left wall \u2014 that part is correct. However, the thermal stratification is suspect: the bulk of the domain remains at a nearly uniform cold temperature (~300 K) with virtually no warm fluid accumulating at the top of the enclosure. In a typical natural convection cavity with a heated vertical wall, hot "
+    },
+    {
+      "id": 20,
+      "case": "S1_E3_wrong_viscosity",
+      "gt": "error_E3",
+      "verdict": "Anomaly",
+      "match": true,
+      "reasoning": "**Anomaly**\n\nThe temperature field shows an unusually deep penetration of heat across the entire domain (~300 K to ~318 K over a 2m \u00d7 4m cavity). The isotherms are extremely smooth and diffuse with no discernible boundary layer structure near the heated wall (left side). For a room-scale domain (meters), this level of thermal diffusion suggests an unrealistically high thermal diffusivity \u2014 consistent with the filename hint \"wrong_viscosity,\" implying the fluid viscosity (and likely the coupled t"
+    },
+    {
+      "id": 21,
+      "case": "S3_correct_turb",
+      "gt": "correct",
+      "verdict": "OK",
+      "match": true,
+      "reasoning": "Velocity magnitude field in a long rectangular channel (aspect ratio ~10:1). The bulk flow is largely uniform at ~0.8\u20130.9 m/s (yellow-green) with thin boundary layers visible along the top and bottom walls where velocity drops toward ~0.3 m/s (cyan). This is consistent with a developed turbulent channel flow \u2014 the flat core profile with thin near-wall shear layers is the expected signature of turbulent momentum transport. The two thin vertical white lines near x \u2248 1 m and x \u2248 5 m appear to be..."
+    },
+    {
+      "id": 22,
+      "case": "S3_E4_wrong_turb_model",
+      "gt": "error_E4",
+      "verdict": "Anomaly",
+      "match": true,
+      "reasoning": "**Anomaly**\n\nThe velocity field shows a nearly uniform magnitude (~0.84\u20130.94 m/s) across the entire channel cross-section with virtually no boundary layer development at the walls. Key issues:\n\n1. **No wall boundary layers**: A real channel flow should show velocity dropping to zero at the top and bottom walls (no-slip condition). Here the high-velocity region extends right up to the walls with only a razor-thin transition.\n\n2. **Absence of velocity profile development**: Over a 10 m channel the"
+    },
+    {
+      "id": 23,
+      "case": "S3_E3_wrong_viscosity",
+      "gt": "error_E3",
+      "verdict": "Anomaly",
+      "match": true,
+      "reasoning": "**Anomaly**\n\nThe velocity field shows several suspicious features:\n\n1. **Vertical white streaks** around x=5 and x=6 \u2014 these appear to be sharp discontinuities in the velocity field, suggesting mesh artifacts or internal boundary condition errors rather than physical flow features. Physical obstructions would produce gradual wake/recirculation patterns, not razor-thin vertical gaps.\n\n2. **Excessive velocity magnitude for the geometry** \u2014 peak velocity ~1.4 m/s in what appears to be a simple rect"
+    },
+    {
+      "id": 24,
+      "case": "S5_E8_reversed_lid",
+      "gt": "error_E8",
+      "verdict": "OK",
+      "match": false,
+      "reasoning": "This is a classic **lid-driven cavity flow**. The streamline pattern and velocity magnitude distribution are physically plausible: - **Primary vortex** correctly located in the upper-left quadrant, displaced toward the moving lid \u2014 consistent with a lid moving right-to-left (or a \"reversed\" lid direction). - **Streamlines** form smooth, closed recirculation filling the cavity, with no spurious crossings or discontinuities. - **Velocity magnitude** is highest near the top wall (the driving lid..."
+    },
+    {
+      "id": 25,
+      "case": "S8_correct_lam",
+      "gt": "correct",
+      "verdict": "OK",
+      "match": true,
+      "reasoning": "The velocity field shows a physically plausible indoor airflow pattern in a rectangular enclosure with an internal obstacle (gray block). Key observations: - **Inlet/outlet consistency**: Flow enters from the upper-left region and develops downstream, with streamlines showing coherent directionality. - **Recirculation zones**: Large-scale recirculation cells form behind and around the obstacle (~x=2-5 m), which is expected for flow past a bluff body in a confined channel. - **Velocity magnitu..."
+    },
+    {
+      "id": 26,
+      "case": "S8_E8_gravity_flipped",
+      "gt": "error_E8",
+      "verdict": "Anomaly",
+      "match": true,
+      "reasoning": "**Anomaly**\n\nThe flow field shows a velocity magnitude contour with streamlines in what appears to be a 2D channel with an internal obstruction (rectangular block near x\u22483, y\u22480.5). The key issue:\n\n- **Gravity-flipped buoyancy pattern**: The filename indicates \"gravity_flipped,\" and visually the high-velocity region (yellow, ~0.78 m/s) is concentrated along the **top wall** rather than developing symmetrically or following a pattern consistent with the obstruction's wake. The streamlines show flo"
+    },
+    {
+      "id": 27,
+      "case": "S8_E3_wrong_viscosity",
+      "gt": "error_E3",
+      "verdict": "Anomaly",
+      "match": true,
+      "reasoning": "**Anomaly**\n\nThe velocity field shows a large, intense high-velocity region (yellow, ~0.7\u20130.9 m/s) that balloons out in the mid-channel area (x \u2248 2\u20135 m) far from any wall or obstruction. This is unphysical for several reasons:\n\n1. **Unrealistic mid-channel acceleration**: The peak velocity zone expands and intensifies well downstream of the inlet without any geometric constriction to justify it. In a real channel with obstacles, the flow accelerates locally around blockages but should not produc"
+    },
+    {
+      "id": 28,
+      "case": "S8_E5_coarse_mesh",
+      "gt": "error_E5",
+      "verdict": "OK",
+      "match": false,
+      "reasoning": "**OK**\n\nThe flow field is physically plausible. Key observations:\n\n- **Obstacle wake is correct.** The rectangular obstacle near (x\u22483.5, y\u22480.5) produces a clear recirculation/wake region downstream with reduced velocity (purple), consistent with expected bluff-body flow.\n- **Ceiling obstruction effect is reasonable.** The small block near (x\u22483, y\u22482.0) on the upper wall creates a localized flow disturbance.\n- **Streamline topology is coherent.** Flow generally moves left-to-right, accelerates aro"
+    },
+    {
+      "id": 29,
+      "case": "S4_E6_modified",
+      "gt": "error_E6",
+      "verdict": "OK",
+      "match": false,
+      "reasoning": "**OK**\n\nPhysically plausible indoor forced-convection flow. Key observations:\n\n- **Inlet jet** enters from the left near the ceiling (~y=2m), accelerates through the gap above the obstacle, and spreads downstream \u2014 consistent with a confined jet over a blockage.\n- **Recirculation / wake** behind the rectangular obstruction (x\u22480\u20132m) shows low-velocity (dark purple) region, as expected from flow separation behind a bluff body.\n- **Boundary layers**: velocity magnitude drops to near-zero at the flo"
+    },
+    {
+      "id": 30,
+      "case": "S4_E1_underconverged",
+      "gt": "error_E1",
+      "verdict": "Anomaly",
+      "match": true,
+      "reasoning": "**Reasoning:** 1. **Localized velocity hotspot near inlet (x ~ 0-2 m):** There is a bright yellow patch (|U| ~ 1.7 m/s) that appears abruptly near the left side of the domain, surrounded by much lower velocities. This is inconsistent with a smoothly developing flow \u2014 it suggests the solution has not converged and retains transient numerical artifacts. 2. **Chaotic, tangled streamlines:** The streamlines in the first half of the domain (x ~ 0-12 m) are highly disorganized with multiple recircu..."
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+## Item 04: CFD-5DA1 — V6
+
+**Problem Setup:** Lid-driven cavity (1m×1m). Re=10,000 turbulent. Top lid moves right. k-ω SST. Velocity contour + streamlines.
+
+**Question:** Is the vortex structure resolution adequate? Are corner secondary vortices resolved?
+
+**Image:** CFD-5DA1_V6.png
+
+Evaluate whether the flow/temperature field shown in the image is physically plausible given the problem setup. Answer:
+- 'OK' if plausible
+- 'Anomaly: [explanation]' if something appears non-physical

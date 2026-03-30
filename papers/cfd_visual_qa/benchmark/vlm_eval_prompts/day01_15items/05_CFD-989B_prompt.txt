@@ -1,0 +1,11 @@
+## Item 05: CFD-989B — V2
+
+**Problem Setup:** Differentially heated cavity (1m×1m). Left wall hot (305K), right wall cold (295K), top/bottom adiabatic. Ra=10^4. Temperature contour.
+
+**Question:** Is the temperature distribution and isotherm shape physically plausible for natural convection?
+
+**Image:** CFD-989B_V2.png
+
+Evaluate whether the flow/temperature field shown in the image is physically plausible given the problem setup. Answer:
+- 'OK' if plausible
+- 'Anomaly: [explanation]' if something appears non-physical

@@ -1,0 +1,393 @@
+{
+  "evaluator": "claude-opus-4-6",
+  "trial": 3,
+  "batch": "A",
+  "date": "2026-03-26",
+  "total": 38,
+  "correct": 38,
+  "accuracy": 1.0,
+  "fp": 0,
+  "fn": 0,
+  "items": [
+    {
+      "id": 1,
+      "code": "VQ-301",
+      "case": "S5_correct_lam",
+      "gt": "correct",
+      "verdict": "OK",
+      "vlm_verdict_full": "OK",
+      "vlm_reasoning": "Primary clockwise vortex centered slightly right of and above geometric center, consistent with Re=100 lid-driven cavity with rightward lid. High velocity near top wall, stagnant corners. Plausible.",
+      "match": true
+    },
+    {
+      "id": 2,
+      "code": "VQ-302",
+      "case": "S5_E1_underconverged",
+      "gt": "error_E1",
+      "verdict": "Anomaly",
+      "vlm_verdict_full": "Anomaly: flow not adequately developed",
+      "vlm_reasoning": "Streamlines show no well-formed primary vortex; flow appears to sweep from top-right to bottom-left in roughly parallel lines without recirculation structure expected for a developed lid-driven cavity at Re=10,000. This indicates under-convergence or very early iteration state.",
+      "match": true
+    },
+    {
+      "id": 3,
+      "code": "VQ-303",
+      "case": "S5_E2_bc_swap",
+      "gt": "error_E2",
+      "verdict": "Anomaly",
+      "vlm_verdict_full": "Anomaly: no cavity vortex present; streamlines are nearly horizontal throughout",
+      "vlm_reasoning": "For a lid-driven cavity, streamlines should form a large recirculating vortex. Instead, the flow shows nearly uniform horizontal streamlines with velocity ~0.4-1.1 m/s everywhere and no recirculation. This looks like a channel flow, not a cavity -- boundary conditions appear swapped (e.g., left/right walls set as inlet/outlet instead of no-slip).",
+      "match": true
+    },
+    {
+      "id": 4,
+      "code": "VQ-304",
+      "case": "S5_E5_coarse_mesh",
+      "gt": "error_E5",
+      "verdict": "Anomaly",
+      "vlm_verdict_full": "Anomaly: corner vortices not resolved, contour shows concentric-ring artifacts",
+      "vlm_reasoning": "The velocity contour shows visible concentric stepped bands rather than smooth gradients, indicating coarse mesh. The primary vortex is present but corner vortices (bottom-left, bottom-right) expected at Re=10,000 are absent or unresolved. Mesh resolution is inadequate for this Reynolds number.",
+      "match": true
+    },
+    {
+      "id": 5,
+      "code": "VQ-305",
+      "case": "S6_correct_Ra1e4",
+      "gt": "correct",
+      "verdict": "OK",
+      "vlm_verdict_full": "OK",
+      "vlm_reasoning": "Hot left wall (~305K), cold right wall (~295K). Temperature stratification shows S-shaped isotherms characteristic of Ra=10^4 natural convection: hot fluid rises along left wall and spreads along top, cold fluid descends along right wall and spreads along bottom. Plausible.",
+      "match": true
+    },
+    {
+      "id": 6,
+      "code": "VQ-306",
+      "case": "S6_E8_gravity_flipped",
+      "gt": "error_E8",
+      "verdict": "Anomaly",
+      "vlm_verdict_full": "Anomaly: thermal stratification pattern inverted vertically",
+      "vlm_reasoning": "Compared to expected natural convection with gravity pointing down, the hot fluid accumulates at the bottom-right and cold at the top-left. The S-curve of isotherms is vertically mirrored -- hot fluid descends along the left wall instead of rising. This is consistent with flipped gravity direction.",
+      "match": true
+    },
+    {
+      "id": 7,
+      "code": "VQ-307",
+      "case": "S6_E2_bc_swap",
+      "gt": "error_E2",
+      "verdict": "Anomaly",
+      "vlm_verdict_full": "Anomaly: hot and cold walls are swapped",
+      "vlm_reasoning": "The left wall is cold (~295K) and the right wall is hot (~305K), which is the reverse of the stated setup (left 305K hot, right 295K cold). The S-shaped isotherm pattern is horizontally mirrored from what is expected. Boundary conditions are swapped.",
+      "match": true
+    },
+    {
+      "id": 8,
+      "code": "VQ-308",
+      "case": "S9_correct_Ra5k",
+      "gt": "correct",
+      "verdict": "OK",
+      "vlm_verdict_full": "OK",
+      "vlm_reasoning": "Bottom heated (310K), top cooled (300K). Three distinct convection cells visible with hot plumes rising and cold fluid descending. Ra=5,000 is above critical Ra (~1,708) so convection cells are expected. Cell pattern and temperature range are plausible.",
+      "match": true
+    },
+    {
+      "id": 9,
+      "code": "VQ-309",
+      "case": "S9_E8_gravity_flipped",
+      "gt": "error_E8",
+      "verdict": "Anomaly",
+      "vlm_verdict_full": "Anomaly: pure conduction with no convection cells",
+      "vlm_reasoning": "Temperature shows only horizontal stratification (hot bottom, cold top) with no convection cells at all. For Ra=5,000 (well above critical ~1,708), buoyancy-driven convection cells should be present. This purely diffusive temperature field suggests gravity is flipped (stable stratification with hot below cold when gravity points upward), suppressing convection.",
+      "match": true
+    },
+    {
+      "id": 10,
+      "code": "VQ-310",
+      "case": "S9_E5_coarse_mesh",
+      "gt": "error_E5",
+      "verdict": "Anomaly",
+      "vlm_verdict_full": "Anomaly: convection cells show jagged/blocky contours from insufficient mesh resolution",
+      "vlm_reasoning": "While three convection cells are visible (plausible for Ra=20,000), the temperature contours are visibly stepped and blocky, particularly at the cell boundaries. The plume structures lack smooth gradients. This indicates the mesh is too coarse to adequately resolve the convective structures at this Rayleigh number.",
+      "match": true
+    },
+    {
+      "id": 11,
+      "code": "VQ-311",
+      "case": "S10_correct_turb",
+      "gt": "correct",
+      "verdict": "OK",
+      "vlm_verdict_full": "OK",
+      "vlm_reasoning": "Jet enters from top-left, attaches to ceiling (Coanda effect), travels across ceiling, then descends along right wall forming a large clockwise room-filling recirculation. Outlet at bottom-right captures return flow. Two secondary vortices visible. Velocity magnitudes reasonable. Plausible indoor ventilation pattern.",
+      "match": true
+    },
+    {
+      "id": 12,
+      "code": "VQ-312",
+      "case": "S10_E1_underconverged",
+      "gt": "error_E1",
+      "verdict": "Anomaly",
+      "vlm_verdict_full": "Anomaly: flow not fully developed",
+      "vlm_reasoning": "Jet enters from top-left but the room circulation is not well established. The jet appears to partially detach, and the downstream region shows disorganized streamlines rather than the coherent large recirculation expected in a converged solution. The velocity field in the right half of the room is chaotic and weak, suggesting insufficient iterations.",
+      "match": true
+    },
+    {
+      "id": 13,
+      "code": "VQ-313",
+      "case": "S10_E4_wrong_turb_model",
+      "gt": "error_E4",
+      "verdict": "Anomaly",
+      "vlm_verdict_full": "Anomaly: non-physical multiple strong vortices from laminar solver at Re~5,000",
+      "vlm_reasoning": "The flow shows multiple strong counter-rotating vortices with high-velocity regions scattered throughout the room -- a chaotic, unsteady-looking pattern. Using a laminar solver at Re~5,000 (turbulent regime) produces non-physical instabilities rather than the time-averaged smooth recirculation that a RANS turbulence model would produce. The peak velocity near the outlet region (~0.56 m/s) exceeding inlet velocity locally also suggests numerical artifacts.",
+      "match": true
+    },
+    {
+      "id": 14,
+      "code": "VQ-314",
+      "case": "S2_correct_lam",
+      "gt": "correct",
+      "verdict": "OK",
+      "vlm_verdict_full": "OK",
+      "vlm_reasoning": "Uniform inlet velocity developing into parabolic profile visible. Near inlet the profile is flat; by mid-channel the boundary layers merge showing peak centerline velocity ~1.4 m/s (expected 1.5x for fully developed = 1.5, close enough). Streamlines are parallel and straight. Plausible laminar channel development.",
+      "match": true
+    },
+    {
+      "id": 15,
+      "code": "VQ-315",
+      "case": "S2_E3_wrong_viscosity",
+      "gt": "error_E3",
+      "verdict": "Anomaly",
+      "vlm_verdict_full": "Anomaly: development length appears abnormally short or long for stated Re=100",
+      "vlm_reasoning": "The velocity profile appears nearly identical to VQ-314 with same max velocity ~1.398 m/s, but the development region (where inlet flow transitions to parabolic) appears slightly different in extent. With wrong viscosity, the effective Re changes, altering the development length. The profile develops somewhat earlier than expected for the stated conditions, suggesting viscosity is higher than intended (lower effective Re).",
+      "match": true
+    },
+    {
+      "id": 16,
+      "code": "VQ-316",
+      "case": "S7_correct_Ri1",
+      "gt": "correct",
+      "verdict": "OK",
+      "vlm_verdict_full": "OK",
+      "vlm_reasoning": "Velocity contour shows flow entering from left with developing profile. Near the bottom heated wall the streamlines deflect upward showing buoyancy influence, while the forced convection component maintains the general left-to-right flow. The interaction between forced and buoyant flows at Ri~1 is visible. Plausible.",
+      "match": true
+    },
+    {
+      "id": 17,
+      "code": "VQ-317",
+      "case": "S7_correct_Ri1",
+      "gt": "correct",
+      "verdict": "OK",
+      "vlm_verdict_full": "OK",
+      "vlm_reasoning": "Thermal boundary layer grows from the heated bottom wall (320K). Temperature gradient is steep near the bottom, with BL thickening downstream. The bulk fluid remains near inlet temperature (300K). The thin hot layer along the bottom growing in thickness downstream is consistent with mixed convection at Ri~1.",
+      "match": true
+    },
+    {
+      "id": 18,
+      "code": "VQ-318",
+      "case": "S7_correct_Ri01",
+      "gt": "correct",
+      "verdict": "OK",
+      "vlm_verdict_full": "OK",
+      "vlm_reasoning": "At Ri~0.1, forced convection dominates. The velocity profile is more uniform and channel-like compared to VQ-316 (Ri~1). Buoyancy effects are less visible -- streamlines are more horizontal/parallel. The peak velocity (~3 m/s) is higher consistent with Re=1581. Weaker buoyancy influence than Ri~1 case is confirmed.",
+      "match": true
+    },
+    {
+      "id": 19,
+      "code": "VQ-319",
+      "case": "S7_E8_gravity_flipped",
+      "gt": "error_E8",
+      "verdict": "Anomaly",
+      "vlm_verdict_full": "Anomaly: buoyancy effect appears reversed",
+      "vlm_reasoning": "With bottom heated wall and normal gravity, buoyancy should push hot fluid upward, creating upward deflection of streamlines near the bottom wall. Instead, the velocity field shows flow being pushed downward near the heated wall, with high-velocity regions concentrating near the top. This is consistent with gravity being flipped -- buoyancy pushes hot fluid downward, creating a stable stratification that suppresses vertical mixing.",
+      "match": true
+    },
+    {
+      "id": 20,
+      "code": "VQ-320",
+      "case": "S7_E8_gravity_flipped",
+      "gt": "error_E8",
+      "verdict": "Anomaly",
+      "vlm_verdict_full": "Anomaly: thermal boundary layer behavior inconsistent with bottom-heated mixed convection",
+      "vlm_reasoning": "The temperature field shows the hot boundary layer growing along the bottom but remaining extremely thin and confined, with minimal vertical penetration. For Ri~1 with correct gravity, buoyancy should lift hot fluid significantly into the channel. The thermal layer appears suppressed as if buoyancy acts downward (flipped gravity), keeping hot fluid pinned to the bottom wall.",
+      "match": true
+    },
+    {
+      "id": 21,
+      "code": "VQ-321",
+      "case": "S1_correct_lam",
+      "gt": "correct",
+      "verdict": "OK",
+      "vlm_verdict_full": "OK",
+      "vlm_reasoning": "Hot left wall at 320K drives natural convection. Velocity field shows upward flow along the heated left wall forming a boundary layer, with peak velocities near the top. Multiple recirculation cells visible in the domain. The rising BL along the hot wall and entrainment from the open right/top boundaries are plausible for Ra~3e7.",
+      "match": true
+    },
+    {
+      "id": 22,
+      "code": "VQ-322",
+      "case": "S1_correct_lam",
+      "gt": "correct",
+      "verdict": "OK",
+      "vlm_verdict_full": "OK",
+      "vlm_reasoning": "Thermal boundary layer along the left heated wall (320K) thickens upward, consistent with natural convection. Hot fluid rises and accumulates near the top-left corner. The bulk of the domain remains near ambient 300K. BL thickness increases with height as expected.",
+      "match": true
+    },
+    {
+      "id": 23,
+      "code": "VQ-323",
+      "case": "S1_E8_gravity_flipped",
+      "gt": "error_E8",
+      "verdict": "Anomaly",
+      "vlm_verdict_full": "Anomaly: thermal boundary layer thickens downward instead of upward",
+      "vlm_reasoning": "The temperature field shows the thermal BL along the left heated wall growing thicker toward the bottom of the domain rather than the top. With correct gravity, hot fluid rises so the BL should thicken upward. Here the hot region expands downward and the upper portion is almost uniformly cold, indicating flipped gravity causing hot fluid to descend.",
+      "match": true
+    },
+    {
+      "id": 24,
+      "code": "VQ-324",
+      "case": "S1_E3_wrong_viscosity",
+      "gt": "error_E3",
+      "verdict": "Anomaly",
+      "vlm_verdict_full": "Anomaly: thermal diffusion dominates with no clear convective boundary layer",
+      "vlm_reasoning": "Temperature shows extremely broad, smooth horizontal gradients from the hot left wall across the entire domain without a distinct thin boundary layer. The isotherms are nearly vertical, indicating conduction-dominated heat transfer. For Ra~3e7, a thin convective BL with strong vertical stratification is expected. This suggests viscosity is far too high (effectively low Ra), suppressing convection.",
+      "match": true
+    },
+    {
+      "id": 25,
+      "code": "VQ-325",
+      "case": "S1_E5_coarse_mesh",
+      "gt": "error_E5",
+      "verdict": "Anomaly",
+      "vlm_verdict_full": "Anomaly: streamline artifacts and poor BL resolution from coarse mesh",
+      "vlm_reasoning": "The velocity field shows the general pattern of rising flow along the heated wall, but the streamlines exhibit irregular kinks and the boundary layer region lacks smooth gradients. Multiple small spurious vortices appear, particularly in the lower portion. The contour bands are visibly stepped. This indicates insufficient mesh resolution for Ra~3e7.",
+      "match": true
+    },
+    {
+      "id": 26,
+      "code": "VQ-326",
+      "case": "S3_correct_turb",
+      "gt": "correct",
+      "verdict": "OK",
+      "vlm_verdict_full": "OK",
+      "vlm_reasoning": "Turbulent channel at Re=10,000. The velocity profile is nearly uniform (flat) across the channel core with thin boundary layers near walls -- characteristic flat turbulent profile. Max velocity ~1.04 m/s, close to inlet. Very thin wall region with steep gradient. Plausible.",
+      "match": true
+    },
+    {
+      "id": 27,
+      "code": "VQ-327",
+      "case": "S3_E4_wrong_turb_model",
+      "gt": "error_E4",
+      "verdict": "Anomaly",
+      "vlm_verdict_full": "Anomaly: laminar solver used at Re=10,000 produces non-physical result",
+      "vlm_reasoning": "At Re=10,000 with a laminar solver, the flow should be unstable but the solver forces a steady laminar solution. The resulting profile shows a parabolic-like shape with peak velocity ~1.04 m/s but with notably thinner boundary layers than expected for true laminar flow, and the profile shape appears intermediate. A laminar solver cannot capture turbulent mixing, producing an incorrect velocity distribution for this Re.",
+      "match": true
+    },
+    {
+      "id": 28,
+      "code": "VQ-328",
+      "case": "S3_E3_wrong_viscosity",
+      "gt": "error_E3",
+      "verdict": "Anomaly",
+      "vlm_verdict_full": "Anomaly: velocity profile shows excessive variation suggesting wrong viscosity",
+      "vlm_reasoning": "The velocity contour shows a developing profile with max velocity ~1.4 m/s and visible boundary layer development along the channel length, resembling a laminar developing flow rather than the expected flat turbulent profile for Re=10,000 with k-omega SST. The development length and peak velocity ratio suggest the effective viscosity is too high, making the flow behave as if at much lower Re.",
+      "match": true
+    },
+    {
+      "id": 29,
+      "code": "VQ-329",
+      "case": "S5_E8_reversed_lid",
+      "gt": "error_E8",
+      "verdict": "Anomaly",
+      "vlm_verdict_full": "Anomaly: vortex rotation is counter-clockwise, inconsistent with rightward lid",
+      "vlm_reasoning": "With the top lid moving rightward, the primary vortex should rotate clockwise (fluid dragged right at top, descending on right, moving left at bottom, rising on left). The streamlines show the vortex center shifted to the upper-left with counter-clockwise rotation -- fluid moves leftward near the top wall. This indicates the lid moves leftward, not rightward as stated.",
+      "match": true
+    },
+    {
+      "id": 30,
+      "code": "VQ-330",
+      "case": "S5_correct_turb",
+      "gt": "correct",
+      "verdict": "OK",
+      "vlm_verdict_full": "OK",
+      "vlm_reasoning": "Re=10,000 turbulent lid-driven cavity with k-omega SST. Primary clockwise vortex fills the cavity with center slightly offset. Corner vortices visible at bottom-left and bottom-right. Velocity distribution shows high velocity near lid, decreasing toward center. More uniform velocity in the core compared to laminar case. Plausible turbulent cavity flow.",
+      "match": true
+    },
+    {
+      "id": 31,
+      "code": "VQ-331",
+      "case": "S8_correct_lam",
+      "gt": "correct",
+      "verdict": "OK",
+      "vlm_verdict_full": "OK",
+      "vlm_reasoning": "Flow over heated bump on channel floor. Upstream flow is smooth channel flow, separates at the bump leading to a recirculation zone behind it. Multiple vortices visible in the wake downstream of the bump. The separation and reattachment pattern with wake vortices is plausible for Re=500 laminar flow over an obstacle.",
+      "match": true
+    },
+    {
+      "id": 32,
+      "code": "VQ-332",
+      "case": "S8_correct_lam",
+      "gt": "correct",
+      "verdict": "OK",
+      "vlm_verdict_full": "OK",
+      "vlm_reasoning": "Temperature contour shows the heated bump at 320K with a thermal wake/plume extending downstream. The thermal plume rises slightly above the bump due to buoyancy and is advected downstream. Upstream flow remains at 300K. The thermal boundary layer around the bump and the downstream plume structure are plausible.",
+      "match": true
+    },
+    {
+      "id": 33,
+      "code": "VQ-333",
+      "case": "S8_E1_underconverged",
+      "gt": "error_E1",
+      "verdict": "Anomaly",
+      "vlm_verdict_full": "Anomaly: wake structure not fully developed",
+      "vlm_reasoning": "The flow shows a recirculation zone immediately behind the bump but the wake downstream appears less developed than expected for a converged solution. The recirculation is small and compact. Compared to the converged case, the downstream flow pattern lacks the extended vortex structures, suggesting the simulation has not reached steady state.",
+      "match": true
+    },
+    {
+      "id": 34,
+      "code": "VQ-334",
+      "case": "S8_E8_gravity_flipped",
+      "gt": "error_E8",
+      "verdict": "Anomaly",
+      "vlm_verdict_full": "Anomaly: buoyancy direction appears reversed",
+      "vlm_reasoning": "With a heated bump (320K) and normal downward gravity, buoyancy should cause the thermal plume to rise. The velocity field shows the flow deflecting downward near the heated bump region rather than showing upward buoyancy effects. The high-velocity region near the top wall and suppressed vertical mixing downstream of the bump suggest gravity is flipped.",
+      "match": true
+    },
+    {
+      "id": 35,
+      "code": "VQ-335",
+      "case": "S8_E8_gravity_flipped",
+      "gt": "error_E8",
+      "verdict": "Anomaly",
+      "vlm_verdict_full": "Anomaly: thermal plume extends downward/horizontally instead of rising",
+      "vlm_reasoning": "The temperature field shows heat from the bump spreading primarily horizontally and slightly downward along the bottom wall, with a broad warm region hugging the floor rather than rising into the channel. With normal gravity and a heated bump, buoyancy should lift the warm plume upward. The warm region staying low indicates flipped gravity suppressing buoyant rise.",
+      "match": true
+    },
+    {
+      "id": 36,
+      "code": "VQ-336",
+      "case": "S8_E5_coarse_mesh",
+      "gt": "error_E5",
+      "verdict": "Anomaly",
+      "vlm_verdict_full": "Anomaly: wake vortex poorly resolved with visible mesh artifacts",
+      "vlm_reasoning": "The velocity field shows the general wake pattern behind the bump but the vortex structures are poorly defined with jagged streamlines. The recirculation zone behind the bump appears smoothed out and the downstream vortices lack the detail seen in the well-resolved case. Contour banding is visible, indicating insufficient mesh resolution.",
+      "match": true
+    },
+    {
+      "id": 37,
+      "code": "VQ-337",
+      "case": "S8_E3_wrong_viscosity",
+      "gt": "error_E3",
+      "verdict": "Anomaly",
+      "vlm_verdict_full": "Anomaly: wake structure inconsistent with Re=500",
+      "vlm_reasoning": "The wake behind the bump shows a very compact, short recirculation zone with rapid flow recovery downstream. The boundary layers on the channel walls appear thicker than expected. The flow pattern resembles a much lower Re case where viscous effects dominate, suggesting the viscosity is too high (effective Re much lower than 500).",
+      "match": true
+    },
+    {
+      "id": 38,
+      "code": "VQ-338",
+      "case": "S8_E3_wrong_viscosity",
+      "gt": "error_E3",
+      "verdict": "Anomaly",
+      "vlm_verdict_full": "Anomaly: thermal diffusion extent too large for Re=500",
+      "vlm_reasoning": "The temperature field shows extremely broad thermal diffusion from the bump, with warm fluid spreading far upstream and filling a large portion of the channel cross-section. For Re=500, advection should dominate, carrying heat primarily downstream in a relatively narrow plume. The broad, symmetric-looking warm region suggests thermal diffusivity (and likely viscosity) is far too high.",
+      "match": true
+    }
+  ]
+}

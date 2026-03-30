@@ -1,0 +1,40 @@
+{
+  "label_type": "informal_expert_feedback",
+  "date": "2026-03-24",
+  "source": "telegram_conversation",
+  "expert": "domain_expert_thermal_fluid",
+  "context": "3 representative images sent via Telegram for progress update. Expert gave unprompted visual assessment without knowing ground truth labels.",
+  "observations": [
+    {
+      "image": "benchmark/images/S4_correct_turb/S4_correct_turb_V6.png",
+      "case": "S4_correct_turb",
+      "ground_truth": "correct",
+      "expert_response": "괜찮아 보임",
+      "expert_verdict": "correct",
+      "match": true
+    },
+    {
+      "image": "benchmark/images/S4_E1_underconverged/S4_E1_underconverged_V1.png",
+      "case": "S4_E1_underconverged",
+      "ground_truth": "error_E1_underconverged",
+      "expert_response": "난류인지 모르겠으나 조금 어색해 보이네요",
+      "expert_verdict": "suspicious",
+      "match": true,
+      "notes": "Expert detected anomaly without being told which cases were erroneous. Described as 'awkward' (어색). Did not identify specific error type but correctly flagged it."
+    },
+    {
+      "image": "benchmark/images/S4_correct_lam/S4_correct_lam_V1.png",
+      "case": "S4_correct_lam",
+      "ground_truth": "correct",
+      "expert_response": "괜찮아 보임",
+      "expert_verdict": "correct",
+      "match": true
+    }
+  ],
+  "summary": {
+    "total_images": 3,
+    "correct_detections": 3,
+    "accuracy": 1.0,
+    "notes": "Expert correctly identified all 3: 2 correct as OK, 1 error as suspicious. This validates the benchmark design — error cases produce detectable anomalies for domain experts. E1 (under-converged) is detectable at 'moderate' difficulty level even in informal viewing."
+  }
+}
