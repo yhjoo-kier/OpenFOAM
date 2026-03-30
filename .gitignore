@@ -161,3 +161,12 @@ benchmark/evaluations/*/*/predicted_results
 cases/meshprobe_*/
 latex/
 !papers/**/latex/
+papers/**/latex/*.aux
+papers/**/latex/*.bbl
+papers/**/latex/*.blg
+papers/**/latex/*.log
+papers/**/latex/*.out
+papers/**/latex/*.spl
+papers/**/latex/*.pdf
+papers/**/latex/build_*.log
+papers/**/latex/Zotero_YHJoo.bib
