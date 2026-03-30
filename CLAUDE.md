@@ -157,115 +157,25 @@ python -m grid_study run cases/heatsink_water_cht_steady --adaptive -t 1.0
 ### Skill
 - `/grid-study` - 격자 독립성 검증 실행
 
-## Image-to-CFD Paper (진행 중)
+## Papers
 
-2D 이미지로부터 VLM(Gemini)을 이용해 3D 실내 형상을 추상화하고 CFD까지 자동화하는 프레임워크의 논문화 작업.
+논문별 작업물은 `papers/` 아래에 self-contained 구조로 관리. 각 논문 폴더의 `CLAUDE.md` 참조.
 
-- **계획 문서**: `docs/26-03-17_image_to_cfd_paper_plan.md`
-- **프레임워크 엔트리포인트**: `scripts/run_indoor_stabilized.py`
-- **핵심 접근**: rule-based 벤치마크 데이터셋 (형상 난이도 × 뷰 타입) + reference CFD 정답 확보 → 프레임워크 정량 평가
-- **데이터셋 위치**: `benchmark/` — rule-based 형상 생성, reference CFD, 2D 렌더링, 평가 결과 일체
+| 논문 | 폴더 | 상태 |
+|------|------|------|
+| Image-to-CFD (VLM 기반 실내 CFD 자동화) | `papers/image_to_cfd/` | B&E desk reject → 재투고 예정 |
+| CFD Visual QA | `papers/cfd_visual_qa/` | 작업 중 |
 
-### Paper Data Convention (Critical — 반드시 준수)
+### 공통 자산 (루트)
+- `benchmark/` — 벤치마크 데이터셋
+- `cases/` — OpenFOAM 시뮬레이션 케이스
+- `scripts/run_indoor_stabilized.py` — Image-to-CFD 프레임워크 엔트리포인트
+- `src/` — 소스 코드 (geometry, visualization, grid_study)
 
-논문 결과는 **preset-matched** 데이터만 사용한다. Solver robustness preset마다 inlet velocity가 다르므로, reference와 predicted 케이스가 동일한 preset(=동일 inlet velocity)으로 수렴한 pair만 비교해야 한다.
-
-**⚠️ 사용 금지:**
-- `cfd_metrics.json` — preset 미매칭 상태의 CFD 비교 결과 (inlet velocity 불일치)
-- `evaluation_aggregate_summary_posthoc_scaled_longest_span.json`의 원본 CFD score (구 버전)
-
-**✅ 사용해야 하는 파일:**
-- `cfd_metrics_matched.json` — 각 eval dir 내, preset-matched reference 기준 CFD 비교
-- `benchmark/manifests/evaluation_aggregate_summary_phase2.json` — 매칭된 집계 (최신)
-- `benchmark/manifests/evaluation_statistics_phase2.json` — 매칭된 통계 (최신)
-- `benchmark/manifests/evaluation_statistics_matched.json` — 매칭 전용 통계
-
-**Reference 케이스 경로:**
-- Preset-matched: `cases/phase2_ref_{scene}_preset_{preset}/` (논문용)
-- 원본 Phase 2: `cases/phase2_ref_{scene}/` (참고용만, 논문에 사용 금지)
-
-**Predicted 케이스 경로:**
-- `cases/phase2_pred_bench_{case}_{view}/`
-
-**최종 수치 (2026-03-23):**
-- Structural: 0.781 ± 0.151, CFD agreement: 0.477 ± 0.158 (n=97)
-- Best view: floorplan (struct 0.884, CFD 0.572)
-
-**배경:** Solver preset별 inlet velocity가 다름 (robust=0.02, ultra_robust=0.005, laminar=0.01 m/s). Phase 2 초기에는 ref/pred가 다른 preset으로 수렴하여 velocity magnitude similarity ≈ 0이었음. `--force-preset` 플래그 도입 + 26개 reference 재해석으로 해결 (2026-03-23).
-
-## Paper Writing Convention (Markdown → LaTeX → PDF)
-
-### Figure
-- 폰트: Arial (불가 시 Liberation Sans → DejaVu Sans fallback, QC log에 기록)
-- 파일 형식: PDF (벡터, 기본) + PNG (600 dpi 이상)
-- 네이밍: `fig_섹션키워드_설명.pdf` (숫자 번호 사용 금지, LaTeX에서 자동 번호 할당)
-- 키워드 예시: bench (benchmark), method (methodology), result (results), discuss (discussion), demo (application demo)
-- 본문 참조: `[Fig:label]` → LaTeX 변환 시 `Fig.~\ref{fig:label}`
-
-### Table
-- 캡션+레이블을 표 상단에 배치: `[Table:키워드-설명]`
-- 숫자 번호 사용 금지
-- LaTeX 변환 시 `Table~\ref{tab:키워드-설명}`
-
-### Equation
-- `\tag{Eq:키워드-변수}` 형식, 숫자 번호 금지
-- LaTeX 변환 시 `Eq.~\ref{eq:키워드-변수}`
-
-### Algorithm
-- `[Alg:키워드-설명]` 형식 레이블+캡션 상단 배치
-- algorithm2e 또는 algorithmicx 패키지 사용
-
-### Citation
-
-#### 전체 워크플로우
-```
-1. PaperSearch로 논문 검색 (Scopus API)
-   ↓
-2. DOI content negotiation으로 publisher 정식 RIS 다운로드
-   ↓
-3. RIS 파일로 Zotero에 문헌 등록
-   ↓
-4. Zotero → BetterBibTeX → Zotero_YHJoo.bib 자동 내보내기
-   ↓
-5. Markdown 본문에서 [@citekey] 형식으로 인용
-   ↓
-6. LaTeX 변환 시 [@citekey] → \cite{citekey}
-```
-
-#### BibTeX 파일
-- **경로**: `C:\Vaults\Research\Zotero_YHJoo.bib`
-- Zotero BetterBibTeX 자동 내보내기로 동기화됨
-- citekey 검증: DOI 기반 매칭으로 .bib 내 존재 여부 확인
-
-#### 초안 작성 시
-- `[저자 연도 키워드]` 형식 (의미론적 임시 인용)
-- 예: `[Menter 1994 kOmegaSST]`, `[Calzolari 2021 DL replace CFD]`
-
-#### 인용 확정 단계 (초안 → 정식 인용)
-1. 초안의 의미론적 인용 `[저자 연도 키워드]` 목록 확인
-2. `Zotero_YHJoo.bib`에서 DOI 또는 저자/연도/제목으로 citekey 검색
-3. 찾으면 → `[@citekey]` 형식으로 변환
-4. 못 찾으면 → Zotero 등록 필요 (RIS import 또는 DOI/ISBN으로 추가)
-
-#### PaperSearch 사용법
-```bash
-cd ~/Projects/PaperSearch
-export SCOPUS_API_KEY=<key>  # .env 파일에 설정되어 있음
-python search_papers.py --query 'TITLE-ABS-KEY("indoor CFD")' --count 25
-```
-- RIS 다운로드는 DOI content negotiation 활용:
-  `curl -LH "Accept: application/x-research-info-systems" https://doi.org/<DOI>`
-
-#### 참고문헌 등장순 정렬
-- `elsarticle-num` 스타일: 본문에서 `\cite`가 처음 등장하는 순서대로 번호 자동 배정
-- `\usepackage[sort&compress]{natbib}` → `[3,1,2]` → `[1-3]` 자동 정렬/압축
-- 수동 번호 지정(`\bibitem`) 금지
-
-### LaTeX 빌드
-- 빌드 순서: pdflatex → bibtex → pdflatex → pdflatex
-- natbib sort&compress 사용
-- siunitx 패키지로 SI 단위
-- LaTeX 변환 규칙: `[Fig:label]` → `Fig.~\ref{fig:label}`, `[Table:label]` → `Table~\ref{tab:label}`, `[Eq:label]` → `Eq.~\ref{eq:label}`, `[@citekey]` → `\cite{citekey}`
+### 공통 인용 관리
+- BibTeX: `C:\Vaults\Research\Zotero_YHJoo.bib` (Zotero BetterBibTeX 자동 내보내기)
+- 검색: PaperSearch (`~/Projects/PaperSearch`)
+- 초안: `[저자 연도 키워드]` → 확정: `[@citekey]`
 
 ## Adding New Cases
 새 케이스 생성 시 `cases/CLAUDE.md`의 템플릿을 참고할 것.
