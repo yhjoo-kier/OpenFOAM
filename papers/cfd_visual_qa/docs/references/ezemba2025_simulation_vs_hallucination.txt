@@ -1,0 +1,985 @@
+.
+.
+Latest updates: hps://dl.acm.org/doi/10.1145/3722573.3727826
+.
+.
+RESEARCH-ARTICLE
+Simulation vs. Hallucination: Assessing Vision-Language Model
+estion Answering Capabilities in Engineering Simulations
+JESSICA EZEMBA, Carnegie Mellon University, Pisburgh, PA, United States
+.
+CHRISTOPHER MCCOMB, Carnegie Mellon University, Pisburgh, PA, United States
+.
+CONRAD TUCKER, Carnegie Mellon University, Pisburgh, PA, United States
+.
+.
+.
+Open Access Support provided by:
+.
+Carnegie Mellon University
+.
+PDF Download
+3722573.3727826.pdf
+29 March 2026
+Total Citations: 0
+Total Downloads: 511
+.
+.
+Published: 06 May 2025
+Received: 25 March 2025
+.
+.
+Citation in BibTeX format
+.
+.
+SenSys '25: The 23rd ACM Conference on
+Embedded Networked Sensor Systems
+May 6 - 9, 2025
+CA, Irvine, USA
+.
+.
+Conference Sponsors:
+SIGBED
+SIGOPS
+SIGMOBILE
+SIGARCH
+SIGMETRICS
+DESTION '25: Proceedings of the 7th Workshop on Design Automation for CPS and IoT (May 2025)
+hps://doi.org/10.1145/3722573.3727826
+ISBN: 9798400716041
+.
+Simulation vs. Hallucination: Assessing Vision-Language Model
+Question Answering Capabilities in Engineering Simulations
+Jessica Ezemba
+jezemba@andrew.cmu.edu
+Carnegie Mellon University
+Pittsburgh, Pennsylvania, USA
+Christopher McComb
+ccm@cmu.edu
+Carnegie Mellon University
+Pittsburgh, Pennsylvania, USA
+Conrad Tucker
+conradt@andrew.cmu.edu
+Carnegie Mellon University
+Pittsburgh, Pennsylvania, USA
+ABSTRACT
+Engineering simulations generate complex multimodal data that
+are crucial for design iteration and validation. The interpretation of
+these simulations traditionally requires significant domain exper-
+tise and cognitive effort. Recently, vision-language models (VLMs)
+have demonstrated impressive capabilities in general-domain multi-
+modal reasoning tasks, offering the potential for automating simula-
+tion data interpretation. However, the effectiveness of these models
+in specialized engineering contexts remains largely unexplored.
+This paper presents an initial comparative evaluation of state-of-
+the-art VLMs on question answering tasks involving structural
+and fluid dynamics simulation data across three modalities: text,
+images, and videos. In doing so, we introduce a domain-specific
+benchmark dataset comprising true/false questions testing com-
+prehension for engineering simulations. Unlike general-purpose
+multimodal benchmarks, our evaluation focuses specifically on the
+technical interpretation of engineering simulation outputs, requir-
+ing specialized domain knowledge and physical reasoning that is
+absent from broader multimedia assessments. Our results demon-
+strate that text modality yields substantially higher performance
+(up to 69.2% accuracy with GPT-4o, 66.3% with LLaVA) than visual
+inputs (52.9-55.8%), with GPT-4o, LLaVA, and Phi-3 exhibiting the
+strongest capabilities for text comprehension. Models on average
+performed better on structural analysis tasks than fluid dynamics
+problems, with minimal advantage observed for native video pro-
+cessing over batched image approaches. However, reliability is still
+far below that needed for engineering applications, highlighting sig-
+nificant challenges in applying current VLMs to the interpretation
+of engineering simulations.
+CCS CONCEPTS
+• Computing methodologies →Machine learning; Neural
+networks; • Computer systems organization →Embedded and
+cyber-physical systems; • Applied computing →Engineering.
+KEYWORDS
+Multimodal Learning, Vision-Language Models, Question Answer-
+ing, Engineering Simulation
+This work is licensed under a Creative Commons Attribution-ShareAlike 4.0 Interna-
+tional License.
+DESTION ’25, May 6–9, 2025, Irvine, CA, USA
+© 2025 Copyright held by the owner/author(s).
+ACM ISBN 979-8-4007-1604-1/2025/05.
+https://doi.org/10.1145/3722573.3727826
+ACM Reference Format:
+Jessica Ezemba, Christopher McComb, and Conrad Tucker. 2025. Simulation
+vs. Hallucination: Assessing Vision-Language Model Question Answering
+Capabilities in Engineering Simulations. In The 7th Workshop on Design
+Automation for CPS and IoT (DESTION ’25), May 6–9, 2025, Irvine, CA, USA.
+ACM, New York, NY, USA, 9 pages. https://doi.org/10.1145/3722573.3727826
+1
+INTRODUCTION
+Engineering simulations have become essential tools for under-
+standing complex phenomena in structural mechanics and fluid
+dynamics. These simulations help engineers predict system behav-
+ior, optimize designs, and ensure safety across applications ranging
+from civil infrastructure to aerospace components [4, 11, 13]. With
+the increasing complexity and volume of these simulations, there is
+a growing need for automated systems that can interpret and rea-
+son about simulation results through natural language interactions,
+regardless of their original format [10]. Vision language models
+(VLM) have demonstrated remarkable abilities in understanding
+and reasoning about visual information paired with text in general
+domains [18]. Models such as BLIP[16], Llama[19], Qwen[23], and
+GPT-4o[20] have achieved impressive performance on benchmarks
+for image captioning, visual question-answering, and multimodal
+reasoning tasks. These models leverage transformer architectures
+to create aligned representations between visual and textual in-
+formation, enabling rich cross-modal understanding. These multi-
+modal performances are typically validated using benchmarks like
+MM-Vet 2[25], ReForm-Eval[17], and ScienceQA[22] for general
+reasoning capabilities.
+However, the application of these powerful VLMs to specialized
+engineering domains, particularly simulation data interpretation,
+remains relatively underexplored. Firstly, existing benchmarks do
+not address the specialized requirements of engineering simulation
+interpretation. These general benchmarks focus on everyday un-
+derstanding rather than the technical visualization conventions,
+physical principles, and domain-specific reasoning required for
+engineering simulation analysis. Secondly, engineering simula-
+tions present unique data challenges that common VLMs don’t
+account for. Engineering simulations generate vast amounts of
+data in specialized engineering formats. To leverage modern off-
+the-shelf vision-language models, this diverse engineering data is
+converted to VLM-compatible data like images, videos, and text
+outputs. However, even in a VLM compatible format, simulation
+data still presents unique challenges, including the need to un-
+derstand spatial relationships, identify critical structural patterns,
+interpret color-coded flow fields, and reason about physical phe-
+nomena. While researchers have made progress in related engineer-
+ing applications—such as generating multimodal VLM-compatible
+engineering data for aerodynamic car designs [7], evaluating LLMs’
+DESTION ’25, May 6–9, 2025, Irvine, CA, USA
+Jessica Ezemba, Christopher McComb, and Conrad Tucker
+understanding of engineering documentation [2, 6], generating
+multimodal engineering material data[14], and exploring vision-
+language models for design concept generation [9]—these efforts
+have primarily focused on design generation and documentation
+understanding rather than simulation interpretation. Furthermore,
+to the best of the authors’ knowledge, current research lacks a sys-
+tematic evaluation of how different VLM architectures perform on
+multimodal simulation data that include images, videos, and text
+output across both structural and fluid dynamics domains.
+In this paper, we present a comparative analysis of several state-
+of-the-art vision-language models for question-answering tasks on
+fluid dynamics and structural simulation data. For each simulation,
+we examine four input modalities (text, images, videos represented
+as frames, and native video), using leading models for each. The
+contributions of this paper are (1) the introduction of a benchmark
+dataset of engineering simulations with expert-crafted questions,
+(2) a cross-modal evaluation methodology to compare model per-
+formance across images, videos, and text, (3), the identification of
+key limitations in current vision-language models for interpreting
+technical data, offering insights for future model development and
+engineering applications.
+2
+SIMULATION DATASET CREATION
+This section describes our approach to creating a benchmark dataset
+for evaluating vision-language models on engineering simulation
+data interpretation tasks.
+2.1
+Evaluation Approach
+To systematically evaluate VLM performance on simulation data,
+we developed a binary question-answering framework inspired by
+the StrategyQA benchmark [8]. For each simulation type, either
+fluid or structural, we created a set of true/false questions requiring
+an understanding of fundamental engineering concepts to correctly
+interpret the simulation. This approach is advantageous because
+binary questions provide objective evaluation metrics. Questions
+can be designed to test specific physical concepts, and results can
+easily be aggregated through standard accuracy metrics.
+2.2
+Simulation Data Sources
+All simulation data was sourced from publicly available Ansys ex-
+amples to ensure simulations with proper boundary conditions,
+domain diversity across various engineering applications, consis-
+tency in visualization formats and data representation, and poten-
+tial in-distribution evaluation, as models may have encountered
+similar examples during pretraining. We selected twelve distinct
+simulation examples (six for static structural analysis and six for
+fluid dynamics) that collectively covered a broad range of physical
+phenomena and geometric configurations, as shown in Figure 1.
+2.2.1
+Static Structural Simulation Data. Static structural simula-
+tions focus on the analysis of component deformation and stress
+under varied loading conditions [12]. Key outputs include von Mises
+stress distributions, which combine a complex stress tensor into
+a scalar value for failure prediction [5], and deformation patterns
+showing how components elastically change shape in response
+to applied loads. Each structural simulation in this work was con-
+figured using Ansys Mechanical with standard settings for mesh
+quality, solution convergence criteria, and material properties. The
+simulations represent steady-state solutions under static loading
+conditions.
+2.2.2
+Fluid Dynamics Simulation Data. Fluid dynamics simulations
+focus on fluid flow patterns, pressure distributions, and velocity
+fields[24]. Key outputs include pressure distribution maps show-
+ing regions of high and low pressure, velocity vector fields indi-
+cating flow direction and magnitude, and streamlines visualizing
+flow paths through the domain. Each fluid simulation in this work
+was configured using Ansys Fluent with appropriate boundary
+conditions and convergence criteria. The simulations represent
+steady-state flow conditions.
+2.3
+Multimodal Data Extraction
+From each simulation, we extracted three distinct modalities of
+data using PyMechanical and PyFluent, Ansys’s Python scripting
+interfaces.
+2.3.1
+Image Data. Static images were captured from simulation
+outputs in a standardized planar view. For structural simulations,
+images displayed von Mises stress distributions with color legends,
+numerical scales, orientation axes, and deformation information.
+For fluid simulations, images showed pressure distributions with
+corresponding scales and reference axes. All images included consis-
+tent color mapping schemes and numerical annotations to provide
+quantitative context, as shown in Figure 1.
+2.3.2
+Video Data. Videos were generated as animations, showing
+the temporal progression of the simulation towards steady state. For
+structural simulations, videos depicted the progressive application
+of loads and the resulting deformation. For fluid simulations, videos
+showed fluid movement and pressure changes over time. These
+animations were not new transient analyses but simple animated
+visualizations of the steady-state solutions to enhance understand-
+ing of the physical behavior.
+2.3.3
+Text Data. Two levels of textual data were extracted. First,
+comprehensive data files were extracted, containing detailed simu-
+lation parameters, mesh information, boundary conditions, and nu-
+merical results. These files were substantial (approximately 800,000
+tokens for structural and 20,000,000 tokens for fluid), so we pro-
+duced condensed summary reports generated with Ansys report
+tools containing key simulation parameters, material properties,
+boundary conditions, and scalar results, providing a higher-level
+overview of the simulation setup and outcome.
+2.4
+Question-Answer Pair Generation
+We developed 20 questions for each type of simulation, designed
+to test the understanding of fundamental engineering concepts.
+Questions were formulated by engineering domain experts to (1)
+ensure they addressed core physical principles relevant to each sim-
+ulation type, (2) required the interpretation of visual or textual data
+to answer correctly, (3) covered diverse aspects of simulation under-
+standing, and (4) were geometry-agnostic to evaluate generalizable
+reasoning across problems. The full list of these questions is pro-
+vided in Table 3. The dataset includes specific validation questions
+Simulation vs. Hallucination
+DESTION ’25, May 6–9, 2025, Irvine, CA, USA
+Figure 1: Representative examples of engineering simulations used in this study. Top row: Structural analysis simulations.
+Bottom row: Fluid dynamics simulations. Color scales represent von Mises stress distributions for structural examples and
+pressure distribution fields for fluid examples.
+that should always yield the same answer (e.g., "Is mass conserva-
+tion satisfied?" should always be true for valid fluid simulations)
+as well as paired questions with mutually exclusive answers to
+detect inconsistencies in model reasoning (i.e., "Is the deformation
+primarily elastic?" and "Does the structure experience any plastic
+deformation?")1.
+2.4.1
+Question Development Methodology. Questions were designed
+to mirror the evaluation process a simulation engineer would typi-
+cally follow when analyzing simulation results. First, result interpre-
+tation questions were developed based on the specific visualization
+outputs provided in each modality. These represent the primary
+information a simulation engineer would extract from such vi-
+sualizations. Second, simulation setup and assumption questions
+were formulated to evaluate understanding of boundary conditions,
+material properties, and modeling assumptions. These questions
+reflect the critical evaluation an engineer would perform to assess
+simulation validity and applicability. Third, verification questions
+were developed to detect guess-like behavior and ensure consistent
+physical understanding. This approach to question development en-
+sured comprehensive coverage of both domains while maintaining
+consistency in evaluation metrics across all test cases and modali-
+ties.
+3
+MODEL SELECTION & IMPLEMENTATION
+In this section, we describe our approach to selecting and imple-
+menting vision language models to evaluate performance in engi-
+neering simulation data.
+3.1
+Model Selection Criteria
+To select models for evaluation, we prioritized open source models
+to ensure reproducibility and potential fine-tuning by other re-
+searchers. Second, we focused on models from established research
+organizations rather than specialized variants, providing represen-
+tative baselines of state-of-the-art capabilities. Third, we selected
+models that should have efficacy when run locally on the hardware
+typically available to practicing engineers - avoiding both larger
+models (<14B) that present accessibility challenges and very small
+1Benchmark dataset available at: https://github.com/cmudrc/OpenSeeSimE
+Table 1: Key Characteristics of Vision-Language Models Eval-
+uated
+Model
+Architecture
+Key Features
+Llama-3.2-
+Vision
+Adapted
+LLM
+Pre-trained LLM with vision for
+text and image understanding
+BLIP2-opt
+Encoder-
+Decoder
+Querying Transformer links vi-
+sion and language; contrastive
+and generative learning
+Qwen2.5-VL
+Adapted
+LLM
+Optimized for multimodal tasks
+with specialized vision modules
+Kosmos-2
+Adapted
+LLM
+Language
+model
+with
+visual
+grounding
+Phi-3-small
+Encoder-
+Decoder
+Efficient model balancing perfor-
+mance and compute
+LLaVA-
+OneVision
+Adapted
+LLM
+Vision-language integration via
+projection; trained on captioning,
+refined for instructions; supports
+video
+GPT-4o
+Multimodal
+LLM
+Advanced multimodal capabilities
+with integrated vision processing;
+handles text and images
+models (>1B) with limited representational capacity. Finally, all se-
+lected models were specifically trained for vision question answer-
+ing tasks, making them appropriate for our evaluation framework.
+We selected models across different architectural families (Llama,
+Qwen, Kosmos[21], and BLIP) to provide a diverse representation of
+current vision-language approaches [3]. Additionally, we included
+GPT-4o as a comparative baseline representing larger, proprietary
+state-of-the-art models, allowing us to contextualize open-source
+model performance.
+Table 1 summarizes vision-language models based on architec-
+ture and pre-training objectives. The adapted LLM models (Llama-
+3.2, Qwen2.5, Kosmos-2, LLaVA-Onevision[15]) integrate visual
+DESTION ’25, May 6–9, 2025, Irvine, CA, USA
+Jessica Ezemba, Christopher McComb, and Conrad Tucker
+Table 2: Vision-Language Models Selected for Evaluation
+Model
+Image Video Text
+Size
+Context
+Llama-3.2-Vision‡
+✓
+–
+✓
+11B
+128K
+Qwen2.5-VL
+✓
+✓*
+✓
+7B
+32K
+BLIP2-opt
+✓
+✓†
+–
+3.74B
+512
+Kosmos-2
+✓
+✓†
+–
+1.66B
+2048
+Phi-3-small
+–
+–
+✓
+7B
+128K
+LLaVA-OneVision
+–
+✓*
+✓
+7B
+32K
+GPT-4o
+✓
+✓†
+✓
+200B§
+128K
+* Native video processing capability
+† Frame-sampling approach for video processing
+§ The parameter count for GPT-4o is unofficial and based on community estimates,
+as OpenAI has not disclosed its exact size.
+‡ Excluded from video tasks due to documented performance degradation with
+sequential images; developers note this limitation is being addressed in future
+releases.
+capabilities into powerful language models through different mech-
+anisms, with variations in how they process and align visual infor-
+mation with text. Encoder-decoder architectures like BLIP2 and Phi-
+3[1] use multimodal fusion, with BLIP2 using a dedicated Querying
+Transformer and Phi-3 offering a more efficiency-focused design.
+The training objectives also differ, from contrastive learning and
+matching (BLIP2) to specialized instruction tuning (Qwen2.5) to
+grounded vision-language alignment (Kosmos-2). This diversity
+allows for evaluation based on specific architectural choices.
+3.2
+Selected Vision-Language Models
+Table 2 summarizes our selection of vision-language models across
+the three modalities: image, video, and text. For image processing,
+we employed five state-of-the-art models representing different
+architectural approaches: Meta’s Llama-3.2-11B-Vision, Alibaba’s
+Qwen2.5-VL-7B-Instruct, Salesforce’s BLIP2-opt-2.7b, Microsoft’s
+Kosmos-2, and OpenAI’s GPT-4o (gpt-4o-2024-08-06). Our video
+processing evaluation utilized two distinct approaches: models with
+native video processing capabilities (Qwen2.5-VL-7B-Instruct and
+LLaVA-onevision) processed videos directly through specialized
+modules, while models without native support (BLIP2, Kosmos-2,
+and GPT-4o) employed a frame-sampling strategy where sequences
+of extracted frames were processed as batched images. Notably,
+we excluded Llama-3.2-11B-Vision from video tasks based on doc-
+umented performance degradation with sequential images2. For
+text-only processing of simulation reports, we evaluated five models
+(Llama-3.2, Qwen2.5, Phi-3, LLaVA-onevision, and GPT-4o) while
+excluding BLIP2 and Kosmos-2 after preliminary tests revealed
+their suboptimal performance on text-only tasks.
+3.3
+Implementation Details
+3.3.1
+Image Processing Implementation. All image processing mod-
+els were run with full floating-point precision to maintain accuracy.
+For Qwen2.5-VL-7B-Instruct, we adjusted the resolution parameters
+to fit memory constraints, setting minimum pixels to 256×28×28
+2This limitation is documented in the GitHub issue "Llama3.2 Vision Model: Guides and
+Issues," Issue #8826, vllm-project/vllm, https://github.com/vllm-project/vllm/issues/
+8826. The developers note they are actively working to address this limitation in future
+releases.
+and maximum pixels to 1280×28×28 as recommended by the model
+developers.
+3.3.2
+Video Processing Implementation. For native video process-
+ing models, we configured specific hyperparameters based on the
+model requirements. LLaVA-Onevision and Qwen2.5-VL-7B-Instruct
+were configured to process 8 frames per video. For models without
+native video processing (BLIP2-Opt, Kosmos-2, and GPT-4o), we
+implemented a frame-sampling approach, extracting one frame
+every 10 seconds from each video.
+This specific sampling rate was determined through systematic
+experimentation to optimize the trade-off between temporal infor-
+mation capture and processing efficiency. The 10-second interval
+was selected to ensure each sampled frame contained meaningful
+unique information while maintaining consistency across all sim-
+ulations. The original videos were generated at a fixed frame rate
+using PyMechanical and PyFluent, and our sampling approach
+ensured we captured key state changes in the simulations without
+excessive redundancy. This approach aligns with current practices
+in vision-language modeling, where deduplication of video frames
+often improves model performance by focusing on distinct visual
+states rather than redundant temporal information [26]. The sam-
+pling approach was kept consistent across all simulations to ensure
+fair comparison. For shorter videos, this resulted in fewer total
+frames, while longer videos yielded proportionally more frames.
+We maintained this consistent sampling rate rather than using a
+fixed number of frames per video to preserve temporal resolution
+across simulations of varying duration. This approach ensured that
+transient phenomena and state changes were captured at similar
+temporal granularity regardless of video length. Our uniform sam-
+pling approach ensured comparability across all models and simu-
+lation types while effectively capturing the key temporal dynamics
+in each simulation.
+3.3.3
+Text Processing Implementation. Processing the extensive
+simulation text files (Structural: ≈800, 000 tokens; Fluid: ≈20, 000, 000
+tokens) demanded a method to manage the large text context. To
+address this, we used Ansys report tool to extract relevant simula-
+tion parameters, effectively reducing text input and enabling direct
+processing by the models. We focused on models with sufficiently
+large context windows, such as Llama, Phi-3, and GPT-4o (up to
+128,000 tokens), and excluded those with limited capacities, such as
+BLIP. All text processing models used bfloat16 precision to ensure
+fair comparison.
+4
+RESULTS
+Our evaluation revealed a clear performance hierarchy across modal-
+ities. Text modality consistently produced the highest accuracy
+scores across all models, with GPT-4o (69.2%), LLaVA (66.3%), and
+Phi-3 (62.5%) demonstrating particularly strong text comprehension
+capabilities. Visual modalities yielded significantly lower perfor-
+mance, with most models achieving 53-56% accuracy regardless of
+whether processing images or videos. Among image-processing
+models, GPT-4o showed a marginal advantage (55.8%), followed
+by Llama (54.6%); GPT-4o and LLaVA led in video interpretation
+(55.8% and 53.8%, respectively). These results suggest that current
+Simulation vs. Hallucination
+DESTION ’25, May 6–9, 2025, Irvine, CA, USA
+Figure 2: Performance on fluid dynamics task
+vision-language models possess stronger capabilities for interpret-
+ing textual descriptions of engineering simulations than for directly
+analyzing their visual representations.
+The difference between native video processing (implemented in
+LLaVA and Qwen) versus batched image processing (implemented
+in BLIP, Kosmos, and GPT-4o) proved minimal. LLaVA’s native
+processing achieved 53.8%, while the batched image approaches
+ranged from 52.9% (BLIP, Kosmos) to 55.8% (GPT-4o) (for direct
+batched image processing results for LLaVA and Qwen see Figure
+7). GPT-4o achieved the highest accuracy among the batched image
+approaches, but still showed only modest improvements over other
+models. This may suggest that current model architectures, even
+the most advanced proprietary ones, may not fully take advantage
+of the temporal information available in simulation videos.
+On average, models demonstrate higher accuracy on structural
+analysis tasks (59.21%) compared to fluid dynamics tasks (53.06%),
+with an approximate 6 percentage point overall performance gap.
+This pattern is particularly pronounced in GPT-4o, which shows a
+difference between structural (80.0% for text) and fluid tasks (58.3%
+for text). However, this trend isn’t universal—some models show
+better fluid performance in specific modalities, including LLaVA
+for video analysis and both Llama and Qwen for text. This suggests
+domain-specific strengths vary across different model architectures
+and input types.
+4.1
+Performance on Fluid Dynamics Tasks
+Vision-language models demonstrated moderate performance on
+fluid dynamics tasks, with accuracy ranging from 50% to 60% in dif-
+ferent modalities and models (Figure 2). This performance suggests
+a limited understanding of complex fluid phenomena represented
+in the simulation outputs. LLaVA achieved the highest accuracy
+on the fluid dynamics text data (60%), followed by GPT-4o (58.3%).
+For video data, LLaVA and GPT-4o led with similar accuracy (55%
+and 54.2% respectively), while other models reached 50%. For the
+image modality, GPT-4o showed slightly better performance (54.2%)
+compared to other models’ consistent 50% accuracy.
+Analysis of specific test cases reveals significant performance
+variability. All models showed consistently high performance on
+the falling-sphere viscometer test case (70-75%), suggesting that
+simple laminar flow patterns may be more readily interpretable. In
+Figure 3: Performance on structural analysis task
+contrast, the Natural Convection test case proved challenging for
+all models (around 40%), indicating difficulty in understanding com-
+plex buoyancy-driven flows. Models also struggled with questions
+requiring interpretation of flow separation and recirculation zones.
+In particular, while models showed better performance on some
+fundamental physical principles, they struggled with consistent ap-
+plication of these concepts, particularly mass conservation, where
+inconsistency rates ranged from 0% to 33.3% across models (see
+Figure 6 in the Appendix). Performance was generally weaker on
+questions requiring interpretation of flow patterns or pressure dis-
+tributions (approximately 40-50%). This suggests that models may
+have acquired some knowledge of basic fluid mechanics principles
+but struggle to apply this knowledge reliably, especially in visual
+interpretation tasks.
+The minimal difference between native video processing and
+batched image approaches for fluid dynamics tasks (LLaVA at 55% vs.
+GPT-4o at 54.2%) indicates that current models derive limited benefit
+from temporal information in fluid simulation videos, despite the
+dynamic nature of fluid phenomena.
+4.2
+Performance on Structural Analysis Tasks
+Vision-language models on average demonstrated better perfor-
+mance on structural analysis tasks compared to fluid dynamics, with
+accuracy ranging from 49% to 80% across modalities and models
+(Figure 3). This suggests greater ability to interpret stress distri-
+butions and deformation patterns compared to fluid simulations.
+Analysis of the text modality revealed GPT-4o as the top performer,
+with an accuracy of 80%, followed by LLaVA at 72.5% and Phi-3
+at 70.8%. A notable decrease in accuracy was observed for Qwen
+(54.2%) and Llama (49.2%). In the video modality, GPT-4o showed a
+marginally better performance at 57.5%. A trend of similar perfor-
+mance was evident across other models, with LLaVA exhibiting a
+marginal decrease to 52.5% compared to the 55.8% achieved by the
+others. For the image modality, Llama demonstrated a marginally
+better performance at 59.2% accuracy, followed closely by GPT-4o
+at 57.5% while the remaining models displayed comparable results
+at 55.8%
+Analysis of specific structural test cases reveals that the models
+performed best in the Thermal Stress test case (GPT-4o: 90%, Phi-3:
+80%) and Bike Crank test cases (GPT-4o: 85%, LLaVA: 80%, Phi-3:
+DESTION ’25, May 6–9, 2025, Irvine, CA, USA
+Jessica Ezemba, Christopher McComb, and Conrad Tucker
+Figure 4: Performance of evaluated models on validation
+questions (fundamental physical laws), fluid simulation in-
+consistencies, and structural simulation inconsistencies
+80%). Models struggled more with the Pretensioned Bolt (Llama:
+45%) and Point Mass (Llama: 40%) test cases, which contained more
+complex geometries and loading conditions.
+Questions about basic structural principles (for example, "Is the
+deformation primarily elastic?") showed higher precision (65- 75%)
+than those requiring detailed interpretation of stress patterns or
+failure modes (45-55%). This pattern suggests that models have
+acquired fundamental knowledge about structural mechanics, but
+face challenges in applying this knowledge to complex simulation
+output. The performance gap between text and visual modalities
+in structural tasks (approximately 15-20 percentage points, and as
+high as 22.5 percentage points for GPT-4o) highlights the limita-
+tions of current vision-language models in interpreting technical
+visualizations, despite their strong performance on general domain
+visual tasks.
+5
+DISCUSSION AND CONCLUSION
+Current VLMs fall short of the reliability needed for autonomous
+engineering analysis. In these domains, the results suggest that
+models possess stronger language understanding capabilities than
+specialized visual interpretation skills for technical domains. This
+is perhaps unsurprising given the intent and modality for which
+these models were originally developed. The superior performance
+on text modality (up to 80% for GPT-4o) indicates that engineering
+summary reports may currently be the most reliable input format
+for VLM-based simulation interpretation. The low performance on
+visual modalities is particularly concerning, as these accuracy levels
+are only marginally better than random guessing (50%) (see Table
+4 in the Appendix for more information). This indicates no mean-
+ingful comprehension of visual engineering data. Most concerning
+is the models’ failure on fundamental validation questions that
+should have consistent answers across all simulations—such as "Do
+reaction forces balance external loads?" for structural simulations
+and "Is mass conservation satisfied?" for fluid simulations (Figure
+4).
+Analysis of paired opposing questions revealed frequent incon-
+sistencies, where models would simultaneously affirm mutually ex-
+clusive conditions and disagree on paired similar questions. These
+patterns indicate guess-like behavior rather than structured rea-
+soning based on physical understanding. A detailed analysis of
+individual paired questions is presented in Figures 5 and 6 of the
+Appendix. The consistent performance gap between the structural
+and fluid domains highlights the varying difficulty in interpreting
+different physical simulations. Structural simulations, with their
+well-defined stress patterns and color mappings, appear more ac-
+cessible to current models than fluid simulations with complex flow
+patterns and pressure distributions. This domain-specific perfor-
+mance variance should inform expectations when applying VLMs
+to different engineering disciplines.
+Several limitations in current VLM capabilities for engineering
+applications emerge from our analysis:
+• Limited physical reasoning: While models show knowledge
+of basic principles, they struggle to apply physical reasoning
+to visual interpretation tasks.
+• Challenges with specialized visualizations: Technical con-
+ventions in engineering visualizations appear less accessible
+to models than general domain visual content.
+• Architectural limitations: The minimal advantage of native
+video processing over batched image approaches suggests
+inadequate temporal processing mechanisms.
+• Logical inconsistency: Models frequently provide contradic-
+tory answers to paired questions testing the same physical
+concept.
+Future work could explore several approaches to address the
+limitations identified in our study. Researchers might investigate
+domain-specific pretraining using paired simulation outputs and
+expert annotations to familiarize models with engineering visu-
+alizations. Fine-tuning strategies with engineering examples or
+developing specialized prompt engineering techniques could poten-
+tially improve performance without extensive model modifications.
+Architectural enhancements to multimodal attention mechanisms
+might better align visual features with engineering domain knowl-
+edge. Expanded benchmark datasets specifically for engineering
+simulations would also facilitate progress in this specialized domain.
+These directions represent promising avenues for improving the
+reliability of vision-language models in engineering simulation in-
+terpretation tasks. Additionally, future iterations of this benchmark
+could benefit from multiple-choice question formats that provide
+more nuanced evaluation while maintaining the ability to detect
+reasoning inconsistencies. In addition, our results suggest that spe-
+cialized architectural features may be more important than raw
+parameter count for engineering domain tasks.
+Ultimately, the ability of the community to address goals in de-
+sign automation is only as good as our ability to measure the capabil-
+ities of novel algorithms. Therefore, it is of paramount importance
+for future research to establish more extensive and comprehensive
+benchmarks for specific engineering disciplines to drive progress.
+ACKNOWLEDGMENTS
+The authors appreciate the assistance of Prince Panta and Saroj
+Belbase, as well as the support and guidance provided by Dipin
+Nair, Chris Hawkins, and the broader Ansys team in utilizing and
+understanding PyAnsys.
+Simulation vs. Hallucination
+DESTION ’25, May 6–9, 2025, Irvine, CA, USA
+REFERENCES
+[1] Marah Abdin, Jyoti Aneja, Hany Awadalla, Ahmed Awadallah, Ammar Ahmad
+Awan, Nguyen Bach, Amit Bahree, Arash Bakhtiari, Jianmin Bao, Harkirat Behl,
+et al. 2024. Phi-3 technical report: A highly capable language model locally on
+your phone. arXiv preprint arXiv:2404.14219 (2024).
+[2] Faez Ahmed, Cyril Picard, Wei Chen, Christopher Mccomb, Pingfeng Wang,
+Ikjin Lee, Tino Stankovic, Douglas Allaire, and Stefan Menzel. 2025. Datasets in
+Engineering Design. Journal of Mechanical Design (2025), 1–8.
+[3] Muhammad Awais, Muzammal Naseer, Salman Khan, Rao Muhammad Anwer,
+Hisham Cholakkal, Mubarak Shah, Ming-Hsuan Yang, and Fahad Shahbaz Khan.
+2025. Foundation Models Defining a New Era in Vision: a Survey and Outlook.
+IEEE Transactions on Pattern Analysis and Machine Intelligence (2025).
+[4] Anup Chitkeshwar. 2024. Revolutionizing structural engineering: applications of
+machine learning for enhanced performance and safety. Archives of Computa-
+tional Methods in Engineering 31, 8 (2024), 4617–4632.
+[5] Americo Cunha, Yasar Yanik, Carlo Olivieri, and Samuel da Silva. 2024. Tresca
+Versus Von Mises: Which Failure Criterion is More Conservative in a Probabilistic
+Context? Journal of Applied Mechanics 91, 11 (2024).
+[6] Anna C Doris, Daniele Grandi, Ryan Tomich, Md Ferdous Alam, Mohammadme-
+hdi Ataei, Hyunmin Cheong, and Faez Ahmed. 2025. Designqa: A multimodal
+benchmark for evaluating large language models’ understanding of engineering
+documentation. Journal of Computing and Information Science in Engineering 25,
+2 (2025), 021009.
+[7] Mohamed Elrefaie, Florin Morar, Angela Dai, and Faez Ahmed. 2025. Drivaer-
+net++: A large-scale multimodal car dataset with computational fluid dynamics
+simulations and deep learning benchmarks. Advances in Neural Information
+Processing Systems 37 (2025), 499–536.
+[8] Mor Geva, Daniel Khashabi, Elad Segal, Tushar Khot, Dan Roth, and Jonathan
+Berant. 2021. Did aristotle use a laptop? a question answering benchmark with
+implicit reasoning strategies. Transactions of the Association for Computational
+Linguistics 9 (2021), 346–361.
+[9] Parisa Ghasemi and Mohsen Moghaddam. 2025. Vision-Language Models for
+Design Concept Generation: An Actor-Critic Framework. Journal of Mechanical
+Design (2025), 1–28.
+[10] Ilya Jackson, Maria Jesus Saenz, and Dmitry Ivanov. 2024. From natural language
+to simulations: applying AI to automate simulation modelling of logistics systems.
+International Journal of Production Research 62, 4 (2024), 1434–1457.
+[11] P Kanaga Priya and A Reethika. 2024. A review of digital twin applications
+in various sectors. Transforming industry using digital twin technology (2024),
+239–258.
+[12] Aslam Kassimali, GV Ramana, and Germán Rojas Orozco. 2015. Structural analysis.
+Cengage Learning Stamford, CT.
+[13] Shubhendu Kumar Singh, Rahul Rai, Raj Pradip Khawale, Darshil Patel, Dustin
+Bielecki, Ryan Nguyen, Jun Wang, and Zhibo Zhang. 2024. Deep learning in
+computational design synthesis: a comprehensive review. Journal of Computing
+and Information Science in Engineering 24, 4 (2024).
+[14] Beichen Li, Rundi Wu, Armando Solar-Lezama, Changxi Zheng, Liang Shi, Bernd
+Bickel, and Wojciech Matusik. 2025. VLMaterial: Procedural Material Generation
+with Large Vision-Language Models. arXiv preprint arXiv:2501.18623 (2025).
+[15] Bo Li, Yuanhan Zhang, Dong Guo, Renrui Zhang, Feng Li, Hao Zhang, Kaichen
+Zhang, Yanwei Li, Ziwei Liu, and Chunyuan Li. 2024. LLaVA-OneVision: Easy
+Visual Task Transfer. arXiv:2408.03326 [cs.CV] https://arxiv.org/abs/2408.03326
+[16] Junnan Li, Dongxu Li, Silvio Savarese, and Steven Hoi. 2023. Blip-2: Bootstrapping
+language-image pre-training with frozen image encoders and large language
+models. In International conference on machine learning. PMLR, 19730–19742.
+[17] Zejun Li, Ye Wang, Mengfei Du, Qingwen Liu, Binhao Wu, Jiwen Zhang, Chengx-
+ing Zhou, Zhihao Fan, Jie Fu, Jingjing Chen, et al. 2024. Reform-eval: Evaluating
+large vision language models via unified re-formulation of task-oriented bench-
+marks. In Proceedings of the 32nd ACM International Conference on Multimedia.
+1971–1980.
+[18] Zijing Liang, Yanjie Xu, Yifan Hong, Penghui Shang, Qi Wang, Qiang Fu, and
+Ke Liu. 2024. A Survey of Multimodel Large Language Models. In Proceedings of
+the 3rd International Conference on Computer, Artificial Intelligence and Control
+Engineering. 405–409.
+[19] AI Meta. 2024. Llama 3.2: Revolutionizing edge AI and vision with open, cus-
+tomizable models. Meta AI Blog. Retrieved December 20 (2024), 2024.
+[20] OpenAI. 2024. Hello GPT-4o. https://openai.com/index/hello-gpt-4o/ Accessed:
+03/06.
+[21] Zhiliang Peng, Wenhui Wang, Li Dong, Yaru Hao, Shaohan Huang, Shuming Ma,
+and Furu Wei. 2023. Kosmos-2: Grounding Multimodal Large Language Models
+to the World. ArXiv abs/2306 (2023).
+[22] Tanik Saikh, Tirthankar Ghosal, Amish Mittal, Asif Ekbal, and Pushpak Bhat-
+tacharyya. 2022. Scienceqa: A novel resource for question answering on scholarly
+articles. International Journal on Digital Libraries 23, 3 (2022), 289–301.
+[23] Qwen Team. 2025. Qwen2.5-VL. https://qwenlm.github.io/blog/qwen2.5-vl/
+[24] Jiyuan Tu, Guan Heng Yeoh, Chaoqun Liu, and Yao Tao. 2023. Computational
+fluid dynamics: a practical approach. Elsevier.
+[25] Weihao Yu, Zhengyuan Yang, Lingfeng Ren, Linjie Li, Jianfeng Wang, Kevin Lin,
+Chung-Ching Lin, Zicheng Liu, Lijuan Wang, and Xinchao Wang. 2024. Mm-vet
+v2: A challenging benchmark to evaluate large multimodal models for integrated
+capabilities. arXiv preprint arXiv:2408.00765 (2024).
+[26] Yue Zhao, Ishan Misra, Philipp Krähenbühl, and Rohit Girdhar. 2023. Learning
+video representations from large language models. In Proceedings of the IEEE/CVF
+Conference on Computer Vision and Pattern Recognition. 6586–6597.
+A
+QUESTIONS USED FOR BENCHMARKING
+Table 3 presents the complete set of benchmark questions used in
+our evaluation framework. For structural analysis, questions cover
+key aspects including stress analysis, material behavior, boundary
+conditions, and convergence properties. For fluid analysis, ques-
+tions address flow regimes, conservation principles, and special
+flow phenomena. These questions were carefully designed to test
+both fundamental understanding of engineering principles and the
+ability to extract relevant information from simulation visualiza-
+tions while being geometrically agnostic. Each question requires a
+binary (True/False) response, allowing for objective evaluation of
+model performance.
+B
+DETAILED BREAKDOWN OF
+CONTRADICTORY QUESTION AND
+ANSWERS
+Figure 5 illustrates the average contradiction rates observed when
+models were presented with logically opposing and similar question
+pairs. The most notable inconsistencies were found for elastic vs.
+plastic deformation questions ("Is the deformation primarily elas-
+tic?" and "Does the structure experience any plastic deformation?"),
+where LLaVA (66.5%), Llama (66.%), and Qwen (55.3%) demonstrated
+high contradiction rates across modalities. GPT-4o showed lower
+contradiction rates (16.7%) while Phi-3, in contrast, maintained per-
+fect consistency (0% contradiction) on these same questions. For
+transient vs. steady-state questions ("Is the flow steady-state?" and
+"Is the analysis set up as a transient simulation?"), Llama showed
+a 33.5% contradiction rate, while most other models maintained
+better logical consistency. Stress concentration vs. factor of safety
+questions ("Are there any stress concentrations exceeding mate-
+rial limits?" and "Is the Factor of Safety greater than 1?") showed
+varied performance with GPT-4o (27.7%) and Qwen (22.3%) ex-
+hibiting higher contradiction rates. These patterns reveal signif-
+icant variation in models’ ability to maintain logical consistency
+across related engineering concepts. For fluid-related contradic-
+tions, LLaVA demonstrated perfect consistency with no contra-
+dictions (0%), while GPT-4o (11.3%), Qwen (5.7%), and Phi-3 (17%)
+showed relatively strong performance. Llama exhibited the highest
+overall inconsistency, particularly on structural questions.
+C
+DETAILED BREAKDOWN OF VALIDATION
+QUESTION AND ANSWERS
+Figure 6 shows model performance on average for validation ques-
+tions testing fundamental physical principles that must hold true
+in all valid simulations. Most concerning is the high failure rate of
+Llama (50%) and Qwen (33.3%) on the conservation of forces vali-
+dation question, a fundamental principle in structural mechanics.
+Similarly, all models showed significant failure rates on mass con-
+servation questions, with GPT-4o (27.7%), Llama (25%), and Qwen
+DESTION ’25, May 6–9, 2025, Irvine, CA, USA
+Jessica Ezemba, Christopher McComb, and Conrad Tucker
+Table 3: Simulation Analysis Benchmark Questions
+Structural Analysis Questions
+Fluid Analysis Questions
+Are there any stress concentrations exceeding material limits?
+Are recirculation zones or vortices present in the flow field?
+Is the deformation primarily elastic?
+Is the flow fully developed?
+Are contact or boundary conditions properly enforced?
+Are wall functions being used?
+Do reaction forces balance external loads?
+Is natural convection significant?
+Is von Mises stress the appropriate failure criterion?
+Is the flow steady-state?
+Is buckling a potential failure mode?
+Are there shock waves present?
+Does material nonlinearity affect the solution?
+Is the flow multiphase?
+Are residual stresses significant?
+Is the flow regime laminar?
+Is bending stress dominant over axial stress?
+Is mass conservation satisfied?
+Are the boundary conditions representing real-world con-
+straints?
+Is the flow supersonic anywhere?
+Does the simulation converge within acceptable error limits?
+Is the flow regime turbulent?
+Are thermal stresses negligible in this analysis?
+Is the analysis set up as a transient simulation?
+Are torsional stresses negligible in this analysis?
+Is the fluid considered compressible?
+Does the structure experience any plastic deformation?
+Is there evidence of flow separation in the results?
+Is the structure symmetrically loaded?
+Is buoyancy negligible in this flow scenario?
+Is the stress distribution uniform across the structure?
+Is the flow symmetric about any axis?
+Is this material ductile?
+Are there any regions of high-pressure gradients?
+Is the Factor of Safety greater than 1?
+Are thermal effects negligible in this analysis?
+Does this part experience rigid body motion?
+Are there any areas of cavitation?
+Is fatigue analysis negligible in this analysis?
+Does the simulation include fluid-structure interaction?
+Figure 5: Model accuracy on fluid and structural simulation
+questions
+(22.3%) performing worst. The contrast between models is particu-
+larly striking for conservation principles, with LLaVA and GPT-4o
+performing well on force equilibrium questions (0% failure) while
+underperforming on other validation questions. For steady-state
+flow validation, LLaVA demonstrated perfect understanding (0%
+error) across modalities, while Llama had the highest error rate
+(41.5%). These results demonstrate that current models may lack
+reliable understanding of basic engineering principles, particularly
+across different modalities, regardless of their overall accuracy met-
+rics.
+Figure 6: Performance of evaluated models on validation
+questions
+D
+BIMODAL TEST ANALYSIS FOR VISUAL
+MODALITIES
+We conducted binomial tests to assess whether the observed per-
+formance of each model significantly differs from random guessing
+(50% baseline). Table 4 presents these results, revealing that no
+individual model achieved statistically significant performance in
+either image or video modality, with GPT-4o approaching but not
+reaching significance (p = 0.071) in both modalities. These find-
+ings corroborate our qualitative observations that current vision-
+language models demonstrate limited capabilities in engineering
+simulation interpretation. The minimal performance above random
+Simulation vs. Hallucination
+DESTION ’25, May 6–9, 2025, Irvine, CA, USA
+Table 4: Binomial Test Results for Vision-Language Models
+Model
+Modality
+Observed Accuracy
+p-value
+GPT-4o
+Image
+0.558
+0.071
+GPT-4o
+Video
+0.558
+0.071
+Llama
+Image
+0.546
+0.156
+Llava
+Video
+0.538
+0.245
+Qwen
+Image
+0.529
+0.366
+Qwen
+Video
+0.529
+0.366
+BLIP2
+Image
+0.529
+0.366
+BLIP2
+Video
+0.529
+0.366
+Kosmos
+Image
+0.529
+0.366
+Kosmos
+Video
+0.529
+0.366
+Note: *Statistically significant (p < 0.05).
+Figure 7: Comparison Between Llava and Qwen for Video
+and Multiimage Processing
+guessing, coupled with the lack of statistical significance for in-
+dividual models, underscores the challenges in applying current
+VLMs to specialized engineering visualization tasks.
+E
+BATCHED IMAGE PROCESSING FOR
+LLAVA-ONEVISION AND QWEN
+Figure 7 shows the comparison between running LLava-Onevision
+and Qwen with native video inputs or multi-images. LLaVA-Onevision
+demonstrates marginal improvements when using native video pro-
+cessing compared to multi-image inputs, with performance gains
+of 0.8 percentage points in both structural (51.7% to 52.5%) and fluid
+domains (54.2% to 55.0%). This suggests LLaVA-Onevision may
+leverage some temporal information present in video sequences.
+In contrast, Qwen exhibits identical performance metrics across
+both modalities (55.8% for structural and 50.0% for fluid domains),
+indicating that its video processing approach may not significantly
+utilize temporal dynamics and instead processes videos essentially
+as collections of independent frames.
+Received 25 March 2025

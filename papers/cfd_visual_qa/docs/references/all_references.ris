@@ -1,0 +1,403 @@
+// Key: calzolari2021deep
+TY  - JOUR
+DO  - 10.1016/j.buildenv.2021.108315
+UR  - http://dx.doi.org/10.1016/j.buildenv.2021.108315
+TI  - Deep learning to replace, improve, or aid CFD analysis in built environment applications: A review
+T2  - Building and Environment
+AU  - Calzolari, Giovanni
+AU  - Liu, Wei
+PY  - 2021
+DA  - 2021/12
+PB  - Elsevier BV
+SP  - 108315
+VL  - 206
+SN  - 0360-1323
+ER  -
+
+// Key: pandey2025openfoamgpt
+TY  - JOUR
+DO  - 10.1063/5.0257555
+UR  - http://dx.doi.org/10.1063/5.0257555
+TI  - OpenFOAMGPT: A retrieval-augmented large language model (LLM) agent for OpenFOAM-based computational fluid dynamics
+T2  - Physics of Fluids
+AU  - Pandey, Sandeep
+AU  - Xu, Ran
+AU  - Wang, Wenkang
+AU  - Chu, Xu
+PY  - 2025
+DA  - 2025/03/01
+PB  - AIP Publishing
+IS  - 3
+VL  - 37
+SN  - 1070-6631
+SN  - 1089-7666
+ER  -
+
+// Key: dong2025finetuning
+TY  - JOUR
+DO  - 10.1016/j.taml.2025.100594
+UR  - http://dx.doi.org/10.1016/j.taml.2025.100594
+TI  - Fine-tuning a large language model for automating computational fluid dynamics simulations
+T2  - Theoretical and Applied Mechanics Letters
+AU  - Dong, Zhehao
+AU  - Lu, Zhen
+AU  - Yang, Yue
+PY  - 2025
+DA  - 2025/05
+PB  - Elsevier BV
+SP  - 100594
+IS  - 3
+VL  - 15
+SN  - 2095-0349
+ER  -
+
+// Key: burgess2025microvqa
+TY  - CPAPER
+DO  - 10.1109/cvpr52734.2025.01821
+UR  - http://dx.doi.org/10.1109/CVPR52734.2025.01821
+TI  - MicroVQA: A Multimodal Reasoning Benchmark for Microscopy-Based Scientific Research
+T2  - 2025 IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)
+AU  - Burgess, James
+AU  - Nirschl, Jeffrey J
+AU  - Bravo-Sánchez, Laura
+AU  - Lozano, Alejandro
+AU  - Gupte, Sanket Rajan
+AU  - Galaz-Montoya, Jesus G.
+AU  - Zhang, Yuhui
+AU  - Su, Yuchang
+AU  - Bhowmik, Disha
+AU  - Coman, Zachary
+AU  - Hasan, Sarina M.
+AU  - Johannesson, Alexandra
+AU  - Leineweber, William D.
+AU  - Nair, Malvika G
+AU  - Yarlagadda, Ridhi
+AU  - Zuraski, Connor
+AU  - Chiu, Wah
+AU  - Cohen, Sarah
+AU  - Hansen, Jan N.
+AU  - Leonetti, Manuel D
+AU  - Liu, Chad
+AU  - Lundberg, Emma
+AU  - Yeung-Levy, Serena
+PY  - 2025
+DA  - 2025/06/10
+PB  - IEEE
+SP  - 19553-19564
+ER  -
+
+// Key: doris2025designqa
+TY  - JOUR
+DO  - 10.1115/1.4067333
+UR  - http://dx.doi.org/10.1115/1.4067333
+TI  - DesignQA: A Multimodal Benchmark for Evaluating Large Language Models’ Understanding of Engineering Documentation
+T2  - Journal of Computing and Information Science in Engineering
+AU  - Doris, Anna C.
+AU  - Grandi, Daniele
+AU  - Tomich, Ryan
+AU  - Alam, Md Ferdous
+AU  - Ataei, Mohammadmehdi
+AU  - Cheong, Hyunmin
+AU  - Ahmed, Faez
+PY  - 2024
+DA  - 2024/12/23
+PB  - ASME International
+IS  - 2
+VL  - 25
+SN  - 1530-9827
+SN  - 1944-7078
+ER  -
+
+// Key: picard2025concept
+TY  - JOUR
+DO  - 10.1007/s10462-025-11290-y
+UR  - http://dx.doi.org/10.1007/s10462-025-11290-y
+TI  - From concept to manufacturing: evaluating vision-language models for engineering design
+T2  - Artificial Intelligence Review
+AU  - Picard, Cyril
+AU  - Edwards, Kristen M.
+AU  - Doris, Anna C.
+AU  - Man, Brandon
+AU  - Giannone, Giorgio
+AU  - Alam, Md Ferdous
+AU  - Ahmed, Faez
+PY  - 2025
+DA  - 2025/07/01
+PB  - Springer Science and Business Media LLC
+IS  - 9
+VL  - 58
+SN  - 1573-7462
+ER  -
+
+// Key: ezemba2025simulation
+TY  - CPAPER
+DO  - 10.1145/3722573.3727826
+UR  - http://dx.doi.org/10.1145/3722573.3727826
+TI  - Simulation vs. Hallucination: Assessing Vision-Language Model Question Answering Capabilities in Engineering Simulations
+T2  - Proceedings of the 7th Workshop on Design Automation for CPS and IoT
+AU  - Ezemba, Jessica
+AU  - McComb, Christopher
+AU  - Tucker, Conrad
+PY  - 2025
+DA  - 2025/05/06
+PB  - ACM
+SP  - 1-9
+ER  -
+
+// Key: yue2024mmmu
+TY  - CPAPER
+DO  - 10.1109/cvpr52733.2024.00913
+UR  - http://dx.doi.org/10.1109/CVPR52733.2024.00913
+TI  - MMMU: A Massive Multi-Discipline Multimodal Understanding and Reasoning Benchmark for Expert AGI
+T2  - 2024 IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)
+AU  - Yue, Xiang
+AU  - Ni, Yuansheng
+AU  - Zheng, Tianyu
+AU  - Zhang, Kai
+AU  - Liu, Ruoqi
+AU  - Zhang, Ge
+AU  - Stevens, Samuel
+AU  - Jiang, Dongfu
+AU  - Ren, Weiming
+AU  - Sun, Yuxuan
+AU  - Wei, Cong
+AU  - Yu, Botao
+AU  - Yuan, Ruibin
+AU  - Sun, Renliang
+AU  - Yin, Ming
+AU  - Zheng, Boyuan
+AU  - Yang, Zhenzhu
+AU  - Liu, Yibo
+AU  - Huang, Wenhao
+AU  - Sun, Huan
+AU  - Su, Yu
+AU  - Chen, Wenhu
+PY  - 2024
+DA  - 2024/06/16
+PB  - IEEE
+SP  - 9556-9567
+ER  -
+
+// Key: alampara2025macbench
+TY  - JOUR
+DO  - 10.1038/s43588-025-00836-3
+UR  - http://dx.doi.org/10.1038/s43588-025-00836-3
+TI  - Probing the limitations of multimodal language models for chemistry and materials research
+T2  - Nature Computational Science
+AU  - Alampara, Nawaf
+AU  - Schilling-Wilhelmi, Mara
+AU  - Ríos-García, Martiño
+AU  - Mandal, Indrajeet
+AU  - Khetarpal, Pranav
+AU  - Grover, Hargun Singh
+AU  - Krishnan, N. M. Anoop
+AU  - Jablonka, Kevin Maik
+PY  - 2025
+DA  - 2025/08/11
+PB  - Springer Science and Business Media LLC
+SP  - 952-961
+IS  - 10
+VL  - 5
+SN  - 2662-8457
+ER  -
+
+// Key: li2024arxivcap
+TY  - CPAPER
+DO  - 10.18653/v1/2024.acl-long.775
+UR  - http://dx.doi.org/10.18653/v1/2024.acl-long.775
+TI  - Multimodal ArXiv: A Dataset for Improving Scientific Comprehension of Large Vision-Language Models
+T2  - Proceedings of the 62nd Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)
+AU  - Li, Lei
+AU  - Wang, Yuqi
+AU  - Xu, Runxin
+AU  - Wang, Peiyi
+AU  - Feng, Xiachong
+AU  - Kong, Lingpeng
+AU  - Liu, Qi
+PY  - 2024
+PB  - Association for Computational Linguistics
+SP  - 14369-14387
+ER  -
+
+// Key: wang2025taml
+TY  - JOUR
+DO  - 10.1016/j.taml.2025.100597
+UR  - http://dx.doi.org/10.1016/j.taml.2025.100597
+TI  - Evaluations of large language models in computational fluid dynamics: Leveraging, learning and creating knowledge
+T2  - Theoretical and Applied Mechanics Letters
+AU  - Wang, Long
+AU  - Zhang, Lei
+AU  - He, Guowei
+PY  - 2025
+DA  - 2025/05
+PB  - Elsevier BV
+SP  - 100597
+IS  - 3
+VL  - 15
+SN  - 2095-0349
+ER  -
+
+// Key: zhang2025autoturb
+TY  - JOUR
+DO  - 10.1063/5.0247759
+UR  - http://dx.doi.org/10.1063/5.0247759
+TI  - AutoTurb: Using large language models for automatic algebraic turbulence model discovery
+T2  - Physics of Fluids
+AU  - Zhang, Yu
+AU  - Zheng, Kefeng
+AU  - Liu, Fei
+AU  - Zhang, Qingfu
+AU  - Wang, Zhenkun
+PY  - 2025
+DA  - 2025/01/01
+PB  - AIP Publishing
+IS  - 1
+VL  - 37
+SN  - 1070-6631
+SN  - 1089-7666
+ER  -
+
+// Key: mdpi2026vlmcfd
+TY  - JOUR
+DO  - 10.3390/technologies14030157
+UR  - http://dx.doi.org/10.3390/technologies14030157
+TI  - Quantitative Evaluation and Domain Adaptation of Vision–Language Models for Mixed-Reality Interpretation of Indoor Environmental Computational Fluid Dynamics Visualizations
+T2  - Technologies
+AU  - Futamura, Soushi
+AU  - Fukuda, Tomohiro
+PY  - 2026
+DA  - 2026/03/04
+PB  - MDPI AG
+SP  - 157
+IS  - 3
+VL  - 14
+SN  - 2227-7080
+ER  -
+
+// Key: dai2025gpt4o
+TY  - JOUR
+DO  - 10.1016/j.buildenv.2025.113647
+UR  - http://dx.doi.org/10.1016/j.buildenv.2025.113647
+TI  - Application of large language model in the design of indoor air distribution systems for office environments
+T2  - Building and Environment
+AU  - Dai, Ting
+AU  - Wang, Feng
+AU  - Chen, Qingyan
+PY  - 2025
+DA  - 2025/11
+PB  - Elsevier BV
+SP  - 113647
+VL  - 285
+SN  - 0360-1323
+ER  -
+
+// Key: alanisruiz2025cdcgan
+TY  - JOUR
+DO  - 10.1016/j.buildenv.2025.112856
+UR  - http://dx.doi.org/10.1016/j.buildenv.2025.112856
+TI  - A deep convolutional generative adversarial network (DCGAN) for the fast estimation of pollutant dispersion fields in indoor environments
+T2  - Building and Environment
+AU  - Alanis Ruiz, Claudio
+AU  - Loomans, Marcel
+AU  - van Hooff, Twan
+PY  - 2025
+DA  - 2025/05
+PB  - Elsevier BV
+SP  - 112856
+VL  - 276
+SN  - 0360-1323
+ER  -
+
+// Key: schulzebuschoff2025visual
+TY  - JOUR
+DO  - 10.1038/s42256-024-00963-y
+UR  - http://dx.doi.org/10.1038/s42256-024-00963-y
+TI  - Visual cognition in multimodal large language models
+T2  - Nature Machine Intelligence
+AU  - Schulze Buschoff, Luca M.
+AU  - Akata, Elif
+AU  - Bethge, Matthias
+AU  - Schulz, Eric
+PY  - 2025
+DA  - 2025/01/15
+PB  - Springer Science and Business Media LLC
+SP  - 96-106
+IS  - 1
+VL  - 7
+SN  - 2522-5839
+ER  -
+
+// Key: ghaffari2024failure
+TY  - JOUR
+DO  - 10.1609/aaaiss.v3i1.31189
+UR  - http://dx.doi.org/10.1609/aaaiss.v3i1.31189
+TI  - Exploring Failure Cases in Multimodal Reasoning About Physical Dynamics
+T2  - Proceedings of the AAAI Symposium Series
+AU  - Ghaffari, Sadaf
+AU  - Krishnaswamy, Nikhil
+PY  - 2024
+DA  - 2024/05/20
+PB  - Association for the Advancement of Artificial Intelligence (AAAI)
+SP  - 105-114
+IS  - 1
+VL  - 3
+SN  - 2994-4317
+ER  -
+
+// Key: liu2022dlflowviz
+TY  - JOUR
+DO  - 10.1186/s42774-022-00113-1
+UR  - http://dx.doi.org/10.1186/s42774-022-00113-1
+TI  - Deep learning approaches in flow visualization
+T2  - Advances in Aerodynamics
+AU  - Liu, Can
+AU  - Jiang, Ruike
+AU  - Wei, Datong
+AU  - Yang, Changhe
+AU  - Li, Yanda
+AU  - Wang, Fang
+AU  - Yuan, Xiaoru
+PY  - 2022
+DA  - 2022/04/14
+PB  - Springer Science and Business Media LLC
+IS  - 1
+VL  - 4
+SN  - 2524-6992
+ER  -
+
+// Key: banerjee2024physicsinformedcv
+TY  - JOUR
+DO  - 10.1145/3689037
+UR  - http://dx.doi.org/10.1145/3689037
+TI  - Physics-Informed Computer Vision: A Review and Perspectives
+T2  - ACM Computing Surveys
+AU  - Banerjee, Chayan
+AU  - Nguyen, Kien
+AU  - Fookes, Clinton
+AU  - George, Karniadakis
+PY  - 2024
+DA  - 2024/10/07
+PB  - Association for Computing Machinery (ACM)
+SP  - 1-38
+IS  - 1
+VL  - 57
+SN  - 0360-0300
+SN  - 1557-7341
+ER  -
+
+// Key: liu2019review
+TY  - JOUR
+DO  - 10.1016/j.buildenv.2019.106394
+UR  - http://dx.doi.org/10.1016/j.buildenv.2019.106394
+TI  - Data-driven model for cross ventilation potential in high-density cities based on coupled CFD simulation and machine learning
+T2  - Building and Environment
+AU  - Ding, Chao
+AU  - Lam, Khee Poh
+PY  - 2019
+DA  - 2019/11
+PB  - Elsevier BV
+SP  - 106394
+VL  - 165
+SN  - 0360-1323
+ER  -
+

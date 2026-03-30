@@ -1,0 +1,131 @@
+TY  - JOUR
+TI  - Automated Indoor CFD Analysis from a Single 2D Image via Vision-Language Model Abstraction
+AU  - Joo, Younghwan
+PY  - 2026
+JO  - Submitted
+N1  - Key: joo2026image2cfd
+ER  -
+
+TY  - CONF
+TI  - PhysBench: Benchmarking and Enhancing Vision-Language Models for Physical World Understanding
+AU  - Chow, Wentao
+AU  - Shi, Jiahao
+AU  - Li, Lianyu
+AU  - Jia, Jianhua
+PY  - 2025
+T2  - International Conference on Learning Representations (ICLR)
+UR  - https://arxiv.org/abs/2501.16411
+N1  - Key: chow2025physbench
+ER  -
+
+TY  - CONF
+TI  - Benchmarking Vision-Language Models on Visualization Literacy
+AU  - Pandey, Saugat
+AU  - Ottley, Alvitta
+PY  - 2025
+T2  - EuroVis 2025
+UR  - https://arxiv.org/abs/2503.16632
+N1  - Key: pandeyottley2025visliteracy
+ER  -
+
+TY  - JOUR
+TI  - ClimateIQA: A Multimodal Benchmark for Climate-Related Visual Question Answering
+AU  - Chen, Haozhi
+AU  - Wang, Mengqing
+AU  - Bai, Zhouyu
+PY  - 2024
+UR  - https://arxiv.org/abs/2406.09838
+N1  - Key: chen2024climateIQA
+ER  -
+
+TY  - CONF
+TI  - SciFIBench: Benchmarking Large Multimodal Models for Scientific Figure Interpretation
+AU  - Roberts, Jonathan
+AU  - Lu, Han-Chung
+AU  - Forbes, Sheridan
+PY  - 2024
+T2  - Advances in Neural Information Processing Systems (NeurIPS)
+UR  - https://arxiv.org/abs/2405.08807
+N1  - Key: roberts2024
+ER  -
+
+TY  - CONF
+TI  - MathVista: Evaluating Mathematical Reasoning of Foundation Models in Visual Contexts
+AU  - Lu, Pan
+AU  - Bansal, Hritik
+AU  - Xia, Tony
+PY  - 2024
+T2  - International Conference on Learning Representations (ICLR)
+UR  - https://arxiv.org/abs/2310.02255
+N1  - Key: lu2024mathvista
+ER  -
+
+TY  - CONF
+TI  - CharXiv: Charting Gaps in Realistic Chart Understanding in Multimodal LLMs
+AU  - Wang, Zirui
+AU  - Xia, Mengyu
+AU  - He, Luxi
+PY  - 2024
+T2  - Advances in Neural Information Processing Systems (NeurIPS)
+UR  - https://arxiv.org/abs/2406.18521
+N1  - Key: wang2024charxiv
+ER  -
+
+TY  - CONF
+TI  - SPIQA: A Dataset for Multimodal Question Answering on Scientific Papers
+AU  - Pramanick, Shraman
+AU  - Suris, Didac
+AU  - Vondrick, Carl
+PY  - 2024
+T2  - Advances in Neural Information Processing Systems (NeurIPS)
+UR  - https://arxiv.org/abs/2407.09413
+N1  - Key: pramanick2024spiqa
+ER  -
+
+TY  - JOUR
+TI  - CFDLLMBench: A Benchmark for Evaluating Large Language Models on Computational Fluid Dynamics
+AU  - Somasekharan, Avinash
+AU  - Panigrahi, Debdoot
+PY  - 2025
+UR  - https://arxiv.org/abs/2509.20374
+N1  - Key: somasekharan2025
+ER  -
+
+TY  - CONF
+TI  - DrivaerNet++: A Large-Scale Multimodal Car Dataset with Computational Fluid Dynamics Simulations and Deep Learning Benchmarks
+AU  - Elrefaie, Mohamed
+AU  - Morar, Florin
+AU  - Dai, Angela
+AU  - Ahmed, Faez
+PY  - 2025
+T2  - Advances in Neural Information Processing Systems (NeurIPS)
+N1  - Key: elrefaie2025drivaernet
+ER  -
+
+TY  - JOUR
+TI  - A Misleading Gallery of Fluid Motion by Generative Artificial Intelligence
+AU  - Kashefi, Ali
+PY  - 2024
+UR  - https://arxiv.org/abs/2405.15406
+N1  - Key: kashefi2024
+ER  -
+
+TY  - CONF
+TI  - GRASP: A Novel Benchmark for Evaluating Language Grounding and Situated Physics Understanding in Multimodal Language Models
+AU  - Jassim, Sarah
+AU  - Oussidi, Achraf
+AU  - Gao, Xiaoyu
+PY  - 2024
+T2  - International Joint Conference on Artificial Intelligence (IJCAI)
+N1  - Key: jassim2024grasp
+ER  -
+
+TY  - CONF
+TI  - Compositional 4D Dynamic Scenes Understanding with Physics Priors for Video Question Answering
+AU  - Wang, Xingrui
+AU  - Li, Wufei
+AU  - Zhu, Yixin
+PY  - 2025
+T2  - International Conference on Learning Representations (ICLR)
+N1  - Key: wang2025dynsuperCLEVR
+ER  -

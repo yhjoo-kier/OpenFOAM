@@ -160,3 +160,4 @@ benchmark/evaluations/*/*/predicted_results
 # Mesh probe tests
 cases/meshprobe_*/
 latex/
+!papers/**/latex/

@@ -65,37 +65,58 @@ flow visualization \sep physical plausibility \sep automated validation
 \section{Introduction}
 
 Computational fluid dynamics (CFD) is increasingly embedded in automated design and
-analysis pipelines, from building ventilation assessment to industrial heat exchanger
-optimization \cite{placeholder_cfd_automation}. As frameworks emerge that employ
-vision-language models (VLMs) to extract geometric information from architectural
-images and automatically generate CFD simulation domains
-\cite{placeholder_image2cfd}, a critical bottleneck persists: validating whether the
-resulting flow fields are physically reasonable. In traditional workflows, an
-experienced engineer inspects velocity contours, temperature fields, and streamline
-plots to confirm proper boundary layer development, expected recirculation patterns,
-and absence of numerical artifacts. This expert visual inspection cannot scale with
-the throughput of automated pipelines.
+analysis pipelines, from building ventilation assessment
+\cite{calzolari.liu2021DeepLearning,ding.lam2019DatadrivenModel} to industrial heat exchanger optimization.
+Recent work has demonstrated that vision-language models (VLMs) can extract geometric
+information from architectural images and automatically generate CFD simulation
+domains \cite{joo2026AutomatedIndoor}, while LLM agents can configure OpenFOAM case files
+from natural language descriptions \cite{pandey.etal2025OpenFOAMGPTRetrievalaugmented,dong.etal2025FinetuningLarge}.
+As these automated pipelines mature, a critical bottleneck persists: validating
+whether the resulting flow fields are physically reasonable.
 
-Recent advances in VLMs have demonstrated impressive capabilities across scientific
-and technical imagery, from college-level reasoning on engineering diagrams
-\cite{yue2024mmmu} to physical world understanding \cite{chow2025physbench}. If a
-VLM could assess whether a CFD flow field visualization is physically
-plausible---detecting under-convergence, boundary condition errors, or mesh
-artifacts---the automation loop would close entirely. Yet it remains unknown whether
-current frontier VLMs possess the domain-specific visual reasoning required for this
-task.
+In traditional CFD workflows, an experienced engineer inspects velocity contours,
+temperature fields, and streamline plots to confirm proper boundary layer
+development, expected recirculation patterns, and absence of numerical artifacts.
+This expert visual inspection cannot scale with the throughput of automated
+pipelines. If a VLM could perform this validation step---assessing whether a CFD
+flow field visualization is physically plausible---the automation loop would close
+entirely.
 
-A key gap in the literature is the absence of any benchmark designed to evaluate VLM
-capabilities on CFD simulation output images. Existing benchmarks address scientific
-figures \cite{roberts2024}, meteorological heatmaps \cite{chen2024climateIQA}, and
-everyday physics \cite{chow2025physbench}, but none target the specific task of
-assessing physical plausibility of numerically generated flow field visualizations
-against known governing equations and boundary conditions.
+Yet it remains unknown whether current VLMs possess the domain-specific visual
+reasoning required for this task. Broad-scope benchmarks reveal that VLMs struggle
+with scientific imagery: PhysBench \cite{chow.etal2025PhysBenchBenchmarking} reports that the best
+model achieves only 49.5\% versus 95.9\% human accuracy on physical world
+understanding, while MicroVQA \cite{burgess.etal2025MicroVQAMultimodal} finds peak accuracy of
+53\% on microscopy images. In the engineering domain, DesignQA
+\cite{doris.etal2024DesignQAMultimodal} and Picard et al.\ \cite{picard.etal2025ConceptManufacturing} demonstrate
+that VLMs falter on engineering documentation and design tasks. On visualization
+literacy, Pandey and Ottley \cite{pandey.ottley2025BenchmarkingVisionLanguage} show that VLM
+accuracy drops from 76--96\% on simple line charts to 18--61\% on multi-encoding
+visualizations---the category to which CFD colormapped fields belong. The closest
+domain-specific work, ClimateIQA \cite{chen.etal2024ClimateIQAMultimodal}, finds that VLMs
+``struggle with precise color identification and spatial localization'' on
+meteorological heatmaps, a finding directly transferable to CFD contour plots.
+
+A concurrent study by Ezemba et al.\ \cite{ezemba.etal2025SimulationVs} provides the first
+direct evidence: evaluating seven VLMs on Ansys simulation images, they report that
+image-based accuracy ($\sim$53\%) barely exceeds random chance for binary
+true/false questions, while text-based accuracy reaches 69.2\%. However, their
+benchmark tests \emph{comprehension} of correct simulations---whether VLMs can read
+and interpret simulation output---rather than \emph{plausibility judgment}: whether
+VLMs can detect that a simulation result is physically wrong.
+
+This distinction matters. An automated CFD pipeline does not need a VLM to describe
+what a flow field shows; it needs a VLM to flag when the result violates physical
+laws. Detecting that an inlet and outlet have been swapped, that buoyancy acts in
+the wrong direction, or that the solution has not converged requires reasoning about
+the consistency between stated boundary conditions and observed flow patterns---a
+fundamentally different task from visual comprehension.
 
 This paper introduces \textbf{CFD-VisQA}, the first benchmark designed to evaluate
 VLM capabilities in assessing physical plausibility of CFD flow field
 visualizations. We evaluate three frontier VLMs and a domain expert under two
-information conditions, revealing a striking rank reversal that exposes the mechanism
+information conditions---setup-conditioned (problem description provided) and
+image-only---revealing a striking rank reversal that exposes the mechanism
 underlying VLM performance on this task.
 
 Our contributions are:
@@ -103,21 +124,24 @@ Our contributions are:
 \item \textbf{CFD-VisQA benchmark dataset}: 60 OpenFOAM CFD cases across 10
   canonical thermal-fluid scenarios, producing 258 flow field images with 279
   physics-grounded questions and expert annotations, with both correct solutions and
-  6 types of intentionally generated errors.
+  6 types of intentionally generated errors at varying severity levels.
 
 \item \textbf{API-isolated evaluation protocol}: We demonstrate that subagent-based
   VLM evaluation inflates accuracy (99.6\% vs.\ 88.9\%) due to potential filesystem
   contamination, establishing base64-encoded API calls as a methodological
-  requirement for trustworthy benchmarking.
+  requirement for trustworthy VLM benchmarking.
 
 \item \textbf{Rank reversal between evaluation conditions}: With setup text, Claude
   leads at 88.9\% and the expert follows at 73.8\%; without setup text, the ranking
   inverts (Expert 66.7\% vs.\ Claude 33.3\%). This reveals that VLM performance
-  derives from setup--image cross-referencing, not visual understanding of physics.
+  derives from setup--image cross-referencing rather than visual understanding of
+  physics.
 
 \item \textbf{Model-specific setup dependency}: Claude drops 55.6\,pp without setup
   text, GPT-5.4 drops 18.9\,pp, while the expert drops only 7.1\,pp. The magnitude
-  of setup dependency is itself a diagnostic of each evaluator's assessment strategy.
+  of setup dependency is itself a diagnostic of each evaluator's assessment
+  strategy, with implications for how VLMs should be deployed in CFD validation
+  workflows.
 \end{enumerate}
 
 %% ====================================================================
@@ -126,44 +150,129 @@ Our contributions are:
 
 \section{Related Work}
 
-\subsection{VLM Benchmarks for Scientific Visuals}
+\subsection{VLM Benchmarks for Scientific and Engineering Imagery}
 
-Several benchmarks evaluate VLM performance on scientific and technical imagery,
-though none address CFD specifically. MMMU \cite{yue2024mmmu} tests college-level
-reasoning across 30 disciplines with 11,500 questions, including engineering
-diagrams, but contains no flow field images. SciFIBench \cite{roberts2024} evaluates
-large multimodal models on 2,000 scientific figure interpretation tasks from arXiv
-papers, finding that VLM capabilities in scientific figure understanding remain
-poorly characterized. PhysBench \cite{chow2025physbench} tests 75 VLMs on physical
-world understanding across 10,002 entries, reporting that the best model achieves
-only 49.5\% versus 95.9\% human accuracy; however, its fluid dynamics category
-covers everyday scenarios rather than simulation outputs. Most relevant is ClimateIQA
-\cite{chen2024climateIQA}, which constructs 26,280 meteorological heatmap images with
-762,120 instruction samples. Like CFD contour plots, meteorological heatmaps require
-colormap interpretation and spatial pattern recognition. We extend this line of work
-from meteorological to engineering simulation imagery, adding the challenge of
-physics-grounded plausibility assessment.
+The rapid proliferation of VLMs has generated a parallel benchmarking effort, but
+CFD simulation output remains absent from all existing evaluation suites. MMMU
+\cite{yue.etal2024MMMUMassive} assembles 11,500 college-level questions across 30 disciplines;
+engineering and science subjects yield the lowest model accuracy, and the benchmark
+contains no flow field imagery. SciFIBench \cite{roberts.etal2024SciFIBenchBenchmarking} evaluates 28 models on
+2,000 scientific figure interpretation tasks from arXiv, concluding that VLM
+capabilities in scientific figure understanding are ``poorly characterized.''
+PhysBench \cite{chow.etal2025PhysBenchBenchmarking} tests 75 VLMs on 10,002 physical-world
+understanding entries, but its fluid dynamics category covers everyday scenarios
+(water pouring, oil spreading) rather than simulation output. MathVista
+\cite{lu.etal2024MathVistaEvaluating} extends evaluation to mathematical and scientific plots, while
+CharXiv \cite{wang.etal2024CharXivCharting} targets chart understanding from arXiv papers; both
+remain within the data-visualization domain.
 
-\subsection{AI for CFD Result Assessment}
+Domain-specific benchmarks have begun to emerge for individual scientific fields.
+ClimateIQA \cite{chen.etal2024ClimateIQAMultimodal} constructs 26,280 meteorological heatmap images
+with 762,120 instruction samples, finding that frontier VLMs struggle with colormap
+interpretation and spatial localization---challenges shared by CFD contour plots. In
+chemistry and materials science, MaCBench \cite{alampara.etal2025ProbingLimitations} benchmarks VLMs
+on domain-specific image reasoning, published in Nature Computational Science. For
+engineering, DesignQA \cite{doris.etal2024DesignQAMultimodal} evaluates VLMs on CAD images and
+technical drawings, and Picard et al.\ \cite{picard.etal2025ConceptManufacturing} assess VLM
+performance across the engineering design pipeline. MicroVQA \cite{burgess.etal2025MicroVQAMultimodal}
+targets microscopy at CVPR 2025, reporting peak accuracy of only 53\%. SPIQA
+\cite{pramanick.etal2024SPIQADataset} and ArXivCap \cite{li.etal2024MultimodalArXiv} address question
+answering on scientific paper figures more broadly.
 
-The intersection of AI and CFD has been explored primarily through surrogate modeling
-and simulation automation, not result validation. CFDLLMBench
-\cite{somasekharan2025} evaluates LLMs on CFD knowledge (92\% on conceptual MCQs)
-and OpenFOAM case generation (25--34\% success), but includes no visual component.
-The only published work directly evaluating VLMs on CFD visualizations is a 2026
-study on mixed-reality indoor CFD images \cite{mdpi2026vlmcfd}, which fine-tunes
-Qwen2.5-VL from below 30\% to above 60\% accuracy on domain-specific questions.
-Kashefi \cite{kashefi2024} demonstrates that generative AI systems produce
-physically incorrect fluid mechanics imagery, motivating the need for a public CFD
-visualization benchmark with ground truth annotations.
+Despite this breadth, no benchmark targets CFD simulation output
+images---velocity contours, temperature fields, streamline plots, or pressure
+distributions---nor the task of assessing whether such outputs are physically
+plausible.
+
+\subsection{AI for CFD: From Automation to Validation}
+
+The intersection of AI and CFD has been explored primarily through simulation
+setup automation and surrogate modeling, not result validation. CFDLLMBench
+\cite{somasekharan.panigrahi2025CFDLLMBenchBenchmark} evaluates LLMs on CFD knowledge (92\% on conceptual MCQs)
+and OpenFOAM case generation (25--34\% success rate), but is entirely text-based.
+OpenFOAMGPT \cite{pandey.etal2025OpenFOAMGPTRetrievalaugmented} implements a retrieval-augmented LLM agent
+for OpenFOAM configuration, while Dong et al.\ \cite{dong.etal2025FinetuningLarge} fine-tune
+Qwen2.5 on 28,716 natural-language-to-OpenFOAM pairs, achieving 88.7\% case
+generation accuracy. Wang et al.\ \cite{wang.etal2025EvaluationsLarge} provide a systematic LLM
+evaluation on CFD problem-solving, and AutoTurb \cite{zhang.etal2025AutoTurbUsing} combines
+LLM-generated expressions with evolutionary search to discover turbulence model
+closures. These tools can generate CFD cases but cannot inspect whether the
+resulting flow fields are physically reasonable.
+
+The extension to multimodal AI for CFD remains nascent. The most directly relevant
+work is a 2026 study \cite{futamura.fukuda2026QuantitativeEvaluation} that fine-tunes Qwen2.5-VL on indoor CFD
+mixed-reality images, improving accuracy from below 30\% to above 60\%; however,
+the study is limited to a single architecture, a small dataset, mixed-reality
+overlays rather than standard post-processing output, and comprehension rather than
+error detection. DrivaerNet++ \cite{elrefaie.etal2025DrivaerNetLargeScale} contributes a large-scale
+multimodal automotive dataset with CFD simulations at NeurIPS 2025, but does not
+evaluate VLM understanding of the flow fields. In the building simulation domain,
+Dai et al.\ \cite{dai.etal2025ApplicationLarge} explore GPT-4o for HVAC system design, and Alanis
+Ruiz et al.\ \cite{alanisruiz.etal2025DeepConvolutional} employ generative models for indoor
+pollutant dispersion prediction.
+
+Kashefi \cite{kashefi2024MisleadingGallery} provides a complementary negative result: generative AI
+systems (Midjourney, DALL-E~3, Gemini) produce physically incorrect fluid mechanics
+imagery when prompted with classical phenomena, attributed to the scarcity of
+CFD imagery in training data. This finding motivates the need for a public benchmark
+of authentic CFD visualizations with ground truth annotations.
+
+\subsection{VLM Physical Reasoning}
+
+A growing body of work investigates whether VLMs possess genuine physical
+understanding. Schulze Buschoff et al.\ \cite{schulzebuschoff.etal2025VisualCognition}, in Nature
+Machine Intelligence, find that VLM error patterns on intuitive physics tasks
+diverge substantially from human cognition. GRASP \cite{jassim.etal2024GRASPNovel} reports
+that VLMs perform at or below 50\% on Unity simulation-based physical reasoning.
+Ghaffari and Krishnaswamy \cite{ghaffari.krishnaswamy2024ExploringFailure} catalog specific failure
+modes in multimodal physical dynamics reasoning.
+
+These results establish that current VLMs possess limited intuitive physics
+capabilities. However, domain-specific prompting can improve performance: providing
+structured context enables text--image cross-referencing that compensates for weak
+visual reasoning. CFD-VisQA's dual-protocol design (setup-conditioned versus
+image-only) directly tests this hypothesis, and our results confirm it---Claude
+achieves 88.9\% with setup text but drops to 33.3\% without, while the domain
+expert remains stable ($-$7.1\,pp).
+
+\subsection{Flow Visualization and Deep Learning}
+
+Before VLMs, deep learning for flow visualization focused on task-specific feature
+detection. Liu et al.\ \cite{liu.etal2022DeepLearning} survey vortex identification
+(VortexNet), shock wave detection, and flow regime classification from simulation
+images. These methods produce categorical outputs without natural language
+understanding or explanatory capability. Banerjee et al.\
+\cite{banerjee.etal2024PhysicsInformedComputer} review over 250 papers on physics-informed
+computer vision, covering turbulent flow super-resolution and PINN-based
+reconstruction, but this literature predates the VLM era and lacks language-based
+reasoning.
+
+\subsection{Concurrent Work}
+
+Ezemba et al.\ \cite{ezemba.etal2025SimulationVs} present the most directly comparable
+study, evaluating seven VLMs on 12 Ansys simulations (6 structural, 6 fluid) with
+40 true/false questions. Their finding that image-based accuracy ($\sim$53\%)
+approaches random chance independently confirms that simulation imagery poses a
+distinct challenge for VLMs. However, their benchmark tests comprehension of
+correct simulations, not error detection; uses commercial software (Ansys) limiting
+reproducibility; omits expert comparison; and does not employ blind or isolation
+protocols. CFD-VisQA advances beyond this work by defining plausibility assessment
+as the evaluation task, systematically generating six error types, including a
+domain expert for calibration, and establishing an API-isolated protocol that
+addresses contamination risks (Section~\ref{sec:benchmark}).
 
 \subsection{Research Gap}
 
-No existing benchmark evaluates VLM capability to assess physical plausibility of CFD
-simulation output images. CFD-VisQA fills this gap with a dedicated benchmark
-combining physics-grounded questions, systematically generated errors, and an
-API-isolated evaluation protocol that addresses contamination risks inherent in
-agent-based evaluation.
+No existing benchmark evaluates VLM capability to assess physical plausibility of
+CFD simulation output images. Scientific VLM benchmarks cover textbook diagrams,
+data charts, meteorological heatmaps, microscopy, and engineering drawings---but not
+flow field visualizations. AI-for-CFD tools automate simulation setup and surrogate
+prediction---but cannot inspect results. Physical reasoning benchmarks test
+intuitive physics on everyday scenarios---but not quantitative reasoning about
+conservation laws, boundary conditions, and numerical artifacts in simulation
+output. CFD-VisQA fills this gap with the first dedicated benchmark combining
+physics-grounded plausibility questions, systematically generated errors, expert
+calibration, and an API-isolated evaluation protocol.
 
 %% ====================================================================
 %% SECTION 3: BENCHMARK DESIGN
@@ -896,18 +1005,7 @@ The authors declare no competing interests.
 %% BIBLIOGRAPHY
 %% ====================================================================
 
-%% Temporary bibliography - replace with .bib when Zotero keys are ready
-\begin{thebibliography}{99}
-\bibitem{yue2024mmmu} Yue et al., MMMU: A massive multi-discipline multimodal understanding benchmark, CVPR 2024.
-\bibitem{pandey2025} Pandey and Ottley, Benchmarking VLMs on visualization literacy tests, EuroVis 2025.
-\bibitem{chow2025physbench} Chow et al., PhysBench: Physical world understanding benchmark, ICLR 2025.
-\bibitem{chen2024climateIQA} Chen et al., ClimateIQA: Meteorological heatmap VLM benchmark, 2024.
-\bibitem{kashefi2024} Kashefi, A misleading gallery of fluid motion by generative AI, arXiv:2405.15406, 2024.
-\bibitem{somasekharan2025} Somasekharan et al., CFDLLMBench, arXiv:2509.20374, 2025.
-\bibitem{mdpi2026vlmcfd} VLM for indoor CFD mixed reality, MDPI Technologies, 2026.
-\bibitem{roberts2024} Roberts et al., SciFIBench, NeurIPS 2024.
-\bibitem{placeholder_cfd_automation} Placeholder: CFD in automated pipelines, TBD.
-\bibitem{placeholder_image2cfd} Placeholder: Image-to-CFD framework, TBD.
-\end{thebibliography}
+\bibliographystyle{elsarticle-num}
+\bibliography{Zotero_YHJoo}
 
 \end{document}
