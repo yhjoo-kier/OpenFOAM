@@ -1,6 +1,6 @@
 # Title
 
-Can Vision-Language Models Evaluate CFD? A Benchmark for Physical Plausibility Assessment of Flow Field Visualizations
+Can Vision-Language Models Evaluate Computational Fluid Dynamics? A Benchmark for Physical Plausibility Assessment of Flow Field Visualizations
 
 # Abstract
 
