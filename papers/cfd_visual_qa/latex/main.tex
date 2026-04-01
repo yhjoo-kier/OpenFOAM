@@ -37,12 +37,12 @@ physics-grounded questions spanning 6 systematically generated error types. Usin
 API-isolated, blind evaluation protocol with base64-encoded images and three
 independent trials per model, we evaluate Claude Opus~4.6, GPT-5.4, Gemini~3.1~Pro,
 and a domain expert on 30 common items under two conditions: setup-conditioned (with
-problem description) and image-only. The results reveal a striking rank reversal:
+problem description) and image-only. The results reveal a rank reversal:
 with setup text, Claude leads at 88.9\% (zero false negatives across all trials),
 followed by the expert at 73.8\%, GPT-5.4 at 67.8\%, and Gemini at 57.8\%; without
 setup text, the expert leads at 66.7\% while Claude drops to 33.3\%, the lowest
-among all evaluators. Claude's accuracy drop of 55.6 percentage points---the largest
-observed---confirms that its strength derives from systematic cross-referencing of
+among all evaluators. Claude's accuracy drop of 55.6 percentage points (the largest
+observed) confirms that its strength derives from systematic cross-referencing of
 stated parameters against visual features, a capability that collapses without
 textual context. The expert's stability ($-$7.1\,pp) reflects gestalt assessment
 grounded in physical intuition. We further demonstrate that subagent-based evaluation
@@ -72,15 +72,15 @@ Recent work has demonstrated that vision-language models (VLMs) can extract geom
 information from architectural images and automatically generate CFD simulation
 domains \cite{joo2026AutomatedIndoor}, while LLM agents can configure OpenFOAM case files
 from natural language descriptions \cite{pandey.etal2025OpenFOAMGPTRetrievalaugmented,dong.etal2025FinetuningLarge}.
-As these automated pipelines mature, a critical bottleneck persists: validating
+As these automated pipelines mature, a key bottleneck persists: validating
 whether the resulting flow fields are physically reasonable.
 
 In traditional CFD workflows, an experienced engineer inspects velocity contours,
 temperature fields, and streamline plots to confirm proper boundary layer
 development, expected recirculation patterns, and absence of numerical artifacts.
 This expert visual inspection cannot scale with the throughput of automated
-pipelines. If a VLM could perform this validation step---assessing whether a CFD
-flow field visualization is physically plausible---the automation loop would close
+pipelines. If a VLM could perform this validation step (assessing whether a CFD
+flow field visualization is physically plausible), the automation loop would close
 entirely.
 
 Yet it remains unknown whether current VLMs possess the domain-specific visual
@@ -93,7 +93,7 @@ understanding, while MicroVQA \cite{burgess.etal2025MicroVQAMultimodal} finds pe
 that VLMs falter on engineering documentation and design tasks. On visualization
 literacy, Pandey and Ottley \cite{pandey.ottley2025BenchmarkingVisionLanguage} show that VLM
 accuracy drops from 76--96\% on simple line charts to 18--61\% on multi-encoding
-visualizations---the category to which CFD colormapped fields belong. The closest
+visualizations, the category to which CFD colormapped fields belong. The closest
 domain-specific work, ClimateIQA \cite{chen.etal2024ClimateIQAMultimodal}, finds that VLMs
 ``struggle with precise color identification and spatial localization'' on
 meteorological heatmaps, a finding directly transferable to CFD contour plots.
@@ -102,22 +102,22 @@ A concurrent study by Ezemba et al.\ \cite{ezemba.etal2025SimulationVs} provides
 direct evidence: evaluating seven VLMs on Ansys simulation images, they report that
 image-based accuracy ($\sim$53\%) barely exceeds random chance for binary
 true/false questions, while text-based accuracy reaches 69.2\%. However, their
-benchmark tests \emph{comprehension} of correct simulations---whether VLMs can read
-and interpret simulation output---rather than \emph{plausibility judgment}: whether
+benchmark tests \emph{comprehension} of correct simulations (whether VLMs can read
+and interpret simulation output) rather than \emph{plausibility judgment}: whether
 VLMs can detect that a simulation result is physically wrong.
 
 This distinction matters. An automated CFD pipeline does not need a VLM to describe
 what a flow field shows; it needs a VLM to flag when the result violates physical
 laws. Detecting that an inlet and outlet have been swapped, that buoyancy acts in
 the wrong direction, or that the solution has not converged requires reasoning about
-the consistency between stated boundary conditions and observed flow patterns---a
+the consistency between stated boundary conditions and observed flow patterns, a
 fundamentally different task from visual comprehension.
 
 This paper introduces \textbf{CFD-VisQA}, the first benchmark designed to evaluate
 VLM capabilities in assessing physical plausibility of CFD flow field
 visualizations. We evaluate three frontier VLMs and a domain expert under two
-information conditions---setup-conditioned (problem description provided) and
-image-only---revealing a striking rank reversal that exposes the mechanism
+information conditions (setup-conditioned, with problem description provided, and
+image-only), revealing a rank reversal that exposes the mechanism
 underlying VLM performance on this task.
 
 Our contributions are:
@@ -153,7 +153,7 @@ Our contributions are:
 
 \subsection{VLM Benchmarks for Scientific and Engineering Imagery}
 
-The rapid proliferation of VLMs has generated a parallel benchmarking effort, but
+The proliferation of VLMs has generated a parallel benchmarking effort, but
 CFD simulation output remains absent from all existing evaluation suites. MMMU
 \cite{yue.etal2024MMMUMassive} assembles 11,500 college-level questions across 30 disciplines;
 engineering and science subjects yield the lowest model accuracy, and the benchmark
@@ -170,7 +170,7 @@ remain within the data-visualization domain.
 Domain-specific benchmarks have begun to emerge for individual scientific fields.
 ClimateIQA \cite{chen.etal2024ClimateIQAMultimodal} constructs 26,280 meteorological heatmap images
 with 762,120 instruction samples, finding that frontier VLMs struggle with colormap
-interpretation and spatial localization---challenges shared by CFD contour plots. In
+interpretation and spatial localization, challenges shared by CFD contour plots. In
 chemistry and materials science, MaCBench \cite{alampara.etal2025ProbingLimitations} benchmarks VLMs
 on domain-specific image reasoning, published in Nature Computational Science. For
 engineering, DesignQA \cite{doris.etal2024DesignQAMultimodal} evaluates VLMs on CAD images and
@@ -180,9 +180,9 @@ targets microscopy at CVPR 2025, reporting peak accuracy of only 53\%. SPIQA
 \cite{pramanick.etal2024SPIQADataset} and ArXivCap \cite{li.etal2024MultimodalArXiv} address question
 answering on scientific paper figures more broadly.
 
-Despite this breadth, no benchmark targets CFD simulation output
-images---velocity contours, temperature fields, streamline plots, or pressure
-distributions---nor the task of assessing whether such outputs are physically
+Yet no benchmark targets CFD simulation output
+images (velocity contours, temperature fields, streamline plots, or pressure
+distributions), nor the task of assessing whether such outputs are physically
 plausible.
 
 \subsection{AI for CFD: From Automation to Validation}
@@ -220,7 +220,7 @@ of authentic CFD visualizations with ground truth annotations.
 
 \subsection{VLM Physical Reasoning}
 
-A growing body of work investigates whether VLMs possess genuine physical
+Recent work investigates whether VLMs possess genuine physical
 understanding. Schulze Buschoff et al.\ \cite{schulzebuschoff.etal2025VisualCognition}, in Nature
 Machine Intelligence, find that VLM error patterns on intuitive physics tasks
 diverge substantially from human cognition. GRASP \cite{jassim.etal2024GRASPNovel} reports
@@ -232,7 +232,7 @@ These results establish that current VLMs possess limited intuitive physics
 capabilities. However, domain-specific prompting can improve performance: providing
 structured context enables text--image cross-referencing that compensates for weak
 visual reasoning. CFD-VisQA's dual-protocol design (setup-conditioned versus
-image-only) directly tests this hypothesis, and our results confirm it---Claude
+image-only) directly tests this hypothesis. Our results confirm it: Claude
 achieves 88.9\% with setup text but drops to 33.3\% without, while the domain
 expert remains stable ($-$7.1\,pp).
 
@@ -266,10 +266,10 @@ addresses contamination risks (Section~\ref{sec:benchmark}).
 
 No existing benchmark evaluates VLM capability to assess physical plausibility of
 CFD simulation output images. Scientific VLM benchmarks cover textbook diagrams,
-data charts, meteorological heatmaps, microscopy, and engineering drawings---but not
+data charts, meteorological heatmaps, microscopy, and engineering drawings, but not
 flow field visualizations. AI-for-CFD tools automate simulation setup and surrogate
-prediction---but cannot inspect results. Physical reasoning benchmarks test
-intuitive physics on everyday scenarios---but not quantitative reasoning about
+prediction, but cannot inspect results. Physical reasoning benchmarks test
+intuitive physics on everyday scenarios, but not quantitative reasoning about
 conservation laws, boundary conditions, and numerical artifacts in simulation
 output. CFD-VisQA fills this gap with the first dedicated benchmark combining
 physics-grounded plausibility questions, systematically generated errors, expert
@@ -453,18 +453,18 @@ The 279 questions in CFD-VisQA are organized into five difficulty levels:
 
 \begin{itemize}
   \item \textbf{L1 (Visual reading):} ``What is the maximum velocity in the
-    domain?''---requires colorbar reading.
+    domain?'' Requires colorbar reading.
   \item \textbf{L2 (Pattern recognition):} ``Is there a recirculation
-    zone?''---requires identifying flow features from contour or streamline
+    zone?'' Requires identifying flow features from contour or streamline
     patterns.
   \item \textbf{L3 (Physics judgment):} ``Is this flow field physically
-    plausible given the stated conditions?''---requires domain knowledge to
+    plausible given the stated conditions?'' Requires domain knowledge to
     assess consistency between the image and the governing physics.
   \item \textbf{L4 (Quantitative reasoning):} ``Is the boundary layer thickness
-    consistent with the stated Reynolds number?''---requires dimensional analysis
+    consistent with the stated Reynolds number?'' Requires dimensional analysis
     and order-of-magnitude estimation.
   \item \textbf{L5 (Cross-field reasoning):} ``Are the velocity and temperature
-    fields mutually consistent?''---requires multi-physics understanding across
+    fields mutually consistent?'' Requires multi-physics understanding across
     coupled transport equations.
 \end{itemize}
 
@@ -484,8 +484,8 @@ document without case identifiers or error-type labels.
 
 Two annotation conditions were applied. In the \emph{setup-conditioned}
 evaluation, 80 items (covering all 10 scenarios and error types) were annotated;
-the expert received the full problem description---geometry, Reynolds/Rayleigh
-number, boundary conditions, solver type, and expected physical regime---alongside
+the expert received the full problem description (geometry, Reynolds/Rayleigh
+number, boundary conditions, solver type, and expected physical regime) alongside
 each flow field image. In the \emph{image-only} evaluation, a 30-item subset was
 annotated with no textual context; the expert received only the rendered image.
 
@@ -529,7 +529,7 @@ production deployments.
 \subsection{Two Evaluation Conditions}
 \label{sec:eval-conditions}
 
-Each evaluator---three VLMs and one human expert---is assessed under two
+Each evaluator (three VLMs and one human expert) is assessed under two
 conditions on the same 30-item subset.
 
 \textbf{Setup-conditioned.} The flow field image is paired with a textual
@@ -630,7 +630,7 @@ across all three trials: every intentionally generated error was detected, with
 only 3--4 correct cases over-flagged per trial. The domain expert ranks second
 at 73.8\%, exhibiting low false-positive count (2) but a high false-negative
 count (19), indicating that nearly one-quarter of the errors went undetected.
-GPT-5.4 places third at 67.8\% with notable trial-to-trial variance
+GPT-5.4 places third at 67.8\% with substantial trial-to-trial variance
 (56.7--76.7\%), and accuracy that increases monotonically across trials
 (T1 $<$ T2 $<$ T3). Gemini ranks lowest at 57.8\% with the highest
 false-positive rate (5.3 per trial), suggesting a tendency toward
@@ -650,7 +650,7 @@ over-flagging that does not translate into error detection accuracy
 \label{sec:rank-reversal}
 
 Table~\ref{tab:image-only} compares performance under setup-conditioned and
-image-only conditions, revealing a striking rank reversal
+image-only conditions, revealing a rank reversal
 (Fig.~\ref{fig:rank-reversal}).
 
 \begin{table}[htbp]
@@ -697,7 +697,7 @@ The false-positive and false-negative profiles differ systematically across
 evaluators (Fig.~\ref{fig:fp-fn}). Claude achieves FN\,=\,0 across all error
 types when setup-conditioned, indicating 100\% recall regardless of error
 subtlety. The expert's primary blind spots are concentrated on E2 (boundary
-condition swap) and E3 (wrong viscosity)---precisely the error types where the
+condition swap) and E3 (wrong viscosity), precisely the error types where the
 flow field is qualitatively correct but inconsistent with the stated parameters.
 These are ``subtle'' errors: E2 produces a mirror-image flow that satisfies the
 governing equations under swapped boundary conditions, and E3 produces a
@@ -706,7 +706,7 @@ self-consistent flow at the wrong Reynolds or Rayleigh number.
 GPT-5.4 shows a distinct pattern: its false negatives span multiple error types
 (E1, E2, E3, E5, E8), with higher miss rates on under-convergence (E1) and
 wrong-viscosity (E3) cases. Gemini's errors are similarly distributed but with
-additional false positives---correct cases flagged as anomalous---particularly
+additional false positives (correct cases flagged as anomalous), particularly
 for visually complex flows with multi-vortex structures.
 
 The BC swap illusion is particularly instructive (Fig.~\ref{fig:bc-swap}): a
@@ -715,7 +715,7 @@ mirror-image temperature field with proper thermal stratification and
 well-developed boundary layer flow. The expert judges such cases as ``typical
 natural convection'' because the overall flow pattern is qualitatively correct.
 Claude, however, detects that the colorbar values contradict the stated
-boundary conditions---the left wall should be hot but the colorbar shows it as
+boundary conditions: the left wall should be hot but the colorbar shows it as
 cold. This exemplifies the cross-referencing mechanism: Claude compares the
 stated wall temperature with the observed colorbar gradient, a comparison that
 requires both textual setup and image content.
@@ -770,8 +770,8 @@ channel flow with incorrect Reynolds number produces a plausible velocity
 profile that only contradicts the stated parameters, and a heated plate with
 incorrect Rayleigh number produces a smoother boundary layer than expected.
 Second, a coarse-mesh lid-driven cavity (Fig.~\ref{fig:three-evaluators})
-demonstrates that VLMs can detect discretization artifacts---blocky contours
-and missing corner vortices---that the expert overlooks. Third, a correct but
+demonstrates that VLMs can detect discretization artifacts (blocky contours
+and missing corner vortices) that the expert overlooks. Third, a correct but
 complex heated obstacle wake (Fig.~\ref{fig:shared-fp}) triggers false
 positives from multiple evaluators, indicating that visual complexity can
 mimic error signatures even when the simulation is physically correct.
@@ -816,8 +816,8 @@ domain expert does; rather, their performance derives from a fundamentally
 different assessment strategy.
 
 Claude and GPT-5.4 perform systematic cross-referencing: they compare stated
-parameters---Reynolds number, Rayleigh number, boundary temperatures, lid
-direction---against observable image features such as hydrodynamic development
+parameters (Reynolds number, Rayleigh number, boundary temperatures, lid
+direction) against observable image features such as hydrodynamic development
 length, colorbar value ranges, vortex rotation direction, and thermal boundary
 layer thickness. When the textual anchor is removed, this cross-referencing
 strategy collapses entirely. Claude's $-$55.6\,pp drop confirms that its
@@ -842,7 +842,7 @@ satisfies all qualitative expectations of natural convection. A channel flow
 with viscosity increased by a factor of 10 produces a smoother, more laminar
 profile that appears ``cleaner'' rather than erroneous. The expert reads the
 setup text but cannot readily translate dimensionless parameters into
-quantitative visual expectations---for instance, mentally computing the
+quantitative visual expectations; for instance, mentally computing the
 hydrodynamic entry length $L_e \approx 0.05\,\mathrm{Re}\,D$ and checking
 whether the velocity profile in the image is fully developed at the
 appropriate downstream location. Claude appears to perform this
@@ -856,7 +856,7 @@ levels of cross-referencing capability.
 
 \textbf{Claude Opus 4.6} is the strongest cross-referencer. Its FN\,=\,0
 with setup text means every error is caught, but its 33.3\% image-only
-accuracy---the worst among all evaluators---confirms near-total reliance on
+accuracy (the worst among all evaluators) confirms near-total reliance on
 setup--image comparison. The 55.6\,pp drop is diagnostic: without textual
 parameters to compare against, Claude defaults to labeling most cases as
 plausible. Its high trial consistency (86.7--90.0\% setup; identical 33.3\%
@@ -864,7 +864,7 @@ image-only across all three trials) suggests a deterministic assessment
 strategy with minimal stochastic variation.
 
 \textbf{GPT-5.4} exhibits moderate cross-referencing capability (67.8\%
-setup, $-$18.9\,pp drop). Its notable trial variance (56.7--76.7\%
+setup, $-$18.9\,pp drop). Its trial variance (56.7--76.7\%
 setup-conditioned) with monotonically increasing accuracy across trials
 (T1 $<$ T2 $<$ T3) is unusual and may reflect session-level adaptation
 effects within the API's default temperature sampling. GPT-5.4 misses more
@@ -882,12 +882,12 @@ trial) suggests a conservative bias toward flagging anomalies.
 \subsection{Implications for CFD Automation}
 \label{sec:implications}
 
-These findings yield four practical implications for deploying VLMs in CFD
+These findings have four practical implications for deploying VLMs in CFD
 validation pipelines.
 
 First, \textbf{setup text is mandatory}. Without problem parameters, no VLM
-matches the expert. Setup-conditioned prompting---including Reynolds number,
-boundary conditions, and expected flow regime---is essential, not optional,
+matches the expert. Setup-conditioned prompting (including Reynolds number,
+boundary conditions, and expected flow regime) is essential, not optional,
 for achieving useful accuracy.
 
 Second, \textbf{model selection matters}. Only Claude achieves FN\,=\,0
@@ -908,7 +908,7 @@ benchmarks should specify the isolation level used during evaluation.
 \subsection{Limitations}
 \label{sec:limitations}
 
-Several limitations should be considered when interpreting these results.
+This study has several limitations.
 
 \textbf{Sample size.} The cross-model comparison uses 30 items, sufficient
 for a pilot benchmark establishing the rank-reversal phenomenon but limiting
@@ -948,7 +948,7 @@ extended with naturally occurring errors from production pipelines.
 \textbf{Task design.} Setup-conditioned evaluation inherently rewards
 text--image consistency checking more than deep physical understanding. We
 acknowledge this as a feature of the task design rather than a limitation per
-se, since the intended application---automated pipeline validation---naturally
+se, since the intended application (automated pipeline validation) naturally
 includes setup context alongside simulation output.
 
 %% ====================================================================
@@ -970,7 +970,7 @@ after discovering that subagent-based evaluation inflates accuracy from
 The central finding is a rank reversal between evaluation conditions. With
 setup text, Claude Opus~4.6 leads at 88.9\% accuracy with zero false
 negatives, followed by the domain expert at 73.8\%. Without setup text,
-Claude drops to 33.3\%---the lowest among all evaluators---while the expert
+Claude drops to 33.3\% (the lowest among all evaluators) while the expert
 leads at 66.7\% with only a 7.1\,pp decline. This reversal reveals that VLM
 performance derives from systematic cross-referencing of stated parameters
 against visual features, not from visual understanding of flow physics. The
