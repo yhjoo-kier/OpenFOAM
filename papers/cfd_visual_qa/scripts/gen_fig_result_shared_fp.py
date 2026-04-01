@@ -76,8 +76,8 @@ _, _, _, _, Uy2 = interpolate_to_grid(pts2, U2[:, 1])
 vmin = min(mag1.min(), mag2.min())
 vmax = max(mag1.max(), mag2.max())
 
-fig, (ax_a, ax_b) = plt.subplots(1, 2, figsize=(6.5, 3.2),
-    gridspec_kw={'wspace': 0.20, 'left': 0.08, 'right': 0.90, 'top': 0.97, 'bottom': 0.12})
+fig, (ax_a, ax_b) = plt.subplots(1, 2, figsize=(6.5, 1.8),
+    gridspec_kw={'wspace': 0.20, 'left': 0.07, 'right': 0.90, 'top': 0.95, 'bottom': 0.18})
 
 # (a) Correct case — triggers false positives
 im = ax_a.pcolormesh(Xi1, Yi1, Mi1, cmap='viridis', vmin=vmin, vmax=vmax,
@@ -89,7 +89,7 @@ ax_a.streamplot(xi1, yi1, Ux1_s, Uy1_s, color='white', linewidth=0.3,
                 density=1.5, arrowsize=0.4, arrowstyle='->')
 ax_a.set_xlabel('x [m]', fontsize=7)
 ax_a.set_ylabel('y [m]', fontsize=7)
-ax_a.set_aspect('auto')
+ax_a.set_aspect('equal')
 ax_a.tick_params(labelsize=6)
 ax_a.text(0.03, 0.92, '(a)', transform=ax_a.transAxes, fontsize=7,
           fontweight='semibold', va='top')
@@ -103,7 +103,7 @@ ax_b.streamplot(xi2, yi2, Ux2_s, Uy2_s, color='white', linewidth=0.3,
                 density=1.5, arrowsize=0.4, arrowstyle='->')
 ax_b.set_xlabel('x [m]', fontsize=7)
 ax_b.set_ylabel('')
-ax_b.set_aspect('auto')
+ax_b.set_aspect('equal')
 ax_b.tick_params(labelsize=6)
 ax_b.text(0.03, 0.92, '(b)', transform=ax_b.transAxes, fontsize=7,
           fontweight='semibold', va='top')
