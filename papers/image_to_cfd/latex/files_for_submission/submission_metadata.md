@@ -9,3 +9,19 @@ CFD simulation of indoor environments requires three-dimensional geometric model
 # Keywords
 
 indoor CFD; vision-language model; geometric abstraction; automated simulation; benchmark
+
+# Target Journal
+
+Engineering Applications of Artificial Intelligence (Elsevier)
+
+# Author
+
+Younghwan Joo, Energy Efficiency Research Division, Korea Institute of Energy Research (KIER); Energy Engineering, University of Science & Technology (UST)
+
+# Corresponding Author
+
+Younghwan Joo, yhjoo@kier.re.kr
+
+# Data Availability
+
+https://doi.org/10.6084/m9.figshare.31866127
