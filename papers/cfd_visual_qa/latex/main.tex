@@ -324,23 +324,25 @@ time-averaged for inherently unsteady cases).
   \caption{Ten canonical flow scenarios in CFD-VisQA. Each scenario produces
     6 cases (1 correct + 5 error variants), yielding 60 cases total.}
   \label{tab:scenarios}
-  \begin{tabular}{@{}clllc@{}}
+  \footnotesize
+  \begin{tabular}{@{}cllll@{}}
     \toprule
     ID & Scenario & Physics & Solver & Cases \\
     \midrule
-    S1  & Heated vertical plate        & Natural conv.   & \texttt{buoyantBoussinesqSimpleFoam} & 6 \\
-    S2  & Channel flow (laminar)       & Forced conv.    & \texttt{simpleFoam}                  & 6 \\
-    S3  & Channel flow (turbulent)     & Forced conv.    & \texttt{simpleFoam} + $k$--$\omega$ SST & 6 \\
-    S4  & Backward-facing step         & Separation      & \texttt{simpleFoam}                  & 6 \\
-    S5  & Lid-driven cavity            & Recirculation   & \texttt{simpleFoam}                  & 6 \\
-    S6  & Differentially heated cavity & Natural conv.   & \texttt{buoyantBoussinesqSimpleFoam} & 6 \\
-    S7  & Mixed convection channel     & Mixed conv.     & \texttt{buoyantBoussinesqSimpleFoam} & 6 \\
-    S8  & Heated obstacle in channel   & Wake + thermal  & \texttt{buoyantBoussinesqSimpleFoam} & 6 \\
-    S9  & Rayleigh--B\'{e}nard convection & Convective cells & \texttt{buoyantBoussinesqSimpleFoam} & 6 \\
-    S10 & Ventilated room              & Indoor airflow  & \texttt{simpleFoam} + $k$--$\omega$ SST & 6 \\
+    S1  & Heated vertical plate        & Natural conv.    & buoyantBoussinesq\textsuperscript{a} & 6 \\
+    S2  & Channel flow (laminar)       & Forced conv.     & simpleFoam          & 6 \\
+    S3  & Channel flow (turbulent)     & Forced conv.     & simpleFoam + $k$-$\omega$ SST & 6 \\
+    S4  & Backward-facing step         & Separation       & simpleFoam          & 6 \\
+    S5  & Lid-driven cavity            & Recirculation    & simpleFoam          & 6 \\
+    S6  & Differentially heated cavity & Natural conv.    & buoyantBoussinesq\textsuperscript{a} & 6 \\
+    S7  & Mixed convection channel     & Mixed conv.      & buoyantBoussinesq\textsuperscript{a} & 6 \\
+    S8  & Heated obstacle in channel   & Wake + thermal   & buoyantBoussinesq\textsuperscript{a} & 6 \\
+    S9  & Rayleigh--B\'{e}nard conv.   & Conv.\ cells     & buoyantBoussinesq\textsuperscript{a} & 6 \\
+    S10 & Ventilated room              & Indoor airflow   & simpleFoam + $k$-$\omega$ SST & 6 \\
     \midrule
-        & \textbf{Total}               &                 &                                      & \textbf{60} \\
+        & \textbf{Total}               &                  &                     & \textbf{60} \\
     \bottomrule
+    \multicolumn{5}{@{}l}{\textsuperscript{a}\texttt{buoyantBoussinesqSimpleFoam}}
   \end{tabular}
 \end{table}
 

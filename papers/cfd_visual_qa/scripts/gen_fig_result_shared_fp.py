@@ -76,8 +76,8 @@ _, _, _, _, Uy2 = interpolate_to_grid(pts2, U2[:, 1])
 vmin = min(mag1.min(), mag2.min())
 vmax = max(mag1.max(), mag2.max())
 
-fig, (ax_a, ax_b) = plt.subplots(1, 2, figsize=(6.5, 2.2),
-    gridspec_kw={'wspace': 0.20, 'left': 0.07, 'right': 0.90, 'top': 0.97, 'bottom': 0.15})
+fig, (ax_a, ax_b) = plt.subplots(1, 2, figsize=(6.5, 3.2),
+    gridspec_kw={'wspace': 0.20, 'left': 0.08, 'right': 0.90, 'top': 0.97, 'bottom': 0.12})
 
 # (a) Correct case — triggers false positives
 im = ax_a.pcolormesh(Xi1, Yi1, Mi1, cmap='viridis', vmin=vmin, vmax=vmax,
