@@ -154,11 +154,48 @@ cases/indoor_stabilized_demo*/
 
 # Benchmark evaluation pipeline runs
 cases/eval_bench_*/
+cases/eval_*/
+cases/phase2_ref_*/
+cases/phase2_pred_*/
+cases/grid_test_*/
+cases/bench_*_ms*/
+cases/*_ms*.geo_unrolled
+cases/*_ms*.geo_unrolled.xao
 benchmark/evaluations/*/*/predicted_case
 benchmark/evaluations/*/*/predicted_results
+benchmark/evaluations_*/
+benchmark/manifests/grid_test_logs/
 
 # Mesh probe tests
 cases/meshprobe_*/
+cases/demo_case*/
+cases/cfd_metrics_*.json
+
+# Local agent/QC artifacts
+.omx/
+*.geo_unrolled
+*.geo_unrolled.xao
+papers/**/.env
+papers/**/benchmark/cases/
+papers/**/results/paperbanana_*/
+papers/**/results/paperbanana*.pdf
+papers/**/texput.log
+*:Zone.Identifier
+
+# Root-level LaTeX scratch outputs
+/main.aux
+/main.log
+/main.out
+/main.spl
+/main.pdf
+
+# Root-level visual QC scratch images
+/fig*_qc*.png
+/figure*_qc*.png
+/temp_*.png
+/vortex_*.png
+/wake_zoom*.png
+
 latex/
 !papers/**/latex/
 papers/**/latex/*.aux
@@ -170,3 +207,8 @@ papers/**/latex/*.spl
 papers/**/latex/*.pdf
 papers/**/latex/build_*.log
 papers/**/latex/Zotero_YHJoo.bib
+papers/**/latex/.omx/
+papers/**/latex/files_for_submission/figshare_package/
+papers/**/latex/files_for_submission/*.zip
+papers/**/latex/files_for_submission/texput.log
+*.Zone.Identifier
