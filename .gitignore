@@ -131,6 +131,9 @@ logs/
 # Sample data
 samples/
 
+# ML dataset exports generated from CFD cases
+/data/paint_booth_ml_dataset/
+
 # Temporary files
 tmp_*.json
 
