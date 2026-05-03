@@ -134,6 +134,9 @@ samples/
 # ML dataset exports generated from CFD cases
 /data/paint_booth_ml_dataset/
 
+# Generated paint-booth OpenFOAM cases and local surrogate outputs
+/cases/paint_booth_*/
+
 # Temporary files
 tmp_*.json
 
