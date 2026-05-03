@@ -55,8 +55,11 @@ y_pred = y_base + z_y
 Reverse-fraction empirical impulse kernel:
 
 ```text
-r_pred = r_base + sum_i a_i(direction) exp(-t_since_step / tau_i(direction))
+scale = |Delta U_command| / 1.09
+r_pred = r_base + scale * sum_i a_i(direction) exp(-t_since_step / tau_i(direction))
 ```
+
+The `1.09 m/s` reference is the calibration step size of the paired `4.36 <-> 5.45 m/s` high-resolution transients. This scaling keeps the original validation behavior for the calibrated step while avoiding over-counting when a ramp command is represented as several smaller discrete command increments.
 
 This is not a full physics model of wake topology. It is a compact empirical response kernel to reproduce the fast dip/rise and slower recovery seen in high-resolution CFD.
 

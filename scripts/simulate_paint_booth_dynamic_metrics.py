@@ -50,6 +50,7 @@ DEFAULT_CONFIG = {
         "work_zone_Uz_mean": {"up_fraction": 0.10, "down_fraction": 0.14, "up_tau_decay_s": 1.5, "down_tau_decay_s": 0.45},
         "near_car_Uz_mean": {"up_fraction": 0.34, "down_fraction": 0.15, "up_tau_decay_s": 1.8, "down_tau_decay_s": 2.0},
     },
+    "impulse_reference_delta_u_mps": 1.09,
     "impulse_kernels": {
         "near_car_reverse_fraction_Uz_positive": {
             "up": [
@@ -144,12 +145,13 @@ def simulate(library: list[dict[str, float]], command: list[tuple[float, float]]
                 for m, spec in config.get("overshoot", {}).items():
                     delta_target = targets[m] - prev_targets[m]
                     z[m] += float(spec.get(fraction_key, 0.0)) * delta_target
+                impulse_scale = abs(u - prev_u) / max(float(config.get("impulse_reference_delta_u_mps", abs(u - prev_u))), 1e-12)
                 for m, per_direction in config.get("impulse_kernels", {}).items():
                     for kernel in per_direction.get(direction, []):
                         impulse_states.append(
                             {
                                 "metric": m,
-                                "value": float(kernel.get("amplitude", 0.0)),
+                                "value": impulse_scale * float(kernel.get("amplitude", 0.0)),
                                 "tau_decay_s": max(float(kernel.get("tau_decay_s", 1.0)), 1e-12),
                             }
                         )

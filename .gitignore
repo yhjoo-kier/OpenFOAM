@@ -136,6 +136,7 @@ samples/
 
 # Generated paint-booth OpenFOAM cases and local surrogate outputs
 /cases/paint_booth_*/
+/cases/paint_booth_*
 
 # Temporary files
 tmp_*.json
