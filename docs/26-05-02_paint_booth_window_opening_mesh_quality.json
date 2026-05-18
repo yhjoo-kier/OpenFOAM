@@ -1,0 +1,49 @@
+{
+  "path": "cases/paint_booth_baseline/constant/triSurface/simplified_car_shell.stl",
+  "file_size_bytes": 2127383,
+  "n_points": 4570,
+  "n_cells": 9092,
+  "bounds": {
+    "xmin": 0.0,
+    "xmax": 4.5,
+    "ymin": -0.8999430537223816,
+    "ymax": 0.8999430537223816,
+    "zmin": 0.18000000715255737,
+    "zmax": 1.6200000047683716
+  },
+  "lengths": {
+    "x": 4.5,
+    "y": 1.7998861074447632,
+    "z": 1.4399999976158142
+  },
+  "open_or_nonmanifold_edges": 0,
+  "feature_edges_error": null,
+  "connected_regions": 12,
+  "connected_region_cell_counts_top10": [
+    8960,
+    12,
+    12,
+    12,
+    12,
+    12,
+    12,
+    12,
+    12,
+    12
+  ],
+  "connectivity_error": null,
+  "area_stats": {
+    "min": 0.00018101235159837922,
+    "p01": 0.00044176011027863434,
+    "median": 0.0015900461003732023,
+    "p99": 0.07200002777576486,
+    "max": 1.6191000207900998,
+    "zero_or_negative_count": 0
+  },
+  "signed_volume_if_closed": 5.888398101948991,
+  "heuristic_cfd_readiness": {
+    "watertight_likely": true,
+    "single_component_likely": false,
+    "very_large_for_snappyhexmesh": false
+  }
+}

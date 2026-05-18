@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="720" viewBox="0 0 1000 720">
+<rect width="100%" height="100%" fill="white"/>
+<style>text{font-family:Arial,Helvetica,sans-serif;font-size:13px}.title{font-size:20px;font-weight:bold}.axis{stroke:#555}.grid{stroke:#ddd}.bar1{fill:#d62728}.bar2{fill:#1f77b4}.bar3{fill:#9467bd}.note{font-size:12px;fill:#444}</style>
+<text class="title" x="500.0" y="30" text-anchor="middle">Paint-booth command sweep: dynamic surrogate v1 screening summary</text>
+<text x="270.0" y="80" text-anchor="middle" font-weight="bold">Mean reverse peak by ramp time</text>
+<line class="axis" x1="90" y1="300" x2="450" y2="300"/>
+<line class="axis" x1="90" y1="90" x2="90" y2="300"/>
+<line class="grid" x1="90" y1="300.0" x2="450" y2="300.0"/>
+<text x="82" y="304.0" text-anchor="end" class="note">0.000</text>
+<line class="grid" x1="90" y1="195.0" x2="450" y2="195.0"/>
+<text x="82" y="199.0" text-anchor="end" class="note">0.170</text>
+<line class="grid" x1="90" y1="90.0" x2="450" y2="90.0"/>
+<text x="82" y="94.0" text-anchor="end" class="note">0.340</text>
+<rect x="120.4" y="117.4" width="56.2" height="182.6" fill="#d62728"/>
+<text x="148.5" y="318" text-anchor="middle" class="note">0</text>
+<text x="148.5" y="113.4" text-anchor="middle" class="note">0.295</text>
+<rect x="210.4" y="145.0" width="56.2" height="155.0" fill="#d62728"/>
+<text x="238.5" y="318" text-anchor="middle" class="note">2</text>
+<text x="238.5" y="141.0" text-anchor="middle" class="note">0.251</text>
+<rect x="300.4" y="150.5" width="56.2" height="149.5" fill="#d62728"/>
+<text x="328.5" y="318" text-anchor="middle" class="note">5</text>
+<text x="328.5" y="146.5" text-anchor="middle" class="note">0.242</text>
+<rect x="390.4" y="153.3" width="56.2" height="146.7" fill="#d62728"/>
+<text x="418.5" y="318" text-anchor="middle" class="note">10</text>
+<text x="418.5" y="149.3" text-anchor="middle" class="note">0.237</text>
+<text x="270.0" y="338" text-anchor="middle" class="note">ramp time [s]</text>
+<text x="750.0" y="80" text-anchor="middle" font-weight="bold">Mean reverse dynamic-steady gap</text>
+<line class="axis" x1="590" y1="300" x2="910" y2="300"/>
+<line class="axis" x1="590" y1="90" x2="590" y2="300"/>
+<line class="grid" x1="590" y1="300.0" x2="910" y2="300.0"/>
+<text x="582" y="304.0" text-anchor="end" class="note">0.000</text>
+<line class="grid" x1="590" y1="195.0" x2="910" y2="195.0"/>
+<text x="582" y="199.0" text-anchor="end" class="note">0.059</text>
+<line class="grid" x1="590" y1="90.0" x2="910" y2="90.0"/>
+<text x="582" y="94.0" text-anchor="end" class="note">0.118</text>
+<rect x="617.0" y="117.4" width="50.0" height="182.6" fill="#1f77b4"/>
+<text x="642.0" y="318" text-anchor="middle" class="note">0</text>
+<text x="642.0" y="113.4" text-anchor="middle" class="note">0.103</text>
+<rect x="697.0" y="243.9" width="50.0" height="56.1" fill="#1f77b4"/>
+<text x="722.0" y="318" text-anchor="middle" class="note">2</text>
+<text x="722.0" y="239.9" text-anchor="middle" class="note">0.032</text>
+<rect x="777.0" y="275.1" width="50.0" height="24.9" fill="#1f77b4"/>
+<text x="802.0" y="318" text-anchor="middle" class="note">5</text>
+<text x="802.0" y="271.1" text-anchor="middle" class="note">0.014</text>
+<rect x="857.0" y="284.2" width="50.0" height="15.8" fill="#1f77b4"/>
+<text x="882.0" y="318" text-anchor="middle" class="note">10</text>
+<text x="882.0" y="280.2" text-anchor="middle" class="note">0.009</text>
+<text x="750.0" y="338" text-anchor="middle" class="note">ramp time [s]</text>
+<text x="270.0" y="380" text-anchor="middle" font-weight="bold">Mean energy proxy by ramp time</text>
+<line class="axis" x1="90" y1="600" x2="450" y2="600"/>
+<line class="axis" x1="90" y1="390" x2="90" y2="600"/>
+<line class="grid" x1="90" y1="600.0" x2="450" y2="600.0"/>
+<text x="82" y="604.0" text-anchor="end" class="note">0</text>
+<line class="grid" x1="90" y1="495.0" x2="450" y2="495.0"/>
+<text x="82" y="499.0" text-anchor="end" class="note">13480</text>
+<line class="grid" x1="90" y1="390.0" x2="450" y2="390.0"/>
+<text x="82" y="394.0" text-anchor="end" class="note">26960</text>
+<rect x="120.4" y="484.4" width="56.2" height="115.6" fill="#9467bd"/>
+<text x="148.5" y="618" text-anchor="middle" class="note">0</text>
+<text x="148.5" y="480.4" text-anchor="middle" class="note">14837</text>
+<rect x="210.4" y="471.0" width="56.2" height="129.0" fill="#9467bd"/>
+<text x="238.5" y="618" text-anchor="middle" class="note">2</text>
+<text x="238.5" y="467.0" text-anchor="middle" class="note">16560</text>
+<rect x="300.4" y="450.9" width="56.2" height="149.1" fill="#9467bd"/>
+<text x="328.5" y="618" text-anchor="middle" class="note">5</text>
+<text x="328.5" y="446.9" text-anchor="middle" class="note">19141</text>
+<rect x="390.4" y="417.4" width="56.2" height="182.6" fill="#9467bd"/>
+<text x="418.5" y="618" text-anchor="middle" class="note">10</text>
+<text x="418.5" y="413.4" text-anchor="middle" class="note">23443</text>
+<text x="270.0" y="638" text-anchor="middle" class="note">ramp time [s]</text>
+<text x="750.0" y="380" text-anchor="middle" font-weight="bold">Step cases: high-U effect</text>
+<line class="axis" x1="590" y1="600" x2="910" y2="600"/>
+<line class="axis" x1="590" y1="390" x2="590" y2="600"/>
+<line class="grid" x1="590" y1="600.0" x2="910" y2="600.0"/>
+<text x="582" y="604.0" text-anchor="end" class="note">0.000</text>
+<line class="grid" x1="590" y1="495.0" x2="910" y2="495.0"/>
+<text x="582" y="499.0" text-anchor="end" class="note">0.182</text>
+<line class="grid" x1="590" y1="390.0" x2="910" y2="390.0"/>
+<text x="582" y="394.0" text-anchor="end" class="note">0.364</text>
+<rect x="645.3" y="441.8" width="25" height="158.2" fill="#d62728"/>
+<text x="657.8" y="437.8" text-anchor="middle" class="note">0.274</text>
+<rect x="673.3" y="560.7" width="25" height="39.3" fill="#1f77b4"/>
+<text x="685.8" y="556.7" text-anchor="middle" class="note">0.068</text>
+<text x="659.3" y="618" text-anchor="middle" class="note">5.45</text>
+<rect x="752.0" y="429.5" width="25" height="170.5" fill="#d62728"/>
+<text x="764.5" y="425.5" text-anchor="middle" class="note">0.296</text>
+<rect x="780.0" y="540.5" width="25" height="59.5" fill="#1f77b4"/>
+<text x="792.5" y="536.5" text-anchor="middle" class="note">0.103</text>
+<text x="766.0" y="618" text-anchor="middle" class="note">6.00</text>
+<rect x="858.7" y="417.4" width="25" height="182.6" fill="#d62728"/>
+<text x="871.2" y="413.4" text-anchor="middle" class="note">0.316</text>
+<rect x="886.7" y="520.8" width="25" height="79.2" fill="#1f77b4"/>
+<text x="899.2" y="516.8" text-anchor="middle" class="note">0.137</text>
+<text x="872.7" y="618" text-anchor="middle" class="note">6.54</text>
+<text x="750.0" y="638" text-anchor="middle" class="note">high command U [m/s], ramp=0 step</text>
+<rect x="600" y="400" width="12" height="12" fill="#d62728"/><text x="618" y="411" class="note">reverse peak</text>
+<rect x="600" y="420" width="12" height="12" fill="#1f77b4"/><text x="618" y="431" class="note">dynamic-steady gap</text>
+<text x="500" y="690" text-anchor="middle" class="note">Note: ramp cases are classified as CFD spot-check/priority because ramp transient kernels are extrapolated from step-calibrated data.</text>
+</svg>
