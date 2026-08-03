@@ -1,0 +1,25 @@
+{
+  "source": "benchmark\\manifests\\evaluation_statistics_phase2.json",
+  "n": 97,
+  "overall_cfd_mean": 0.4772,
+  "components": {
+    "overlap": {
+      "mean": 0.8884,
+      "sd": 0.0893
+    },
+    "vel_mag": {
+      "mean": 0.1168,
+      "sd": 0.1739
+    },
+    "vel_dir": {
+      "mean": 0.6344,
+      "sd": 0.1801
+    },
+    "pressure": {
+      "mean": 0.2693,
+      "sd": 0.4057
+    }
+  },
+  "font": "Arial",
+  "note": "Component means over cases with available field data; composite assigns 0.0 to unavailable components."
+}

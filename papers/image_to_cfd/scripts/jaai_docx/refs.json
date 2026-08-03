@@ -1,0 +1,506 @@
+[
+ [
+  [
+   "Gourlis, G. and Kovacic, I., 2017, “Building Information Modelling for Analysis of Energy Efficient Industrial Buildings – A Case Study,” ",
+   false
+  ],
+  [
+   "Renewable and Sustainable Energy Reviews",
+   true
+  ],
+  [
+   ", Vol. 68, pp. 953–963.",
+   false
+  ]
+ ],
+ [
+  [
+   "Zhao, J., Ma, L., Zayed, M. E., Elsheikh, A. H., Li, W., Yan, Q. and Wang, J., 2021, “Industrial Reheating Furnaces: A Review of Energy Efficiency Assessments, Waste Heat Recovery Potentials, Heating Process Characteristics and Perspectives for Steel Industry,” ",
+   false
+  ],
+  [
+   "Process Safety and Environmental Protection",
+   true
+  ],
+  [
+   ", Vol. 147, pp. 1209–1228.",
+   false
+  ]
+ ],
+ [
+  [
+   "Vuorinen, V., Aarnio, M., Alava, M., Alopaeus, V., Atanasova, N., Auvinen, M., Balasubramanian, N., Bordbar, H., Erästö, P., Grande, R., Hayward, N., Hellsten, A., Hostikka, S., Hokkanen, J., Kaario, O., Karvinen, A., Kivistö, I., Korhonen, M., Kosonen, R., Kuusela, J., Lestinen, S., Laurila, E., Nieminen, H. J., Peltonen, P., Pokki, J., Puisto, A., Råback, P., Salmenjoki, H., Sironen, T. and Österberg, M., 2020, “Modelling Aerosol Transport and Virus Exposure with Numerical Simulations in Relation to SARS-CoV-2 Transmission by Inhalation Indoors,” ",
+   false
+  ],
+  [
+   "Safety Science",
+   true
+  ],
+  [
+   ", Vol. 130, pp. 104866.",
+   false
+  ]
+ ],
+ [
+  [
+   "Liu, J., Zhu, S., Kim, M. K. and Srebric, J., 2019, “A Review of CFD Analysis Methods for Personalized Ventilation (PV) in Indoor Built Environments,” ",
+   false
+  ],
+  [
+   "Sustainability",
+   true
+  ],
+  [
+   ", Vol. 11, No. 15, pp. 4166.",
+   false
+  ]
+ ],
+ [
+  [
+   "Weller, H. G., Tabor, G., Jasak, H. and Fureby, C., 1998, “A Tensorial Approach to Computational Continuum Mechanics Using Object-Oriented Techniques,” ",
+   false
+  ],
+  [
+   "Computers in Physics",
+   true
+  ],
+  [
+   ", Vol. 12, No. 6, pp. 620–631.",
+   false
+  ]
+ ],
+ [
+  [
+   "Calzolari, G. and Liu, W., 2021, “Deep Learning to Replace, Improve, or Aid CFD Analysis in Built Environment Applications: A Review,” ",
+   false
+  ],
+  [
+   "Building and Environment",
+   true
+  ],
+  [
+   ", Vol. 206, pp. 108315.",
+   false
+  ]
+ ],
+ [
+  [
+   "Utkucu, D. and Sözer, H., 2020, “Interoperability and Data Exchange within BIM Platform to Evaluate Building Energy Performance and Indoor Comfort,” ",
+   false
+  ],
+  [
+   "Automation in Construction",
+   true
+  ],
+  [
+   ", Vol. 116, pp. 103225.",
+   false
+  ]
+ ],
+ [
+  [
+   "Weerasuriya, A., Zhang, X., Gan, V. J. and Tan, Y., 2019, “A Holistic Framework to Utilize Natural Ventilation to Optimize Energy Performance of Residential High-Rise Buildings,” ",
+   false
+  ],
+  [
+   "Building and Environment",
+   true
+  ],
+  [
+   ", Vol. 153, pp. 218–232.",
+   false
+  ]
+ ],
+ [
+  [
+   "Hou, F., Ma, J., Kwok, H. H. and Cheng, J. C., 2022, “Prediction and Optimization of Thermal Comfort, IAQ and Energy Consumption of Typical Air-Conditioned Rooms Based on a Hybrid Prediction Model,” ",
+   false
+  ],
+  [
+   "Building and Environment",
+   true
+  ],
+  [
+   ", Vol. 225, pp. 109576.",
+   false
+  ]
+ ],
+ [
+  [
+   "Rocha, G., Mateus, L., Fernández, J. and Ferreira, V., 2020, “A Scan-to-BIM Methodology Applied to Heritage Buildings,” ",
+   false
+  ],
+  [
+   "Heritage",
+   true
+  ],
+  [
+   ", Vol. 3, No. 1, pp. 47–67.",
+   false
+  ]
+ ],
+ [
+  [
+   "Guo, X., Li, W. and Iorio, F., 2016, “Convolutional Neural Networks for Steady Flow Approximation,” ",
+   false
+  ],
+  [
+   "Proceedings of the 22nd ACM SIGKDD International Conference on Knowledge Discovery and Data Mining",
+   true
+  ],
+  [
+   ", pp. 481–490.",
+   false
+  ]
+ ],
+ [
+  [
+   "Kastner, P. and Dogan, T., 2023, “A GAN-Based Surrogate Model for Instantaneous Urban Wind Flow Prediction,” ",
+   false
+  ],
+  [
+   "Building and Environment",
+   true
+  ],
+  [
+   ", Vol. 242, pp. 110384.",
+   false
+  ]
+ ],
+ [
+  [
+   "OpenAI, Achiam, J., Adler, S., et al., 2023, ",
+   false
+  ],
+  [
+   "GPT-4 Technical Report",
+   false
+  ],
+  [
+   ", arXiv:2303.08774.",
+   false
+  ]
+ ],
+ [
+  [
+   "Gemini Team, Anil, R., Borgeaud, S., et al., 2023, ",
+   false
+  ],
+  [
+   "Gemini: A Family of Highly Capable Multimodal Models",
+   false
+  ],
+  [
+   ", arXiv:2312.11805.",
+   false
+  ]
+ ],
+ [
+  [
+   "Chen, B., Xu, Z., Kirmani, S., Ichter, B., Sadigh, D., Guibas, L. and Xia, F., 2024, “SpatialVLM: Endowing Vision-Language Models with Spatial Reasoning Capabilities,” ",
+   false
+  ],
+  [
+   "2024 IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)",
+   true
+  ],
+  [
+   ", pp. 14455–14465.",
+   false
+  ]
+ ],
+ [
+  [
+   "Hong, Y., Zhen, H., Chen, P., Zheng, S., Du, Y., Chen, Z. and Gan, C., 2023, “3D-LLM: Injecting the 3D World into Large Language Models,” ",
+   false
+  ],
+  [
+   "Advances in Neural Information Processing Systems (NeurIPS)",
+   true
+  ],
+  [
+   ".",
+   false
+  ]
+ ],
+ [
+  [
+   "Kosutova, K., van Hooff, T., Vanderwel, C., Blocken, B. and Hensen, J., 2019, “Cross-Ventilation in a Generic Isolated Building Equipped with Louvers: Wind-tunnel Experiments and CFD Simulations,” ",
+   false
+  ],
+  [
+   "Building and Environment",
+   true
+  ],
+  [
+   ", Vol. 154, pp. 263–280.",
+   false
+  ]
+ ],
+ [
+  [
+   "Chen, G., Rong, L. and Zhang, G., 2021, “Unsteady-State CFD Simulations on the Impacts of Urban Geometry on Outdoor Thermal Comfort within Idealized Building Arrays,” ",
+   false
+  ],
+  [
+   "Sustainable Cities and Society",
+   true
+  ],
+  [
+   ", Vol. 74, pp. 103187.",
+   false
+  ]
+ ],
+ [
+  [
+   "Liu, H., He, S., Shen, L. and Hong, J., 2021, “Simulation-Based Study of COVID-19 Outbreak Associated with Air-Conditioning in a Restaurant,” ",
+   false
+  ],
+  [
+   "Physics of Fluids",
+   true
+  ],
+  [
+   ", Vol. 33, No. 2.",
+   false
+  ]
+ ],
+ [
+  [
+   "Srivastava, S., Zhao, X., Manay, A. and Chen, Q., 2021, “Effective Ventilation and Air Disinfection System for Reducing Coronavirus Disease 2019 (COVID-19) Infection Risk in Office Buildings,” ",
+   false
+  ],
+  [
+   "Sustainable Cities and Society",
+   true
+  ],
+  [
+   ", Vol. 75, pp. 103408.",
+   false
+  ]
+ ],
+ [
+  [
+   "Brozovsky, J., Radivojevic, J. and Simonsen, A., 2022, “Assessing the Impact of Urban Microclimate on Building Energy Demand by Coupling CFD and Building Performance Simulation,” ",
+   false
+  ],
+  [
+   "Journal of Building Engineering",
+   true
+  ],
+  [
+   ", Vol. 55, pp. 104681.",
+   false
+  ]
+ ],
+ [
+  [
+   "Ren, C. and Cao, S. J., 2019, “Development and Application of Linear Ventilation and Temperature Models for Indoor Environmental Prediction and HVAC Systems Control,” ",
+   false
+  ],
+  [
+   "Sustainable Cities and Society",
+   true
+  ],
+  [
+   ", Vol. 51, pp. 101673.",
+   false
+  ]
+ ],
+ [
+  [
+   "Wang, Q., Guo, J. and Kim, M. K., 2019, “An Application Oriented Scan-to-BIM Framework,” ",
+   false
+  ],
+  [
+   "Remote Sensing",
+   true
+  ],
+  [
+   ", Vol. 11, No. 3, pp. 365.",
+   false
+  ]
+ ],
+ [
+  [
+   "Mildenhall, B., Srinivasan, P. P., Tancik, M., Barron, J. T., Ramamoorthi, R. and Ng, R., 2020, “NeRF: Representing Scenes as Neural Radiance Fields for View Synthesis,” ",
+   false
+  ],
+  [
+   "Lecture Notes in Computer Science",
+   true
+  ],
+  [
+   ", pp. 405–421.",
+   false
+  ]
+ ],
+ [
+  [
+   "Yang, S. D., Ali, Z. A. and Wong, B. M., 2023, “FLUID-GPT (Fast Learning to Understand and Investigate Dynamics with a Generative Pre-Trained Transformer): Efficient Predictions of Particle Trajectories and Erosion,” ",
+   false
+  ],
+  [
+   "Industrial & Engineering Chemistry Research",
+   true
+  ],
+  [
+   ", Vol. 62, No. 37, pp. 15278–15289.",
+   false
+  ]
+ ],
+ [
+  [
+   "Pandey, S., Xu, R., Wang, W. and Chu, X., 2025, “OpenFOAMGPT: A Retrieval-Augmented Large Language Model (LLM) Agent for OpenFOAM-based Computational Fluid Dynamics,” ",
+   false
+  ],
+  [
+   "Physics of Fluids",
+   true
+  ],
+  [
+   ", Vol. 37, No. 3.",
+   false
+  ]
+ ],
+ [
+  [
+   "Dong, Z., Lu, Z. and Yang, Y., 2025, “Fine-Tuning a Large Language Model for Automating Computational Fluid Dynamics Simulations,” ",
+   false
+  ],
+  [
+   "Theoretical and Applied Mechanics Letters",
+   true
+  ],
+  [
+   ", Vol. 15, No. 3, pp. 100594.",
+   false
+  ]
+ ],
+ [
+  [
+   "Menter, F. R., 1994, “Two-Equation Eddy-Viscosity Turbulence Models for Engineering Applications,” ",
+   false
+  ],
+  [
+   "AIAA Journal",
+   true
+  ],
+  [
+   ", Vol. 32, No. 8, pp. 1598–1605.",
+   false
+  ]
+ ],
+ [
+  [
+   "Launder, B. and Spalding, D., 1974, “The Numerical Computation of Turbulent Flows,” ",
+   false
+  ],
+  [
+   "Computer Methods in Applied Mechanics and Engineering",
+   true
+  ],
+  [
+   ", Vol. 3, No. 2, pp. 269–289.",
+   false
+  ]
+ ],
+ [
+  [
+   "Geuzaine, C. and Remacle, J. F., 2009, “Gmsh: A 3-D Finite Element Mesh Generator with Built-in Pre- and Post-processing Facilities,” ",
+   false
+  ],
+  [
+   "International Journal for Numerical Methods in Engineering",
+   true
+  ],
+  [
+   ", Vol. 79, No. 11, pp. 1309–1331.",
+   false
+  ]
+ ],
+ [
+  [
+   "Patankar, S. and Spalding, D., 1972, “A Calculation Procedure for Heat, Mass and Momentum Transfer in Three-Dimensional Parabolic Flows,” ",
+   false
+  ],
+  [
+   "International Journal of Heat and Mass Transfer",
+   true
+  ],
+  [
+   ", Vol. 15, No. 10, pp. 1787–1806.",
+   false
+  ]
+ ],
+ [
+  [
+   "Qi, C. R., Litany, O., He, K. and Guibas, L. J., 2019, “Deep Hough Voting for 3D Object Detection in Point Clouds,” ",
+   false
+  ],
+  [
+   "2019 IEEE/CVF International Conference on Computer Vision (ICCV)",
+   true
+  ],
+  [
+   ", pp. 9276–9285.",
+   false
+  ]
+ ],
+ [
+  [
+   "Dai, A., Chang, A. X., Savva, M., Halber, M., Funkhouser, T. and Niessner, M., 2017, “ScanNet: Richly-Annotated 3D Reconstructions of Indoor Scenes,” ",
+   false
+  ],
+  [
+   "2017 IEEE Conference on Computer Vision and Pattern Recognition (CVPR)",
+   true
+  ],
+  [
+   ", pp. 2432–2443.",
+   false
+  ]
+ ],
+ [
+  [
+   "Song, S., Lichtenberg, S. P. and Xiao, J., 2015, “SUN RGB-D: A RGB-D Scene Understanding Benchmark Suite,” ",
+   false
+  ],
+  [
+   "2015 IEEE Conference on Computer Vision and Pattern Recognition (CVPR)",
+   true
+  ],
+  [
+   ", pp. 567–576.",
+   false
+  ]
+ ],
+ [
+  [
+   "Franke, J., Hellsten, A., Schlunzen, K. H. and Carissimo, B., 2011, “The COST 732 Best Practice Guideline for CFD Simulation of Flows in the Urban Environment: A Summary,” ",
+   false
+  ],
+  [
+   "International Journal of Environment and Pollution",
+   true
+  ],
+  [
+   ", Vol. 44, No. 1/2/3/4, pp. 419.",
+   false
+  ]
+ ],
+ [
+  [
+   "Nielsen, P. V., Restivo, A. and Whitelaw, J. H., 1978, “The Velocity Characteristics of Ventilated Rooms,” ",
+   false
+  ],
+  [
+   "Journal of Fluids Engineering",
+   true
+  ],
+  [
+   ", Vol. 100, No. 3, pp. 291–298.",
+   false
+  ]
+ ]
+]
